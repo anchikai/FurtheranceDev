@@ -1,16 +1,30 @@
 -- Thank you so much for all the Spanish translations Kotry!!!
 -- And now thank you so much for the Russian translations BrakeDude!!!
 
--- Leah
+-- Mod Icon
+EID:setModIndicatorName("Furtherance")
+local iconSprite = Sprite()
+iconSprite:Load("gfx/eid_icon_furtherance.anm2", true)
+EID:addIcon("Furtherance Icon", "Furtherance icon", 0, 12, 11, 6, 6, iconSprite)
+EID:setModIndicatorIcon("Furtherance Icon")
+
+-- Birthright Icons
+PlayerIconSprite = Sprite()
+PlayerIconSprite:Load("gfx/ui/eid_players_icon.anm2", true)
+EID:addIcon("Player"..Isaac.GetPlayerTypeByName("Leah", false), "Leah", 0, 12, 12, -1, 1, PlayerIconSprite)
+EID:addIcon("Player"..Isaac.GetPlayerTypeByName("LeahB", true), "LeahB", 0, 12, 12, -1, 1, PlayerIconSprite)
+
+-- Leah 
 local normalLeah = Isaac.GetPlayerTypeByName("Leah", false)
 EID:addBirthright(normalLeah, "↓ {{BrokenHeart}} +3 broken hearts#↓ Chance of gaining a broken heart on enemy kill is now 25%#↑ A broken heart is now removed every 10 kills instead of every 20#↑ Stats gained through kills are 2x effective", "Leah", "en_us")
 EID:addBirthright(normalLeah, "↓ {{BrokenHeart}} +3 сломанных сердец#↓ Шанс получить сломанное сердце при убийстве врага теперь 25%#↑ Сломанное сердце удаляется каждые 10 убийств вместо каждых 20#↑ Характеристики, полученные убийствами, 2x эффективнее", "Лия", "ru")
 EID:addBirthright(normalLeah, "↓ {{BrokenHeart}} +3 Corazones rotos#La posibilidad de recibir corazones rotos al matar ahora es de 25%#Perderás un corazón roto al matar 10 enemigos en vez de 20#↑ Las estadísticas ganadas por asesinatos se duplican", "Leah", "spa")
 
+
 -- Tainted Leah
-local taintedLeah = Isaac.GetPlayerTypeByName("Leah", true)
+local taintedLeah = Isaac.GetPlayerTypeByName("LeahB", true)
 EID:addBirthright(taintedLeah, "Tainted Leah will no longer constantly refill back to {{BrokenHeart}} 11 broken hearts#She will instead refill to only 6#She will gain 0.05 speed for every broken heart instead of lose#↑ +20% chance to charm enemies", "Tainted Leah", "en_us")
-EID:addBirthright(taintedLeah, "{{BrokenHeart}}Сломанные серда Порченой Лии больше не будет постоянно пополняться до 11, вместо этого они будет пополняться только до 6#↑ {{Speed}} +0.05 к скорости за каждое разбитое сердце вместо потери#↑ +20% шанс очаровать врагов", "Порченая Лия", "ru")
+EID:addBirthright(taintedLeah, "{{BrokenHeart}} Сломанные серда Порченой Лии больше не будет постоянно пополняться до 11, вместо этого они будет пополняться только до 6#↑ {{Speed}} +0.05 к скорости за каждое разбитое сердце вместо потери#↑ +20% шанс очаровать врагов", "Порченая Лия", "ru")
 EID:addBirthright(taintedLeah, "Leah contaminada ya no recibirá {{BrokenHeart}} 11 corazones rotos, en cambio sólo tendrá 6#↑ {{Speed}} Velocidad +0.05 por cada corazón roto que posea#20% de posibilidad de encantar enemigos", "Leah Contaminada", "spa")
 
 --Esc Key
@@ -195,9 +209,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_TAB_KEY, "Recibes todos los efect
 -- Heart Renovator
 EID:addCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, "{{BrokenHeart}} Removes 1 broken heart#↑ Grants either +0.25 Damage up or +0.23 Tears up for the current room#!!! Passively grants 1 broken heart per room", "Heart Renovator", "en_us")
 EID:addCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, "{{BrokenHeart}} Удаляет 1 сломанное сердце#↑ Даёт либо +0.25 к урону, либо +0.23 к скорострельности в текущей комнате#!!! Пассивно даёт 1 сломанное сердце за комнату", "Сердечный восстановитель", "ru")
-EID:addCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, "{{BrokenHeart}} Remueve un corazón rojot#↑ Puede dar Daño +0.25 o Lágrimas +0.23 durante la habitación#!!! Otorga un corazón roto de forma pasiva por sala", "Renovador cardiaco", "spa")
+EID:addCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, "{{BrokenHeart}} Remueve un corazón roto#↑ Puede dar Daño +0.25 o Lágrimas +0.23 durante la habitación#!!! Otorga un corazón roto de forma pasiva por sala", "Renovador cardiaco", "spa")
 
 -- Grass
 EID:addTrinket(TrinketType.TRINKET_GRASS, "Starts a 1 hour timer#The trinket will be removed when timer ends and {{Collectible210}} Gnawed Leaf will spawn#!!! The timer will reset if the trinket is dropped", "Grass", "en_us")
 EID:addTrinket(TrinketType.TRINKET_GRASS, "Запускает 1 часовой таймер#При истечении таймера брелок исчезнет и появится {{Collectible210}} Обглоданный лист#!!! Таймер сбрасывается, если брелок был выброшен", "Трава", "ru")
-EID:addTrinket(TrinketType.TRINKET_GRASS, "Starts a 1 hour timer#The trinket will be removed when timer ends and Gnawed Leaf will spawn#!!! The timer will reset if the trinket is dropped", "Grass", "spa")
+EID:addTrinket(TrinketType.TRINKET_GRASS, "Empezará un contador de una hora#El trinket será removido y se otorgará la {{Collectible210}} Hoja roída tras acabar el tiempo#!!! Si se suelta el trinket, el contador se reiniciará", "Pasto", "spa")
