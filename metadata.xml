@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+    <name>Furtherance</name>
+    <directory>furtherance</directory>
+    <id>2737123333</id>
+    <description>[h1]The Binding of Isaac: Furtherance is a modded expansion that adds a flavorful amount of new content![/h1]
+
+[h2]Features[/h2]
+- 14 Passive Items
+- 18 Active Items
+- 4 Trinkets
+- 2 Characters
+- 7 Blessings
+- 1 Curse
+- Mod Config Menu Support
+- EID Suppport
+- Encyclopedia Support
+- Pog Support
+- And more to come!
+
+[h3]Supported Languages (With EID)[/h3]
+- [b]English[/b]
+- [b]Spanish[/b]
+- [b]Russian[/b]
+
+
+[h2]Configuration[/h2]
+
+Simply install [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787]Mod Config Menu[/url]
+
+[b]I strongly recommend you play this mod with EID and Encyclopedia installed![/b]
+Here is the [url=https://github.com/anchikai/Furtherance]github page[/url] for Furtherance, including a [url=https://github.com/anchikai/Furtherance/wiki]wiki[/url]
+
+[h2]Special Thanks to[/h2]
+- Blind, the Bound Demon for creating item sprites
+- BrakeDude for providing the Russian translations
+- cat,, for making Leah's stage sprites
+- Goncholito for creating item sprites
+- Kotry for providing the Spanish translations and thumbnail art
+- poody_blue for creating item sprites, UI elements, character sprites, costumes, and more
+- shrkiツ for extensive play testing and feedback, and item sprites
+- Sillst for providing sfx
+- Aeronaut, Freg, Joply, PootisTweet, shrkiツ, SybilScribble, and Tesseract for concepts!</description>
+    <version>1.1</version>
+    <visibility>Public</visibility>
+    <tag id="Lua"/>
+    <tag id="Items"/>
+    <tag id="Active Items"/>
+    <tag id="Trinkets"/>
+    <tag id="Player Characters"/>
+    <tag id="Sound Effects"/>
+</metadata>
