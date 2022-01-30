@@ -140,13 +140,13 @@ function mod:Hearts(entity, collider)
 					entity:GetSprite():Play("Collect",true)
 					entity:Die()
 					SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
-				elseif entity.SubType == CustomPickups.TaintedHearts.HEART_HOARDED then
+				elseif entity.SubType == CustomPickups.TaintedHearts.HEART_HOARDED and RepentancePlusMod then
 					data.HeartCount = data.HeartCount + 8
 					entity:GetSprite():Play("Collect",true)
 					entity:Die()
 					SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
 				end
-			elseif collider:CanPickRedHearts() then
+			elseif collider:CanPickRedHearts() and RepentancePlusMod then
 				if entity.SubType == CustomPickups.TaintedHearts.HEART_HOARDED then
 					data.HeartCount = data.HeartCount - 8
 				end
@@ -396,10 +396,10 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function(_, isContinue) -- The actu
 			f:Load("font/pftempestasevencondensed.fnt")
 			f:DrawString("P"..(player.ControllerIndex+1), mod:GetScreenTopLeft(18.5  + offset).X, mod:GetScreenTopLeft(27.3  + offset).Y + charoffset, KColor(1, 1, 1, 1, 0, 0, 0), 0, true)
 			f:DrawString(":", mod:GetScreenTopLeft(30.5 + offset).X, mod:GetScreenTopLeft(27.3 + offset).Y + charoffset, KColor(1, 1, 1, 1, 0, 0, 0), 0, true)
-			if data.HeartCount < 2 then
-				f:DrawString(data.HeartCount, mod:GetScreenTopLeft(33.3 + offset).X, mod:GetScreenTopLeft(27.3 + offset).Y + charoffset, KColor(1, 1, 1, 1, 0, 0, 0), 0, true)
-			else
+			if data.HeartCount > 1 and player:GetBrokenHearts() > 0 then
 				f:DrawString(data.HeartCount, mod:GetScreenTopLeft(33.3 + offset).X, mod:GetScreenTopLeft(27.3 + offset).Y + charoffset, KColor(0, 1, 0, 1, 0, 0, 0), 0, true)
+			else
+				f:DrawString(data.HeartCount, mod:GetScreenTopLeft(33.3 + offset).X, mod:GetScreenTopLeft(27.3 + offset).Y + charoffset, KColor(1, 1, 1, 1, 0, 0, 0), 0, true)
 			end
 			local counter = Sprite()
 			counter:Load("gfx/heartcounter.anm2", true)
