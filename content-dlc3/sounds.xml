@@ -1,0 +1,11 @@
+<sounds root="sfx/">
+	<sound name="Sitcom_Laugh_Track">
+		<sample weight="1" path="Sitcom_Laugh_Track.wav" />
+	</sound>
+	<sound name="Bruh">
+		<sample weight="1" path="bruh.wav" />
+	</sound>
+	<sound name="BrokenHeartbeat">		<!-- Thank you Sillst! -->
+		<sample weight="1" path="BrokenHeartbeat.wav" />
+	</sound>
+</sounds>

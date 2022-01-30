@@ -1,0 +1,51 @@
+<locusts gfxroot="gfx/familiar/locusts/">
+	<!--
+		Color presets
+	-->
+	<color name="default" />
+	<color name="fly_red" r="768" g="512" b="512" or="0" og="-255" ob="-255"/>
+	<color name="fly_green" r="512" g="768" b="512" or="-255" og="0" ob="-255"/>
+	<color name="fly_blue" r="512" g="512" b="768" or="-255" og="-255" ob="0"/>
+	<color name="fly_yellow" r="1024" g="768" b="512" or="0" og="0" ob="-255"/>
+	<color name="fly_orange" r="1024" g="512" b="512" or="0" og="0" ob="-255"/>
+	<color name="fly_black" r="255" g="255" b="255"/>
+	<color name="fly_purple" r="768" g="512" b="1024" or="0" og="-255" ob="0"/>
+	<color name="fly_pink" r="1024" g="512" b="768" or="0" og="-255" ob="0"/>
+	<color name="fly_cyan" r="680" g="1024" b="1024" or="0" og="0" ob="0"/>
+	<color name="fly_beige" r="310" g="300" b="290"/>
+	
+	<!-- Esc Key -->
+	<locust id="24" damageMultiplier="1" speed="1" collisionInterval="7" tearFlags="20" color="fly_beige" />
+	<!-- Tilde Key -->
+	<locust id="1" damageMultiplier="1" speed="1" collisionInterval="7" color="fly_beige" />
+	<!-- Alt Key -->
+	<locust id="2" damageMultiplier="1" speed="1" collisionInterval="7" color="fly_beige" />
+	<!-- Spacebar Key -->
+	<locust id="3" damageMultiplier="1" speed="1" collisionInterval="7" color="fly_beige" />
+	<!-- Backspace Key -->
+	<locust id="4" damageMultiplier="1" speed="-1" collisionInterval="7" color="fly_beige" />
+	<!-- Q Key -->
+	<locust id="5" damageMultiplier="1" speed="1" collisionInterval="7" color="fly_beige" />
+	<!-- E Key -->
+	<locust id="6" damageMultiplier="1" speed="1" collisionInterval="7" color="fly_beige" />
+	<!-- C Key -->
+	<locust id="7" damageMultiplier="1" speed="1" collisionInterval="7" color="fly_beige" />
+	<!-- Caps Key -->
+	<locust id="8" damageMultiplier="1" speed="1" collisionInterval="7" color="fly_beige" />
+	<!-- Enter Key -->
+	<locust id="9" damageMultiplier="1" speed="1" collisionInterval="7" color="fly_beige" />
+	<!-- Shift Key -->
+	<locust id="10" damageMultiplier="1" speed="1" collisionInterval="7" color="fly_beige" />
+	<!-- Ophiuchus -->
+	<locust id="11" damageMultiplier="1" speed="1" collisionInterval="7" tearFlags="10" color="fly_blue" />
+	<!-- Chrion -->
+	<locust id="12" damageMultiplier="1" speed="1.2" collisionInterval="7" color="fly_blue" />
+	<!-- Juno -->
+	<locust id="13" damageMultiplier="1" speed="1" collisionInterval="7" tearFlags="5" color="fly_blue" />
+	<!-- Pallas -->
+	<locust id="14" damageMultiplier="1" speed="1" collisionInterval="7" color="fly_cyan" />
+	<!-- Ceres -->
+	<locust id="15" damageMultiplier="1" speed="1" collisionInterval="7" tearFlags="49" color="fly_cyan" />
+	<!-- Vesta -->
+	<locust id="16" damageMultiplier="1" speed="1" collisionInterval="7" tearFlags="18" color="fly_cyan" />
+</locusts>
