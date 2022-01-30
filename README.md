@@ -37,3 +37,4 @@ Simply install &quot;[Mod Config Menu](https://steamcommunity.com/sharedfiles/fi
 - poody_blue for creating item sprites, UI elements, character sprites, costumes, and more
 - shrkiツ for extensive play testing and feedback
 - Sillst for providing sfx
+- Aeronaut, Freg, Joply, PootisTweet, shrkiツ, SybilScribble, and Tesseract for concepts!
