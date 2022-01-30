@@ -25,7 +25,7 @@ The Binding of Isaac: Furtherance is a modded expansion that adds a flavorful am
 
 ### In-game Configuration
 
-Simply install &quot;[Mod Config Menu](https://steamcommunity.com/sharedfiles/filedetails/?id=2487535818)&quot;.
+Simply install &quot;[Mod Config Menu](https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787)&quot;.
 
 
 ## Special Thanks to
