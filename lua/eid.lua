@@ -157,7 +157,7 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_NEASS, "Создает 'глюч�
 EID:addCollectible(CollectibleType.COLLECTIBLE_NEASS, "Genera un objeto 'glitcheado', con comportamiento completamente aleatorio", "Plug N' Play", "spa")
 
 -- Cringe
-EID:addTrinket(TrinketType.TRINKET_CRINGE, "All ememies in the room will be briefly frozen when you take damage#↑ Hurt sound is replaced with Bruh sound effect", "Cringe", "en_us")
+EID:addTrinket(TrinketType.TRINKET_CRINGE, "All enemies in the room will be briefly frozen when you take damage#↑ Hurt sound is replaced with Bruh sound effect", "Cringe", "en_us")
 EID:addTrinket(TrinketType.TRINKET_CRINGE, "Все враги в комнате на момент будут заморожены когда вы получаете урон#↑ Звук боли заменен звуковым эффектом 'Bruh'", "Кринж", "ru")
 EID:addTrinket(TrinketType.TRINKET_CRINGE, "Todos los enemigos serán congelados por un corto momento al recibir un daño#↑ El efecto de sonido de ser herido será reemplazado con el efecto de sonido 'Bruh'", "Cringe", "spa")
 
