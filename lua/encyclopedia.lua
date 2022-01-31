@@ -559,7 +559,7 @@ local Wiki = {
 			{str = "Leah has a 15% chance to gain one broken heart when killing an enemy. For every 20th enemy she kills, one broken heart will be removed and she will get a minor permanent damage or tear rate boost."},
 			{str = "When entering a boss room, she will lose two broken hearts."},
 			{str = "Leah has a heart counter. It can be filled by picking up red hearts at full hp. When you press the drop button, two will be subtracted from the counter and a broken heart will be removed."},
-			{str = "If Leah is not carrying Shattered Heart, she has a 25% chance to drop a random red heart when clearing a room."},
+			{str = "If Leah is not carrying Heart Renovator, she has a 25% chance to drop a random red heart when clearing a room."},
 		},
 		{ -- Birthright
 			{str = "Birthright", fsize = 2, clr = 3, halign = 0},
