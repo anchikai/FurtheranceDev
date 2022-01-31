@@ -149,11 +149,13 @@ function mod:Hearts(entity, collider)
 					entity:GetSprite():Play("Collect",true)
 					entity:Die()
 					SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
-				elseif entity.SubType == CustomPickups.TaintedHearts.HEART_HOARDED and RepentancePlusMod then
-					data.HeartCount = data.HeartCount + 8
-					entity:GetSprite():Play("Collect",true)
-					entity:Die()
-					SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
+				elseif RepentancePlusMod then
+					if entity.SubType == CustomPickups.TaintedHearts.HEART_HOARDED then
+						data.HeartCount = data.HeartCount + 8
+						entity:GetSprite():Play("Collect",true)
+						entity:Die()
+						SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
+					end
 				end
 			elseif collider:CanPickRedHearts() and RepentancePlusMod then
 				if entity.SubType == CustomPickups.TaintedHearts.HEART_HOARDED then
