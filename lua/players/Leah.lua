@@ -19,15 +19,26 @@ function IsEnemyNear(player) -- Enemy detection
 	return false
 end
 
+function mod:HeartFix(IsContinued)
+    for i = 0, game:GetNumPlayers() - 1 do
+		local player = game:GetPlayer(i)
+		if player:GetName() == "Leah" then
+			if i == 0 and IsContinued == false then
+				player:AddBrokenHearts(-1)
+			end
+		end
+	end
+end
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.HeartFix)
+
 function mod:OnInit(player)
 	local data = mod:GetData(player)
 	if player:GetName() == "Leah" then -- If the player is Leah it will apply her hair
 		player:AddNullCostume(COSTUME_LEAH_A_HAIR)
 		costumeEquipped = true
 		player:AddCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, 0, true, ActiveSlot.SLOT_PRIMARY, 0)
-		player:AddBrokenHearts(-1)
 		data.leahkills = 0
-		data.HeartCount = 0
+		data.HeartCount = 2
 	elseif player:GetName() == "LeahB" then -- Apply different hair for her tainted variant
 		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_SHATTERED_HEART, ActiveSlot.SLOT_POCKET, false)
 		player:SetActiveCharge(0, ActiveSlot.SLOT_POCKET)
@@ -55,14 +66,12 @@ function mod:OnUpdate(player)
 		else
 			data.dropcooldown = data.dropcooldown - 1
 		end
-		if drop and data.HeartCount >= 2 and player:GetBrokenHearts() > 0 and data.dropcooldown < 1 then -- press drop button to remove 6 hearts and a broken heart
+		if drop and data.HeartCount >= 2 and player:GetBrokenHearts() > 0 and data.dropcooldown < 1 then -- press drop button to remove 2 hearts and a broken heart
 			data.dropcooldown = 15
 			data.HeartCount = data.HeartCount - 2
 			SFXManager():Play(SoundEffect.SOUND_HEARTBEAT)
 			player:AddBrokenHearts(-1)
-		end
-		if data.HeartCount > 99 then -- Cap hearts at 99
-			data.HeartCount = 99
+			--player:AnimateCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, "UseItem", "PlayerPickup")
 		end
 	elseif player:GetName() == "LeahB" then
 		if data.LeahbPower < 0 then
@@ -392,10 +401,12 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function(_, isContinue) -- The actu
 		local player = game:GetPlayer(i)
 		local data = mod:GetData(player)
 		if player:GetName() == "Leah" then
+			if data.HeartCount > 99 then -- Cap hearts at 99
+				data.HeartCount = 99
+			end
 			local f = Font()
 			f:Load("font/pftempestasevencondensed.fnt")
-			f:DrawString("P"..(player.ControllerIndex+1), mod:GetScreenTopLeft(18.5  + offset).X, mod:GetScreenTopLeft(27.3  + offset).Y + charoffset, KColor(1, 1, 1, 1, 0, 0, 0), 0, true)
-			f:DrawString(":", mod:GetScreenTopLeft(30.5 + offset).X, mod:GetScreenTopLeft(27.3 + offset).Y + charoffset, KColor(1, 1, 1, 1, 0, 0, 0), 0, true)
+			f:DrawString("P"..(player.ControllerIndex+1)..":", mod:GetScreenTopLeft(18.5  + offset).X, mod:GetScreenTopLeft(27.3  + offset).Y + charoffset, KColor(1, 1, 1, 1, 0, 0, 0), 0, true)
 			if data.HeartCount > 1 and player:GetBrokenHearts() > 0 then
 				f:DrawString(data.HeartCount, mod:GetScreenTopLeft(33.3 + offset).X, mod:GetScreenTopLeft(27.3 + offset).Y + charoffset, KColor(0, 1, 0, 1, 0, 0, 0), 0, true)
 			else
@@ -404,7 +415,7 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function(_, isContinue) -- The actu
 			local counter = Sprite()
 			counter:Load("gfx/heartcounter.anm2", true)
 			counter:Play("Idle", true)
-			counter:Render(Vector(mod:GetScreenTopLeft(22.75 + offset).X, mod:GetScreenTopLeft(27.1 + offset).Y + charoffset), Vector(0, 0), Vector(0, 0))
+			counter:Render(Vector(mod:GetScreenTopLeft(25 + offset).X, mod:GetScreenTopLeft(27.1 + offset).Y + charoffset), Vector(0, 0), Vector(0, 0))
 			charoffset = charoffset+12
 		end
 	end
