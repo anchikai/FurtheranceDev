@@ -176,7 +176,7 @@ function mod:Hearts(entity, collider)
 				for subtype, amount in pairs (heartCounter) do
 					if entity.SubType == subtype then
 						local emptyHearts = collider:GetEffectiveMaxHearts() - collider:GetHearts()
-						local fullHearts = collider:GetHearts() + collider:GetSoulHearts() + collider:GetBoneHearts() * 2
+						local fullHearts = collider:GetHearts() + collider:GetSoulHearts() + collider:GetBrokenHearts() * 2
 						if emptyHearts <= amount then
 							if subtype ~= HeartSubType.HEART_BLENDED then
 								data.HeartCount = data.HeartCount + amount - emptyHearts
