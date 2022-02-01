@@ -129,11 +129,21 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.OnUpdate)
 
 function mod:Hearts(entity, collider)
+	local heartCounter = {
+		[HeartSubType.HEART_FULL] = 2,
+		[HeartSubType.HEART_SCARED] = 2,
+		[HeartSubType.HEART_DOUBLEPACK] = 4,
+		[HeartSubType.HEART_HALF] = 1,
+		[HeartSubType.HEART_BLENDED] = 2,
+	}
+	if RepentancePlusMod then
+		heartCounter[CustomPickups.TaintedHearts.HEART_HOARDED] = 8
+	end
 	if collider.Type == EntityType.ENTITY_PLAYER then
 		local collider = collider:ToPlayer()
 		local data = mod:GetData(collider)
 		if collider:GetName() == "Leah" then -- Leah's Heart Counter Gimmick
-			if collider:CanPickRedHearts() == false and data.HeartCount < 99 then
+			--[[if collider:CanPickRedHearts() == false and data.HeartCount < 99 then
 				if entity.SubType == HeartSubType.HEART_FULL or entity.SubType == HeartSubType.HEART_SCARED then
 					data.HeartCount = data.HeartCount + 2
 					entity:GetSprite():Play("Collect",true)
@@ -160,6 +170,37 @@ function mod:Hearts(entity, collider)
 			elseif collider:CanPickRedHearts() and RepentancePlusMod then
 				if entity.SubType == CustomPickups.TaintedHearts.HEART_HOARDED then
 					data.HeartCount = data.HeartCount - 8
+				end
+			end]]
+			if data.HeartCount < 99 then
+				for subtype, amount in pairs (heartCounter) do
+					if entity.SubType == subtype then
+						local emptyHearts = collider:GetEffectiveMaxHearts() - collider:GetHearts()
+						local fullHearts = collider:GetHearts() + collider:GetSoulHearts() + collider:GetBoneHearts() * 2
+						if emptyHearts <= amount then
+							if subtype ~= HeartSubType.HEART_BLENDED then
+								data.HeartCount = data.HeartCount + amount - emptyHearts
+							else
+								if fullHearts == 24 then
+									data.HeartCount = data.HeartCount + 2
+								elseif fullHearts == 23 then
+									data.HeartCount = data.HeartCount + 1
+								end
+							end
+							if not collider:CanPickRedHearts() then
+								entity:GetSprite():Play("Collect",true)
+								entity:Die()
+								SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
+							elseif collider:CanPickRedHearts() and RepentancePlusMod then
+								if entity.SubType == CustomPickups.TaintedHearts.HEART_HOARDED then
+									entity:GetSprite():Play("Collect",true)
+									entity:Die()
+									SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
+									collider:AddHearts(emptyHearts)
+								end
+							end
+						end
+					end
 				end
 			end
 		end
@@ -398,7 +439,7 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, function(_, isContinue) -- The actual heart counter for Leah
 	if mod:shouldDeHook() then return end
 	local charoffset=0
-	local offset = Options.HUDOffset * 10
+	local offset = Options.HUDOffset * Vector(20, 12)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = game:GetPlayer(i)
 		local data = mod:GetData(player)
@@ -408,16 +449,16 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function(_, isContinue) -- The actu
 			end
 			local f = Font()
 			f:Load("font/pftempestasevencondensed.fnt")
-			f:DrawString("P"..(player.ControllerIndex+1)..":", mod:GetScreenTopLeft(18.5  + offset).X, mod:GetScreenTopLeft(27.3  + offset).Y + charoffset, KColor(1, 1, 1, 1, 0, 0, 0), 0, true)
+			f:DrawString("P"..(player.ControllerIndex+1)..":",37 + offset.X,33 + offset.Y + charoffset, KColor(1, 1, 1, 1, 0, 0, 0), 0, true)
+			local kcolour = KColor(1, 1, 1, 1, 0, 0, 0)
 			if data.HeartCount > 1 and player:GetBrokenHearts() > 0 then
-				f:DrawString(data.HeartCount, mod:GetScreenTopLeft(33.3 + offset).X, mod:GetScreenTopLeft(27.3 + offset).Y + charoffset, KColor(0, 1, 0, 1, 0, 0, 0), 0, true)
-			else
-				f:DrawString(data.HeartCount, mod:GetScreenTopLeft(33.3 + offset).X, mod:GetScreenTopLeft(27.3 + offset).Y + charoffset, KColor(1, 1, 1, 1, 0, 0, 0), 0, true)
+				kcolour = KColor(0, 1, 0, 1, 0, 0, 0)
 			end
+			f:DrawString(data.HeartCount, 63 + offset.X, 33 + offset.Y + charoffset, kcolour, 0, true)
 			local counter = Sprite()
 			counter:Load("gfx/heartcounter.anm2", true)
 			counter:Play("Idle", true)
-			counter:Render(Vector(mod:GetScreenTopLeft(25 + offset).X, mod:GetScreenTopLeft(27.1 + offset).Y + charoffset), Vector(0, 0), Vector(0, 0))
+			counter:Render(Vector(48 + offset.X, 32.5 + offset.Y + charoffset), Vector(0, 0), Vector(0, 0))
 			charoffset = charoffset+12
 		end
 	end

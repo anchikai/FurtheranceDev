@@ -1,9 +1,12 @@
 further = RegisterMod("Furtherance", 1)
 local mod = further
-local laugh = Isaac.GetSoundIdByName("Sitcom_Laugh_Track")
+local json = require("json")
+local loading = {}
+local loadTimer
 local game = Game()
 local rng = RNG()
 
+local laugh = Isaac.GetSoundIdByName("Sitcom_Laugh_Track")
 further.FailSound = SoundEffect.SOUND_EDEN_GLITCH
 
 -- Keys
@@ -90,6 +93,45 @@ include("lua/items/Tab.lua")
 include("lua/items/ShatteredHeart.lua")
 include("lua/items/Grass.lua")
 
+-- Save Data/Unlocks
+include("lua/achievements.lua")
+
+function mod:OnSave(isSaving)
+	local save = {}
+	if isSaving then
+		for i = 0, game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			local data = mod:GetData(player)
+			if player:GetName() == "Leah" then
+				save["player_"..tostring(i+1)] = data.leahkills
+				save["player_"..tostring(i+1)] = data.HeartCount
+			end
+		end
+	end
+	save.Unlocks = json.encode(mod.Unlocks)
+	mod:SaveData(json.encode(save))
+end
+
+mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.OnSave)
+
+function mod:OnLoad(isLoading)
+	if isLoading and mod:HasData() then
+		local loadData = json.decode(mod:LoadData())
+		for i = 0, game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			local data = mod:GetData(player)
+			if loadData["player_"..tostring(i+1)] then
+				if player:GetName() == "Leah" then
+					data.leahkills = json.decode(loadData["player_"..tostring(i+1)])
+					data.HeartCount = json.decode(loadData["player_"..tostring(i+1)])
+				end
+			end
+		end
+	end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnLoad)
+
 -- Curses & Blessings Lua
 include("lua/curses/Curses.lua")
 
@@ -102,6 +144,8 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function()
         Isaac.ExecuteCommand("reloadshaders")
     end
 end)
+
+----- Mod Support -----
 
 if EID then
 	include("lua/eid.lua")
@@ -153,6 +197,7 @@ if MCMLoaded then
 	)
 end
 
+----- Mod Support End -----
 
 -----------------------------------
 --Helper Functions (thanks piber)--
@@ -335,6 +380,15 @@ function ripairs_it(t,i)
 end
 function ripairs(t)
 	return ripairs_it, t, #t+1
+end
+
+function mod:Contains(list, x, key)
+	key = key or false
+	for k, v in pairs(list) do
+		local val = key and k or v
+		if val == x then return true end
+	end
+	return false
 end
 
 --delayed functions
