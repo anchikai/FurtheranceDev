@@ -9,4 +9,8 @@
 	<!-- Tainted Leah -->
     <costume anm2path="Character_001b_Leah_Hair.anm2" type="none" priority="99" />
     <costume anm2path="Character_001b_Leah_Pog.anm2" type="none" priority="99" />
+	<!-- Peter -->
+    <costume anm2path="Character_002_Peter_Drip.anm2" type="none" priority="99" />
+	<!-- Tainted Peter -->
+    <costume anm2path="Character_002b_Peter_Drip.anm2" type="none" priority="99" />
 </costumes>

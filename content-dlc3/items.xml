@@ -36,7 +36,7 @@
 	<active id="21" cache="speed" name="Book of Swiftness" description="Temporary speed up" gfx="book_of_swiftness.png" maxcharges="3" quality="3" tags="book offensive" />
 	<active id="22" cache="range" name="Book of Ambit" description="Temporary range up" gfx="book_of_ambit.png" maxcharges="3" quality="2" tags="book offensive" />
 	<active id="25" name="Plug N' Play" description="Comes with 1000 games!" gfx="plug_n_play.png" maxcharges="6" quality="2" tags="nocantrip offensive" />				<!-- Concept by Freg! -->
-	<active id="29" name="Heart Renovator" description="Eternal triumph" gfx="heart_renovator.png" chargetype="timed" maxcharges="180" quality="2" tags="angel nokeeper nolostbr" />
+	<active id="29" name="Heart Renovator" description="Eternal triumph" gfx="heart_renovator.png" chargetype="timed" maxcharges="90" quality="2" tags="angel nokeeper nolostbr" />
 	<active id="31" name="F4 Key" description="Be careful..." gfx="f4.png" shopprice="30" devilprice="2" maxcharges="6" quality="4" />
 	<active id="32" name="Tab Key" description="Pretty useful!" gfx="tab.png" maxcharges="4" quality="3" />
 	<active id="33" name="Shattered Heart" description="Eternal Sorrow" gfx="shattered_heart.png" chargetype="timed" maxcharges="90" quality="2" tags="nokeeper nolostbr" />
