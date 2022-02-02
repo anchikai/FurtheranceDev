@@ -96,7 +96,7 @@ EID:assignTransformation("collectible", CollectibleType.COLLECTIBLE_CHIRON, "5, 
 
 -- Juno
 EID:addCollectible(CollectibleType.COLLECTIBLE_JUNO, "↑ {{SoulHeart}} +2 Soul Hearts#Tears that hit an enemy have a chance to chain down the nearest enemy for 5 seconds, preventing them from acting", "Juno", "en_us")
-EID:addCollectible(CollectibleType.COLLECTIBLE_JUNO, "↑ {{SoulHeart}} +2 синее сердце#Слезы, попавшие во врага, могут сковать в цепь ближайшего врага на 5 секунд, не позволяя ему двигаться", "Юнона", "ru")
+EID:addCollectible(CollectibleType.COLLECTIBLE_JUNO, "↑ {{SoulHeart}} +2 синих сердца#Слезы, попавшие во врага, могут сковать в цепь ближайшего врага на 5 секунд, не позволяя ему двигаться", "Юнона", "ru")
 EID:addCollectible(CollectibleType.COLLECTIBLE_JUNO, "↑ {{SoulHeart}} +2 Corazón de alma#Las lágrimas que golpeen a un enemigo tienen una posibilidad de encadenar al enemigo más cercano durante 5 segundos, evitando que actúe", "Juno", "spa")
 
 -- Pallas
