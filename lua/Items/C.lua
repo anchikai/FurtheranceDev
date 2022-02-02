@@ -6,7 +6,7 @@ function mod:UseC(boi, rng, player, slot, data)
 
 	player:AnimateCollectible(CollectibleType.COLLECTIBLE_C_KEY, "UseItem", "PlayerPickup")
 	player:RemoveCollectible(CollectibleType.COLLECTIBLE_C_KEY)
-	Isaac.ExecuteCommand("goto s.library.70055")
+	Isaac.ExecuteCommand("goto s.library.0")
 	data.Teleported = true
 end
 
@@ -22,12 +22,8 @@ function mod:CKeyTeleported(boi, rng, player, slot, data)
 		if data.Teleported == true then
 		--spawn item pedastols 
 		game:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, room:GetCenterPos(), Vector(0, 0), nil, 0, room:GetSpawnSeed())
-		game:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, room:GetGridPosition(120), Vector(0, 0), nil, 0, room:GetSpawnSeed())
-		game:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, room:GetGridPosition(122, 4), Vector(0, 0), nil, 0, room:GetSpawnSeed())
-		game:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, room:GetGridPosition(124, 4), Vector(0, 0), nil, 0, room:GetSpawnSeed())
-		game:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, room:GetGridPosition(127, 4), Vector(0, 0), nil, 0, room:GetSpawnSeed())
-		game:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, room:GetGridPosition(129, 4), Vector(0, 0), nil, 0, room:GetSpawnSeed())
-		game:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, room:GetGridPosition(131, 4), Vector(0, 0), nil, 0, room:GetSpawnSeed())
+		game:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, room:GetGridPosition(63), Vector(0, 0), nil, 0, room:GetSpawnSeed())
+		game:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, room:GetGridPosition(71), Vector(0, 0), nil, 0, room:GetSpawnSeed())
 		data.Teleported = false
 		end
 	end

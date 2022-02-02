@@ -9,14 +9,20 @@ function mod:UseShattered(_, _, player)
 		SFXManager():Play(SoundEffect.SOUND_HEARTBEAT)
 		player:AddBrokenHearts(-1)
 		local shRNG = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_HEART_RENOVATOR)
-		if shRNG:RandomInt(2) == 0 then
-			data.shD = data.shD + 1
+		if player.MaxFireDelay > 1 then
+			if shRNG:RandomInt(2) == 0 then
+				data.shD = data.shD + 1
+				player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+			else
+				data.shT = data.shT + 1
+				player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
+			end
+			player:EvaluateItems()
 		else
-			data.shT = data.shT + 1
+			data.shD = data.shD + 1
+			player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+			player:EvaluateItems()
 		end
-		player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
-		player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
-		player:EvaluateItems()
 	end
 end
 
@@ -50,10 +56,10 @@ function mod:DMGorTears(player, flag)
 		data.shT = 0
 	end
 	if flag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-		player.Damage = player.Damage + data.shD * 0.25
+		player.Damage = player.Damage + data.shD * 0.5
 	end
 	if flag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
-		player.MaxFireDelay = player.MaxFireDelay - data.shT
+		player.MaxFireDelay = player.MaxFireDelay - (data.shT * 0.8)
 	end
 end
 

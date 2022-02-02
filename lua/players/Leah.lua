@@ -36,7 +36,7 @@ function mod:OnInit(player)
 	if player:GetName() == "Leah" then -- If the player is Leah it will apply her hair
 		player:AddNullCostume(COSTUME_LEAH_A_HAIR)
 		costumeEquipped = true
-		player:AddCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, 0, true, ActiveSlot.SLOT_PRIMARY, 0)
+		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, ActiveSlot.SLOT_POCKET, false)
 		data.leahkills = 0
 		data.HeartCount = 2
 	elseif player:GetName() == "LeahB" then -- Apply different hair for her tainted variant
@@ -57,7 +57,7 @@ function mod:OnUpdate(player)
 			player:AddBrokenHearts(3)
 			data.leahkills = 0
 			data.BR = 2
-		elseif not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and data.BR ~= 0 then -- If the player for some reason loses Birthright
+		elseif player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) == false and data.BR ~= 0 then -- If the player for some reason loses Birthright
 			data.BR = 0
 		end
 		local drop = Input.IsActionPressed(ButtonAction.ACTION_DROP, player.ControllerIndex)
@@ -66,12 +66,26 @@ function mod:OnUpdate(player)
 		else
 			data.dropcooldown = data.dropcooldown - 1
 		end
-		if drop and data.HeartCount >= 2 and player:GetBrokenHearts() > 0 and data.dropcooldown < 1 then -- press drop button to remove 2 hearts and a broken heart
-			data.dropcooldown = 15
+		if drop and data.HeartCount >= 2 and player:GetBrokenHearts() < 11 and data.dropcooldown < 1 then -- press drop button to remove 2 hearts and add a broken heart
+			data.dropcooldown = 5
 			data.HeartCount = data.HeartCount - 2
-			SFXManager():Play(SoundEffect.SOUND_HEARTBEAT)
-			player:AddBrokenHearts(-1)
-			--player:AnimateCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, "UseItem", "PlayerPickup")
+			player:AddBrokenHearts(1)
+			SFXManager():Play(bhb)
+			if player.MaxFireDelay > 1 then
+				local hrRNG = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_HEART_RENOVATOR)
+				if hrRNG:RandomInt(2) == 0 then
+					data.PermshD = data.PermshD + 1
+					player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+				else
+					data.PermshT = data.PermshT + 1
+					player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
+				end
+				player:EvaluateItems()
+			else
+				data.PermshD = data.PermshD + 1
+				player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+				player:EvaluateItems()
+			end
 		end
 	elseif player:GetName() == "LeahB" then
 		if data.LeahbPower < 0 then
@@ -231,18 +245,18 @@ function mod:leahStats(player, flag)
 		end
 		if flag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
 			player.MaxFireDelay = player.MaxFireDelay + 1
-			if not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-				player.MaxFireDelay = player.MaxFireDelay - data.PermshT * 0.2
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) == false then
+				player.MaxFireDelay = player.MaxFireDelay - (data.PermshT * 0.4)
 			else
-				player.MaxFireDelay = player.MaxFireDelay - data.PermshT * 0.4
+				player.MaxFireDelay = player.MaxFireDelay - (data.PermshT * 0.8)
 			end
 		end
 		if flag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
 			player.Damage = player.Damage - 0.36
-			if not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-				player.Damage = player.Damage + data.PermshD * 0.1
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) == false then
+				player.Damage = player.Damage + data.PermshD * 0.25
 			else
-				player.Damage = player.Damage + data.PermshD * 0.2
+				player.Damage = player.Damage + data.PermshD * 0.5
 			end
 		end
 	elseif player:GetName() == "LeahB" then -- If the player is Tainted Leah it will apply her stats
@@ -299,11 +313,11 @@ function mod:LeahKill(entity)
 			player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
 			player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
 			local hrRNG = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_HEART_RENOVATOR)
-			if not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) == false then
 				if data.leahkills == 20 then
 					data.leahkills = 0
 					SFXManager():Play(SoundEffect.SOUND_HEARTBEAT)
-					player:AddBrokenHearts(-1)
+					player:AddBrokenHearts(1)
 					if hrRNG:RandomInt(2) == 0 then
 						data.PermshD = data.PermshD + 1
 					else
@@ -312,28 +326,26 @@ function mod:LeahKill(entity)
 					player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
 					player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
 					player:EvaluateItems()
-				end
-				if rng:RandomInt(100)+1 <= 15 then
-					SFXManager():Play(bhb)
-					player:AddBrokenHearts(1)
 				end
 			else
 				if data.leahkills == 10 then
 					data.leahkills = 0
 					SFXManager():Play(SoundEffect.SOUND_HEARTBEAT)
-					player:AddBrokenHearts(-1)
-					if hrRNG:RandomInt(2) == 0 then
-						data.PermshD = data.PermshD + 1
-					else
-						data.PermshT = data.PermshT + 1
-					end
-					player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
-					player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
-					player:EvaluateItems()
-				end
-				if rng:RandomInt(4) == 0 then
-					SFXManager():Play(bhb)
 					player:AddBrokenHearts(1)
+					if player.MaxFireDelay > 1 then
+						if hrRNG:RandomInt(2) == 0 then
+							data.PermshD = data.PermshD + 1
+							player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+						else
+							data.PermshT = data.PermshT + 1
+							player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
+						end
+						player:EvaluateItems()
+					else
+						data.PermshD = data.PermshD + 1
+						player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+						player:EvaluateItems()
+					end
 				end
 			end
 		end
@@ -342,33 +354,13 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.LeahKill)
 
-function mod:LeahNewRoom()
-	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
-		local room = game:GetRoom()
-		if room:IsCurrentRoomLastBoss() and player:GetName() == "Leah" and room:IsFirstVisit() then
-			player:AddBrokenHearts(-3)
-		end
-	end
-end	
-
-mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.LeahNewRoom)
-
 function mod:RoomClearLeah()
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = game:GetPlayer(i)
-		if player:GetName() == "Leah" and player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) == false then
-			if rng:RandomInt(4) == 0 then
-				local SubType = rng:RandomInt(4)
-				if SubType == 0 then
-					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_FULL, Isaac.GetFreeNearPosition(player.Position, 20), Vector(0, 0), player)
-				elseif SubType == 1 then
-					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_HALF, Isaac.GetFreeNearPosition(player.Position, 20), Vector(0, 0), player)
-				elseif SubType == 2 then
-					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_DOUBLEPACK, Isaac.GetFreeNearPosition(player.Position, 20), Vector(0, 0), player)
-				else
-					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_SCARED, Isaac.GetFreeNearPosition(player.Position, 20), Vector(0, 0), player)
-				end
+		if player:GetName() == "Leah" then
+			local hrRNG = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_HEART_RENOVATOR)
+			if hrRNG:RandomInt(4) == 0 then
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_SCARED, Isaac.GetFreeNearPosition(player.Position, 20), Vector(0, 0), player)
 			end
 		end
 	end
@@ -451,7 +443,7 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function(_, isContinue) -- The actu
 			f:Load("font/pftempestasevencondensed.fnt")
 			f:DrawString("P"..(player.ControllerIndex+1)..":",37 + offset.X,33 + offset.Y + charoffset, KColor(1, 1, 1, 1, 0, 0, 0), 0, true)
 			local kcolour = KColor(1, 1, 1, 1, 0, 0, 0)
-			if data.HeartCount > 1 and player:GetBrokenHearts() > 0 then
+			if data.HeartCount > 1 and player:GetBrokenHearts() < 11 then
 				kcolour = KColor(0, 1, 0, 1, 0, 0, 0)
 			end
 			f:DrawString(data.HeartCount, 63 + offset.X, 33 + offset.Y + charoffset, kcolour, 0, true)

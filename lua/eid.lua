@@ -16,9 +16,9 @@ EID:addIcon("Player"..Isaac.GetPlayerTypeByName("LeahB", true), "LeahB", 0, 12, 
 
 -- Leah 
 local normalLeah = Isaac.GetPlayerTypeByName("Leah", false)
-EID:addBirthright(normalLeah, "↓ {{BrokenHeart}} +3 broken hearts#↓ Chance of gaining a broken heart on enemy kill is now 25%#↑ A broken heart is now removed every 10 kills instead of every 20#↑ Stats gained through kills are 2x effective", "Leah", "en_us")
-EID:addBirthright(normalLeah, "↓ {{BrokenHeart}} +3 сломанных сердец#↓ Шанс получить сломанное сердце при убийстве врага теперь 25%#↑ Сломанное сердце удаляется каждые 10 убийств вместо каждых 20#↑ Характеристики, полученные убийствами, 2x эффективнее", "Лия", "ru")
-EID:addBirthright(normalLeah, "↓ {{BrokenHeart}} +3 Corazones rotos#La posibilidad de recibir corazones rotos al matar ahora es de 25%#Perderás un corazón roto al matar 10 enemigos en vez de 20#↑ Las estadísticas ganadas por asesinatos se duplican", "Leah", "spa")
+EID:addBirthright(normalLeah, "↓ {{BrokenHeart}} +3 broken hearts#↑ A broken heart is now removed every 10 kills instead of every 20#↑ Stats gained through kills are 2x effective", "Leah", "en_us")
+EID:addBirthright(normalLeah, "↓ {{BrokenHeart}} +3 сломанных сердец#↑ Сломанное сердце удаляется каждые 10 убийств вместо каждых 20#↑ Характеристики, полученные убийствами, 2x эффективнее", "Лия", "ru")
+EID:addBirthright(normalLeah, "↓ {{BrokenHeart}} +3 Corazones rotos#Perderás un corazón roto al matar 10 enemigos en vez de 20#↑ Las estadísticas ganadas por asesinatos se duplican", "Leah", "spa")
 
 
 -- Tainted Leah
@@ -95,9 +95,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_CHIRON, "↑ {{Speed}} Velocidad 
 EID:assignTransformation("collectible", CollectibleType.COLLECTIBLE_CHIRON, "5, 12")
 
 -- Juno
-EID:addCollectible(CollectibleType.COLLECTIBLE_JUNO, "↑ {{SoulHeart}} +1 Soul Heart#Tears that hit an enemy have a chance to chain down the nearest enemy for 5 seconds, preventing them from acting", "Juno", "en_us")
-EID:addCollectible(CollectibleType.COLLECTIBLE_JUNO, "↑ {{SoulHeart}} +1 синее сердце#Слезы, попавшие во врага, могут сковать в цепь ближайшего врага на 5 секунд, не позволяя ему двигаться", "Юнона", "ru")
-EID:addCollectible(CollectibleType.COLLECTIBLE_JUNO, "↑ {{SoulHeart}} +1 Corazón de alma#Las lágrimas quer golpeen a un enemigo tienen una posibilidad de encadenar al enemigo más cercano durante 5 segundos, evitando que actúe", "Juno", "spa")
+EID:addCollectible(CollectibleType.COLLECTIBLE_JUNO, "↑ {{SoulHeart}} +2 Soul Hearts#Tears that hit an enemy have a chance to chain down the nearest enemy for 5 seconds, preventing them from acting", "Juno", "en_us")
+EID:addCollectible(CollectibleType.COLLECTIBLE_JUNO, "↑ {{SoulHeart}} +2 синее сердце#Слезы, попавшие во врага, могут сковать в цепь ближайшего врага на 5 секунд, не позволяя ему двигаться", "Юнона", "ru")
+EID:addCollectible(CollectibleType.COLLECTIBLE_JUNO, "↑ {{SoulHeart}} +2 Corazón de alma#Las lágrimas que golpeen a un enemigo tienen una posibilidad de encadenar al enemigo más cercano durante 5 segundos, evitando que actúe", "Juno", "spa")
 
 -- Pallas
 EID:addCollectible(CollectibleType.COLLECTIBLE_PALLAS, "Tears bounce off the floor after floating for a short time#Tears cause splash damage on every bounce#↑ {{Tearsize}} Increases tear size by 20%", "Pallas", "en_us")

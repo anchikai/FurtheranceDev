@@ -432,6 +432,7 @@ local Wiki = {
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
 			{str = "If the player has no broken hearts to remove, it will not grant a temporary stat up."},
+			{str = "If the player reaches a tear rate of 15 or more, it will always grant a damage up instead."},
 		},
 	},
 	PharaohCat = {
@@ -556,16 +557,15 @@ local Wiki = {
 		{ -- Traits
 			{str = "Traits", fsize = 2, clr = 3, halign = 0},
 			{str = "Leah's active item ''Heart Renovator'' will passively grant one broken heart per room. Using it will remove one and give a damage or tears up for the room."},
-			{str = "Leah has a 15% chance to gain one broken heart when killing an enemy. For every 20th enemy she kills, one broken heart will be removed and she will get a minor permanent damage or tear rate boost."},
-			{str = "When entering a boss room, she will lose two broken hearts."},
-			{str = "Leah has a heart counter. It can be filled by picking up red hearts at full hp. When you press the drop button, two will be subtracted from the counter and a broken heart will be removed."},
-			{str = "If Leah is not carrying Heart Renovator, she has a 25% chance to drop a random red heart when clearing a room."},
+			{str = "For every 20th enemy she kills, one broken heart will be added and she will get a minor permanent damage or tear rate boost."},
+			{str = "Leah has a heart counter, which can be filled by picking up red hearts. When you press the drop button, two will be subtracted from the counter and a broken heart will be added alongside a small permanent damage or tears up."},
+			{str = "- If Leah reaches a tear rate of 15 or more, it will always grant a damage up instead."},
+			{str = "She has a 25% chance to drop a scared heart when clearing a room."},
 		},
 		{ -- Birthright
 			{str = "Birthright", fsize = 2, clr = 3, halign = 0},
 			{str = "Grants three broken hearts."},
-			{str = "Leah now has a 25% chance to gain one broken heart when killing an enemy."},
-			{str = "One broken heart will be removed for every ten kills instead of twenty."},
+			{str = "One broken heart will be added for every ten kills instead of twenty."},
 			{str = "The boost in damage or tear rate from enemy kills is twice as effective."},
 		},
 		{ -- Notes
