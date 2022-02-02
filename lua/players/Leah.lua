@@ -186,7 +186,7 @@ function mod:Hearts(entity, collider)
 					data.HeartCount = data.HeartCount - 8
 				end
 			end]]
-			if data.HeartCount < 99 then
+			if data.HeartCount < 99 and not entity:IsShopItem() then
 				for subtype, amount in pairs (heartCounter) do
 					if entity.SubType == subtype then
 						local emptyHearts = collider:GetEffectiveMaxHearts() - collider:GetHearts()
