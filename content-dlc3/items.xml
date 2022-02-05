@@ -31,7 +31,7 @@
 	<passive id="26" cache="speed" name="Crab Legs" description="You will never make the crab walk straight" gfx="crab_legs.png" hearts="4" maxhearts="2" quality="2" /><!-- Concept by Tesseract! -->
 	<passive id="23" cache="tearflag damage" name="Owl's Eye" description="The master guides you" gfx="owls_eye.png" quality="3" />										<!-- Concept by Freg! -->
 	<passive id="30" cache="firedelay" name="Pharaoh Cat" description="Pyramid shot" gfx="pharaoh_cat.png" quality="4" />												<!-- Concept by Freg! (reworked by me :troll:) -->
-	<passive id="35" name="Binds of Devotion" description="jacob or something" gfx="binds_of_devotion.png" quality="3" />												<!-- Concept by Freg! (reworked by me :troll:) -->
+	<!-- <passive id="35" name="Binds of Devotion" description="jacob or something" gfx="binds_of_devotion.png" quality="3" />												<!-- Concept by Freg! (reworked by me :troll:) -->
 	
 	<!-- Active Items -->
 	<active id="21" cache="speed" name="Book of Swiftness" description="Temporary speed up" gfx="book_of_swiftness.png" maxcharges="3" quality="3" tags="book offensive" />
@@ -42,7 +42,7 @@
 	<active id="32" name="Tab Key" description="Pretty useful!" gfx="tab.png" maxcharges="4" quality="3" />
 	<active id="33" name="Shattered Heart" description="Eternal Sorrow" gfx="shattered_heart.png" chargetype="timed" maxcharges="90" initcharge="0" quality="2" tags="nokeeper nolostbr" />
 	<active name="Shattered Heart No Puddle" description="Eternal Sorrow" gfx="shattered_heart_no_puddle.png" chargetype="timed" maxcharges="90" quality="2" tags="nokeeper nolostbr" hidden="true" />
-	<active id="34" name="Keys to the Kingdom" description="Divine Control + Strength in Salvation" gfx="keys_to_the_kingdom.png" maxcharges="12" initcharge="12" quality="4" tags="angel" hidden="true" />
+	<!-- <active id="34" name="Keys to the Kingdom" description="Divine Control + Strength in Salvation" gfx="keys_to_the_kingdom.png" maxcharges="12" initcharge="12" quality="4" tags="angel" hidden="true" />
 	
 	<!-- Trinkets -->
 	<trinket id="0" name="Holy Heart" description="Protective hearts" gfx="holy_heart.png" />																					<!-- Concept by PootisTweet! -->
