@@ -41,7 +41,6 @@ function mod:OnInit(player)
 		data.HeartCount = 2
 	elseif player:GetName() == "LeahB" then -- Apply different hair for her tainted variant
 		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_SHATTERED_HEART, ActiveSlot.SLOT_POCKET, false)
-		player:SetActiveCharge(0, ActiveSlot.SLOT_POCKET)
 		player:AddNullCostume(COSTUME_LEAH_B_HAIR)
 		costumeEquipped = true
 	end
@@ -50,6 +49,7 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
 
 function mod:OnUpdate(player)
+	local room = game:GetRoom()
 	local data = mod:GetData(player)
 	if player:GetName() == "Leah" then
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and data.BR ~= 2 then -- Add 3 Broken Hearts when taking Birthright & reset kill count to prevent softlocks
@@ -61,30 +61,41 @@ function mod:OnUpdate(player)
 			data.BR = 0
 		end
 		local drop = Input.IsActionPressed(ButtonAction.ACTION_DROP, player.ControllerIndex)
-		if data.dropcooldown == nil or data.dropcooldown < 0  then
+		if data.dropcooldown == nil and not drop then
 			data.dropcooldown = 0
 		else
-			data.dropcooldown = data.dropcooldown - 1
+			if Game():GetRoom():GetFrameCount() == 1 then
+				data.chargeBar = nil
+				data.dropcooldown = 0
+			end
+			if not data.chargeBar and drop and data.HeartCount >= 2 then
+				mod:SpawnChargeBar(player)
+			end
 		end
-		if drop and data.HeartCount >= 2 and player:GetBrokenHearts() < 11 and data.dropcooldown < 1 then -- press drop button to remove 2 hearts and add a broken heart
-			data.dropcooldown = 5
-			data.HeartCount = data.HeartCount - 2
-			player:AddBrokenHearts(1)
-			SFXManager():Play(bhb)
-			if player.MaxFireDelay > 1 then
-				local hrRNG = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_HEART_RENOVATOR)
-				if hrRNG:RandomInt(2) == 0 then
+		if room:GetFrameCount() == 1 then
+			data.chargeBar = nil
+			data.dropcooldown = 0
+		end
+		if drop and data.HeartCount >= 2 and player:GetBrokenHearts() < 11 and data.chargeBar then -- press drop button to remove 2 hearts and add a broken heart
+			if data.dropcooldown == 30 then
+				data.HeartCount = data.HeartCount - 2
+				player:AddBrokenHearts(1)
+				SFXManager():Play(bhb)
+				if player.MaxFireDelay > 1 then
+					local hrRNG = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_HEART_RENOVATOR)
+					if hrRNG:RandomInt(2) == 0 then
+						data.PermshD = data.PermshD + 1
+						player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+					else
+						data.PermshT = data.PermshT + 1
+						player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
+					end
+					player:EvaluateItems()
+				else
 					data.PermshD = data.PermshD + 1
 					player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
-				else
-					data.PermshT = data.PermshT + 1
-					player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
+					player:EvaluateItems()
 				end
-				player:EvaluateItems()
-			else
-				data.PermshD = data.PermshD + 1
-				player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
-				player:EvaluateItems()
 			end
 		end
 	elseif player:GetName() == "LeahB" then
@@ -186,7 +197,7 @@ function mod:Hearts(entity, collider)
 					data.HeartCount = data.HeartCount - 8
 				end
 			end]]
-			if data.HeartCount < 99 and not entity:IsShopItem() then
+			if data.HeartCount < 99 and entity:IsShopItem() == false then
 				for subtype, amount in pairs (heartCounter) do
 					if entity.SubType == subtype then
 						local emptyHearts = collider:GetEffectiveMaxHearts() - collider:GetHearts()
@@ -318,14 +329,20 @@ function mod:LeahKill(entity)
 					data.leahkills = 0
 					SFXManager():Play(SoundEffect.SOUND_HEARTBEAT)
 					player:AddBrokenHearts(1)
-					if hrRNG:RandomInt(2) == 0 then
-						data.PermshD = data.PermshD + 1
+					if player.MaxFireDelay > 1 then
+						if hrRNG:RandomInt(2) == 0 then
+							data.PermshD = data.PermshD + 1
+							player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+						else
+							data.PermshT = data.PermshT + 1
+							player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
+						end
+						player:EvaluateItems()
 					else
-						data.PermshT = data.PermshT + 1
+						data.PermshD = data.PermshD + 1
+						player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+						player:EvaluateItems()
 					end
-					player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
-					player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
-					player:EvaluateItems()
 				end
 			else
 				if data.leahkills == 10 then
@@ -428,7 +445,7 @@ function mod:shouldDeHook()
 	return reqs[1] or reqs[2]
 end
 
-mod:AddCallback(ModCallbacks.MC_POST_RENDER, function(_, isContinue) -- The actual heart counter for Leah
+mod:AddCallback(ModCallbacks.MC_POST_RENDER, function() -- The actual heart counter for Leah
 	if mod:shouldDeHook() then return end
 	local charoffset=0
 	local offset = Options.HUDOffset * Vector(20, 12)
@@ -451,8 +468,62 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function(_, isContinue) -- The actu
 			counter:Load("gfx/heartcounter.anm2", true)
 			counter:Play("Idle", true)
 			counter:Render(Vector(48 + offset.X, 32.5 + offset.Y + charoffset), Vector(0, 0), Vector(0, 0))
-			charoffset = charoffset+12
+			charoffset = charoffset + 12
 		end
 	end
 end
 )
+
+function mod:SpawnChargeBar(player)
+	local data =mod:GetData(player)
+	local chargebar = Isaac.Spawn(Isaac.GetEntityTypeByName("Further Charge Bar"), 0, 0, player.Position, Vector.Zero, player):ToNPC()
+	chargebar.Parent = player
+	data.chargeBar = chargebar
+	chargebar.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_NONE
+	chargebar:ClearEntityFlags(EntityFlag.FLAG_APPEAR) --Skip spawning animations
+	chargebar.CanShutDoors = false --Its not an enemy
+	chargebar.DepthOffset = 255
+	chargebar:GetSprite():SetFrame("Charging", 0)
+	chargebar.Visible = false
+end
+  
+function mod:ChargeBarUpdateRender(chargebar)
+	if mod:shouldDeHook() then return nil end
+	if not chargebar.Parent or not chargebar.Parent:Exists() then
+		chargebar:Remove()
+		return nil
+	end
+	if chargebar.Variant ~= 0 then
+		return nil
+	end
+	local player = chargebar.Parent:ToPlayer()
+	local data = mod:GetData(player)
+	chargebar.Position = player.Position:__add(Vector(2, -65))
+	chargebar.Velocity = player.Velocity
+	
+	local sprite = chargebar:GetSprite()
+	
+	local charge = (data.dropcooldown / 30) * 100
+	
+	local roundedCharge = math.floor(charge)
+	if roundedCharge > 5 then
+		chargebar.Visible = true
+	end
+	local drop = Input.IsActionPressed(ButtonAction.ACTION_DROP, player.ControllerIndex)
+	if sprite:IsPlaying("Disappear") then
+		data.dropcooldown = 0
+	elseif sprite:IsFinished("Disappear") then
+		data.chargeBar = nil
+		data.dropcooldown = 0
+		chargebar:Remove()
+	elseif roundedCharge <= 100 and sprite:GetAnimation() == "Charging" and drop then
+		sprite:SetFrame("Charging",roundedCharge)
+		data.dropcooldown = data.dropcooldown + 1
+	elseif roundedCharge > 100 and sprite:GetAnimation() ~= "StartCharged" and sprite:GetAnimation() ~= "Disappear" then
+		sprite:Play("StartCharged",true)
+	elseif sprite:IsFinished("StartCharged") or not drop and sprite:GetAnimation() ~= "Disappear" then
+		sprite:Play("Disappear",true)
+	end
+end
+
+mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.ChargeBarUpdateRender, Isaac.GetEntityTypeByName("Further Charge Bar"))

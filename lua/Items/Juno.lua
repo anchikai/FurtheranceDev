@@ -7,8 +7,8 @@ function mod:JunoTears(EntityTear, collider)
 		local player = game:GetPlayer(i)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_JUNO) then
 			if (collider:IsEnemy() and collider:IsVulnerableEnemy() and collider:IsActiveEnemy()) then
-				for i = 0, Game():GetNumPlayers() - 1 do
-					local player = Game():GetPlayer(i)
+				for i = 0, game:GetNumPlayers() - 1 do
+					local player = game:GetPlayer(i)
 					local rollJuno = rng:RandomInt(100)
 					local data = mod:GetData(player)
 					if player.Luck > 11 then
@@ -32,8 +32,8 @@ mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, function(EntityLaser)			-- Brim
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = game:GetPlayer(i)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_JUNO) then
-			for i = 0, Game():GetNumPlayers() - 1 do
-				local player = Game():GetPlayer(i)
+			for i = 0, game:GetNumPlayers() - 1 do
+				local player = game:GetPlayer(i)
 				local rollJuno = rng:RandomInt(100)
 				local data = mod:GetData(player)
 				if player.Luck > 11 then

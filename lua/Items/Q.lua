@@ -1,10 +1,11 @@
 local mod = further
+local game = Game()
 
-function mod:UseQ(boi, rng, player, slot, data)
+function mod:UseQ(_, _, player)
 	--if you use ? card
 	if (player:GetCard(0) == Card.CARD_QUESTIONMARK) then
 		player:SetCard(0, Card.CARD_NULL)
-		Game():StartRoomTransition(Game():GetLevel():QueryRoomTypeIndex(RoomType.ROOM_ERROR, false, RNG()), Direction.NO_DIRECTION ,3)
+		game:StartRoomTransition(game:GetLevel():QueryRoomTypeIndex(RoomType.ROOM_ERROR, false, RNG()), Direction.NO_DIRECTION ,3)
 	else	
 	--do normal thing
 	player:AnimateCollectible(CollectibleType.COLLECTIBLE_Q_KEY, "UseItem", "PlayerPickup")

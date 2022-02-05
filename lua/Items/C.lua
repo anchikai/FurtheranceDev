@@ -13,14 +13,12 @@ end
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseC, CollectibleType.COLLECTIBLE_C_KEY)
 
 function mod:CKeyTeleported(boi, rng, player, slot, data)
-	local room = Game():GetRoom()
-	
-	for i = 0, Game():GetNumPlayers() - 1 do
-		local player = Game():GetPlayer(i)
+	local room = game:GetRoom()
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = game:GetPlayer(i)
 		local data = player:GetData()
-		
 		if data.Teleported == true then
-		--spawn item pedastols 
+		--spawn item pedestals 
 		game:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, room:GetCenterPos(), Vector(0, 0), nil, 0, room:GetSpawnSeed())
 		game:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, room:GetGridPosition(63), Vector(0, 0), nil, 0, room:GetSpawnSeed())
 		game:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, room:GetGridPosition(71), Vector(0, 0), nil, 0, room:GetSpawnSeed())

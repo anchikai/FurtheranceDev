@@ -1,10 +1,11 @@
 local mod = further
+local game = Game()
 
-function mod:UseTilde(boi, rng, player, slot, data)
+function mod:UseTilde(_, _, player)
 	local data = player:GetData()
 	player:AnimateCollectible(CollectibleType.COLLECTIBLE_TILDE_KEY, "UseItem", "PlayerPickup")
 	local randomDebug = rng:RandomInt(13)
-	local hud = Game():GetHUD()
+	local hud = game:GetHUD()
 
 	if data.Debug1 == true and data.Debug2 == true and data.Debug3 == true and data.Debug4 == true and data.Debug5 == true and data.Debug6 == true and data.Debug7 == true and data.Debug8 == true and data.Debug9 == true and data.Debug10 == true and data.Debug11 == true and data.Debug12 == true and data.Debug13 == true then
 		mod:playFailSound()
@@ -106,8 +107,8 @@ end
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseTilde, CollectibleType.COLLECTIBLE_TILDE_KEY)
 
 function mod:OnNewRoom()
-	for i = 0, Game():GetNumPlayers() - 1 do
-		local player = Game():GetPlayer(i)
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = game:GetPlayer(i)
 		local data = player:GetData()
 
 		if data.Debug1 == true then

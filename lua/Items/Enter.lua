@@ -1,10 +1,10 @@
 local mod = further
+local game = Game()
 
 function mod:UseEnter(boi, rng, player, slot, data)
-	local room = Game():GetRoom()
-	local level = Game():GetLevel()
-	local hud = Game():GetHUD()
-	
+	local room = game:GetRoom()
+	local level = game:GetLevel()
+	local hud = game:GetHUD()
 	if (level:GetCurrentRoomIndex() == -1) or (level:GetCurrentRoomIndex() == -3) or (level:GetCurrentRoomIndex() == -5) or (level:GetCurrentRoomIndex() == -10) then
 		mod:playFailSound()
 		player:AnimateSad()
@@ -12,7 +12,7 @@ function mod:UseEnter(boi, rng, player, slot, data)
 		player:RemoveCollectible(CollectibleType.COLLECTIBLE_ENTER_KEY)
 		SFXManager():Play(SoundEffect.SOUND_MENU_FLIP_DARK)
 		player:AnimateCollectible(CollectibleType.COLLECTIBLE_ENTER_KEY, "UseItem", "PlayerPickup")
-		Game():Darken(1, 100)
+		game:Darken(1, 100)
 		room:EmitBloodFromWalls(3, 10)
 		hud:ShowFortuneText("Time knows no bounds")
 		room:TrySpawnBossRushDoor(true, true)

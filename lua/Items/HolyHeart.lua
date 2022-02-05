@@ -1,8 +1,9 @@
 local mod = further
+local game = Game()
 local rng = RNG()
 
 function mod:CollectHeart(pickup, collider)
-	for i = 0, Game():GetNumPlayers() - 1 do
+	for i = 0, game:GetNumPlayers() - 1 do
         local player = Isaac.GetPlayer(i)
 		if player:HasTrinket(TrinketType.TRINKET_HOLY_HEART, false) then
 			if collider.Type == EntityType.ENTITY_PLAYER then

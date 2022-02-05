@@ -2,7 +2,7 @@ local mod = further
 local game = Game()
 local bhb = Isaac.GetSoundIdByName("BrokenHeartbeat")
 
-function mod:UseShattered(_, _, player)
+function mod:UseRenovator(_, _, player)
 	player:AnimateCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, "UseItem", "PlayerPickup")
 	if player:GetBrokenHearts() > 0 then
 		local data = mod:GetData(player)
@@ -26,7 +26,7 @@ function mod:UseShattered(_, _, player)
 	end
 end
 
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseShattered, CollectibleType.COLLECTIBLE_HEART_RENOVATOR)
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseRenovator, CollectibleType.COLLECTIBLE_HEART_RENOVATOR)
 
 function mod:NewRoom()
     for i = 0, game:GetNumPlayers() - 1 do

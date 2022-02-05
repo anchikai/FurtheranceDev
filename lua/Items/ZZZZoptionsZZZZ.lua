@@ -1,13 +1,14 @@
 local MOD = further
+local GAME = Game()
 
 function MOD:ZZZZ()
-	local ROOM = Game():GetRoom()
+	local ROOM = GAME:GetRoom()
 	if ROOM:GetType() == RoomType.ROOM_TREASURE and ROOM:IsFirstVisit() then
-		for p = 0, Game():GetNumPlayers() - 1 do
-			local PLAYER = Isaac.GetPlayer(p)
+		for P = 0, GAME:GetNumPlayers() - 1 do
+			local PLAYER = Isaac.GetPlayer(P)
 			if PLAYER:HasCollectible(CollectibleType.COLLECTIBLE_ZZZZoptionsZZZZ) then
 				PLAYER:AddCollectible(CollectibleType.COLLECTIBLE_TMTRAINER)
-				Isaac.Spawn(5, 100, 0, Isaac.GetRandomPosition(), Vector(0, 0), player)
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 0, Isaac.GetRandomPosition(), Vector(0, 0), PLAYER)
 				PLAYER:RemoveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER)
 			end
 		end

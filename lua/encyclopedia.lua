@@ -88,7 +88,7 @@ local Wiki = {
 	CKey = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Upon use, it will teleport you to a large Library room with 7 different books."},
+			{str = "Upon use, it will teleport you to a Library room with 5 different books."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
@@ -540,6 +540,18 @@ local Wiki = {
 			{str = "Concept by Aeronaut!"},
 		},
 	},
+	KeysToTheKingdom = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "When used, it has a variety of effects based on the room he's in."},
+			{str = "- If used in a cleared room, Isaac will be granted another room clear reward."},
+			{str = "- If used in a active room, light beams will strike down enemies, similarly to Crack the Sky."},
+			{str = "- When used in a devil room, all items become free for you to take with no penalty."},
+			{str = "- When used in a angel room, a random key piece is spawned."},
+			{str = "-- If Isaac already has a key piece, the other respective key piece will spawn."},
+			{str = "-- If Isaac already has both key pieces, a random angel item will spawn instead."},
+		},
+	},
 	Leah = {
 		{ -- Start Data
 			{str = "Start Data", fsize = 2, clr = 3, halign = 0},
@@ -619,6 +631,65 @@ local Wiki = {
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
 			{str = "The achievement for unlocking Tainted Leah is ''The Unloved''. This is a reference to Leah being the unloved wife of the Biblical patriarch Jacob."},
+		},
+	},
+	Peter = {
+		{ -- Start Data
+			{str = "Start Data", fsize = 2, clr = 3, halign = 0},
+			{str = "Items:"},
+			{str = "- Keys to the Kingdom"},
+			{str = "Stats:"},
+			{str = "- HP: 2 Red Hearts, 1 Soul Heart"},
+			{str = "- Speed: 1.10"},
+			{str = "- Tear rate: 3.75"},
+			{str = "- Damage: 3.00"},
+			{str = "- Range: 3.75"},
+			{str = "- Shot speed: 1.15"},
+			{str = "- Luck: 0.00"},
+		},
+		{ -- Traits
+			{str = "Traits", fsize = 2, clr = 3, halign = 0},
+			{str = "Peter gains benefits from visiting angel deals. The more angel deals he visits, the higher his damage will increase and will obtain flight."},
+			{str = "- He will also lose shot speed for every angel deal."},
+			{str = "- He will only gain these stat changes if the amount of angel deals visited is higher than the amount of devil deals visited."},
+		},
+		{ -- Birthright
+			{str = "Birthright", fsize = 2, clr = 3, halign = 0},
+			
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			
+		},
+		{ -- Trivia
+			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+			
+		},
+	},
+	TaintedPeter = {
+		{ -- Start Data
+			{str = "Start Data", fsize = 2, clr = 3, halign = 0},
+			
+		},
+		{ -- Traits
+			{str = "Traits", fsize = 2, clr = 3, halign = 0},
+			
+		},
+		{ -- Birthright
+			{str = "Birthright", fsize = 2, clr = 3, halign = 0},
+		
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			
+		},
+		{ -- Interactions
+			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
+			
+		},
+		{ -- Trivia
+			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+			
 		},
 	},
 }
@@ -1027,6 +1098,17 @@ Encyclopedia.AddTrinket({
 	WikiDesc = Wiki.Grass,
 })
 
+--[[Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM,
+	WikiDesc = Wiki.KeysToTheKingdom,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_ANGEL,
+		Encyclopedia.ItemPools.POOL_GREED_ANGEL,
+	},
+})
+]]
 
 -- Characters
 Encyclopedia.AddCharacter({
@@ -1045,3 +1127,21 @@ Encyclopedia.AddCharacterTainted({
 	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "LeahB", 0, mod.path .. "content-dlc3/gfx/charactermenu_leahb.png"),
 	WikiDesc = Wiki.TaintedLeah,
 })
+
+--[[Encyclopedia.AddCharacter({
+    ModName = "Furtherance",
+    Name = "Peter",
+    ID = Isaac.GetPlayerTypeByName("Peter", false),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraits.anm2", "Peter", 0),
+	WikiDesc = Wiki.Peter,
+})
+
+Encyclopedia.AddCharacterTainted({
+    ModName = "Furtherance",
+    Name = "Peter",
+    Description = "???",
+    ID = Isaac.GetPlayerTypeByName("PeterB", true),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "PeterB", 0, mod.path .. "content-dlc3/gfx/charactermenu_peterb.png"),
+	WikiDesc = Wiki.TaintedPeter,
+})
+]]

@@ -1,8 +1,9 @@
 local mod = further
+local game = Game()
 
 function mod:UseShift(_, _, player)
 	player:AnimateCollectible(CollectibleType.COLLECTIBLE_SHIFT_KEY, "UseItem", "PlayerPickup")
-	Game():ShowHallucination(30, BackdropType.NUM_BACKDROPS)
+	game:ShowHallucination(30, BackdropType.NUM_BACKDROPS)
 	local plty = player:GetPlayerType()
 	-- Isaac
 	if plty == PlayerType.PLAYER_ISAAC then
@@ -95,7 +96,7 @@ function mod:UseShift(_, _, player)
 	-- Leah
 	elseif plty == normalLeah then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("LeahB", true))
-		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, SLOT_POCKET, false)
+		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_SHATTERED_HEART, SLOT_POCKET, false)
 	elseif plty == taintedLeah then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("Leah", false))
 	end

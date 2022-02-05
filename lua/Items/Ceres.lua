@@ -1,5 +1,4 @@
 local mod = further
-
 local game = Game()
 local rng = RNG()
 
@@ -42,8 +41,8 @@ function mod:CeresTearEffect(tear, collider)
     if tear.SpawnerType == EntityType.ENTITY_PLAYER and tear.Parent then
         local data = tear:GetData()
         if data.ceres and (collider:IsEnemy() and collider:IsVulnerableEnemy() and collider:IsActiveEnemy()) then
-			for i = 0, Game():GetNumPlayers() - 1 do
-				local player = Game():GetPlayer(i)
+			for i = 0, game:GetNumPlayers() - 1 do
+				local player = game:GetPlayer(i)
 				local pdata = player:GetData()
 				
 				if pdata.creep == nil or 0 then

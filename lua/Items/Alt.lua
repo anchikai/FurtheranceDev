@@ -1,11 +1,12 @@
 local mod = further
+local game = Game()
 local rng = RNG()
 
 function mod:UseAlt(boi, rng, player, slot, data)
 
-	local stage = Game():GetLevel():GetStage()
-	local stageType = Game():GetLevel():GetStageType()
-	local level = Game():GetLevel()
+	local stage = game:GetLevel():GetStage()
+	local stageType = game:GetLevel():GetStageType()
+	local level = game:GetLevel()
 	
 	local randomAB = rng:RandomInt(3)
 	local randomREP = rng:RandomInt(2)
@@ -47,8 +48,8 @@ end
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseAlt, CollectibleType.COLLECTIBLE_ALT_KEY)
 
 function mod:ChargeAlt()
-	for i = 0, Game():GetNumPlayers() - 1 do
-        local player = Game():GetPlayer(i)
+	for i = 0, game:GetNumPlayers() - 1 do
+        local player = game:GetPlayer(i)
 		if player:GetData().NoChargeAlt == false then
 			if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == CollectibleType.COLLECTIBLE_ALT_KEY then
 				player:FullCharge(ActiveSlot.SLOT_PRIMARY, true)

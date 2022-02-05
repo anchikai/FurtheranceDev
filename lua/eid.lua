@@ -63,9 +63,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_E_KEY, "Создает Гигаб
 EID:addCollectible(CollectibleType.COLLECTIBLE_E_KEY, "Genera una Gigabomba", "Tecla E", "spa")
 
 --C Key
-EID:addCollectible(CollectibleType.COLLECTIBLE_C_KEY, "Teleports you to a large {{Library}} Library with 7 books", "C Key")
-EID:addCollectible(CollectibleType.COLLECTIBLE_C_KEY, "Телепортирует в большую {{Library}} Библиотеку с 7 книгами", "Клавиша C", "ru")
-EID:addCollectible(CollectibleType.COLLECTIBLE_C_KEY, "Te teletransporta a una {{Library}} Biblioteca grande con 7 libros", "Tecla C", "spa")
+EID:addCollectible(CollectibleType.COLLECTIBLE_C_KEY, "Teleports you to a {{Library}} Library with 5 books", "C Key")
+EID:addCollectible(CollectibleType.COLLECTIBLE_C_KEY, "Телепортирует в большую {{Library}} Библиотеку с 5 книгами", "Клавиша C", "ru")
+EID:addCollectible(CollectibleType.COLLECTIBLE_C_KEY, "Te teletransporta a una {{Library}} Biblioteca grande con 5 libros", "Tecla C", "spa")
 
 --Caps Key
 EID:addCollectible(CollectibleType.COLLECTIBLE_CAPS_KEY, "Makes Isaac large for the current room#Allows Isaac to walk over obstacles to destroy them#↑ {{Damage}} +7 Damage up#↑ {{Range}} +3 Range up", "Caps Key")
@@ -215,3 +215,6 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, "{{BrokenHeart}}
 EID:addTrinket(TrinketType.TRINKET_GRASS, "Starts a 1 hour timer#The trinket will be removed when timer ends and {{Collectible210}} Gnawed Leaf will spawn#!!! The timer will reset if the trinket is dropped", "Grass", "en_us")
 EID:addTrinket(TrinketType.TRINKET_GRASS, "Запускает 1 часовой таймер#При истечении таймера брелок исчезнет и появится {{Collectible210}} Обглоданный лист#!!! Таймер сбрасывается, если брелок был выброшен", "Трава", "ru")
 EID:addTrinket(TrinketType.TRINKET_GRASS, "Empezará un contador de una hora#El trinket será removido y se otorgará la {{Collectible210}} Hoja roída tras acabar el tiempo#!!! Si se suelta el trinket, el contador se reiniciará", "Pasto", "spa")
+
+-- Keys to the Kingdom
+EID:addCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, "When used, it has a variety of effects based on the room#{{Room}}: Another room clear reward will spawn#Active {{Room}}: light beams will strike enemies#{{DevilRoom}}: All items become free#{{AngelRoom}}: Spawns a key piece#{{Blank}}Note: If you have {{Collectible238}}{{Collectible239}} an angel item will spawn instead", "Keys to the Kingdom", "en_us")
