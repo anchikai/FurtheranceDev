@@ -42,10 +42,16 @@
 	<Pool Name="devil">
 		<Item Name="Owl's Eye" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
+	<Pool Name="angel">
+		<Item Name="Keys to the Kingdom" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
 	<Pool Name="greedDevil">
 		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Owl's Eye" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="F4 Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+	<Pool Name="greedAngel">
+		<Item Name="Keys to the Kingdom" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedSecret">
 		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>

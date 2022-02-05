@@ -2,7 +2,7 @@
 	<costume id="15" anm2path="ceres.anm2" type="passive" hasOverlay="true" hasSkinAlt="false" />
 	<costume id="17" anm2path="techix.anm2" type="passive" hasOverlay="true" hasSkinAlt="false" />
 	<costume id="20" anm2path="technology-1.anm2" type="passive" hasOverlay="true" hasSkinAlt="true" />
-	<costume id="0" anm2path="grass.anm2" type="trinket" hasOverlay="true" hasSkinAlt="false" />
+	<costume id="3" anm2path="grass.anm2" type="trinket" hasOverlay="true" hasSkinAlt="false" />
 	
 	<!-- Leah -->
     <costume anm2path="Character_001_Leah_Hair.anm2" type="none" priority="99" />
