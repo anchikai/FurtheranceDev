@@ -1,5 +1,6 @@
 local mod = further
 local game = Game()
+local rng = RNG()
 
 function mod:UseTilde(_, _, player)
 	local data = player:GetData()
