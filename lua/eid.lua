@@ -212,9 +212,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, "{{BrokenHeart}}
 EID:addCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, "{{BrokenHeart}} Remueve un corazón roto#↑ Puede dar Daño +0.25 o Lágrimas +0.23 durante la habitación#!!! Otorga un corazón roto de forma pasiva por sala", "Renovador cardiaco", "spa")
 
 -- Grass
-EID:addTrinket(TrinketType.TRINKET_GRASS, "Starts a 1 hour timer#The trinket will be removed when timer ends and {{Collectible210}} Gnawed Leaf will spawn#!!! The timer will reset if the trinket is dropped", "Grass", "en_us")
-EID:addTrinket(TrinketType.TRINKET_GRASS, "Запускает 1 часовой таймер#При истечении таймера брелок исчезнет и появится {{Collectible210}} Обглоданный лист#!!! Таймер сбрасывается, если брелок был выброшен", "Трава", "ru")
-EID:addTrinket(TrinketType.TRINKET_GRASS, "Empezará un contador de una hora#El trinket será removido y se otorgará la {{Collectible210}} Hoja roída tras acabar el tiempo#!!! Si se suelta el trinket, el contador se reiniciará", "Pasto", "spa")
+--EID:addTrinket(TrinketType.TRINKET_GRASS, "Starts a 1 hour timer#The trinket will be removed when timer ends and {{Collectible210}} Gnawed Leaf will spawn#!!! The timer will reset if the trinket is dropped", "Grass", "en_us")
+--EID:addTrinket(TrinketType.TRINKET_GRASS, "Запускает 1 часовой таймер#При истечении таймера брелок исчезнет и появится {{Collectible210}} Обглоданный лист#!!! Таймер сбрасывается, если брелок был выброшен", "Трава", "ru")
+--EID:addTrinket(TrinketType.TRINKET_GRASS, "Empezará un contador de una hora#El trinket será removido y se otorgará la {{Collectible210}} Hoja roída tras acabar el tiempo#!!! Si se suelta el trinket, el contador se reiniciará", "Pasto", "spa")
 
 -- Keys to the Kingdom
-EID:addCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, "When used, it has a variety of effects based on the room#{{Room}}: Another room clear reward will spawn#Active {{Room}}: light beams will strike enemies#{{DevilRoom}}: All items become free#{{AngelRoom}}: Spawns a key piece#{{Blank}}Note: If you have {{Collectible238}}{{Collectible239}} an angel item will spawn instead", "Keys to the Kingdom", "en_us")
+--EID:addCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, "When used, it has a variety of effects based on the room#{{Room}}: Another room clear reward will spawn#Active {{Room}}: light beams will strike enemies#{{DevilRoom}}: All items become free#{{AngelRoom}}: Spawns a key piece#{{Blank}}Note: If you have {{Collectible238}}{{Collectible239}} an angel item will spawn instead", "Keys to the Kingdom", "en_us")
