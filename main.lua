@@ -8,8 +8,8 @@ local rng = RNG()
 
 local laugh = Isaac.GetSoundIdByName("Sitcom_Laugh_Track")
 further.FailSound = SoundEffect.SOUND_EDEN_GLITCH
-
--- Keys
+mod.isLoadingData = false
+-- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
 CollectibleType.COLLECTIBLE_TILDE_KEY = Isaac.GetItemIdByName("Tilde Key")
 CollectibleType.COLLECTIBLE_ALT_KEY = Isaac.GetItemIdByName("Alt Key")
@@ -49,12 +49,45 @@ CollectibleType.COLLECTIBLE_F4_KEY = Isaac.GetItemIdByName("F4 Key")
 CollectibleType.COLLECTIBLE_TAB_KEY = Isaac.GetItemIdByName("Tab Key")
 CollectibleType.COLLECTIBLE_SHATTERED_HEART = Isaac.GetItemIdByName("Shattered Heart")
 TrinketType.TRINKET_GRASS = Isaac.GetTrinketIdByName("Grass")
+CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM = Isaac.GetItemIdByName("Keys to the Kingdom")
+CollectibleType.COLLECTIBLE_BINDS_OF_DEVOTION = Isaac.GetItemIdByName("Binds of Devotion")
+TrinketType.TRINKET_ALABASTER_SCRAP = Isaac.GetTrinketIdByName("Alabaster Scrap")
+TrinketType.TRINKET_LEAHS_LOCK = Isaac.GetTrinketIdByName("Leah's Lock")
+CollectibleType.COLLECTIBLE_FLIPPED_CROSS = Isaac.GetItemIdByName("Flipped Cross")
+CollectibleType.COLLECTIBLE_PARASITIC_POOFER = Isaac.GetItemIdByName("Parasitic Poofer")
+CollectibleType.COLLECTIBLE_HEART_EMBEDDED_COIN = Isaac.GetItemIdByName("Heart Embedded Coin")
+CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND = Isaac.GetItemIdByName("Spiritual Wound")
+CollectibleType.COLLECTIBLE_CADUCEUS_STAFF = Isaac.GetItemIdByName("Caduceus Staff")
+CollectibleType.COLLECTIBLE_POLYDIPSIA = Isaac.GetItemIdByName("Polydipsia")
+CollectibleType.COLLECTIBLE_KARETH = Isaac.GetItemIdByName("Kareth")
+CollectibleType.COLLECTIBLE_PILLAR_OF_FIRE = Isaac.GetItemIdByName("Pillar of Fire")
+CollectibleType.COLLECTIBLE_PILLAR_OF_CLOUDS = Isaac.GetItemIdByName("Pillar of Clouds")
+CollectibleType.COLLECTIBLE_FIRSTBORN_SON = Isaac.GetItemIdByName("Firstborn Son")
+CollectibleType.COLLECTIBLE_MIRIAMS_WELL = Isaac.GetItemIdByName("Miriam's Well")
+CollectibleType.COLLECTIBLE_QUARANTINE = Isaac.GetItemIdByName("Quarantine")
+CollectibleType.COLLECTIBLE_BOOK_OF_GUIDANCE = Isaac.GetItemIdByName("Book of Guidance")
+CollectibleType.COLLECTIBLE_JAR_OF_MANNA = Isaac.GetItemIdByName("Jar of Manna")
+CollectibleType.COLLECTIBLE_TAMBOURINE = Isaac.GetItemIdByName("Tambourine")
+CollectibleType.COLLECTIBLE_THE_DREIDEL = Isaac.GetItemIdByName("The Dreidel")
+CollectibleType.COLLECTIBLE_APOCALYPSE = Isaac.GetItemIdByName("Apocalypse")
+TrinketType.TRINKET_INFESTED_PENNY = Isaac.GetTrinketIdByName("Infested Penny")
+TrinketType.TRINKET_SALINE_SPRAY = Isaac.GetTrinketIdByName("Saline Spray")
+TrinketType.TRINKET_ALMAGEST_SCRAP = Isaac.GetTrinketIdByName("Almagest Scrap")
+TrinketType.TRINKET_WORMWOOD_LEAF = Isaac.GetTrinketIdByName("Wormwood Leaf")
+CollectibleType.COLLECTIBLE_MANDRAKE = Isaac.GetItemIdByName("Mandrake")
+CollectibleType.COLLECTIBLE_LITTLE_SISTER = Isaac.GetItemIdByName("Little Sister")
+
+-- Cards/Runes/Pills/etc
+RUNE_SOUL_OF_LEAH = Isaac.GetCardIdByName("Soul of Leah")
+CARD_TWO_OF_SHIELDS = Isaac.GetCardIdByName("Two of Shields")
+CARD_ACE_OF_SHIELDS = Isaac.GetCardIdByName("Ace of Shields")
+CARD_TRAP = Isaac.GetCardIdByName("Trap Card")
+CARD_KEY = Isaac.GetCardIdByName("Key Card")
 
 function mod:playFailSound()
 	SFXManager():Play(further.FailSound)
 end
 
-include("lua/piber.lua")
 -- Item Luas
 include("lua/items/Esc.lua")
 include("lua/items/Tilde.lua")
@@ -93,51 +126,158 @@ include("lua/items/F4.lua")
 include("lua/items/Tab.lua")
 include("lua/items/ShatteredHeart.lua")
 include("lua/items/Grass.lua")
+--include("lua/items/KeysToTheKingdom.lua")
+include("lua/items/BindsOfDevotion.lua")
+include("lua/items/AlabasterScrap.lua")
+include("lua/items/LeahsLock.lua")
+include("lua/items/FlippedCross.lua")
+include("lua/items/ParasiticPoofer.lua")
+include("lua/items/HeartEmbeddedCoin.lua")
+include("lua/items/SpiritualWound.lua")
+include("lua/items/CaduceusStaff.lua")
+include("lua/items/Polydipsia.lua")
+include("lua/items/Kareth.lua")
+include("lua/items/PillarOfFire.lua")
+include("lua/items/PillarOfClouds.lua")
+include("lua/items/FirstbornSon.lua")
+include("lua/items/MiriamsWell.lua")
+include("lua/items/Quarantine.lua")
+include("lua/items/BookOfGuidance.lua")
+include("lua/items/JarOfManna.lua")
+include("lua/items/Tambourine.lua")
+include("lua/items/TheDreidel.lua")
+include("lua/items/Apocalypse.lua")
+include("lua/items/InfestedPenny.lua")
+include("lua/items/SalineSpray.lua")
+include("lua/items/AlmagestScrap.lua")
+include("lua/items/WormwoodLeaf.lua")
+include("lua/items/Mandrake.lua")
+include("lua/items/LittleSister.lua")
+
+-- Card Luas
+include("lua/cards/SoulOfLeah.lua")
+include("lua/cards/TwoOfShields.lua")
+include("lua/cards/AceOfShields.lua")
+include("lua/cards/TrapCard.lua")
+include("lua/cards/KeyCard.lua")
+
+-- Pickup Luas
+include("lua/pickups/MoonHeart.lua")
 
 -- Save Data/Unlocks
-include("lua/achievements.lua")
+--include("lua/achievements.lua")
 
 function mod:OnSave(isSaving)
 	local save = {}
 	if isSaving then
+		local saveData = {}
 		for i = 0, game:GetNumPlayers() - 1 do
 			local player = Isaac.GetPlayer(i)
 			local data = mod:GetData(player)
+			saveData["player_"..tostring(i+1)] = {}
+			saveData["player_"..tostring(i+1)].numAngelItems = data.numAngelItems
+			saveData["player_"..tostring(i+1)].solTR = data.solTR
+			saveData["player_"..tostring(i+1)].solDMG = data.solDMG
+			saveData["player_"..tostring(i+1)].llTR = data.llTR
+			saveData["player_"..tostring(i+1)].MoonHeart = data.MoonHeart
+			saveData["player_"..tostring(i+1)].Flipped = data.Flipped
+			saveData["player_"..tostring(i+1)].FlipShader = data.FlipShader
+			saveData["player_"..tostring(i+1)].RenovatorDamage = data.RenovatorDamage
+			saveData["player_"..tostring(i+1)].HeartCount = data.HeartCount
 			if player:GetName() == "Leah" then
-				save["player_"..tostring(i+1)] = data.leahkills
-				save["player_"..tostring(i+1)] = data.HeartCount
+				saveData["player_"..tostring(i+1)].kills = data.leahkills
+			end
+			if player:GetName() == "Peter" then
+				saveData["player_"..tostring(i+1)].DevilCount = data.DevilCount
+				saveData["player_"..tostring(i+1)].AngelCount = data.AngelCount
 			end
 		end
+		save.PlayerData = saveData
 	end
-	save.Unlocks = json.encode(mod.Unlocks)
+	save.Unlocks = mod.Unlocks
 	mod:SaveData(json.encode(save))
 end
 
 mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.OnSave)
 
 function mod:OnLoad(isLoading)
+	mod.isLoadingData = isLoading
 	if isLoading and mod:HasData() then
-		local loadData = json.decode(mod:LoadData())
+		local load = json.decode(mod:LoadData())
+		local loadData = load.PlayerData
 		for i = 0, game:GetNumPlayers() - 1 do
 			local player = Isaac.GetPlayer(i)
 			local data = mod:GetData(player)
-			if loadData["player_"..tostring(i+1)] then
-				if player:GetName() == "Leah" then
-					data.leahkills = json.decode(loadData["player_"..tostring(i+1)])
-					data.HeartCount = json.decode(loadData["player_"..tostring(i+1)])
+			if player:GetName() == "Leah" then -- leah's Data
+				if loadData["player_"..tostring(i+1)].kills then
+					data.leahkills = loadData["player_"..tostring(i+1)].kills
 				end
 			end
+			if player:GetName() == "Peter" then -- Peter's Data
+				if loadData["player_"..tostring(i+1)].DevilCount then
+					data.DevilCount = loadData["player_"..tostring(i+1)].DevilCount
+				end
+				if loadData["player_"..tostring(i+1)] then
+					data.AngelCount = loadData["player_"..tostring(i+1)].AngelCount
+				end
+			end
+			-- Other General Data
+			if loadData["player_"..tostring(i+1)].numAngelItems then
+				data.numAngelItems = loadData["player_"..tostring(i+1)].numAngelItems
+			end
+			if loadData["player_"..tostring(i+1)].solTR then
+				data.solTR = loadData["player_"..tostring(i+1)].solTR
+			end
+			if loadData["player_"..tostring(i+1)].solDMG then
+				data.solDMG = loadData["player_"..tostring(i+1)].solDMG
+			end
+			if loadData["player_"..tostring(i+1)].llTR then
+				data.llTR = loadData["player_"..tostring(i+1)].llTR
+			end
+			if loadData["player_"..tostring(i+1)].MoonHeart then
+				data.MoonHeart = loadData["player_"..tostring(i+1)].MoonHeart
+			end
+			if loadData["player_"..tostring(i+1)].Flipped then
+				data.Flipped = loadData["player_"..tostring(i+1)].Flipped
+			end
+			if loadData["player_"..tostring(i+1)].FlipShader then
+				data.FlipShader = loadData["player_"..tostring(i+1)].FlipShader
+			end
+			if loadData["player_"..tostring(i+1)].RenovatorDamage then
+				data.RenovatorDamage = loadData["player_"..tostring(i+1)].RenovatorDamage
+			end
+			if loadData["player_"..tostring(i+1)].HeartCount then
+				data.HeartCount = loadData["player_"..tostring(i+1)].HeartCount
+			end
+			
+			if data.Flipped == nil then
+				data.Flipped = false
+				data.FlipShader = 1
+			end
+		end
+		if loadData.Unlocks then
+			mod.Unlocks = loadData.Unlocks
 		end
 	end
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnLoad)
 
+function mod:LoadDataCacheEval(player)
+	if player.FrameCount == 1 then
+		player:AddCacheFlags(CacheFlag.CACHE_ALL)
+		player:EvaluateItems()
+	end
+end
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.LoadDataCacheEval)
+
 -- Curses & Blessings Lua
-include("lua/curses/Curses.lua")
+--include("lua/curses/Curses.lua")
 
 -- Players
 include("lua/players/Leah.lua")
+include("lua/players/Peter.lua")
+include("lua/players/Miriam.lua")
 
 -- prevent shaders crash
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function()
@@ -159,6 +299,13 @@ end
 if Poglite then
 	local pogCostumeB = Isaac.GetCostumeIdByPath("gfx/characters/Character_001b_Leah_Pog.anm2")
 	Poglite:AddPogCostume("LeahBPog", taintedLeah, pogCostumeB)
+end
+
+if MiniMapiItemsAPI then
+    local MoonHeartSprite = Sprite()
+    MoonHeartSprite:Load("gfx/ui/moonheart_icon.anm2", true)
+    MinimapAPI:AddIcon("MoonHeartIcon", MoonHeartSprite, "MoonHeart", 0)
+	MinimapAPI:AddPickup(225, "MoonHeartIcon", 5, 10, 225, MinimapAPI.PickupNotCollected, "hearts", 13000)
 end
 
 local MCMLoaded, MCM = pcall(require, "scripts.modconfig")
@@ -199,6 +346,268 @@ if MCMLoaded then
 end
 
 ----- Mod Support End -----
+
+-----------------------------------
+--Helper Functions (thanks piber)--
+-----------------------------------
+
+function mod:GetPlayers(functionCheck, ...)
+
+	local args = {...}
+	local players = {}
+	
+	local game = Game()
+	
+	for i=1, game:GetNumPlayers() do
+	
+		local player = Isaac.GetPlayer(i-1)
+		
+		local argsPassed = true
+		
+		if type(functionCheck) == "function" then
+		
+			for j=1, #args do
+			
+				if args[j] == "player" then
+					args[j] = player
+				elseif args[j] == "currentPlayer" then
+					args[j] = i
+				end
+				
+			end
+			
+			if not functionCheck(table.unpack(args)) then
+			
+				argsPassed = false
+				
+			end
+			
+		end
+		
+		if argsPassed then
+			players[#players+1] = player
+		end
+		
+	end
+	
+	return players
+	
+end
+
+function mod:GetPlayerFromTear(tear)
+	for i=1, 3 do
+		local check = nil
+		if i == 1 then
+			check = tear.Parent
+		elseif i == 2 then
+			check = mod:GetSpawner(tear)
+		elseif i == 3 then
+			check = tear.SpawnerEntity
+		end
+		if check then
+			if check.Type == EntityType.ENTITY_PLAYER then
+				return mod:GetPtrHashEntity(check):ToPlayer()
+			elseif check.Type == EntityType.ENTITY_FAMILIAR and check.Variant == FamiliarVariant.INCUBUS then
+				local data = mod:GetData(tear)
+				data.IsIncubusTear = true
+				return check:ToFamiliar().Player:ToPlayer()
+			end
+		end
+	end
+	return nil
+end
+
+function mod:GetSpawner(entity)
+	if entity and entity.GetData then
+		local spawnData = mod:GetSpawnData(entity)
+		if spawnData and spawnData.SpawnerEntity then
+			local spawner = mod:GetPtrHashEntity(spawnData.SpawnerEntity)
+			return spawner
+		end
+	end
+	return nil
+end
+
+function mod:GetSpawnData(entity)
+	if entity and entity.GetData then
+		local data = mod:GetData(entity)
+		return data.SpawnData
+	end
+	return nil
+end
+
+function mod:GetPtrHashEntity(entity)
+	if entity then
+		if entity.Entity then
+			entity = entity.Entity
+		end
+		for _, matchEntity in pairs(Isaac.FindByType(entity.Type, entity.Variant, entity.SubType, false, false)) do
+			if GetPtrHash(entity) == GetPtrHash(matchEntity) then
+				return matchEntity
+			end
+		end
+	end
+	return nil
+end
+
+function mod:GetData(entity)
+	if entity and entity.GetData then
+		local data = entity:GetData()
+		if not data.further then
+			data.further = {}
+		end
+		return data.further
+	end
+	return nil
+end
+
+--[[mod.entitySpawnData = {}
+mod:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, function(_, type, variant, subType, position, velocity, spawner, seed)
+	mod.entitySpawnData[seed] = {
+		Type = type,
+		Variant = variant,
+		SubType = subType,
+		Position = position,
+		Velocity = velocity,
+		SpawnerEntity = spawner,
+		InitSeed = seed
+	}
+end)
+mod:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, function(_, entity)
+	local seed = entity.InitSeed
+	local data = mod:GetData(entity)
+	data.SpawnData = mod.entitySpawnData[seed]
+end)
+mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, function(_, entity)
+	local data = mod:GetData(entity)
+	data.SpawnData = nil
+end)
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
+	mod.entitySpawnData = {}
+end)]]
+
+function mod:Contains(list, x)
+	for _, v in pairs(list) do
+		if v == x then return true end
+	end
+	return false
+end
+
+function mod:GetRandomNumber(numMin, numMax, rng)
+	if not numMax then
+		numMax = numMin
+		numMin = nil
+	end
+	
+	rng = rng or RNG()
+
+	if type(rng) == "number" then
+		local seed = rng
+		rng = RNG()
+		rng:SetSeed(seed, 1)
+	end
+	
+	if numMin and numMax then
+		return rng:Next() % (numMax - numMin + 1) + numMin
+	elseif numMax then
+		return rng:Next() % numMin
+	end
+	return rng:Next()
+end
+
+OnRenderCounter = 0
+IsEvenRender = true
+mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
+	OnRenderCounter = OnRenderCounter + 1
+	
+	IsEvenRender = false
+	if Isaac.GetFrameCount()%2 == 0 then
+		IsEvenRender = true
+	end
+end)
+
+--ripairs stuff from revel
+function ripairs_it(t,i)
+	i=i-1
+	local v=t[i]
+	if v==nil then return v end
+	return i,v
+end
+function ripairs(t)
+	return ripairs_it, t, #t+1
+end
+
+--delayed functions
+DelayedFunctions = {}
+
+function mod:DelayFunction(func, delay, args, removeOnNewRoom, useRender)
+	local delayFunctionData = {
+		Function = func,
+		Delay = delay,
+		Args = args,
+		RemoveOnNewRoom = removeOnNewRoom,
+		OnRender = useRender
+	}
+	table.insert(DelayedFunctions, delayFunctionData)
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
+	for i, delayFunctionData in ripairs(DelayedFunctions) do
+		if delayFunctionData.RemoveOnNewRoom then
+			table.remove(DelayedFunctions, i)
+		end
+	end
+end)
+
+local function delayFunctionHandling(onRender)
+	if #DelayedFunctions ~= 0 then
+		for i, delayFunctionData in ripairs(DelayedFunctions) do
+			if (delayFunctionData.OnRender and onRender) or (not delayFunctionData.OnRender and not onRender) then
+				if delayFunctionData.Delay <= 0 then
+					if delayFunctionData.Function then
+						if delayFunctionData.Args then
+							delayFunctionData.Function(table.unpack(delayFunctionData.Args))
+						else
+							delayFunctionData.Function()
+						end
+					end
+					table.remove(DelayedFunctions, i)
+				else
+					delayFunctionData.Delay = delayFunctionData.Delay - 1
+				end
+			end
+		end
+	end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
+	delayFunctionHandling(false)
+end)
+
+mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
+	delayFunctionHandling(true)
+end)
+
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
+	DelayedFunctions = {}
+end)
+
+function mod.EsauCheck(player)
+	if not player or (player and not player.GetData) then
+		return nil
+	end
+	local currentPlayer = 1
+	for i=1, Game():GetNumPlayers() do
+		local otherPlayer = Isaac.GetPlayer(i-1)
+		local searchPlayer = i
+		--added GetPlayerType() to get Jacob and Easu seperatly
+		if otherPlayer.ControllerIndex == player.ControllerIndex and otherPlayer:GetPlayerType() == player:GetPlayerType() then
+			currentPlayer = searchPlayer
+		end
+	end
+	return currentPlayer
+end
+
 
 -- Big Book Stuff (Thanks kittenchilly!)
 
@@ -351,22 +760,16 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
 end)
 
 function mod:ShouldRender()	
-	local game = Game()
 	local seeds = game:GetSeeds()
 	local hud = game:GetHUD()
-
 	if hud:IsVisible() == true and (not seeds:HasSeedEffect(SeedEffect.SEED_NO_HUD)) then
 		return true
 	end
-	
 	return false
 end
 
 function mod:GetScreenCenterPosition()
-
-	local game = Game()
 	local room = game:GetRoom()
-
 	local shape = room:GetRoomShape()
 	local centerOffset = (room:GetCenterPos()) - room:GetTopLeftPos()
 	local pos = room:GetCenterPos()
