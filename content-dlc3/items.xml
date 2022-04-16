@@ -1,6 +1,6 @@
 <items gfxroot="gfx/items/" version="1" deathanm2="gfx/death items.anm2">
 	<!-- Isaac's Keyboard -->
-	<active id="24" name="Esc Key" description="I gotta get outta here!" gfx="esc.png" shopprice="99" devilprice="2" quality="3" />
+	<active id="24" name="Esc Key" description="I gotta get outta here!" gfx="esc.png" shopprice="30" devilprice="2" quality="3" />
 	<active id="1" name="Tilde Key" description="Dirty hacker" gfx="~.png" maxcharges="12" quality="3" />
 	<active id="2" name="Alt Key" description="Reality" gfx="alt.png" maxcharges="1" chargetype="special" quality="4" />
 	<active id="3" name="Spacebar Key" description="Feedback loop" gfx="spacebar.png" maxcharges="12" quality="4" />
@@ -23,7 +23,7 @@
 	<!-- New -->
 	<!-- Passive Items -->
 	<passive id="17" cache="firedelay" name="Tech IX" description="Experimental laser ring tears" gfx="tech_ix.png" quality="3" tags="tech offensive"/>
-	<passive id="18" name="Leaking Tank" description="I'm leaking..." gfx="leaking_tank.png" quality="2" />																<!-- Concept by SybilScribble! -->
+	<passive id="18" name="Leaking Tank" description="I'm leaking?!" gfx="leaking_tank.png" quality="2" />																<!-- Concept by SybilScribble! -->
 	<passive id="19" name="Unstable Core" description="Shockingly active" gfx="unstable_core.png" quality="2" />														<!-- Concept by SybilScribble! -->
 	<!-- <passive id="20" name="Technology -1" description="Underflow shots" gfx="technology_-1.png" quality="3" tags="tech" /> -->
 	<passive id="28" name="ZZZZoptionsZZZZ" description="ZZZZmZZZZoZZZZrZZZZeZZZZ" gfx="ZZZZoptionsZZZZ.PNG" quality="2" tags="nocantrip offensive" />					<!-- Concept by Joply! -->
@@ -31,25 +31,49 @@
 	<passive id="26" cache="speed" name="Crab Legs" description="You will never make the crab walk straight" gfx="crab_legs.png" hearts="4" maxhearts="2" quality="2" /><!-- Concept by Tesseract! -->
 	<passive id="23" cache="tearflag damage" name="Owl's Eye" description="The master guides you" gfx="owls_eye.png" quality="3" />										<!-- Concept by Freg! -->
 	<passive id="30" cache="firedelay" name="Pharaoh Cat" description="Pyramid shot" gfx="pharaoh_cat.png" quality="4" />												<!-- Concept by Freg! (reworked by me :troll:) -->
-	<!-- <passive id="35" name="Binds of Devotion" description="jacob or something" gfx="binds_of_devotion.png" quality="3" />												<!-- Concept by Freg! (reworked by me :troll:) -->
+	<passive id="37" name="Parasitic Poofer" description="He loves you" gfx="parasitic_poofer.png" quality="2" />
+	<passive id="38" name="Heart Embedded Coin" description="da coin wit da heart" gfx="heart_embedded_coin.png" quality="2" />
+	<passive id="39" name="Spiritual Wound" description="Drain their lives" gfx="spiritual_wound.png" devilprice="2" quality="4" tags="devil" />
+	<passive id="40" name="Caduceus Staff" description="HP up + you feel great!" gfx="caduceus_staff.png" quality="4" tags="angel" />
+	<passive id="41" cache="range firedelay" name="Polydipsia" description="Tears down?!" gfx="polydipsia.png" quality="3" />
+	<passive id="42" name="Kareth" description="Divine punishment" gfx="kareth.png" devilprice="1" quality="3" />
+	<passive id="43" name="Pillar of Fire" description="The path is illuminated" gfx="pillar_of_fire.png" quality="3" />
+	<passive id="44" name="Pillar of Clouds" description="The path is clouded" gfx="pillar_of_clouds.png" quality="3" />
+	<passive id="46" name="Miriam's Well" description="Spew forth" gfx="miriams_well.png" quality="1" />
+	<passive id="47" name="Quarantine" description="Social distancing" gfx="quarantine.png" quality="0" />
+	<passive id="53" name="Mandrake" description="children or something" gfx="mandrake.png" quality="2" />
+	<passive id="54" name="Little Sister" description="Rachel..." gfx="little_sister.png" quality="2" />
 	
 	<!-- Active Items -->
 	<active id="21" cache="speed" name="Book of Swiftness" description="Temporary speed up" gfx="book_of_swiftness.png" maxcharges="3" quality="3" tags="book offensive" />
 	<active id="22" cache="range" name="Book of Ambit" description="Temporary range up" gfx="book_of_ambit.png" maxcharges="3" quality="2" tags="book offensive" />
 	<active id="25" name="Plug N' Play" description="Comes with 1000 games!" gfx="plug_n_play.png" maxcharges="6" quality="2" tags="nocantrip offensive" />				<!-- Concept by Freg! -->
-	<active id="29" name="Heart Renovator" description="Eternal triumph" gfx="heart_renovator.png" chargetype="timed" maxcharges="90" initcharge="0" quality="2" tags="angel nokeeper nolostbr" />
+	<active id="29" name="Heart Renovator" description="Eternal triumph" gfx="heart_renovator.png" maxcharges="3" initcharge="3" quality="3" tags="angel nokeeper nolostbr" />
 	<active id="31" name="F4 Key" description="Be careful..." gfx="f4.png" shopprice="30" devilprice="2" maxcharges="6" quality="4" />
 	<active id="32" name="Tab Key" description="Pretty useful!" gfx="tab.png" maxcharges="4" quality="3" />
-	<active id="33" name="Shattered Heart" description="Eternal Sorrow" gfx="shattered_heart.png" chargetype="timed" maxcharges="90" initcharge="0" quality="2" tags="nokeeper nolostbr" />
-	<active name="Shattered Heart No Puddle" description="Eternal Sorrow" gfx="shattered_heart_no_puddle.png" chargetype="timed" maxcharges="90" quality="2" tags="nokeeper nolostbr" hidden="true" />
-	<!-- <active id="34" name="Keys to the Kingdom" description="Divine Control + Strength in Salvation" gfx="keys_to_the_kingdom.png" maxcharges="12" initcharge="12" quality="4" tags="angel" hidden="true" />
+	<active id="33" name="Shattered Heart" description="Eternal sorrow" gfx="shattered_heart.png" chargetype="timed" maxcharges="90" initcharge="0" quality="2" tags="nokeeper nolostbr" />
+	<active name="Shattered Heart No Puddle" description="Eternal sorrow" gfx="shattered_heart_no_puddle.png" chargetype="timed" maxcharges="90" quality="2" tags="nokeeper nolostbr" hidden="true" />
+	<active id="34" name="Keys to the Kingdom" description="Divine control + strength in salvation" gfx="keys_to_the_kingdom.png" maxcharges="12" initcharge="12" quality="4" tags="angel" />
+	<active id="36" name="Flipped Cross" description="Divine control + strength in salvation" gfx="flipped_cross.png" maxcharges="6" initcharge="6" quality="4" tags="devil" />
+	<active id="48" name="Book of Guidance" description="The exodus ends" gfx="book_of_guidance.png" maxcharges="12" quality="1" />
+	<active id="49" name="Jar of Manna" description="Fill with faith" gfx="jar_of_manna.png" maxcharges="1" chargetype="special" quality="4" />
+	<active id="50" name="Tambourine" description="It's rattling!" gfx="tambourine.png" chargetype="timed" maxcharges="300" quality="0" />
+	<active id="51" name="The Dreidel" description="Reroll the elements" gfx="the_dreidel.png" maxcharges="6" quality="4" />
+	<active id="52" name="Apocalypse" description="In the End" gfx="apocalypse.png" devilprice="2" quality="4" />
 	
 	<!-- Trinkets -->
-	<trinket id="0" name="Holy Heart" description="Protective hearts" gfx="holy_heart.png" />																					<!-- Concept by PootisTweet! -->
-	<trinket id="1" name="Cringe" description="You're posting it" gfx="cringe.png" />																							<!-- Concept by Freg! -->
-	<trinket id="2" name="Slick Worm" description="Sliiiick" gfx="slick_worm.png" />																							<!-- Concept by Freg! -->
-	<trinket id="3" name="Grass" description="Go touch some" gfx="grass.png" />																									<!-- Concept by Aeronaut! -->
-	<!-- <trinket id="4" name="Alabaster Scrap" description="FT" gfx="alabaster_scrap.png" /> -->
-	
+	<trinket id="0" name="Holy Heart" description="Protective hearts" gfx="holy_heart.png" />																			<!-- Concept by PootisTweet! -->
+	<trinket id="1" name="Cringe" description="You're posting it" gfx="cringe.png" />																					<!-- Concept by Freg! -->
+	<trinket id="2" name="Slick Worm" description="Sliiiick" gfx="slick_worm.png" />																					<!-- Concept by Freg! -->
+	<trinket id="3" name="Grass" description="Go touch some" gfx="grass.png" />																							<!-- Concept by Aeronaut! -->
+	<trinket id="4" name="Alabaster Scrap" description="FT" gfx="alabaster_scrap.png" />
+	<trinket id="5" name="Leah's Lock" description="No pain? no gain" gfx="leahs_lock.png" />
+	<trinket id="6" name="Infested Penny" description="Wealth of spiders" gfx="infested_penny.png" />
+	<trinket id="7" name="Saline Spray" description="Salty shots" gfx="saline_spray.png" />
+	<trinket id="8" name="Almagest Scrap" description="Chart the stars" gfx="almagest_scrap.png" />
+	<trinket id="9" name="Wormwood Leaf" description="Tastes bitter" gfx="wormwood_leaf.png" />
+
 	<!-- Familiars -->
+	<familiar id="35" name="Binds of Devotion" description="Bound by love" gfx="binds_of_devotion.png" quality="2" persistent="true" />
+	<familiar id="45" name="Firstborn Son" description="Fleeting friend" gfx="firstborn_son.png" quality="1" />
 </items>

@@ -8,4 +8,10 @@
 	<sound name="BrokenHeartbeat">		<!-- Thank you Sillst! -->
 		<sample weight="1" path="BrokenHeartbeat.wav" />
 	</sound>
+	<sound name="MoonHeartPickup">		<!-- Thank you Sillst! -->
+		<sample weight="1" path="moonheart_pickup1.wav" />
+	</sound>
+	<sound name="FaithfulHeartPickup">
+		<sample weight="1" path="faithfulheart_pickup1.wav" />
+	</sound>
 </sounds>

@@ -11,14 +11,32 @@
 		nameimage="playername_Leah.png"
 		portrait="playerportrait_Leah_B.png"
 		birthright="Taken for granted" />
-	<player name="Peter" skinColor="-1" hp="4" armor="2" hidden="true" costumeSuffix="peter"
+	<player name="Peter" skinColor="-1" hp="4" armor="2" hidden="false" costumeSuffix="peter"
 		skin="Character_002_Peter_A.png"
 		nameimage="playername_Peter.png"
 		portrait="playerportrait_Peter_A.png"
 		birthright="???" />
-	<player name="PeterB" bSkinParent="Peter" skinColor="-1" hp="6" costumeSuffix="peterb"
+	<player name="PeterB" bSkinParent="Peter" skinColor="-1" hp="6" items="7" costumeSuffix="peterb"
 		skin="Character_002_Peter_B.png"
 		nameimage="playername_Peter.png"
 		portrait="playerportrait_Peter_B.png"
 		birthright="???" />
+	<player name="Miriam" skinColor="-1" hp="4" armor="4" costumeSuffix="miriam"
+		skin="Character_003_Miriam_A.png"
+		nameimage="playername_Miriam.png"
+		portrait="playerportrait_Miriam_A.png"
+		birthright="Crashing waves" />
+	<player name="MiriamB" bSkinParent="Miriam" skinColor="-1" broken="4" card="55" costumeSuffix="miriamb"
+		skin="Character_003_Miriam_B.png"
+		nameimage="playername_Miriam.png"
+		portrait="playerportrait_Miriam_B.png"
+		birthright="Death field" />
+	
+	<!-- Fake Jacob for Binds of Devotion, copied from the original players.xml -->
+	<player name="FakeJacob" hp="6" hidden="true"
+		skin="Character_002x_Jacob.png" 
+		costume="52" achievement="405"
+		nameimage="PlayerName_02x_Jacob_Esau.png" 
+		portrait="PlayerPortrait_Jacob.png" skinColor="-1"
+		birthright="#JACOB_BIRTHRIGHT" />
 </players>

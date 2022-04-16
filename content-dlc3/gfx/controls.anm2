@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="anchikai." CreatedOn="2/1/2022 9:09:54 PM" Version="77" Fps="30"/>
+	<Info CreatedBy="anchikai." CreatedOn="2/15/2022 12:01:31 AM" Version="78" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="controls.png" Id="0"/>
@@ -80,7 +80,7 @@
 					<Frame XPosition="-40" YPosition="28" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				</NullAnimation>
 				<NullAnimation NullId="2" Visible="true">
-					<Frame XPosition="44" YPosition="24" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+					<Frame XPosition="44" YPosition="24" XScale="100" YScale="100" Delay="1" Visible="false" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				</NullAnimation>
 				<NullAnimation NullId="3" Visible="true">
 					<Frame XPosition="128" YPosition="31" XScale="100" YScale="100" Delay="1" Visible="false" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>

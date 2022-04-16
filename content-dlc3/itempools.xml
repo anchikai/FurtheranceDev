@@ -14,6 +14,7 @@
 		<Item Name="Book of Ambit" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Crab Legs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Pharaoh Cat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Parasitic Poofer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="library">
 		<Item Name="Book of Swiftness" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -83,6 +84,7 @@
 		<Item Name="Plug N' Play" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Owl's Eye" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Pharaoh Cat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Parasitic Poofer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedShop">
 		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -97,6 +99,7 @@
 		<Item Name="Heart Renovator" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Pharaoh Cat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="F4 Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Parasitic Poofer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="planetarium">
 		<Item Name="Ceres" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
