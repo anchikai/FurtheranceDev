@@ -31,10 +31,10 @@ mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.OwlTear)
 function mod:OwlFlags(player, flag)
 	local data = mod:GetData(player)
 	if data.OwlShot == true and player:HasCollectible(CollectibleType.COLLECTIBLE_OWLS_EYE) then
-		if flag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
+		if flag == CacheFlag.CACHE_TEARFLAG then
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_PIERCING | TearFlags.TEAR_HOMING
 		end
-		if flag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
+		if flag == CacheFlag.CACHE_DAMAGE then
 			player.Damage = player.Damage * 2
 		end
 	end

@@ -137,7 +137,7 @@ mod:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, mod.PyramidBombs)
 
 function mod:GetPharohCat(player, cacheFlag)
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_PHARAOH_CAT) then
-		if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
+		if cacheFlag == CacheFlag.CACHE_FIREDELAY then
 			player.MaxFireDelay = player.MaxFireDelay + 20
 		end
 	end

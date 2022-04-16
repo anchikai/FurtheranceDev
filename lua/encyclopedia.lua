@@ -426,13 +426,14 @@ local Wiki = {
 	HeartRenovator = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "While held, Heart Renovator will passively grant one broken heart when exploring a new room."},
-			{str = "When used, It will remove one broken heart and give a small damage or tears up for the room."},
+			{str = "While held, Heart Renovator will grant a Heart Counter."},
+			{str = "- It can be filled by picking up red hearts. When you hold the drop button, two will be subtracted from the counter and a broken heart will be added."},
+			{str = "Using Heart Renovator will remove a broken heart and grant a small Damage up."},
+			{str = "Enemies have a 6.25% chance to drop a scared heart when Isaac kills them."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "If the player has no broken hearts to remove, it will not grant a temporary stat up."},
-			{str = "If the player reaches a tear rate of 15 or more, it will always grant a damage up instead."},
+			{str = "If the player has no broken hearts to remove, it will not grant a Damage up and do nothing."},
 		},
 	},
 	PharaohCat = {
@@ -546,12 +547,107 @@ local Wiki = {
 			{str = "When used, it has a variety of effects based on the room he's in."},
 			{str = "- If used in a cleared room, Isaac will be granted another room clear reward."},
 			{str = "- If used in a active room, light beams will strike down enemies, similarly to Crack the Sky."},
-			{str = "- When used in a devil room, all items become free for you to take with no penalty."},
+			{str = "- When used in a devil room, there is a 50% chance either all items become free for you to take with no penalty, or Krampus spawns."},
+			{str = "-- If Krampus spawns, they can still drop Head of Krampus or Lump of Coal."},
 			{str = "- When used in a angel room, a random key piece is spawned."},
-			{str = "-- If Isaac already has a key piece, the other respective key piece will spawn."},
-			{str = "-- If Isaac already has both key pieces, a random angel item will spawn instead."},
+			{str = "-- If the player already has a key piece, the other respective key piece will spawn."},
+			{str = "-- If the player already has both key pieces, a random angel item will spawn instead."},
 		},
 	},
+	AlabasterScrap = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Increases Isaac's damage by 0.5 for each angelic item he possesses."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "Having more than one of the same item will still increase its damage."},
+			{str = "Items that count towards the Seraphim transformation are what increases Isaac's damage."},
+		},
+	},
+	LeahsLock = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "While held, a broken heart will either be granted or removed when exploring a new room."},
+			{str = "If the player gains a broken heart, a tears up will be granted. If the player loses a broken heart, a tears down will be granted."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "The tear rate gained through this trinket is capped at 10."},
+			{str = "- If the tear rate cap is reached, the next proc will always remove a broken heart and a tears up."},
+			{str = "This trinket can kill you by setting you to 12 broken hearts."},
+		},
+	},
+	BindsOfDevotion = {
+		{ -- Effects
+			{str = "Effects", fsize = 2, clr = 3, halign = 0},
+			{str = "Spawns Jacob as an extra character alongside Isaac, who is controlled exactly like Esau."},
+			{str = "- Jacob will have his base stats."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "Jacob's health is displayed at all times above his head."},
+			{str = "- If Curse of the Unknown is in effect, his health bar will be hidden the same way as Isaac's."},
+			{str = "Jacob is able to pick up items independently from Isaac. He has his own inventory that is not shared with the actual player."},
+			{str = "- This inventory is not displayed on the HUD."},
+			{str = "- When Jacob dies, the items he obtained are lost forever."},
+			{str = "Jacob is not able to pick up any active items, trinkets or consumables."},
+			{str = "Jacob's speed is independent from Isaac's. Obtaining speed items will grant speed only to the character that picked up the item."},
+			{str = "Similarly to Esau, when the player places a bomb, Jacob will place another at no cost."},
+			{str = "Jacob is not able to walk through doors or crawlspaces."},
+			{str = "- Although he is able to enter the beam of light that takes Isaac to the next floor after the Mom fight, the one spawned by Genesis, as well as entering the big chest after defeating bosses in later stages."},
+			{str = "Jacob is able to obtain items that grant extra lives and use them normally. If one of these items transforms the player into another character upon death, this will work too and the player will instead get a different controllable character that inherits the new character's stats, e.g. Lazarus Risen from Lazarus' Rags or Dark Judas from Judas' Shadow."},
+			{str = "The player cannot get any Jacob unlocks by using Binds of Devotion."},
+			{str = "With item choice pedestals, the player can pick up both of them if he times them perfectly, similarly to Jacob and Esau."},
+			{str = "Even though Jacob is considered a second character, the run ends if the original character dies."},
+			{str = "Technically, Binds of Devotion is marked as a familiar item in the mod's files, although familiar-modifying items, such as BFFS! don't have any effect on Jacob."},
+			{str = "Unlike Jacob and Esau, invincibility frames are not shared between the characters, so the player can easily get ''double-tapped'' if not careful."},
+		},
+		{ -- Synergies
+			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
+			{str = "Extension Cord: Beams of electricity will flow between Jacob and the player's original character."},
+			{str = "Binds of Devotion: Picking up multiple copies of the item will spawn additional Jacobs that each have their own inventory."},
+		},
+		{ -- Interactions
+			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
+			{str = "Genesis: Will not grant item choices for any of Jacob's collected items."},
+		},
+	},
+	ParasiticPoofer = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Taking damage has a 20% chance to double Isaac's current number of red hearts."},
+			{str = "- A broken heart will also be added to Isaac."},
+			{str = "- Doesn't add new red heart containers, just fills empty ones."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "If Isaac takes fatal damage and the effect procs, it can save him from death."},
+			{str = "- A broken heart will still be added."},
+			{str = "This item can kill you by setting you to 12 broken hearts."},
+		},
+	},
+	
+	-- Pocket Items
+	SoulOfLeah = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants between 1 to 5 broken hearts."},
+			{str = "All of the broken hearts you gain will give either a damage up or tears up."},
+			{str = "The amount of damage or tears gained is dependent on how many broken hearts are gained."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "If the amount of broken hearts gained sets you to 12 broken hearts, it will kill you."},
+			{str = "The tears cap is entirely ignored, and in some rare instances can set you to 120 tears."},
+		},
+		{ -- Interactions
+			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
+			{str = "Getting this soul stone as Leah or Tainted Leah effectively acts as a free large stat upgrade if used correctly."},
+		},
+	},
+	
+	-- Characters
 	Leah = {
 		{ -- Start Data
 			{str = "Start Data", fsize = 2, clr = 3, halign = 0},
@@ -562,32 +658,38 @@ local Wiki = {
 			{str = "- Speed: 1.00"},
 			{str = "- Tear rate: 2.50"},
 			{str = "- Damage: 3.14"},
-			{str = "- Range: 6.50"},
+			{str = "- Range: 2.61"},
 			{str = "- Shot speed: 1.00"},
 			{str = "- Luck: 0.00"},
 		},
 		{ -- Traits
 			{str = "Traits", fsize = 2, clr = 3, halign = 0},
-			{str = "Leah's active item ''Heart Renovator'' will passively grant one broken heart per room. Using it will remove one and give a damage or tears up for the room."},
-			{str = "For every 20th enemy she kills, one broken heart will be added and she will get a minor permanent damage or tear rate boost."},
-			{str = "Leah has a heart counter, which can be filled by picking up red hearts. When you press the drop button, two will be subtracted from the counter and a broken heart will be added alongside a small permanent damage or tears up."},
-			{str = "- If Leah reaches a tear rate of 15 or more, it will always grant a damage up instead."},
-			{str = "She has a 25% chance to drop a scared heart when clearing a room."},
+			{str = "Leah's pocket active item ''Heart Renovator'' grants a Heart Counter."},
+			{str = "- It can be filled by picking up red hearts. When you hold the drop button, two will be subtracted from the counter and a broken heart will be added."},
+			{str = "- Using Heart Renovator will remove a broken heart and grant a small Damage up."},
+			{str = "For each broken heart Leah has, she will gain an extra +1 range."},
+			{str = "For every 20th enemy she kills, one broken heart will be removed and gain a small Damage up."},
+			{str = "- Damage gained through kills is half as effective as Damage through Heart Renovator."},
+			{str = "Enemies have a 6.25% chance to drop a scared heart when Leah kills them."},
 		},
 		{ -- Birthright
 			{str = "Birthright", fsize = 2, clr = 3, halign = 0},
+			{str = "The boost in damage from enemy kills and Heart Renovator is twice as effective."},
+			{str = "One broken heart will be removed for every ten kills instead of every twenty."},
+			{str = "The heart counter will be capped at 999 instead of 99."},
 			{str = "Grants three broken hearts."},
-			{str = "One broken heart will be added for every ten kills instead of twenty."},
-			{str = "The boost in damage or tear rate from enemy kills is twice as effective."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "Leah starts with a slightly lower damage and tears stat than most characters. However, strategic use of Shattered Heart and getting kills will help combat the lower damage and tears you start with."},
+			{str = "Leah starts with a slightly lower damage and tears stat than most characters. However, strategic use of the Heart Counter and using Heart Renovator will help combat the lower damage and tears you start with."},
+			{str = "You have to find a good balance between keeping broken hearts for range and removing them for tear rate and damage."},
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
 			{str = "Leah is a reference to the important figure in the Judeo-Christian tradition, the unloved wife of the Biblical patriarch Jacob. The Lord blessed Leah with 6 sons and 1 daughter. Her six sons became the representatives of six of the twelve tribes of Israel, represented by the 6 coins Leah starts the game with."},
-			{str = "Leah starts with specifically 3.14 damage because anchikai likes pi."},
+			{str = "Leah starts with 3.14 damage because anchikai likes pi."},
+			{str = "Leah's base range with no broken hearts is low because of her gimmick with broken hearts and is specifically 1.61 and as a reference to the golden ratio."},
+			{str = "- Have you noticed that I like mathematics?"},
 		},
 	},
 	TaintedLeah = {
@@ -649,30 +751,48 @@ local Wiki = {
 		},
 		{ -- Traits
 			{str = "Traits", fsize = 2, clr = 3, halign = 0},
-			{str = "Peter gains benefits from visiting angel deals. The more angel deals he visits, the higher his damage will increase and will obtain flight."},
-			{str = "- He will also lose shot speed for every angel deal."},
-			{str = "- He will only gain these stat changes if the amount of angel deals visited is higher than the amount of devil deals visited."},
+			{str = "Peter gains benefits from visiting devil or angel deals. If Peter has visited more devil deals, he will lose speed, gain damage, range, and stompy. If he has visited more angel deals, he will lose shot speed, gain speed, tear rate, and flight."},
+			{str = "- If the amount of Devil and Angel deals visited are the same, Peter will not gain any of the above mentioned changes."},
+			{str = "He also has two counters next to each deal percent chance to indicate how many of each deal he has visited."},
 		},
 		{ -- Birthright
 			{str = "Birthright", fsize = 2, clr = 3, halign = 0},
-			
+			{str = "Regardless of which deal he has visited more, he will always gain the benefits of both."},
+			{str = "- He will only gain flight if visited angel deals is more than 0, and will only gain stompy if visited devil deals is more than 0."},
+			{str = "The tear rate gained from angel deals is hard capped at 30 instead of 15."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			
+			{str = "The tear rate gained from angel deals is hard capped at 15."},
+			{str = "- All other stats can keep going up indefinitely, so long as you can keep entering new deals."},
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
-			
+			{str = "Peter was one of the Twelve Apostles of Jesus Christ, and one of the first leaders of the early Church."},
+			{str = "Peter was originally going to be in a mod called ''Decadence'' by poody_blue, but it has since been morphed into Furtherance and Peter has been reworked from what he was originally."},
 		},
 	},
 	TaintedPeter = {
 		{ -- Start Data
 			{str = "Start Data", fsize = 2, clr = 3, halign = 0},
-			
+			{str = "Items:"},
+			{str = "- Blood of the Martyr"},
+			{str = "- Flipped Cross"},
+			{str = "Stats:"},
+			{str = "- HP: 3 Red Hearts"},
+			{str = "- Speed: 1.00"},
+			{str = "- Tear rate: 2.73"},
+			{str = "- Damage: 3.50"},
+			{str = "- Range: 6.50"},
+			{str = "- Shot speed: 1.00"},
+			{str = "- Luck: -1.00"},
 		},
 		{ -- Traits
 			{str = "Traits", fsize = 2, clr = 3, halign = 0},
+			{str = "Tainted Peter cannot gain items over quality 2. Instead he can use his pocket active item ''Flipped Cross'' to travel to an upside down, red tinted version of the next chapter."},
+			{str = "- If he uses it on Basement, the floor will look like Caves."},
+			{str = "The flipped floor will have most of the stuff on it upside down and the enemies will be harder to defeat, but you gain double the items and pickups."},
+			{str = "The item pool on this floor is the Ultra Secret Room item pool."},
 			
 		},
 		{ -- Birthright
@@ -1098,7 +1218,7 @@ Encyclopedia.AddTrinket({
 	WikiDesc = Wiki.Grass,
 })
 
---[[Encyclopedia.AddItem({
+Encyclopedia.AddItem({
 	ModName = "Furtherance",
 	Class = "Furtherance",
 	ID = CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM,
@@ -1108,7 +1228,52 @@ Encyclopedia.AddTrinket({
 		Encyclopedia.ItemPools.POOL_GREED_ANGEL,
 	},
 })
-]]
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_ALABASTER_SCRAP,
+	WikiDesc = Wiki.AlabasterScrap,
+})
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_LEAHS_LOCK,
+	WikiDesc = Wiki.LeahsLock,
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_BINDS_OF_DEVOTION,
+	WikiDesc = Wiki.BindsOfDevotion,
+	Pools = {
+		
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_PARASITIC_POOFER,
+	WikiDesc = Wiki.ParasiticPoofer,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+	},
+})
+
+-- Pocket Items
+Encyclopedia.AddSoul({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("Soul of Leah"),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "resources/gfx/soulofleah.anm2", "HUD", 0),
+    WikiDesc = Wiki.SoulOfLeah,
+	Name = "Leah's Soul",
+})
 
 -- Characters
 Encyclopedia.AddCharacter({
@@ -1128,7 +1293,7 @@ Encyclopedia.AddCharacterTainted({
 	WikiDesc = Wiki.TaintedLeah,
 })
 
---[[Encyclopedia.AddCharacter({
+Encyclopedia.AddCharacter({
     ModName = "Furtherance",
     Name = "Peter",
     ID = Isaac.GetPlayerTypeByName("Peter", false),
@@ -1139,9 +1304,8 @@ Encyclopedia.AddCharacterTainted({
 Encyclopedia.AddCharacterTainted({
     ModName = "Furtherance",
     Name = "Peter",
-    Description = "???",
+    Description = "The Martyr",
     ID = Isaac.GetPlayerTypeByName("PeterB", true),
 	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "PeterB", 0, mod.path .. "content-dlc3/gfx/charactermenu_peterb.png"),
 	WikiDesc = Wiki.TaintedPeter,
 })
-]]

@@ -11,12 +11,12 @@ function mod:UseEnter(boi, rng, player, slot, data)
 	elseif ((room:IsDoorSlotAllowed(DoorSlot.LEFT0) == true and room:GetDoor(DoorSlot.LEFT0) == nil) or (room:IsDoorSlotAllowed(DoorSlot.UP0) == true and room:GetDoor(DoorSlot.UP0) == nil) or (room:IsDoorSlotAllowed(DoorSlot.DOWN0) == true and room:GetDoor(DoorSlot.DOWN0) == nil) or (room:IsDoorSlotAllowed(DoorSlot.RIGHT0) == true and room:GetDoor(DoorSlot.RIGHT0) == nil)) then
 		player:RemoveCollectible(CollectibleType.COLLECTIBLE_ENTER_KEY)
 		SFXManager():Play(SoundEffect.SOUND_MENU_FLIP_DARK)
-		player:AnimateCollectible(CollectibleType.COLLECTIBLE_ENTER_KEY, "UseItem", "PlayerPickup")
 		game:Darken(1, 100)
 		room:EmitBloodFromWalls(3, 10)
 		hud:ShowFortuneText("Time knows no bounds")
 		room:TrySpawnBossRushDoor(true, true)
 		room:MamaMegaExplosion(Vector(0, 0))
+		return true
 	else
 		mod:playFailSound()
 		player:AnimateSad()

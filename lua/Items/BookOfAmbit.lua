@@ -31,11 +31,11 @@ function mod:Ambit_CacheEval(player, flag)
 	if data.AmbitPower == nil then
 		data.AmbitPower = 0
 	end
-	if flag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
+	if flag == CacheFlag.CACHE_RANGE then
 		player.TearRange = player.TearRange + data.AmbitPower * 200
 	end
 	if data.AmbitPower > 0 then
-		if flag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
+		if flag == CacheFlag.CACHE_TEARFLAG then
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_PIERCING
 		end
 	end

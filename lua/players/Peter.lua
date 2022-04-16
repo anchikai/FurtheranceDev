@@ -11,13 +11,9 @@ COSTUME_PETER_B_DRIP = Isaac.GetCostumeIdByPath("gfx/characters/Character_002b_P
 function mod:OnInit(player)
 	local data = mod:GetData(player)
 	if player:GetName() == "Peter" then -- If the player is Peter it will apply his drip
-		if data.DevilCount == nil or data.AngelCount == nil then
-			data.DevilCount = 0
-			data.AngelCount = 0
-		end
 		player:AddNullCostume(COSTUME_PETER_A_DRIP)
 		costumeEquipped = true
-		player:AddTrinket(TrinketType.TRINKET_ALABASTER_SCRAP, FirstTimePickingUp)
+		player:AddTrinket(TrinketType.TRINKET_ALABASTER_SCRAP, true)
 		player:AddCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, 6, true, ActiveSlot.SLOT_PRIMARY)
 		player:SetActiveCharge(12, ActiveSlot.SLOT_PRIMARY)
 	elseif player:GetName() == "PeterB" then -- Apply different drip for his tainted variant
@@ -33,7 +29,14 @@ function mod:PeterUpdate(player)
 	if player:GetName() == "Peter" then
 		
 	elseif player:GetName() == "PeterB" then
-		
+		if player.FrameCount < 10 and (not mod.isLoadingData and data.Init) then
+			player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_FLIPPED_CROSS, ActiveSlot.SLOT_POCKET, false)
+		elseif player.FrameCount >= 10 and data.Init then
+			data.Init = nil
+		end
+	end
+	if data.Flipped == nil then
+		data.Flipped = false
 	end
 end
 
@@ -41,40 +44,176 @@ mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.PeterUpdate)
 
 function mod:PeterStats(player, flag)
 	local data = mod:GetData(player)
+	if data.DevilCount == nil then
+		data.DevilCount = 0
+	end
+	if data.AngelCount == nil then
+		data.AngelCount = 0
+	end
 	if player:GetName() == "Peter" then -- If the player is Peter it will apply his stats
-		if flag & CacheFlag.CACHE_SPEED == CacheFlag.CACHE_SPEED then
+		if flag == CacheFlag.CACHE_SPEED then
 			player.MoveSpeed = player.MoveSpeed + 0.1
 		end
-		if flag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
+		if flag == CacheFlag.CACHE_FIREDELAY then
 			player.MaxFireDelay = player.MaxFireDelay - 3
 		end
-		if flag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
+		if flag == CacheFlag.CACHE_DAMAGE then
 			player.Damage = player.Damage * 0.5 + 1.25
 		end
-		if flag & CacheFlag.CACHE_RANGE == CacheFlag.CACHE_RANGE then
+		if flag == CacheFlag.CACHE_RANGE then
 			player.TearRange = player.TearRange - 110
 		end
-		if flag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
+		if flag == CacheFlag.CACHE_SHOTSPEED then
 			player.ShotSpeed = player.ShotSpeed + 0.15
 		end
-		if data.AngelCount > data.DevilCount then -- Peter's stat modifiers for when he has more angel rooms
-			if flag & CacheFlag.CACHE_FLYING == CacheFlag.CACHE_FLYING then
-				player.CanFly = true
-				player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_REVELATION, true)
+		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) == false then
+			if data.AngelCount > data.DevilCount then -- Peter's stat modifiers for when he has more Angel Rooms
+				if flag == CacheFlag.CACHE_FLYING then
+					player.CanFly = true
+				end
+				if flag == CacheFlag.CACHE_SPEED then
+					player.MoveSpeed = player.MoveSpeed + data.AngelCount * 0.1
+				end
+				if flag == CacheFlag.CACHE_FIREDELAY then
+					player.MaxFireDelay = player.MaxFireDelay - data.AngelCount * (player.MaxFireDelay * 0.1)
+					if player.MaxFireDelay < 1 then
+						player.MaxFireDelay = 1
+					end
+				end
+				if flag == CacheFlag.CACHE_SHOTSPEED then
+					player.ShotSpeed = player.ShotSpeed - data.AngelCount * 0.1
+				end
+			elseif data.DevilCount > data.AngelCount then -- Peter's stat modifiers for when he has more Devil Rooms
+				if flag == CacheFlag.CACHE_SPEED then
+					player.MoveSpeed = player.MoveSpeed - data.DevilCount * 0.1
+				end
+				if flag == CacheFlag.CACHE_DAMAGE then
+					player.Damage = player.Damage + data.DevilCount * 1.25
+				end
+				if flag == CacheFlag.CACHE_RANGE then
+					player.TearRange = player.TearRange + data.DevilCount * 40
+				end
 			end
-			if flag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
-				player.Damage = player.Damage + data.AngelCount * 1.25
+		else
+			if data.AngelCount > 0 then
+				if flag == CacheFlag.CACHE_FLYING then
+					player.CanFly = true
+				end
 			end
-			if flag & CacheFlag.CACHE_SHOTSPEED == CacheFlag.CACHE_SHOTSPEED then
+			if flag == CacheFlag.CACHE_SPEED then
+				player.MoveSpeed = player.MoveSpeed + data.AngelCount * 0.1
+			end
+			if flag == CacheFlag.CACHE_FIREDELAY then
+				player.MaxFireDelay = player.MaxFireDelay - data.AngelCount * (player.MaxFireDelay * 0.1)
+				if player.MaxFireDelay < 0 then
+					player.MaxFireDelay = 0
+				end
+			end
+			if flag == CacheFlag.CACHE_SHOTSPEED then
 				player.ShotSpeed = player.ShotSpeed - data.AngelCount * 0.1
+			end
+			if flag == CacheFlag.CACHE_SPEED then
+				player.MoveSpeed = player.MoveSpeed - data.DevilCount * 0.1
+			end
+			if flag == CacheFlag.CACHE_DAMAGE then
+				player.Damage = player.Damage + data.DevilCount * 1.25
+			end
+			if flag == CacheFlag.CACHE_RANGE then
+				player.TearRange = player.TearRange + data.DevilCount * 40
 			end
 		end
 	elseif player:GetName() == "PeterB" then -- If the player is Tainted Peter it will apply his stats
-		
+		if flag == CacheFlag.CACHE_DAMAGE then
+			player.Damage = player.Damage - 1.69
+		end
+		if flag == CacheFlag.CACHE_LUCK then
+			player.Luck = player.Luck - 1
+		end
 	end
 end
 
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.PeterStats)
+
+function mod:PeterCostumes(player)
+	local nailConfig = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_THE_NAIL)
+	local revelationConfig = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_REVELATION)
+	local data = mod:GetData(player)
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) == false then -- No birthright
+		if data.AngelCount > data.DevilCount then -- Angel Costume
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_REVELATION) == false then
+				if not data.AngelCostume then
+					data.AngelCostume = 0
+				end
+				
+				while data.AngelCount > data.AngelCostume do
+					player:AddCostume(revelationConfig, false)
+					data.AngelCostume = data.AngelCostume + 1
+				end
+				while data.AngelCount < data.AngelCostume do
+					data.AngelCostume = data.AngelCostume - 1
+					if data.AngelCostume <= 0 then
+						player:TryRemoveCollectibleCostume(CollectibleType.COLLECTIBLE_REVELATION, true)
+					end
+				end
+			end
+		elseif data.DevilCount > data.AngelCount then -- Devil Costume
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_THE_NAIL) == false then
+				if not data.DevilCostume then
+					data.DevilCostume = 0
+				end
+				
+				while data.DevilCount > data.DevilCostume do
+					player:AddCostume(nailConfig, false)
+					data.DevilCostume = data.DevilCostume + 1
+				end
+				while data.DevilCount < data.DevilCostume do
+					data.DevilCostume = data.DevilCostume - 1
+					if data.DevilCostume <= 0 then
+						player:TryRemoveCollectibleCostume(CollectibleType.COLLECTIBLE_THE_NAIL, true)
+					end
+				end
+			end
+		elseif data.DevilCount == data.AngelCount then -- Remove Costumes
+			player:TryRemoveCollectibleCostume(CollectibleType.COLLECTIBLE_THE_NAIL, true)
+			player:TryRemoveCollectibleCostume(CollectibleType.COLLECTIBLE_REVELATION, true)
+		end
+	else -- Birthright
+		if player:HasCollectible(CollectibleType.COLLECTIBLE_REVELATION) == false then
+			if not data.AngelCostume then
+				data.AngelCostume = 0
+			end
+		
+			while data.AngelCount > data.AngelCostume do
+				player:AddCostume(revelationConfig, false)
+				data.AngelCostume = data.AngelCostume + 1
+			end
+			while data.AngelCount < data.AngelCostume do
+				data.AngelCostume = data.AngelCostume - 1
+				if data.AngelCostume <= 0 then
+					player:TryRemoveCollectibleCostume(CollectibleType.COLLECTIBLE_REVELATION, true)
+				end
+			end
+		end
+		if player:HasCollectible(CollectibleType.COLLECTIBLE_THE_NAIL) == false then
+			if not data.DevilCostume then
+				data.DevilCostume = 0
+			end
+			
+			while data.DevilCount > data.DevilCostume do
+				player:AddCostume(nailConfig, false)
+				data.DevilCostume = data.DevilCostume + 1
+			end
+			while data.DevilCount < data.DevilCostume do
+				data.DevilCostume = data.DevilCostume - 1
+				if data.DevilCostume <= 0 then
+					player:TryRemoveCollectibleCostume(CollectibleType.COLLECTIBLE_THE_NAIL, true)
+				end
+			end
+		end
+	end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.PeterCostumes, normalPeter)
 
 function mod:AngelDevil()
 	local room = game:GetRoom()
@@ -84,14 +223,27 @@ function mod:AngelDevil()
         local player = game:GetPlayer(i)
 		local data = mod:GetData(player)
 		if player:GetName() == "Peter" then
+			data.DevilCount = data.DevilCount and data.DevilCount or 0
+			data.AngelCount = data.AngelCount and data.AngelCount or 0
 			if roomType == RoomType.ROOM_DEVIL and room:IsFirstVisit() then
 				data.DevilCount = data.DevilCount + 1
 			end
 			if roomType == RoomType.ROOM_ANGEL and room:IsFirstVisit() then
 				data.AngelCount = data.AngelCount + 1
 			end
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) == false then
+				if data.DevilCount > data.AngelCount then
+					player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_LEO, false)
+				end
+			else
+				if data.DevilCount > 0 then
+					player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_LEO, false)
+				end
+			end
+			player:AddCacheFlags(CacheFlag.CACHE_SPEED)
 			player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
 			player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+			player:AddCacheFlags(CacheFlag.CACHE_RANGE)
 			player:AddCacheFlags(CacheFlag.CACHE_SHOTSPEED)
 			player:AddCacheFlags(CacheFlag.CACHE_FLYING)
 			player:EvaluateItems()

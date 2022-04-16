@@ -2,7 +2,7 @@ local mod = further
 local game = Game()
 local rng = RNG()
 
-function mod:UseAlt(boi, rng, player, slot, data)
+function mod:UseAlt(_, _, player)
 
 	local stage = game:GetLevel():GetStage()
 	local stageType = game:GetLevel():GetStageType()
@@ -17,10 +17,10 @@ function mod:UseAlt(boi, rng, player, slot, data)
 	if (stage == LevelStage.STAGE4_3) or (stage == LevelStage.STAGE5) or (stage == LevelStage.STAGE6) or (stage == LevelStage.STAGE7) or (stage == LevelStage.STAGE8) then
 		mod:playFailSound()
 		player:AnimateSad()
+		return false
 	--if alt floor, change to normal floor
 	elseif stageType == StageType.STAGETYPE_REPENTANCE or stageType == StageType.STAGETYPE_REPENTANCE_B then
 		player:UseActiveItem(CollectibleType.COLLECTIBLE_FORGET_ME_NOW, false, false, true, false, 0)
-		player:AnimateCollectible(CollectibleType.COLLECTIBLE_ALT_KEY, "UseItem", "PlayerPickup")
 		if randomAB == 1 then
 			level:SetStage(stage, (StageType.STAGETYPE_ORIGINAL))
 		elseif randomAB == 2 then
@@ -31,18 +31,17 @@ function mod:UseAlt(boi, rng, player, slot, data)
 	--if the stage is Womb I or II
 	elseif stageType == StageType.STAGETYPE_ORIGINAL or stageType == StageType.STAGETYPE_WOTL or stageType == StageType.STAGETYPE_AFTERBIRTH and (stage == LevelStage.STAGE4_1) or (LevelStage.STAGE4_2) then
 		player:UseActiveItem(CollectibleType.COLLECTIBLE_FORGET_ME_NOW, false, false, true, false, 0)
-		player:AnimateCollectible(CollectibleType.COLLECTIBLE_ALT_KEY, "UseItem", "PlayerPickup")
 		level:SetStage(stage, (StageType.STAGETYPE_REPENTANCE))
 	--if normal floor, change to alt floor
 	elseif stageType == StageType.STAGETYPE_ORIGINAL or stageType == StageType.STAGETYPE_WOTL or stageType == StageType.STAGETYPE_AFTERBIRTH then
 		player:UseActiveItem(CollectibleType.COLLECTIBLE_FORGET_ME_NOW, false, false, true, false, 0)
-		player:AnimateCollectible(CollectibleType.COLLECTIBLE_ALT_KEY, "UseItem", "PlayerPickup")
 		if randomREP == 1 then
 			level:SetStage(stage, (StageType.STAGETYPE_REPENTANCE))
 		elseif randomREP == 2 then
 			level:SetStage(stage, (StageType.STAGETYPE_REPENTANCE_B))
 		end
 	end
+	return true
 end
 
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseAlt, CollectibleType.COLLECTIBLE_ALT_KEY)

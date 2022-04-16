@@ -52,7 +52,7 @@ mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.IXShots)
 
 function mod:GetTechIX(player, cacheFlag)
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_TECH_IX) then
-		if cacheFlag & CacheFlag.CACHE_FIREDELAY == CacheFlag.CACHE_FIREDELAY then
+		if cacheFlag == CacheFlag.CACHE_FIREDELAY then
 			player.MaxFireDelay = player.MaxFireDelay + 5
 		end
 	end

@@ -9,19 +9,19 @@ function mod:StartUnlocks()
 		mod.Unlocks = json.decode(unlockedData.Unlocks)
 		-- Leah
 		if mod.Unlocks.LeahIsaac == 0 then
-			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_HOLY_HEART)
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_BINDS_OF_DEVOTION)
 		end
 		if mod.Unlocks.LeahBlueBaby == 0 then
 			
 		end
 		if mod.Unlocks.LeahSatan == 0 then
-			
+			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_LEAHS_LOCK)
 		end
 		if mod.Unlocks.LeahLamb == 0 then
 			
 		end
 		if mod.Unlocks.LeahMegaSatan == 0 then
-			
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PARASITIC_POOFER)
 		end
 		if mod.Unlocks.LeahBossRush == 0 then
 			
@@ -33,7 +33,7 @@ function mod:StartUnlocks()
 			
 		end
 		if mod.Unlocks.LeahGreedier == 0 then
-			
+			game:GetItemPool():RemoveCollectible(CollectibleType.HEART_EMBEDDED_COIN)
 		end
 		if mod.Unlocks.LeahDeli == 0 then
 			
@@ -66,7 +66,10 @@ function mod:StartUnlocks()
 		end
 	else
 		-- Leah
-		game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_HOLY_HEART)
+		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_BINDS_OF_DEVOTION)
+		game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_LEAHS_LOCK)
+		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PARASITIC_POOFER)
+		game:GetItemPool():RemoveCollectible(CollectibleType.HEART_EMBEDDED_COIN)
 		
 		-- Tainted Leah
 		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_SHATTERED_HEART)
@@ -85,7 +88,21 @@ function mod:update(entity)
 				mod.Unlocks.LeahIsaac = mod.Unlocks.LeahIsaac + 1
 				save = true
 				if mod.Unlocks.LeahIsaac == 1 then
-				game:GetHUD():ShowFortuneText("Holy Heart", "Has appeared", "in the basement")
+					game:GetHUD():ShowItemText("Binds of Devotion", "has appeared in the basement", false)
+				end
+			end
+			if entity.Type == EntityType.ENTITY_SATAN then
+				mod.Unlocks.LeahSatan = mod.Unlocks.LeahSatan + 1
+				save = true
+				if mod.Unlocks.LeahSatan == 1 then
+					game:GetHUD():ShowItemText("Leah's Lock", "has appeared in the basement", false)
+				end
+			end
+			if entity.Type == EntityType.ENTITY_MEGA_SATAN_2 then
+				mod.Unlocks.LeahMegaSatan = mod.Unlocks.LeahMegaSatan + 1
+				save = true
+				if mod.Unlocks.LeahMegaSatan == 1 then
+					game:GetHUD():ShowItemText("Parasitic Poofer", "has appeared in the basement", false)
 				end
 			end
 		end
@@ -94,7 +111,7 @@ function mod:update(entity)
 				mod.Unlocks.LeahBDeli = mod.Unlocks.LeahBDeli + 1
 				save = true
 				if mod.Unlocks.LeahBDeli == 1 then
-					game:GetHUD():ShowFortuneText("Shattered Heart", "Has appeared", "in the basement")
+					game:GetHUD():ShowItemText("Shattered Heart", "has appeared in the basement", false)
 				end
 			end
 		end

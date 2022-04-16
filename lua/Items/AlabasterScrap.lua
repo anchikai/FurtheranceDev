@@ -32,7 +32,7 @@ function mod:AlabasterDmg(player, flag)
 		if data.numAngelItems == nil then
 			data.numAngelItems = 0
 		end
-		if flag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
+		if flag == CacheFlag.CACHE_DAMAGE then
 			player.Damage = player.Damage + data.numAngelItems * goldenbox
 		end
 	end

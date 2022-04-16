@@ -2,11 +2,11 @@ local mod = further
 
 function mod:GetPallas(player, flag)
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_PALLAS) then
-		if flag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
+		if flag == CacheFlag.CACHE_TEARFLAG then
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_HYDROBOUNCE | TearFlags.TEAR_POP
 		end
 		if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_FLAT_STONE)) then
-			if flag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
+			if flag == CacheFlag.CACHE_DAMAGE then
 				player.Damage = player.Damage * 1.16
 			end
 		end

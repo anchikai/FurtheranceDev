@@ -1,10 +1,8 @@
 local mod = further
 local game = Game()
-local rng = RNG()
 
 function mod:UseTilde(_, _, player)
 	local data = player:GetData()
-	player:AnimateCollectible(CollectibleType.COLLECTIBLE_TILDE_KEY, "UseItem", "PlayerPickup")
 	local randomDebug = rng:RandomInt(13)
 	local hud = game:GetHUD()
 
@@ -12,6 +10,7 @@ function mod:UseTilde(_, _, player)
 		mod:playFailSound()
 		player:AnimateSad()
 		hud:ShowFortuneText("All Debug", "Is enabled!")
+		return false
 	elseif randomDebug == 1 then
 		if data.Debug1 == false then
 			Isaac.ExecuteCommand("debug 1")
@@ -103,6 +102,7 @@ function mod:UseTilde(_, _, player)
 			data.Debug13 = true
 		end
 	end
+	return true
 end
 
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseTilde, CollectibleType.COLLECTIBLE_TILDE_KEY)

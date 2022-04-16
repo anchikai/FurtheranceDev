@@ -13,19 +13,28 @@ PlayerIconSprite = Sprite()
 PlayerIconSprite:Load("gfx/ui/eid_players_icon.anm2", true)
 EID:addIcon("Player"..Isaac.GetPlayerTypeByName("Leah", false), "Leah", 0, 12, 12, -1, 1, PlayerIconSprite)
 EID:addIcon("Player"..Isaac.GetPlayerTypeByName("LeahB", true), "LeahB", 0, 12, 12, -1, 1, PlayerIconSprite)
+EID:addIcon("Player"..Isaac.GetPlayerTypeByName("Peter", false), "Peter", 0, 12, 12, -1, 1, PlayerIconSprite)
+EID:addIcon("Player"..Isaac.GetPlayerTypeByName("PeterB", true), "PeterB", 0, 12, 12, -1, 1, PlayerIconSprite)
 
 -- Leah 
 local normalLeah = Isaac.GetPlayerTypeByName("Leah", false)
-EID:addBirthright(normalLeah, "↓ {{BrokenHeart}} +3 broken hearts#↑ A broken heart is now removed every 10 kills instead of every 20#↑ Stats gained through kills are 2x effective", "Leah", "en_us")
+EID:addBirthright(normalLeah, "↑ Damage gained through kills and Heart Renovator is 2x effective#↑ A broken heart is now removed every 10 kills instead of every 20#↑ Heart counter now caps at 999#{{BrokenHeart}} +3 broken hearts", "Leah", "en_us")
 EID:addBirthright(normalLeah, "↓ {{BrokenHeart}} +3 сломанных сердец#↑ Сломанное сердце удаляется каждые 10 убийств вместо каждых 20#↑ Характеристики, полученные убийствами, 2x эффективнее", "Лия", "ru")
 EID:addBirthright(normalLeah, "↓ {{BrokenHeart}} +3 Corazones rotos#Perderás un corazón roto al matar 10 enemigos en vez de 20#↑ Las estadísticas ganadas por asesinatos se duplican", "Leah", "spa")
-
 
 -- Tainted Leah
 local taintedLeah = Isaac.GetPlayerTypeByName("LeahB", true)
 EID:addBirthright(taintedLeah, "Tainted Leah will no longer constantly refill back to {{BrokenHeart}} 11 broken hearts#She will instead refill to only 6#She will gain 0.05 speed for every broken heart instead of lose#↑ +20% chance to charm enemies", "Tainted Leah", "en_us")
 EID:addBirthright(taintedLeah, "{{BrokenHeart}} Сломанные серда Порченой Лии больше не будет постоянно пополняться до 11, вместо этого они будет пополняться только до 6#↑ {{Speed}} +0.05 к скорости за каждое разбитое сердце вместо потери#↑ +20% шанс очаровать врагов", "Порченая Лия", "ru")
 EID:addBirthright(taintedLeah, "Leah contaminada ya no recibirá {{BrokenHeart}} 11 corazones rotos, en cambio sólo tendrá 6#↑ {{Speed}} Velocidad +0.05 por cada corazón roto que posea#20% de posibilidad de encantar enemigos", "Leah Contaminada", "spa")
+
+-- Peter 
+local normalPeter = Isaac.GetPlayerTypeByName("Peter", false)
+EID:addBirthright(normalPeter, "↑ Peter gains changes from both Devil and Angel deals#↑ Tear rate gained from angel deals is capped at 30 instead of 15", "Peter", "en_us")
+
+-- Tainted Peter 
+local taintedPeter = Isaac.GetPlayerTypeByName("PeterB", true)
+EID:addBirthright(taintedPeter, "", "Peter", "en_us")
 
 --Esc Key
 EID:addCollectible(CollectibleType.COLLECTIBLE_ESC_KEY, "If player has fewer than 6 hearts, heals them with combination of red and soul hearts#Teleports you out of the room", "Esc Key")
@@ -207,14 +216,29 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_TAB_KEY, "Полное отобр
 EID:addCollectible(CollectibleType.COLLECTIBLE_TAB_KEY, "Recibes todos los efectos de mapa al usarlo#Te teletransporta a la {{UltraSecretRoom}}Sala Últra Secreta#El camino de regreso consistirá en habitaciones rojas", "Tecla Tab", "spa")
 
 -- Heart Renovator
-EID:addCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, "{{BrokenHeart}} Removes 1 broken heart#↑ Grants either +0.25 Damage up or +0.23 Tears up for the current room#!!! Passively grants 1 broken heart per room", "Heart Renovator", "en_us")
+EID:addCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, "{{BrokenHeart}} Removes 1 broken heart on use#↑ Grants +0.1 Damage up when removing a broken heart#Grants a counter that can be filled with red hearts#Holding the drop button will subtract 2 from the counter and give a broken heart", "Heart Renovator", "en_us")
 EID:addCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, "{{BrokenHeart}} Удаляет 1 сломанное сердце#↑ Даёт либо +0.25 к урону, либо +0.23 к скорострельности в текущей комнате#!!! Пассивно даёт 1 сломанное сердце за комнату", "Сердечный восстановитель", "ru")
 EID:addCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, "{{BrokenHeart}} Remueve un corazón roto#↑ Puede dar Daño +0.25 o Lágrimas +0.23 durante la habitación#!!! Otorga un corazón roto de forma pasiva por sala", "Renovador cardiaco", "spa")
 
 -- Grass
---EID:addTrinket(TrinketType.TRINKET_GRASS, "Starts a 1 hour timer#The trinket will be removed when timer ends and {{Collectible210}} Gnawed Leaf will spawn#!!! The timer will reset if the trinket is dropped", "Grass", "en_us")
---EID:addTrinket(TrinketType.TRINKET_GRASS, "Запускает 1 часовой таймер#При истечении таймера брелок исчезнет и появится {{Collectible210}} Обглоданный лист#!!! Таймер сбрасывается, если брелок был выброшен", "Трава", "ru")
---EID:addTrinket(TrinketType.TRINKET_GRASS, "Empezará un contador de una hora#El trinket será removido y se otorgará la {{Collectible210}} Hoja roída tras acabar el tiempo#!!! Si se suelta el trinket, el contador se reiniciará", "Pasto", "spa")
+EID:addTrinket(TrinketType.TRINKET_GRASS, "Starts a 1 hour timer#The trinket will be removed when timer ends and {{Collectible210}} Gnawed Leaf will spawn#!!! The timer will reset if the trinket is dropped", "Grass", "en_us")
+EID:addTrinket(TrinketType.TRINKET_GRASS, "Запускает 1 часовой таймер#При истечении таймера брелок исчезнет и появится {{Collectible210}} Обглоданный лист#!!! Таймер сбрасывается, если брелок был выброшен", "Трава", "ru")
+EID:addTrinket(TrinketType.TRINKET_GRASS, "Empezará un contador de una hora#El trinket será removido y se otorgará la {{Collectible210}} Hoja roída tras acabar el tiempo#!!! Si se suelta el trinket, el contador se reiniciará", "Pasto", "spa")
 
 -- Keys to the Kingdom
---EID:addCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, "When used, it has a variety of effects based on the room#{{Room}}: Another room clear reward will spawn#Active {{Room}}: light beams will strike enemies#{{DevilRoom}}: All items become free#{{AngelRoom}}: Spawns a key piece#{{Blank}}Note: If you have {{Collectible238}}{{Collectible239}} an angel item will spawn instead", "Keys to the Kingdom", "en_us")
+EID:addCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, "When used, it has a variety of effects based on the room#{{Room}}: Another room clear reward will spawn#Active {{Room}}: light beams will strike enemies#{{DevilRoom}}: All items become free#{{AngelRoom}}: Spawns a key piece#{{Blank}}Note: If you have {{Collectible238}}{{Collectible239}} an angel item will spawn instead", "Keys to the Kingdom", "en_us")
+
+-- Alabaster Scrap
+EID:addTrinket(TrinketType.TRINKET_ALABASTER_SCRAP, "↑ +0.5 Damage up for each angelic item held", "Alabaster Scrap", "en_us")
+
+-- Leah's Lock
+EID:addTrinket(TrinketType.TRINKET_LEAHS_LOCK, "Either grants or removes a broken heart when entering a new room#A tears up will be granted if a broken heart is gained and vice versa#Tear rate gained caps at 10", "Leah's Lock", "en_us")
+
+-- Parasitic Poofer
+EID:addCollectible(CollectibleType.COLLECTIBLE_PARASITIC_POOFER, "20% chance to duplicate your red hearts and gain a broken heart when taking damage#Only has a healing effect", "Parasitic Poofer", "en_us")
+
+-- Soul of Leah
+EID:addCard(RUNE_SOUL_OF_LEAH, "Grants between 1 to 5 broken hearts#↑ All the broken hearts will give either a damage up or tears up#The amount of damage or tears gained is dependent on how many broken hearts are gained", "Soul of Leah", "en_us")
+
+-- Moon Heart
+EID:addEntity(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, 225, "Moon Heart", "Worth 1 HP#Teleports you to the Secret Room when depleted#↓ Only 1 can be held at a time", "en_us")

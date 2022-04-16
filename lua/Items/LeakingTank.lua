@@ -11,4 +11,4 @@ function mod:Leaking(player)
 	end
 end
 
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.Leaking)
+mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.Leaking)

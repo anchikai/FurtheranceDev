@@ -4,10 +4,10 @@ local game = Game()
 function mod:UseC(boi, rng, player, slot, data)
 	local data = player:GetData()
 
-	player:AnimateCollectible(CollectibleType.COLLECTIBLE_C_KEY, "UseItem", "PlayerPickup")
 	player:RemoveCollectible(CollectibleType.COLLECTIBLE_C_KEY)
 	Isaac.ExecuteCommand("goto s.library.0")
 	data.Teleported = true
+	return true
 end
 
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseC, CollectibleType.COLLECTIBLE_C_KEY)

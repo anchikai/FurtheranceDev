@@ -4,11 +4,11 @@ local rng = RNG()
 
 function mod:GetCeres(player,cacheFlag)
     if player:HasCollectible(CollectibleType.COLLECTIBLE_CERES) then
-		local pdata = player:GetData()
+		local pdata = mod:GetData(player)
 		if pdata.tentacle == nil then
 			pdata.tentacle = false
 		end
-		if cacheFlag & CacheFlag.CACHE_DAMAGE == CacheFlag.CACHE_DAMAGE then
+		if cacheFlag == CacheFlag.CACHE_DAMAGE then
 			player.Damage = player.Damage + 0.5
 		end
 	end

@@ -2,7 +2,6 @@ local mod = further
 local game = Game()
 
 function mod:UseShift(_, _, player)
-	player:AnimateCollectible(CollectibleType.COLLECTIBLE_SHIFT_KEY, "UseItem", "PlayerPickup")
 	game:ShowHallucination(30, BackdropType.NUM_BACKDROPS)
 	local plty = player:GetPlayerType()
 	-- Isaac
@@ -92,7 +91,7 @@ function mod:UseShift(_, _, player)
 		player:ChangePlayerType(PlayerType.PLAYER_JACOB)
 	-- Esau
 	elseif plty == PlayerType.PLAYER_ESAU then
-		print("This is currently broken, give shift to Jacob instead!")
+		player:GetMainTwin():ChangePlayerType(PlayerType.PLAYER_JACOB_B)
 	-- Leah
 	elseif plty == normalLeah then
 		player:ChangePlayerType(Isaac.GetPlayerTypeByName("LeahB", true))
@@ -108,6 +107,7 @@ function mod:UseShift(_, _, player)
 			player:ChangePlayerType(Isaac.GetPlayerTypeByName("Edith", false))
 		end
 	end
+	return true
 end
 
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseShift, CollectibleType.COLLECTIBLE_SHIFT_KEY)

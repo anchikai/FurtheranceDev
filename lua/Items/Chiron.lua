@@ -72,7 +72,7 @@ end
 
 function mod:GetChiron(player, cacheFlag) -- Speed up
     if player:HasCollectible(CollectibleType.COLLECTIBLE_CHIRON) then
-        if cacheFlag & CacheFlag.CACHE_SPEED == CacheFlag.CACHE_SPEED then -- this is the correct way to compare bitflags :)
+        if cacheFlag == CacheFlag.CACHE_SPEED then -- this is the correct way to compare bitflags :)
             player.MoveSpeed = player.MoveSpeed + 0.2
         end
     end

@@ -105,17 +105,17 @@ end
 function mod:GetData(entity)
 	if entity and entity.GetData then
 		local data = entity:GetData()
-		if not data.further then
-			data.further = {}
+		if not data.furtherance then
+			data.furtherance = {}
 		end
-		return data.further
+		return data.furtherance
 	end
 	return nil
 end
 
-local entitySpawnData = {}
+--[[mod.entitySpawnData = {}
 mod:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, function(_, type, variant, subType, position, velocity, spawner, seed)
-	entitySpawnData[seed] = {
+	mod.entitySpawnData[seed] = {
 		Type = type,
 		Variant = variant,
 		SubType = subType,
@@ -128,15 +128,22 @@ end)
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, function(_, entity)
 	local seed = entity.InitSeed
 	local data = mod:GetData(entity)
-	data.SpawnData = entitySpawnData[seed]
+	data.SpawnData = mod.entitySpawnData[seed]
 end)
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, function(_, entity)
 	local data = mod:GetData(entity)
 	data.SpawnData = nil
 end)
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
-	entitySpawnData = {}
-end)
+	mod.entitySpawnData = {}
+end)]]
+
+function mod:Contains(list, x)
+	for _, v in pairs(list) do
+		if v == x then return true end
+	end
+	return false
+end
 
 function mod:GetRandomNumber(numMin, numMax, rng)
 	if not numMax then
@@ -180,15 +187,6 @@ function ripairs_it(t,i)
 end
 function ripairs(t)
 	return ripairs_it, t, #t+1
-end
-
-function mod:Contains(list, x, key)
-	key = key or false
-	for k, v in pairs(list) do
-		local val = key and k or v
-		if val == x then return true end
-	end
-	return false
 end
 
 --delayed functions
@@ -245,3 +243,19 @@ end)
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
 	DelayedFunctions = {}
 end)
+
+function mod.EsauCheck(player)
+	if not player or (player and not player.GetData) then
+		return nil
+	end
+	local currentPlayer = 1
+	for i=1, Game():GetNumPlayers() do
+		local otherPlayer = Isaac.GetPlayer(i-1)
+		local searchPlayer = i
+		--added GetPlayerType() to get Jacob and Easu seperatly
+		if otherPlayer.ControllerIndex == player.ControllerIndex and otherPlayer:GetPlayerType() == player:GetPlayerType() then
+			currentPlayer = searchPlayer
+		end
+	end
+	return currentPlayer
+end

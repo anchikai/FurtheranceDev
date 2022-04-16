@@ -17,7 +17,7 @@ mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.WormEffect)
 
 function mod:Slick_CacheEval(player, flag)
 	if player:HasTrinket(TrinketType.TRINKET_SLICK_WORM, false) then
-		if flag & CacheFlag.CACHE_TEARFLAG == CacheFlag.CACHE_TEARFLAG then
+		if flag == CacheFlag.CACHE_TEARFLAG then
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_BOUNCE
 		end
 	end
