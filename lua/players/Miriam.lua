@@ -63,10 +63,10 @@ function mod:miriamStats(player, flag)
 	local data = mod:GetData(player)
 	if player:GetName() == "Miriam" then -- If the player is Miriam it will apply her stats
 		if flag == CacheFlag.CACHE_SPEED then
-			player.MaxFireDelay = player.MaxFireDelay - 2
+			player.MoveSpeed = player.MoveSpeed + 0.25
 		end
 		if flag == CacheFlag.CACHE_FIREDELAY then
-			player.MaxFireDelay = player.MaxFireDelay - 2
+			player.MaxFireDelay = player.MaxFireDelay + 17.39999961853
 		end
 		if flag == CacheFlag.CACHE_DAMAGE then
 			player.Damage = player.Damage + 0.5
