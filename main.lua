@@ -271,9 +271,6 @@ function mod:LoadDataCacheEval(player)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.LoadDataCacheEval)
 
--- Curses & Blessings Lua
---include("lua/curses/Curses.lua")
-
 -- Players
 include("lua/players/Leah.lua")
 include("lua/players/Peter.lua")
