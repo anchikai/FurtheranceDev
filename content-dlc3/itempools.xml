@@ -1,8 +1,4 @@
 <ItemPools>
-	<Pool Name="boss">
-		<Item Name="Brunch" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Crab Legs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-	</Pool>
 	<Pool Name="treasure">
 		<Item Name="Ophiuchus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Chiron" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -15,12 +11,33 @@
 		<Item Name="Crab Legs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Pharaoh Cat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Parasitic Poofer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Polydipsia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Pillar of Fire" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Pillar of Clouds" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Firstborn Son" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Quarantine" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="The Dreidel" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
-	<Pool Name="library">
-		<Item Name="Book of Swiftness" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Book of Ambit" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	<Pool Name="shop">
+		<Item Name="Tambourine" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
-    <Pool Name="secret">
+	<Pool Name="boss">
+		<Item Name="Brunch" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Crab Legs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+	<Pool Name="devil">
+		<Item Name="Owl's Eye" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Spiritual Wound" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Kareth" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Apocalypse" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+	<Pool Name="angel">
+		<Item Name="Keys to the Kingdom" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Caduceus Staff" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Miriam's Well" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Jar of Manna" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+	<Pool Name="secret">
 		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Tilde Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Alt Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -37,39 +54,38 @@
 		<Item Name="F4 Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Tab Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
     </Pool>
-	<Pool Name="ultraSecret">
-		<Item Name="Heart Renovator" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	<Pool Name="library">
+		<Item Name="Book of Swiftness" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Book of Ambit" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Book of Guidance" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
-	<Pool Name="devil">
+    <Pool Name="shellGame">
+		
+	</Pool>
+	<Pool Name="goldenChest">
+		<Item Name="Polydipsia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+	<Pool Name="redChest">
 		<Item Name="Owl's Eye" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
-	<Pool Name="angel">
-		<Item Name="Keys to the Kingdom" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	<Pool Name="beggar">
+		
 	</Pool>
-	<Pool Name="greedDevil">
-		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	<Pool Name="demonBeggar">
 		<Item Name="Owl's Eye" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="F4 Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
-	<Pool Name="greedAngel">
-		<Item Name="Keys to the Kingdom" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	<Pool Name="curse">
+		<Item Name="Owl's Eye" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Kareth" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
-	<Pool Name="greedSecret">
-		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Tilde Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Backspace Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Q Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="E Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Caps Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Shift Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Plug N' Play" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="ZZZZoptionsZZZZ" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="F4 Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Tab Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	<Pool Name="keyMaster">
+		
 	</Pool>
-	<Pool Name="greedBoss">
-		<Item Name="Brunch" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Crab Legs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	<Pool Name="batteryBum">
+		
+	</Pool>
+	<Pool Name="momsChest">
+		
 	</Pool>
 	<Pool Name="greedTreasure">
 		<Item Name="Ophiuchus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -86,6 +102,10 @@
 		<Item Name="Pharaoh Cat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Parasitic Poofer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
+	<Pool Name="greedBoss">
+		<Item Name="Brunch" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Crab Legs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
 	<Pool Name="greedShop">
 		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Ophiuchus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -101,21 +121,59 @@
 		<Item Name="F4 Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Parasitic Poofer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
+	<Pool Name="greedDevil">
+		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Owl's Eye" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="F4 Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+	<Pool Name="greedAngel">
+		<Item Name="Keys to the Kingdom" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+	<Pool Name="greedCurse">
+		<Item Name="Owl's Eye" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+	<Pool Name="greedSecret">
+		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Tilde Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Backspace Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Q Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="E Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Caps Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Shift Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Plug N' Play" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="ZZZZoptionsZZZZ" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="F4 Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Tab Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+	<Pool Name="craneGame">
+		<Item Name="Polydipsia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Tambourine" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+	<Pool Name="ultraSecret">
+		<Item Name="Heart Renovator" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Spiritual Wound" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Pillar of Fire" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Firstborn Son" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Apocalypse" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	</Pool>
+	<Pool Name="bombBum">
+		
+	</Pool>
 	<Pool Name="planetarium">
 		<Item Name="Ceres" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Pallas" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Vesta" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
-	<Pool Name="redChest">
-		<Item Name="Owl's Eye" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	<Pool Name="oldChest">
+		
 	</Pool>
-	<Pool Name="demonBeggar">
-		<Item Name="Owl's Eye" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	<Pool Name="babyShop">
+		
 	</Pool>
-	<Pool Name="curse">
-		<Item Name="Owl's Eye" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	<Pool Name="woodenChest">
+		
 	</Pool>
-	<Pool Name="greedCurse">
-		<Item Name="Owl's Eye" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+	<Pool Name="rottenBeggar">
+		
 	</Pool>
 </ItemPools>
