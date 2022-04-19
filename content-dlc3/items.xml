@@ -60,6 +60,7 @@
 	<active id="50" name="Tambourine" description="It's rattling!" gfx="tambourine.png" chargetype="timed" maxcharges="300" quality="0" />
 	<active id="51" name="The Dreidel" description="Reroll the elements" gfx="the_dreidel.png" maxcharges="6" quality="4" />
 	<active id="52" name="Apocalypse" description="In the End" gfx="apocalypse.png" devilprice="2" quality="4" />
+	<active id="55" name="Old Camera" description="Take a photo to remember" gfx="old_camera.png" maxcharges="6" quality="4" />
 	
 	<!-- Trinkets -->
 	<trinket id="0" name="Holy Heart" description="Protective hearts" gfx="holy_heart.png" />																			<!-- Concept by PootisTweet! -->
