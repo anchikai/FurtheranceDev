@@ -5,9 +5,10 @@ function mod:LeafDamage(player)
 	player = player:ToPlayer()
 	if player:HasTrinket(TrinketType.TRINKET_WORMWOOD_LEAF, false) then
 		local rng = player:GetTrinketRNG(TrinketType.TRINKET_WORMWOOD_LEAF)
+		local goldenbox = player:GetTrinketMultiplier(TrinketType.TRINKET_WORMWOOD_LEAF)
 		local data = mod:GetData(player)
 		if not player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE) and not player:HasCollectible(CollectibleType.COLLECTIBLE_ISAACS_HEART)
-		and (rng:RandomFloat() <= 0.02) then
+		and (rng:RandomFloat() <= (0.02 * goldenbox)) then
 			if data.costume == -1 then
 				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, 0, player.Position, Vector.Zero, player)
 				player:AddCostume(Isaac.GetItemConfig():GetNullItem(4), false)
