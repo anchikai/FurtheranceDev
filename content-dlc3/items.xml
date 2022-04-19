@@ -55,7 +55,7 @@
 	<active name="Shattered Heart No Puddle" description="Eternal sorrow" gfx="shattered_heart_no_puddle.png" chargetype="timed" maxcharges="90" quality="2" tags="nokeeper nolostbr" hidden="true" />
 	<active id="34" name="Keys to the Kingdom" description="Divine control + strength in salvation" gfx="keys_to_the_kingdom.png" maxcharges="12" initcharge="12" quality="4" tags="angel" />
 	<active id="36" name="Flipped Cross" description="Divine control + strength in salvation" gfx="flipped_cross.png" maxcharges="6" initcharge="6" quality="4" tags="devil" />
-	<active id="48" name="Book of Guidance" description="The exodus ends" gfx="book_of_guidance.png" maxcharges="12" quality="1" />
+	<active id="48" name="Book of Guidance" description="The exodus ends" gfx="book_of_guidance.png" maxcharges="12" quality="1" tags="book" />
 	<active id="49" name="Jar of Manna" description="Fill with faith" gfx="jar_of_manna.png" maxcharges="1" chargetype="special" quality="4" />
 	<active id="50" name="Tambourine" description="It's rattling!" gfx="tambourine.png" chargetype="timed" maxcharges="300" quality="0" />
 	<active id="51" name="The Dreidel" description="Reroll the elements" gfx="the_dreidel.png" maxcharges="6" quality="4" />
