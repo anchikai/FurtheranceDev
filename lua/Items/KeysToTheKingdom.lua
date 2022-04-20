@@ -10,7 +10,7 @@ function mod:UseKTTK(_, _, player)
 		if kttkRNG:RandomInt(2) == 0 then
 			player:UseCard(Card.CARD_CREDIT, 257)
 		else
-			Isaac.Spawn(EntityType.ENTITY_FALLEN, 1, 0, room:GetCenterPos(), Vector.Zero, nilx)
+			Isaac.Spawn(EntityType.ENTITY_FALLEN, 1, 0, room:GetCenterPos(), Vector.Zero, nil)
 		end
 	elseif roomType == RoomType.ROOM_ANGEL then
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_1) == false and player:HasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_2) == false then
