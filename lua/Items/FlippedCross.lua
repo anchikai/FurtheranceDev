@@ -208,6 +208,35 @@ end
 
 mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, mod.UltraSecretPool)
 
+function mod:DoubleStuff(entity)
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		local data = mod:GetData(player)
+		if data.Flipped == true then
+			--Isaac.Spawn(entity.Type, entity.Variant, entity.SubType, Isaac.GetFreeNearPosition(entity.Position, 40), Vector.Zero, nil)
+		end
+	end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.DoubleStuff)
+
+function mod:TougherEnemies(entity, damage, flags, source, frames)
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		local data = mod:GetData(player)
+		if data.Flipped == true then
+			if entity.Type == EntityType.ENTITY_PLAYER then
+				damage = damage * 2
+			else
+				damage = damage / 2
+			end
+		end
+		print(damage)
+	end
+end
+
+mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.TougherEnemies)
+
 function mod:GetShaderParams(shaderName)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = game:GetPlayer(i)
