@@ -73,6 +73,7 @@
         "RepentancePlusMod",
         "CustomPickups",
         "player",
-        "Input"
+        "Input",
+        "Wiki"
     ]
 }

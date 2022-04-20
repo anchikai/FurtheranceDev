@@ -627,7 +627,205 @@ local Wiki = {
 			{str = "This item can kill you by setting you to 12 broken hearts."},
 		},
 	},
-	
+	SpiritualWound = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
+	CaduceusStaff = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
+	Polydipsia = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
+	Kareth = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "All future items found in the run are replaced with 1-3 trinkets."},
+			{str = "The amount of trinkets depends on what the item's quality was:"},
+			{str = "- 0-1: 1 Trinket."},
+			{str = "- 2-3: 2 Trinkets."},
+			{str = "- 4: 3 Trinkets."},
+			{str = "All trinkets that Isaac picks up will be directly added to his inventory."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "Items spawned in on a pedestal will also be converted into trinkets."},
+			{str = "Already existing item pedestals will only convert if Isaac walks into the room their in."}
+		},
+	},
+	PillarOfFire = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
+	PillarOfClouds = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
+	FirstbornSon = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
+	MiriamsWell = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
+	Quarantine = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon entering a new room, applies fear to all enemies for 6 seconds. Enemies near Isaac during that period are poisoned."},
+		},
+	},
+	BookOfGuidance = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, opens all doors for the current floor, similarly to Mercurius."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "While Door Stop has a similar effect, Book of Guidance has the added benefit of opening the doors that Isaac did not enter through."},
+			{str = "Does not open the Boss Rush door."},
+			{str = "Does not open doors to Red Key or Cracked Key rooms if that door was created while there are enemies inside."},
+		},
+		{ -- Synergies
+			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
+			{str = "4.5 Volt/ Jumper Cables: Provides infinite charges by clearing some enemies then leaving the room, and repeating."},
+			{str = "Charm of the Vampire/ Gimpy: Allows the possibility to farm health."},
+			{str = "Head of the Keeper: With enough patience, coins can be farmed."},
+		},
+	},
+	JarOfManna = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
+	Tambourine = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
+	TheDreidel = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
+	Apocalypse = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
+	InfestedPenny = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Spawns a Blue Spider every time a coin is picked up."},
+		},
+	},
+	SalineSpray = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
+	AlmagestScrap = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
+	WormwoodLeaf = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Adds a 2% chance to block any damage hitting Isaac directly. When effectively blocking damage, Isaac will briefly become stone, similarly to Gnawed Leaf."},
+			{str = "While stone, Isaac can no longer move. This will last for 1 second."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "Isaac can still shoot while stone."},
+			{str = "Once freed from stone, Isaac still has damage protection for half a second to prevent unfair damage."},
+		},
+	},
+	OldCamera = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
+
 	-- Pocket Items
 	SoulOfLeah = {
 		{ -- Effect
@@ -646,7 +844,32 @@ local Wiki = {
 			{str = "Getting this soul stone as Leah or Tainted Leah effectively acts as a free large stat upgrade if used correctly."},
 		},
 	},
-	
+	TwoOfShields = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Doubles your active charge."},
+			{str = "If you have no active charge, gives you 2 instead."},
+		},
+	},
+	AceOfShields = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Turns all pickups, chests and non-boss enemies in the room into micro batteries."},
+		},
+	},
+	TrapCard = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Chains down the nearest enemy, completely preventing them from acting for 5 seconds. (This is the same effect as Anima Sola.)"},
+		},
+	},
+	KeyCard = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Creates a trapdoor leading to the Member Card Shop."},
+		},
+	},
+
 	-- Characters
 	Leah = {
 		{ -- Start Data
@@ -847,7 +1070,6 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_SECRET,
 	},
 })
-
 
 Encyclopedia.AddItem({
 	ModName = "Furtherance",
@@ -1461,6 +1683,42 @@ Encyclopedia.AddSoul({
 	Name = "Leah's Soul",
 })
 
+Encyclopedia.AddCard({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("Two of Shields"),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Two of Shields", 0),
+    WikiDesc = Wiki.TwoOfShields,
+	Name = "Two of Shields",
+})
+
+Encyclopedia.AddCard({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("Ace of Shields"),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Ace of Shields", 0),
+    WikiDesc = Wiki.AceOfShields,
+	Name = "Ace of Shields",
+})
+
+Encyclopedia.AddCard({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("Trap Card"),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Trap Card", 0),
+    WikiDesc = Wiki.TrapCard,
+	Name = "Trap Card",
+})
+
+Encyclopedia.AddCard({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("Key Card"),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Key Card", 0),
+    WikiDesc = Wiki.KeyCard,
+	Name = "Key Card",
+})
+
 -- Characters
 Encyclopedia.AddCharacter({
     ModName = "Furtherance",
@@ -1507,7 +1765,7 @@ Encyclopedia.AddCharacter({
 Encyclopedia.AddCharacterTainted({
     ModName = "Furtherance",
     Name = "Miriam",
-    Description = "The ???",
+    Description = "The Condemned",
     ID = Isaac.GetPlayerTypeByName("MiriamB", true),
 	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "MiriamB", 0, mod.path .. "content-dlc3/gfx/charactermenu_miriamb.png"),
 	WikiDesc = Wiki.TaintedMiriam,
