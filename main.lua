@@ -76,6 +76,7 @@ TrinketType.TRINKET_ALMAGEST_SCRAP = Isaac.GetTrinketIdByName("Almagest Scrap")
 TrinketType.TRINKET_WORMWOOD_LEAF = Isaac.GetTrinketIdByName("Wormwood Leaf")
 CollectibleType.COLLECTIBLE_MANDRAKE = Isaac.GetItemIdByName("Mandrake")
 CollectibleType.COLLECTIBLE_LITTLE_SISTER = Isaac.GetItemIdByName("Little Sister")
+CollectibleType.COLLECTIBLE_OLD_CAMERA = Isaac.GetItemIdByName("Old Camera")
 
 -- Cards/Runes/Pills/etc
 RUNE_SOUL_OF_LEAH = Isaac.GetCardIdByName("Soul of Leah")
@@ -153,6 +154,7 @@ include("lua/items/AlmagestScrap.lua")
 include("lua/items/WormwoodLeaf.lua")
 include("lua/items/Mandrake.lua")
 include("lua/items/LittleSister.lua")
+include("lua/items/OldCamera.lua")
 
 -- Card Luas
 include("lua/cards/SoulOfLeah.lua")
@@ -184,6 +186,8 @@ function mod:OnSave(isSaving)
 			saveData["player_"..tostring(i+1)].FlipShader = data.FlipShader
 			saveData["player_"..tostring(i+1)].RenovatorDamage = data.RenovatorDamage
 			saveData["player_"..tostring(i+1)].HeartCount = data.HeartCount
+			saveData["player_"..tostring(i+1)].CameraSaved = data.CameraSaved
+			saveData["player_"..tostring(i+1)].CurRoomID = data.CurRoomID
 			if player:GetName() == "Leah" then
 				saveData["player_"..tostring(i+1)].kills = data.leahkills
 			end
@@ -248,6 +252,12 @@ function mod:OnLoad(isLoading)
 			end
 			if loadData["player_"..tostring(i+1)].HeartCount then
 				data.HeartCount = loadData["player_"..tostring(i+1)].HeartCount
+			end
+			if loadData["player_"..tostring(i+1)].CameraSaved then
+				data.CameraSaved = loadData["player_"..tostring(i+1)].CameraSaved
+			end
+			if loadData["player_"..tostring(i+1)].CurRoomID then
+				data.CurRoomID = loadData["player_"..tostring(i+1)].CurRoomID
 			end
 			
 			if data.Flipped == nil then
