@@ -1013,7 +1013,7 @@ local Wiki = {
 		{ -- Traits
 			{str = "Traits", fsize = 2, clr = 3, halign = 0},
 			{str = "Tainted Peter cannot gain items over quality 2. Instead he can use his pocket active item ''Flipped Cross'' to travel to an upside down, red tinted version of the next chapter."},
-			{str = "- If he uses it on Basement, the floor will look like Caves."},
+			{str = "- If he uses it on Basement, the floor will look like Caves and so on."},
 			{str = "The flipped floor will have most of the stuff on it upside down and the enemies will be harder to defeat, but you gain double the items and pickups."},
 			{str = "The item pool on this floor is the Ultra Secret Room item pool."},
 			

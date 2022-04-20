@@ -8,24 +8,22 @@ function mod:KarethQual(entity)
 		if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_KARETH)) then
 			local itemConfig = Isaac.GetItemConfig()
 			local itemPool = Game():GetItemPool()
-			if entity.Variant == PickupVariant.PICKUP_COLLECTIBLE then
-				if itemConfig:GetCollectible(entity.SubType).Quality <= 1 then -- Quality 0 - 1
-					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player)
-				elseif itemConfig:GetCollectible(entity.SubType).Quality == 2 or itemConfig:GetCollectible(entity.SubType).Quality == 3 then -- Quality 2 - 3
-					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player)
-					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player)
-				elseif itemConfig:GetCollectible(entity.SubType).Quality == 4 then -- Quality 4
-					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player)
-					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player)
-					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player)
-				end
-				entity:Remove()
+			if itemConfig:GetCollectible(entity.SubType).Quality <= 1 then -- Quality 0 - 1
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player)
+			elseif itemConfig:GetCollectible(entity.SubType).Quality == 2 or itemConfig:GetCollectible(entity.SubType).Quality == 3 then -- Quality 2 - 3
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player)
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player)
+			elseif itemConfig:GetCollectible(entity.SubType).Quality == 4 then -- Quality 4
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player)
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player)
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player)
 			end
+			entity:Remove()
 		end
 	end
 end
 
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.KarethQual)
+mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.KarethQual, PickupVariant.PICKUP_COLLECTIBLE)
 
 function mod:Smelter(entity, collider)
 	if collider.Type == EntityType.ENTITY_PLAYER then
