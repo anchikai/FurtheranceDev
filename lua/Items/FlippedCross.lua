@@ -199,8 +199,9 @@ function mod:UltraSecretPool(pool, decrease, seed)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = game:GetPlayer(i)
 		local data = mod:GetData(player)
+		local room = game:GetRoom()
 		if data.Flipped == true then
-			pool = ItemPoolType.POOL_ULTRA_SECRET
+			return game:GetItemPool():GetCollectible(ItemPoolType.POOL_ULTRA_SECRET, false, room:GetSpawnSeed(), CollectibleType.COLLECTIBLE_NULL)
 		end
 	end
 end
