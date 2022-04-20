@@ -1265,6 +1265,183 @@ Encyclopedia.AddItem({
 	},
 })
 
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND,
+	WikiDesc = Wiki.SpiritualWound,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_DEVIL,
+		Encyclopedia.ItemPools.POOL_ULTRA_SECRET,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_CADUCEUS_STAFF,
+	WikiDesc = Wiki.CaduceusStaff,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_ANGEL,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_POLYDIPSIA,
+	WikiDesc = Wiki.Polydipsia,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_CRANE_GAME,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_KARETH,
+	WikiDesc = Wiki.Kareth,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_DEVIL,
+		Encyclopedia.ItemPools.POOL_CURSE,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_PILLAR_OF_FIRE,
+	WikiDesc = Wiki.PillarOfFire,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_ULTRA_SECRET,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_PILLAR_OF_CLOUDS,
+	WikiDesc = Wiki.PillarOfClouds,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_FIRSTBORN_SON,
+	WikiDesc = Wiki.FirstbornSon,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_ULTRA_SECRET,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_MIRIAMS_WELL,
+	WikiDesc = Wiki.MiriamsWell,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_ANGEL,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_QUARANTINE,
+	WikiDesc = Wiki.Quarantine,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_BOOK_OF_GUIDANCE,
+	WikiDesc = Wiki.BookOfGuidance,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_LIBRARY,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_JAR_OF_MANNA,
+	WikiDesc = Wiki.JarOfManna,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_ANGEL,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_TAMBOURINE,
+	WikiDesc = Wiki.Tambourine,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_CRANE_GAME,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_THE_DREIDEL,
+	WikiDesc = Wiki.TheDreidel,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_APOCALYPSE,
+	WikiDesc = Wiki.Apocalypse,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_DEVIL,
+		Encyclopedia.ItemPools.POOL_ULTRA_SECRET,
+	},
+})
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_INFESTED_PENNY,
+	WikiDesc = Wiki.InfestedPenny,
+})
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_SALINE_SPRAY,
+	WikiDesc = Wiki.SalineSpray,
+})
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_ALMAGEST_SCRAP,
+	WikiDesc = Wiki.AlmagestScrap,
+})
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_WORMWOOD_LEAF,
+	WikiDesc = Wiki.WormwoodLeaf,
+})
+
+
 -- Pocket Items
 Encyclopedia.AddSoul({
 	ModName = "Furtherance",
@@ -1308,4 +1485,21 @@ Encyclopedia.AddCharacterTainted({
     ID = Isaac.GetPlayerTypeByName("PeterB", true),
 	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "PeterB", 0, mod.path .. "content-dlc3/gfx/charactermenu_peterb.png"),
 	WikiDesc = Wiki.TaintedPeter,
+})
+
+Encyclopedia.AddCharacter({
+    ModName = "Furtherance",
+    Name = "Miriam",
+    ID = Isaac.GetPlayerTypeByName("Miriam", false),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraits.anm2", "Miriam", 0),
+	WikiDesc = Wiki.Miriam,
+})
+
+Encyclopedia.AddCharacterTainted({
+    ModName = "Furtherance",
+    Name = "Miriam",
+    Description = "The ???",
+    ID = Isaac.GetPlayerTypeByName("MiriamB", true),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "MiriamB", 0, mod.path .. "content-dlc3/gfx/charactermenu_miriamb.png"),
+	WikiDesc = Wiki.TaintedMiriam,
 })
