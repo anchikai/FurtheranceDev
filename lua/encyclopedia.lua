@@ -1441,6 +1441,15 @@ Encyclopedia.AddTrinket({
 	WikiDesc = Wiki.WormwoodLeaf,
 })
 
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_OLD_CAMERA,
+	WikiDesc = Wiki.OldCamera,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_SHOP,
+	},
+})
 
 -- Pocket Items
 Encyclopedia.AddSoul({
