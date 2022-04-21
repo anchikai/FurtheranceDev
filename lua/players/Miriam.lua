@@ -15,6 +15,8 @@ function mod:OnInit(player)
 	if player:GetName() == "Miriam" then -- If the player is Miriam it will apply her hair
 		player:AddNullCostume(COSTUME_MIRIAM_A_HAIR)
 		costumeEquipped = true
+		data.MiriamTearCount = 0
+		data.MiriamRiftTimeout = 0
 	elseif player:GetName() == "MiriamB" then -- Apply different hair for her tainted variant
 		player:AddNullCostume(COSTUME_MIRIAM_B_HAIR)
 		costumeEquipped = true
@@ -29,13 +31,54 @@ function mod:OnUpdate(player)
 	local room = game:GetRoom()
 	local data = mod:GetData(player)
 	if player:GetName() == "Miriam" then
-		
+		if data.MiriamRiftTimeout > -1 then
+			data.MiriamRiftTimeout = data.MiriamRiftTimeout - 1
+		end
+		if data.MiriamRiftTimeout == 0 then
+			for i, entity in ipairs(Isaac.GetRoomEntities()) do
+				if entity.Type == EntityType.ENTITY_EFFECT and entity.Variant == EffectVariant.RIFT then
+					entity:Die()
+				end
+			end
+		end
 	elseif player:GetName() == "MiriamB" then
 		
 	end
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.OnUpdate)
+
+function mod:PuddleRift(entity)
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = game:GetPlayer(i)
+		if player:GetName() == "Miriam" then
+			if entity.Type == EntityType.ENTITY_TEAR then
+				local data = mod:GetData(player)
+				if data.MiriamTearCount == 5 then
+					local rift = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.RIFT, 0, entity.Position, Vector(0,0), player):ToEffect()
+					local sprite = rift:GetSprite()
+					sprite.Scale = Vector.Zero
+					data.MiriamRiftTimeout = 90
+				end
+			end
+		end
+	end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, mod.PuddleRift)
+
+function mod:tearCounter(tear)
+    local player = tear.Parent:ToPlayer()
+	local data = mod:GetData(player)
+	if player:GetName() == "Miriam" then
+		if data.MiriamTearCount > 4 then
+			data.MiriamTearCount = 0
+		end
+		data.MiriamTearCount = data.MiriamTearCount + 1
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.tearCounter)
 
 function mod:Hearts(entity, collider)
 	if collider.Type == EntityType.ENTITY_PLAYER then

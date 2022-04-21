@@ -231,7 +231,6 @@ function mod:TougherEnemies(entity, damage, flags, source, frames)
 				damage = damage / 2
 			end
 		end
-		print(damage)
 	end
 end
 

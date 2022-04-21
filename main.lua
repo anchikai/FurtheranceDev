@@ -195,6 +195,10 @@ function mod:OnSave(isSaving)
 				saveData["player_"..tostring(i+1)].DevilCount = data.DevilCount
 				saveData["player_"..tostring(i+1)].AngelCount = data.AngelCount
 			end
+			if player:GetName() == "Miriam" then
+				saveData["player_"..tostring(i+1)].MiriamTearCount = data.MiriamTearCount
+				saveData["player_"..tostring(i+1)].MiriamRiftTimeout = data.MiriamRiftTimeout
+			end
 		end
 		save.PlayerData = saveData
 	end
@@ -221,8 +225,16 @@ function mod:OnLoad(isLoading)
 				if loadData["player_"..tostring(i+1)].DevilCount then
 					data.DevilCount = loadData["player_"..tostring(i+1)].DevilCount
 				end
-				if loadData["player_"..tostring(i+1)] then
+				if loadData["player_"..tostring(i+1)].AngelCount then
 					data.AngelCount = loadData["player_"..tostring(i+1)].AngelCount
+				end
+			end
+			if player:GetName() == "Miriam" then -- Miriam's Data
+				if loadData["player_"..tostring(i+1)].MiriamTearCount then
+					data.MiriamTearCount = loadData["player_"..tostring(i+1)].MiriamTearCount
+				end
+				if loadData["player_"..tostring(i+1)].MiriamRiftTimeout then
+					data.MiriamRiftTimeout = loadData["player_"..tostring(i+1)].MiriamRiftTimeout
 				end
 			end
 			-- Other General Data
