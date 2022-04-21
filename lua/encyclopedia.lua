@@ -650,11 +650,16 @@ local Wiki = {
 	Polydipsia = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "Isaac's tears are fired in an arc. Upon hitting the floor, an obstacle, or an enemy they burst into a puddle of water."},
+			{str = "Tears down - (Delay X 2) + 10"},
+			{str = "- The puddle of water deals 33% of Isaac's damage."},
+			{str = "- The puddle of water lasts for 3 seconds."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "Higher shot speed lowers the arc if the shot, whereas lower speed heightens it, resulting in a very minor change in effective range."},
+			{str = "The tear height stat is entirely ignored for the shot."},
+			{str = "The tear has a 1.4x size multiplier."},
 		},
 	},
 	Kareth = {
@@ -921,7 +926,7 @@ local Wiki = {
 			{str = "Items:"},
 			{str = "- Shattered Heart"},
 			{str = "Stats:"},
-			{str = "- HP: 1 Black Heart, 11 broken hearts"},
+			{str = "- HP: 1 Black Heart, 11 Broken Hearts"},
 			{str = "- Speed: 0.95"},
 			{str = "- Tear rate: 6.00"},
 			{str = "- Damage: 1.50"},
@@ -1016,6 +1021,77 @@ local Wiki = {
 			{str = "- If he uses it on Basement, the floor will look like Caves and so on."},
 			{str = "The flipped floor will have most of the stuff on it upside down and the enemies will be harder to defeat, but you gain double the items and pickups."},
 			{str = "The item pool on this floor is the Ultra Secret Room item pool."},
+			
+		},
+		{ -- Birthright
+			{str = "Birthright", fsize = 2, clr = 3, halign = 0},
+		
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			
+		},
+		{ -- Interactions
+			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
+			
+		},
+		{ -- Trivia
+			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+			
+		},
+	},
+	Miriam = {
+		{ -- Start Data
+			{str = "Start Data", fsize = 2, clr = 3, halign = 0},
+			{str = "Items:"},
+			{str = "- Tambourine"},
+			{str = "Stats:"},
+			{str = "- HP: 2 Red Hearts, 2 Soul Hearts"},
+			{str = "- Speed: 1.25"},
+			{str = "- Tear rate: 1.06"},
+			{str = "- Damage: 4.00"},
+			{str = "- Range: 4.00"},
+			{str = "- Shot speed: 1.00"},
+			{str = "- Luck: 0.00"},
+		},
+		{ -- Traits
+			{str = "Traits", fsize = 2, clr = 3, halign = 0},
+			{str = "Miriam's tears are fired in an arc. Upon hitting the floor, an obstacle, or an enemy they burst into a puddle of water."},
+			{str = "- The puddle of water deals 33% of Miriam's damage."},
+			{str = "- The puddle of water lasts for 3 seconds."},
+			{str = "Every 5 shots, the size of the puddle becomes 34% larger and begins to pull in enemies, pickups, and tears/shots from all sources for 3 seconds."},
+		},
+		{ -- Birthright
+			{str = "Birthright", fsize = 2, clr = 3, halign = 0},
+			{str = "I haven't gotten to it yet, go on now :)"},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "We don't know yet! :)"},
+		},
+		{ -- Trivia
+			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
+			{str = "The Torah refers to her as ''Miriam the Prophetess'' and the Talmud names her as one of the seven major female prophets of Israel."},
+			{str = "Miriam was first proposed for Team Compliance for the new content phase of the mod, but anchikai once again takes an idea he likes for his own mod instead. Thanks Soaring__Sky!"},
+		},
+	},
+	TaintedMiriam = {
+		{ -- Start Data
+			{str = "Start Data", fsize = 2, clr = 3, halign = 0},
+			{str = "Items:"},
+			{str = "- Rune Shard"},
+			{str = "Stats:"},
+			{str = "- HP: 2 Bone Hearts, 4 Broken Hearts"},
+			{str = "- Speed: 1.00"},
+			{str = "- Tear rate: 2.73"},
+			{str = "- Damage: 4.00"},
+			{str = "- Range: 6.50"},
+			{str = "- Shot speed: 1.00"},
+			{str = "- Luck: -2.00"},
+		},
+		{ -- Traits
+			{str = "Traits", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
 			
 		},
 		{ -- Birthright
