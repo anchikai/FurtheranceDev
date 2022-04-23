@@ -910,7 +910,7 @@ local Wiki = {
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
 			{str = "Leah starts with a slightly lower damage and tears stat than most characters. However, strategic use of the Heart Counter and using Heart Renovator will help combat the lower damage and tears you start with."},
-			{str = "You have to find a good balance between keeping broken hearts for range and removing them for tear rate and damage."},
+			{str = "You have to find a good balance between keeping broken hearts for range and removing them for damage."},
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},

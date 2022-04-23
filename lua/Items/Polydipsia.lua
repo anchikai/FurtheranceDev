@@ -26,10 +26,10 @@ function mod:PuddleBurst(entity)
 				local data = mod:GetData(player)
 				local puddle = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PLAYER_CREEP_HOLYWATER_TRAIL, 0, entity.Position, Vector(0,0), player):ToEffect()
 				puddle.CollisionDamage = player.Damage * 0.33
-				if data.MiriamTearCount == 5 then
-					puddle.Scale = 2.25
+				if data.MiriamTearCount == 12 then
+					puddle.Scale = 2.25 * data.MiriamAOE
 				else
-					puddle.Scale = 1.67
+					puddle.Scale = 1.67 * data.MiriamAOE
 				end
 			end
 		end

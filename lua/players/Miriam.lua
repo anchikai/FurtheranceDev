@@ -17,6 +17,7 @@ function mod:OnInit(player)
 		costumeEquipped = true
 		data.MiriamTearCount = 0
 		data.MiriamRiftTimeout = 0
+		data.MiriamAOE = (player.TearRange - 100) / 320
 	elseif player:GetName() == "MiriamB" then -- Apply different hair for her tainted variant
 		player:AddNullCostume(COSTUME_MIRIAM_B_HAIR)
 		costumeEquipped = true
@@ -41,6 +42,7 @@ function mod:OnUpdate(player)
 				end
 			end
 		end
+		print(data.MiriamAOE)
 	elseif player:GetName() == "MiriamB" then
 		
 	end
@@ -54,7 +56,7 @@ function mod:PuddleRift(entity)
 		if player:GetName() == "Miriam" then
 			if entity.Type == EntityType.ENTITY_TEAR then
 				local data = mod:GetData(player)
-				if data.MiriamTearCount == 5 then
+				if data.MiriamTearCount == 12 then
 					local rift = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.RIFT, 0, entity.Position, Vector(0,0), player):ToEffect()
 					local sprite = rift:GetSprite()
 					sprite.Scale = Vector.Zero
@@ -71,7 +73,7 @@ function mod:tearCounter(tear)
     local player = tear.Parent:ToPlayer()
 	local data = mod:GetData(player)
 	if player:GetName() == "Miriam" then
-		if data.MiriamTearCount > 4 then
+		if data.MiriamTearCount > 11 then
 			data.MiriamTearCount = 0
 		end
 		data.MiriamTearCount = data.MiriamTearCount + 1
@@ -116,6 +118,10 @@ function mod:miriamStats(player, flag)
 		end
 		if flag == CacheFlag.CACHE_RANGE then
 			player.TearRange = player.TearRange - 100
+			if player.TearRange ~= 160 then
+				data.MiriamAOE = player.TearRange / 320
+				player.TearRange = 160
+			end
 		end
 	elseif player:GetName() == "MiriamB" then -- If the player is Tainted Miriam it will apply her stats
 		if flag == CacheFlag.CACHE_DAMAGE then
