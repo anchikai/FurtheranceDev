@@ -1,4 +1,4 @@
-local MOD = further
+local MOD = Furtherance
 local GAME = Game()
 
 function MOD:ZZZZ()

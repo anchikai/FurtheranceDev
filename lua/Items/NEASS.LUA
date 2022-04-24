@@ -1,4 +1,4 @@
-local MOD = further
+local MOD = Furtherance
 
 function MOD:USEPLUGNPLAY(BOI, RNG, PLAYER, SLOT, DATA)
 	PLAYER:AddCollectible(CollectibleType.COLLECTIBLE_TMTRAINER)

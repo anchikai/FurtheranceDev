@@ -1,4 +1,4 @@
-local mod = further
+local mod = Furtherance
 local rng = RNG()
 
 -- Thank you for all the fixes manaphoenix!

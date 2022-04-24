@@ -1,4 +1,4 @@
-local mod = further
+local mod = Furtherance
 
 function mod:UseE(_, _, player)
 	Isaac.Spawn(EntityType.ENTITY_BOMBDROP, BombVariant.BOMB_GIGA, 0, player.Position, Vector(0, 0), nil)

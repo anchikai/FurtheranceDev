@@ -1,4 +1,4 @@
-local mod = further
+local mod = Furtherance
 local game = Game()
 
 function mod:UseKTTK(_, _, player)

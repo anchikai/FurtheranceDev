@@ -1,5 +1,5 @@
-further = RegisterMod("Furtherance", 1)
-local mod = further
+Furtherance = RegisterMod("Furtherance", 1)
+local mod = Furtherance
 local json = require("json")
 local loading = {}
 local loadTimer
@@ -7,7 +7,7 @@ local game = Game()
 local rng = RNG()
 
 local laugh = Isaac.GetSoundIdByName("Sitcom_Laugh_Track")
-further.FailSound = SoundEffect.SOUND_EDEN_GLITCH
+Furtherance.FailSound = SoundEffect.SOUND_EDEN_GLITCH
 mod.isLoadingData = false
 -- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
@@ -86,7 +86,7 @@ CARD_TRAP = Isaac.GetCardIdByName("Trap Card")
 CARD_KEY = Isaac.GetCardIdByName("Key Card")
 
 function mod:playFailSound()
-	SFXManager():Play(further.FailSound)
+	SFXManager():Play(Furtherance.FailSound)
 end
 
 -- Item Luas
@@ -345,19 +345,19 @@ if MCMLoaded then
 		{
 			Type = ModConfigMenu.OptionType.BOOLEAN,
 			CurrentSetting = function()
-				return further.FailSound ~= laugh
+				return Furtherance.FailSound ~= laugh
 			end,
 			Display = function()
 				local sstr = "???"
-				if further.FailSound == laugh then sstr = "Laugh Track"
-				elseif further.FailSound == SoundEffect.SOUND_EDEN_GLITCH then sstr = "Default" end
+				if Furtherance.FailSound == laugh then sstr = "Laugh Track"
+				elseif Furtherance.FailSound == SoundEffect.SOUND_EDEN_GLITCH then sstr = "Default" end
 				return "Item Fails Sound Effect: " .. sstr
 			end,
 			OnChange = function(current_bool)
 				if current_bool then
-					further.FailSound = SoundEffect.SOUND_EDEN_GLITCH
+					Furtherance.FailSound = SoundEffect.SOUND_EDEN_GLITCH
 				else
-					further.FailSound = laugh
+					Furtherance.FailSound = laugh
 				end
 			end
 		}
@@ -472,10 +472,10 @@ end
 function mod:GetData(entity)
 	if entity and entity.GetData then
 		local data = entity:GetData()
-		if not data.further then
-			data.further = {}
+		if not data.Furtherance then
+			data.Furtherance = {}
 		end
-		return data.further
+		return data.Furtherance
 	end
 	return nil
 end

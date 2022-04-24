@@ -1,4 +1,4 @@
-local mod = further
+local mod = Furtherance
 local game = Game()
 
 function mod:UseTrapCard(card, player, useflags)

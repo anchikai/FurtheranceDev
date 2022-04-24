@@ -1,4 +1,4 @@
-local mod = further
+local mod = Furtherance
 
 function mod:HasCore(boi, rng, player, useFlags, slot, data)
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_UNSTABLE_CORE) and useFlags == UseFlag.USE_OWNED then

@@ -1,4 +1,4 @@
-local mod = further
+local mod = Furtherance
 -----------------------------------
 --Helper Functions (thanks piber)--
 -----------------------------------

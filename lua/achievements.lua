@@ -1,4 +1,4 @@
-local mod = further
+local mod = Furtherance
 local game = Game()
 mod.Unlocks = {LeahIsaac = 0, LeahBlueBaby = 0, LeahSatan = 0, LeahLamb = 0, LeahMegaSatan = 0, LeahBossRush = 0, LeahHush = 0, LeahGreed = 0, LeahGreedier = 0, LeahDeli = 0, LeahMother = 0, LeahBeast = 0, LeahAll = 0, LeahBMegaSatan = 0, LeahBGreedier = 0, LeahBDeli = 0, LeahBMother = 0, LeahBBeast = 0}
 local json = require("json")

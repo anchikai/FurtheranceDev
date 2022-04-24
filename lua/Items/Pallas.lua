@@ -1,4 +1,4 @@
-local mod = further
+local mod = Furtherance
 
 function mod:GetPallas(player, flag)
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_PALLAS) then

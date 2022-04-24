@@ -1,4 +1,4 @@
-local mod = further
+local mod = Furtherance
 
 function mod:UseHeartRen(_, _, player)
 	player:AnimateCollectible(Isaac.GetItemIdByName("Shattered Heart No Puddle"), "UseItem", "PlayerPickup")

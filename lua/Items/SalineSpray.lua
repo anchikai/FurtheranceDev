@@ -1,2 +1,2 @@
-local mod = further
+local mod = Furtherance
 local game = Game()

@@ -1,4 +1,4 @@
-local mod = further
+local mod = Furtherance
 
 function mod:GetOphiuchus(player, cacheFlag)
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_OPHIUCHUS) then

@@ -1,4 +1,4 @@
-local mod = further
+local mod = Furtherance
 
 function mod:OnMove(player)
     local game = Game()

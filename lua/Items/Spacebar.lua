@@ -1,4 +1,4 @@
-local mod = further
+local mod = Furtherance
 local rng = RNG()
 local game = Game()
 

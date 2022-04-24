@@ -1,4 +1,4 @@
-local mod = further
+local mod = Furtherance
 local game = Game()
 local bhb = Isaac.GetSoundIdByName("BrokenHeartbeat")
 

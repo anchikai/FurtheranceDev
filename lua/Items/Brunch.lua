@@ -1,4 +1,4 @@
-local mod = further
+local mod = Furtherance
 
 function mod:GetBrunch(player, cacheFlag)
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_BRUNCH) then

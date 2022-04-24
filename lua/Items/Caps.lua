@@ -1,4 +1,4 @@
-local mod = further
+local mod = Furtherance
 
 function mod:UseCaps(boi, rng, player, slot, data)
 	player:UseCard(Card.CARD_HUGE_GROWTH, 0)

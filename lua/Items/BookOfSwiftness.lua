@@ -1,4 +1,4 @@
-local mod = further
+local mod = Furtherance
 
 function mod:UseBookOfSwiftness(_Type, RNG, player)
 	local data = mod:GetData(player)

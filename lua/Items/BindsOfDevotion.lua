@@ -1,4 +1,4 @@
-local mod = further
+local mod = Furtherance
 local game = Game()
 
 local PLAYERTYPE_FAKE_JACOB = Isaac.GetPlayerTypeByName("FakeJacob", false)

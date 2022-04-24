@@ -1,4 +1,4 @@
-local mod = further
+local mod = Furtherance
 
 function mod:Minus1Shots(EntityTear)
     local player = EntityTear.Parent:ToPlayer()
