@@ -17,7 +17,7 @@ function mod:OnInit(player)
 		costumeEquipped = true
 		data.MiriamTearCount = 0
 		data.MiriamRiftTimeout = 0
-		data.MiriamAOE = (player.TearRange - 100) / 320
+		data.MiriamAOE = 1
 	elseif player:GetName() == "MiriamB" then -- Apply different hair for her tainted variant
 		player:AddNullCostume(COSTUME_MIRIAM_B_HAIR)
 		costumeEquipped = true
@@ -42,7 +42,6 @@ function mod:OnUpdate(player)
 				end
 			end
 		end
-		print(data.MiriamAOE)
 	elseif player:GetName() == "MiriamB" then
 		
 	end
@@ -117,10 +116,16 @@ function mod:miriamStats(player, flag)
 			player.Damage = player.Damage + 0.5
 		end
 		if flag == CacheFlag.CACHE_RANGE then
-			player.TearRange = player.TearRange - 100
-			if player.TearRange ~= 160 then
-				data.MiriamAOE = player.TearRange / 320
-				player.TearRange = 160
+			player.TearRange = player.TearRange - 60
+			if player.TearRange ~= 200 then
+				if player.TearRange <= 160 then
+					data.MiriamAOE = 0.75
+				elseif player.TearRange > 160 and player.TearRange <= 640 then
+					data.MiriamAOE = 1
+				elseif player.TearRange > 640 then
+					data.MiriamAOE = 1.5
+				end
+				player.TearRange = 200
 			end
 		end
 	elseif player:GetName() == "MiriamB" then -- If the player is Tainted Miriam it will apply her stats

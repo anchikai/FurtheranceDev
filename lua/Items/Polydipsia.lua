@@ -18,32 +18,35 @@ end
 
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetPolydipsia)
 
-function mod:PuddleBurst(entity)
-	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
-		if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA)) or player:GetName() == "Miriam" then
+function mod:PuddleMagik(player)
+	local room = game:GetRoom()
+	local data = mod:GetData(player)
+	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA)) or player:GetName() == "Miriam" then
+		for i, entity in ipairs(Isaac.GetRoomEntities()) do
 			if entity.Type == EntityType.ENTITY_TEAR then
-				local data = mod:GetData(player)
-				local puddle = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PLAYER_CREEP_HOLYWATER_TRAIL, 0, entity.Position, Vector(0,0), player):ToEffect()
-				puddle.CollisionDamage = player.Damage * 0.33
-				if data.MiriamTearCount == 12 then
-					puddle.Scale = 2.25 * data.MiriamAOE
-				else
-					puddle.Scale = 1.67 * data.MiriamAOE
+				if entity:IsDead() then
+					local data = mod:GetData(player)
+					local puddle = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PLAYER_CREEP_HOLYWATER_TRAIL, 1, entity.Position, Vector.Zero, player):ToEffect()
+					puddle.CollisionDamage = player.Damage * 0.33
+					if data.MiriamTearCount == 12 then
+						puddle.Scale = 1.75
+					else
+						puddle.Scale = data.MiriamAOE
+					end
 				end
 			end
 		end
 	end
 end
 
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, mod.PuddleBurst)
+mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.PuddleMagik)
 
 function mod:polydipsiaTear(tear)
     local player = tear.Parent:ToPlayer()
 	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA)) or player:GetName() == "Miriam" then
 		tear.Scale = tear.Scale * 1.4
 		tear:AddTearFlags(TearFlags.TEAR_KNOCKBACK)
-		tear:SetKnockbackMultiplier(tear.KnockbackMultiplier*25)
+		tear:SetKnockbackMultiplier(tear.KnockbackMultiplier*24)
     end
 end
 
