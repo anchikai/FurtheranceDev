@@ -18,6 +18,7 @@ function mod:OnInit(player)
 		data.MiriamTearCount = 0
 		data.MiriamRiftTimeout = 0
 		data.MiriamAOE = 1
+		player:AddCollectible(CollectibleType.COLLECTIBLE_TAMBOURINE, 0, true, ActiveSlot.SLOT_PRIMARY, 0)
 	elseif player:GetName() == "MiriamB" then -- Apply different hair for her tainted variant
 		player:AddNullCostume(COSTUME_MIRIAM_B_HAIR)
 		costumeEquipped = true

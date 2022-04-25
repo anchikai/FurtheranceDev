@@ -1,5 +1,5 @@
 <AnimatedActor>
-	<Info CreatedBy="anchikai." CreatedOn="4/24/2022 10:17:55 AM" Version="104" Fps="30"/>
+	<Info CreatedBy="anchikai." CreatedOn="4/25/2022 1:17:24 AM" Version="105" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="effects\polydipsia_puddle.png" Id="0"/>
@@ -11,13 +11,18 @@
 		<Events/>
 	</Content>
 	<Animations DefaultAnimation="Puddle">
-		<Animation Name="Puddle" FrameNum="1" Loop="true">
+		<Animation Name="Puddle" FrameNum="90" Loop="true">
 			<RootAnimation>
-				<Frame XPosition="0" YPosition="0" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+				<Frame XPosition="0" YPosition="0" XScale="100" YScale="100" Delay="90" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 			</RootAnimation>
 			<LayerAnimations>
 				<LayerAnimation LayerId="0" Visible="true">
-					<Frame XPosition="-48" YPosition="-48" XPivot="0" YPivot="0" XCrop="32" YCrop="32" Width="96" Height="96" XScale="100" YScale="100" Delay="1" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+					<Frame XPosition="0" YPosition="0" XPivot="48" YPivot="48" XCrop="32" YCrop="32" Width="96" Height="96" XScale="100" YScale="100" Delay="15" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+					<Frame XPosition="0" YPosition="0" XPivot="48" YPivot="48" XCrop="32" YCrop="32" Width="96" Height="96" XScale="112" YScale="112" Delay="15" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+					<Frame XPosition="0" YPosition="0" XPivot="48" YPivot="48" XCrop="32" YCrop="32" Width="96" Height="96" XScale="124" YScale="124" Delay="15" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+					<Frame XPosition="0" YPosition="0" XPivot="48" YPivot="48" XCrop="32" YCrop="32" Width="96" Height="96" XScale="136" YScale="136" Delay="15" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+					<Frame XPosition="0" YPosition="0" XPivot="48" YPivot="48" XCrop="32" YCrop="32" Width="96" Height="96" XScale="148" YScale="148" Delay="15" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
+					<Frame XPosition="0" YPosition="0" XPivot="48" YPivot="48" XCrop="32" YCrop="32" Width="96" Height="96" XScale="175" YScale="175" Delay="15" Visible="true" RedTint="255" GreenTint="255" BlueTint="255" AlphaTint="255" RedOffset="0" GreenOffset="0" BlueOffset="0" Rotation="0" Interpolated="false"/>
 				</LayerAnimation>
 			</LayerAnimations>
 			<NullAnimations/>
