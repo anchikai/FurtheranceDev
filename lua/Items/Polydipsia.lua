@@ -19,19 +19,24 @@ end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetPolydipsia)
 
 function mod:PuddleMagik(player)
-	local room = game:GetRoom()
 	local data = mod:GetData(player)
 	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA)) or player:GetName() == "Miriam" then
 		for i, entity in ipairs(Isaac.GetRoomEntities()) do
 			if entity.Type == EntityType.ENTITY_TEAR then
 				if entity:IsDead() then
-					local data = mod:GetData(player)
 					local puddle = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PLAYER_CREEP_HOLYWATER_TRAIL, 1, entity.Position, Vector.Zero, player):ToEffect()
+					if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA)) and player:GetName() == "Miriam" then
+						if PolyMiriam:Exists() == false then
+							PolyMiriam = player:FireTear(entity.Position, entity.Velocity, true, true, true, player, 1)
+						end
+					end
 					puddle.CollisionDamage = player.Damage * 0.33
-					if data.MiriamTearCount == 12 then
-						puddle.Scale = 1.75
-					else
-						puddle.Scale = data.MiriamAOE
+					if player:GetName() == "Miriam" then
+						if data.MiriamTearCount == 12 then
+							puddle.Scale = 1.75
+						else
+							puddle.Scale = data.MiriamAOE
+						end
 					end
 				end
 			end
