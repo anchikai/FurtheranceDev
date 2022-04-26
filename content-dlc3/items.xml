@@ -33,7 +33,7 @@
 	<passive id="30" cache="firedelay" name="Pharaoh Cat" description="Pyramid shot" gfx="pharaoh_cat.png" quality="4" />												<!-- Concept by Freg! (reworked by me :troll:) -->
 	<passive id="37" name="Parasitic Poofer" description="He loves you" gfx="parasitic_poofer.png" quality="2" />
 	<passive id="38" name="Heart Embedded Coin" description="da coin wit da heart" gfx="heart_embedded_coin.png" quality="2" />
-	<passive id="39" name="Spiritual Wound" description="Drain their lives" gfx="spiritual_wound.png" devilprice="2" quality="4" tags="devil" />
+	<passive id="39" cache="range" name="Spiritual Wound" description="Drain their lives" gfx="spiritual_wound.png" devilprice="2" quality="4" tags="devil" />
 	<passive id="40" name="Caduceus Staff" description="HP up + you feel great!" gfx="caduceus_staff.png" quality="4" tags="angel" />
 	<passive id="41" cache="range firedelay" name="Polydipsia" description="Tears down?!" gfx="polydipsia.png" quality="3" />
 	<passive id="42" name="Kareth" description="Divine punishment" gfx="kareth.png" devilprice="1" quality="3" />

@@ -74,6 +74,7 @@
         "CustomPickups",
         "player",
         "Input",
-        "Wiki"
+        "Wiki",
+        "EntityFlag"
     ]
 }
