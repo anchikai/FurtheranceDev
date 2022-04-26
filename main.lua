@@ -316,8 +316,15 @@ if Encyclopedia then
 end
 
 if Poglite then
-	local pogCostumeB = Isaac.GetCostumeIdByPath("gfx/characters/Character_001b_Leah_Pog.anm2")
-	Poglite:AddPogCostume("LeahBPog", taintedLeah, pogCostumeB)
+	-- Leah
+	local LeahCostumeA = Isaac.GetCostumeIdByPath("gfx/characters/Character_001_Leah_Pog.anm2")
+	Poglite:AddPogCostume("LeahPog", normalLeah, LeahCostumeA)
+	-- Tainted Leah
+	local LeahCostumeB = Isaac.GetCostumeIdByPath("gfx/characters/Character_001b_Leah_Pog.anm2")
+	Poglite:AddPogCostume("LeahBPog", taintedLeah, LeahCostumeB)
+	-- Miriam
+	local MiriamCostumeA = Isaac.GetCostumeIdByPath("gfx/characters/Character_003_Miriam_Pog.anm2")
+	Poglite:AddPogCostume("MiriamPog", normalMiriam, MiriamCostumeA)
 end
 
 if MiniMapiItemsAPI then

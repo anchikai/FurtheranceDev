@@ -26,13 +26,14 @@ function mod:PuddleMagik(player)
 				if entity:IsDead() then
 					local puddle = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PLAYER_CREEP_HOLYWATER_TRAIL, 1, entity.Position, Vector.Zero, player):ToEffect()
 					if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA)) and player:GetName() == "Miriam" then
-						if PolyMiriam:Exists() == false then
-							PolyMiriam = player:FireTear(entity.Position, entity.Velocity, true, true, true, player, 1)
+						if entity.SubType == 0 then
+							PolyMiriam = player:FireTear(entity.Position, entity.Velocity, true, true, false, entity, 1)
+							PolyMiriam.SubType = 1
 						end
 					end
 					puddle.CollisionDamage = player.Damage * 0.33
 					if player:GetName() == "Miriam" then
-						if data.MiriamTearCount == 12 then
+						if data.MiriamTearCount > 11 then
 							puddle.Scale = 1.75
 						else
 							puddle.Scale = data.MiriamAOE
