@@ -11,9 +11,6 @@ end
 
 function mod:GetSpiritualWound(player, flag)
 	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)) then
-		if flag == CacheFlag.CACHE_RANGE then
-			player.TearHeight = player.TearHeight + 2
-		end
         mod.SetCanShoot(player, false)
 	else
         mod.SetCanShoot(player, true)
