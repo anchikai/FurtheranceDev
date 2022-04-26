@@ -51,7 +51,7 @@ function mod:polydipsiaTear(tear)
 	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA)) or player:GetName() == "Miriam" then
 		tear.Scale = tear.Scale * 1.4
 		tear:AddTearFlags(TearFlags.TEAR_KNOCKBACK)
-		tear:SetKnockbackMultiplier(tear.KnockbackMultiplier*24)
+		tear:SetKnockbackMultiplier(tear.KnockbackMultiplier*2)
     end
 end
 
