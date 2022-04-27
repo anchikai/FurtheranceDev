@@ -86,9 +86,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_ENTER_KEY, "Попытается 
 EID:addCollectible(CollectibleType.COLLECTIBLE_ENTER_KEY, "Intenta abrir la entrada a la Boss Rush#↑ Ignora el cronómetro del juego", "Tecla Enter", "spa")
 
 --Shift Key
-EID:addCollectible(CollectibleType.COLLECTIBLE_SHIFT_KEY, "If player is normal, they will become tainted#Tainted will become normal", "Shift Key")
-EID:addCollectible(CollectibleType.COLLECTIBLE_SHIFT_KEY, "Если персонаж обычный, он становится порченым#Порченые персонажи становятся обычными", "Клавиша Shift", "ru")
-EID:addCollectible(CollectibleType.COLLECTIBLE_SHIFT_KEY, "Si el jugador está en su forma regular, cambiará a su forma corrompida#La forma corrompida pasará a ser la forma regular", "Tecla Shift", "spa")
+EID:addCollectible(CollectibleType.COLLECTIBLE_SHIFT_KEY, "↑ {{Damage}} +15 Damage up#Damage up wears off over the next minute", "Shift Key")
+EID:addCollectible(CollectibleType.COLLECTIBLE_SHIFT_KEY, "", "Клавиша Shift", "ru")
+EID:addCollectible(CollectibleType.COLLECTIBLE_SHIFT_KEY, "", "Tecla Shift", "spa")
 
 
 -- Ophiuchus

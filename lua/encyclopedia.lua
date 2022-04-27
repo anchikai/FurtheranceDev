@@ -127,11 +127,16 @@ local Wiki = {
 	ShiftKey = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "If you are a normal character, you will become the respective tainted character. If you are a tainted character, you will become the respective normal character."},
+			{str = "On pickup, Isaac gains a temporary +15 damage up."},
+			{str = "- The damage upgrade scales down to 0 over the course of one minute. The damage consistantly goes down -0.125 per half second."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "Using this item as Esau will do nothing. This is because Esau causes issues."},
+			{str = "Due to the high amount of damage you temporarily gain, this item is extremely effective in Greed Mode, as all fights are done within the same room and you are easily able to make the most out of it."},
+		},
+		{ -- Synergies
+			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
+			{str = "Rock Bottom: The damage up becomes permanent."},
 		},
 	},
 	Ophiuchus = {
