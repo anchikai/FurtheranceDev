@@ -167,7 +167,7 @@ include("lua/cards/KeyCard.lua")
 include("lua/pickups/MoonHeart.lua")
 
 -- Save Data/Unlocks
---include("lua/achievements.lua")
+include("lua/achievements.lua")
 
 function mod:OnSave(isSaving)
 	local save = {}
@@ -286,7 +286,11 @@ function mod:OnLoad(isLoading)
 			end
 		end
 		if loadData.Unlocks then
-			mod.Unlocks = loadData.Unlocks
+			for key,value in ipairs(mod.Unlocks) do
+				if loadData.Unlocks[key] then
+					mod.Unlocks[key] = loadData.Unlocks[key]
+				end
+			end
 		end
 	end
 end

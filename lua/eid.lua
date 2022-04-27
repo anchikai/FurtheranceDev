@@ -7,33 +7,32 @@ local iconSprite = Sprite()
 iconSprite:Load("gfx/eid_icon_furtherance.anm2", true)
 EID:addIcon("Furtherance Icon", "Furtherance icon", 0, 12, 11, 6, 6, iconSprite)
 EID:setModIndicatorIcon("Furtherance Icon")
-
+local normalLeah = Isaac.GetPlayerTypeByName("Leah", false)
+local taintedLeah = Isaac.GetPlayerTypeByName("LeahB", true)
+local normalPeter = Isaac.GetPlayerTypeByName("Peter", false)
+local taintedPeter = Isaac.GetPlayerTypeByName("PeterB", true)
 -- Birthright Icons
 PlayerIconSprite = Sprite()
 PlayerIconSprite:Load("gfx/ui/eid_players_icon.anm2", true)
-EID:addIcon("Player"..Isaac.GetPlayerTypeByName("Leah", false), "Leah", 0, 12, 12, -1, 1, PlayerIconSprite)
-EID:addIcon("Player"..Isaac.GetPlayerTypeByName("LeahB", true), "LeahB", 0, 12, 12, -1, 1, PlayerIconSprite)
-EID:addIcon("Player"..Isaac.GetPlayerTypeByName("Peter", false), "Peter", 0, 12, 12, -1, 1, PlayerIconSprite)
-EID:addIcon("Player"..Isaac.GetPlayerTypeByName("PeterB", true), "PeterB", 0, 12, 12, -1, 1, PlayerIconSprite)
+EID:addIcon("Player"..normalLeah, "Leah", 0, 12, 12, -1, 1, PlayerIconSprite)
+EID:addIcon("Player"..taintedLeah, "LeahB", 0, 12, 12, -1, 1, PlayerIconSprite)
+EID:addIcon("Player"..normalPeter, "Peter", 0, 12, 12, -1, 1, PlayerIconSprite)
+EID:addIcon("Player"..taintedPeter, "PeterB", 0, 12, 12, -1, 1, PlayerIconSprite)
 
 -- Leah 
-local normalLeah = Isaac.GetPlayerTypeByName("Leah", false)
 EID:addBirthright(normalLeah, "↑ Damage gained through kills and Heart Renovator is 2x effective#↑ A broken heart is now removed every 10 kills instead of every 20#↑ Heart counter now caps at 999#{{BrokenHeart}} +3 broken hearts", "Leah", "en_us")
 EID:addBirthright(normalLeah, "↓ {{BrokenHeart}} +3 сломанных сердец#↑ Сломанное сердце удаляется каждые 10 убийств вместо каждых 20#↑ Характеристики, полученные убийствами, 2x эффективнее", "Лия", "ru")
 EID:addBirthright(normalLeah, "↓ {{BrokenHeart}} +3 Corazones rotos#Perderás un corazón roto al matar 10 enemigos en vez de 20#↑ Las estadísticas ganadas por asesinatos se duplican", "Leah", "spa")
 
 -- Tainted Leah
-local taintedLeah = Isaac.GetPlayerTypeByName("LeahB", true)
 EID:addBirthright(taintedLeah, "Tainted Leah will no longer constantly refill back to {{BrokenHeart}} 11 broken hearts#She will instead refill to only 6#She will gain 0.05 speed for every broken heart instead of lose#↑ +20% chance to charm enemies", "Tainted Leah", "en_us")
 EID:addBirthright(taintedLeah, "{{BrokenHeart}} Сломанные серда Порченой Лии больше не будет постоянно пополняться до 11, вместо этого они будет пополняться только до 6#↑ {{Speed}} +0.05 к скорости за каждое разбитое сердце вместо потери#↑ +20% шанс очаровать врагов", "Порченая Лия", "ru")
 EID:addBirthright(taintedLeah, "Leah contaminada ya no recibirá {{BrokenHeart}} 11 corazones rotos, en cambio sólo tendrá 6#↑ {{Speed}} Velocidad +0.05 por cada corazón roto que posea#20% de posibilidad de encantar enemigos", "Leah Contaminada", "spa")
 
 -- Peter 
-local normalPeter = Isaac.GetPlayerTypeByName("Peter", false)
 EID:addBirthright(normalPeter, "↑ Peter gains changes from both Devil and Angel deals#↑ Tear rate gained from angel deals is capped at 30 instead of 15", "Peter", "en_us")
 
 -- Tainted Peter 
-local taintedPeter = Isaac.GetPlayerTypeByName("PeterB", true)
 EID:addBirthright(taintedPeter, "", "Peter", "en_us")
 
 --Esc Key

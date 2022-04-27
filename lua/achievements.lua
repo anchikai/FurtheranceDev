@@ -1,170 +1,516 @@
 local mod = Furtherance
+
 local game = Game()
-mod.Unlocks = {LeahIsaac = 0, LeahBlueBaby = 0, LeahSatan = 0, LeahLamb = 0, LeahMegaSatan = 0, LeahBossRush = 0, LeahHush = 0, LeahGreed = 0, LeahGreedier = 0, LeahDeli = 0, LeahMother = 0, LeahBeast = 0, LeahAll = 0, LeahBMegaSatan = 0, LeahBGreedier = 0, LeahBDeli = 0, LeahBMother = 0, LeahBBeast = 0}
-local json = require("json")
+
+local normalLeah = Isaac.GetPlayerTypeByName("Leah", false)
+local taintedLeah = Isaac.GetPlayerTypeByName("LeahB", true)
+local normalPeter = Isaac.GetPlayerTypeByName("Peter", false)
+local taintedPeter = Isaac.GetPlayerTypeByName("PeterB", true)
+local normalMiriam = Isaac.GetPlayerTypeByName("Miriam", false)
+local taintedMiriam = Isaac.GetPlayerTypeByName("MiriamB", true)
+
+local AchievementGraphics = {
+	Leah = {
+		MomsHeart = "achievement_shakerbaby",
+		Isaac = "achievement_pacifist",
+		Satan = "achievement_bookofdespair",
+		BlueBaby = "achievement_blankbomsb",
+		Lamb = "achievement_bookofillusions",
+		BossRush = "achievement_stonebombs",
+		Hush = "achievement_immortalheart",
+		MegaSatan = "achievement_saltybaby",
+		Delirium = "achievement_illusionheart",
+		Mother = "achievement_menorah",
+		Beast = "achievement_saltshaker",
+		GreedMode = "achievement_saltypawn",
+		Greedier = "achievement_luckyseven",
+		Tainted = "achievement_taintededith",
+		FullCompletion = "achievement.full_completion",
+	},
+	LeahB = {
+		PolNegPath = "achievement_saltyrocks",
+		SoulPath = "achievement_soulofedith",
+		MegaSatan = "achievement_fountain",
+		Delirium = "achievement_chisel",
+		Mother = "achievement_redhood",
+		Beast = "achievement_bowloftears",
+		Greedier = "achievement_",
+		FullCompletion = "achievement.full_completion_b",
+	},
+	Peter = {
+		MomsHeart = "achievement_shakerbaby",
+		Isaac = "achievement_pacifist",
+		Satan = "achievement_bookofdespair",
+		BlueBaby = "achievement_blankbomsb",
+		Lamb = "achievement_bookofillusions",
+		BossRush = "achievement_stonebombs",
+		Hush = "achievement_immortalheart",
+		MegaSatan = "achievement_saltybaby",
+		Delirium = "achievement_illusionheart",
+		Mother = "achievement_menorah",
+		Beast = "achievement_saltshaker",
+		GreedMode = "achievement_saltypawn",
+		Greedier = "achievement_luckyseven",
+		Tainted = "achievement_taintededith",
+		FullCompletion = "achievement.full_completion",
+	},
+	PeterB = {
+		PolNegPath = "achievement_saltyrocks",
+		SoulPath = "achievement_soulofedith",
+		MegaSatan = "achievement_fountain",
+		Delirium = "achievement_chisel",
+		Mother = "achievement_redhood",
+		Beast = "achievement_bowloftears",
+		Greedier = "achievement_",
+		FullCompletion = "achievement.full_completion_b",
+	},
+	Miriam = {
+		MomsHeart = "achievement_shakerbaby",
+		Isaac = "achievement_pacifist",
+		Satan = "achievement_bookofdespair",
+		BlueBaby = "achievement_blankbomsb",
+		Lamb = "achievement_bookofillusions",
+		BossRush = "achievement_stonebombs",
+		Hush = "achievement_immortalheart",
+		MegaSatan = "achievement_saltybaby",
+		Delirium = "achievement_illusionheart",
+		Mother = "achievement_menorah",
+		Beast = "achievement_saltshaker",
+		GreedMode = "achievement_saltypawn",
+		Greedier = "achievement_luckyseven",
+		Tainted = "achievement_taintededith",
+		FullCompletion = "achievement.full_completion",
+	},
+	MiriamB = {
+		PolNegPath = "achievement_saltyrocks",
+		SoulPath = "achievement_soulofedith",
+		MegaSatan = "achievement_fountain",
+		Delirium = "achievement_chisel",
+		Mother = "achievement_redhood",
+		Beast = "achievement_bowloftears",
+		Greedier = "achievement_",
+		FullCompletion = "achievement.full_completion_b",
+	},
+}
+
+mod.Unlocks = {
+	Leah = {
+		MomsHeart = {Unlock = false, Hard = false},
+		Isaac = {Unlock = false, Hard = false},
+		Satan = {Unlock = false, Hard = false},
+		BlueBaby = {Unlock = false, Hard = false},
+		Lamb = {Unlock = false, Hard = false},
+		BossRush = {Unlock = false, Hard = false},
+		Hush = {Unlock = false, Hard = false},
+		MegaSatan = {Unlock = false, Hard = false},
+		Delirium = {Unlock = false, Hard = false},
+		Mother = {Unlock = false, Hard = false},
+		Beast = {Unlock = false, Hard = false},
+		GreedMode = {Unlock = false, Hard = false},
+		FullCompletion = {Unlock = false, Hard = false},
+	},
+	LeahB = {
+		MomsHeart = {Unlock = false, Hard = false},
+		Isaac = {Unlock = false, Hard = false},
+		Satan = {Unlock = false, Hard = false},
+		BlueBaby = {Unlock = false, Hard = false},
+		Lamb = {Unlock = false, Hard = false},
+		BossRush = {Unlock = false, Hard = false},
+		Hush = {Unlock = false, Hard = false},
+		MegaSatan = {Unlock = false, Hard = false},
+		Delirium = {Unlock = false, Hard = false},
+		Mother = {Unlock = false, Hard = false},
+		Beast = {Unlock = false, Hard = false},
+		GreedMode = {Unlock = false, Hard = false},
+		PolNegPath = false,
+		SoulPath = false,
+		FullCompletion = {Unlock = false, Hard = false},
+	},
+	Peter = {
+		MomsHeart = {Unlock = false, Hard = false},
+		Isaac = {Unlock = false, Hard = false},
+		Satan = {Unlock = false, Hard = false},
+		BlueBaby = {Unlock = false, Hard = false},
+		Lamb = {Unlock = false, Hard = false},
+		BossRush = {Unlock = false, Hard = false},
+		Hush = {Unlock = false, Hard = false},
+		MegaSatan = {Unlock = false, Hard = false},
+		Delirium = {Unlock = false, Hard = false},
+		Mother = {Unlock = false, Hard = false},
+		Beast = {Unlock = false, Hard = false},
+		GreedMode = {Unlock = false, Hard = false},
+		FullCompletion = {Unlock = false, Hard = false},
+	},
+	PeterB = {
+		MomsHeart = {Unlock = false, Hard = false},
+		Isaac = {Unlock = false, Hard = false},
+		Satan = {Unlock = false, Hard = false},
+		BlueBaby = {Unlock = false, Hard = false},
+		Lamb = {Unlock = false, Hard = false},
+		BossRush = {Unlock = false, Hard = false},
+		Hush = {Unlock = false, Hard = false},
+		MegaSatan = {Unlock = false, Hard = false},
+		Delirium = {Unlock = false, Hard = false},
+		Mother = {Unlock = false, Hard = false},
+		Beast = {Unlock = false, Hard = false},
+		GreedMode = {Unlock = false, Hard = false},
+		PolNegPath = false,
+		SoulPath = false,
+		FullCompletion = {Unlock = false, Hard = false},
+	},
+	Miriam = {
+		MomsHeart = {Unlock = false, Hard = false},
+		Isaac = {Unlock = false, Hard = false},
+		Satan = {Unlock = false, Hard = false},
+		BlueBaby = {Unlock = false, Hard = false},
+		Lamb = {Unlock = false, Hard = false},
+		BossRush = {Unlock = false, Hard = false},
+		Hush = {Unlock = false, Hard = false},
+		MegaSatan = {Unlock = false, Hard = false},
+		Delirium = {Unlock = false, Hard = false},
+		Mother = {Unlock = false, Hard = false},
+		Beast = {Unlock = false, Hard = false},
+		GreedMode = {Unlock = false, Hard = false},
+		FullCompletion = {Unlock = false, Hard = false},
+	},
+	MiriamB = {
+		MomsHeart = {Unlock = false, Hard = false},
+		Isaac = {Unlock = false, Hard = false},
+		Satan = {Unlock = false, Hard = false},
+		BlueBaby = {Unlock = false, Hard = false},
+		Lamb = {Unlock = false, Hard = false},
+		BossRush = {Unlock = false, Hard = false},
+		Hush = {Unlock = false, Hard = false},
+		MegaSatan = {Unlock = false, Hard = false},
+		Delirium = {Unlock = false, Hard = false},
+		Mother = {Unlock = false, Hard = false},
+		Beast = {Unlock = false, Hard = false},
+		GreedMode = {Unlock = false, Hard = false},
+		PolNegPath = false,
+		SoulPath = false,
+		FullCompletion = {Unlock = false, Hard = false},
+	},
+}
+
+local function PlayAchievement(achivement)
+	if GiantBookAPI then
+		GiantBookAPI.ShowAchievement(achivement .. ".png")
+	end
+end
+
+local function GetPlayerAchievements(player)
+	local ptype = player:GetPlayerType()
+	local name = player:GetName()
+	local isTainted = nil
+	if ptype == normalLeah or ptype == normalPeter or ptype == normalMiriam then
+		isTainted = false
+	elseif ptype == taintedLeah or ptype == taintedPeter or ptype == taintedMiriam then
+		isTainted = true
+	end
+	if isTainted ~= nil then
+		return {name,isTainted}
+	else
+		return nil
+	end
+end
 
 function mod:StartUnlocks()
-	if mod:HasData() then
-		local unlockedData = json.decode(mod:LoadData())
-		mod.Unlocks = json.decode(unlockedData.Unlocks)
-		-- Leah
-		if mod.Unlocks.LeahIsaac == 0 then
-			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_BINDS_OF_DEVOTION)
-		end
-		if mod.Unlocks.LeahBlueBaby == 0 then
-			
-		end
-		if mod.Unlocks.LeahSatan == 0 then
-			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_LEAHS_LOCK)
-		end
-		if mod.Unlocks.LeahLamb == 0 then
-			
-		end
-		if mod.Unlocks.LeahMegaSatan == 0 then
-			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PARASITIC_POOFER)
-		end
-		if mod.Unlocks.LeahBossRush == 0 then
-			
-		end
-		if mod.Unlocks.LeahHush == 0 then
-			
-		end
-		if mod.Unlocks.LeahGreed == 0 then
-			
-		end
-		if mod.Unlocks.LeahGreedier == 0 then
-			game:GetItemPool():RemoveCollectible(CollectibleType.HEART_EMBEDDED_COIN)
-		end
-		if mod.Unlocks.LeahDeli == 0 then
-			
-		end
-		if mod.Unlocks.LeahMother == 0 then
-			
-		end
-		if mod.Unlocks.LeahBeast == 0 then
-			
-		end
-		if mod.Unlocks.LeahAll == 0 then
-			
-		end
-		
-		-- Tainted Leah
-		if mod.Unlocks.LeahBMegaSatan == 0 then
-			
-		end
-		if mod.Unlocks.LeahBGreedier == 0 then
-			
-		end
-		if mod.Unlocks.LeahBDeli == 0 then
-			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_SHATTERED_HEART)
-		end
-		if mod.Unlocks.LeahBMother == 0 then
-			
-		end
-		if mod.Unlocks.LeahBBeast == 0 then
-			
-		end
-	else
-		-- Leah
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_BINDS_OF_DEVOTION)
-		game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_LEAHS_LOCK)
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PARASITIC_POOFER)
-		game:GetItemPool():RemoveCollectible(CollectibleType.HEART_EMBEDDED_COIN)
-		
-		-- Tainted Leah
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_SHATTERED_HEART)
-	end
+	-- Character
+	--if mod.Unlocks.Character.Achivement == false then
+	--	game:GetItemPool():RemoveCollectible(collectible)
+	--end
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.StartUnlocks)
 
-function mod:update(entity)
-	local save = false
-	local saveData = {}
-	for i = 0, game:GetNumPlayers() - 1 do
-		local player = Isaac.GetPlayer(i)
-		if player:GetName() == "Leah" then	-- Leah
-			if entity.Type == EntityType.ENTITY_ISAAC then
-				mod.Unlocks.LeahIsaac = mod.Unlocks.LeahIsaac + 1
-				save = true
-				if mod.Unlocks.LeahIsaac == 1 then
-					game:GetHUD():ShowItemText("Binds of Devotion", "has appeared in the basement", false)
+
+function mod:UpdateCompletion(name, difficulty)
+	for p = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(p) 
+		local AchievementPlayer = GetPlayerAchievements(player)
+		if AchievementPlayer == nil then return end
+		local isTainted = AchievementPlayer[2]
+		local playerName = AchievementPlayer[1]
+		if not isTainted then
+			local TargetTab = mod.Unlocks[playerName]
+			if TargetTab[name].Unlock == false then
+				TargetTab[name].Unlock = true
+				
+				--if AchievementGraphics[playerName][name] then
+					PlayAchievement(AchievementGraphics[playerName][name])
+					--CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics.Edith[name] .. ".png")
+				--end
+			end
+			if difficulty == Difficulty.DIFFICULTY_HARD then
+				TargetTab[name].Hard = true
+			elseif difficulty == Difficulty.DIFFICULTY_GREEDIER then
+				if TargetTab[name].Hard == false then
+					TargetTab[name].Hard = true
+					PlayAchievement(AchievementGraphics[playerName].Greedier)
+					--CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics.Edith.Greedier .. ".png")
 				end
 			end
-			if entity.Type == EntityType.ENTITY_SATAN then
-				mod.Unlocks.LeahSatan = mod.Unlocks.LeahSatan + 1
-				save = true
-				if mod.Unlocks.LeahSatan == 1 then
-					game:GetHUD():ShowItemText("Leah's Lock", "has appeared in the basement", false)
+			
+			local MissingUnlock = false
+			local MissingHard = false
+			for boss, tab in pairs(TargetTab) do
+				if boss ~= "FullCompletion"
+				and type(tab) == "table"
+				then
+					if tab.Unlock == false then
+						MissingUnlock = true
+						break
+					end
+					if tab.Hard == false then
+						MissingHard = true
+						
+						if boss == "GreedMode" then
+							MissingUnlock = true
+							break
+						end
+					end
 				end
 			end
-			if entity.Type == EntityType.ENTITY_MEGA_SATAN_2 then
-				mod.Unlocks.LeahMegaSatan = mod.Unlocks.LeahMegaSatan + 1
-				save = true
-				if mod.Unlocks.LeahMegaSatan == 1 then
-					game:GetHUD():ShowItemText("Parasitic Poofer", "has appeared in the basement", false)
+			
+			if (not MissingUnlock)
+			then
+				if not TargetTab.FullCompletion.Unlock then
+					TargetTab.FullCompletion.Unlock = true
+					PlayAchievement(AchievementGraphics[playerName].FullCompletion)
+					--CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. enums.AchievementGraphics.PlayerJob.FullCompletion .. ".png")]]
+				
+					if (not MissingHard)
+					and (not TargetTab.FullCompletion.Hard)
+					then
+						TargetTab.FullCompletion.Hard = true
+					end
+				end
+			end
+		else
+			local TargetTab = mod.Unlocks[playerName]
+
+			if TargetTab[name].Unlock == false then
+				TargetTab[name].Unlock = true
+				
+				if AchievementGraphics[playerName][name] then
+					PlayAchievement(AchievementGraphics[playerName][name])
+					--CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics.EdithB[name] .. ".png")
+				end
+			end
+			if difficulty == Difficulty.DIFFICULTY_HARD then
+				TargetTab[name].Hard = true
+			elseif difficulty == Difficulty.DIFFICULTY_GREEDIER then
+				if TargetTab[name].Hard == false then
+					TargetTab[name].Hard = true
+					PlayAchievement(AchievementGraphics[playerName].Greedier)
+					--CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics.EdithB.Greedier .. ".png")
+				end
+			end
+			
+			if TargetTab.PolNegPath == false
+			and TargetTab.Isaac.Unlock == true
+			and TargetTab.BlueBaby.Unlock == true
+			and TargetTab.Satan.Unlock == true
+			and TargetTab.Lamb.Unlock == true
+			then
+				TargetTab.PolNegPath = true
+				PlayAchievement(AchievementGraphics[playerName].PolNegPath)
+				--CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics.EdithB.PolNegPath .. ".png")
+			end
+			
+			if TargetTab.SoulPath == false
+			and TargetTab.BossRush.Unlock == true
+			and TargetTab.Hush.Unlock == true
+			then
+				TargetTab.SoulPath = true
+				PlayAchievement(AchievementGraphics[playerName].SoulPath)
+				--CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics.EdithB.SoulPath .. ".png")
+			end
+			
+			local MissingUnlock = false
+			local MissingHard = false
+			for boss, tab in pairs(TargetTab) do
+				if boss ~= "FullCompletion"
+				and type(tab) == "table"
+				then
+					if tab.Unlock == false then
+						MissingUnlock = true
+						break
+					end
+					if tab.Hard == false then
+						MissingHard = true
+						
+						if boss == "GreedMode" then
+							MissingUnlock = true
+							break
+						end
+					end
+				end
+			end
+			
+			if (not MissingUnlock)	then
+				if not TargetTab.FullCompletion.Unlock then
+					TargetTab.FullCompletion.Unlock = true
+					--[[CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics.EdithB.FullCompletion .. ".png")]]
+					PlayAchievement(AchievementGraphics[playerName].FullCompletion)
+					if (not MissingHard)
+					and (not TargetTab.FullCompletion.Hard)
+					then
+						TargetTab.FullCompletion.Hard = true
+					end
 				end
 			end
 		end
-		if player:GetName() == "LeahB" then	-- Tainted Leah
-			if entity.Type == EntityType.ENTITY_DELIRIUM then
-				mod.Unlocks.LeahBDeli = mod.Unlocks.LeahBDeli + 1
-				save = true
-				if mod.Unlocks.LeahBDeli == 1 then
-					game:GetHUD():ShowItemText("Shattered Heart", "has appeared in the basement", false)
-				end
+	end
+end
+
+local UnlockFunctions = {
+	[LevelStage.STAGE4_2] = function(room, stageType, difficulty, desc) -- Heart / Mother
+		if room:IsClear() then
+			local Name
+			if stageType >= StageType.STAGETYPE_REPENTANCE
+			and desc.SafeGridIndex == -10
+			then
+				Name = "Mother"
+			elseif stageType <= StageType.STAGETYPE_AFTERBIRTH
+			and room:IsCurrentRoomLastBoss()
+			then
+				Name = "MomsHeart"
+			end
+		
+			if Name then
+				mod:UpdateCompletion(Name, difficulty)
 			end
 		end
+	end,
+	[LevelStage.STAGE4_3] = function(room, stageType, difficulty, desc) -- Hush
+		if room:IsClear() then
+			local Name = "Hush"
+		
+			mod:UpdateCompletion(Name, difficulty)
+		end
+	end,
+	[LevelStage.STAGE5] = function(room, stageType, difficulty, desc) -- Satan / Isaac
+		if room:IsClear() then
+			local Name = "Satan"
+			if stageType == StageType.STAGETYPE_WOTL then
+				Name = "Isaac"
+			end
+		
+			mod:UpdateCompletion(Name, difficulty)
+		end
+	end,
+	[LevelStage.STAGE6] = function(room, stageType, difficulty, desc) -- Mega Satan / Lamb / Blue Baby
+		if desc.SafeGridIndex == -7 then
+			local MegaSatan
+			for _, satan in ipairs(Isaac.FindByType(EntityType.ENTITY_MEGA_SATAN_2, 0)) do
+				MegaSatan = satan
+				break
+			end
+		
+			if not MegaSatan then return end
+			
+			local sprite = MegaSatan:GetSprite()
+			
+			if sprite:IsPlaying("Death") and sprite:GetFrame() == 110 then
+				local Name = "MegaSatan"
+			
+				mod:UpdateCompletion(Name, difficulty)
+			end
+		else
+			if room:IsClear() then
+				local Name = "Lamb"
+				if stageType == StageType.STAGETYPE_WOTL then
+					Name = "BlueBaby"
+				end
+			
+				mod:UpdateCompletion(Name, difficulty)
+			end
+		end
+	end,
+	[LevelStage.STAGE7] = function(room, stageType, difficulty, desc) -- Delirium
+		if desc.Data.Subtype == 70 and room:IsClear() then
+			local Name = "Delirium"
+		
+			mod:UpdateCompletion(Name, difficulty)
+		end
+	end,
+	
+	BossRush = function(room, stageType, difficulty, desc) -- Boss Rush
+		if room:IsAmbushDone() then
+			local Name = "BossRush"
+		
+			mod:UpdateCompletion(Name, difficulty)
+		end
+	end,
+	Beast = function(room, stageType, difficulty, desc) -- Beast
+		local Beast
+		for _, beast in ipairs(Isaac.FindByType(EntityType.ENTITY_BEAST, 0)) do
+			Beast = beast
+			break
+		end
+	
+		if not Beast then return end
+		
+		local sprite = Beast:GetSprite()
+		
+		if sprite:IsPlaying("Death") and sprite:GetFrame() == 30 then
+			local Name = "Beast"
+		
+			mod:UpdateCompletion(Name, difficulty)
+		end
+	end,
+	Greed = function(room, stageType, difficulty, desc) -- Greed
+		if room:IsClear() then
+			local Name = "GreedMode"
+			
+			mod:UpdateCompletion(Name, difficulty)
+		end
+	end,
+}
+
+function mod:postUpdateAchievements()
+	local level = game:GetLevel()
+	local room = game:GetRoom()
+	local desc = level:GetCurrentRoomDesc()
+	local levelStage = level:GetStage()
+	local roomType = room:GetType()
+	local difficulty = game.Difficulty
+	
+	if Isaac.GetChallenge() > 0
+	or game:GetVictoryLap() > 0
+	then
+		return
 	end
-	if save then
-		saveData.Unlocks = json.encode(mod.Unlocks)
-		mod:SaveData(json.encode(saveData))
+	
+	if difficulty <= Difficulty.DIFFICULTY_HARD then
+		local stageType = level:GetStageType()
+		
+		if levelStage == LevelStage.STAGE4_1
+		and level:GetCurses() & LevelCurse.CURSE_OF_LABYRINTH > 0
+		then
+			levelStage = levelStage + 1
+		end
+		
+		if roomType == RoomType.ROOM_BOSS and UnlockFunctions[levelStage] then
+			UnlockFunctions[levelStage](room, stageType, difficulty, desc)
+			mod:OnSave(false)
+		elseif roomType == RoomType.ROOM_BOSSRUSH then
+			UnlockFunctions.BossRush(room, stageType, difficulty, desc)
+			mod:OnSave(false)
+		elseif levelStage == LevelStage.STAGE8 and roomType == RoomType.ROOM_DUNGEON then
+			UnlockFunctions.Beast(room, stageType, difficulty, desc)
+			mod:OnSave(false)
+		end
+	else
+		if levelStage == LevelStage.STAGE7_GREED
+		and roomType == RoomType.ROOM_BOSS
+		and desc.SafeGridIndex == 45
+		then
+			UnlockFunctions.Greed(room, nil, difficulty, desc)
+			mod:OnSave(false)
+		end
 	end
 end
 
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.update, EntityType.ENTITY_ISAAC)
--- where blue baby?
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.update, EntityType.ENTITY_SATAN)
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.update, EntityType.ENTITY_THE_LAMB)
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.update, EntityType.ENTITY_MEGA_SATAN_2)
--- boss rush later
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.update, EntityType.ENTITY_HUSH)
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.update, EntityType.ENTITY_ULTRA_GREED)
--- where ultra greedier?
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.update, EntityType.ENTITY_DELIRIUM)
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.update, EntityType.ENTITY_MOTHER)
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.update, EntityType.ENTITY_BEAST)
-
-
-function mod:FurtheranceCommands(cmd)
-	local save = false
-	local saveData = {}
-	if cmd == "leahreset" or cmd == "LeahReset" or cmd == "LEAHRESET" then
-		mod.Unlocks.LeahIsaac = 0
-		mod.Unlocks.LeahBlueBaby = 0
-		mod.Unlocks.LeahSatan = 0
-		mod.Unlocks.LeahLamb = 0
-		mod.Unlocks.LeahMegaSatan = 0
-		mod.Unlocks.LeahBossRush = 0
-		mod.Unlocks.LeahHush = 0
-		mod.Unlocks.LeahGreed = 0
-		mod.Unlocks.LeahGreedier = 0
-		mod.Unlocks.LeahDeli = 0
-		mod.Unlocks.LeahMother = 0
-		mod.Unlocks.LeahBeast = 0
-		mod.Unlocks.LeahAll = 0
-		save = true
-		print("Completion mark progress for Leah has been reset.")
-	end
-	if cmd == "taintedleahreset" or cmd == "TaintedLeahReset" or cmd == "TAINTEDLEAHRESET" then
-		mod.Unlocks.LeahBMegaSatan = 0
-		mod.Unlocks.LeahBGreedier = 0
-		mod.Unlocks.LeahBDeli = 0
-		mod.Unlocks.LeahBMother = 0
-		mod.Unlocks.LeahBBeast = 0
-		save = true
-		print("Completion mark progress for Tainted Leah has been reset.")
-	end
-end
-
-mod:AddCallback(ModCallbacks.MC_EXECUTE_CMD, mod.FurtheranceCommands)
+mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.postUpdateAchievements)
