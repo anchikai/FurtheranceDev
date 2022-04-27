@@ -188,6 +188,8 @@ function mod:OnSave(isSaving)
 			saveData["player_"..tostring(i+1)].HeartCount = data.HeartCount
 			saveData["player_"..tostring(i+1)].CameraSaved = data.CameraSaved
 			saveData["player_"..tostring(i+1)].CurRoomID = data.CurRoomID
+			saveData["player_"..tostring(i+1)].ShiftKeyPressed = data.ShiftKeyPressed
+			saveData["player_"..tostring(i+1)].ShiftMultiplier = data.ShiftMultiplier
 			if player:GetName() == "Leah" then
 				saveData["player_"..tostring(i+1)].kills = data.leahkills
 			end
@@ -270,6 +272,12 @@ function mod:OnLoad(isLoading)
 			end
 			if loadData["player_"..tostring(i+1)].CurRoomID then
 				data.CurRoomID = loadData["player_"..tostring(i+1)].CurRoomID
+			end
+			if loadData["player_"..tostring(i+1)].ShiftKeyPressed then
+				data.ShiftKeyPressed = loadData["player_"..tostring(i+1)].ShiftKeyPressed
+			end
+			if loadData["player_"..tostring(i+1)].ShiftMultiplier then
+				data.ShiftMultiplier = loadData["player_"..tostring(i+1)].ShiftMultiplier
 			end
 			
 			if data.Flipped == nil then
