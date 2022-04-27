@@ -115,6 +115,8 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.RenovatorOnKill)
 
+local dropCooldownSpeed = 150
+
 function mod:OnUpdate(player)
 	local room = game:GetRoom()
 	local data = mod:GetData(player)
@@ -125,21 +127,21 @@ function mod:OnUpdate(player)
 			data.dropcooldown = 0
 		elseif not Game():IsPaused() then
 			if not ChargeBar:IsPlaying("Disappear") then
-				if drop and data.HeartCount >= 2 and data.dropcooldown < 150 and player:GetBrokenHearts() < 11 then
+				if drop and data.HeartCount >= 2 and data.dropcooldown < dropCooldownSpeed and player:GetBrokenHearts() < 11 then
 					if not ChargeBar:IsPlaying("Charging") then
 						ChargeBar:Play("Charging")
 					else
 						data.dropcooldown = data.dropcooldown + 1
-						ChargeBar:SetFrame(100 - math.floor(data.dropcooldown*100/150))
+						ChargeBar:SetFrame(100 - math.floor(data.dropcooldown*100/dropCooldownSpeed))
 					end
 					ChargeBar:SetLayerFrame(2,1)
 					ChargeBar.Offset = Vector(0,-35)
 					ChargeBar:Render(Game():GetRoom():WorldToScreenPosition(player.Position), Vector.Zero, Vector.Zero)
 				elseif ChargeBar:IsPlaying("Charging") then
-					if (not drop or data.dropcooldown >=150) then
+					if (not drop or data.dropcooldown >=dropCooldownSpeed) then
 						ChargeBar:Play("Disappear")
 					end
-					if data.dropcooldown >= 150 then
+					if data.dropcooldown >= dropCooldownSpeed then
 						brokenHeart = true
 					end
 				end
