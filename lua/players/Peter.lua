@@ -123,9 +123,6 @@ function mod:PeterStats(player, flag)
 			end
 		end
 	elseif player:GetName() == "PeterB" then -- If the player is Tainted Peter it will apply his stats
-		if flag == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage - 1.69
-		end
 		if flag == CacheFlag.CACHE_LUCK then
 			player.Luck = player.Luck - 1
 		end
@@ -267,6 +264,14 @@ function mod:PeterQual(entity)
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.PeterQual, PickupVariant.PICKUP_COLLECTIBLE)
+
+function mod:BloodyTears(tear)
+	if player:GetName() == "PeterB" then
+		tear:ChangeVariant(TearVariant.BLOOD)
+	end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.BloodyTears)
 
 function mod:shouldDeHook()
 	local reqs = {

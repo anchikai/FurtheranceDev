@@ -16,7 +16,7 @@
 		nameimage="playername_Peter.png"
 		portrait="playerportrait_Peter_A.png"
 		birthright="???" />
-	<player name="PeterB" bSkinParent="Peter" skinColor="-1" hp="6" items="7" costumeSuffix="peterb"
+	<player name="PeterB" bSkinParent="Peter" skinColor="-1" hp="6" costumeSuffix="peterb"
 		skin="Character_002_Peter_B.png"
 		nameimage="playername_Peter.png"
 		portrait="playerportrait_Peter_B.png"
