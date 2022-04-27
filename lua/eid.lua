@@ -87,7 +87,7 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_ENTER_KEY, "Intenta abrir la entr
 
 --Shift Key
 EID:addCollectible(CollectibleType.COLLECTIBLE_SHIFT_KEY, "↑ {{Damage}} +15 Damage up#Damage up wears off over the next minute", "Shift Key")
-EID:addCollectible(CollectibleType.COLLECTIBLE_SHIFT_KEY, "", "Клавиша Shift", "ru")
+EID:addCollectible(CollectibleType.COLLECTIBLE_SHIFT_KEY, "↑ {{Damage}} +15 к урону#Бонусный урон уменьшается до нуля в течение минуты", "Клавиша Shift", "ru")
 EID:addCollectible(CollectibleType.COLLECTIBLE_SHIFT_KEY, "", "Tecla Shift", "spa")
 
 
