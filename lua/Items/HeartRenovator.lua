@@ -125,7 +125,7 @@ function mod:OnUpdate(player)
 			data.dropcooldown = 0
 		elseif not Game():IsPaused() then
 			if not ChargeBar:IsPlaying("Disappear") then
-				if drop and data.HeartCount >= 2 and data.dropcooldown < 60 and player:GetBrokenHearts() < 11 then
+				if drop and data.HeartCount >= 2 and data.dropcooldown < 150 and player:GetBrokenHearts() < 11 then
 					if not ChargeBar:IsPlaying("Charging") then
 						ChargeBar:Play("Charging")
 					else
