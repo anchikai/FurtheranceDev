@@ -127,7 +127,7 @@ local Wiki = {
 	ShiftKey = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "On pickup, Isaac gains a temporary +15 damage up."},
+			{str = "Upon use, Isaac gains a temporary +15 damage up."},
 			{str = "- The damage upgrade scales down to 0 over the course of one minute. The damage consistantly goes down -0.125 per half second."},
 		},
 		{ -- Notes
