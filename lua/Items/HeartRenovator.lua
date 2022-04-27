@@ -139,7 +139,7 @@ function mod:OnUpdate(player)
 					if (not drop or data.dropcooldown >=60) then
 						ChargeBar:Play("Disappear")
 					end
-					if data.dropcooldown >= 60 then
+					if data.dropcooldown >= 150 then
 						brokenHeart = true
 					end
 				end
