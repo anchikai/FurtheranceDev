@@ -130,13 +130,13 @@ function mod:OnUpdate(player)
 						ChargeBar:Play("Charging")
 					else
 						data.dropcooldown = data.dropcooldown + 1
-						ChargeBar:SetFrame(100 - math.floor(data.dropcooldown*100/60))
+						ChargeBar:SetFrame(100 - math.floor(data.dropcooldown*100/150))
 					end
 					ChargeBar:SetLayerFrame(2,1)
 					ChargeBar.Offset = Vector(0,-35)
 					ChargeBar:Render(Game():GetRoom():WorldToScreenPosition(player.Position), Vector.Zero, Vector.Zero)
 				elseif ChargeBar:IsPlaying("Charging") then
-					if (not drop or data.dropcooldown >=60) then
+					if (not drop or data.dropcooldown >=150) then
 						ChargeBar:Play("Disappear")
 					end
 					if data.dropcooldown >= 150 then
