@@ -6,8 +6,8 @@ function mod:UseF4(boi, rng, player)
 	player:AnimateCollectible(CollectibleType.COLLECTIBLE_F4_KEY, "UseItem", "PlayerPickup")
 	if not player:HasCollectible(CollectibleType.COLLECTIBLE_ALT_KEY) then
 		-- Thanks for solving this problem Connor!
-		local roomsList = game:GetLevel():GetRooms()
 		local level = game:GetLevel()
+		local roomsList = level:GetRooms()
 		-- Iterate over each index in the rooms list.
 		for i = 0, roomsList.Size - 1 do
 			local roomDesc = roomsList:Get(i)

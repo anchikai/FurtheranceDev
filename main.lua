@@ -166,8 +166,11 @@ include("lua/cards/KeyCard.lua")
 -- Pickup Luas
 include("lua/pickups/MoonHeart.lua")
 
+-- Floor Generation Luas
+include("lua/rooms/NoahsArk.lua")
+
 -- Save Data/Unlocks
-include("lua/achievements.lua")
+--include("lua/achievements.lua")
 
 function mod:OnSave(isSaving)
 	local save = {}

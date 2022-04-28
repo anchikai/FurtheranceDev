@@ -1,7 +1,7 @@
 local mod = Furtherance
 local game = Game()
 
-function mod:UseEnter(boi, rng, player, slot, data)
+function mod:UseEnter(_, _, player)
 	local room = game:GetRoom()
 	local level = game:GetLevel()
 	local hud = game:GetHUD()

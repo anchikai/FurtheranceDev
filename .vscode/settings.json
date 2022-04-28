@@ -77,6 +77,8 @@
         "Wiki",
         "EntityFlag",
         "GiantBookAPI",
-        "Difficulty"
+        "Difficulty",
+        "Challenge",
+        "Random"
     ]
 }

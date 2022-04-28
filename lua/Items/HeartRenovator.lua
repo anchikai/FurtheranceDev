@@ -42,8 +42,8 @@ function mod:Hearts(entity, collider)
 		heartCounter[CustomPickups.TaintedHearts.HEART_HOARDED] = 8
 	end
 	if collider.Type == EntityType.ENTITY_PLAYER then
-		local collider = collider:ToPlayer()
-		local data = mod:GetData(collider)
+		local player = collider:ToPlayer()
+		local data = mod:GetData(player)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) then -- Leah's Heart Counter Gimmick
 			local MaximumCount = 99
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
@@ -52,8 +52,8 @@ function mod:Hearts(entity, collider)
 			if data.HeartCount < MaximumCount and entity:IsShopItem() == false then
 				for subtype, amount in pairs (heartCounter) do
 					if entity.SubType == subtype then
-						local emptyHearts = collider:GetEffectiveMaxHearts() - collider:GetHearts()
-						local fullHearts = collider:GetHearts() + collider:GetSoulHearts() + collider:GetBrokenHearts() * 2
+						local emptyHearts = player:GetEffectiveMaxHearts() - player:GetHearts()
+						local fullHearts = player:GetHearts() + player:GetSoulHearts() + player:GetBrokenHearts() * 2
 						if emptyHearts <= amount then
 							if subtype ~= HeartSubType.HEART_BLENDED then
 								data.HeartCount = data.HeartCount + amount - emptyHearts
@@ -64,16 +64,16 @@ function mod:Hearts(entity, collider)
 									data.HeartCount = data.HeartCount + 1
 								end
 							end
-							if not collider:CanPickRedHearts() then
+							if not player:CanPickRedHearts() then
 								entity:GetSprite():Play("Collect",true)
 								entity:Die()
 								SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
-							elseif collider:CanPickRedHearts() and RepentancePlusMod then
+							elseif player:CanPickRedHearts() and RepentancePlusMod then
 								if entity.SubType == CustomPickups.TaintedHearts.HEART_HOARDED then
 									entity:GetSprite():Play("Collect",true)
 									entity:Die()
 									SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
-									collider:AddHearts(emptyHearts)
+									player:AddHearts(emptyHearts)
 								end
 							end
 						end
