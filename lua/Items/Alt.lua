@@ -1,17 +1,15 @@
 local mod = Furtherance
 local game = Game()
-local rng = RNG()
 
 function mod:UseAlt(_, _, player)
-
 	local stage = game:GetLevel():GetStage()
 	local stageType = game:GetLevel():GetStageType()
 	local level = game:GetLevel()
-	
+	local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_ALT_KEY)
 	local randomAB = rng:RandomInt(3)
 	local randomREP = rng:RandomInt(2)
-	
-	player:GetData().NoChargeAlt = true
+	local data = mod:GetData(player)
+	data.NoChargeAlt = true
 	
 	--if the stage is Blue Womb, Sheol, Cathedral, Dark Room, Chest, The Void, or Home
 	if (stage == LevelStage.STAGE4_3) or (stage == LevelStage.STAGE5) or (stage == LevelStage.STAGE6) or (stage == LevelStage.STAGE7) or (stage == LevelStage.STAGE8) then
@@ -49,14 +47,15 @@ mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseAlt, CollectibleType.COLLECTIBL
 function mod:ChargeAlt()
 	for i = 0, game:GetNumPlayers() - 1 do
         local player = game:GetPlayer(i)
-		if player:GetData().NoChargeAlt == false then
+		local data = mod:GetData(player)
+		if data.NoChargeAlt == false then
 			if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == CollectibleType.COLLECTIBLE_ALT_KEY then
 				player:FullCharge(ActiveSlot.SLOT_PRIMARY, true)
 			elseif player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == CollectibleType.COLLECTIBLE_ALT_KEY then
 				player:FullCharge(ActiveSlot.SLOT_SECONDARY, true)
 			end
 		end
-		player:GetData().NoChargeAlt = false
+		data.NoChargeAlt = false
 	end
 end
 

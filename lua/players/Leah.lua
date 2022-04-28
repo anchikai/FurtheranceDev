@@ -190,7 +190,7 @@ function mod:leahStats(player, flag)
 		if flag == CacheFlag.CACHE_TEARFLAG then
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_CHARM
 			if game:GetFrameCount()%2 == 0 then
-				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PLAYER_CREEP_BLACK, 0, player.Position, Vector(0,0), player)
+				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PLAYER_CREEP_BLACK, 0, player.Position, Vector.Zero, player)
 			end
 		end
 	end

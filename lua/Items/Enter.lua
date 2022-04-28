@@ -15,7 +15,7 @@ function mod:UseEnter(boi, rng, player, slot, data)
 		room:EmitBloodFromWalls(3, 10)
 		hud:ShowFortuneText("Time knows no bounds")
 		room:TrySpawnBossRushDoor(true, true)
-		room:MamaMegaExplosion(Vector(0, 0))
+		room:MamaMegaExplosion(Vector.Zero)
 		return true
 	else
 		mod:playFailSound()

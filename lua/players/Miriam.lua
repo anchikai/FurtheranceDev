@@ -57,7 +57,7 @@ function mod:PuddleRift(entity)
 			if entity.Type == EntityType.ENTITY_TEAR then
 				local data = mod:GetData(player)
 				if data.MiriamTearCount == 12 then
-					local rift = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.RIFT, 0, entity.Position, Vector(0,0), player):ToEffect()
+					local rift = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.RIFT, 0, entity.Position, Vector.Zero, player):ToEffect()
 					local sprite = rift:GetSprite()
 					sprite.Scale = Vector.Zero
 					data.MiriamRiftTimeout = 90

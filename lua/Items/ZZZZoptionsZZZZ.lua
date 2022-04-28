@@ -8,7 +8,7 @@ function MOD:ZZZZ()
 			local PLAYER = Isaac.GetPlayer(P)
 			if PLAYER:HasCollectible(CollectibleType.COLLECTIBLE_ZZZZoptionsZZZZ) then
 				PLAYER:AddCollectible(CollectibleType.COLLECTIBLE_TMTRAINER)
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 0, Isaac.GetRandomPosition(), Vector(0, 0), PLAYER)
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 0, Isaac.GetRandomPosition(), Vector.Zero, PLAYER)
 				PLAYER:RemoveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER)
 			end
 		end

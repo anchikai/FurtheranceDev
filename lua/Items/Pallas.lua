@@ -15,13 +15,12 @@ end
 
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetPallas)
 
-function mod:TearSize(EntityTear)
-    local player = EntityTear.Parent:ToPlayer()
+function mod:TearSize(tear)
+    local player = tear.Parent:ToPlayer()
     if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_PALLAS) and player:HasCollectible(CollectibleType.COLLECTIBLE_FLAT_STONE)) then -- Flat stone synergy
-		local sprite = EntityTear:GetSprite()
-		EntityTear.Scale = EntityTear.Scale * 2
+		tear.Scale = tear.Scale * 2
     elseif (player and player:HasCollectible(CollectibleType.COLLECTIBLE_PALLAS)) then
-		EntityTear.Scale = EntityTear.Scale * 1.2
+		tear.Scale = tear.Scale * 1.2
 	end
 end
 

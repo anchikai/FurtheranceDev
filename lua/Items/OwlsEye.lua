@@ -5,7 +5,6 @@ function mod:OwlTear(tear)
 	if tear.SpawnerType == EntityType.ENTITY_PLAYER and tear.Parent then
         local player = tear.Parent:ToPlayer()
 		local data = mod:GetData(player)
-		
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_OWLS_EYE) then
 			local rollOwl = rng:RandomInt(100)+1
 			if data.OwlShot == true then

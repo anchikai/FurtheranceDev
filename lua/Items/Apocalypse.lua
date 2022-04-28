@@ -1,6 +1,5 @@
 local mod = Furtherance
 local game = Game()
-local rng = RNG()
 
 function mod:UseApocalypse(_, _, player)
     local data = player:GetData()
@@ -9,7 +8,7 @@ function mod:UseApocalypse(_, _, player)
         repeat
             data.items = player:GetCollectibleCount()
         until data.items == 0
-            Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 0, Vector(0, 0), Vector(0, 0), nil)
+            Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 0, Vector.Zero, Vector.Zero, nil)
             data.items = data.items - 1
         end
 	return true

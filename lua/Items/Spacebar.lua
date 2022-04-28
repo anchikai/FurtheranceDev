@@ -2,8 +2,8 @@ local mod = Furtherance
 local rng = RNG()
 local game = Game()
 
-function mod:UseSpaceBar(boi, rng, player)
-	--if the stage is Blue Womb, Dark Room, Chest, The Void, Home, or Corpse II
+function mod:UseSpaceBar(_, _, player)
+	-- If the stage is Blue Womb, Dark Room, Chest, The Void, Home, or Corpse II
 	local level = game:GetLevel()
 	local stage = level:GetStage()
 	local stageType = level:GetStageType()
@@ -11,10 +11,10 @@ function mod:UseSpaceBar(boi, rng, player)
 		mod:playFailSound()
 		player:AnimateSad()
 	else
-	--do normal thing
-		game:StartRoomTransition(game:GetLevel():QueryRoomTypeIndex(RoomType.ROOM_ERROR, false, RNG()), Direction.NO_DIRECTION ,3)
+	-- Do normal thing
+		game:StartRoomTransition(game:GetLevel():QueryRoomTypeIndex(RoomType.ROOM_ERROR, false, RNG()), Direction.NO_DIRECTION, 3)
 	end
-	if rng:RandomInt(100) <= 8 then
+	if rng:RandomInt(25) <= 2 then
 		player:RemoveCollectible(CollectibleType.COLLECTIBLE_SPACEBAR_KEY)
 	end
 end

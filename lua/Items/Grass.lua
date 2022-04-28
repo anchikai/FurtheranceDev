@@ -13,7 +13,7 @@ function mod:Grass(player)
 		SFXManager():Play(laugh)
 		player:TryRemoveTrinket(TrinketType.TRINKET_GRASS)
 		player:AnimateHappy()
-		Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_GNAWED_LEAF, Isaac.GetFreeNearPosition(player.Position, 50), Vector(0, 0), player)
+		Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_GNAWED_LEAF, Isaac.GetFreeNearPosition(player.Position, 50), Vector.Zero, player)
 	end
 	if player:HasTrinket(TrinketType.TRINKET_GRASS, false) then -- 1 hour countdown
 		if (goldenbox > 2 or goldenbox > 4) then		-- Golden Trinket + Mom's Box

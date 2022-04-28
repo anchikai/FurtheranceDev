@@ -107,7 +107,7 @@ function mod:RenovatorOnKill(entity)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) then
 			local hrRNG = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_HEART_RENOVATOR)
 			if hrRNG:RandomInt(16) == 0 then
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_SCARED, entity.Position, Vector(0, 0), player)
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_SCARED, entity.Position, Vector.Zero, player)
 			end
 		end
 	end
@@ -225,7 +225,7 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function() -- The actual heart coun
 			counter:Load("gfx/heartcounter.anm2", true)
 			counter:Play("Idle", true)
 			counter.Color = Color(1,1,1,transperancy)
-			counter:Render(Vector(48 + offset.X, 32.5 + offset.Y + charoffset), Vector(0, 0), Vector(0, 0))
+			counter:Render(Vector(48 + offset.X, 32.5 + offset.Y + charoffset), Vector.Zero, Vector.Zero)
 			charoffset = charoffset + 12
 		end
 	end

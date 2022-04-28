@@ -19,9 +19,9 @@ function mod:CKeyTeleported(boi, rng, player, slot, data)
 		local data = player:GetData()
 		if data.Teleported == true then
 		--spawn item pedestals 
-		game:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, room:GetCenterPos(), Vector(0, 0), nil, 0, room:GetSpawnSeed())
-		game:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, room:GetGridPosition(63), Vector(0, 0), nil, 0, room:GetSpawnSeed())
-		game:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, room:GetGridPosition(71), Vector(0, 0), nil, 0, room:GetSpawnSeed())
+		game:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, room:GetCenterPos(), Vector.Zero, nil, 0, room:GetSpawnSeed())
+		game:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, room:GetGridPosition(63), Vector.Zero, nil, 0, room:GetSpawnSeed())
+		game:Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, room:GetGridPosition(71), Vector.Zero, nil, 0, room:GetSpawnSeed())
 		data.Teleported = false
 		end
 	end

@@ -2,14 +2,12 @@ local mod = Furtherance
 local game = Game()
 local bruh = Isaac.GetSoundIdByName("Bruh")
 
-function mod:CringeDMG()
-	for i = 0, game:GetNumPlayers() - 1 do
-        local player = Isaac.GetPlayer(i)
-		if player:HasTrinket(TrinketType.TRINKET_CRINGE, false) then
-			SFXManager():Play(bruh)
-			for e, entity in ipairs(Isaac.GetRoomEntities()) do
-				entity:AddFreeze(EntityRef(player), 10)
-			end
+function mod:CringeDMG(entity)
+	local player = entity:ToPlayer()
+	if player:HasTrinket(TrinketType.TRINKET_CRINGE, false) then
+		SFXManager():Play(bruh)
+		for e, entities in ipairs(Isaac.GetRoomEntities()) do
+			entities:AddFreeze(EntityRef(player), 10)
 		end
 	end
 end

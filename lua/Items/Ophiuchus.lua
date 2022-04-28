@@ -1,14 +1,14 @@
 local mod = Furtherance
 
-function mod:GetOphiuchus(player, cacheFlag)
+function mod:GetOphiuchus(player, flag)
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_OPHIUCHUS) then
-		if cacheFlag == CacheFlag.CACHE_TEARFLAG then
+		if flag == CacheFlag.CACHE_TEARFLAG then
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_WIGGLE | TearFlags.TEAR_SPECTRAL
 		end
-		if cacheFlag == CacheFlag.CACHE_DAMAGE then
+		if flag == CacheFlag.CACHE_DAMAGE then
 			player.Damage = player.Damage + 0.3
 		end
-		if cacheFlag == CacheFlag.CACHE_FIREDELAY then
+		if flag == CacheFlag.CACHE_FIREDELAY then
 			player.MaxFireDelay = player.MaxFireDelay + player.FireDelay
 		end
 	end

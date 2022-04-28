@@ -8,7 +8,7 @@ function mod:Parasite(entity)
 		if poofRNG:RandomInt(5) == 0 then
 			player:UseCard(Card.CARD_HEARTS_2, 257)
 			player:AddBrokenHearts(1)
-			Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, 5, player.Position, Vector(0, 0), player)
+			Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF02, 5, player.Position, Vector.Zero, player)
 			SFXManager():Play(SoundEffect.SOUND_DEATH_BURST_LARGE)
 		end
 	end

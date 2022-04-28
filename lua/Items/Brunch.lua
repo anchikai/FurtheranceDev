@@ -1,8 +1,8 @@
 local mod = Furtherance
 
-function mod:GetBrunch(player, cacheFlag)
+function mod:GetBrunch(player, flag)
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_BRUNCH) then
-		if cacheFlag == CacheFlag.CACHE_SHOTSPEED then
+		if flag == CacheFlag.CACHE_SHOTSPEED then
 			player.ShotSpeed = player.ShotSpeed + 0.16
 		end
 	end
