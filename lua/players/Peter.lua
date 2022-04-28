@@ -253,7 +253,6 @@ mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.AngelDevil)
 function mod:PeterQual(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		local room = game:GetRoom()
 		if player:GetName() == "PeterB" then
 			local itemConfig = Isaac.GetItemConfig()
 			if itemConfig:GetCollectible(entity.SubType).Quality > 2 then
