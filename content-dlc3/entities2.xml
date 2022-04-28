@@ -14,4 +14,7 @@
     <entity anm2path="polydipsia_puddle.anm2" baseHP="0" boss="0" champion="0" collisionDamage="1" collisionMass="0" collisionRadius="60" friction="1" id="1000" name="Polydipsia Puddle" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="54" subtype="1">
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
     </entity>
+	<entity anm2path="spiritual_wound_target.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="60" friction="1" id="1000" name="Spiritual Wound Target" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="7886" >
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
 </entities>
