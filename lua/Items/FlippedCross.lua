@@ -201,7 +201,11 @@ function mod:UltraSecretPool(pool, decrease, seed)
 		local data = mod:GetData(player)
 		local room = game:GetRoom()
 		if data.Flipped == true then
-			return game:GetItemPool():GetCollectible(ItemPoolType.POOL_ULTRA_SECRET, false, room:GetSpawnSeed(), CollectibleType.COLLECTIBLE_NULL)
+			if Rerolled ~= true then
+				Rerolled = true
+				return game:GetItemPool():GetCollectible(ItemPoolType.POOL_ULTRA_SECRET, false, seed, CollectibleType.COLLECTIBLE_NULL)
+			end
+			Rerolled = false
 		end
 	end
 end
@@ -222,23 +226,16 @@ local function getItemCount()
 end
 
 function mod:DoubleStuff(entity)
-	print(entity.SpawnerEntity, entity.SpawnerType, entity.SpawnerVariant)
+	--print(entity.SpawnerEntity, entity.SpawnerType, entity.SpawnerVariant)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
-
+		local room = game:GetRoom()
 		local itemCount = getItemCount()
-		print(entity.SpawnerType ~= EntityType.ENTITY_PICKUP)
-		print(itemCount)
+		--print(entity.SpawnerType ~= EntityType.ENTITY_PICKUP)
+		--print(itemCount)
 		if data.Flipped == true and entity.SpawnerType ~= EntityType.ENTITY_PICKUP and itemCount < 10 then
-			local item = Isaac.Spawn(
-				entity.Type,
-				entity.Variant,
-				entity.SubType,
-				Isaac.GetFreeNearPosition(entity.Position, 40),
-				Vector.Zero,
-				entity
-			)
+			local item game:Spawn(entity.Type, entity.Variant, Isaac.GetFreeNearPosition(entity.Position, 40), Vector.Zero, entity, 0, room:GetSpawnSeed())
 		end
 	end
 end
@@ -250,10 +247,17 @@ function mod:TougherEnemies(entity, damage, flags, source, frames)
 		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
 		if data.Flipped == true then
-			if entity.Type == EntityType.ENTITY_PLAYER then
-				damage = damage * 2
-			else
-				damage = damage / 2
+			if entity:IsActiveEnemy(false) and entity:IsVulnerableEnemy() then
+				local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_FLIPPED_CROSS)
+				if data.DamageTimeout == nil then
+					data.DamageTimeout = false
+				elseif data.DamageTimeout == true then
+					data.DamageTimeout = false
+					entity:SetColor(Color(0.709, 0.0196, 0.0196, 1, 0.65, 0, 0), 1, 1, false, false)
+					return false
+				else
+					data.DamageTimeout = true
+				end
 			end
 		end
 	end

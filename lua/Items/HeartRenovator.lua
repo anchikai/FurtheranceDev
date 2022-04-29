@@ -106,8 +106,10 @@ function mod:RenovatorOnKill(entity)
 		local player = game:GetPlayer(i)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) then
 			local hrRNG = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_HEART_RENOVATOR)
-			if hrRNG:RandomInt(16) == 0 then
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_SCARED, entity.Position, Vector.Zero, player)
+			if entity:IsActiveEnemy(false) then
+				if hrRNG:RandomInt(16) == 0 then
+					Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_SCARED, entity.Position, Vector.Zero, player)
+				end
 			end
 		end
 	end
