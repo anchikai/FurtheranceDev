@@ -29,10 +29,10 @@ function mod:UseFlippedCross(_, _, player)
 				game:ShowHallucination(0, BackdropType.UTERO)
 			elseif level:GetName() == "Dank Depths I" or level:GetName() == "Dank Depths II" or level:GetName() == "Dank Depths XL" then -- Dank Depths
 				game:ShowHallucination(0, BackdropType.SCARRED_WOMB)
-			elseif level:GetName() == "Womb I" or level:GetName() == "Womb II" or level:GetName() == "Womb XL" or level:GetName() == "Utero I" or level:GetName() == "Utero II"  or level:GetName() == "Utero XL" or level:GetName() == "Scarred Womb I" or level:GetName() == "Scarred Womb II" or level:GetName() == "Scarred Womb XL" then -- Womb, Utero, Scarred Womb
+			elseif level:GetName() == "Womb I" or level:GetName() == "Womb II" or level:GetName() == "Womb XL" or level:GetName() == "Utero I" or level:GetName() == "Utero II" or level:GetName() == "Utero XL" or level:GetName() == "Scarred Womb I" or level:GetName() == "Scarred Womb II" or level:GetName() == "Scarred Womb XL" then -- Womb, Utero, Scarred Womb
 				game:ShowHallucination(0, BackdropType.BLUE_WOMB)
 			elseif level:GetName() == "???" then -- Blue Womb
-				game:ShowHallucination(0, rng:RandomInt(2)+14) -- Either pick Sheol or Cathedral
+				game:ShowHallucination(0, rng:RandomInt(2) + 14) -- Either pick Sheol or Cathedral
 			elseif level:GetName() == "Sheol" then -- Sheol
 				game:ShowHallucination(0, BackdropType.DARKROOM)
 			elseif level:GetName() == "Cathedral" then -- Cathedral
@@ -61,8 +61,8 @@ function mod:UseFlippedCross(_, _, player)
 		end
 		SFXManager():Stop(SoundEffect.SOUND_DEATH_CARD)
 		SFXManager():Play(SoundEffect.SOUND_LAZARUS_FLIP_DEAD)
-		room:SetFloorColor(Color(1,1,1,1,0.1,0,0))
-		room:SetWallColor(Color(1,1,1,1,0.1,0,0))
+		room:SetFloorColor(Color(1, 1, 1, 1, 0.1, 0, 0))
+		room:SetWallColor(Color(1, 1, 1, 1, 0.1, 0, 0))
 	else
 		data.Flipped = false
 		data.FlipShader = 1
@@ -87,7 +87,7 @@ function mod:UseFlippedCross(_, _, player)
 				game:ShowHallucination(0, BackdropType.DANK_DEPTHS)
 			elseif level:GetName() == "Womb I" or level:GetName() == "Womb II" or level:GetName() == "Womb XL" then
 				game:ShowHallucination(0, BackdropType.WOMB)
-			elseif level:GetName() == "Utero I" or level:GetName() == "Utero II"  or level:GetName() == "Utero XL" then
+			elseif level:GetName() == "Utero I" or level:GetName() == "Utero II" or level:GetName() == "Utero XL" then
 				game:ShowHallucination(0, BackdropType.UTERO)
 			elseif level:GetName() == "Scarred Womb I" or level:GetName() == "Scarred Womb II" or level:GetName() == "Scarred Womb XL" then
 				game:ShowHallucination(0, BackdropType.SCARRED_WOMB)
@@ -121,8 +121,8 @@ function mod:UseFlippedCross(_, _, player)
 		end
 		SFXManager():Stop(SoundEffect.SOUND_DEATH_CARD)
 		SFXManager():Play(SoundEffect.SOUND_LAZARUS_FLIP_ALIVE)
-		room:SetFloorColor(Color(1,1,1,1,0,0,0))
-		room:SetWallColor(Color(1,1,1,1,0,0,0))
+		room:SetFloorColor(Color(1, 1, 1, 1, 0, 0, 0))
+		room:SetWallColor(Color(1, 1, 1, 1, 0, 0, 0))
 	end
 	return true
 end
@@ -156,10 +156,10 @@ function mod:RoomPersist()
 					game:ShowHallucination(0, BackdropType.UTERO)
 				elseif level:GetName() == "Dank Depths I" or level:GetName() == "Dank Depths II" or level:GetName() == "Dank Depths XL" then -- Dank Depths
 					game:ShowHallucination(0, BackdropType.SCARRED_WOMB)
-				elseif level:GetName() == "Womb I" or level:GetName() == "Womb II" or level:GetName() == "Womb XL" or level:GetName() == "Utero I" or level:GetName() == "Utero II"  or level:GetName() == "Utero XL" or level:GetName() == "Scarred Womb I" or level:GetName() == "Scarred Womb II" or level:GetName() == "Scarred Womb XL" then -- Womb, Utero, Scarred Womb
+				elseif level:GetName() == "Womb I" or level:GetName() == "Womb II" or level:GetName() == "Womb XL" or level:GetName() == "Utero I" or level:GetName() == "Utero II" or level:GetName() == "Utero XL" or level:GetName() == "Scarred Womb I" or level:GetName() == "Scarred Womb II" or level:GetName() == "Scarred Womb XL" then -- Womb, Utero, Scarred Womb
 					game:ShowHallucination(0, BackdropType.BLUE_WOMB)
 				elseif level:GetName() == "???" then -- Blue Womb
-					game:ShowHallucination(0, rng:RandomInt(2)+14) -- Either pick Sheol or Cathedral
+					game:ShowHallucination(0, rng:RandomInt(2) + 14) -- Either pick Sheol or Cathedral
 				elseif level:GetName() == "Sheol" then -- Sheol
 					game:ShowHallucination(0, BackdropType.DARKROOM)
 				elseif level:GetName() == "Cathedral" then -- Cathedral
@@ -187,8 +187,8 @@ function mod:RoomPersist()
 				end
 			end
 			SFXManager():Stop(SoundEffect.SOUND_DEATH_CARD)
-			room:SetFloorColor(Color(1,1,1,1,0.1,0,0))
-			room:SetWallColor(Color(1,1,1,1,0.1,0,0))
+			room:SetFloorColor(Color(1, 1, 1, 1, 0.1, 0, 0))
+			room:SetWallColor(Color(1, 1, 1, 1, 0.1, 0, 0))
 		end
 	end
 end
@@ -208,12 +208,37 @@ end
 
 mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, mod.UltraSecretPool)
 
+local function getItemCount()
+	local result = 0
+
+	local entities = Isaac.GetRoomEntities()
+	for _, entity in ipairs(entities) do
+		if entity.Type == EntityType.ENTITY_PICKUP then
+			result = result + 1
+		end
+	end
+
+	return result
+end
+
 function mod:DoubleStuff(entity)
+	print(entity.SpawnerEntity, entity.SpawnerType, entity.SpawnerVariant)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
-		if data.Flipped == true then
-			--Isaac.Spawn(entity.Type, entity.Variant, entity.SubType, Isaac.GetFreeNearPosition(entity.Position, 40), Vector.Zero, nil)
+
+		local itemCount = getItemCount()
+		print(entity.SpawnerType ~= EntityType.ENTITY_PICKUP)
+		print(itemCount)
+		if data.Flipped == true and entity.SpawnerType ~= EntityType.ENTITY_PICKUP and itemCount < 10 then
+			local item = Isaac.Spawn(
+				entity.Type,
+				entity.Variant,
+				entity.SubType,
+				Isaac.GetFreeNearPosition(entity.Position, 40),
+				Vector.Zero,
+				entity
+			)
 		end
 	end
 end
@@ -240,7 +265,7 @@ function mod:GetShaderParams(shaderName)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = game:GetPlayer(i)
 		local data = mod:GetData(player)
-		local params = { 
+		local params = {
 			--Amount = data.FlipShader
 		}
 		return params;
