@@ -168,6 +168,7 @@ include("lua/pickups/MoonHeart.lua")
 
 -- Floor Generation Luas
 --include("lua/rooms/NoahsArk.lua")
+include("lua/rooms/HomeExit.lua")
 
 -- Save Data/Unlocks
 --include("lua/achievements.lua")
@@ -193,6 +194,7 @@ function mod:OnSave(isSaving)
 			saveData["player_"..tostring(i+1)].CurRoomID = data.CurRoomID
 			saveData["player_"..tostring(i+1)].ShiftKeyPressed = data.ShiftKeyPressed
 			saveData["player_"..tostring(i+1)].ShiftMultiplier = data.ShiftMultiplier
+			saveData["player_"..tostring(i+1)].SleptInMomsBed = data.SleptInMomsBed
 			if player:GetName() == "Leah" then
 				saveData["player_"..tostring(i+1)].kills = data.leahkills
 			end
@@ -281,6 +283,9 @@ function mod:OnLoad(isLoading)
 			end
 			if loadData["player_"..tostring(i+1)].ShiftMultiplier then
 				data.ShiftMultiplier = loadData["player_"..tostring(i+1)].ShiftMultiplier
+			end
+			if loadData["player_"..tostring(i+1)].SleptInMomsBed then
+				data.SleptInMomsBed = loadData["player_"..tostring(i+1)].SleptInMomsBed
 			end
 			
 			if data.Flipped == nil then

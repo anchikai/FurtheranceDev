@@ -214,14 +214,11 @@ mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, mod.UltraSecretPool)
 
 local function getItemCount()
 	local result = 0
-
-	local entities = Isaac.GetRoomEntities()
-	for _, entity in ipairs(entities) do
+	for _, entity in ipairs(Isaac.GetRoomEntities()) do
 		if entity.Type == EntityType.ENTITY_PICKUP then
 			result = result + 1
 		end
 	end
-
 	return result
 end
 

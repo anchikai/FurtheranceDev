@@ -79,6 +79,7 @@
         "GiantBookAPI",
         "Difficulty",
         "Challenge",
-        "Random"
+        "Random",
+        "BedSubType"
     ]
 }
