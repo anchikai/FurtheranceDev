@@ -3,7 +3,7 @@ local game = Game()
 
 function mod:RoomSkip()
     for i = 0, game:GetNumPlayers() - 1 do
-		local player = Isaac.GetPlayer(i)
+        local player = Isaac.GetPlayer(i)
         local level = game:GetLevel()
         local room = game:GetRoom()
         if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_PILLAR_OF_CLOUDS)) then
@@ -15,11 +15,9 @@ function mod:RoomSkip()
                     if leaveDoor ~= nil and leaveDoor:IsLocked() == false then
                         leaveDoor:Open()
                         player.Position = room:GetDoorSlotPosition(leaveDoor.Slot)
-                    else
-                        if room:IsDoorSlotAllowed((enterDoor.Slot-2)%4) then
-                            level:MakeRedRoomDoor(level:GetCurrentRoomIndex(), (enterDoor.Slot-2)%4)
-                            player.Position = room:GetDoorSlotPosition((enterDoor.Slot-2)%4)
-                        end
+                    elseif room:IsDoorSlotAllowed((enterDoor.Slot - 2) % 4) then
+                        level:MakeRedRoomDoor(level:GetCurrentRoomIndex(), (enterDoor.Slot - 2) % 4)
+                        player.Position = room:GetDoorSlotPosition((enterDoor.Slot - 2) % 4)
                     end
                 end
             end
