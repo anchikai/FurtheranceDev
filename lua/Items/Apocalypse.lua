@@ -3,6 +3,7 @@ local game = Game()
 
 function mod:UseApocalypse(_, _, player)
     local data = player:GetData()
+    player:RemoveCollectible(CollectibleType.COLLECTIBLE_APOCALYPSE)
     if player:GetCollectibleCount() > 0 then
         data.ApocalypseItem = 0
         for i = 1, CollectibleType.NUM_COLLECTIBLES do
