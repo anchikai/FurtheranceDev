@@ -13,7 +13,6 @@ function mod:UseApocalypse(_, _, player)
                     player:RemoveCollectible(data.ApocalypseItemCount, false, ActiveSlot.SLOT_PRIMARY, true)
                 until
                     player:HasCollectible(data.ApocalypseItemCount) == false
-                end
                 data.ApocalypseItem = data.ApocalypseItem + 1
             end
             data.ApocalypseItemCount = data.ApocalypseItemCount + 1
