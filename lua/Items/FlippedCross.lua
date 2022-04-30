@@ -222,17 +222,31 @@ local function getItemCount()
 	return result
 end
 
-function mod:DoubleStuff(entity)
-	--print(entity.SpawnerEntity, entity.SpawnerType, entity.SpawnerVariant)
+---@param pickup EntityPickup
+function mod:DoubleStuff(pickup)
+	if pickup.FrameCount ~= 1 then
+		return
+	end
+
+	-- print(pickup.SpawnerEntity, pickup.SpawnerType, pickup.SpawnerVariant)
+
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
 		local room = game:GetRoom()
 		local itemCount = getItemCount()
-		--print(entity.SpawnerType ~= EntityType.ENTITY_PICKUP)
-		--print(itemCount)
-		if data.Flipped == true and entity.SpawnerType ~= EntityType.ENTITY_PICKUP and itemCount < 10 then
-			local item game:Spawn(entity.Type, entity.Variant, Isaac.GetFreeNearPosition(entity.Position, 40), Vector.Zero, entity, 0, room:GetSpawnSeed())
+		if data.Flipped == true and pickup.SpawnerType ~= EntityType.ENTITY_PLAYER and itemCount < 10 then
+			pickup.SpawnerEntity = player
+			pickup.SpawnerType = EntityType.ENTITY_PLAYER
+			pickup.SpawnerVariant = player.Variant
+			local newPickup = Isaac.Spawn(
+				EntityType.ENTITY_PICKUP,
+				pickup.Variant,
+				0,
+				Isaac.GetFreeNearPosition(pickup.Position, 40),
+				Vector.Zero,
+				player
+			):ToPickup()
 		end
 	end
 end
