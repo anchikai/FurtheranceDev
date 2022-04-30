@@ -15,12 +15,14 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.DataStuff)
 function mod:UseCamera(_, _, player)
 	local data = mod:GetData(player)
 	local level = game:GetLevel()
-	local room = game:GetRoom()
 	if data.CameraSaved == false then
 		data.CameraSaved = true
 		data.CurRoomID = level:GetCurrentRoomIndex()
 	elseif data.CameraSaved == true then
+		-- "This must be set before every `Game:StartRoomTransition` call
+		-- or else the function can send you to the wrong room"
 		level.LeaveDoor = -1
+
 		game:StartRoomTransition(data.CurRoomID, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT, player, -1)
 		data.CameraSaved = false
 		player:UseActiveItem(CollectibleType.COLLECTIBLE_D7, false, false, true, false, -1)
