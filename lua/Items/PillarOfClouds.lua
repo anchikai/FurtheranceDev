@@ -8,24 +8,19 @@ function mod:RoomSkip()
         local room = game:GetRoom()
         if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_PILLAR_OF_CLOUDS)) then
             local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_PILLAR_OF_FIRE)
-            if rng:RandomInt(2) < 2 then
+            if rng:RandomInt(2) == 0 then
                 local leaveDoor = room:GetDoor(level.LeaveDoor)
-                if leaveDoor ~= nil and leaveDoor:IsLocked() == false then
-                    if leaveDoor:ToDoor().Slot == DoorSlot.LEFT0 or leaveDoor:ToDoor().Slot == DoorSlot.LEFT1 then
-                        xOffset = -60
-                        yOffset = 0
-                    elseif leaveDoor:ToDoor().Slot == DoorSlot.UP0 or leaveDoor:ToDoor().Slot == DoorSlot.UP1 then
-                        xOffset = 0
-                        yOffset = -60
-                    elseif leaveDoor:ToDoor().Slot == DoorSlot.RIGHT0 or leaveDoor:ToDoor().Slot == DoorSlot.RIGHT1 then
-                        xOffset = 60
-                        yOffset = 0
-                    elseif leaveDoor:ToDoor().Slot == DoorSlot.DOWN0 or leaveDoor:ToDoor().Slot == DoorSlot.DOWN1 then
-                        xOffset = 0
-                        yOffset = 60
+                local enterDoor = room:GetDoor(level.EnterDoor)
+                if room:IsFirstVisit() and room:IsClear() == false then
+                    if leaveDoor ~= nil and leaveDoor:IsLocked() == false then
+                        leaveDoor:Open()
+                        player.Position = room:GetDoorSlotPosition(leaveDoor.Slot)
+                    else
+                        if room:IsDoorSlotAllowed((enterDoor.Slot-2)%4) then
+                            level:MakeRedRoomDoor(level:GetCurrentRoomIndex(), (enterDoor.Slot-2)%4)
+                            player.Position = room:GetDoorSlotPosition((enterDoor.Slot-2)%4)
+                        end
                     end
-                    leaveDoor:Open()
-                    player.Position = Vector(leaveDoor.Position.X+xOffset, leaveDoor.Position.Y+yOffset)
                 end
             end
         end
