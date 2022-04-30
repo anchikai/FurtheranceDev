@@ -20,8 +20,9 @@ function mod:SpawnFire(entity, damage, flag, source, frames)
                     else
                         RandomVector2 = -rng:RandomFloat()*speed
                     end
-                    local fire = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HOT_BOMB_FIRE, 0, player.Position, Vector(RandomVector1, RandomVector2), player):ToEffect()
-                    fire.Scale = fire.Scale / 1.5
+                    local fire = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HOT_BOMB_FIRE, 0, player.Position, Vector(RandomVector1, RandomVector2), player)
+                    fire:ToEffect().Scale = fire:ToEffect().Scale / 1.5
+
                 end
 			end
         end
@@ -29,3 +30,17 @@ function mod:SpawnFire(entity, damage, flag, source, frames)
 end
 
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.SpawnFire, EntityType.ENTITY_PLAYER)
+
+function mod:FireTears(entity)
+    if entity.SpawnerType == EntityType.ENTITY_PLAYER then
+        local player = entity.SpawnerEntity:ToPlayer()
+        if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_PILLAR_OF_FIRE)) then
+            local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_PILLAR_OF_FIRE)
+            if rng:RandomFloat() < 0.005 then
+                print("cum")
+            end
+        end
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.FireTears, EffectVariant.HOT_BOMB_FIRE)

@@ -239,19 +239,12 @@ function mod:DoubleStuff(pickup)
 			pickup.SpawnerEntity = player
 			pickup.SpawnerType = EntityType.ENTITY_PLAYER
 			pickup.SpawnerVariant = player.Variant
-			local newPickup = Isaac.Spawn(
-				EntityType.ENTITY_PICKUP,
-				pickup.Variant,
-				0,
-				Isaac.GetFreeNearPosition(pickup.Position, 40),
-				Vector.Zero,
-				player
-			):ToPickup()
+			local newPickup = Isaac.Spawn(EntityType.ENTITY_PICKUP, pickup.Variant, 0, Isaac.GetFreeNearPosition(pickup.Position, 40), Vector.Zero, player):ToPickup()
 		end
 	end
 end
 
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.DoubleStuff)
+mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.DoubleStuff)
 
 function mod:TougherEnemies(entity, damage, flags, source, frames)
 	for i = 0, game:GetNumPlayers() - 1 do
