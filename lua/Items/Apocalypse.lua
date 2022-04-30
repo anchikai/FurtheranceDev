@@ -6,7 +6,7 @@ function mod:UseApocalypse(_, _, player)
     player:RemoveCollectible(CollectibleType.COLLECTIBLE_APOCALYPSE)
     if player:GetCollectibleCount() > 0 then
         data.ApocalypseItem = 0
-        for i = 1, CollectibleType.NUM_COLLECTIBLES do
+        for i = 1, Isaac.GetItemConfig():GetCollectibles().Size -1 do
             while player:HasCollectible(i) do
                 player:RemoveCollectible(i, false, ActiveSlot.SLOT_PRIMARY, true)
                 data.ApocalypseItem = data.ApocalypseItem + 1
