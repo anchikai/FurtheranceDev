@@ -23,18 +23,23 @@ end
 function mod:ConvertToPlanetarium()
     if isTreasureRoom() and someoneHasAlmagest() then
         game:ShowHallucination(0, BackdropType.PLANETARIUM)
+        SFXManager():Stop(SoundEffect.SOUND_DEATH_CARD)
     end
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.ConvertToPlanetarium)
 
-function mod:PrePlanetariumPool(pool, decrease, seed)
-    if isTreasureRoom() and someoneHasAlmagest() then
-        return game:GetItemPool():GetCollectible(ItemPoolType.POOL_PLANETARIUM, false, seed, CollectibleType.COLLECTIBLE_NULL)
+function mod:PlanetariumPool(pool, decrease, seed)
+	if isTreasureRoom() and someoneHasAlmagest() then
+        if Rerolled ~= true then
+            Rerolled = true
+            return game:GetItemPool():GetCollectible(ItemPoolType.POOL_PLANETARIUM, false, seed, CollectibleType.COLLECTIBLE_NULL)
+        end
+        Rerolled = false
     end
 end
 
-mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, mod.PrePlanetariumPool)
+mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, mod.PlanetariumPool)
 
 local qualityPriceMap = {
     [0] = 1,
@@ -44,8 +49,7 @@ local qualityPriceMap = {
     [4] = 3,
 }
 
----@param pickup EntityPickup
-function mod:PlanetariumPickupSpawned(pickup)
+--[[function mod:PlanetariumPickupSpawned(pickup)
     if isTreasureRoom() and someoneHasAlmagest() and pickup.Variant == PickupVariant.PICKUP_COLLECTIBLE then
         local itemConfig = Isaac.GetItemConfig()
         local pickupQuality = itemConfig:GetCollectible(pickup.SubType).Quality
@@ -53,17 +57,15 @@ function mod:PlanetariumPickupSpawned(pickup)
         -- get the price for pickup to data
         local data = mod:GetData(pickup)
         data.BrokenHeartsPrice = qualityPriceMap[pickupQuality]
-
+        print(data.BrokenHeartsPrice)
         -- add a broken hearts price graphic (wip)
     end
 
 
 end
 
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.PostPlanetariumPool)
+mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.PostPlanetariumPool)]]
 
----@param pickup EntityPickup
----@param collider Entity
 function mod:PrePickupCollision(pickup, collider)
     local player = collider:ToPlayer()
     if not player then return end
