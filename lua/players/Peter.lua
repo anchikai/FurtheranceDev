@@ -317,7 +317,7 @@ function mod:PeterQual(entity)
 		if player:GetName() == "PeterB" then
 			local itemConfig = Isaac.GetItemConfig()
 			if data.Flipped == false then
-				if itemConfig:GetCollectible(entity.SubType).Quality > 2 then
+				if itemConfig:GetCollectible(entity.SubType).Quality > 2 and entity.SubType ~= CollectibleType.COLLECTIBLE_BIRTHRIGHT then
 					entity:Morph(entity.Type, entity.Variant, 0, false, true, false)
 				end
 			end
