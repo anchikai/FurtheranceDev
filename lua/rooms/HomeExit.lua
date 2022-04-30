@@ -55,7 +55,7 @@ function mod:Finale()
         local data = mod:GetData(player)
         local level = game:GetLevel()
         local room = game:GetRoom()
-        if level:GetCurrentRoomIndex() == 84 and level:GetPreviousRoomIndex() == -3 then
+        if level:GetStage() == LevelStage.STAGE8 and data.SleptInMomsBed == true and level:GetCurrentRoomIndex() == 84 and level:GetPreviousRoomIndex() == -3 then
             data.SleptInMomsBed = false
             game:GetHUD():SetVisible(false)
             level:SetStage(LevelStage.NUM_STAGES, 0)

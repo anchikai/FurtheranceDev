@@ -65,8 +65,7 @@ function mod:FireTears(entity)
                 local speed = 4
                 local velocity = direction * speed
 
-                player:FireTear(entity.Position, velocity, false, true, false, entity, 1)
-
+                Isaac.Spawn(EntityType.ENTITY_TEAR, TearVariant.BLOOD, 0, entity.Position, velocity, entity)
             end
         end
     end

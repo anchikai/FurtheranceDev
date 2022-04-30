@@ -80,6 +80,8 @@
         "Difficulty",
         "Challenge",
         "Random",
-        "BedSubType"
+        "BedSubType",
+        "GridRooms",
+        "DoorVariant"
     ]
 }
