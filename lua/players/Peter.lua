@@ -260,11 +260,25 @@ end
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.Hearts, PickupVariant.PICKUP_HEART)
 
 function mod:MorphHeart(entity)
-	if entity.SubType == HeartSubType.HEART_SOUL or entity.SubType == HeartSubType.HEART_HALF_SOUL then
-		for i = 0, game:GetNumPlayers() - 1 do
-			local player = game:GetPlayer(i)
-			if player:GetName() == "PeterB" then
-				entity:Morph(entity.Type, entity.Variant, HeartSubType.HEART_BLACK)
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = game:GetPlayer(i)
+		local data = mod:GetData(player)
+		if player:GetName() == "PeterB" then
+			if data.Flipped == true then
+				heart = HeartSubType.HEART_FULL
+				halfHeart = HeartSubType.HEART_HALF
+			else
+				heart = HeartSubType.HEART_BLACK
+				halfHeart = HeartSubType.HEART_BLACK
+			end
+			if entity.SubType == HeartSubType.HEART_SOUL then
+				entity:Morph(entity.Type, entity.Variant, heart)
+			elseif entity.SubType == HeartSubType.HEART_HALF_SOUL then
+				entity:Morph(entity.Type, entity.Variant, halfHeart)
+			elseif entity.SubType == HeartSubType.HEART_BLACK then
+				if data.Flipped == true then
+					entity:Morph(entity.Type, entity.Variant, HeartSubType.HEART_FULL)
+				end
 			end
 		end
 	end
