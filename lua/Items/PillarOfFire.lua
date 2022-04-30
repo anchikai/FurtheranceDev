@@ -36,8 +36,19 @@ function mod:FireTears(entity)
         local player = entity.SpawnerEntity:ToPlayer()
         if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_PILLAR_OF_FIRE)) then
             local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_PILLAR_OF_FIRE)
-            if rng:RandomFloat() < 0.005 then
-                print("cum")
+            if rng:RandomFloat() < 0.0025 then
+                local dir = 1
+                if rng:RandomInt(2) == 0 then
+                    RandomVector1 = rng:RandomInt(2)*dir
+                else
+                    RandomVector1 = -rng:RandomInt(2)*dir
+                end
+                if rng:RandomInt(2) == 0 then
+                    RandomVector2 = rng:RandomInt(2)*dir
+                else
+                    RandomVector2 = -rng:RandomInt(2)*dir
+                end
+                player:FireTear(entity.Position, Vector(RandomVector1, RandomVector2), false, true, false, entity, 1)
             end
         end
     end
