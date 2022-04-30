@@ -82,28 +82,6 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.tearCounter)
 
-function mod:Hearts(entity, collider)
-	if collider.Type == EntityType.ENTITY_PLAYER then
-		local collider = collider:ToPlayer()
-		local data = mod:GetData(collider)
-		if collider:GetName() == "MiriamB" then -- Prevent Tainted Miriam from obtaining Red Health
-			if entity.SubType == HeartSubType.HEART_DOUBLEPACK or entity.SubType == HeartSubType.HEART_FULL or entity.SubType == HeartSubType.HEART_HALF 
-			or entity.SubType == HeartSubType.HEART_ROTTEN or entity.SubType == HeartSubType.HEART_SCARED then
-				return false
-			elseif entity.SubType == HeartSubType.HEART_BLENDED then
-				if collider:GetSoulHearts() + collider:GetBoneHearts() * 2 < 24 then
-					entity:GetSprite():Play("Collect",true)
-					entity:Die()
-					SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
-					collider:AddSoulHearts(2)
-				end
-				return false
-			end
-		end
-	end
-end
-mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.Hearts, PickupVariant.PICKUP_HEART)
-
 function mod:miriamStats(player, flag)
 	local data = mod:GetData(player)
 	if player:GetName() == "Miriam" then -- If the player is Miriam it will apply her stats
