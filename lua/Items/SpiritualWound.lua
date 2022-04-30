@@ -10,7 +10,7 @@ function mod.SetCanShoot(player, canshoot) -- Funciton Credit: im_tem
 end
 
 function mod:GetSpiritualWound(player, flag)
-	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)) then
+	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)) or player:GetName() == "MiriamB" then
         mod.SetCanShoot(player, false)
 	else
         mod.SetCanShoot(player, true)
@@ -23,7 +23,7 @@ function mod:EnemyTethering(player)
 	local data = player:GetData()
     local room = game:GetRoom()
 
-	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)) then
+	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)) or player:GetName() == "MiriamB" then
 		-- Target (credit to lambchop_is_ok for the base for this)
 		local b_left = Input.IsActionPressed(ButtonAction.ACTION_SHOOTLEFT, player.ControllerIndex)
 		local b_right = Input.IsActionPressed(ButtonAction.ACTION_SHOOTRIGHT, player.ControllerIndex)
@@ -129,7 +129,7 @@ function mod:SpiritualKill(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = game:GetPlayer(i)
 		local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)
-        if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)) then
+        if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)) or player:GetName() == "MiriamB" then
             if entity.Type ~= EntityType.ENTITY_FIREPLACE and (not entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY | EntityFlag.FLAG_PERSISTENT)) then
                 if rng:RandomInt(20) == 1 then
                     SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
