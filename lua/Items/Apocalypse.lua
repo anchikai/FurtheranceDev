@@ -9,10 +9,10 @@ function mod:UseApocalypse(_, _, player)
         for i = 1, Isaac.GetItemConfig():GetCollectibles().Size -1 do
             while player:HasCollectible(i) do
                 player:RemoveCollectible(i, false, ActiveSlot.SLOT_PRIMARY, true)
+                player:TryRemoveCollectibleCostume(i, true)
                 data.ApocalypseItem = data.ApocalypseItem + 1
             end
         end
-        print("Removed All Items")
         print(data.ApocalypseItem)
     end
 
