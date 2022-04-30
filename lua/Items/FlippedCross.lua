@@ -280,9 +280,9 @@ function mod:FixInputs(entity, hook, button)
 		local data = mod:GetData(player)
 		if data.Flipped == true then
 			if button == ButtonAction.ACTION_DOWN then
-				return 0
+				
 			elseif button == ButtonAction.ACTION_UP then
-				return 0
+				
 			end
 		end
 	end

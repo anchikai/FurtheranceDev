@@ -29,6 +29,9 @@ function mod:PeterUpdate(player)
 	if player:GetName() == "Peter" then
 		
 	elseif player:GetName() == "PeterB" then
+		if player:GetSoulHearts() > 0 then
+			player:AddSoulHearts(-player:GetSoulHearts())
+		end
 		if player.FrameCount < 10 and (not mod.isLoadingData and data.Init) then
 			player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_FLIPPED_CROSS, ActiveSlot.SLOT_POCKET, false)
 		elseif player.FrameCount >= 10 and data.Init then
@@ -211,6 +214,63 @@ function mod:PeterCostumes(player)
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.PeterCostumes, normalPeter)
+
+function mod:Hearts(entity, collider)
+	if collider.Type == EntityType.ENTITY_PLAYER then
+		local player = collider:ToPlayer()
+		local data = mod:GetData(player)
+		if player:GetName() == "PeterB" then -- Prevent Tainted Peter from obtaining Non-Red Health
+			if entity.SubType == HeartSubType.HEART_SOUL or entity.SubType == HeartSubType.HEART_HALF_SOUL then
+				return false
+			elseif entity.SubType == HeartSubType.HEART_BLENDED then
+				if player:GetHearts() < player:GetMaxHearts() + (player:GetBoneHearts() * 2) then
+					entity:GetSprite():Play("Collect",true)
+					entity:Die()
+					SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
+					SFXManager():Stop(SoundEffect.SOUND_HOLY, 1, 0, false)
+					player:AddHearts(2)
+				else
+					return false
+				end
+			elseif entity.SubType == HeartSubType.HEART_BLACK then
+				if player:GetActiveCharge(ActiveSlot.SLOT_POCKET) < 6 then
+					entity:GetSprite():Play("Collect",true)
+					entity:Die()
+					if player:GetActiveCharge(ActiveSlot.SLOT_POCKET) == 5 then
+						chargeAmount = 1
+					else
+						chargeAmount = 2
+					end
+					player:SetActiveCharge(player:GetActiveCharge(ActiveSlot.SLOT_POCKET)+chargeAmount, ActiveSlot.SLOT_POCKET)
+					game:GetHUD():FlashChargeBar(player, ActiveSlot.SLOT_POCKET)
+					if player:GetActiveCharge(ActiveSlot.SLOT_POCKET) < 6 then
+						SFXManager():Play(SoundEffect.SOUND_BEEP)
+					else
+						SFXManager():Play(SoundEffect.SOUND_BATTERYCHARGE)
+						SFXManager():Play(SoundEffect.SOUND_ITEMRECHARGE)
+					end
+					SFXManager():Stop(SoundEffect.SOUND_UNHOLY, 1, 0, false)
+				else
+					return false
+				end
+			end
+		end
+	end
+end
+mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.Hearts, PickupVariant.PICKUP_HEART)
+
+function mod:MorphHeart(entity)
+	if entity.SubType == HeartSubType.HEART_SOUL or entity.SubType == HeartSubType.HEART_HALF_SOUL then
+		for i = 0, game:GetNumPlayers() - 1 do
+			local player = game:GetPlayer(i)
+			if player:GetName() == "PeterB" then
+				entity:Morph(entity.Type, entity.Variant, HeartSubType.HEART_BLACK)
+			end
+		end
+	end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.MorphHeart, PickupVariant.PICKUP_HEART)
 
 function mod:AngelDevil()
 	local room = game:GetRoom()

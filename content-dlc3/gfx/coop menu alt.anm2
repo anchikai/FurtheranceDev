@@ -1,9 +1,9 @@
 <AnimatedActor>
-	<Info CreatedBy="anchikai." CreatedOn="2/1/2022 12:53:33 PM" Version="12" Fps="30"/>
+	<Info CreatedBy="anchikai." CreatedOn="4/30/2022 12:38:57 PM" Version="13" Fps="30"/>
 	<Content>
 		<Spritesheets>
 			<Spritesheet Path="coop_leah_b.png" Id="0"/>
-			<Spritesheet Path="coop_peter.png" Id="1"/>
+			<Spritesheet Path="coop_peter_b.png" Id="1"/>
 		</Spritesheets>
 		<Layers>
 			<Layer Name="Main" Id="0" SpritesheetId="0"/>
