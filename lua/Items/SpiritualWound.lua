@@ -10,7 +10,7 @@ function mod.SetCanShoot(player, canshoot) -- Funciton Credit: im_tem
 end
 
 function mod:GetSpiritualWound(player, flag)
-	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)) or player:GetName() == "MiriamB" then
+	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)) then
         mod.SetCanShoot(player, false)
 	else
         mod.SetCanShoot(player, true)
@@ -23,12 +23,13 @@ function mod:EnemyTethering(player)
 	local data = player:GetData()
     local room = game:GetRoom()
 
-	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)) or player:GetName() == "MiriamB" then
+	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)) then
 		-- Target (credit to lambchop_is_ok for the base for this)
 		local b_left = Input.IsActionPressed(ButtonAction.ACTION_SHOOTLEFT, player.ControllerIndex)
 		local b_right = Input.IsActionPressed(ButtonAction.ACTION_SHOOTRIGHT, player.ControllerIndex)
 		local b_up = Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, player.ControllerIndex)
 		local b_down = Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, player.ControllerIndex)
+		local b_drop = Input.IsActionPressed(ButtonAction.ACTION_DROP, player.ControllerIndex)
 		local isAttacking = (b_down or b_right or b_left or b_up)
 		
 		-- Reset data on new room
@@ -112,11 +113,35 @@ function mod:EnemyTethering(player)
 						end
 					end
 				end
+				
+				
+				function spiritualWoundLaser(source, targetpos)
+					-- Set laser start and end position
+					local laser_source_pos = source.Position
+					local laser_ent_pair = {laser = EntityLaser.ShootAngle(2, laser_source_pos, ((targetpos - laser_source_pos):GetAngleDegrees()), 1, Vector(0, source.SpriteScale.Y * -32), source), source}
+					local _, endPos = room:CheckLine(laser_source_pos, targetpos, 3)
+					laser_ent_pair.laser:SetMaxDistance(laser_source_pos:Distance(targetpos * 1.2))
+
+					-- Extra parameters
+					laser_ent_pair.laser.Mass = 0
+					laser_ent_pair.laser.TearFlags = laser_ent_pair.laser.TearFlags | TearFlags.TEAR_HOMING
+					laser_ent_pair.laser.CollisionDamage = -100 -- they still do 0.1 damage........
+					
+					--laser_ent_pair.laser:GetSprite():ReplaceSpritesheet(0, "gfx/effects/effect_018_tractorbeamlaser.png")
+					--laser_ent_pair.laser:GetSprite():LoadGraphics()
+				end
+				
+				
 
 				-- Damage the closest enemy every (player fire delay) frames with 0.33x of the players damage
 				if targetData.enemyTarget ~= nil and room:GetFrameCount() % player.MaxFireDelay == 0 then
 					targetData.enemyTarget:TakeDamage(player.Damage*0.33, DamageFlag.DAMAGE_NO_MODIFIERS, EntityRef(player), 1)
 					targetData.enemyTarget:SetColor(Color(1, 0, 0, 1, 0, 0, 0), 12, 1, false, false)
+					
+					-- 3 of them at the same time look the best
+					--spiritualWoundLaser(player, targetData.enemyTarget.Position + Vector(math.random(-75,75), math.random(-75,75)))
+					--spiritualWoundLaser(player, targetData.enemyTarget.Position + Vector(math.random(-75,75), math.random(-75,75)))
+					--spiritualWoundLaser(player, targetData.enemyTarget.Position + Vector(math.random(-75,75), math.random(-75,75)))
 				end
 			end
 		end
@@ -129,7 +154,7 @@ function mod:SpiritualKill(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = game:GetPlayer(i)
 		local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)
-        if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)) or player:GetName() == "MiriamB" then
+        if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)) then
             if entity.Type ~= EntityType.ENTITY_FIREPLACE and (not entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY | EntityFlag.FLAG_PERSISTENT)) then
                 if rng:RandomInt(20) == 1 then
                     SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
