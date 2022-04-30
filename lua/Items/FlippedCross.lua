@@ -242,6 +242,24 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.DoubleStuff)
 
+function mod:HealthDrain(player)
+	local data = mod:GetData(player)
+	if data.Flipped == true then
+		if player:GetHearts() > 1 then
+			if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then
+				drainSpeed = 420
+			else
+				drainSpeed = 210
+			end
+			if game:GetFrameCount()%drainSpeed == 0 then
+				Isaac.GetPlayer():AddHearts(-1)
+			end
+		end
+	end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.HealthDrain)
+
 function mod:TougherEnemies(entity, damage, flags, source, frames)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
