@@ -287,11 +287,6 @@ function mod:OnLoad(isLoading)
 			if loadData["player_"..tostring(i+1)].SleptInMomsBed then
 				data.SleptInMomsBed = loadData["player_"..tostring(i+1)].SleptInMomsBed
 			end
-			
-			if data.Flipped == nil then
-				data.Flipped = false
-				data.FlipShader = 1
-			end
 		end
 		if loadData.Unlocks then
 			for key,value in ipairs(mod.Unlocks) do

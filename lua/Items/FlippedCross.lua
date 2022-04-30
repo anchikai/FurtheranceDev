@@ -222,14 +222,10 @@ local function getItemCount()
 	return result
 end
 
----@param pickup EntityPickup
 function mod:DoubleStuff(pickup)
 	if pickup.FrameCount ~= 1 then
 		return
 	end
-
-	-- print(pickup.SpawnerEntity, pickup.SpawnerType, pickup.SpawnerVariant)
-
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
@@ -269,15 +265,51 @@ end
 
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.TougherEnemies)
 
-function mod:GetShaderParams(shaderName)
-	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
-		local data = mod:GetData(player)
-		local params = {
-			--Amount = data.FlipShader
-		}
-		return params;
+-- Thank you im_tem for the shader!!
+function mod:PeterFlip(name)
+	if name == 'Peter Flip' then
+		return {FlipFactor = flipfactor}
 	end
 end
 
-mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, mod.GetShaderParams)
+mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, mod.PeterFlip)
+
+function mod:FixInputs(entity, hook, button)
+	if entity ~= nil then
+		local player = entity:ToPlayer()
+		local data = mod:GetData(player)
+		if data.Flipped == true then
+			if button == ButtonAction.ACTION_DOWN then
+				return 0
+			elseif button == ButtonAction.ACTION_UP then
+				return 0
+			end
+		end
+	end
+end
+
+mod:AddCallback(ModCallbacks.MC_INPUT_ACTION, mod.FixInputs, InputHook.GET_ACTION_VALUE)
+
+mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		local data = mod:GetData(player)
+		if flipfactor == nil then
+			flipfactor = 0
+		elseif flipfactor < 0 then
+			flipfactor = 0
+		end
+		if flipfactor > 1 then
+			flipfactor = 1
+		end
+		if data.Flipped == true then
+			if flipfactor < 1 then
+				flipfactor = flipfactor + 0.1
+			end
+		elseif data.Flipped == false then
+			if flipfactor > 0 then
+				flipfactor = flipfactor - 0.1
+			end
+		end
+	end
+end)

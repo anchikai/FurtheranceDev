@@ -1,0 +1,51 @@
+<shaders>
+    <shader name="Peter Flip">
+        <parameters>
+			<param name="FlipFactor" type="float"/>
+        </parameters>
+        <vertex><![CDATA[
+            attribute vec3 Position;                                        
+            attribute vec4 Color;                                           
+            attribute vec2 TexCoord;                                        
+            attribute vec4 RenderData;                                                                  
+            attribute float Scale;
+            varying vec4 Color0;                                            
+            varying vec2 TexCoord0;                                     
+            varying vec4 RenderDataOut; 
+            varying float ScaleOut;
+			attribute float FlipFactor;
+			varying float FlipFactorOut;
+            uniform mat4 Transform;                                     
+            void main(void)                                             
+            {                                                               
+                RenderDataOut = RenderData;                             
+                ScaleOut = Scale;         // Passing data to fragment shader 
+				
+				FlipFactorOut = FlipFactor;
+				
+                Color0 = Color;
+                TexCoord0 = TexCoord;
+                gl_Position = Transform * vec4(Position.xyz, 1.0);          
+            }
+        ]]></vertex>
+        <fragment><![CDATA[
+            varying lowp vec4 Color0;  			
+            varying mediump vec2 TexCoord0;  			
+            varying lowp vec4 RenderDataOut;
+            varying lowp float ScaleOut;
+			varying lowp float FlipFactorOut;
+			
+            uniform sampler2D Texture0;                       
+
+            void main(void)                                             
+            {
+                float partone = TexCoord0.y * (1-FlipFactorOut);
+                float parttwo = ((RenderDataOut.y/RenderDataOut.z)-TexCoord0.y) * FlipFactorOut;
+                float FlipValue = partone+parttwo;
+                float MirrorFactor = 1 * (1 - FlipFactorOut) + 0.7 * FlipFactorOut;
+                vec4 Color = Color0 * texture2D(Texture0, vec2( TexCoord0.x,FlipValue) );            
+                gl_FragColor = Color*MirrorFactor;
+            }
+        ]]></fragment>
+    </shader>
+</shaders>
