@@ -1009,8 +1009,7 @@ local Wiki = {
 		{ -- Start Data
 			{str = "Start Data", fsize = 2, clr = 3, halign = 0},
 			{str = "Items:"},
-			{str = "- Blood of the Martyr"},
-			{str = "- Flipped Cross"},
+			{str = "- Muddled Cross"},
 			{str = "Stats:"},
 			{str = "- HP: 3 Red Hearts"},
 			{str = "- Speed: 1.00"},
@@ -1022,14 +1021,22 @@ local Wiki = {
 		},
 		{ -- Traits
 			{str = "Traits", fsize = 2, clr = 3, halign = 0},
-			{str = "Tainted Peter cannot gain items over quality 2. Instead he can use his pocket active item ''Flipped Cross'' to travel to an upside down, red tinted version of the next chapter."},
+			{str = "Tainted Peter is unable to utilize Soul Hearts and Black Hearts as health. When Black Hearts are picked up, they instead are converted to a battery charge that can at the rate of one charge per half heart."},
+			{str = "- All Soul Hearts are converted into Black Hearts."},
+			{str = "- The converted charge can only charge his pocket active item, Muddled Cross."},
+			{str = "Tainted Peter cannot gain items over quality 2. Instead he can use his pocket active item ''Muddled Cross'' to travel to an upside down, red tinted version of the next chapter."},
 			{str = "- If he uses it on Basement, the floor will look like Caves and so on."},
-			{str = "The flipped floor will have most of the stuff on it upside down and the enemies will be harder to defeat, but you gain double the items and pickups."},
-			{str = "The item pool on this floor is the Ultra Secret Room item pool."},
+			{str = "- While flipped, Tainted Peter will lose half a heart every 7 seconds."},
+			{str = "-- All hearts will be converted into black hearts."},
+			{str = "The flipped floor will have the entire floor upside down and the enemies will be harder to defeat, but you gain double the items and pickups."},
+			{str = "The item pool for all items while flipped is the Ultra Secret Room item pool."},
+			{str = "- Items of any quality can be found while flipped."},
+			
 			
 		},
 		{ -- Birthright
 			{str = "Birthright", fsize = 2, clr = 3, halign = 0},
+			{str = "While flipped, Tainted Peter loses half a heart every 14 seconds instead of every 7."},
 		
 		},
 		{ -- Notes

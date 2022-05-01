@@ -33,7 +33,7 @@ EID:addBirthright(taintedLeah, "Leah contaminada ya no recibirá {{BrokenHeart}}
 EID:addBirthright(normalPeter, "↑ Peter gains changes from both Devil and Angel deals#↑ Tear rate gained from angel deals is capped at 30 instead of 15", "Peter", "en_us")
 
 -- Tainted Peter 
-EID:addBirthright(taintedPeter, "", "Peter", "en_us")
+EID:addBirthright(taintedPeter, "↑ Bleeding while flipped takes 14 seconds instead of 7", "Tainted Peter", "en_us")
 
 --Esc Key
 EID:addCollectible(CollectibleType.COLLECTIBLE_ESC_KEY, "If player has fewer than 6 hearts, heals them with combination of red and soul hearts#Teleports you out of the room", "Esc Key")
