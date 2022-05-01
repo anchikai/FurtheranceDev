@@ -223,6 +223,7 @@ local function getItemCount()
 end
 
 function mod:DoubleStuff(pickup)
+	local room = game:GetRoom()
 	if pickup.FrameCount ~= 1 then
 		return
 	end
@@ -231,7 +232,7 @@ function mod:DoubleStuff(pickup)
 		local data = mod:GetData(player)
 		local room = game:GetRoom()
 		local itemCount = getItemCount()
-		if data.Flipped == true and pickup.SpawnerType ~= EntityType.ENTITY_PLAYER and itemCount < 10 then
+		if data.Flipped == true and pickup.SpawnerType ~= EntityType.ENTITY_PLAYER and itemCount < 10 and room:IsFirstVisit() then
 			pickup.SpawnerEntity = player
 			pickup.SpawnerType = EntityType.ENTITY_PLAYER
 			pickup.SpawnerVariant = player.Variant
