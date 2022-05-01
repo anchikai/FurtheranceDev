@@ -211,7 +211,6 @@ function mod:OnSave(isSaving)
 	save.Unlocks = mod.Unlocks
 	mod:SaveData(json.encode(save))
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.OnSave)
 
 function mod:OnLoad(isLoading)
@@ -293,7 +292,6 @@ function mod:OnLoad(isLoading)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnLoad)
 
 function mod:LoadDataCacheEval(player)
@@ -302,7 +300,6 @@ function mod:LoadDataCacheEval(player)
 		player:EvaluateItems()
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.LoadDataCacheEval)
 
 -- Players
@@ -589,7 +586,6 @@ function mod:DelayFunction(func, delay, args, removeOnNewRoom, useRender)
 	}
 	table.insert(DelayedFunctions, delayFunctionData)
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
 	for i, delayFunctionData in ripairs(DelayedFunctions) do
 		if delayFunctionData.RemoveOnNewRoom then
@@ -618,7 +614,6 @@ local function delayFunctionHandling(onRender)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
 	delayFunctionHandling(false)
 end)
@@ -683,7 +678,6 @@ function mod:StopPausing()
 	isPausingGame = false
 	isPausingGameTimer = 0
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
 	if isPausingGame then
 		isPausingGameTimer = isPausingGameTimer - 1
@@ -777,7 +771,6 @@ function mod:DoBigbook(spritesheet, sound, animationToPlay, animationFile, doPau
 	end
 
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
 	if mod:ShouldRender() then
 		local centerPos = mod:GetScreenCenterPosition()

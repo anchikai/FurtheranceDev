@@ -13,5 +13,4 @@ function mod:GetOphiuchus(player, flag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetOphiuchus)

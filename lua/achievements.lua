@@ -411,7 +411,6 @@ function mod:StartUnlocks()
 		
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.StartUnlocks)
 
 
@@ -703,5 +702,4 @@ function mod:postUpdateAchievements()
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.postUpdateAchievements)

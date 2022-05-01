@@ -23,5 +23,4 @@ function mod:UseHeartRen(_, _, player)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseHeartRen, CollectibleType.COLLECTIBLE_SHATTERED_HEART)

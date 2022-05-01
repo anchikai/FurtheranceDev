@@ -14,7 +14,6 @@ function mod:OnMove(player)
 	player:AddCacheFlags(CacheFlag.CACHE_SPEED)
 	player:EvaluateItems()
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.OnMove)
 
 function mod:Crab_CacheEval(player, flag)
@@ -26,5 +25,4 @@ function mod:Crab_CacheEval(player, flag)
 		player.MoveSpeed = player.MoveSpeed + 0.2
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.Crab_CacheEval, CacheFlag.CACHE_SPEED)

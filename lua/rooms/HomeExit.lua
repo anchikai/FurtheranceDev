@@ -34,7 +34,6 @@ function mod:MakeExit(entity, collider)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.MakeExit, PickupVariant.PICKUP_BED)
 
 function mod:BedData(continued)
@@ -46,7 +45,6 @@ function mod:BedData(continued)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.BedData)
 
 function mod:Finale()
@@ -71,7 +69,6 @@ function mod:Finale()
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.Finale)
 
 function mod:ExitRoom(player)
@@ -96,5 +93,4 @@ function mod:ExitRoom(player)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.ExitRoom)

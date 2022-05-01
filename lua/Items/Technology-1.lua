@@ -7,7 +7,6 @@ function mod:Minus1Shots(EntityTear)
 		player:FireTechLaser(player.Position, LaserOffset.LASER_TECH1_OFFSET, -FireDir, true, false, player, 1)
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.Minus1Shots, CollectibleType.COLLECTIBLE_TECHNOLOGY_MINUS_1)
 
 function mod:Minus1LaserShots(EntityLaser)
@@ -17,5 +16,4 @@ function mod:Minus1LaserShots(EntityLaser)
 		player:FireTechLaser(player.Position, LaserOffset.LASER_TECH1_OFFSET, -FireDir, true, false, player, 1)
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, mod.Minus1LaserShots, CollectibleType.COLLECTIBLE_TECHNOLOGY_MINUS_1)

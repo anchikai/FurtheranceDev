@@ -9,7 +9,6 @@ function mod:UseBookOfAmbit(_Type, RNG, player)
 	player:EvaluateItems()
     return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseBookOfAmbit, CollectibleType.COLLECTIBLE_BOOK_OF_AMBIT)
 
 function mod:OnNewRoom()
@@ -23,7 +22,6 @@ function mod:OnNewRoom()
 		player:EvaluateItems()
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.OnNewRoom)
 
 function mod:Ambit_CacheEval(player, flag)
@@ -40,7 +38,6 @@ function mod:Ambit_CacheEval(player, flag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.Ambit_CacheEval)
 
 function mod:AmbitTear(tear)
@@ -54,5 +51,4 @@ function mod:AmbitTear(tear)
 		end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.AmbitTear)

@@ -11,7 +11,6 @@ function mod:GetCeres(player, flag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetCeres)
 
 function mod:InitCeresTear(tear) -- Replaces default tear to the "Seed" tear
@@ -32,7 +31,6 @@ function mod:InitCeresTear(tear) -- Replaces default tear to the "Seed" tear
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.InitCeresTear)
 
 function mod:CeresTearEffect(tear, collider)
@@ -51,7 +49,6 @@ function mod:CeresTearEffect(tear, collider)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, mod.CeresTearEffect)
 mod:AddCallback(ModCallbacks.MC_PRE_KNIFE_COLLISION, mod.CeresTearEffect)
 
@@ -70,7 +67,6 @@ function mod:CeresCreep(player)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.CeresCreep)
 
 function mod:TouchCreep(entity, collider) -- If an enemy walks over the creep
@@ -92,5 +88,4 @@ function mod:TouchCreep(entity, collider) -- If an enemy walks over the creep
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, mod.TouchCreep, EntityType.ENTITY_EFFECT)

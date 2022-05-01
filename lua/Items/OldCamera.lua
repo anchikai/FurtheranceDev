@@ -9,7 +9,6 @@ function mod:DataStuff()
 		data.CameraSaved = false
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.DataStuff)
 
 function mod:UseCamera(_, _, player)
@@ -29,7 +28,6 @@ function mod:UseCamera(_, _, player)
 	end
 	return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseCamera, CollectibleType.COLLECTIBLE_OLD_CAMERA)
 
 function mod:Forgor()
@@ -39,5 +37,4 @@ function mod:Forgor()
 		data.CameraSaved = false
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.Forgor)

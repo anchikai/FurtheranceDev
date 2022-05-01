@@ -22,7 +22,6 @@ function mod:KarethQual(entity)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.KarethQual, PickupVariant.PICKUP_COLLECTIBLE)
 
 function mod:Smelter(entity, collider)
@@ -35,7 +34,6 @@ function mod:Smelter(entity, collider)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.Smelter, PickupVariant.PICKUP_TRINKET)
 
 function mod:StupidAPIMoment(player)
@@ -45,5 +43,4 @@ function mod:StupidAPIMoment(player)
 		data.KarethSmelt = false
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.StupidAPIMoment)

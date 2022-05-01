@@ -16,7 +16,6 @@ function mod:GetVesta(player, flag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetVesta)
 
 function mod:tearSize(tear)
@@ -31,5 +30,4 @@ function mod:tearSize(tear)
 		sprite:Play("Rotate0", true) -- thanks @Connor#2143!
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.tearSize)

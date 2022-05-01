@@ -7,7 +7,6 @@ function mod:UseGuidance(_, _, player)
 	data.Guidance = true
 	return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseGuidance, CollectibleType.COLLECTIBLE_BOOK_OF_GUIDANCE)
 
 function mod:NewRoom()
@@ -23,7 +22,6 @@ function mod:NewRoom()
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.NewRoom)
 
 function mod:RemoveGuidance()
@@ -33,5 +31,4 @@ function mod:RemoveGuidance()
 		data.Guidance = false
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.RemoveGuidance)

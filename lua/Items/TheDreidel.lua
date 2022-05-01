@@ -6,7 +6,6 @@ function mod:UseDreidel(_, _, player)
     data.DreidelWasUsed = true
 	return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseDreidel, CollectibleType.COLLECTIBLE_THE_DREIDEL)
 
 function mod:DreidelQual(player)
@@ -25,5 +24,4 @@ function mod:DreidelQual(player)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.DreidelQual)

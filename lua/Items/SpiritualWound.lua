@@ -16,7 +16,6 @@ function mod:GetSpiritualWound(player, flag)
         mod.SetCanShoot(player, true)
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetSpiritualWound)
 
 function mod:EnemyTethering(player)
@@ -147,7 +146,6 @@ function mod:EnemyTethering(player)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.EnemyTethering)
 
 function mod:SpiritualKill(entity)
@@ -169,5 +167,4 @@ function mod:SpiritualKill(entity)
 		entity:GetData().spiritualWound = false
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.SpiritualKill)

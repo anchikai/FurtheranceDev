@@ -29,7 +29,6 @@ function mod:GenerateArk()
         SFXManager():Stop(SoundEffect.SOUND_UNLOCK00)
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.GenerateArk)
 
 function mod:Update(player)
@@ -41,7 +40,6 @@ function mod:Update(player)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.Update)
 
 function mod:FamiliarItems(pool, decrease, seed)
@@ -51,5 +49,4 @@ function mod:FamiliarItems(pool, decrease, seed)
         return game:GetItemPool():GetCollectible(ItemPoolType.POOL_BABY_SHOP, false, seed, CollectibleType.COLLECTIBLE_NULL)
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, mod.FamiliarItems)

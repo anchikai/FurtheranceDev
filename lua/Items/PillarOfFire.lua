@@ -28,7 +28,6 @@ function mod:SpawnFire(entity, damage, flag, source, frames)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.SpawnFire, EntityType.ENTITY_PLAYER)
 
 ---@param player Entity
@@ -70,5 +69,4 @@ function mod:FireTears(entity)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.FireTears, EffectVariant.HOT_BOMB_FIRE)

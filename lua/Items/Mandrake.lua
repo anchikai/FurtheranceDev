@@ -31,5 +31,4 @@ function mod:Mandrake()
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.Mandrake)

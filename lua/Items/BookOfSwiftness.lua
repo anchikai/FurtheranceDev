@@ -6,5 +6,4 @@ function mod:UseBookOfSwiftness(_Type, RNG, player)
 	player:UseCard(Card.CARD_ERA_WALK, 263)
     return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseBookOfSwiftness, CollectibleType.COLLECTIBLE_BOOK_OF_SWIFTNESS)

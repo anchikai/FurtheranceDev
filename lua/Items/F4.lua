@@ -198,7 +198,6 @@ function mod:UseF4(boi, rng, player)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseF4, CollectibleType.COLLECTIBLE_F4_KEY)
 
 function mod:RoomTransition(player)
@@ -235,7 +234,6 @@ function mod:RoomTransition(player)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.RoomTransition)
 
 function mod:UnJank()
@@ -252,5 +250,4 @@ function mod:UnJank()
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, mod.UnJank)

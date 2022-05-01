@@ -12,5 +12,4 @@ function mod:HasCore(boi, rng, player, useFlags, slot, data)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.HasCore)

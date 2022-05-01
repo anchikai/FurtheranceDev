@@ -10,5 +10,4 @@ function mod:Leaking(player)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.Leaking)

@@ -12,7 +12,6 @@ function mod:GetPallas(player, flag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetPallas)
 
 function mod:TearSize(tear)
@@ -23,5 +22,4 @@ function mod:TearSize(tear)
 		tear.Scale = tear.Scale * 1.2
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.TearSize, CollectibleType.COLLECTIBLE_PALLAS)

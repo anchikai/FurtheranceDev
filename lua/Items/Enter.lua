@@ -22,5 +22,4 @@ function mod:UseEnter(_, _, player)
 		player:AnimateSad()
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseEnter, CollectibleType.COLLECTIBLE_ENTER_KEY)

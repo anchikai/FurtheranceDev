@@ -9,7 +9,6 @@ function mod:UseC(boi, rng, player, slot, data)
 	data.Teleported = true
 	return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseC, CollectibleType.COLLECTIBLE_C_KEY)
 
 function mod:CKeyTeleported(boi, rng, player, slot, data)
@@ -26,5 +25,4 @@ function mod:CKeyTeleported(boi, rng, player, slot, data)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.CKeyTeleported)

@@ -12,5 +12,4 @@ function mod:UseAceOfShields(card, player, useflags)
 		room:SetClear(true)
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseAceOfShields, CARD_ACE_OF_SHIELDS)

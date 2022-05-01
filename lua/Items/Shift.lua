@@ -7,7 +7,6 @@ function mod:UseShift(_, _, player)
 	data.ShiftMultiplier = 15
 	return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseShift, CollectibleType.COLLECTIBLE_SHIFT_KEY)
 
 function mod:ShiftCache(player, flag)
@@ -19,7 +18,6 @@ function mod:ShiftCache(player, flag)
 		player.Damage = player.Damage + data.ShiftMultiplier
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.ShiftCache)
 
 function mod:ShiftTears(player)
@@ -35,5 +33,4 @@ function mod:ShiftTears(player)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.ShiftTears)

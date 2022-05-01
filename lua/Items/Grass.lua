@@ -27,5 +27,4 @@ function mod:Grass(player)
 		data.GrassTimer = 108000
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.Grass)

@@ -22,7 +22,6 @@ function mod:UseSoulOfLeah(card, player, useflags)
 	end
 	player:EvaluateItems()
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseSoulOfLeah, RUNE_SOUL_OF_LEAH)
 
 function mod:solStats(player, flag)
@@ -38,5 +37,4 @@ function mod:solStats(player, flag)
 		player.Damage = player.Damage + data.solDMG
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.solStats)

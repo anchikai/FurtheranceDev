@@ -33,7 +33,6 @@ function mod:UseKTTK(_, _, player)
 	end
 	return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseKTTK, CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM)
 
 function mod:kttkKills(entity)
@@ -44,7 +43,6 @@ function mod:kttkKills(entity)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.kttkKills)
 
 function mod:EnemySouls(effect)
@@ -75,5 +73,4 @@ function mod:EnemySouls(effect)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.EnemySouls, EffectVariant.ENEMY_SOUL)

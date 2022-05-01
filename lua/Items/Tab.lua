@@ -14,5 +14,4 @@ function mod:UseTab(boi, rng, player)
 	end
 	return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseTab, CollectibleType.COLLECTIBLE_TAB_KEY)

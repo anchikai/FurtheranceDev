@@ -35,7 +35,6 @@ function mod:LeahsLock()
 		player:EvaluateItems()
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.LeahsLock)
 
 function mod:llStats(player, flag)
@@ -49,5 +48,4 @@ function mod:llStats(player, flag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.llStats)

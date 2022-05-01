@@ -24,7 +24,6 @@ function mod:OwlTear(tear)
 		end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.OwlTear)
 
 function mod:OwlFlags(player, flag)
@@ -38,7 +37,6 @@ function mod:OwlFlags(player, flag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.OwlFlags)
 
 function mod:InitOwl(player)
@@ -47,5 +45,4 @@ function mod:InitOwl(player)
 		data.OwlShot = false
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.InitOwl)

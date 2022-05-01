@@ -41,7 +41,6 @@ function mod:UseAlt(_, _, player)
 	end
 	return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseAlt, CollectibleType.COLLECTIBLE_ALT_KEY)
 
 function mod:ChargeAlt()
@@ -58,5 +57,4 @@ function mod:ChargeAlt()
 		data.NoChargeAlt = false
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.ChargeAlt)

@@ -12,7 +12,6 @@ function mod:OnInit(player)
 		data.HeartCount = 2
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
 
 function mod:UseRenovator(_, _, player)
@@ -27,7 +26,6 @@ function mod:UseRenovator(_, _, player)
 	player:EvaluateItems()
 	return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseRenovator, CollectibleType.COLLECTIBLE_HEART_RENOVATOR)
 
 function mod:Hearts(entity, collider)
@@ -98,7 +96,6 @@ function mod:RenovatorDmg(player, flag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.RenovatorDmg)
 
 function mod:RenovatorOnKill(entity)
@@ -114,7 +111,6 @@ function mod:RenovatorOnKill(entity)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.RenovatorOnKill)
 
 local dropCooldownSpeed = 150
@@ -172,7 +168,6 @@ function mod:OnUpdate(player)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, mod.OnUpdate)
 
 function mod:TwoOfHearts(card, player, flags)
@@ -183,7 +178,6 @@ function mod:TwoOfHearts(card, player, flags)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.TwoOfHearts, Card.CARD_HEARTS_2)
 
 function mod:shouldDeHook()
@@ -193,7 +187,6 @@ function mod:shouldDeHook()
 	}
 	return reqs[1] or reqs[2]
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, function() -- The actual heart counter for Leah
 	if mod:shouldDeHook() then return end
 	local charoffset = 0

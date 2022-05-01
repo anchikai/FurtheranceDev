@@ -5,5 +5,4 @@ function mod:UseCaps(boi, rng, player, slot, data)
 	SFXManager():Stop(SoundEffect.SOUND_HUGE_GROWTH)
 	return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseCaps, CollectibleType.COLLECTIBLE_CAPS_KEY)

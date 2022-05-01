@@ -47,7 +47,6 @@ function mod:IXShots(EntityTear)
 		EntityTear:Remove()
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.IXShots)
 
 function mod:GetTechIX(player, cacheFlag)
@@ -57,5 +56,4 @@ function mod:GetTechIX(player, cacheFlag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetTechIX)

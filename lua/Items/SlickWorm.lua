@@ -12,7 +12,6 @@ function mod:WormEffect(EntityTear)
 		player:EvaluateItems()
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.WormEffect)
 
 function mod:Slick_CacheEval(player, flag)
@@ -22,5 +21,4 @@ function mod:Slick_CacheEval(player, flag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.Slick_CacheEval)

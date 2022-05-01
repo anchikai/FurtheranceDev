@@ -20,7 +20,6 @@ function mod:LeafDamage(player)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.LeafDamage, EntityType.ENTITY_PLAYER)
 
 function mod:StatueTimer(player)
@@ -34,7 +33,6 @@ function mod:StatueTimer(player)
 		player:RemoveCostume(Isaac.GetItemConfig():GetNullItem(4), false)
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.StatueTimer)
 
 function mod:CantMove(player)
@@ -68,5 +66,4 @@ function mod:NoMovement(entity, hook, button)
 	end
 
 end
-
 mod:AddCallback(ModCallbacks.MC_INPUT_ACTION, mod.NoMovement, 2)

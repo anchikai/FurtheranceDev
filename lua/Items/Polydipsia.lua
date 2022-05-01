@@ -15,7 +15,6 @@ function mod:GetPolydipsia(player, cacheFlag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetPolydipsia)
 
 function mod:PuddleMagik(player)
@@ -44,7 +43,6 @@ function mod:PuddleMagik(player)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.PuddleMagik)
 
 function mod:polydipsiaTear(tear)
@@ -55,5 +53,4 @@ function mod:polydipsiaTear(tear)
 		tear:SetKnockbackMultiplier(tear.KnockbackMultiplier*2)
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.polydipsiaTear)

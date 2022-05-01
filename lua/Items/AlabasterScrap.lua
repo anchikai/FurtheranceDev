@@ -22,7 +22,6 @@ function mod:CollectPlayerItems(player)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.CollectPlayerItems)
 
 function mod:AlabasterDmg(player, flag)
@@ -37,5 +36,4 @@ function mod:AlabasterDmg(player, flag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.AlabasterDmg)

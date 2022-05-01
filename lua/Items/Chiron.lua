@@ -27,7 +27,6 @@ function mod:ChironMapping() -- Apply a random map effect every floor
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.ChironMapping)
 
 local function IsActiveEnemy(player) -- Enemy detection
@@ -52,7 +51,6 @@ function mod:BossDetection() -- If the room is a boss room
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.BossDetection)
 
 function mod:BossBook(player) -- Roll a random book effect
@@ -77,5 +75,4 @@ function mod:GetChiron(player, cacheFlag) -- Speed up
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetChiron)

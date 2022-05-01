@@ -104,7 +104,6 @@ function mod:UseTilde(_, _, player)
 	end
 	return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseTilde, CollectibleType.COLLECTIBLE_TILDE_KEY)
 
 function mod:OnNewRoom()
@@ -166,7 +165,6 @@ function mod:OnNewRoom()
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.OnNewRoom)
 
 function mod:InitTilde(player)
@@ -212,5 +210,4 @@ function mod:InitTilde(player)
 		data.Debug13 = false
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.InitTilde)

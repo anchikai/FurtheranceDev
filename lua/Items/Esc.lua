@@ -20,5 +20,4 @@ function mod:UseEsc(boi, rng, player, slot, data)
 	end
 	return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseEsc, CollectibleType.COLLECTIBLE_ESC_KEY)

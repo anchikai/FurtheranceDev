@@ -11,7 +11,6 @@ function mod:CringeDMG(entity)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.CringeDMG, EntityType.ENTITY_PLAYER)
 
 function mod:HurtSound()
@@ -19,5 +18,4 @@ function mod:HurtSound()
 		SFXManager():Stop(SoundEffect.SOUND_ISAAC_HURT_GRUNT)
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.HurtSound)

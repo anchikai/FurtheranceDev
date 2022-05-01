@@ -22,7 +22,6 @@ function mod:JunoTears(tear, collider)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, mod.JunoTears)				-- Tears
 mod:AddCallback(ModCallbacks.MC_PRE_KNIFE_COLLISION, mod.JunoTears)				-- Mom's Knife
 mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, function(tear)					-- Brimstone and other lasers
@@ -56,5 +55,4 @@ function mod:JunoUpdate(player)
 		data.JunoTimer = 0
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.JunoUpdate)

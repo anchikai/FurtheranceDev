@@ -24,5 +24,4 @@ function mod:CollectCoin(pickup, collider)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.CollectCoin)

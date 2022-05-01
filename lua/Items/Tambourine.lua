@@ -14,5 +14,4 @@ function mod:UseTambourine(_, _, player)
 	data.MiriamRiftTimeout = 90
 	return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseTambourine, CollectibleType.COLLECTIBLE_TAMBOURINE)

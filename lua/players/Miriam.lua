@@ -26,7 +26,6 @@ function mod:OnInit(player)
 		player:AddHearts(4)
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
 
 function mod:OnUpdate(player)
@@ -47,7 +46,6 @@ function mod:OnUpdate(player)
 		
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.OnUpdate)
 
 function mod:PuddleRift(entity)
@@ -66,7 +64,6 @@ function mod:PuddleRift(entity)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, mod.PuddleRift)
 
 function mod:tearCounter(tear)
@@ -79,7 +76,6 @@ function mod:tearCounter(tear)
 		data.MiriamTearCount = data.MiriamTearCount + 1
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.tearCounter)
 
 function mod:miriamStats(player, flag)
@@ -116,7 +112,6 @@ function mod:miriamStats(player, flag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.miriamStats)
 
 function mod:ClickerFix(_, _, player)
@@ -128,6 +123,5 @@ function mod:ClickerFix(_, _, player)
 		player:AddNullCostume(COSTUME_MIRIAM_B_HAIR)
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.ClickerFix, CollectibleType.COLLECTIBLE_CLICKER)
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.ClickerFix, CollectibleType.COLLECTIBLE_SHIFT_KEY)

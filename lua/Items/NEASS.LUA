@@ -6,5 +6,4 @@ function MOD:USEPLUGNPLAY(_, _, PLAYER)
 	PLAYER:RemoveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER)
 	return true
 end
-
-MOD:AddCallback(ModCallbacks.MC_USE_ITEM, MOD.USEPLUGNPLAY, CollectibleType.COLLECTIBLE_NEASS)
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, MOD.USEPLUGNPLAY, CollectibleType.COLLECTIBLE_NEASS)

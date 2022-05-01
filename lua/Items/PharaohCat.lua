@@ -55,7 +55,6 @@ function mod:PyramidShots(EntityTear)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, mod.PyramidShots)
 
 function mod:PyramidLasers(EntityLaser)
@@ -111,7 +110,6 @@ function mod:PyramidLasers(EntityLaser)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, mod.PyramidLasers)
 
 function mod:PyramidBombs(EntityBomb)
@@ -132,7 +130,6 @@ function mod:PyramidBombs(EntityBomb)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, mod.PyramidBombs)
 
 function mod:GetPharohCat(player, cacheFlag)
@@ -142,5 +139,4 @@ function mod:GetPharohCat(player, cacheFlag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetPharohCat)

@@ -18,5 +18,4 @@ function mod:UseSpaceBar(_, _, player)
 		player:RemoveCollectible(CollectibleType.COLLECTIBLE_SPACEBAR_KEY)
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseSpaceBar, CollectibleType.COLLECTIBLE_SPACEBAR_KEY)

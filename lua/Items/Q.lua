@@ -15,5 +15,4 @@ function mod:UseQ(_, _, player)
 	end
 	return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseQ, CollectibleType.COLLECTIBLE_Q_KEY)

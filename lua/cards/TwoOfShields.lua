@@ -18,5 +18,4 @@ function mod:UseAceOfShields(card, player, useflags)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseAceOfShields, CARD_TWO_OF_SHIELDS)

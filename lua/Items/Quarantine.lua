@@ -16,7 +16,6 @@ function mod:Covid()
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.Covid)
 
 function mod:NoMoreCovid(player)
@@ -33,5 +32,4 @@ function mod:NoMoreCovid(player)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.NoMoreCovid)

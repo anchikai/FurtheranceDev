@@ -24,5 +24,4 @@ function mod:RoomSkip()
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.RoomSkip)

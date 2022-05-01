@@ -18,7 +18,6 @@ function mod:onStart(_, bool)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.onStart)
 
 function mod:initData(player)
@@ -28,7 +27,6 @@ function mod:initData(player)
 		data.hpOffset = 0
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.initData)
 
 local function CanOnlyHaveSoulHearts(player)
@@ -94,7 +92,6 @@ function mod:MoonHeartUpdate(entity, collider)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.MoonHeartUpdate, PickupVariant.PICKUP_HEART)
 
 function mod:shouldDeHook()
@@ -170,7 +167,6 @@ function mod:onRender()
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.onRender)
 
 function mod:MoonHeartDamage(entity, amount, flag)
@@ -195,7 +191,6 @@ function mod:MoonHeartDamage(entity, amount, flag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.MoonHeartDamage, EntityType.ENTITY_PLAYER)
 
 function mod:MorphHeart(entity)
@@ -206,7 +201,6 @@ function mod:MorphHeart(entity)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.MorphHeart, PickupVariant.PICKUP_HEART)
 
 function mod:DropSound(entity)
@@ -217,5 +211,4 @@ function mod:DropSound(entity)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.DropSound, PickupVariant.PICKUP_HEART)

@@ -202,7 +202,6 @@ function mod:DelayFunction(func, delay, args, removeOnNewRoom, useRender)
 	}
 	table.insert(DelayedFunctions, delayFunctionData)
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
 	for i, delayFunctionData in ripairs(DelayedFunctions) do
 		if delayFunctionData.RemoveOnNewRoom then
@@ -231,7 +230,6 @@ local function delayFunctionHandling(onRender)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
 	delayFunctionHandling(false)
 end)

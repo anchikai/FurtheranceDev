@@ -26,7 +26,6 @@ function mod:ConvertToPlanetarium()
         SFXManager():Stop(SoundEffect.SOUND_DEATH_CARD)
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.ConvertToPlanetarium)
 
 function mod:PlanetariumPool(pool, decrease, seed)
@@ -38,7 +37,6 @@ function mod:PlanetariumPool(pool, decrease, seed)
         Rerolled = false
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, mod.PlanetariumPool)
 
 local qualityPriceMap = {
@@ -63,7 +61,6 @@ local qualityPriceMap = {
 
 
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.PostPlanetariumPool)]]
 
 function mod:PrePickupCollision(pickup, collider)
@@ -83,5 +80,4 @@ function mod:PrePickupCollision(pickup, collider)
     end
 
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.PrePickupCollision)

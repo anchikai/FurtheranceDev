@@ -64,7 +64,6 @@ function mod:FakeJacobStats(player, flag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.FakeJacobStats)
 
 ---@param player EntityPlayer
@@ -77,7 +76,6 @@ function mod:addNewJacob(player, flag)
 		return true
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.addNewJacob)
 
 ---@param player EntityPlayer

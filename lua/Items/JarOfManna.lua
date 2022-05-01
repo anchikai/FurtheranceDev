@@ -21,7 +21,6 @@ function mod:UseMannaJar(_, _, player)
 	end
 	return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseMannaJar, CollectibleType.COLLECTIBLE_JAR_OF_MANNA)
 
 function mod:SpawnMana(entity)
@@ -51,7 +50,6 @@ function mod:SpawnMana(entity)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.SpawnMana)
 
 function mod:MannaEffect(effect)
@@ -69,7 +67,6 @@ function mod:MannaEffect(effect)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.MannaEffect, MannaOrb)
 
 function mod:MannaCollide(entity, collider)
@@ -87,5 +84,4 @@ function mod:MannaCollide(entity, collider)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.MannaCollide)

@@ -13,5 +13,4 @@ function mod:Parasite(entity)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.Parasite, EntityType.ENTITY_PLAYER)

@@ -7,5 +7,4 @@ function mod:GetBrunch(player, flag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetBrunch)
