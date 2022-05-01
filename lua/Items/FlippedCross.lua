@@ -177,11 +177,12 @@ function mod:DoubleStuff(pickup)
 			pickup.SpawnerEntity = player
 			pickup.SpawnerType = EntityType.ENTITY_PLAYER
 			pickup.SpawnerVariant = player.Variant
-
-			local newItem = Isaac.Spawn(EntityType.ENTITY_PICKUP, pickup.Variant, 0, Isaac.GetFreeNearPosition(pickup.Position, 40), Vector.Zero, player):ToPickup()
-			newItem.Price = pickup.Price
-			newItem.OptionsPickupIndex = pickup.OptionsPickupIndex
-
+			if mod.Flipped then
+				local newItem = Isaac.Spawn(EntityType.ENTITY_PICKUP, pickup.Variant, 0, Isaac.GetFreeNearPosition(pickup.Position, 40), Vector.Zero, player):ToPickup()
+				newItem.Price = pickup.Price
+				newItem.OptionsPickupIndex = pickup.OptionsPickupIndex
+			end
+			
 			break
 		end
 	end
