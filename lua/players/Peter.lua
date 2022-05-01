@@ -27,7 +27,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
 function mod:PeterUpdate(player)
 	local data = mod:GetData(player)
 	if player:GetName() == "Peter" then
-		
+
 	elseif player:GetName() == "PeterB" then
 		if player:GetSoulHearts() > 0 then
 			player:AddSoulHearts(-player:GetSoulHearts())
@@ -37,9 +37,6 @@ function mod:PeterUpdate(player)
 		elseif player.FrameCount >= 10 and data.Init then
 			data.Init = nil
 		end
-	end
-	if data.Flipped == nil then
-		data.Flipped = false
 	end
 end
 
@@ -144,7 +141,7 @@ function mod:PeterCostumes(player)
 				if not data.AngelCostume then
 					data.AngelCostume = 0
 				end
-				
+
 				while data.AngelCount > data.AngelCostume do
 					player:AddCostume(revelationConfig, false)
 					data.AngelCostume = data.AngelCostume + 1
@@ -161,7 +158,7 @@ function mod:PeterCostumes(player)
 				if not data.DevilCostume then
 					data.DevilCostume = 0
 				end
-				
+
 				while data.DevilCount > data.DevilCostume do
 					player:AddCostume(nailConfig, false)
 					data.DevilCostume = data.DevilCostume + 1
@@ -182,7 +179,7 @@ function mod:PeterCostumes(player)
 			if not data.AngelCostume then
 				data.AngelCostume = 0
 			end
-		
+
 			while data.AngelCount > data.AngelCostume do
 				player:AddCostume(revelationConfig, false)
 				data.AngelCostume = data.AngelCostume + 1
@@ -198,7 +195,7 @@ function mod:PeterCostumes(player)
 			if not data.DevilCostume then
 				data.DevilCostume = 0
 			end
-			
+
 			while data.DevilCount > data.DevilCostume do
 				player:AddCostume(nailConfig, false)
 				data.DevilCostume = data.DevilCostume + 1
@@ -224,7 +221,7 @@ function mod:Hearts(entity, collider)
 				return false
 			elseif entity.SubType == HeartSubType.HEART_BLENDED then
 				if player:GetHearts() < player:GetMaxHearts() + (player:GetBoneHearts() * 2) then
-					entity:GetSprite():Play("Collect",true)
+					entity:GetSprite():Play("Collect", true)
 					entity:Die()
 					SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
 					SFXManager():Stop(SoundEffect.SOUND_HOLY, 1, 0, false)
@@ -234,14 +231,14 @@ function mod:Hearts(entity, collider)
 				end
 			elseif entity.SubType == HeartSubType.HEART_BLACK then
 				if player:GetActiveCharge(ActiveSlot.SLOT_POCKET) < 6 then
-					entity:GetSprite():Play("Collect",true)
+					entity:GetSprite():Play("Collect", true)
 					entity:Die()
 					if player:GetActiveCharge(ActiveSlot.SLOT_POCKET) == 5 then
 						chargeAmount = 1
 					else
 						chargeAmount = 2
 					end
-					player:SetActiveCharge(player:GetActiveCharge(ActiveSlot.SLOT_POCKET)+chargeAmount, ActiveSlot.SLOT_POCKET)
+					player:SetActiveCharge(player:GetActiveCharge(ActiveSlot.SLOT_POCKET) + chargeAmount, ActiveSlot.SLOT_POCKET)
 					game:GetHUD():FlashChargeBar(player, ActiveSlot.SLOT_POCKET)
 					if player:GetActiveCharge(ActiveSlot.SLOT_POCKET) < 6 then
 						SFXManager():Play(SoundEffect.SOUND_BEEP)
@@ -257,18 +254,18 @@ function mod:Hearts(entity, collider)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.Hearts, PickupVariant.PICKUP_HEART)
 
 function mod:MorphHeart(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = game:GetPlayer(i)
-		local data = mod:GetData(player)
 		if player:GetName() == "PeterB" then
-			if data.Flipped == true then
+			if mod.Flipped == true then
 				if entity.SubType ~= HeartSubType.HEART_BLACK then
 					entity:Morph(entity.Type, entity.Variant, HeartSubType.HEART_BLACK)
 				end
-			elseif data.Flipped == false then
+			elseif mod.Flipped == false then
 				if entity.SubType == HeartSubType.HEART_SOUL or entity.SubType == HeartSubType.HEART_HALF_SOUL then
 					entity:Morph(entity.Type, entity.Variant, HeartSubType.HEART_BLACK)
 				end
@@ -284,7 +281,7 @@ function mod:AngelDevil()
 	local roomType = room:GetType()
 	local level = game:GetLevel()
 	for i = 0, game:GetNumPlayers() - 1 do
-        local player = game:GetPlayer(i)
+		local player = game:GetPlayer(i)
 		local data = mod:GetData(player)
 		if player:GetName() == "Peter" then
 			data.DevilCount = data.DevilCount and data.DevilCount or 0
@@ -320,12 +317,12 @@ mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.AngelDevil)
 function mod:PeterQual(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		local data = mod:GetData(player)
 		if player:GetName() == "PeterB" then
 			local itemConfig = Isaac.GetItemConfig()
-			if data.Flipped == false then
+			if mod.Flipped == false then
 				if itemConfig:GetCollectible(entity.SubType).Quality > 2 and entity.SubType ~= CollectibleType.COLLECTIBLE_BIRTHRIGHT then
 					entity:Morph(entity.Type, entity.Variant, 0, false, true, false)
+					return
 				end
 			end
 		end
@@ -345,8 +342,8 @@ mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.BloodyTears)
 
 function mod:shouldDeHook()
 	local reqs = {
-	  not game:GetHUD():IsVisible(),
-	  game:GetSeeds():HasSeedEffect(SeedEffect.SEED_NO_HUD)
+		not game:GetHUD():IsVisible(),
+		game:GetSeeds():HasSeedEffect(SeedEffect.SEED_NO_HUD)
 	}
 	return reqs[1] or reqs[2]
 end
@@ -366,7 +363,7 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function() -- Peter's Devil/Angel i
 				coopOffset = 12
 			end
 			f:DrawString(data.DevilCount, 44 + offset.X, 161 + offset.Y + coopOffset, KColor(1, 1, 1, 0.4, 0, 0, 0), 0, true)
-			f:DrawString(data.AngelCount, 44 + offset.X, 173 + offset.Y + coopOffset*1.2, KColor(1, 1, 1, 0.4, 0, 0, 0), 0, true)
+			f:DrawString(data.AngelCount, 44 + offset.X, 173 + offset.Y + coopOffset * 1.2, KColor(1, 1, 1, 0.4, 0, 0, 0), 0, true)
 		end
 	end
 end

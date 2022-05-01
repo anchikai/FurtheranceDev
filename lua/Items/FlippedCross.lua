@@ -2,14 +2,14 @@ local mod = Furtherance
 local game = Game()
 local rng = RNG()
 
-function mod:UseFlippedCross(_, _, player)
-	local data = mod:GetData(player)
+mod.Flipped = false
+
+function mod:UseFlippedCross()
 	local level = game:GetLevel()
 	local room = game:GetRoom()
 	game:ShakeScreen(10)
-	if data.Flipped == false then
-		data.Flipped = true
-		data.FlipShader = 1.25
+
+	if mod.Flipped == false then
 		if room:GetType() == RoomType.ROOM_DEFAULT then
 			if level:GetName() == "Basement I" or level:GetName() == "Basement II" or level:GetName() == "Basement XL" then -- Basement
 				game:ShowHallucination(0, BackdropType.CAVES)
@@ -59,13 +59,13 @@ function mod:UseFlippedCross(_, _, player)
 				game:ShowHallucination(0, BackdropType.MORTIS)
 			end
 		end
+
 		SFXManager():Stop(SoundEffect.SOUND_DEATH_CARD)
 		SFXManager():Play(SoundEffect.SOUND_LAZARUS_FLIP_DEAD)
+
 		room:SetFloorColor(Color(1, 1, 1, 1, 0.1, 0, 0))
 		room:SetWallColor(Color(1, 1, 1, 1, 0.1, 0, 0))
 	else
-		data.Flipped = false
-		data.FlipShader = 1
 		if room:GetType() == RoomType.ROOM_DEFAULT then
 			if level:GetName() == "Basement I" or level:GetName() == "Basement II" or level:GetName() == "Basement XL" then
 				game:ShowHallucination(0, BackdropType.BASEMENT)
@@ -119,11 +119,15 @@ function mod:UseFlippedCross(_, _, player)
 				game:ShowHallucination(0, BackdropType.MORTIS)
 			end
 		end
+
 		SFXManager():Stop(SoundEffect.SOUND_DEATH_CARD)
 		SFXManager():Play(SoundEffect.SOUND_LAZARUS_FLIP_ALIVE)
+
 		room:SetFloorColor(Color(1, 1, 1, 1, 0, 0, 0))
 		room:SetWallColor(Color(1, 1, 1, 1, 0, 0, 0))
 	end
+	mod.Flipped = not mod.Flipped
+
 	return true
 end
 
@@ -132,11 +136,8 @@ mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseFlippedCross, CollectibleType.C
 function mod:RoomPersist()
 	local room = game:GetRoom()
 	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
-		local data = mod:GetData(player)
 		local level = game:GetLevel()
-		local room = game:GetRoom()
-		if data.Flipped == true then
+		if mod.Flipped == true then
 			if room:GetType() == RoomType.ROOM_DEFAULT then
 				if level:GetName() == "Basement I" or level:GetName() == "Basement II" or level:GetName() == "Basement XL" then -- Basement
 					game:ShowHallucination(0, BackdropType.CAVES)
@@ -186,7 +187,9 @@ function mod:RoomPersist()
 					game:ShowHallucination(0, BackdropType.MORTIS)
 				end
 			end
+
 			SFXManager():Stop(SoundEffect.SOUND_DEATH_CARD)
+
 			room:SetFloorColor(Color(1, 1, 1, 1, 0.1, 0, 0))
 			room:SetWallColor(Color(1, 1, 1, 1, 0.1, 0, 0))
 		end
@@ -196,63 +199,51 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.RoomPersist)
 
 function mod:UltraSecretPool(pool, decrease, seed)
-	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
-		local data = mod:GetData(player)
-		local room = game:GetRoom()
-		if data.Flipped == true then
-			if Rerolled ~= true then
-				Rerolled = true
-				return game:GetItemPool():GetCollectible(ItemPoolType.POOL_ULTRA_SECRET, false, seed, CollectibleType.COLLECTIBLE_NULL)
-			end
-			Rerolled = false
+	if mod.Flipped == true then
+		if Rerolled ~= true then
+			Rerolled = true
+			return game:GetItemPool():GetCollectible(ItemPoolType.POOL_ULTRA_SECRET, false, seed, CollectibleType.COLLECTIBLE_NULL)
 		end
+		Rerolled = false
 	end
 end
 
 mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, mod.UltraSecretPool)
 
-local function getItemCount()
-	local result = 0
-	for _, entity in ipairs(Isaac.GetRoomEntities()) do
-		if entity.Type == EntityType.ENTITY_PICKUP then
-			result = result + 1
-		end
-	end
-	return result
-end
-
+---@param pickup EntityPickup
 function mod:DoubleStuff(pickup)
-	if pickup.FrameCount ~= 1 then
+	if pickup.FrameCount ~= 1 or mod.Flipped ~= true then
 		return
 	end
+
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		local data = mod:GetData(player)
-		local itemCount = getItemCount()
-		if data.Flipped == true and pickup.SpawnerType ~= EntityType.ENTITY_PLAYER and itemCount < 10 then
+		if pickup.SpawnerType ~= EntityType.ENTITY_PLAYER then
 			pickup.SpawnerEntity = player
 			pickup.SpawnerType = EntityType.ENTITY_PLAYER
 			pickup.SpawnerVariant = player.Variant
-			Isaac.Spawn(EntityType.ENTITY_PICKUP, pickup.Variant, 0, Isaac.GetFreeNearPosition(pickup.Position, 40), Vector.Zero, player):ToPickup()
+
+			local newItem = Isaac.Spawn(EntityType.ENTITY_PICKUP, pickup.Variant, 0, Isaac.GetFreeNearPosition(pickup.Position, 40), Vector.Zero, player):ToPickup()
+			newItem.Price = pickup.Price
+			newItem.OptionsPickupIndex = pickup.OptionsPickupIndex
+
+			break
 		end
 	end
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.DoubleStuff)
 
+---@param player EntityPlayer
 function mod:HealthDrain(player)
-	local data = mod:GetData(player)
-	if data.Flipped == true then
-		if player:GetHearts() > 1 then
-			if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then
-				drainSpeed = 420
-			else
-				drainSpeed = 210
-			end
-			if game:GetFrameCount() % drainSpeed == 0 then
-				Isaac.GetPlayer():AddHearts(-1)
-			end
+	if mod.Flipped == true and player:GetName() == "PeterB" and player:GetHearts() > 1 then
+		if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT)) then
+			drainSpeed = 420
+		else
+			drainSpeed = 210
+		end
+		if game:GetFrameCount() % drainSpeed == 0 then
+			Isaac.GetPlayer():AddHearts(-1)
 		end
 	end
 end
@@ -260,21 +251,21 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.HealthDrain)
 
 function mod:TougherEnemies(entity, damage, flags, source, frames)
+	if mod.Flipped ~= true then return end
+
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
-		if data.Flipped == true then
-			if entity:IsActiveEnemy(false) and entity:IsVulnerableEnemy() then
-				local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_FLIPPED_CROSS)
-				if data.DamageTimeout == nil then
-					data.DamageTimeout = false
-				elseif data.DamageTimeout == true then
-					data.DamageTimeout = false
-					entity:SetColor(Color(0.709, 0.0196, 0.0196, 1, 0.65, 0, 0), 1, 1, false, false)
-					return false
-				else
-					data.DamageTimeout = true
-				end
+		if entity:IsActiveEnemy(false) and entity:IsVulnerableEnemy() then
+			local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_FLIPPED_CROSS)
+			if data.DamageTimeout == nil then
+				data.DamageTimeout = false
+			elseif data.DamageTimeout == true then
+				data.DamageTimeout = false
+				entity:SetColor(Color(0.709, 0.0196, 0.0196, 1, 0.65, 0, 0), 1, 1, false, false)
+				return false
+			else
+				data.DamageTimeout = true
 			end
 		end
 	end
@@ -301,8 +292,7 @@ function mod:FixInputs(entity, hook, button)
 	local player = entity:ToPlayer()
 	if player == nil then return end
 
-	local data = mod:GetData(player)
-	if data.Flipped ~= true then return end
+	if mod.Flipped ~= true then return end
 
 	if button == ButtonAction.ACTION_DOWN then
 		return Input.GetActionValue(ButtonAction.ACTION_UP, player.ControllerIndex)
@@ -317,26 +307,24 @@ end
 
 mod:AddCallback(ModCallbacks.MC_INPUT_ACTION, mod.FixInputs, InputHook.GET_ACTION_VALUE)
 
-mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
-	for i = 0, game:GetNumPlayers() - 1 do
-		local player = Isaac.GetPlayer(i)
-		local data = mod:GetData(player)
-		if flipfactor == nil then
-			flipfactor = 0
-		elseif flipfactor < 0 then
-			flipfactor = 0
+function mod:AnimateFlip()
+	if flipfactor == nil then
+		flipfactor = 0
+	elseif flipfactor < 0 then
+		flipfactor = 0
+	end
+	if flipfactor > 1 then
+		flipfactor = 1
+	end
+	if mod.Flipped == true then
+		if flipfactor < 1 then
+			flipfactor = flipfactor + 0.1
 		end
-		if flipfactor > 1 then
-			flipfactor = 1
-		end
-		if data.Flipped == true then
-			if flipfactor < 1 then
-				flipfactor = flipfactor + 0.1
-			end
-		elseif data.Flipped == false then
-			if flipfactor > 0 then
-				flipfactor = flipfactor - 0.1
-			end
+	elseif mod.Flipped == false then
+		if flipfactor > 0 then
+			flipfactor = flipfactor - 0.1
 		end
 	end
-end)
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.AnimateFlip)

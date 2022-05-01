@@ -180,33 +180,32 @@ function mod:OnSave(isSaving)
 		for i = 0, game:GetNumPlayers() - 1 do
 			local player = Isaac.GetPlayer(i)
 			local data = mod:GetData(player)
-			saveData["player_"..tostring(i+1)] = {}
-			saveData["player_"..tostring(i+1)].numAngelItems = data.numAngelItems
-			saveData["player_"..tostring(i+1)].solTR = data.solTR
-			saveData["player_"..tostring(i+1)].solDMG = data.solDMG
-			saveData["player_"..tostring(i+1)].llTR = data.llTR
-			saveData["player_"..tostring(i+1)].MoonHeart = data.MoonHeart
-			saveData["player_"..tostring(i+1)].Flipped = data.Flipped
-			saveData["player_"..tostring(i+1)].FlipShader = data.FlipShader
-			saveData["player_"..tostring(i+1)].RenovatorDamage = data.RenovatorDamage
-			saveData["player_"..tostring(i+1)].HeartCount = data.HeartCount
-			saveData["player_"..tostring(i+1)].CameraSaved = data.CameraSaved
-			saveData["player_"..tostring(i+1)].CurRoomID = data.CurRoomID
-			saveData["player_"..tostring(i+1)].ShiftKeyPressed = data.ShiftKeyPressed
-			saveData["player_"..tostring(i+1)].ShiftMultiplier = data.ShiftMultiplier
-			saveData["player_"..tostring(i+1)].SleptInMomsBed = data.SleptInMomsBed
+			saveData["player_" .. tostring(i + 1)] = {}
+			saveData["player_" .. tostring(i + 1)].numAngelItems = data.numAngelItems
+			saveData["player_" .. tostring(i + 1)].solTR = data.solTR
+			saveData["player_" .. tostring(i + 1)].solDMG = data.solDMG
+			saveData["player_" .. tostring(i + 1)].llTR = data.llTR
+			saveData["player_" .. tostring(i + 1)].MoonHeart = data.MoonHeart
+			saveData["player_" .. tostring(i + 1)].RenovatorDamage = data.RenovatorDamage
+			saveData["player_" .. tostring(i + 1)].HeartCount = data.HeartCount
+			saveData["player_" .. tostring(i + 1)].CameraSaved = data.CameraSaved
+			saveData["player_" .. tostring(i + 1)].CurRoomID = data.CurRoomID
+			saveData["player_" .. tostring(i + 1)].ShiftKeyPressed = data.ShiftKeyPressed
+			saveData["player_" .. tostring(i + 1)].ShiftMultiplier = data.ShiftMultiplier
+			saveData["player_" .. tostring(i + 1)].SleptInMomsBed = data.SleptInMomsBed
 			if player:GetName() == "Leah" then
-				saveData["player_"..tostring(i+1)].kills = data.leahkills
+				saveData["player_" .. tostring(i + 1)].kills = data.leahkills
 			end
 			if player:GetName() == "Peter" then
-				saveData["player_"..tostring(i+1)].DevilCount = data.DevilCount
-				saveData["player_"..tostring(i+1)].AngelCount = data.AngelCount
+				saveData["player_" .. tostring(i + 1)].DevilCount = data.DevilCount
+				saveData["player_" .. tostring(i + 1)].AngelCount = data.AngelCount
 			end
 			if player:GetName() == "Miriam" then
-				saveData["player_"..tostring(i+1)].MiriamTearCount = data.MiriamTearCount
-				saveData["player_"..tostring(i+1)].MiriamRiftTimeout = data.MiriamRiftTimeout
+				saveData["player_" .. tostring(i + 1)].MiriamTearCount = data.MiriamTearCount
+				saveData["player_" .. tostring(i + 1)].MiriamRiftTimeout = data.MiriamRiftTimeout
 			end
 		end
+		saveData.Flipped = mod.Flipped
 		save.PlayerData = saveData
 	end
 	save.Unlocks = mod.Unlocks
@@ -224,72 +223,69 @@ function mod:OnLoad(isLoading)
 			local player = Isaac.GetPlayer(i)
 			local data = mod:GetData(player)
 			if player:GetName() == "Leah" then -- leah's Data
-				if loadData["player_"..tostring(i+1)].kills then
-					data.leahkills = loadData["player_"..tostring(i+1)].kills
+				if loadData["player_" .. tostring(i + 1)].kills then
+					data.leahkills = loadData["player_" .. tostring(i + 1)].kills
 				end
 			end
 			if player:GetName() == "Peter" then -- Peter's Data
-				if loadData["player_"..tostring(i+1)].DevilCount then
-					data.DevilCount = loadData["player_"..tostring(i+1)].DevilCount
+				if loadData["player_" .. tostring(i + 1)].DevilCount then
+					data.DevilCount = loadData["player_" .. tostring(i + 1)].DevilCount
 				end
-				if loadData["player_"..tostring(i+1)].AngelCount then
-					data.AngelCount = loadData["player_"..tostring(i+1)].AngelCount
+				if loadData["player_" .. tostring(i + 1)].AngelCount then
+					data.AngelCount = loadData["player_" .. tostring(i + 1)].AngelCount
 				end
 			end
 			if player:GetName() == "Miriam" then -- Miriam's Data
-				if loadData["player_"..tostring(i+1)].MiriamTearCount then
-					data.MiriamTearCount = loadData["player_"..tostring(i+1)].MiriamTearCount
+				if loadData["player_" .. tostring(i + 1)].MiriamTearCount then
+					data.MiriamTearCount = loadData["player_" .. tostring(i + 1)].MiriamTearCount
 				end
-				if loadData["player_"..tostring(i+1)].MiriamRiftTimeout then
-					data.MiriamRiftTimeout = loadData["player_"..tostring(i+1)].MiriamRiftTimeout
+				if loadData["player_" .. tostring(i + 1)].MiriamRiftTimeout then
+					data.MiriamRiftTimeout = loadData["player_" .. tostring(i + 1)].MiriamRiftTimeout
 				end
 			end
 			-- Other General Data
-			if loadData["player_"..tostring(i+1)].numAngelItems then
-				data.numAngelItems = loadData["player_"..tostring(i+1)].numAngelItems
+			if loadData["player_" .. tostring(i + 1)].numAngelItems then
+				data.numAngelItems = loadData["player_" .. tostring(i + 1)].numAngelItems
 			end
-			if loadData["player_"..tostring(i+1)].solTR then
-				data.solTR = loadData["player_"..tostring(i+1)].solTR
+			if loadData["player_" .. tostring(i + 1)].solTR then
+				data.solTR = loadData["player_" .. tostring(i + 1)].solTR
 			end
-			if loadData["player_"..tostring(i+1)].solDMG then
-				data.solDMG = loadData["player_"..tostring(i+1)].solDMG
+			if loadData["player_" .. tostring(i + 1)].solDMG then
+				data.solDMG = loadData["player_" .. tostring(i + 1)].solDMG
 			end
-			if loadData["player_"..tostring(i+1)].llTR then
-				data.llTR = loadData["player_"..tostring(i+1)].llTR
+			if loadData["player_" .. tostring(i + 1)].llTR then
+				data.llTR = loadData["player_" .. tostring(i + 1)].llTR
 			end
-			if loadData["player_"..tostring(i+1)].MoonHeart then
-				data.MoonHeart = loadData["player_"..tostring(i+1)].MoonHeart
+			if loadData["player_" .. tostring(i + 1)].MoonHeart then
+				data.MoonHeart = loadData["player_" .. tostring(i + 1)].MoonHeart
 			end
-			if loadData["player_"..tostring(i+1)].Flipped then
-				data.Flipped = loadData["player_"..tostring(i+1)].Flipped
+			if loadData["player_" .. tostring(i + 1)].RenovatorDamage then
+				data.RenovatorDamage = loadData["player_" .. tostring(i + 1)].RenovatorDamage
 			end
-			if loadData["player_"..tostring(i+1)].FlipShader then
-				data.FlipShader = loadData["player_"..tostring(i+1)].FlipShader
+			if loadData["player_" .. tostring(i + 1)].HeartCount then
+				data.HeartCount = loadData["player_" .. tostring(i + 1)].HeartCount
 			end
-			if loadData["player_"..tostring(i+1)].RenovatorDamage then
-				data.RenovatorDamage = loadData["player_"..tostring(i+1)].RenovatorDamage
+			if loadData["player_" .. tostring(i + 1)].CameraSaved then
+				data.CameraSaved = loadData["player_" .. tostring(i + 1)].CameraSaved
 			end
-			if loadData["player_"..tostring(i+1)].HeartCount then
-				data.HeartCount = loadData["player_"..tostring(i+1)].HeartCount
+			if loadData["player_" .. tostring(i + 1)].CurRoomID then
+				data.CurRoomID = loadData["player_" .. tostring(i + 1)].CurRoomID
 			end
-			if loadData["player_"..tostring(i+1)].CameraSaved then
-				data.CameraSaved = loadData["player_"..tostring(i+1)].CameraSaved
+			if loadData["player_" .. tostring(i + 1)].ShiftKeyPressed then
+				data.ShiftKeyPressed = loadData["player_" .. tostring(i + 1)].ShiftKeyPressed
 			end
-			if loadData["player_"..tostring(i+1)].CurRoomID then
-				data.CurRoomID = loadData["player_"..tostring(i+1)].CurRoomID
+			if loadData["player_" .. tostring(i + 1)].ShiftMultiplier then
+				data.ShiftMultiplier = loadData["player_" .. tostring(i + 1)].ShiftMultiplier
 			end
-			if loadData["player_"..tostring(i+1)].ShiftKeyPressed then
-				data.ShiftKeyPressed = loadData["player_"..tostring(i+1)].ShiftKeyPressed
-			end
-			if loadData["player_"..tostring(i+1)].ShiftMultiplier then
-				data.ShiftMultiplier = loadData["player_"..tostring(i+1)].ShiftMultiplier
-			end
-			if loadData["player_"..tostring(i+1)].SleptInMomsBed then
-				data.SleptInMomsBed = loadData["player_"..tostring(i+1)].SleptInMomsBed
+			if loadData["player_" .. tostring(i + 1)].SleptInMomsBed then
+				data.SleptInMomsBed = loadData["player_" .. tostring(i + 1)].SleptInMomsBed
 			end
 		end
+		if loadData.Flipped then
+			mod.Flipped = loadData.Flipped
+		end
 		if loadData.Unlocks then
-			for key,value in ipairs(mod.Unlocks) do
+			for key, value in ipairs(mod.Unlocks) do
 				if loadData.Unlocks[key] then
 					mod.Unlocks[key] = loadData.Unlocks[key]
 				end
@@ -306,6 +302,7 @@ function mod:LoadDataCacheEval(player)
 		player:EvaluateItems()
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.LoadDataCacheEval)
 
 -- Players
@@ -315,9 +312,9 @@ include("lua/players/Miriam.lua")
 
 -- prevent shaders crash
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function()
-    if #Isaac.FindByType(EntityType.ENTITY_PLAYER) == 0 then
-        Isaac.ExecuteCommand("reloadshaders")
-    end
+	if #Isaac.FindByType(EntityType.ENTITY_PLAYER) == 0 then
+		Isaac.ExecuteCommand("reloadshaders")
+	end
 end)
 
 ----- Mod Support -----
@@ -343,9 +340,9 @@ if Poglite then
 end
 
 if MiniMapiItemsAPI then
-    local MoonHeartSprite = Sprite()
-    MoonHeartSprite:Load("gfx/ui/moonheart_icon.anm2", true)
-    MinimapAPI:AddIcon("MoonHeartIcon", MoonHeartSprite, "MoonHeart", 0)
+	local MoonHeartSprite = Sprite()
+	MoonHeartSprite:Load("gfx/ui/moonheart_icon.anm2", true)
+	MinimapAPI:AddIcon("MoonHeartIcon", MoonHeartSprite, "MoonHeart", 0)
 	MinimapAPI:AddPickup(225, "MoonHeartIcon", 5, 10, 225, MinimapAPI.PickupNotCollected, "hearts", 13000)
 end
 
@@ -360,29 +357,29 @@ if MCMLoaded then
 		end
 		return 1
 	end
-	
+
 	MCM.AddSetting(
 		"Furtherance",
 		"Sound Effects",
 		{
-			Type = ModConfigMenu.OptionType.BOOLEAN,
-			CurrentSetting = function()
-				return Furtherance.FailSound ~= laugh
-			end,
-			Display = function()
-				local sstr = "???"
-				if Furtherance.FailSound == laugh then sstr = "Laugh Track"
-				elseif Furtherance.FailSound == SoundEffect.SOUND_EDEN_GLITCH then sstr = "Default" end
-				return "Item Fails Sound Effect: " .. sstr
-			end,
-			OnChange = function(current_bool)
-				if current_bool then
-					Furtherance.FailSound = SoundEffect.SOUND_EDEN_GLITCH
-				else
-					Furtherance.FailSound = laugh
-				end
+		Type = ModConfigMenu.OptionType.BOOLEAN,
+		CurrentSetting = function()
+			return Furtherance.FailSound ~= laugh
+		end,
+		Display = function()
+			local sstr = "???"
+			if Furtherance.FailSound == laugh then sstr = "Laugh Track"
+			elseif Furtherance.FailSound == SoundEffect.SOUND_EDEN_GLITCH then sstr = "Default" end
+			return "Item Fails Sound Effect: " .. sstr
+		end,
+		OnChange = function(current_bool)
+			if current_bool then
+				Furtherance.FailSound = SoundEffect.SOUND_EDEN_GLITCH
+			else
+				Furtherance.FailSound = laugh
 			end
-		}
+		end
+	}
 	)
 end
 
@@ -394,49 +391,49 @@ end
 
 function mod:GetPlayers(functionCheck, ...)
 
-	local args = {...}
+	local args = { ... }
 	local players = {}
-	
+
 	local game = Game()
-	
-	for i=1, game:GetNumPlayers() do
-	
-		local player = Isaac.GetPlayer(i-1)
-		
+
+	for i = 1, game:GetNumPlayers() do
+
+		local player = Isaac.GetPlayer(i - 1)
+
 		local argsPassed = true
-		
+
 		if type(functionCheck) == "function" then
-		
-			for j=1, #args do
-			
+
+			for j = 1, #args do
+
 				if args[j] == "player" then
 					args[j] = player
 				elseif args[j] == "currentPlayer" then
 					args[j] = i
 				end
-				
+
 			end
-			
+
 			if not functionCheck(table.unpack(args)) then
-			
+
 				argsPassed = false
-				
+
 			end
-			
+
 		end
-		
+
 		if argsPassed then
-			players[#players+1] = player
+			players[#players + 1] = player
 		end
-		
+
 	end
-	
+
 	return players
-	
+
 end
 
 function mod:GetPlayerFromTear(tear)
-	for i=1, 3 do
+	for i = 1, 3 do
 		local check = nil
 		if i == 1 then
 			check = tear.Parent
@@ -539,7 +536,7 @@ function mod:GetRandomNumber(numMin, numMax, rng)
 		numMax = numMin
 		numMin = nil
 	end
-	
+
 	rng = rng or RNG()
 
 	if type(rng) == "number" then
@@ -547,7 +544,7 @@ function mod:GetRandomNumber(numMin, numMax, rng)
 		rng = RNG()
 		rng:SetSeed(seed, 1)
 	end
-	
+
 	if numMin and numMax then
 		return rng:Next() % (numMax - numMin + 1) + numMin
 	elseif numMax then
@@ -560,22 +557,23 @@ OnRenderCounter = 0
 IsEvenRender = true
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
 	OnRenderCounter = OnRenderCounter + 1
-	
+
 	IsEvenRender = false
-	if Isaac.GetFrameCount()%2 == 0 then
+	if Isaac.GetFrameCount() % 2 == 0 then
 		IsEvenRender = true
 	end
 end)
 
 --ripairs stuff from revel
-function ripairs_it(t,i)
-	i=i-1
-	local v=t[i]
-	if v==nil then return v end
-	return i,v
+function ripairs_it(t, i)
+	i = i - 1
+	local v = t[i]
+	if v == nil then return v end
+	return i, v
 end
+
 function ripairs(t)
-	return ripairs_it, t, #t+1
+	return ripairs_it, t, #t + 1
 end
 
 --delayed functions
@@ -638,8 +636,8 @@ function mod.EsauCheck(player)
 		return nil
 	end
 	local currentPlayer = 1
-	for i=1, Game():GetNumPlayers() do
-		local otherPlayer = Isaac.GetPlayer(i-1)
+	for i = 1, Game():GetNumPlayers() do
+		local otherPlayer = Isaac.GetPlayer(i - 1)
 		local searchPlayer = i
 		--added GetPlayerType() to get Jacob and Easu seperatly
 		if otherPlayer.ControllerIndex == player.ControllerIndex and otherPlayer:GetPlayerType() == player:GetPlayerType() then
@@ -649,19 +647,18 @@ function mod.EsauCheck(player)
 	return currentPlayer
 end
 
-
 -- Big Book Stuff (Thanks kittenchilly!)
 
 --bigbook pausing
 local hideBerkano = false
 function mod:DoBigbookPause()
 	local player = Isaac.GetPlayer(0)
-	
+
 	local sfx = SFXManager()
-	
+
 	hideBerkano = true
 	player:UseCard(Card.RUNE_BERKANO, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER) --we undo berkano's effects later, this is done purely for the bigbook which our housing mod should have made blank if we got here
-	
+
 	--remove the blue flies and spiders that just spawned
 	for _, bluefly in pairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_FLY, -1, false, false)) do
 		if bluefly:Exists() and bluefly.FrameCount <= 0 then
@@ -701,21 +698,21 @@ mod:AddCallback(ModCallbacks.MC_USE_CARD, function()
 	if not hideBerkano then
 		mod:DelayFunction(function()
 			local stuffWasSpawned = false
-			
+
 			for _, bluefly in pairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_FLY, -1, false, false)) do
 				if bluefly:Exists() and bluefly.FrameCount <= 1 then
 					stuffWasSpawned = true
 					break
 				end
 			end
-			
+
 			for _, bluespider in pairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_SPIDER, -1, false, false)) do
 				if bluespider:Exists() and bluespider.FrameCount <= 1 then
 					stuffWasSpawned = true
 					break
 				end
 			end
-			
+
 			if stuffWasSpawned then
 				mod:DoBigbook("gfx/ui/giantbook/rune_07_berkano.png", nil, nil, nil, false)
 			end
@@ -737,11 +734,11 @@ function mod:DoBigbook(spritesheet, sound, animationToPlay, animationFile, doPau
 	if doPause then
 		mod:DoBigbookPause()
 	end
-	
+
 	if not animationToPlay then
 		animationToPlay = "Appear"
 	end
-	
+
 	if not animationFile then
 		animationFile = "gfx/ui/giantbook/giantbook.anm2"
 		if animationToPlay == "Appear" or animationToPlay == "Shake" then
@@ -764,7 +761,7 @@ function mod:DoBigbook(spritesheet, sound, animationToPlay, animationFile, doPau
 			animationFile = "gfx/ui/giantbook/giantbookbig.anm2"
 		end
 	end
-	
+
 	giantbookAnimation = animationToPlay
 	giantbookUI:Load(animationFile, true)
 	if spritesheet then
@@ -773,24 +770,25 @@ function mod:DoBigbook(spritesheet, sound, animationToPlay, animationFile, doPau
 	end
 	giantbookUI:Play(animationToPlay, true)
 	shouldRenderGiantbook = true
-	
+
 	if sound then
 		local sfx = SFXManager()
 		sfx:Play(sound, 1, 0, false, 1)
 	end
-	
+
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
 	if mod:ShouldRender() then
 		local centerPos = mod:GetScreenCenterPosition()
-		
+
 		if IsEvenRender then
 			giantbookUI:Update()
 			if giantbookUI:IsFinished(giantbookAnimation) then
 				shouldRenderGiantbook = false
 			end
 		end
-		
+
 		if shouldRenderGiantbook then
 			giantbookUI:Render(centerPos, Vector.Zero, Vector.Zero)
 		end
@@ -800,7 +798,7 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
 	shouldRenderGiantbook = false
 end)
 
-function mod:ShouldRender()	
+function mod:ShouldRender()
 	local seeds = game:GetSeeds()
 	local hud = game:GetHUD()
 	if hud:IsVisible() == true and (not seeds:HasSeedEffect(SeedEffect.SEED_NO_HUD)) then
@@ -814,7 +812,7 @@ function mod:GetScreenCenterPosition()
 	local shape = room:GetRoomShape()
 	local centerOffset = (room:GetCenterPos()) - room:GetTopLeftPos()
 	local pos = room:GetCenterPos()
-	
+
 	if centerOffset.X > 260 then
 		pos.X = pos.X - 260
 	end
@@ -827,69 +825,69 @@ function mod:GetScreenCenterPosition()
 	if shape == RoomShape.ROOMSHAPE_LTR or shape == RoomShape.ROOMSHAPE_LTL then
 		pos.Y = pos.Y - 140
 	end
-	
+
 	return Isaac.WorldToRenderPosition(pos, false)
-	
+
 end
 
 function mod:GetScreenSize()
-    local pos = room:WorldToScreenPosition(Vector(0,0)) - room:GetRenderScrollOffset() - game.ScreenShakeOffset
-    local rx = pos.X + 60 * 26 / 40
+	local pos = room:WorldToScreenPosition(Vector(0, 0)) - room:GetRenderScrollOffset() - game.ScreenShakeOffset
+	local rx = pos.X + 60 * 26 / 40
 	local ry = pos.Y + 140 * (26 / 40)
 
-    return Vector(rx*2 + 13*26, ry*2 + 7*26)
+	return Vector(rx * 2 + 13 * 26, ry * 2 + 7 * 26)
 end
 
 function mod:GetScreenCenter()
 
 	return mod:GetScreenSize() / 2
-	
+
 end
 
 function mod:GetScreenBottomRight(offset)
 
 	offset = offset or 0
-	
+
 	local pos = mod:GetScreenSize()
 	local hudOffset = Vector(-offset * 2.2, -offset * 1.6)
 	pos = pos + hudOffset
 
 	return pos
-	
+
 end
 
 function mod:GetScreenBottomLeft(offset)
 
 	offset = offset or 0
-	
+
 	local pos = Vector(0, mod:GetScreenBottomRight(0).Y)
 	local hudOffset = Vector(offset * 2.2, -offset * 1.6)
 	pos = pos + hudOffset
-	
+
 	return pos
-	
+
 end
 
 function mod:GetScreenTopRight(offset)
 
 	offset = offset or 0
-	
+
 	local pos = Vector(mod:GetScreenBottomRight(0).X, 0)
 	local hudOffset = Vector(-offset * 2.2, offset * 1.2)
 	pos = pos + hudOffset
 
 	return pos
-	
+
 end
 
 function mod:GetScreenTopLeft(offset)
 
 	offset = offset or 0
-	
+
 	local pos = Vector.Zero
 	local hudOffset = Vector(offset * 2, offset * 1.2)
 	pos = pos + hudOffset
-	
+
 	return pos
-	
+
 end
