@@ -32,8 +32,6 @@ function mod:UseApocalypse(_, _, player)
         end
     end
 
-    print(itemCount)
-
     local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_APOCALYPSE)
 
     local buffs = data.ApocalypseBuffs
