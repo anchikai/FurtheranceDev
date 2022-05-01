@@ -51,7 +51,6 @@ function mod:UseFlippedCross(_, _, player)
 
 	return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseFlippedCross, CollectibleType.COLLECTIBLE_MUDDLED_CROSS)
 
 function mod:RoomPersist()
@@ -60,7 +59,6 @@ function mod:RoomPersist()
 		switchBackground(true)
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.RoomPersist)
 
 function mod:UltraSecretPool(pool, decrease, seed)
@@ -72,16 +70,13 @@ function mod:UltraSecretPool(pool, decrease, seed)
 		Rerolled = false
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, mod.UltraSecretPool)
 
----@param pickup EntityPickup
 function mod:DoubleStuff(pickup)
 	local room = game:GetRoom()
 	if pickup.FrameCount ~= 1 or mod.Flipped ~= true then
 		return
 	end
-
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		if pickup.SpawnerType ~= EntityType.ENTITY_PLAYER then
@@ -98,10 +93,8 @@ function mod:DoubleStuff(pickup)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.DoubleStuff)
 
----@param player EntityPlayer
 function mod:HealthDrain(player)
 	if mod.Flipped == true and player:GetHearts() > 1 and game:GetFrameCount() ~= 0 then
 		local drainSpeed
@@ -115,7 +108,6 @@ function mod:HealthDrain(player)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.HealthDrain)
 
 function mod:TougherEnemies(entity, damage, flags, source, frames)
@@ -137,12 +129,8 @@ function mod:TougherEnemies(entity, damage, flags, source, frames)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.TougherEnemies)
 
----@param entity Entity|nil
----@param hook InputHook
----@param button InputAction
 function mod:FixInputs(entity, hook, button)
 	if entity == nil then return end
 
@@ -161,7 +149,6 @@ function mod:FixInputs(entity, hook, button)
 		return Input.GetActionValue(ButtonAction.ACTION_SHOOTUP, player.ControllerIndex)
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_INPUT_ACTION, mod.FixInputs, InputHook.GET_ACTION_VALUE)
 
 local flipFactor = 0
@@ -174,7 +161,6 @@ function mod:AnimateFlip()
 
 	flipFactor = clamp(flipFactor, 0, 1)
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.AnimateFlip)
 
 -- Thank you im_tem for the shader!!
@@ -183,7 +169,6 @@ function mod:PeterFlip(name)
 		return { FlipFactor = flipFactor }
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, mod.PeterFlip)
 
 function mod:ResetFlipped()
@@ -194,5 +179,4 @@ function mod:ResetFlipped()
 		switchBackground(false)
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.ResetFlipped)
