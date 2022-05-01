@@ -58,6 +58,8 @@ local function switchBackground(isFlipped)
 			elseif levelName == "Mortis I" or levelName == "Mortis II" or levelName == "Mortis XL" then -- Mortis
 				game:ShowHallucination(0, BackdropType.MORTIS)
 			end
+			room:SetFloorColor(Color(1, 1, 1, 1, 0.1, 0, 0))
+			room:SetWallColor(Color(1, 1, 1, 1, 0.1, 0, 0))
 		end
 	elseif isFlipped == false then
 		if levelName == "Basement I" or levelName == "Basement II" or levelName == "Basement XL" then
@@ -146,9 +148,6 @@ function mod:RoomPersist()
 	local room = game:GetRoom()
 	if mod.Flipped == true then
 		switchBackground(true)
-
-		room:SetFloorColor(Color(1, 1, 1, 1, 0.1, 0, 0))
-		room:SetWallColor(Color(1, 1, 1, 1, 0.1, 0, 0))
 	end
 end
 
@@ -272,7 +271,6 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.AnimateFlip)
 
 -- Thank you im_tem for the shader!!
-
 function mod:PeterFlip(name)
 	if name == 'Peter Flip' then
 		return { FlipFactor = flipFactor }
@@ -287,7 +285,6 @@ function mod:ResetFlipped()
 		mod.Flipped = false
 		flipFactor = 0
 		switchBackground(false)
-		
 	end
 end
 
