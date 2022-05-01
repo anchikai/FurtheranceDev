@@ -159,13 +159,6 @@ function mod:AnimateFlip()
 		flipFactor = flipFactor - 0.1
 	end
 	flipFactor = clamp(flipFactor, 0, 1)
-	if game:IsPaused() and mod.Flipped then
-		mod.Flipped = false
-		menufix = true
-	elseif game:IsPaused() == false and menufix == true then
-		mod.Flipped = true
-		menufix = false
-	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.AnimateFlip)
 
