@@ -360,5 +360,4 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function() -- Peter's Devil/Angel i
 			f:DrawString(data.AngelCount, 44 + offset.X, 173 + offset.Y + coopOffset * 1.2, KColor(1, 1, 1, 0.4, 0, 0, 0), 0, true)
 		end
 	end
-end
-)
+end)
