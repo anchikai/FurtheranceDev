@@ -33,7 +33,7 @@ function mod:PeterUpdate(player)
 			player:AddSoulHearts(-player:GetSoulHearts())
 		end
 		if player.FrameCount < 10 and (not mod.isLoadingData and data.Init) then
-			player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_FLIPPED_CROSS, ActiveSlot.SLOT_POCKET, false)
+			player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_MUDDLED_CROSS, ActiveSlot.SLOT_POCKET, false)
 		elseif player.FrameCount >= 10 and data.Init then
 			data.Init = nil
 		end
