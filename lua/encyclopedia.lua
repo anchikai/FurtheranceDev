@@ -1028,7 +1028,7 @@ local Wiki = {
 			{str = "- If he uses it on Basement, the floor will look like Caves and so on."},
 			{str = "- While flipped, Tainted Peter will lose half a heart every 7 seconds."},
 			{str = "-- All hearts will be converted into black hearts."},
-			{str = "The flipped floor will have the entire floor upside down and the enemies will be harder to defeat, but you gain double the items and pickups."},
+			{str = "The entire screen will be flipped vertically and the enemies will be harder to defeat, but you gain double the items and pickups."},
 			{str = "The item pool for all items while flipped is the Ultra Secret Room item pool."},
 			{str = "- Items of any quality can be found while flipped."},
 			
