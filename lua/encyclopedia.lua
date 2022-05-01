@@ -1021,7 +1021,7 @@ local Wiki = {
 		},
 		{ -- Traits
 			{str = "Traits", fsize = 2, clr = 3, halign = 0},
-			{str = "Tainted Peter is unable to utilize Soul Hearts and Black Hearts as health. When Black Hearts are picked up, they instead are converted to a battery charge that can at the rate of one charge per half heart."},
+			{str = "Tainted Peter is unable to utilize Soul Hearts and Black Hearts as health. When Black Hearts are picked up, they instead are converted to a battery charge at the rate of one charge per half heart."},
 			{str = "- All Soul Hearts are converted into Black Hearts."},
 			{str = "- The converted charge can only charge his pocket active item, Muddled Cross."},
 			{str = "Tainted Peter cannot gain items over quality 2. Instead he can use his pocket active item ''Muddled Cross'' to travel to an upside down, red tinted version of the next chapter."},
@@ -1041,10 +1041,6 @@ local Wiki = {
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			
-		},
-		{ -- Interactions
-			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
 			
 		},
 		{ -- Trivia
