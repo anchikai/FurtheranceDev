@@ -20,7 +20,7 @@
 		skin="Character_002_Peter_B.png"
 		nameimage="playername_Peter.png"
 		portrait="playerportrait_Peter_B.png"
-		birthright="???" />
+		birthright="Hemorrhage" />
 	<player name="Miriam" skinColor="-1" hp="4" armor="4" costumeSuffix="miriam"
 		skin="Character_003_Miriam_A.png"
 		nameimage="playername_Miriam.png"
