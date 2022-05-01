@@ -223,20 +223,18 @@ local function getItemCount()
 end
 
 function mod:DoubleStuff(pickup)
-	local room = game:GetRoom()
 	if pickup.FrameCount ~= 1 then
 		return
 	end
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
-		local room = game:GetRoom()
 		local itemCount = getItemCount()
-		if data.Flipped == true and pickup.SpawnerType ~= EntityType.ENTITY_PLAYER and itemCount < 10 and room:IsFirstVisit() then
+		if data.Flipped == true and pickup.SpawnerType ~= EntityType.ENTITY_PLAYER and itemCount < 10 then
 			pickup.SpawnerEntity = player
 			pickup.SpawnerType = EntityType.ENTITY_PLAYER
 			pickup.SpawnerVariant = player.Variant
-			local newPickup = Isaac.Spawn(EntityType.ENTITY_PICKUP, pickup.Variant, 0, Isaac.GetFreeNearPosition(pickup.Position, 40), Vector.Zero, player):ToPickup()
+			Isaac.Spawn(EntityType.ENTITY_PICKUP, pickup.Variant, 0, Isaac.GetFreeNearPosition(pickup.Position, 40), Vector.Zero, player):ToPickup()
 		end
 	end
 end
@@ -252,7 +250,7 @@ function mod:HealthDrain(player)
 			else
 				drainSpeed = 210
 			end
-			if game:GetFrameCount()%drainSpeed == 0 then
+			if game:GetFrameCount() % drainSpeed == 0 then
 				Isaac.GetPlayer():AddHearts(-1)
 			end
 		end
@@ -285,25 +283,35 @@ end
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.TougherEnemies)
 
 -- Thank you im_tem for the shader!!
+
 function mod:PeterFlip(name)
 	if name == 'Peter Flip' then
-		return {FlipFactor = flipfactor}
+		return { FlipFactor = flipfactor }
 	end
 end
 
 mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, mod.PeterFlip)
 
+---@param entity Entity|nil
+---@param hook InputHook
+---@param button InputAction
 function mod:FixInputs(entity, hook, button)
-	if entity ~= nil then
-		local player = entity:ToPlayer()
-		local data = mod:GetData(player)
-		if data.Flipped == true then
-			if button == ButtonAction.ACTION_DOWN then
-				
-			elseif button == ButtonAction.ACTION_UP then
-				
-			end
-		end
+	if entity == nil then return end
+
+	local player = entity:ToPlayer()
+	if player == nil then return end
+
+	local data = mod:GetData(player)
+	if data.Flipped ~= true then return end
+
+	if button == ButtonAction.ACTION_DOWN then
+		return Input.GetActionValue(ButtonAction.ACTION_UP, player.ControllerIndex)
+	elseif button == ButtonAction.ACTION_UP then
+		return Input.GetActionValue(ButtonAction.ACTION_DOWN, player.ControllerIndex)
+	elseif button == ButtonAction.ACTION_SHOOTUP then
+		return Input.GetActionValue(ButtonAction.ACTION_SHOOTDOWN, player.ControllerIndex)
+	elseif button == ButtonAction.ACTION_SHOOTDOWN then
+		return Input.GetActionValue(ButtonAction.ACTION_SHOOTUP, player.ControllerIndex)
 	end
 end
 
