@@ -261,17 +261,19 @@ function mod:MorphHeart(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = game:GetPlayer(i)
 		if player:GetName() == "PeterB" then
-			price = entity.Price
 			if mod.Flipped == true then
 				if entity.SubType ~= HeartSubType.HEART_BLACK then
+					local price = entity.Price
 					entity:Morph(entity.Type, entity.Variant, HeartSubType.HEART_BLACK)
+					entity.Price = price
 				end
 			elseif mod.Flipped == false then
 				if entity.SubType == HeartSubType.HEART_SOUL or entity.SubType == HeartSubType.HEART_HALF_SOUL then
+					local price = entity.Price
 					entity:Morph(entity.Type, entity.Variant, HeartSubType.HEART_BLACK)
+					entity.Price = price
 				end
 			end
-			entity.Price = price
 		end
 	end
 end
