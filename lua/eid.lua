@@ -224,9 +224,6 @@ EID:addTrinket(TrinketType.TRINKET_GRASS, "Starts a 1 hour timer#The trinket wil
 EID:addTrinket(TrinketType.TRINKET_GRASS, "Запускает 1 часовой таймер#При истечении таймера брелок исчезнет и появится {{Collectible210}} Обглоданный лист#!!! Таймер сбрасывается, если брелок был выброшен", "Трава", "ru")
 EID:addTrinket(TrinketType.TRINKET_GRASS, "Empezará un contador de una hora#El trinket será removido y se otorgará la {{Collectible210}} Hoja roída tras acabar el tiempo#!!! Si se suelta el trinket, el contador se reiniciará", "Pasto", "spa")
 
--- Keys to the Kingdom
-EID:addCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, "When used, it has a variety of effects based on the room#{{Room}}: Another room clear reward will spawn#Active {{Room}}: light beams will strike enemies#{{DevilRoom}}: All items become free#{{AngelRoom}}: Spawns a key piece#{{Blank}}Note: If you have {{Collectible238}}{{Collectible239}} an angel item will spawn instead", "Keys to the Kingdom", "en_us")
-
 -- Alabaster Scrap
 EID:addTrinket(TrinketType.TRINKET_ALABASTER_SCRAP, "↑ +0.5 Damage up for each angelic item held", "Alabaster Scrap", "en_us")
 
@@ -241,3 +238,9 @@ EID:addCard(RUNE_SOUL_OF_LEAH, "Grants between 1 to 5 broken hearts#↑ All the 
 
 -- Moon Heart
 EID:addEntity(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, 225, "Moon Heart", "Worth 1 HP#Teleports you to the Secret Room when depleted#↓ Only 1 can be held at a time", "en_us")
+
+-- Keys to the Kingdom
+EID:addCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, "When used, it has a variety of effects based on the room#{{Room}}: Another room clear reward will spawn#Active {{Room}}: light beams will strike enemies#{{DevilRoom}}: All items become free#{{AngelRoom}}: Spawns a key piece#{{Blank}}Note: If you have {{Collectible238}}{{Collectible239}} an angel item will spawn instead", "Keys to the Kingdom", "en_us")
+
+-- Muddled Cross
+EID:addCollectible(CollectibleType.COLLECTIBLE_MUDDLED_CROSS, "Vertically flips the screen and tints it red#The floor will look like the next floor#↑ All items and pickups are doubled  while flipped#All items are from the {{UltraSecretRoom}}Ultra Secret Room pool#!!! Half a red heart is lost every 7 seconds while flipped", "Muddled Cross", "en_us")
