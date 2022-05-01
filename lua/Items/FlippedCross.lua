@@ -111,6 +111,8 @@ local function switchBackground(isFlipped)
 		elseif levelName == "Mortis I" or levelName == "Mortis II" or levelName == "Mortis XL" then
 			game:ShowHallucination(0, BackdropType.MORTIS)
 		end
+		room:SetFloorColor(Color(1, 1, 1, 1, 0, 0, 0))
+		room:SetWallColor(Color(1, 1, 1, 1, 0, 0, 0))
 	end
 	SFXManager():Stop(SoundEffect.SOUND_DEATH_CARD)
 end
@@ -280,10 +282,12 @@ end
 mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, mod.PeterFlip)
 
 function mod:ResetFlipped()
+	local room = game:GetRoom()
 	if mod.Flipped == true then
 		mod.Flipped = false
 		flipFactor = 0
 		switchBackground(false)
+		
 	end
 end
 
