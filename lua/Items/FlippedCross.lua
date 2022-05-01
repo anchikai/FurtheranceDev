@@ -58,8 +58,6 @@ local function switchBackground(isFlipped)
 			elseif levelName == "Mortis I" or levelName == "Mortis II" or levelName == "Mortis XL" then -- Mortis
 				game:ShowHallucination(0, BackdropType.MORTIS)
 			end
-			room:SetFloorColor(Color(1, 1, 1, 1, 0.1, 0, 0))
-			room:SetWallColor(Color(1, 1, 1, 1, 0.1, 0, 0))
 		end
 	elseif isFlipped == false then
 		if levelName == "Basement I" or levelName == "Basement II" or levelName == "Basement XL" then
@@ -113,8 +111,6 @@ local function switchBackground(isFlipped)
 		elseif levelName == "Mortis I" or levelName == "Mortis II" or levelName == "Mortis XL" then
 			game:ShowHallucination(0, BackdropType.MORTIS)
 		end
-		room:SetFloorColor(Color(1, 1, 1, 1, 0, 0, 0))
-		room:SetWallColor(Color(1, 1, 1, 1, 0, 0, 0))
 	end
 	SFXManager():Stop(SoundEffect.SOUND_DEATH_CARD)
 end
@@ -128,14 +124,8 @@ function mod:UseFlippedCross()
 
 	if mod.Flipped == true then
 		SFXManager():Play(SoundEffect.SOUND_LAZARUS_FLIP_DEAD)
-
-		room:SetFloorColor(Color(1, 1, 1, 1, 0.1, 0, 0))
-		room:SetWallColor(Color(1, 1, 1, 1, 0.1, 0, 0))
 	else
 		SFXManager():Play(SoundEffect.SOUND_LAZARUS_FLIP_ALIVE)
-
-		room:SetFloorColor(Color(1, 1, 1, 1, 0, 0, 0))
-		room:SetWallColor(Color(1, 1, 1, 1, 0, 0, 0))
 	end
 
 
@@ -182,7 +172,7 @@ function mod:DoubleStuff(pickup)
 				newItem.Price = pickup.Price
 				newItem.OptionsPickupIndex = pickup.OptionsPickupIndex
 			end
-			
+
 			break
 		end
 	end

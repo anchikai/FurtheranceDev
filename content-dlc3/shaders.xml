@@ -1,9 +1,10 @@
 <shaders>
     <shader name="Peter Flip">
         <parameters>
-			<param name="FlipFactor" type="float"/>
+            <param name="FlipFactor" type="float" />
         </parameters>
-        <vertex><![CDATA[
+        <vertex>
+            <![CDATA[
             attribute vec3 Position;                                        
             attribute vec4 Color;                                           
             attribute vec2 TexCoord;                                        
@@ -27,8 +28,10 @@
                 TexCoord0 = TexCoord;
                 gl_Position = Transform * vec4(Position.xyz, 1.0);          
             }
-        ]]></vertex>
-        <fragment><![CDATA[
+        ]]>
+        </vertex>
+        <fragment>
+            <![CDATA[
             varying lowp vec4 Color0;  			
             varying mediump vec2 TexCoord0;  			
             varying lowp vec4 RenderDataOut;
@@ -43,9 +46,13 @@
                 float parttwo = ((RenderDataOut.y/RenderDataOut.z)-TexCoord0.y) * FlipFactorOut;
                 float FlipValue = partone+parttwo;
                 float MirrorFactor = 1 * (1 - FlipFactorOut) + 0.7 * FlipFactorOut;
-                vec4 Color = Color0 * texture2D(Texture0, vec2( TexCoord0.x,FlipValue) );            
+                vec4 Color = Color0 * texture2D(Texture0, vec2( TexCoord0.x,FlipValue) );
+                Color.r *= 1.0f + FlipFactorOut;
+                Color.g *= 1.0f - (FlipFactorOut * 0.225f);
+                Color.b *= 1.0f - (FlipFactorOut * 0.225f);
                 gl_FragColor = Color*MirrorFactor;
             }
-        ]]></fragment>
+        ]]>
+        </fragment>
     </shader>
 </shaders>
