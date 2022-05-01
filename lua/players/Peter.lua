@@ -265,19 +265,12 @@ function mod:MorphHeart(entity)
 		local data = mod:GetData(player)
 		if player:GetName() == "PeterB" then
 			if data.Flipped == true then
-				heart = HeartSubType.HEART_FULL
-				halfHeart = HeartSubType.HEART_HALF
-			else
-				heart = HeartSubType.HEART_BLACK
-				halfHeart = HeartSubType.HEART_BLACK
-			end
-			if entity.SubType == HeartSubType.HEART_SOUL then
-				entity:Morph(entity.Type, entity.Variant, heart)
-			elseif entity.SubType == HeartSubType.HEART_HALF_SOUL then
-				entity:Morph(entity.Type, entity.Variant, halfHeart)
-			elseif entity.SubType == HeartSubType.HEART_BLACK then
-				if data.Flipped == true then
-					entity:Morph(entity.Type, entity.Variant, HeartSubType.HEART_FULL)
+				if entity.SubType ~= HeartSubType.HEART_BLACK then
+					entity:Morph(entity.Type, entity.Variant, HeartSubType.HEART_BLACK)
+				end
+			elseif data.Flipped == false then
+				if entity.SubType == HeartSubType.HEART_SOUL or entity.SubType == HeartSubType.HEART_HALF_SOUL then
+					entity:Morph(entity.Type, entity.Variant, HeartSubType.HEART_BLACK)
 				end
 			end
 		end
