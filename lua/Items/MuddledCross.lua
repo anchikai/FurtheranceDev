@@ -157,6 +157,7 @@ mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, mod.UltraSecretPool)
 
 ---@param pickup EntityPickup
 function mod:DoubleStuff(pickup)
+	local room = game:GetRoom()
 	if pickup.FrameCount ~= 1 or mod.Flipped ~= true then
 		return
 	end
@@ -168,9 +169,11 @@ function mod:DoubleStuff(pickup)
 			pickup.SpawnerType = EntityType.ENTITY_PLAYER
 			pickup.SpawnerVariant = player.Variant
 			if mod.Flipped then
-				local newItem = Isaac.Spawn(EntityType.ENTITY_PICKUP, pickup.Variant, 0, Isaac.GetFreeNearPosition(pickup.Position, 40), Vector.Zero, player):ToPickup()
-				newItem.Price = pickup.Price
-				newItem.OptionsPickupIndex = pickup.OptionsPickupIndex
+				if room:IsFirstVisit() then
+					local newItem = Isaac.Spawn(EntityType.ENTITY_PICKUP, pickup.Variant, 0, Isaac.GetFreeNearPosition(pickup.Position, 40), Vector.Zero, player):ToPickup()
+					newItem.Price = pickup.Price
+					newItem.OptionsPickupIndex = pickup.OptionsPickupIndex
+				end
 			end
 
 			break
