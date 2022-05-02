@@ -167,7 +167,7 @@ include("lua/cards/KeyCard.lua")
 include("lua/pickups/MoonHeart.lua")
 
 -- Floor Generation Luas
---include("lua/rooms/NoahsArk.lua")
+include("lua/rooms/NoahsArk.lua")
 include("lua/rooms/HomeExit.lua")
 
 -- Save Data/Unlocks
