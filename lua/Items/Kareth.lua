@@ -9,14 +9,20 @@ function mod:KarethQual(entity)
 			local itemConfig = Isaac.GetItemConfig()
 			local itemPool = Game():GetItemPool()
 			if itemConfig:GetCollectible(entity.SubType).Quality <= 1 then -- Quality 0 - 1
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player)
+				local trinket = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player):ToPickup()
+				trinket.Price = entity.Price
 			elseif itemConfig:GetCollectible(entity.SubType).Quality == 2 or itemConfig:GetCollectible(entity.SubType).Quality == 3 then -- Quality 2 - 3
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player)
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player)
+				local trinket = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player):ToPickup()
+				local trinket2 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player):ToPickup()
+				trinket.Price = entity.Price
+				trinket2.Price = entity.Price
 			elseif itemConfig:GetCollectible(entity.SubType).Quality == 4 then -- Quality 4
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player)
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player)
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player)
+				local trinket = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player):ToPickup()
+				local trinket2 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player):ToPickup()
+				local trinket3 = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player):ToPickup()
+				trinket.Price = entity.Price
+				trinket2.Price = entity.Price
+				trinket3.Price = entity.Price
 			end
 			entity:Remove()
 		end
