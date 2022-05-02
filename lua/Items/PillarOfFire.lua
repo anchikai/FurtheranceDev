@@ -30,8 +30,6 @@ function mod:SpawnFire(entity, damage, flag, source, frames)
 end
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.SpawnFire, EntityType.ENTITY_PLAYER)
 
----@param player Entity
----@return Entity
 local function getNearestEnemy(player)
     local nearestEnemy = nil
     local nearestDistance = math.huge

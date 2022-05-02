@@ -559,6 +559,15 @@ local Wiki = {
 			{str = "-- If the player already has both key pieces, a random angel item will spawn instead."},
 		},
 	},
+	MuddledCross = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, the entire screen will be flipped vertically and the enemies will be harder to defeat, but you gain double the items and pickups."},
+			{str = "- If Isaac uses it on Basement, the floor will look like Caves and so on."},
+			{str = "- While flipped, Isaac will lose half a heart every 7 seconds."},
+			{str = "The item pool for all items while flipped is the Ultra Secret Room item pool."},
+		},
+	},
 	AlabasterScrap = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -686,21 +695,27 @@ local Wiki = {
 	PillarOfFire = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "Isaac will burst into five flames when hit, dealing damage to enemies."},
+			{str = "- Chance to burst into flames increases by 5% for each luck up."},
+			{str = "Flames will deal contact damage and periodically shoot red tears at enemies."},
+			{str = "- The flames' tears will always deal 3.5 damage."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "At 19 luck, the chance to burst into flames will be 100%."},
 		},
 	},
 	PillarOfClouds = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "When walking through the doorway to an uncleared room, Isaac will occasionally skip that room and immediately walk into the room right after it."},
+			{str = "- The chance to skip a room is 10%."},
+			{str = "- Works even if there's no subsequent room, allowing Isaac to walk into a Red Room."},
+			{str = "-- Cannot be used to go out of bounds."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "The chance to skip rooms can not be increased or decreased."},
 		},
 	},
 	FirstbornSon = {
@@ -726,7 +741,8 @@ local Wiki = {
 	Quarantine = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Upon entering a new room, applies fear to all enemies for 6 seconds. Enemies near Isaac during that period are poisoned."},
+			{str = "Upon entering a new room, applies fear to all enemies for 6 seconds."},
+			{str = "- Enemies near Isaac during that period are poisoned."},
 		},
 	},
 	BookOfGuidance = {
@@ -770,21 +786,23 @@ local Wiki = {
 	TheDreidel = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "Upon use, 1-4 random stats will be reduced and 1 random item will be spawned from the current room's item pool."},
+			{str = "The quality of the item will be how many stats were reduced."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "The amount of stats lowered cannot be controlled."},
 		},
 	},
 	Apocalypse = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "Removes all passive items Isaac possesses."},
+			{str = "- Increases 2 random stats for each item removed."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "Duplicate items will also be removed."},
 		},
 	},
 	InfestedPenny = {
@@ -796,21 +814,22 @@ local Wiki = {
 	SalineSpray = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
-		},
-		{ -- Notes
-			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "Isaac's tears have a 5% chance to be ice tears, which slows enemies and freeze monsters they kill."},
 		},
 	},
 	AlmagestScrap = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "While held, replaces Item Rooms with Planetariums."},
+			{str = "Planetarium items now cost 1-3 broken hearts."},
+			{str = "The amount of broken hearts depends on what the item's quality was:"},
+			{str = "- 0-1: 1 Broken Heart."},
+			{str = "- 2-3: 2 Broken Hearts."},
+			{str = "- 4: 3 Broken Hearts."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "The price for items cannot be increased or decreased by the player."},
 		},
 	},
 	WormwoodLeaf = {
@@ -828,11 +847,13 @@ local Wiki = {
 	OldCamera = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "Upon use, Isaac's current room will be ''saved''."},
+			{str = "Using Old Camera again will bring Isaac back to the saved room, and will have to be cleared again."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "If used on a cleared room, enemies will still respawn if it had any."},
+			{str = "If the room had no enemies, Isaac will still be brought back to that room but it will not have to be cleared."},
 		},
 	},
 
@@ -1532,6 +1553,20 @@ Encyclopedia.AddItem({
 	Pools = {
 		Encyclopedia.ItemPools.POOL_ANGEL,
 		Encyclopedia.ItemPools.POOL_GREED_ANGEL,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_MUDDLED_CROSS,
+	WikiDesc = Wiki.MuddledCross,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_DEVIL,
+		Encyclopedia.ItemPools.POOL_SECRET,
+		Encyclopedia.ItemPools.POOL_GREED_DEVIL,
+		Encyclopedia.ItemPools.POOL_GREED_SECRET,
+		Encyclopedia.ItemPools.POOL_ULTRA_SECRET,
 	},
 })
 

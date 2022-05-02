@@ -108,12 +108,22 @@
 	<wisp id="9" hp="2" damage="3" tearFlags2="70" flameColor="flame_beige" coreColor="core_beige" tearColor="tear_beige" />
 	<!-- Shift Key -->
 	<wisp id="10" hp="2" damage="3" flameColor="flame_beige" coreColor="core_beige" tearColor="tear_beige" />
+	<!-- F4 Key -->
+	<wisp id="31" hp="2" damage="3" flameColor="flame_beige" coreColor="core_beige" tearColor="tear_beige" />
+	<!-- Tab Key -->
+	<wisp id="32" hp="2" damage="3" flameColor="flame_beige" coreColor="core_beige" tearColor="tear_beige" />
 	<!-- Book of Swiftness -->
 	<wisp id="21" hp="2" damage="3" shotSpeed="3" flameColor="flame_blue" coreColor="core_blue" tearColor="tear_blue" />
 	<!-- Book of Ambit -->
-	<wisp id="22" hp="2" damage="3" flameColor="flame_orange" coreColor="core_orange" tearColor="tear_orange" />
-	<!-- NEASS -->
+	<wisp id="22" hp="2" damage="3" tearFlags="1" flameColor="flame_orange" coreColor="core_orange" tearColor="tear_orange" />
+	<!-- Plug N' Play -->
 	<wisp id="25" hp="2" damage="3" flameColor="flame_dark_brown" coreColor="core_dark_brown" tearColor="tear_dark_brown" />
 	<!-- Heart Renovator -->
 	<wisp id="29" hp="2" damage="3" flameColor="flame_red" coreColor="core_red" tearColor="tear_red" />
+	<!-- Shattered Heart -->
+	<wisp id="33" hp="2" damage="3" tearFlags2="3" flameColor="flame_red" coreColor="core_black" tearColor="tear_black" />
+	<!-- Keys to the Kingdom -->
+	<wisp id="34" hp="2" damage="3" flameColor="flame_bright_blue" coreColor="core_blue" tearColor="tear_dark_blue" />
+	<!-- Muddled Cross -->
+	<wisp id="36" hp="2" damage="1.5" tearFlags="15" flameColor="flame_red" coreColor="core_vengeful" tearColor="tear_dark_red" />
 </wisps>

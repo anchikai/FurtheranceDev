@@ -8,7 +8,7 @@ function mod:RoomSkip()
         local room = game:GetRoom()
         if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_PILLAR_OF_CLOUDS)) then
             local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_PILLAR_OF_FIRE)
-            if rng:RandomInt(2) == 0 then
+            if rng:RandomInt(10) == 0 then
                 local leaveDoor = room:GetDoor(level.LeaveDoor)
                 local enterDoor = room:GetDoor(level.EnterDoor)
                 if room:IsFirstVisit() and room:IsClear() == false then
