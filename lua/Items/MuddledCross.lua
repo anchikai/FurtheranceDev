@@ -104,7 +104,7 @@ function mod:HealthDrain(player)
 			drainSpeed = 210
 		end
 		if game:GetFrameCount() % drainSpeed == 0 then
-			Isaac.GetPlayer():AddHearts(-1)
+			player:AddHearts(-1)
 		end
 	end
 end
