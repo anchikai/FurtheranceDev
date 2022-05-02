@@ -133,14 +133,14 @@ function mod:EnemyTethering(player)
 				
 
 				-- Damage the closest enemy every (player fire delay) frames with 0.33x of the players damage
-				if targetData.enemyTarget ~= nil and room:GetFrameCount() % player.MaxFireDelay == 0 then
+				if targetData.enemyTarget ~= nil or targetData.enemyTarget.Type == EntityType.ENTITY_DUMMY and room:GetFrameCount()%player.MaxFireDelay == 0 then
 					targetData.enemyTarget:TakeDamage(player.Damage*0.33, DamageFlag.DAMAGE_NO_MODIFIERS, EntityRef(player), 1)
 					targetData.enemyTarget:SetColor(Color(1, 0, 0, 1, 0, 0, 0), 12, 1, false, false)
 					
 					-- 3 of them at the same time look the best
-					--spiritualWoundLaser(player, targetData.enemyTarget.Position + Vector(math.random(-75,75), math.random(-75,75)))
-					--spiritualWoundLaser(player, targetData.enemyTarget.Position + Vector(math.random(-75,75), math.random(-75,75)))
-					--spiritualWoundLaser(player, targetData.enemyTarget.Position + Vector(math.random(-75,75), math.random(-75,75)))
+					spiritualWoundLaser(player, targetData.enemyTarget.Position + Vector(math.random(-75,75), math.random(-75,75)))
+					spiritualWoundLaser(player, targetData.enemyTarget.Position + Vector(math.random(-75,75), math.random(-75,75)))
+					spiritualWoundLaser(player, targetData.enemyTarget.Position + Vector(math.random(-75,75), math.random(-75,75)))
 				end
 			end
 		end
