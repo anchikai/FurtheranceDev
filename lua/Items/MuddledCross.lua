@@ -149,23 +149,8 @@ function mod:FixInputs(entity, hook, button)
 end
 mod:AddCallback(ModCallbacks.MC_INPUT_ACTION, mod.FixInputs, InputHook.GET_ACTION_VALUE)
 
-local lastFlipFactor = 0
 local flipFactor = 0
-local lastPaused = false
-local paused = false
 function mod:AnimateFlip()
-	if paused ~= lastPaused then
-		lastPaused = paused
-		if paused then
-			lastFlipFactor = flipFactor
-			flipFactor = 0
-		else
-			flipFactor = lastFlipFactor
-		end
-	end
-
-	if paused then return end
-
 	if mod.Flipped == true then
 		flipFactor = flipFactor + 0.1
 	elseif mod.Flipped == false then
@@ -199,7 +184,11 @@ function mod:FixMenu()
 	else
 		pauseTime = 0
 	end
-
-	paused = pauseTime > 25
+	if mod.Flipped then
+		mod.Flipped = pauseTime < 25
+		pausedFixed = true
+	elseif pausedFixed and game:IsPaused() == false then
+		mod.Flipped = true
+	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.FixMenu)
