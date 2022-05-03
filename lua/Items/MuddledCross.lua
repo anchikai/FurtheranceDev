@@ -178,17 +178,20 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.ResetFlipped)
 
 local pauseTime = 0
+local pausedFixed = false
 function mod:FixMenu()
 	if game:IsPaused() then
 		pauseTime = math.min(pauseTime + 1, 26)
 	else
 		pauseTime = 0
 	end
-	if mod.Flipped then
+	if mod.Flipped and pauseTime == 26 then
 		mod.Flipped = pauseTime < 25
 		pausedFixed = true
 	elseif pausedFixed and game:IsPaused() == false then
+		pausedFixed = false
 		mod.Flipped = true
 	end
+	print(mod.Flipped, pauseTime)
 end
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.FixMenu)
