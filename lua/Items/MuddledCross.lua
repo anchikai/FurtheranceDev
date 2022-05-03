@@ -15,16 +15,16 @@ local function switchBackground(isFlipped)
 		if room:GetType() == RoomType.ROOM_DEFAULT or room:GetType() == RoomType.ROOM_TREASURE then
 			if level:GetStageType() <= StageType.STAGETYPE_AFTERBIRTH then
 				if level:GetStage() < LevelStage.STAGE4_3 then
-					game:ShowHallucination(0, backdrop+3)
+					game:ShowHallucination(0, backdrop + 3)
 				elseif level:GetStage() ~= LevelStage.STAGE4_3 and level:GetStage() < LevelStage.STAGE6 then
-					game:ShowHallucination(0, backdrop+2)
+					game:ShowHallucination(0, backdrop + 2)
 				end
 			elseif level:GetStageType() >= StageType.STAGETYPE_REPENTANCE then
 				if level:GetStage() < LevelStage.STAGE4_1 then
 					if backdrop == clamp(backdrop, BackdropType.MAUSOLEUM2, BackdropType.MAUSOLEUM4) or backdrop == BackdropType.MAUSOLEUM then
 						game:ShowHallucination(0, BackdropType.CORPSE)
 					else
-						game:ShowHallucination(0, backdrop+1)
+						game:ShowHallucination(0, backdrop + 1)
 					end
 				end
 			end
@@ -51,6 +51,7 @@ function mod:UseFlippedCross(_, _, player)
 
 	return true
 end
+
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseFlippedCross, CollectibleType.COLLECTIBLE_MUDDLED_CROSS)
 
 function mod:RoomPersist()
@@ -59,6 +60,7 @@ function mod:RoomPersist()
 		switchBackground(true)
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.RoomPersist)
 
 function mod:UltraSecretPool(pool, decrease, seed)
@@ -70,6 +72,7 @@ function mod:UltraSecretPool(pool, decrease, seed)
 		Rerolled = false
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, mod.UltraSecretPool)
 
 function mod:DoubleStuff(pickup)
@@ -93,6 +96,7 @@ function mod:DoubleStuff(pickup)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.DoubleStuff)
 
 function mod:HealthDrain(player)
@@ -108,6 +112,7 @@ function mod:HealthDrain(player)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.HealthDrain)
 
 function mod:TougherEnemies(entity, damage, flags, source, frames)
@@ -129,6 +134,7 @@ function mod:TougherEnemies(entity, damage, flags, source, frames)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.TougherEnemies)
 
 function mod:FixInputs(entity, hook, button)
@@ -149,10 +155,26 @@ function mod:FixInputs(entity, hook, button)
 		return Input.GetActionValue(ButtonAction.ACTION_SHOOTUP, player.ControllerIndex)
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_INPUT_ACTION, mod.FixInputs, InputHook.GET_ACTION_VALUE)
 
+local lastFlipFactor = 0
 local flipFactor = 0
+local lastPaused = false
+local paused = false
 function mod:AnimateFlip()
+	if paused ~= lastPaused then
+		lastPaused = paused
+		if paused then
+			lastFlipFactor = flipFactor
+			flipFactor = 0
+		else
+			flipFactor = lastFlipFactor
+		end
+	end
+
+	if paused then return end
+
 	if mod.Flipped == true then
 		flipFactor = flipFactor + 0.1
 	elseif mod.Flipped == false then
@@ -160,6 +182,7 @@ function mod:AnimateFlip()
 	end
 	flipFactor = clamp(flipFactor, 0, 1)
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.AnimateFlip)
 
 -- Thank you im_tem for the shader!!
@@ -168,14 +191,28 @@ function mod:PeterFlip(name)
 		return { FlipFactor = flipFactor }
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, mod.PeterFlip)
 
 function mod:ResetFlipped()
-	local room = game:GetRoom()
 	if mod.Flipped == true then
 		mod.Flipped = false
 		flipFactor = 0
 		switchBackground(false)
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.ResetFlipped)
+
+local pauseTime = 0
+function mod:FixMenu()
+	if game:IsPaused() then
+		pauseTime = math.min(pauseTime + 1, 26)
+	else
+		pauseTime = 0
+	end
+
+	paused = pauseTime > 25
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.FixMenu)
