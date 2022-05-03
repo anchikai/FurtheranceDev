@@ -192,6 +192,5 @@ function mod:FixMenu()
 		pausedFixed = false
 		mod.Flipped = true
 	end
-	print(mod.Flipped, pauseTime)
 end
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.FixMenu)
