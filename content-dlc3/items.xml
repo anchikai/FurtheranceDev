@@ -10,7 +10,7 @@
 	<active id="7" name="C Key" description="Encyclopedia Support" gfx="c.png" maxcharges="6" initcharge="0" quality="3" />
 	<active id="8" name="Caps Key" description="Locked in size" gfx="caps.png" maxcharges="6" quality="3" />
 	<active id="9" name="Enter Key" description="Meet no boundaries" gfx="enter.png" maxcharges="12" initcharge="0" quality="3" />
-	<active id="10" cache="damage" name="Shift Key" description="Temporary DMG up" gfx="shift.png" maxcharges="12" persistent="true" cooldown="1800" quality="3" />
+	<active id="10" cache="damage" name="Shift Key" description="Temporary DMG up" gfx="shift.png" maxcharges="12" persistent="true" cooldown="1800" quality="3" tags="offensive" />
 	
 	<!-- Astrological Signs -->	<!-- Rework Concepts by Losfrail! -->
 	<passive id="11" cache="tearflag damage firedelay" name="Ophiuchus" description="The dream that holds together" gfx="ophiuchus.png" soulhearts="2" quality="2" tags="stars tearsup offensive" />
