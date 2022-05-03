@@ -641,6 +641,28 @@ local Wiki = {
 			{str = "This item can kill you by setting you to 12 broken hearts."},
 		},
 	},
+	Butterfly = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Taking damage will cause Isaac to fire tears in random directions for two seconds."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "These tears are affected by Isaac's stats and tear modifiers."},
+			{str = "- The tears' damage is 50% of Isaac's damage."},
+		},
+		{ -- Synergies
+			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
+			{str = "Spoon Bender: Fired tears will home in on enemies."},
+			{str = "My Reflection: Fired tears will swarm around Isaac."},
+			{str = "Ipecac: Fired tears will become explosive."},
+			{str = "Rubber Cement: Fired tears will become bouncy."},
+			{str = "Anti-Gravity: Fired tears will bunch up in one location until you stop shooting."},
+			{str = "Tiny Planet: Fired tears will orbit around Isaac."},
+			{str = "Evil Eye: Fired tears will occasionally be Evil Eye tears."},
+			{str = "Varicose Veins: Will fire tears from both Varicose Veins and Butterfly."},
+		},
+	},
 	SpiritualWound = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -1603,6 +1625,17 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_TREASURE,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_BUTTERFLY,
+	WikiDesc = Wiki.Butterfly,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_ANGEL,
+		Encyclopedia.ItemPools.POOL_GREED_ANGEL,
 	},
 })
 

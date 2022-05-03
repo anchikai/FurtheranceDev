@@ -77,6 +77,7 @@ TrinketType.TRINKET_WORMWOOD_LEAF = Isaac.GetTrinketIdByName("Wormwood Leaf")
 CollectibleType.COLLECTIBLE_MANDRAKE = Isaac.GetItemIdByName("Mandrake")
 CollectibleType.COLLECTIBLE_LITTLE_SISTER = Isaac.GetItemIdByName("Little Sister")
 CollectibleType.COLLECTIBLE_OLD_CAMERA = Isaac.GetItemIdByName("Old Camera")
+CollectibleType.COLLECTIBLE_BUTTERFLY = Isaac.GetItemIdByName("Butterfly")
 
 -- Cards/Runes/Pills/etc
 RUNE_SOUL_OF_LEAH = Isaac.GetCardIdByName("Soul of Leah")
@@ -155,6 +156,7 @@ include("lua/items/WormwoodLeaf.lua")
 include("lua/items/Mandrake.lua")
 include("lua/items/LittleSister.lua")
 include("lua/items/OldCamera.lua")
+include("lua/items/Butterfly.lua")
 
 -- Card Luas
 include("lua/cards/SoulOfLeah.lua")

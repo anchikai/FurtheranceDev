@@ -233,6 +233,9 @@ EID:addTrinket(TrinketType.TRINKET_LEAHS_LOCK, "Either grants or removes a broke
 -- Parasitic Poofer
 EID:addCollectible(CollectibleType.COLLECTIBLE_PARASITIC_POOFER, "20% chance to duplicate your red hearts and gain a broken heart when taking damage#Only has a healing effect", "Parasitic Poofer", "en_us")
 
+-- Butterfly
+EID:addCollectible(CollectibleType.COLLECTIBLE_BUTTERFLY, "Taking damage will cause Isaac to fire tears in random directions for two seconds#The tears deal 50% of Isaac's damage", "Butterfly", "en_us")
+
 -- Soul of Leah
 EID:addCard(RUNE_SOUL_OF_LEAH, "Grants between 1 to 5 broken hearts#↑ All the broken hearts will give either a damage up or tears up#The amount of damage or tears gained is dependent on how many broken hearts are gained", "Soul of Leah", "en_us")
 
