@@ -23,4 +23,7 @@
 	<sound name="TambourineShort">
 		<sample weight="1" path="tambourine_short.wav" />		<!-- Thank you Sillst! -->
 	</sound>
+	<sound name="Cork">
+		<sample weight="1" path="cork.wav" />
+	</sound>
 </sounds>

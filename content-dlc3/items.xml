@@ -44,6 +44,7 @@
 	<passive id="53" name="Mandrake" description="children or something" gfx="mandrake.png" quality="2" />
 	<passive id="54" name="Little Sister" description="Rachel..." gfx="little_sister.png" quality="2" />
 	<passive id="56" name="Butterfly" description="Loss of a loved one" gfx="butterfly.png" quality="4" />
+	<passive id="58" name="Cork" description="Pop!" gfx="cork.png" quality="2" />
 	
 	<!-- Active Items -->
 	<active id="21" cache="speed" name="Book of Swiftness" description="Temporary speed up" gfx="book_of_swiftness.png" maxcharges="3" quality="3" tags="book offensive lazarussharedglobal" />

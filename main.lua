@@ -79,6 +79,7 @@ CollectibleType.COLLECTIBLE_LITTLE_SISTER = Isaac.GetItemIdByName("Little Sister
 CollectibleType.COLLECTIBLE_OLD_CAMERA = Isaac.GetItemIdByName("Old Camera")
 CollectibleType.COLLECTIBLE_BUTTERFLY = Isaac.GetItemIdByName("Butterfly")
 CollectibleType.COLLECTIBLE_ALTERNATE_REALITY = Isaac.GetItemIdByName("Alternate Reality")
+CollectibleType.COLLECTIBLE_CORK = Isaac.GetItemIdByName("Cork")
 
 -- Cards/Runes/Pills/etc
 RUNE_SOUL_OF_LEAH = Isaac.GetCardIdByName("Soul of Leah")
@@ -159,6 +160,7 @@ include("lua/items/LittleSister.lua")
 include("lua/items/OldCamera.lua")
 include("lua/items/Butterfly.lua")
 include("lua/items/AlternateReality.lua")
+include("lua/items/Cork.lua")
 
 -- Card Luas
 include("lua/cards/SoulOfLeah.lua")
@@ -172,7 +174,7 @@ include("lua/pickups/MoonHeart.lua")
 
 -- Floor Generation Luas
 --include("lua/rooms/NoahsArk.lua")
-include("lua/rooms/HomeExit.lua")
+--include("lua/rooms/HomeExit.lua")
 
 -- Save Data/Unlocks
 --include("lua/achievements.lua")

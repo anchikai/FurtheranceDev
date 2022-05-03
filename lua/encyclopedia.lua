@@ -893,6 +893,24 @@ local Wiki = {
 			{str = "- This includes the Blue Womb."},
 		},
 	},
+	Cork = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Every 15 shots, Isaac will fire a large, high speed cork."},
+			{str = "- The cork has a 2x damage and 1.5x size multiplier."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "The speed of the Cork is Tear Velocity x (Shot Speed x 1.25)"},
+		},
+		{ -- Synergies
+			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
+			{str = "Monstro's Lung: Each tear fired from Monstro's Lung counts towards a tear fired, allowing for Cork tears to be fired very frequently."},
+			{str = "20/20: Cuts the amount of tears required to fire a Cork in half."},
+			{str = "Cork: The amount of tears it takes to fire a Cork is reduced by how many duplicates Isaac has."},
+			{str = "- It is capped at 14 Corks, allowing for a Cork to be fired every other tear."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -1850,6 +1868,20 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_ANGEL,
 		Encyclopedia.ItemPools.POOL_SECRET,
 		Encyclopedia.ItemPools.POOL_GREED_SECRET,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_CORK,
+	WikiDesc = Wiki.Cork,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
 	},
 })
 

@@ -250,3 +250,6 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_MUDDLED_CROSS, "Vertically flips 
 
 -- Alternate Reality
 EID:addCollectible(CollectibleType.COLLECTIBLE_ALTERNATE_REALITY, "Teleports you to a random floor#↑ The map will be revealed for the floor#!!! The random floor can be Blue Womb", "Alternate Reality", "en_us")
+
+-- Cork
+EID:addCollectible(CollectibleType.COLLECTIBLE_CORK, "A large, high speed cork is fired every 15 shots#↑ The cork has a 2x damage multiplier", "Cork", "en_us")
