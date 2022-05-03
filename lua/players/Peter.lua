@@ -330,7 +330,11 @@ mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.PeterQual, PickupVariant.P
 function mod:BloodyTears(tear)
 	local player = tear.Parent:ToPlayer()
 	if player:GetName() == "PeterB" then
-		tear:ChangeVariant(TearVariant.BLOOD)
+		if tear.Variant == TearVariant.BLUE then
+			tear:ChangeVariant(TearVariant.BLOOD)
+		elseif tear.Variant == TearVariant.CUPID_BLUE then
+			tear:ChangeVariant(TearVariant.CUPID_BLOOD)
+		end
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.BloodyTears)
