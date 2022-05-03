@@ -434,23 +434,14 @@ function mod:GetPlayers(functionCheck, ...)
 end
 
 function mod:GetPlayerFromTear(tear)
-	for i = 1, 3 do
-		local check = nil
-		if i == 1 then
-			check = tear.Parent
-		elseif i == 2 then
-			check = mod:GetSpawner(tear)
-		elseif i == 3 then
-			check = tear.SpawnerEntity
-		end
-		if check then
-			if check.Type == EntityType.ENTITY_PLAYER then
-				return mod:GetPtrHashEntity(check):ToPlayer()
-			elseif check.Type == EntityType.ENTITY_FAMILIAR and check.Variant == FamiliarVariant.INCUBUS then
-				local data = mod:GetData(tear)
-				data.IsIncubusTear = true
-				return check:ToFamiliar().Player:ToPlayer()
-			end
+	local check = tear.Parent or mod:GetSpawner(tear) or tear.SpawnerEntity
+	if check then
+		if check.Type == EntityType.ENTITY_PLAYER then
+			return mod:GetPtrHashEntity(check):ToPlayer()
+		elseif check.Type == EntityType.ENTITY_FAMILIAR and check.Variant == FamiliarVariant.INCUBUS then
+			local data = mod:GetData(tear)
+			data.IsIncubusTear = true
+			return mod:GetPtrHashEntity(check:ToFamiliar().Player):ToPlayer()
 		end
 	end
 	return nil
