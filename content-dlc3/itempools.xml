@@ -31,6 +31,7 @@
 		<Item Name="Kareth" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Apocalypse" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Muddled Cross" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Alternate Reality" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="angel">
 		<Item Name="Keys to the Kingdom" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -38,6 +39,7 @@
 		<Item Name="Miriam's Well" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Jar of Manna" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Butterfly" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Alternate Reality" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="secret">
 		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -56,6 +58,7 @@
 		<Item Name="F4 Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Tab Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Muddled Cross" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Alternate Reality" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
     </Pool>
 	<Pool Name="library">
 		<Item Name="Book of Swiftness" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -150,6 +153,7 @@
 		<Item Name="F4 Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Tab Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Muddled Cross" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Alternate Reality" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="craneGame">
 		<Item Name="Polydipsia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>

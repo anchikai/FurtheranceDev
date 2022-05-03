@@ -878,6 +878,21 @@ local Wiki = {
 			{str = "If the room had no enemies, Isaac will still be brought back to that room but it will not have to be cleared."},
 		},
 	},
+	AlternateReality = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, Isaac will be transported to a random floor."},
+			{str = "- The map will be fully revealed for that floor."},
+			{str = "Isaac will be put inside of a random room on the floor."},
+			{str = "- It is technically possible that the starting room is randomly picked."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "The random floor you are brought to will never be from the alt path."},
+			{str = "The random floor can be anywhere from Basement I to Dark Room/The Chest."},
+			{str = "- This includes the Blue Womb."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -1822,6 +1837,19 @@ Encyclopedia.AddItem({
 	WikiDesc = Wiki.OldCamera,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_SHOP,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_ALTERNATE_REALITY,
+	WikiDesc = Wiki.AlternateReality,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_DEVIL,
+		Encyclopedia.ItemPools.POOL_ANGEL,
+		Encyclopedia.ItemPools.POOL_SECRET,
+		Encyclopedia.ItemPools.POOL_GREED_SECRET,
 	},
 })
 

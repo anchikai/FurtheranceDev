@@ -247,3 +247,6 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, "When used, 
 
 -- Muddled Cross
 EID:addCollectible(CollectibleType.COLLECTIBLE_MUDDLED_CROSS, "Vertically flips the screen and tints it red#The floor will look like the next chapter#↑ All items and pickups are doubled  while flipped#All items are from the {{UltraSecretRoom}}Ultra Secret Room pool#!!! Half a red heart is lost every 7 seconds while flipped", "Muddled Cross", "en_us")
+
+-- Alternate Reality
+EID:addCollectible(CollectibleType.COLLECTIBLE_ALTERNATE_REALITY, "Teleports you to a random floor#↑ The map will be revealed for the floor#!!! The random floor can be Blue Womb", "Alternate Reality", "en_us")

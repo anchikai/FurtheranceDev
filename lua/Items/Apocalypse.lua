@@ -15,7 +15,6 @@ for _, obj in ipairs(statObjs) do
     ALL_BUFFED_FLAGS = ALL_BUFFED_FLAGS | obj.Flag
 end
 
----@param player EntityPlayer
 function mod:UseApocalypse(_, _, player)
     local data = mod:GetData(player)
     player:RemoveCollectible(CollectibleType.COLLECTIBLE_APOCALYPSE)

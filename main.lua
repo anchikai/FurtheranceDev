@@ -78,6 +78,7 @@ CollectibleType.COLLECTIBLE_MANDRAKE = Isaac.GetItemIdByName("Mandrake")
 CollectibleType.COLLECTIBLE_LITTLE_SISTER = Isaac.GetItemIdByName("Little Sister")
 CollectibleType.COLLECTIBLE_OLD_CAMERA = Isaac.GetItemIdByName("Old Camera")
 CollectibleType.COLLECTIBLE_BUTTERFLY = Isaac.GetItemIdByName("Butterfly")
+CollectibleType.COLLECTIBLE_ALTERNATE_REALITY = Isaac.GetItemIdByName("Alternate Reality")
 
 -- Cards/Runes/Pills/etc
 RUNE_SOUL_OF_LEAH = Isaac.GetCardIdByName("Soul of Leah")
@@ -157,6 +158,7 @@ include("lua/items/Mandrake.lua")
 include("lua/items/LittleSister.lua")
 include("lua/items/OldCamera.lua")
 include("lua/items/Butterfly.lua")
+include("lua/items/AlternateReality.lua")
 
 -- Card Luas
 include("lua/cards/SoulOfLeah.lua")
