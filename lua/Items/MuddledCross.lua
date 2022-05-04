@@ -36,7 +36,6 @@ local function switchBackground(isFlipped)
 end
 
 function mod:UseFlippedCross(_, _, player)
-	local room = game:GetRoom()
 	game:ShakeScreen(10)
 
 	mod.Flipped = not mod.Flipped
@@ -52,7 +51,6 @@ end
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseFlippedCross, CollectibleType.COLLECTIBLE_MUDDLED_CROSS)
 
 function mod:RoomPersist()
-	local room = game:GetRoom()
 	if mod.Flipped == true then
 		switchBackground(true)
 	end
@@ -168,15 +166,6 @@ function mod:PeterFlip(name)
 end
 mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, mod.PeterFlip)
 
-function mod:ResetFlipped()
-	if mod.Flipped == true then
-		mod.Flipped = false
-		flipFactor = 0
-		switchBackground(false)
-	end
-end
-mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.ResetFlipped)
-
 local pauseTime = 0
 local pausedFixed = false
 function mod:FixMenu()
@@ -194,3 +183,13 @@ function mod:FixMenu()
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.FixMenu)
+
+function mod:ResetFlipped(continued)
+	pausedFixed = false
+	if continued == false and mod.Flipped == true then
+		switchBackground(false)
+		flipFactor = 0
+		mod.Flipped = false
+	end
+end
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.ResetFlipped)
