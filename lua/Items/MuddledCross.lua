@@ -101,6 +101,8 @@ function mod:HealthDrain(player)
 		end
 		if game:GetFrameCount() % drainSpeed == 0 then
 			player:AddHearts(-1)
+			local blood = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PLAYER_CREEP_RED, 0, player.Position, Vector.Zero, player):ToEffect()
+			blood.Scale = 1.5
 		end
 	end
 end
