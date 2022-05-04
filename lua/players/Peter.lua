@@ -318,7 +318,9 @@ function mod:PeterQual(entity)
 			local itemConfig = Isaac.GetItemConfig()
 			if mod.Flipped == false then
 				if itemConfig:GetCollectible(entity.SubType).Quality > 2 and entity.SubType ~= CollectibleType.COLLECTIBLE_BIRTHRIGHT then
+					local price = entity.Price
 					entity:Morph(entity.Type, entity.Variant, 0, false, true, false)
+					entity.Price = price
 					return
 				end
 			end
