@@ -17,8 +17,6 @@ In a boss room, the key fills the room with holy light and a spare timer akin to
 When used in a "final boss" room, Isaac will only receive a single-use holy mantle effect, as those bosses cannot be saved. Mom is too far gone, Isaac is dead, and Satan is Satan (same logic applies to Moms's Heart/It Lives, ???, Lamb, Delirium, Mother, Ultra Greed(ier), Mother, Dogma, and the Beast).
 
 When used in a devil room, all items become free for you to pick only one as usual with zero penalty (if he can even get inside, as Bethany and Peter require some tricky maneuvering to squeeze in deals).
-
-X When used in an angel room, Isaac can summon a key piece so he doesn't have to challenge Gabriel and Uriel. Any further uses will give him an additional angel room item considering the luck required to get into one and the likely late game state he will be in to get to that point.
 ]]--
 
 
@@ -58,9 +56,10 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 	
 	-- Spare enemies in the room
 	else
-		for _, v in pairs(Isaac.GetRoomEntities()) do
-			if v:IsActiveEnemy(false) and v:IsVulnerableEnemy() then
-				if v:IsBoss() then -- Boss
+		for _,v in pairs(Isaac.GetRoomEntities()) do
+			if v:IsVulnerableEnemy() and v:IsActiveEnemy(false) then
+				if v:IsBoss() then
+					-- boss
 					spareTimer = 30 * 30
 					
 				else
@@ -82,6 +81,7 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 			end
 		end
 	end
+	
 	return true
 end
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseKTTK, CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM)
@@ -102,8 +102,15 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.KTTKrecharge)
 function mod:kttkKills(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = game:GetPlayer(i)
+
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM) then
-			Isaac.Spawn(EntityType.ENTITY_EFFECT, 7887, 0, entity.Position, Vector.Zero, player):ToEffect()
+			local kttkRNG = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM)
+			
+			if entity:IsBoss() then
+				-- give more or something idk
+			elseif (kttkRNG:RandomInt(100) + 1) <= (entity.MaxHitPoints * 3) then
+				Isaac.Spawn(EntityType.ENTITY_EFFECT, 7887, 0, entity.Position, Vector.Zero, player):ToEffect()
+			end
 		end
 	end
 end
@@ -122,8 +129,7 @@ function mod:EnemySouls(effect)
 			local player = game:GetPlayer(i)
 			local data = mod:GetData(player)
 			
-			effect.Velocity = (effect.Velocity + (((player.Position - effect.Position):Normalized() * 27) - effect.Velocity) * 0.45)
-			
+			effect.Velocity = (effect.Velocity + (((player.Position - effect.Position):Normalized() * 25) - effect.Velocity) * 0.4)
 			sprite.Rotation = effect.Velocity:GetAngleDegrees() + 90
 
 			-- Collect soul
@@ -179,4 +185,4 @@ function mod:ResetKeys(continued)
 		end
 	end
 end
-mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.ResetKeys)
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.ResetKeys) 
