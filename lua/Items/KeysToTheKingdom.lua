@@ -57,10 +57,9 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 	
 	-- Spare enemies in the room
 	else
-		for _,v in pairs(Isaac.GetRoomEntities()) do
-			if v:IsActiveEnemy(false) then
-				if v:IsBoss() then
-					-- boss
+		for _, v in pairs(Isaac.GetRoomEntities()) do
+			if v:IsActiveEnemy(false) and v:IsVulnerableEnemy() then
+				if v:IsBoss() then -- Boss
 					spareTimer = 30 * 30
 					
 				else
@@ -98,7 +97,6 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.KTTKrecharge)
 function mod:kttkKills(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = game:GetPlayer(i)
-
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM) then
 			Isaac.Spawn(EntityType.ENTITY_EFFECT, 7887, 0, entity.Position, Vector.Zero, player):ToEffect()
 		end
@@ -147,7 +145,7 @@ function mod:EnemySouls(effect)
 						SFXManager():Play(SoundEffect.SOUND_BEEP)
 						
 						-- Play charged sound if soul charges it to max
-						if player:GetActiveCharge(slot) == 12 then
+						if player:GetActiveCharge(slot) >= 12 then
 							SFXManager():Play(SoundEffect.SOUND_BATTERYCHARGE)
 						end
 						

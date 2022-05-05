@@ -46,19 +46,16 @@ function mod:PeterStats(player, flag)
 	local data = mod:GetData(player)
 	if player:GetName() == "Peter" then -- If the player is Peter it will apply his stats
 		if flag == CacheFlag.CACHE_SPEED then
-			player.MoveSpeed = player.MoveSpeed + 0.1
+			player.MoveSpeed = player.MoveSpeed - 0.25
 		end
 		if flag == CacheFlag.CACHE_FIREDELAY then
-			player.MaxFireDelay = player.MaxFireDelay - 3
+			player.MaxFireDelay = player.MaxFireDelay + 17.39999961853
 		end
 		if flag == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage * 0.5 + 1.25
+			player.Damage = player.Damage - 0.5
 		end
 		if flag == CacheFlag.CACHE_RANGE then
-			player.TearRange = player.TearRange - 110
-		end
-		if flag == CacheFlag.CACHE_SHOTSPEED then
-			player.ShotSpeed = player.ShotSpeed + 0.15
+			player.TearRange = player.TearRange + 20
 		end
 	elseif player:GetName() == "PeterB" then -- If the player is Tainted Peter it will apply his stats
 		if flag == CacheFlag.CACHE_LUCK then
