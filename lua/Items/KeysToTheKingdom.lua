@@ -31,6 +31,7 @@ local KTTKinCleared = false
 local KTTKslot = ActiveSlot.SLOT_PRIMARY
 
 function mod:UseKTTK(_, _, player, _, slot, _)
+	local data = mod:GetData(player)
 	local room = game:GetRoom()
 	local roomType = room:GetType()
 	local level = game:GetLevel()
@@ -50,7 +51,7 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 		end
 	
 	-- Give the charge back if the room is cleared
-	elseif room:IsClear() and not (roomType == RoomType.ROOM_CHALLENGE) then
+	elseif room:GetAliveEnemiesCount() == 0 and roomType ~= RoomType.ROOM_CHALLENGE then
 		KTTKinCleared = true
 		KTTKslot = slot
 		return false
@@ -72,11 +73,15 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 					SFXManager():Play(SoundEffect.SOUND_HOLY, 1.25)
 					v:Remove()
 					-- TODO: Give stats
+					if data.SpareCount == nil then
+						data.SpareCount = 0
+					else
+						data.SpareCount = data.SpareCount + 1
+					end
 				end
 			end
 		end
 	end
-	
 	return true
 end
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseKTTK, CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM)
@@ -164,3 +169,14 @@ function mod:EnemySouls(effect)
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.EnemySouls, 7887)
+
+function mod:ResetKeys(continued)
+	if continued == false then
+		for i = 0, game:GetNumPlayers() - 1 do
+			local player = game:GetPlayer(i)
+			local data = mod:GetData(player)
+			data.SpareCount = 0
+		end
+	end
+end
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.ResetKeys)

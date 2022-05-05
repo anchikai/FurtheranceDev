@@ -20,7 +20,6 @@ function mod:CorkTear(tear)
             Cork.Scale = tear.Scale * 1.5
             local sprite = Cork:GetSprite()
         end
-        print(tearCount)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.CorkTear)

@@ -39,6 +39,7 @@ function mod:PeterUpdate(player)
 			data.Init = nil
 		end
 	end
+	print(data.SpareCount)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.PeterUpdate)
 

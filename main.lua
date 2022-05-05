@@ -202,6 +202,7 @@ function mod:OnSave(isSaving)
 			saveData["player_" .. tostring(i + 1)].ShiftKeyPressed = data.ShiftKeyPressed
 			saveData["player_" .. tostring(i + 1)].ShiftMultiplier = data.ShiftMultiplier
 			saveData["player_" .. tostring(i + 1)].SleptInMomsBed = data.SleptInMomsBed
+			saveData["player_" .. tostring(i + 1)].SpareCount = data.SpareCount
 			if player:GetName() == "Leah" then
 				saveData["player_" .. tostring(i + 1)].kills = data.leahkills
 			end
@@ -287,6 +288,9 @@ function mod:OnLoad(isLoading)
 			end
 			if loadData["player_" .. tostring(i + 1)].SleptInMomsBed then
 				data.SleptInMomsBed = loadData["player_" .. tostring(i + 1)].SleptInMomsBed
+			end
+			if loadData["player_" .. tostring(i + 1)].SpareCount then
+				data.SpareCount = loadData["player_" .. tostring(i + 1)].SpareCount
 			end
 		end
 		if loadData.Flipped then
