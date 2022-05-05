@@ -131,6 +131,8 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.KTTKrecharge)
 
 function mod:KTTKbuffs(player, flag)
 	local data = mod:GetData(player)
+	if data.KTTKBuffs == nil then return end
+
 	for i, buff in ipairs(data.KTTKBuffs) do
 		local stat = statObjs[i]
 
