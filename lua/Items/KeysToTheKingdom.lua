@@ -130,13 +130,14 @@ function mod:EnemySouls(effect)
 			end
 			
 			-- Get charge from soul
-			-- TODO: don't get charges from room clears
 			if data.Soul == true then
 				local slot = nil
 				if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM then
 					slot = ActiveSlot.SLOT_PRIMARY
 				elseif player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM then
 					slot = ActiveSlot.SLOT_SECONDARY
+				elseif player:GetActiveItem(ActiveSlot.SLOT_POCKET) == CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM then
+					slot = ActiveSlot.SLOT_POCKET
 				end
 				
 				if slot ~= nil then
