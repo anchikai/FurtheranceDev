@@ -14,7 +14,7 @@ function mod:OnInit(player)
 		player:AddNullCostume(COSTUME_PETER_A_DRIP)
 		costumeEquipped = true
 		player:AddTrinket(TrinketType.TRINKET_ALABASTER_SCRAP, true)
-		player:AddCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, 6, true, ActiveSlot.SLOT_PRIMARY)
+		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, SLOT_POCKET, false)
 		player:SetActiveCharge(12, ActiveSlot.SLOT_PRIMARY)
 	elseif player:GetName() == "PeterB" then -- Apply different drip for his tainted variant
 		player:AddNullCostume(COSTUME_PETER_B_DRIP)
