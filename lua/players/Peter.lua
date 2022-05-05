@@ -19,6 +19,7 @@ function mod:OnInit(player)
 		costumeEquipped = true
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
 
 function mod:PeterUpdate(player)
@@ -39,8 +40,9 @@ function mod:PeterUpdate(player)
 			data.Init = nil
 		end
 	end
-	print(data.SpareCount)
+	-- print(data.SpareCount)
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.PeterUpdate)
 
 function mod:PeterStats(player, flag)
@@ -64,6 +66,7 @@ function mod:PeterStats(player, flag)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.PeterStats)
 
 function mod:Hearts(entity, collider)
@@ -108,6 +111,7 @@ function mod:Hearts(entity, collider)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.Hearts, PickupVariant.PICKUP_HEART)
 
 function mod:MorphHeart(entity)
@@ -130,6 +134,7 @@ function mod:MorphHeart(entity)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.MorphHeart, PickupVariant.PICKUP_HEART)
 
 function mod:PeterQual(entity)
@@ -148,6 +153,7 @@ function mod:PeterQual(entity)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.PeterQual, PickupVariant.PICKUP_COLLECTIBLE)
 
 function mod:BloodyTears(tear)
@@ -160,4 +166,5 @@ function mod:BloodyTears(tear)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.BloodyTears)
