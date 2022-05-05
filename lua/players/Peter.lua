@@ -42,12 +42,6 @@ mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.PeterUpdate)
 
 function mod:PeterStats(player, flag)
 	local data = mod:GetData(player)
-	if data.DevilCount == nil then
-		data.DevilCount = 0
-	end
-	if data.AngelCount == nil then
-		data.AngelCount = 0
-	end
 	if player:GetName() == "Peter" then -- If the player is Peter it will apply his stats
 		if flag == CacheFlag.CACHE_SPEED then
 			player.MoveSpeed = player.MoveSpeed + 0.1
@@ -64,62 +58,6 @@ function mod:PeterStats(player, flag)
 		if flag == CacheFlag.CACHE_SHOTSPEED then
 			player.ShotSpeed = player.ShotSpeed + 0.15
 		end
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) == false then
-			if data.AngelCount > data.DevilCount then -- Peter's stat modifiers for when he has more Angel Rooms
-				if flag == CacheFlag.CACHE_FLYING then
-					player.CanFly = true
-				end
-				if flag == CacheFlag.CACHE_SPEED then
-					player.MoveSpeed = player.MoveSpeed + data.AngelCount * 0.1
-				end
-				if flag == CacheFlag.CACHE_FIREDELAY then
-					player.MaxFireDelay = player.MaxFireDelay - data.AngelCount * (player.MaxFireDelay * 0.1)
-					if player.MaxFireDelay < 1 then
-						player.MaxFireDelay = 1
-					end
-				end
-				if flag == CacheFlag.CACHE_SHOTSPEED then
-					player.ShotSpeed = player.ShotSpeed - data.AngelCount * 0.1
-				end
-			elseif data.DevilCount > data.AngelCount then -- Peter's stat modifiers for when he has more Devil Rooms
-				if flag == CacheFlag.CACHE_SPEED then
-					player.MoveSpeed = player.MoveSpeed - data.DevilCount * 0.1
-				end
-				if flag == CacheFlag.CACHE_DAMAGE then
-					player.Damage = player.Damage + data.DevilCount * 1.25
-				end
-				if flag == CacheFlag.CACHE_RANGE then
-					player.TearRange = player.TearRange + data.DevilCount * 40
-				end
-			end
-		else
-			if data.AngelCount > 0 then
-				if flag == CacheFlag.CACHE_FLYING then
-					player.CanFly = true
-				end
-			end
-			if flag == CacheFlag.CACHE_SPEED then
-				player.MoveSpeed = player.MoveSpeed + data.AngelCount * 0.1
-			end
-			if flag == CacheFlag.CACHE_FIREDELAY then
-				player.MaxFireDelay = player.MaxFireDelay - data.AngelCount * (player.MaxFireDelay * 0.1)
-				if player.MaxFireDelay < 0 then
-					player.MaxFireDelay = 0
-				end
-			end
-			if flag == CacheFlag.CACHE_SHOTSPEED then
-				player.ShotSpeed = player.ShotSpeed - data.AngelCount * 0.1
-			end
-			if flag == CacheFlag.CACHE_SPEED then
-				player.MoveSpeed = player.MoveSpeed - data.DevilCount * 0.1
-			end
-			if flag == CacheFlag.CACHE_DAMAGE then
-				player.Damage = player.Damage + data.DevilCount * 1.25
-			end
-			if flag == CacheFlag.CACHE_RANGE then
-				player.TearRange = player.TearRange + data.DevilCount * 40
-			end
-		end
 	elseif player:GetName() == "PeterB" then -- If the player is Tainted Peter it will apply his stats
 		if flag == CacheFlag.CACHE_LUCK then
 			player.Luck = player.Luck - 1
@@ -127,86 +65,6 @@ function mod:PeterStats(player, flag)
 	end
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.PeterStats)
-
-function mod:PeterCostumes(player)
-	local nailConfig = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_THE_NAIL)
-	local revelationConfig = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_REVELATION)
-	local data = mod:GetData(player)
-	if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) == false then -- No birthright
-		if data.AngelCount > data.DevilCount then -- Angel Costume
-			if player:HasCollectible(CollectibleType.COLLECTIBLE_REVELATION) == false then
-				if not data.AngelCostume then
-					data.AngelCostume = 0
-				end
-
-				while data.AngelCount > data.AngelCostume do
-					player:AddCostume(revelationConfig, false)
-					data.AngelCostume = data.AngelCostume + 1
-				end
-				while data.AngelCount < data.AngelCostume do
-					data.AngelCostume = data.AngelCostume - 1
-					if data.AngelCostume <= 0 then
-						player:TryRemoveCollectibleCostume(CollectibleType.COLLECTIBLE_REVELATION, true)
-					end
-				end
-			end
-		elseif data.DevilCount > data.AngelCount then -- Devil Costume
-			if player:HasCollectible(CollectibleType.COLLECTIBLE_THE_NAIL) == false then
-				if not data.DevilCostume then
-					data.DevilCostume = 0
-				end
-
-				while data.DevilCount > data.DevilCostume do
-					player:AddCostume(nailConfig, false)
-					data.DevilCostume = data.DevilCostume + 1
-				end
-				while data.DevilCount < data.DevilCostume do
-					data.DevilCostume = data.DevilCostume - 1
-					if data.DevilCostume <= 0 then
-						player:TryRemoveCollectibleCostume(CollectibleType.COLLECTIBLE_THE_NAIL, true)
-					end
-				end
-			end
-		elseif data.DevilCount == data.AngelCount then -- Remove Costumes
-			player:TryRemoveCollectibleCostume(CollectibleType.COLLECTIBLE_THE_NAIL, true)
-			player:TryRemoveCollectibleCostume(CollectibleType.COLLECTIBLE_REVELATION, true)
-		end
-	else -- Birthright
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_REVELATION) == false then
-			if not data.AngelCostume then
-				data.AngelCostume = 0
-			end
-
-			while data.AngelCount > data.AngelCostume do
-				player:AddCostume(revelationConfig, false)
-				data.AngelCostume = data.AngelCostume + 1
-			end
-			while data.AngelCount < data.AngelCostume do
-				data.AngelCostume = data.AngelCostume - 1
-				if data.AngelCostume <= 0 then
-					player:TryRemoveCollectibleCostume(CollectibleType.COLLECTIBLE_REVELATION, true)
-				end
-			end
-		end
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_THE_NAIL) == false then
-			if not data.DevilCostume then
-				data.DevilCostume = 0
-			end
-
-			while data.DevilCount > data.DevilCostume do
-				player:AddCostume(nailConfig, false)
-				data.DevilCostume = data.DevilCostume + 1
-			end
-			while data.DevilCount < data.DevilCostume do
-				data.DevilCostume = data.DevilCostume - 1
-				if data.DevilCostume <= 0 then
-					player:TryRemoveCollectibleCostume(CollectibleType.COLLECTIBLE_THE_NAIL, true)
-				end
-			end
-		end
-	end
-end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.PeterCostumes, normalPeter)
 
 function mod:Hearts(entity, collider)
 	if collider.Type == EntityType.ENTITY_PLAYER then
@@ -274,43 +132,6 @@ function mod:MorphHeart(entity)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.MorphHeart, PickupVariant.PICKUP_HEART)
 
-function mod:AngelDevil()
-	local room = game:GetRoom()
-	local roomType = room:GetType()
-	local level = game:GetLevel()
-	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
-		local data = mod:GetData(player)
-		if player:GetName() == "Peter" then
-			data.DevilCount = data.DevilCount and data.DevilCount or 0
-			data.AngelCount = data.AngelCount and data.AngelCount or 0
-			if roomType == RoomType.ROOM_DEVIL and room:IsFirstVisit() then
-				data.DevilCount = data.DevilCount + 1
-			end
-			if roomType == RoomType.ROOM_ANGEL and room:IsFirstVisit() then
-				data.AngelCount = data.AngelCount + 1
-			end
-			if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) == false then
-				if data.DevilCount > data.AngelCount then
-					player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_LEO, false)
-				end
-			else
-				if data.DevilCount > 0 then
-					player:GetEffects():AddCollectibleEffect(CollectibleType.COLLECTIBLE_LEO, false)
-				end
-			end
-			player:AddCacheFlags(CacheFlag.CACHE_SPEED)
-			player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
-			player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
-			player:AddCacheFlags(CacheFlag.CACHE_RANGE)
-			player:AddCacheFlags(CacheFlag.CACHE_SHOTSPEED)
-			player:AddCacheFlags(CacheFlag.CACHE_FLYING)
-			player:EvaluateItems()
-		end
-	end
-end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.AngelDevil)
-
 function mod:PeterQual(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
@@ -340,30 +161,3 @@ function mod:BloodyTears(tear)
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.BloodyTears)
-
-function mod:shouldDeHook()
-	local reqs = {
-		not game:GetHUD():IsVisible(),
-		game:GetSeeds():HasSeedEffect(SeedEffect.SEED_NO_HUD)
-	}
-	return reqs[1] or reqs[2]
-end
-mod:AddCallback(ModCallbacks.MC_POST_RENDER, function() -- Peter's Devil/Angel indicator
-	if mod:shouldDeHook() then return end
-	local offset = Options.HUDOffset * Vector(20, 12)
-	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
-		local data = mod:GetData(player)
-		if player:GetName() == "Peter" then
-			local f = Font()
-			f:Load("font/luaminioutlined.fnt")
-			if game:GetNumPlayers() == 1 then
-				coopOffset = 0
-			else
-				coopOffset = 12
-			end
-			f:DrawString(data.DevilCount, 44 + offset.X, 161 + offset.Y + coopOffset, KColor(1, 1, 1, 0.4, 0, 0, 0), 0, true)
-			f:DrawString(data.AngelCount, 44 + offset.X, 173 + offset.Y + coopOffset * 1.2, KColor(1, 1, 1, 0.4, 0, 0, 0), 0, true)
-		end
-	end
-end)
