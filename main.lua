@@ -176,6 +176,9 @@ include("lua/pickups/MoonHeart.lua")
 --include("lua/rooms/NoahsArk.lua")
 --include("lua/rooms/HomeExit.lua")
 
+-- Custom Challenge Luas
+include("lua/challenges/WhereAmI.lua")
+
 -- Save Data/Unlocks
 --include("lua/achievements.lua")
 
