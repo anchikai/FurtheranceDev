@@ -1,7 +1,7 @@
 <items gfxroot="gfx/items/" version="1" deathanm2="gfx/death items.anm2">
 	<!-- Isaac's Keyboard -->
 	<active id="24" name="Esc Key" description="I gotta get outta here!" gfx="esc.png" shopprice="30" devilprice="2" quality="3" />
-	<active id="1" name="Tilde Key" description="Dirty hacker" gfx="~.png" maxcharges="12" quality="3" />
+	<active id="1" name="Tilde Key" description="Dirty cheater" gfx="~.png" maxcharges="12" initcharge="0" quality="4" />
 	<active id="2" name="Alt Key" description="Reality" gfx="alt.png" maxcharges="1" chargetype="special" quality="4" />
 	<active id="3" name="Spacebar Key" description="Feedback loop" gfx="spacebar.png" maxcharges="12" quality="4" />
 	<active id="4" name="Backspace Key" description="No, go back!" gfx="backspace.png" maxcharges="1" quality="1" />

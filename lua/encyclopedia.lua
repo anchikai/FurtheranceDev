@@ -17,11 +17,21 @@ local Wiki = {
 	TildeKey = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Upon use, a random debug effect will be applied for the current room."},
-			{str = "Possible debug effects are: Entity Positions, Grid, Infinite HP, High Damage, Show Room Info, Show Hitspheres, Show Damage Values, Infinite Item Charges, High Luck, Quick Kill, Grid Info, Player Item Info, and Show Grid Collision Points."}
+			{str = "Upon use, one of five random debug effects will be applied for the current room."},
+			{str = "Possible debug effects are:"},
+			{str = "- Infinite HP"},
+			{str = "- High Damage"},
+			{str = "- Infinite Item Charges"},
+			{str = "- High Luck"},
+			{str = "- Quick Kill"},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "Infinite HP won't let your health deplete."},
+			{str = "High Damage is a flat +40 damage."},
+			{str = "Infinite Item Charges won't let your charge deplete."},
+			{str = "High Luck is a flat +50 luck."},
+			{str = "Quick Kill will kill all enemies in the room."},
 			{str = "The item will spawn with an empty chargebar."},
 		},
 	},
