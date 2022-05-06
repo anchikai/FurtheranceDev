@@ -143,9 +143,7 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_UNSTABLE_CORE, "Каждый ра
 EID:addCollectible(CollectibleType.COLLECTIBLE_UNSTABLE_CORE, "Al usar un objeto activo, creas un shock eléctrico alrededor tuyo#Quemas a los enemigos por 3 segundos", "Nucleo Inestable", "spa")
 
 -- Technology -1
---EID:addCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY_MINUS_1, "Shoots a Technology laser opposite of the direction you are shooting", "Technology -1", "en_us")
---EID:addCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY_MINUS_1, "Стреляет лазером Технологии в обратном направлении стрельбы", "Технология -1", "ru")
---EID:addCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY_MINUS_1, "Shoots a Technology laser opposite of the direction you are shooting", "Tecnología -1", "spa")
+EID:addCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY_MINUS_1, "Tears randomly burst into 3 Technology lasers", "Technology -1", "en_us")
 
 -- Book of Swiftness
 EID:addCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_SWIFTNESS, "Slows down enemies#↑ {{Speed}} +0.5 Speed up#↓ {{Shotspeed}} -1 Shot Speed down#Effect lasts for current room", "Book of Swiftness", "en_us")

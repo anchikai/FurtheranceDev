@@ -6,6 +6,7 @@
 		<Item Name="Tech IX" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Leaking Tank" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Unstable Core" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Technology -1" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Swiftness" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Ambit" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Crab Legs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>

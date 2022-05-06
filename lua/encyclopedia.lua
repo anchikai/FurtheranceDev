@@ -324,11 +324,15 @@ local Wiki = {
 	Technologyminus1 = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Shoots a Technology laser opposite of the direction you are shooting."},
+			{str = "Isaac's tears will occasionally burst into 3 Technology lasers aiming in random directions."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "This item will not replace your current tears, and will go along side them."},
+			{str = "Isaac's tears have a 3.14% chance to burst into lasers every frame."},
+		},
+		{ -- Synergies
+			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
+			{str = "Mom's Knife: 3 lasers will periodically fire from the knife."},
 		},
 	},
 	BookOfSwiftness = {
@@ -1459,7 +1463,6 @@ Encyclopedia.AddItem({
 	},
 })
 
---[[
 Encyclopedia.AddItem({
 	ModName = "Furtherance",
 	Class = "Furtherance",
@@ -1471,7 +1474,6 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_GREED_SHOP,
 	},
 })
-]]
 
 Encyclopedia.AddItem({
 	ModName = "Furtherance",

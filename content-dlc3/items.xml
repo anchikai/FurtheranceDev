@@ -25,7 +25,7 @@
 	<passive id="17" cache="firedelay" name="Tech IX" description="Experimental laser ring tears" gfx="tech_ix.png" quality="3" tags="tech offensive"/>
 	<passive id="18" name="Leaking Tank" description="I'm leaking?!" gfx="leaking_tank.png" quality="2" />																<!-- Concept by SybilScribble! -->
 	<passive id="19" name="Unstable Core" description="Shockingly active" gfx="unstable_core.png" quality="2" />														<!-- Concept by SybilScribble! -->
-	<!-- <passive id="20" name="Technology -1" description="Underflow shots" gfx="technology_-1.png" quality="3" tags="tech" /> -->
+	<passive id="20" name="Technology -1" description="Underflow shots" gfx="technology_-1.png" quality="3" tags="tech" />
 	<passive id="28" name="ZZZZoptionsZZZZ" description="ZZZZmZZZZoZZZZrZZZZeZZZZ" gfx="ZZZZoptionsZZZZ.PNG" quality="2" tags="nocantrip offensive" />					<!-- Concept by Joply! -->
 	<passive id="27" cache="shotspeed" name="Brunch" description="HP + shot speed up" gfx="brunch.png" hearts="6" maxhearts="4" quality="2" />							<!-- Concept by Tesseract! -->
 	<passive id="26" cache="speed" name="Crab Legs" description="You will never make the crab walk straight" gfx="crab_legs.png" hearts="4" maxhearts="2" quality="2" /><!-- Concept by Tesseract! -->
