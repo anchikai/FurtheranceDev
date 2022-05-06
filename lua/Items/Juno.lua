@@ -14,7 +14,7 @@ function mod:JunoTears(tear, collider)
 						player:UseActiveItem(CollectibleType.COLLECTIBLE_ANIMA_SOLA, UseFlag.USE_NOANIM, -1)
 						data.JunoTimer = 300
 					end
-				elseif rollJuno <= (player.Luck*2+2) and data.JunoTimer == 0 then
+				elseif rollJuno <= (player.Luck * 2 + 2) and data.JunoTimer == 0 then
 					player:UseActiveItem(CollectibleType.COLLECTIBLE_ANIMA_SOLA, UseFlag.USE_NOANIM, -1)
 					data.JunoTimer = 300
 				end
@@ -22,9 +22,11 @@ function mod:JunoTears(tear, collider)
 		end
 	end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, mod.JunoTears)				-- Tears
-mod:AddCallback(ModCallbacks.MC_PRE_KNIFE_COLLISION, mod.JunoTears)				-- Mom's Knife
-mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, function(tear)					-- Brimstone and other lasers
+
+mod:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, mod.JunoTears) -- Tears
+mod:AddCallback(ModCallbacks.MC_PRE_KNIFE_COLLISION, mod.JunoTears) -- Mom's Knife
+
+function mod:JunoLasers() -- Brimstone and other lasers
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = game:GetPlayer(i)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_JUNO) then
@@ -35,13 +37,15 @@ mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, function(tear)					-- Brimstone
 					player:UseActiveItem(CollectibleType.COLLECTIBLE_ANIMA_SOLA, UseFlag.USE_NOANIM, -1)
 					data.JunoTimer = 300
 				end
-			elseif rollJuno <= (player.Luck*2+2) and data.JunoTimer == 0 then
+			elseif rollJuno <= (player.Luck * 2 + 2) and data.JunoTimer == 0 then
 				player:UseActiveItem(CollectibleType.COLLECTIBLE_ANIMA_SOLA, UseFlag.USE_NOANIM, -1)
 				data.JunoTimer = 300
 			end
 		end
 	end
-end)
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, mod.JunoLasers)
 
 function mod:JunoUpdate(player)
 	local data = mod:GetData(player)
@@ -50,9 +54,9 @@ function mod:JunoUpdate(player)
 	end
 	if data.JunoTimer > 0 then
 		data.JunoTimer = data.JunoTimer - 1
-	end
-	if data.JunoTimer < 0 then
+	elseif data.JunoTimer < 0 then
 		data.JunoTimer = 0
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.JunoUpdate)

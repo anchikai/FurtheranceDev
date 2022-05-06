@@ -14,18 +14,17 @@ function mod:OnInit(player)
 	data.Init = true
 	if player:GetName() == "Miriam" then -- If the player is Miriam it will apply her hair
 		player:AddNullCostume(COSTUME_MIRIAM_A_HAIR)
-		costumeEquipped = true
 		data.MiriamTearCount = 0
 		data.MiriamRiftTimeout = 0
 		data.MiriamAOE = 1
 		player:AddCollectible(CollectibleType.COLLECTIBLE_TAMBOURINE, 0, true, ActiveSlot.SLOT_PRIMARY, 0)
 	elseif player:GetName() == "MiriamB" then -- Apply different hair for her tainted variant
 		player:AddNullCostume(COSTUME_MIRIAM_B_HAIR)
-		costumeEquipped = true
 		player:AddBoneHearts(2)
 		player:AddHearts(4)
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
 
 function mod:OnUpdate(player)
@@ -43,9 +42,10 @@ function mod:OnUpdate(player)
 			end
 		end
 	elseif player:GetName() == "MiriamB" then
-		
+
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.OnUpdate)
 
 function mod:PuddleRift(entity)
@@ -64,18 +64,20 @@ function mod:PuddleRift(entity)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, mod.PuddleRift)
 
 function mod:tearCounter(tear)
-    local player = tear.Parent:ToPlayer()
+	local player = tear.Parent:ToPlayer()
 	local data = mod:GetData(player)
 	if player:GetName() == "Miriam" then
 		if data.MiriamTearCount > 11 then
 			data.MiriamTearCount = 0
 		end
 		data.MiriamTearCount = data.MiriamTearCount + 1
-    end
+	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.tearCounter)
 
 function mod:miriamStats(player, flag)
@@ -112,6 +114,7 @@ function mod:miriamStats(player, flag)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.miriamStats)
 
 function mod:ClickerFix(_, _, player)
@@ -123,5 +126,6 @@ function mod:ClickerFix(_, _, player)
 		player:AddNullCostume(COSTUME_MIRIAM_B_HAIR)
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.ClickerFix, CollectibleType.COLLECTIBLE_CLICKER)
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.ClickerFix, CollectibleType.COLLECTIBLE_SHIFT_KEY)

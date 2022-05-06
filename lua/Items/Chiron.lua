@@ -27,6 +27,7 @@ function mod:ChironMapping() -- Apply a random map effect every floor
         end
     end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.ChironMapping)
 
 local function IsActiveEnemy(player) -- Enemy detection
@@ -47,14 +48,15 @@ function mod:BossDetection() -- If the room is a boss room
     local players = GetPlayers()
     for _, player in pairs(players) do
         if player:HasCollectible(CollectibleType.COLLECTIBLE_CHIRON) and room:IsFirstVisit() == true and room:GetFrameCount() == 1 then -- Guwah you legend
-			mod:BossBook(player) -- Use a random book
+            mod:BossBook(player) -- Use a random book
         end
     end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.BossDetection)
 
 function mod:BossBook(player) -- Roll a random book effect
-    local rollBook = rng:RandomInt(5)
+    local rollBook = rng:RandomInt(5) + 1
     if rollBook == 1 then
         player:UseActiveItem(CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL, UseFlag.USE_NOANNOUNCER, -1)
     elseif rollBook == 2 then
@@ -75,4 +77,5 @@ function mod:GetChiron(player, cacheFlag) -- Speed up
         end
     end
 end
+
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetChiron)

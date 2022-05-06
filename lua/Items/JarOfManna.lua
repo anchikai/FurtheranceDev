@@ -6,21 +6,27 @@ MannaOrb = Isaac.GetEntityVariantByName("Manna Orb")
 function mod:UseMannaJar(_, _, player)
 	local data = mod:GetData(player)
 	data.MannaCount = 0
-	-- If the player has the same amount of coins bombs & keys
-	if (player:GetNumCoins() == player:GetNumBombs()) and (player:GetNumCoins() == player:GetNumKeys()) then
+	local bombs = player:GetNumBombs()
+	local keys = player:GetNumKeys()
+	local coins = player:GetNumCoins()
+	-- If the
+	if (coins == bombs) and (coins == keys) then -- Player has the same amount of coins, bombs & keys
+		-- TODO: add a proper handler here
 		print("well what the fuck")
-	-- If the player has the least amount of coins
-	elseif (player:GetNumCoins() < player:GetNumBombs()) and (player:GetNumCoins() < player:GetNumKeys()) then
+
+	elseif (coins < bombs) and (coins < keys) then -- Player has the least amount of coins
 		player:AddCoins(1)
-	-- If the player has the least amount of bombs, or if their coins & bombs = the same and are less then keys, or if their bombs & keys = the same and are less then coins
-	elseif ((player:GetNumBombs() < player:GetNumCoins()) and (player:GetNumBombs() < player:GetNumKeys())) or ((player:GetNumBombs() == player:GetNumCoins()) and (player:GetNumBombs() < player:GetNumKeys())) or ((player:GetNumBombs() == player:GetNumKeys()) and (player:GetNumBombs() < player:GetNumCoins())) then
+
+	elseif (bombs <= coins) and (bombs <= keys) then -- Player has the least amount of bombs; coins or keys can be equal
 		player:AddBombs(1)
-	-- If the player has the least amount of keys, or if their coins & keys = the same and are less then bombs
-	elseif ((player:GetNumKeys() < player:GetNumCoins()) and (player:GetNumKeys() < player:GetNumBombs())) or ((player:GetNumKeys() == player:GetNumCoins()) and (player:GetNumKeys() < player:GetNumBombs())) then
+
+	elseif (keys <= coins) and (keys < bombs) then -- Player has the least amount of keys; coins can be equal
 		player:AddKeys(1)
+
 	end
 	return true
 end
+
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseMannaJar, CollectibleType.COLLECTIBLE_JAR_OF_MANNA)
 
 function mod:SpawnMana(entity)
@@ -50,6 +56,7 @@ function mod:SpawnMana(entity)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.SpawnMana)
 
 function mod:MannaEffect(effect)
@@ -67,11 +74,12 @@ function mod:MannaEffect(effect)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.MannaEffect, MannaOrb)
 
 function mod:MannaCollide(entity, collider)
 	for i = 0, game:GetNumPlayers() - 1 do
-        local player = Isaac.GetPlayer(i)
+		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_JAR_OF_MANNA) then
 			if collider.Type == EntityType.ENTITY_PLAYER then
@@ -84,4 +92,5 @@ function mod:MannaCollide(entity, collider)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.MannaCollide)

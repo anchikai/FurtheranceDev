@@ -12,11 +12,9 @@ function mod:OnInit(player)
 	local data = mod:GetData(player)
 	if player:GetName() == "Peter" then -- If the player is Peter it will apply his drip
 		player:AddNullCostume(COSTUME_PETER_A_DRIP)
-		costumeEquipped = true
 		player:AddTrinket(TrinketType.TRINKET_ALABASTER_SCRAP, true)
 	elseif player:GetName() == "PeterB" then -- Apply different drip for his tainted variant
 		player:AddNullCostume(COSTUME_PETER_B_DRIP)
-		costumeEquipped = true
 	end
 end
 
@@ -90,10 +88,9 @@ function mod:Hearts(entity, collider)
 				if player:GetActiveCharge(ActiveSlot.SLOT_POCKET) < 6 then
 					entity:GetSprite():Play("Collect", true)
 					entity:Die()
+					local chargeAmount = 2
 					if player:GetActiveCharge(ActiveSlot.SLOT_POCKET) == 5 then
 						chargeAmount = 1
-					else
-						chargeAmount = 2
 					end
 					player:SetActiveCharge(player:GetActiveCharge(ActiveSlot.SLOT_POCKET) + chargeAmount, ActiveSlot.SLOT_POCKET)
 					game:GetHUD():FlashChargeBar(player, ActiveSlot.SLOT_POCKET)

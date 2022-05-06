@@ -8,170 +8,177 @@ function mod:UseF4(boi, rng, player)
 		-- Thanks for solving this problem Connor!
 		local level = game:GetLevel()
 		local roomsList = level:GetRooms()
+		local bombs = player:GetNumBombs()
+		local coins = player:GetNumCoins()
+		local keys = player:GetNumKeys()
+
 		-- Iterate over each index in the rooms list.
 		for i = 0, roomsList.Size - 1 do
 			local roomDesc = roomsList:Get(i)
 			-- If the player has the same amount of coins bombs & keys
-			if (player:GetNumCoins() == player:GetNumBombs()) and (player:GetNumCoins() == player:GetNumKeys()) then
+			if (coins == bombs) and (coins == keys) then
 				if roomDesc.Data.Type == RoomType.ROOM_SUPERSECRET then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_SUPERSECRET, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_SUPERSECRET, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
 					end
 				elseif roomDesc.Data.Type == RoomType.ROOM_ISAACS then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_ISAACS, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_ISAACS, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
 					end
 				elseif roomDesc.Data.Type == RoomType.ROOM_BARREN then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_BARREN, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_BARREN, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
 					end
 				elseif roomDesc.Data.Type == RoomType.ROOM_SECRET then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_SECRET, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_SECRET, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
 					end
 				elseif roomDesc.Data.Type == RoomType.ROOM_SHOP then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_SHOP, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_SHOP, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
 					end
 				elseif roomDesc.Data.Type == RoomType.ROOM_TREASURE then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_TREASURE, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_TREASURE, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
 					end
 				elseif roomDesc.Data.Type == RoomType.ROOM_DICE then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_DICE, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_DICE, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
 					end
 				elseif roomDesc.Data.Type == RoomType.ROOM_LIBRARY then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_LIBRARY, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_LIBRARY, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
 					end
 				elseif roomDesc.Data.Type == RoomType.ROOM_CHEST then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_CHEST, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_CHEST, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
 					end
 				elseif roomDesc.Data.Type == RoomType.ROOM_PLANETARIUM then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_PLANETARIUM, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_PLANETARIUM, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
 					end
 				elseif roomDesc.Data.Type == RoomType.ROOM_ARCADE then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_ARCADE, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_ARCADE, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
 					end
 				end
-			-- If the player has the least amount of coins
-			elseif (player:GetNumCoins() < player:GetNumBombs()) and (player:GetNumCoins() < player:GetNumKeys()) then
+				-- If the player has the least amount of coins
+			elseif (coins < bombs) and (coins < keys) then
 				if roomDesc.Data.Type == RoomType.ROOM_ARCADE then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_ARCADE, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_ARCADE, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
 					end
 				end
-			-- If the player has the least amount of bombs, or if their coins & bombs = the same and are less then keys, or if their bombs & keys = the same and are less then coins
-			elseif ((player:GetNumBombs() < player:GetNumCoins()) and (player:GetNumBombs() < player:GetNumKeys())) or ((player:GetNumBombs() == player:GetNumCoins()) and (player:GetNumBombs() < player:GetNumKeys())) or ((player:GetNumBombs() == player:GetNumKeys()) and (player:GetNumBombs() < player:GetNumCoins())) then
+
+				-- If the player has the least amount of bombs, or if their coins & bombs = the same and are less then keys, or if their bombs & keys = the same and are less then coins
+				-- we already check whether they're equal earlier, so this would be the same thing
+			elseif (bombs <= coins) and (bombs <= keys) then
 				if roomDesc.Data.Type == RoomType.ROOM_SUPERSECRET then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_SUPERSECRET, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_SUPERSECRET, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
 					end
 				elseif roomDesc.Data.Type == RoomType.ROOM_ISAACS then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_ISAACS, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_ISAACS, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
 					end
 				elseif roomDesc.Data.Type == RoomType.ROOM_BARREN then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_BARREN, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_BARREN, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
 					end
 				elseif roomDesc.Data.Type == RoomType.ROOM_SECRET then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_SECRET, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_SECRET, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
 					end
 				end
-			-- If the player has the least amount of keys, or if their coins & keys = the same and are less then bombs
-			elseif ((player:GetNumKeys() < player:GetNumCoins()) and (player:GetNumKeys() < player:GetNumBombs())) or ((player:GetNumKeys() == player:GetNumCoins()) and (player:GetNumKeys() < player:GetNumBombs())) then
+				-- If the player has the least amount of keys, or if their coins & keys = the same and are less then bombs
+				-- this is the same thing
+			elseif (keys <= coins) and (keys < bombs) then
 				if roomDesc.Data.Type == RoomType.ROOM_SHOP then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_SHOP, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_SHOP, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
 					end
 				elseif roomDesc.Data.Type == RoomType.ROOM_TREASURE then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_TREASURE, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_TREASURE, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
 					end
 				elseif roomDesc.Data.Type == RoomType.ROOM_DICE then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_DICE, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_DICE, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
 					end
 				elseif roomDesc.Data.Type == RoomType.ROOM_LIBRARY then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_LIBRARY, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_LIBRARY, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
 					end
 				elseif roomDesc.Data.Type == RoomType.ROOM_CHEST then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_CHEST, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_CHEST, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
 					end
 				elseif roomDesc.Data.Type == RoomType.ROOM_PLANETARIUM then
 					if roomDesc.VisitedCount == 0 then
-						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_PLANETARIUM, false, rng), Direction.NO_DIRECTION ,3)
+						game:StartRoomTransition(level:QueryRoomTypeIndex(RoomType.ROOM_PLANETARIUM, false, rng), Direction.NO_DIRECTION, 3)
 					else
 						mod:playFailSound()
 						player:AnimateSad()
@@ -198,6 +205,7 @@ function mod:UseF4(boi, rng, player)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseF4, CollectibleType.COLLECTIBLE_F4_KEY)
 
 function mod:RoomTransition(player)
@@ -234,6 +242,7 @@ function mod:RoomTransition(player)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.RoomTransition)
 
 function mod:UnJank()
@@ -242,6 +251,11 @@ function mod:UnJank()
 		local data = mod:GetData(player)
 		local level = game:GetLevel()
 		local room = game:GetRoom()
+
+		local stage = level:GetStage()
+		local stageType = level:GetStageType()
+
+		-- this "not" might be in the wrong spot, it only applies to the first stage condition...
 		if not (stage == LevelStage.STAGE4_3) or (stage == LevelStage.STAGE5) or (stage == LevelStage.STAGE6) or (stage == LevelStage.STAGE7) or (stage == LevelStage.STAGE8) or (stage == LevelStage.STAGE7_GREED) or ((stage == LevelStage.STAGE4_2) and (stageType == StageType.STAGETYPE_REPENTANCE)) then
 			if (data.Boss == true and room:IsCurrentRoomLastBoss()) or data.AltF4 == true then
 				game:StartRoomTransition(level:GetCurrentRoomIndex(), Direction.NO_DIRECTION, RoomTransitionAnim.WALK, player, RoomTransitionAnim.WALK)
@@ -250,4 +264,5 @@ function mod:UnJank()
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD, mod.UnJank)
