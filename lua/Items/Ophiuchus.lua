@@ -6,7 +6,7 @@ function mod:GetOphiuchus(player, flag)
 			player.TearFlags = player.TearFlags | TearFlags.TEAR_WIGGLE | TearFlags.TEAR_SPECTRAL
 		end
 		if flag == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage + 0.3
+			player.Damage = player.Damage + (0.3 * player:GetCollectibleNum(CollectibleType.COLLECTIBLE_OPHIUCHUS, false))
 		end
 		if flag == CacheFlag.CACHE_FIREDELAY then
 			player.MaxFireDelay = player.MaxFireDelay + player.FireDelay
