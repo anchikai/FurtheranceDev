@@ -85,7 +85,7 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 			if enemy:IsActiveEnemy(false) and not enemy:IsInvincible() then -- This makes stonies and other fuckers not get spared so don't change it :)
 				-- Spare timer for bosses
 				if enemy:IsBoss() then
-					if hasSpareTarget == false and not ((enemy.Type == 19 or enemy.Type == 62) and enemy.Parent ~= nil) and not enemy:GetData().spareTimer then
+					if hasSpareTarget == false and not ((enemy.Type == 19 or enemy.Type == 28 or enemy.Type == 62 or enemy.Type == 918) and enemy.Parent ~= nil) and not enemy:GetData().spareTimer then
 						enemy:GetData().spareTimer = spareTime
 						
 						-- Spotlight
@@ -336,7 +336,7 @@ function mod:spareTimer(entity)
 				entity:SetColor(Color(1,1,1, 1, data.whiteColoring, data.whiteColoring, data.whiteColoring), 5, 1, true, false)
 				
 				-- Tint body segments
-				if entity.Type == 19 or entity.Type == 62 then
+				if entity.Type == 19 or entity.Type == 28 or entity.Type == 62 or entity.Type == 918 then
 					for i, segments in pairs(Isaac.GetRoomEntities()) do
 						if segments.Type == entity.Type and segments.Variant == entity.Variant and segments:HasCommonParentWithEntity(entity.Child) then
 							segments:SetColor(Color(1,1,1, 1, data.whiteColoring, data.whiteColoring, data.whiteColoring), 5, 1, true, false)
@@ -347,7 +347,6 @@ function mod:spareTimer(entity)
 				-- Extra coloring right before sparing
 				if data.spareTimer <= 3 then
 					entity:SetColor(Color(1,1,1, 1, 10,10,10), 10, 1, true, false)
-					SFXManager():Play(SoundEffect.SOUND_DOGMA_GODHEAD, 0.75, 0, false, 1.1, 0)
 				elseif data.spareTimer <= 5 then
 					entity:SetColor(Color(1,1,1, 1, 0.75,0.75,0.75), 10, 1, true, false)
 				end
@@ -359,9 +358,10 @@ function mod:spareTimer(entity)
 			Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.GROUND_GLOW, 0, entity.Position, Vector.Zero, nil):ToEffect():GetSprite().PlaybackSpeed = 0.1
 			Isaac.Spawn(EntityType.ENTITY_EFFECT, 7887, 101, entity.Position, Vector.Zero, nil):ToEffect()
 			data.spareSpotlight:GetSprite():Play("LightDisappear", true)
+			SFXManager():Play(SoundEffect.SOUND_DOGMA_GODHEAD, 0.75, 0, false, 1.1, 0)
 			
 			-- CUNT
-			if entity.Type == 19 or entity.Type == 62 or (entity.Type == 79 and entity.Variant == 0) then
+			if entity.Type == 19 or entity.Type == 28 or entity.Type == 62 or (entity.Type == 79 and entity.Variant == 0) or entity.Type == 918 then
 				local checkVar = entity.Variant
 				if entity.Type == 79 then
 					checkVar = 20
