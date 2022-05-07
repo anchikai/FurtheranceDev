@@ -61,7 +61,7 @@ function mod:DebugStats(player, flag)
 	if flag == CacheFlag.CACHE_LUCK then
 		player.Luck = player.Luck + HighLuck
 	end
-	if ItemUsed then
+	if ItemUsed or (InfCharge and (player:NeedsCharge(ActiveSlot.SLOT_PRIMARY) or player:NeedsCharge(ActiveSlot.SLOT_SECONDARY) or player:NeedsCharge(ActiveSlot.SLOT_POCKET))) then
 		ItemUsed = false
 		player:FullCharge(ActiveSlot.SLOT_PRIMARY, true)
 		player:FullCharge(ActiveSlot.SLOT_SECONDARY, true)
