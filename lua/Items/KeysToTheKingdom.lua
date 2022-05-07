@@ -21,15 +21,23 @@ for _, obj in ipairs(statObjs) do
 end
 
 
--- Determine effect --
+-- Blacklisted enemies --
 function checkForKTTK(enemy)
-	if not ((enemy.Type == 79 and enemy.Variant == 20) or enemy.Type == 802 or (enemy.Type == 39 and enemy.Variant == 22) or (enemy.Type == 239 and enemy.Parent ~= nil)
-	or ((enemy.Type == 35 or enemy.Type == 216 or enemy.Type == 228 or enemy.Type == 251 or enemy.Type == 311 or enemy.Type == 830 or enemy.Type == 865 or enemy.Type == 903) and enemy.Variant == 10)) then
+	if not (
+	(enemy.Type == EntityType.ENTITY_VIS and enemy.Variant == 22)
+	or (enemy.Type == EntityType.ENTITY_GEMINI and enemy.Variant == 20)
+	or (enemy.Type == EntityType.ENTITY_GRUB and enemy.Parent ~= nil)
+	or enemy.Type == EntityType.ENTITY_BLOOD_PUPPY
+	or ((enemy.Type == EntityType.ENTITY_MRMAW or enemy.Type == EntityType.ENTITY_SWINGER or enemy.Type == EntityType.ENTITY_HOMUNCULUS
+	or enemy.Type == EntityType.ENTITY_BEGOTTEN or enemy.Type == 311 or enemy.Type == EntityType.ENTITY_BIG_BONY
+	or enemy.Type == EntityType.ENTITY_EVIS or enemy.Type == EntityType.ENTITY_VISAGE) and enemy.Variant == 10) -- 311 is Mr.Mine, they don't have an enum for some reason
+	) then
 		return true
 	end
 end
 
 
+-- Determine effect --
 ---@param player EntityPlayer
 function mod:UseKTTK(_, _, player, _, slot, _)
 	local data = mod:GetData(player)
@@ -85,7 +93,9 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 			if enemy:IsActiveEnemy(false) and not enemy:IsInvincible() then -- This makes stonies and other fuckers not get spared so don't change it :)
 				-- Spare timer for bosses
 				if enemy:IsBoss() then
-					if hasSpareTarget == false and not ((enemy.Type == 19 or enemy.Type == 28 or enemy.Type == 62 or enemy.Type == 918) and enemy.Parent ~= nil) and not enemy:GetData().spareTimer then
+					if hasSpareTarget == false
+					and not ((enemy.Type == EntityType.ENTITY_LARRYJR or enemy.Type == EntityType.ENTITY_CHUB or enemy.Type == EntityType.ENTITY_PIN or enemy.Type == EntityType.ENTITY_TURDLET) and enemy.Parent ~= nil)
+					and not enemy:GetData().spareTimer then
 						enemy:GetData().spareTimer = spareTime
 						
 						-- Spotlight
@@ -106,10 +116,10 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 					Isaac.Spawn(EntityType.ENTITY_EFFECT, 7887, 100, enemy.Position, Vector.Zero, nil):ToEffect()
 
 					-- Remove segments if needed
-					if enemy.Type == 239 then
+					if enemy.Type == EntityType.ENTITY_GRUB then
 						for i, segments in pairs(Isaac.GetRoomEntities()) do
 							if segments.Type == enemy.Type and segments.Variant == enemy.Variant and segments:HasCommonParentWithEntity(enemy.Child) then
-								segments:Die()
+								segments:Remove()
 							end
 						end
 					else
@@ -335,20 +345,20 @@ function mod:spareTimer(entity)
 				data.spareSpotlight:GetSprite().Scale = Vector(0.75 + data.spareTimer * 0.001, 1.25)
 				entity:SetColor(Color(1,1,1, 1, data.whiteColoring, data.whiteColoring, data.whiteColoring), 5, 1, true, false)
 				
-				-- Tint body segments
-				if entity.Type == 19 or entity.Type == 28 or entity.Type == 62 or entity.Type == 918 then
-					for i, segments in pairs(Isaac.GetRoomEntities()) do
-						if segments.Type == entity.Type and segments.Variant == entity.Variant and segments:HasCommonParentWithEntity(entity.Child) then
-							segments:SetColor(Color(1,1,1, 1, data.whiteColoring, data.whiteColoring, data.whiteColoring), 5, 1, true, false)
-						end
-					end
-				end
-				
 				-- Extra coloring right before sparing
 				if data.spareTimer <= 3 then
-					entity:SetColor(Color(1,1,1, 1, 10,10,10), 10, 1, true, false)
+					entity:SetColor(Color(1,1,1, 1, 10,10,10), 5, 1, true, false)
 				elseif data.spareTimer <= 5 then
-					entity:SetColor(Color(1,1,1, 1, 0.75,0.75,0.75), 10, 1, true, false)
+					entity:SetColor(Color(1,1,1, 1, 0.75,0.75,0.75), 5, 1, true, false)
+				end
+				
+				-- Tint body segments
+				if entity.Type == EntityType.ENTITY_LARRYJR or entity.Type == EntityType.ENTITY_CHUB or entity.Type == EntityType.ENTITY_PIN or entity.Type == EntityType.ENTITY_TURDLET then
+					for i, segments in pairs(Isaac.GetRoomEntities()) do
+						if segments.Type == entity.Type and segments.Variant == entity.Variant and segments:HasCommonParentWithEntity(entity.Child) then
+							segments:SetColor(entity:GetSprite().Color, 5, 1, true, false)
+						end
+					end
 				end
 			end
 		
@@ -361,9 +371,10 @@ function mod:spareTimer(entity)
 			SFXManager():Play(SoundEffect.SOUND_DOGMA_GODHEAD, 0.75, 0, false, 1.1, 0)
 			
 			-- CUNT
-			if entity.Type == 19 or entity.Type == 28 or entity.Type == 62 or (entity.Type == 79 and entity.Variant == 0) or entity.Type == 918 then
+			if entity.Type == EntityType.ENTITY_LARRYJR or entity.Type == EntityType.ENTITY_CHUB or entity.Type == EntityType.ENTITY_PIN or entity.Type == EntityType.ENTITY_TURDLET
+			or (entity.Type == EntityType.ENTITY_GEMINI and entity.Variant == 0) then
 				local checkVar = entity.Variant
-				if entity.Type == 79 then
+				if entity.Type == EntityType.ENTITY_GEMINI then
 					checkVar = 20
 				end
 				
@@ -409,11 +420,16 @@ end
 mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.spareTimer)
 
 
+-- Reset timer --
 function mod:spareResetBoss(target, damageAmount, damageFlags, damageSource, damageCountdownFrames)
-	if target:IsBoss() then
+	if target and target:IsBoss() then
+		local spareCancel = false
 		local data = target:GetData()
-		if data.spareTimer and data.spareTimer > 0 and damageSource.Entity then -- TODO: make bosses hurting themselves not reset timer (checking damageSource doesn't work because Isaac API)
-			data.spareTimer = spareTime
+		if damageSource.Entity and damageSource.Entity.SpawnerEntity then
+			if damageSource.Entity.SpawnerEntity.Type ~= target.Type then
+				data.spareTimer = spareTime
+				SFXManager():Play(SoundEffect.SOUND_BISHOP_HIT, 1.25)
+			end
 		end
 	end
 end
