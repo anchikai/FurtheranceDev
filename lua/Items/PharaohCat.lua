@@ -1,8 +1,10 @@
 local mod = Furtherance
 local game = Game()
 
--- tear positions offset from original tear when shot to the right
-local tearPositions = {
+local SplitTearFlags = TearFlags.TEAR_SPLIT | TearFlags.TEAR_QUADSPLIT | TearFlags.TEAR_BURSTSPLIT
+
+-- positional offset from original tear when shot to the right
+local TearPositions = {
 	Vector(-20, -5),
 	Vector(-20, 5),
 	Vector(-30, 10),
@@ -11,22 +13,23 @@ local tearPositions = {
 }
 
 function mod:PyramidTears(tear)
-	if tear.FrameCount ~= 1 or tear.Parent == nil or tear.Parent:ToPlayer() == nil or mod:GetData(tear).isExtraEntityTear then return end
+	if tear.FrameCount ~= 1 or mod:GetData(tear).isExtraEntityTear then return end
 
-	local player = tear.Parent and tear.Parent:ToPlayer()
+	local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
 	if player == nil or not player:HasCollectible(CollectibleType.COLLECTIBLE_PHARAOH_CAT) then return end
 
 	local direction = tear.Velocity:GetAngleDegrees()
-	for _, position in ipairs(tearPositions) do
+	for _, position in ipairs(TearPositions) do
 		local extraTear = player:FireTear(tear.Position + position:Rotated(direction), tear.Velocity, true, false, true, player, 1)
+		extraTear:ClearTearFlags(SplitTearFlags)
 		mod:GetData(extraTear).isExtraEntityTear = true
 	end
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, mod.PyramidTears)
 
--- laser directions offset from original direction when shot to the right
-local laserDirections = {
+-- directional offset from original direction when shot to the right
+local LaserDirections = {
 	Vector(4, 2),
 	Vector(4, -2),
 	Vector(4, 1),
@@ -40,11 +43,11 @@ function mod:PyramidLasers(laser)
 	if player == nil or not player:HasCollectible(CollectibleType.COLLECTIBLE_PHARAOH_CAT) then return end
 
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_BRIMSTONE) then -- brimstone synergy
-		for _, direction in ipairs(laserDirections) do
+		for _, direction in ipairs(LaserDirections) do
 			player:FireBrimstone(direction:Rotated(laser.AngleDegrees), player, 1)
 		end
 	elseif (player:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY) or player:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY_2) or player:HasCollectible(CollectibleType.COLLECTIBLE_TECH_X)) then -- tech 1, tech 2 & tech x synergy
-		for _, direction in ipairs(laserDirections) do
+		for _, direction in ipairs(LaserDirections) do
 			player:FireTechLaser(player.Position, LaserOffset.LASER_TECH1_OFFSET, direction:Rotated(laser.AngleDegrees), false, false, player, 1)
 		end
 	end
