@@ -50,7 +50,7 @@ function mod:PeterStats(player, flag)
 			player.MoveSpeed = player.MoveSpeed - 0.25
 		end
 		if flag == CacheFlag.CACHE_FIREDELAY then
-			player.MaxFireDelay = player.MaxFireDelay + 17.39999961853
+			player.MaxFireDelay = player.MaxFireDelay + 8.69999981
 		end
 		if flag == CacheFlag.CACHE_DAMAGE then
 			player.Damage = player.Damage - 0.5

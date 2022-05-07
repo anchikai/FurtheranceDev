@@ -1,7 +1,7 @@
 local mod = Furtherance
 
 function mod:Minus1Shots(tear)
-    local player = tear.Parent:ToPlayer()
+    local player = tear.SpawnerEntity:ToPlayer()
 	if player and player:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY_MINUS_1) then
 		local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_TECHNOLOGY_MINUS_1)
 		if rng:RandomFloat() <= 0.0314 then

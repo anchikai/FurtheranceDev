@@ -17,6 +17,9 @@ end
 
 function mod:UseApocalypse(_, _, player)
     local data = mod:GetData(player)
+    if player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= 0 then
+        PocketActive = player:GetActiveItem(ActiveSlot.SLOT_POCKET)
+    end
     player:RemoveCollectible(CollectibleType.COLLECTIBLE_APOCALYPSE)
 
     local itemCount = player:GetCollectibleCount()
@@ -29,6 +32,7 @@ function mod:UseApocalypse(_, _, player)
             player:RemoveCollectible(i, false, ActiveSlot.SLOT_PRIMARY, true)
             player:TryRemoveCollectibleCostume(i, true)
         end
+        player:SetPocketActiveItem(PocketActive, ActiveSlot.SLOT_POCKET, false)
     end
 
     local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_APOCALYPSE)
