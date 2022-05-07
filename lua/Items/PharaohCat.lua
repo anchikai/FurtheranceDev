@@ -1,6 +1,7 @@
 local mod = Furtherance
 local game = Game()
 
+-- tear positions offset from original tear when shot to the right
 local tearPositions = {
 	Vector(-20, -5),
 	Vector(-20, 5),
@@ -24,6 +25,7 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, mod.PyramidTears)
 
+-- laser directions offset from original direction when shot to the right
 local laserDirections = {
 	Vector(4, 2),
 	Vector(4, -2),
