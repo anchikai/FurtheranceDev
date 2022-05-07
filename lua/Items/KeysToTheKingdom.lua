@@ -423,12 +423,14 @@ mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.spareTimer)
 -- Reset timer --
 function mod:spareResetBoss(target, damageAmount, damageFlags, damageSource, damageCountdownFrames)
 	if target and target:IsBoss() then
-		local spareCancel = false
 		local data = target:GetData()
-		if damageSource.Entity and damageSource.Entity.SpawnerEntity then
-			if damageSource.Entity.SpawnerEntity.Type ~= target.Type then
-				data.spareTimer = spareTime
-				SFXManager():Play(SoundEffect.SOUND_BISHOP_HIT, 1.25)
+
+		if data.spareTimer then
+			if damageSource.Entity and damageSource.Entity.SpawnerEntity then
+				if damageSource.Entity.SpawnerEntity.Type ~= target.Type then
+					data.spareTimer = spareTime
+					SFXManager():Play(SoundEffect.SOUND_BISHOP_HIT, 1.25)
+				end
 			end
 		end
 	end
