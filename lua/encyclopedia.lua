@@ -563,14 +563,19 @@ local Wiki = {
 	KeysToTheKingdom = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "When used, it has a variety of effects based on the room he's in."},
-			{str = "- If used in a cleared room, Isaac will be granted another room clear reward."},
-			{str = "- If used in a active room, light beams will strike down enemies, similarly to Crack the Sky."},
-			{str = "- When used in a devil room, there is a 50% chance either all items become free for you to take with no penalty, or Krampus spawns."},
-			{str = "-- If Krampus spawns, they can still drop Head of Krampus or Lump of Coal."},
+			{str = "When used, it has a variety of effects given the current circumstances:"},
+			{str = "- If used in a active room, all enemies will be ''spared'' and removed from the room, granting temporary stats for the floor."},
+			{str = "- If used on a boss, a 30 second spare timer will begin, similarly to Baby Plum. A beam of light will shine on the boss, slowly shrinking and getting brighter as the timer decreases. Once the timer reaches 0, the boss will be spared and Isaac will gain a permanent stat increase."},
+			{str = "- When used in a devil room, all deals will become free."},
 			{str = "- When used in a angel room, a random key piece is spawned."},
 			{str = "-- If the player already has a key piece, the other respective key piece will spawn."},
 			{str = "-- If the player already has both key pieces, a random angel item will spawn instead."},
+			{str = "When Isaac kills an enemy while holding this item, they have a chance to give a soul based on their Max HP which is what charges this item."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "Keys to the Kingdom can't be used in rooms without enemies."},
+			{str = "Keys to the Kingdom can't be charged when clearing rooms or picking up batteries."},
 		},
 	},
 	MuddledCross = {
