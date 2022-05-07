@@ -289,7 +289,7 @@ EID:addTrinket(TrinketType.TRINKET_ALMAGEST_SCRAP, "Replaces Item Rooms with Pla
 EID:addTrinket(TrinketType.TRINKET_WORMWOOD_LEAF, "2% chance to block any damage hitting Isaac directly#You will briefly become stone and can't move", "Wormwood Leaf", "en_us")
 
 -- Keys to the Kingdom
-EID:addCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, "When used, it has a variety of effects based on the room#{{Room}}: Another room clear reward will spawn#Active {{Room}}: light beams will strike enemies#{{DevilRoom}}: All items become free#{{AngelRoom}}: Spawns a key piece#{{Blank}}Note: If you have {{Collectible238}}{{Collectible239}} an angel item will spawn instead", "Keys to the Kingdom", "en_us")
+EID:addCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, "When used, it has a variety of effects given the current circumstances:#Active {{Room}}: all enemies will be 'spared' and removed from the room, granting temporary stats for the floor##{{BossRoom}}: a 30 second spare timer will begin and when complete, the boss will be spared and you will gain a permanent stat increase#{{DevilRoom}}: All items become free#{{AngelRoom}}: Spawns a key piece#{{Blank}}Note: If you have {{Collectible238}}{{Collectible239}} an angel item will spawn instead#Charges are only gained through kills#", "Keys to the Kingdom", "en_us")
 
 -- Muddled Cross
 EID:addCollectible(CollectibleType.COLLECTIBLE_MUDDLED_CROSS, "Vertically flips the screen and tints it red#The floor will look like the next chapter#↑ All items and pickups are doubled  while flipped#All items are from the {{UltraSecretRoom}}Ultra Secret Room pool#!!! Half a red heart is lost every 7 seconds while flipped", "Muddled Cross", "en_us")
@@ -302,6 +302,15 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_ALTERNATE_REALITY, "Teleports you
 
 -- Cork
 EID:addCollectible(CollectibleType.COLLECTIBLE_CORK, "A large, high speed cork is fired every 15 shots#↑ The cork has a 2x damage multiplier", "Cork", "en_us")
+
+-- Heart Embedded Coin
+EID:addCollectible(CollectibleType.COLLECTIBLE_HEART_EMBEDDED_COIN, "If you normally can't pick up red hearts, they will grant coins instead", "Heart Embedded Coin", "en_us")
+
+-- Mandrake
+EID:addCollectible(CollectibleType.COLLECTIBLE_MANDRAKE, "{{TreasureRoom}} Two items now spawn in all Treasure Rooms#You can only choose one#The second item will always be a familiar", "Mandrake", "en_us")
+
+-- Little Sister
+EID:addCollectible(CollectibleType.COLLECTIBLE_LITTLE_SISTER, "", "Little Sister", "en_us")
 
 
 

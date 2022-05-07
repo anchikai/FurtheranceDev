@@ -930,6 +930,39 @@ local Wiki = {
 			{str = "- It is capped at 14 Corks, allowing for a Cork to be fired every other tear."},
 		},
 	},
+	HeartEmbeddedCoin = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "If Isaac would normally not be able to pick up any red hearts, they will instead grant coins."},
+			{str = "- One half red heart equals one coin, a full heart equals two, and so on."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "Coins will only be granted if you have full red health/can't pick up red hearts and you have less than the maximum amount of coins allowed."},
+		},
+	},
+	Mandrake = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Spawns two items instead of one in each Treasure Room. Only one item can be chosen, the other disappears."},
+			{str = "The second item will always be a familiar."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "If the Treasure Room has already been entered and the item was not taken, then picking up Mandrake later on the same floor will not retroactively add a second item to the room."},
+			{str = "In Downpour, Dross, Mines, Ashpit, Mausoleum, and Gehenna, Treasure Rooms will have two known and one unknown items, instead of the usual one known and one unknown."},
+		},
+	},
+	LittleSister = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -1094,7 +1127,8 @@ local Wiki = {
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			
+			{str = "Keys to the Kingdom can't be used in rooms without enemies."},
+			{str = "Keys to the Kingdom can't be charged when clearing rooms or picking up batteries."},
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
@@ -1136,8 +1170,7 @@ local Wiki = {
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "Keys to the Kingdom can't be used in rooms without enemies."},
-			{str = "Keys to the Kingdom can't be charged when clearing rooms or picking up batteries."},
+			
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
@@ -1900,6 +1933,36 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_HEART_EMBEDDED_COIN,
+	WikiDesc = Wiki.HeartEmbeddedCoin,
+	Pools = {
+		
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_MANDRAKE,
+	WikiDesc = Wiki.Mandrake,
+	Pools = {
+
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_LITTLE_SISTER,
+	WikiDesc = Wiki.LittleSister,
+	Pools = {
+
 	},
 })
 

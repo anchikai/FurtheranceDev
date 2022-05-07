@@ -35,7 +35,6 @@ local laserDirections = {
 
 function mod:PyramidLasers(laser)
 	if laser.FrameCount ~= 1 then return end
-	print(laser.Variant)
 
 	local player = laser.SpawnerEntity and laser.SpawnerEntity:ToPlayer()
 	if player == nil or not player:HasCollectible(CollectibleType.COLLECTIBLE_PHARAOH_CAT) then return end

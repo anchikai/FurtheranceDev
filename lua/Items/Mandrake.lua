@@ -8,7 +8,7 @@ function mod:Mandrake()
 			local player = Isaac.GetPlayer(p)
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_MANDRAKE) then
 				for i, entity in ipairs(Isaac.GetRoomEntities()) do
-					if entity.Type == 5 and entity.Variant == 100 then
+					if entity.Type == EntityType.ENTITY_PICKUP and entity.Variant == PickupVariant.PICKUP_COLLECTIBLE then
 						entity.Position = entity.Position - Vector(40, 0)
 						entity:ToPickup().OptionsPickupIndex = 1
 					end
