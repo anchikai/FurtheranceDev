@@ -1079,25 +1079,27 @@ local Wiki = {
 		},
 		{ -- Traits
 			{str = "Traits", fsize = 2, clr = 3, halign = 0},
-			{str = "Peter gains benefits from visiting devil or angel deals. If Peter has visited more devil deals, he will lose speed, gain damage, range, and stompy. If he has visited more angel deals, he will lose shot speed, gain speed, tear rate, and flight."},
-			{str = "- If the amount of Devil and Angel deals visited are the same, Peter will not gain any of the above mentioned changes."},
-			{str = "He also has two counters next to each deal percent chance to indicate how many of each deal he has visited."},
+			{str = "Peter starts with a pocket active item called ''Keys to the Kingdom.'' When used, it has a variety of effects given the current circumstances:"},
+			{str = "- If used in a active room, all enemies will be ''spared'' and removed from the room, granting temporary stats for the floor."},
+			{str = "- If used on a boss, a 30 second spare timer will begin, similarly to Baby Plum. A beam of light will shine on the boss, slowly shrinking and getting brighter as the timer decreases. Once the timer reaches 0, the boss will be spared and Isaac will gain a permanent stat increase."},
+			{str = "- When used in a devil room, all deals will become free."},
+			{str = "- When used in a angel room, a random key piece is spawned."},
+			{str = "-- If Peter already has a key piece, the other respective key piece will spawn."},
+			{str = "-- If Peter already has both key pieces, a random angel item will spawn instead."},
+			{str = "When Peter kills an enemy, they have a chance to give a soul based on their Max HP which is what charges his pocket active item."},
 		},
 		{ -- Birthright
 			{str = "Birthright", fsize = 2, clr = 3, halign = 0},
-			{str = "Regardless of which deal he has visited more, he will always gain the benefits of both."},
-			{str = "- He will only gain flight if visited angel deals is more than 0, and will only gain stompy if visited devil deals is more than 0."},
-			{str = "The tear rate gained from angel deals is hard capped at 30 instead of 15."},
+			
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "The tear rate gained from angel deals is hard capped at 15."},
-			{str = "- All other stats can keep going up indefinitely, so long as you can keep entering new deals."},
+			
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
 			{str = "Peter was one of the Twelve Apostles of Jesus Christ, and one of the first leaders of the early Church."},
-			{str = "Peter was originally going to be in a mod called ''Decadence'' by poody_blue, but it has since been morphed into Furtherance and Peter has been reworked from what he was originally."},
+			{str = "Peter was originally going to be in a mod called ''Decadence'' by poody_blue, but it has since been morphed into Furtherance and Peter has been tweaked from what he was originally."},
 		},
 	},
 	TaintedPeter = {
@@ -1126,8 +1128,6 @@ local Wiki = {
 			{str = "The entire screen will be flipped vertically and the enemies will be harder to defeat, but you gain double the items and pickups."},
 			{str = "The item pool for all items while flipped is the Ultra Secret Room item pool."},
 			{str = "- Items of any quality can be found while flipped."},
-			
-			
 		},
 		{ -- Birthright
 			{str = "Birthright", fsize = 2, clr = 3, halign = 0},
@@ -1136,7 +1136,8 @@ local Wiki = {
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			
+			{str = "Keys to the Kingdom can't be used in rooms without enemies."},
+			{str = "Keys to the Kingdom can't be charged when clearing rooms or picking up batteries."},
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},

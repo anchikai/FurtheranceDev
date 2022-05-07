@@ -234,11 +234,59 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_PARASITIC_POOFER, "20% chance to 
 -- Butterfly
 EID:addCollectible(CollectibleType.COLLECTIBLE_BUTTERFLY, "Taking damage will cause Isaac to fire tears in random directions for two seconds#The tears deal 50% of Isaac's damage", "Butterfly", "en_us")
 
--- Soul of Leah
-EID:addCard(RUNE_SOUL_OF_LEAH, "Grants between 1 to 5 broken hearts#↑ All the broken hearts will give either a damage up or tears up#The amount of damage or tears gained is dependent on how many broken hearts are gained", "Soul of Leah", "en_us")
+-- Spiritual Wound
+EID:addCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND, "Replaces tears with a single enemy tether attack#A red cursor will appear below enemies, and its controlled with the shoot buttons#The tether damages the nearest enemy until the enemy is dead#The tether will automatically move to the next nearest enemy#Deals 0.33x Isaac's damage per tick#Enemies killed have a 5% chance to heal 1/2 red heart", "Spiritual Wound", "en_us")
 
--- Moon Heart
-EID:addEntity(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, 225, "Moon Heart", "Worth 1 HP#Teleports you to the Secret Room when depleted#↓ Only 1 can be held at a time", "en_us")
+-- Caduceus Staff
+EID:addCollectible(CollectibleType.COLLECTIBLE_CADUCEUS_STAFF, "↑ +2 Spiritual Hearts#Grants Isaac a self-healing aura#The aura has a chance to trigger when Isaac takes damage, healing Isaac for 2x the amount of damage that was taken#The chance begins at 1% and doubles for each hit", "Caduceus Staff", "en_us")
+
+-- Polydipsia
+EID:addCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA, "Isaac's tears are fired in an arc#Upon hitting the floor, an obstacle, or an enemy they burst into a puddle of water#↓ {{Tears}} roughly -100% Tears down", "Polydipsia", "en_us")
+
+-- Kareth
+EID:addCollectible(CollectibleType.COLLECTIBLE_KARETH, "All future items found in the run are replaced with 1-3 trinkets#Amount of trinkets depends on what the items quality was", "Kareth", "en_us")
+
+-- Pillar of Fire
+EID:addCollectible(CollectibleType.COLLECTIBLE_PILLAR_OF_FIRE, "Chance to burst into five flames when hit, dealing damage to enemies#The flames periodically shoot red tears at enemies", "Pillar of Fire", "en_us")
+
+-- Pillar of Clouds
+EID:addCollectible(CollectibleType.COLLECTIBLE_PILLAR_OF_CLOUDS, "Walking through the door to an uncleared room will occasionally skip that room and immediately walk into the room right after it", "Pillar of Clouds", "en_us")
+
+-- Firstborn Son
+EID:addCollectible(CollectibleType.COLLECTIBLE_FIRSTBORN_SON, "A familiar that will immediately chase down and kill the enemy with the highest HP in the room", "Firstborn Son", "en_us")
+
+-- Miriam's Well
+EID:addCollectible(CollectibleType.COLLECTIBLE_MIRIAMS_WELL, "An orbital that breaks and spawns a pool of water upon being hit", "Miriam's Well", "en_us")
+
+-- Quarantine
+EID:addCollectible(CollectibleType.COLLECTIBLE_QUARANTINE, "Applies fear to all enemies for 6 seconds when entering a new room#Enemies near you during that period are poisoned", "Quarantine", "en_us")
+
+-- Book of Guidance
+EID:addCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_GUIDANCE, "Opens all doors for the current floor", "Book of Guidance", "en_us")
+
+-- Jar of Manna
+EID:addCollectible(CollectibleType.COLLECTIBLE_JAR_OF_MANNA, "Killing an enemy spawns a Manna orb, which quickly disappears#Manna orbs can be collected by walking over them, which will charge this item#Using will give Isaac the pick up he needs the most", "Jar of Manna", "en_us")
+
+-- Tambourine
+EID:addCollectible(CollectibleType.COLLECTIBLE_TAMBOURINE, "", "Tambourine", "en_us")
+
+-- The Dreidel
+EID:addCollectible(CollectibleType.COLLECTIBLE_THE_DREIDEL, "Reduces 1-4 random stats and spawns 1 random item from the current rooms item pool#Its quality will depend on the amount of stats lowered", "The Dreidel", "en_us")
+
+-- Apocalypse
+EID:addCollectible(CollectibleType.COLLECTIBLE_APOCALYPSE, "↓ Removes all of your passive items#↑ Increases 2 random stats for each item removed", "Apocalypse", "en_us")
+
+-- Infested Penny
+EID:addTrinket(TrinketType.TRINKET_INFESTED_PENNY, "Spawns a blue spider when picking up coins", "Infested Penny", "en_us")
+
+-- Saline Spray
+EID:addTrinket(TrinketType.TRINKET_SALINE_SPRAY, "Tears have a 5% chance to be ice tears#They slow enemies and freeze monsters they kill", "Saline Spray", "en_us")
+
+-- Almagest Scrap
+EID:addTrinket(TrinketType.TRINKET_ALMAGEST_SCRAP, "Replaces Item Rooms with Planetariums#Planetarium items now cost 1-3 broken hearts#The cost depends on the item's quality", "Almagest Scrap", "en_us")
+
+-- Wormwood Leaf
+EID:addTrinket(TrinketType.TRINKET_WORMWOOD_LEAF, "2% chance to block any damage hitting Isaac directly#You will briefly become stone and can't move", "Wormwood Leaf", "en_us")
 
 -- Keys to the Kingdom
 EID:addCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, "When used, it has a variety of effects based on the room#{{Room}}: Another room clear reward will spawn#Active {{Room}}: light beams will strike enemies#{{DevilRoom}}: All items become free#{{AngelRoom}}: Spawns a key piece#{{Blank}}Note: If you have {{Collectible238}}{{Collectible239}} an angel item will spawn instead", "Keys to the Kingdom", "en_us")
@@ -246,8 +294,31 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, "When used, 
 -- Muddled Cross
 EID:addCollectible(CollectibleType.COLLECTIBLE_MUDDLED_CROSS, "Vertically flips the screen and tints it red#The floor will look like the next chapter#↑ All items and pickups are doubled  while flipped#All items are from the {{UltraSecretRoom}}Ultra Secret Room pool#!!! Half a red heart is lost every 7 seconds while flipped", "Muddled Cross", "en_us")
 
+-- Old Camera
+EID:addCollectible(CollectibleType.COLLECTIBLE_OLD_CAMERA, "The current room will be 'saved'#Using it again will bring you back to the saved room to be cleared again", "Old Camera", "en_us")
+
 -- Alternate Reality
 EID:addCollectible(CollectibleType.COLLECTIBLE_ALTERNATE_REALITY, "Teleports you to a random floor#!!! Puts you inside a random room on the new floor#↑ The map will be revealed for the floor#!!! The random floor can be Blue Womb", "Alternate Reality", "en_us")
 
 -- Cork
 EID:addCollectible(CollectibleType.COLLECTIBLE_CORK, "A large, high speed cork is fired every 15 shots#↑ The cork has a 2x damage multiplier", "Cork", "en_us")
+
+
+
+-- Soul of Leah
+EID:addCard(RUNE_SOUL_OF_LEAH, "{{BrokenHeart}} Grants between 1 to 5 broken hearts#↑ All the broken hearts will give either a damage up or tears up#The amount of damage or tears gained is dependent on how many broken hearts are gained", "Soul of Leah", "en_us")
+
+-- Two of Shields
+EID:addCard(CARD_TWO_OF_SHIELDS, "{{Battery}} Duplicate your active charge", "Two of Shields", "en_us")
+
+-- Ace of Shields
+EID:addCard(CARD_ACE_OF_SHIELDS, "{{Battery}} Turns all pickups, chests and non-boss enemies into micro batteries", "Ace of Shields", "en_us")
+
+-- Trap Card
+EID:addCard(CARD_TRAP, "Chains down the nearest enemy for 5 seconds, preventing them from acting", "Trap Card", "en_us")
+
+-- Key Card
+EID:addCard(CARD_KEY, "{{Shop}} creates a trapdoor that leads to a second shop with a unique stock", "Key Card", "en_us")
+
+-- Moon Heart
+EID:addEntity(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, 225, "Moon Heart", "Worth 1 HP#Teleports you to the Secret Room when depleted#↓ Only 1 can be held at a time", "en_us")
