@@ -42,8 +42,9 @@ function mod:MoonHeartCollision(entity, collider)
 			player = player:GetMainTwin()
 		end
 		local data = mod.DataTable[mod:GetEntityIndex(player)]
-		
-		if data.FurtheranceMoonHeart < (player:GetHeartLimit() - player:GetEffectiveMaxHearts()) and data.FurtheranceMoonHeart < 2 then
+		if player:GetPlayerType() ~= PlayerType.PLAYER_BETHANY or player:GetName() ~= "PeterB" then
+			return false
+		elseif data.FurtheranceMoonHeart < (player:GetHeartLimit() - player:GetEffectiveMaxHearts()) and data.FurtheranceMoonHeart < 2 then
 			if entity.SubType == HeartSubType.HEART_MOON then
 				if player:GetPlayerType() ~= PlayerType.PLAYER_THELOST and player:GetPlayerType() ~= PlayerType.PLAYER_THELOST_B then
 					Furtherance.AddMoonHearts(player, 2)
