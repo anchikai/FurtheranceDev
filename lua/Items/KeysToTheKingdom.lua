@@ -8,8 +8,8 @@ local finalBossIDs = { 6, 8, 24, 25, 39, 40, 54, 55, 63, 70, 88, 99, 100 }
 
 local statObjs = {
 	{ Name = "Damage", Flag = CacheFlag.CACHE_DAMAGE, Buff = 0.5, TempBuff = 0.1 },
-	{ Name = "MaxFireDelay", Flag = CacheFlag.CACHE_FIREDELAY, Buff = -0.5, TempBuff = -0.1 }, -- MaxFireDelay buffs should be negative!
-	{ Name = "TearRange", Flag = CacheFlag.CACHE_RANGE, Buff = 0.5, TempBuff = 0.1 },
+	{ Name = "MaxFireDelay", Flag = CacheFlag.CACHE_FIREDELAY, Buff = -0.5*5, TempBuff = -0.1*5 }, -- MaxFireDelay buffs should be negative!
+	{ Name = "TearRange", Flag = CacheFlag.CACHE_RANGE, Buff = 0.5*40, TempBuff = 0.1*40 },
 	{ Name = "ShotSpeed", Flag = CacheFlag.CACHE_SHOTSPEED, Buff = 0.5, TempBuff = 0.1 },
 	{ Name = "MoveSpeed", Flag = CacheFlag.CACHE_SPEED, Buff = 0.5, TempBuff = 0.1 },
 	{ Name = "Luck", Flag = CacheFlag.CACHE_LUCK, Buff = 0.5, TempBuff = 0.1 }
