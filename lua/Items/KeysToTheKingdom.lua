@@ -139,9 +139,7 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 
 	return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseKTTK, CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM)
-
 
 -- Give the charge back if the room is cleared --
 function mod:KTTKrecharge(player, flag)
@@ -152,27 +150,24 @@ function mod:KTTKrecharge(player, flag)
 		SFXManager():Stop(SoundEffect.SOUND_ITEMRECHARGE)
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.KTTKrecharge)
-
 
 -- Stats --
 function mod:KTTKbuffs(player, flag)
-	local data = mod:GetData(player)
-	if data.KTTKBuffs == nil then return end
+    local data = mod:GetData(player)
+    if data.KTTKBuffs == nil then return end
 
-	for i, buffCount in ipairs(data.KTTKBuffs) do
-		local stat = statObjs[i]
+    for i, buffCount in ipairs(data.KTTKBuffs) do
+        local stat = statObjs[i]
 
-		if stat.Flag == flag then
-			player[stat.Name] = player[stat.Name] + buffCount * stat.Buff
-			break
-		end
-	end
+        if stat.Flag == flag then
+            player[stat.Name] = player[stat.Name] + buffCount * stat.Buff
+            break
+        end
+    end
 end
 
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.KTTKbuffs)
-
 
 function mod:KTTKTempbuffs(player, flag)
 	local data = mod:GetData(player)
@@ -187,7 +182,6 @@ function mod:KTTKTempbuffs(player, flag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.KTTKTempbuffs)
 
 function mod:removeKTTKTbuffs()
@@ -201,9 +195,7 @@ function mod:removeKTTKTbuffs()
 		player:EvaluateItems()
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.removeKTTKTbuffs)
-
 
 -- Spawn souls --
 function mod:kttkKills(entity)
@@ -224,9 +216,7 @@ function mod:kttkKills(entity)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.kttkKills)
-
 
 -- Effects --
 function mod:EnemySouls(effect)
@@ -326,9 +316,7 @@ function mod:EnemySouls(effect)
 		effect:Remove()
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.EnemySouls, 7887)
-
 
 -- Sparing --
 function mod:spareTimer(entity)
@@ -413,8 +401,15 @@ function mod:spareTimer(entity)
 					end
 
 					local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM)
-					local buffChoice = rng:RandomInt(#statObjs) + 1
-					buffs[buffChoice] = buffs[buffChoice] + 1
+					local choice1 = rng:RandomInt(#statObjs) + 1
+
+					local choice2
+					repeat
+						choice2 = rng:RandomInt(#statObjs) + 1
+					until choice2 ~= choice1
+
+					buffs[choice1] = buffs[choice1] + 1
+					buffs[choice2] = buffs[choice2] + 1
 
 					player:AddCacheFlags(ALL_BUFFED_FLAGS)
 					player:EvaluateItems()
@@ -423,9 +418,7 @@ function mod:spareTimer(entity)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.spareTimer)
-
 
 -- Reset timer --
 function mod:spareResetBoss(target, damageAmount, damageFlags, damageSource, damageCountdownFrames)
@@ -442,7 +435,6 @@ function mod:spareResetBoss(target, damageAmount, damageFlags, damageSource, dam
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.spareResetBoss)
 
 function mod:spareResetPlayer(target, damageAmount, damageFlags, damageSource, damageCountdownFrames)
@@ -466,5 +458,4 @@ function mod:spareResetPlayer(target, damageAmount, damageFlags, damageSource, d
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.spareResetPlayer, EntityType.ENTITY_PLAYER)
