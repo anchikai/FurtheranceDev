@@ -38,7 +38,6 @@ function checkForKTTK(enemy)
 end
 
 -- Determine effect --
----@param player EntityPlayer
 function mod:UseKTTK(_, _, player, _, slot, _)
 	local data = mod:GetData(player)
 	local room = game:GetRoom()
