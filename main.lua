@@ -242,7 +242,10 @@ function mod:OnSave(isSaving)
 			saveData["player_" .. tostring(i + 1)].ShiftKeyPressed = data.ShiftKeyPressed
 			saveData["player_" .. tostring(i + 1)].ShiftMultiplier = data.ShiftMultiplier
 			saveData["player_" .. tostring(i + 1)].SleptInMomsBed = data.SleptInMomsBed
+			saveData["player_" .. tostring(i + 1)].ApocalypseBuffs = data.ApocalypseBuffs
 			saveData["player_" .. tostring(i + 1)].SpareCount = data.SpareCount
+			saveData["player_" .. tostring(i + 1)].KTTKBuffs = data.KTTKBuffs
+			saveData["player_" .. tostring(i + 1)].KTTKTempBuffs = data.KTTKTempBuffs
 			if player:GetName() == "Leah" then
 				saveData["player_" .. tostring(i + 1)].kills = data.leahkills
 			end
@@ -333,8 +336,17 @@ function mod:OnLoad(isLoading)
 			if loadData["player_" .. tostring(i + 1)].SleptInMomsBed then
 				data.SleptInMomsBed = loadData["player_" .. tostring(i + 1)].SleptInMomsBed
 			end
+			if loadData["player_" .. tostring(i + 1)].ApocalypseBuffs then
+				data.ApocalypseBuffs = loadData["player_" .. tostring(i + 1)].ApocalypseBuffs
+			end
 			if loadData["player_" .. tostring(i + 1)].SpareCount then
 				data.SpareCount = loadData["player_" .. tostring(i + 1)].SpareCount
+			end
+			if loadData["player_" .. tostring(i + 1)].KTTKBuffs then
+				data.KTTKBuffs = loadData["player_" .. tostring(i + 1)].KTTKBuffs
+			end
+			if loadData["player_" .. tostring(i + 1)].KTTKTempBuffs then
+				data.KTTKTempBuffs = loadData["player_" .. tostring(i + 1)].KTTKTempBuffs
 			end
 		end
 		if loadData.Flipped then

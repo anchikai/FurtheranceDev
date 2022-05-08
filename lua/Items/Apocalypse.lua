@@ -17,7 +17,7 @@ end
 
 function mod:UseApocalypse(_, _, player)
     local data = mod:GetData(player)
-    if player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= 0 then
+    if player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= nil then
         PocketActive = player:GetActiveItem(ActiveSlot.SLOT_POCKET)
     end
     player:RemoveCollectible(CollectibleType.COLLECTIBLE_APOCALYPSE)
