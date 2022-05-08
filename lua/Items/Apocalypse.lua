@@ -2,12 +2,12 @@ local mod = Furtherance
 local game = Game()
 
 local statObjs = {
-    { Name = "Damage", Flag = CacheFlag.CACHE_DAMAGE },
-    { Name = "FireDelay", Flag = CacheFlag.CACHE_FIREDELAY },
-    { Name = "TearRange", Flag = CacheFlag.CACHE_RANGE },
-    { Name = "ShotSpeed", Flag = CacheFlag.CACHE_SHOTSPEED },
-    { Name = "MoveSpeed", Flag = CacheFlag.CACHE_SPEED },
-    { Name = "Luck", Flag = CacheFlag.CACHE_LUCK },
+    { Name = "Damage", Flag = CacheFlag.CACHE_DAMAGE, Buff = 1 },
+    { Name = "MaxFireDelay", Flag = CacheFlag.CACHE_FIREDELAY, Buff = -0.5 }, -- MaxFireDelay buffs should be negative!
+    { Name = "TearRange", Flag = CacheFlag.CACHE_RANGE, Buff = 12.5 },
+    { Name = "ShotSpeed", Flag = CacheFlag.CACHE_SHOTSPEED, Buff = 0.1 },
+    { Name = "MoveSpeed", Flag = CacheFlag.CACHE_SPEED, Buff = 0.05 },
+    { Name = "Luck", Flag = CacheFlag.CACHE_LUCK, Buff = 1 },
 }
 
 local ALL_BUFFED_FLAGS = 0
@@ -54,8 +54,8 @@ function mod:UseApocalypse(_, _, player)
             choice2 = rng:RandomInt(#statObjs) + 1
         until choice2 ~= choice1
 
-        buffs[choice1] = buffs[choice1] + 0.1
-        buffs[choice2] = buffs[choice2] + 0.1
+        buffs[choice1] = buffs[choice1] + 1
+        buffs[choice2] = buffs[choice2] + 1
     end
 
     player:AddCacheFlags(ALL_BUFFED_FLAGS)
@@ -63,20 +63,21 @@ function mod:UseApocalypse(_, _, player)
 
     return true
 end
+
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseApocalypse, CollectibleType.COLLECTIBLE_APOCALYPSE)
 
 function mod:ApocalypseBuffs(player, flag)
     local data = mod:GetData(player)
-    local buffs = data.ApocalypseBuffs
-    if not buffs then return end
+    if not data.ApocalypseBuffs then return end
 
-    for i, buff in ipairs(data.ApocalypseBuffs) do
+    for i, buffCount in ipairs(data.ApocalypseBuffs) do
         local stat = statObjs[i]
 
         if stat.Flag == flag then
-            player[stat.Name] = player[stat.Name] + buff
+            player[stat.Name] = player[stat.Name] + buffCount * stat.Buff
             break
         end
     end
 end
+
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.ApocalypseBuffs)

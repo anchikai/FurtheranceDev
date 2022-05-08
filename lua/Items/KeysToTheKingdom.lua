@@ -7,12 +7,12 @@ local spareTime = 30 * 30
 local finalBossIDs = { 6, 8, 24, 25, 39, 40, 54, 55, 63, 70, 88, 99, 100 }
 
 local statObjs = {
-	{ Name = "Damage", Flag = CacheFlag.CACHE_DAMAGE },
-	{ Name = "FireDelay", Flag = CacheFlag.CACHE_FIREDELAY },
-	{ Name = "TearRange", Flag = CacheFlag.CACHE_RANGE },
-	{ Name = "ShotSpeed", Flag = CacheFlag.CACHE_SHOTSPEED },
-	{ Name = "MoveSpeed", Flag = CacheFlag.CACHE_SPEED },
-	{ Name = "Luck", Flag = CacheFlag.CACHE_LUCK }
+	{ Name = "Damage", Flag = CacheFlag.CACHE_DAMAGE, Buff = 0.5, TempBuff = 0.1 },
+	{ Name = "MaxFireDelay", Flag = CacheFlag.CACHE_FIREDELAY, Buff = -0.5, TempBuff = -0.1 }, -- MaxFireDelay buffs should be negative!
+	{ Name = "TearRange", Flag = CacheFlag.CACHE_RANGE, Buff = 0.5, TempBuff = 0.1 },
+	{ Name = "ShotSpeed", Flag = CacheFlag.CACHE_SHOTSPEED, Buff = 0.5, TempBuff = 0.1 },
+	{ Name = "MoveSpeed", Flag = CacheFlag.CACHE_SPEED, Buff = 0.5, TempBuff = 0.1 },
+	{ Name = "Luck", Flag = CacheFlag.CACHE_LUCK, Buff = 0.5, TempBuff = 0.1 }
 }
 
 local ALL_BUFFED_FLAGS = 0
@@ -24,18 +24,18 @@ end
 -- Blacklisted enemies --
 function checkForKTTK(enemy)
 	if not (
-	(enemy.Type == EntityType.ENTITY_VIS and enemy.Variant == 22)
-	or (enemy.Type == EntityType.ENTITY_GEMINI and enemy.Variant == 20)
-	or (enemy.Type == EntityType.ENTITY_GRUB and enemy.Parent ~= nil)
-	or enemy.Type == EntityType.ENTITY_BLOOD_PUPPY
-	or ((enemy.Type == EntityType.ENTITY_MRMAW or enemy.Type == EntityType.ENTITY_SWINGER or enemy.Type == EntityType.ENTITY_HOMUNCULUS
-	or enemy.Type == EntityType.ENTITY_BEGOTTEN or enemy.Type == 311 or enemy.Type == EntityType.ENTITY_BIG_BONY
-	or enemy.Type == EntityType.ENTITY_EVIS or enemy.Type == EntityType.ENTITY_VISAGE) and enemy.Variant == 10) -- 311 is Mr.Mine, they don't have an enum for some reason
-	) then
+		(enemy.Type == EntityType.ENTITY_VIS and enemy.Variant == 22)
+			or (enemy.Type == EntityType.ENTITY_GEMINI and enemy.Variant == 20)
+			or (enemy.Type == EntityType.ENTITY_GRUB and enemy.Parent ~= nil)
+			or enemy.Type == EntityType.ENTITY_BLOOD_PUPPY
+			or ((enemy.Type == EntityType.ENTITY_MRMAW or enemy.Type == EntityType.ENTITY_SWINGER or enemy.Type == EntityType.ENTITY_HOMUNCULUS
+				or enemy.Type == EntityType.ENTITY_BEGOTTEN or enemy.Type == EntityType.ENTITY_MR_MINE or enemy.Type == EntityType.ENTITY_BIG_BONY
+				or enemy.Type == EntityType.ENTITY_EVIS or enemy.Type == EntityType.ENTITY_VISAGE) and enemy.Variant == 10)
+		) then
+
 		return true
 	end
 end
-
 
 -- Determine effect --
 ---@param player EntityPlayer
@@ -53,7 +53,7 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 		player:UseCard(Card.CARD_CREDIT, 257)
 
 
-	-- Get key piece / random item in Angel room
+		-- Get key piece / random item in Angel room
 	elseif roomType == RoomType.ROOM_ANGEL then
 		if not player:HasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_1) then
 			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KEY_PIECE_1, Isaac.GetFreeNearPosition(room:GetCenterPos(), 0), Vector.Zero, player)
@@ -64,7 +64,7 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 		end
 
 
-	-- Give the charge back if the room is cleared
+		-- Give the charge back if the room is cleared
 	elseif room:GetAliveEnemiesCount() == 0 then
 		KTTKinCleared = true
 		KTTKslot = slot
@@ -94,10 +94,10 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 				-- Spare timer for bosses
 				if enemy:IsBoss() then
 					if hasSpareTarget == false
-					and not ((enemy.Type == EntityType.ENTITY_LARRYJR or enemy.Type == EntityType.ENTITY_CHUB or enemy.Type == EntityType.ENTITY_PIN or enemy.Type == EntityType.ENTITY_TURDLET) and enemy.Parent ~= nil)
-					and not enemy:GetData().spareTimer then
+						and not ((enemy.Type == EntityType.ENTITY_LARRYJR or enemy.Type == EntityType.ENTITY_CHUB or enemy.Type == EntityType.ENTITY_PIN or enemy.Type == EntityType.ENTITY_TURDLET) and enemy.Parent ~= nil)
+						and not enemy:GetData().spareTimer then
 						enemy:GetData().spareTimer = spareTime
-						
+
 						-- Spotlight
 						if not enemy:GetData().spareSpotlight then
 							enemy:GetData().spareSpotlight = Isaac.Spawn(EntityType.ENTITY_EFFECT, 7887, 200, enemy.Position, Vector.Zero, nil):ToEffect()
@@ -109,8 +109,8 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 						hasSpareTarget = true
 					end
 
-				
-				-- Spare regular enemies
+
+					-- Spare regular enemies
 				elseif checkForKTTK(enemy) == true then
 					Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.GROUND_GLOW, 0, enemy.Position, Vector.Zero, nil):ToEffect():GetSprite().PlaybackSpeed = 0.1
 					Isaac.Spawn(EntityType.ENTITY_EFFECT, 7887, 100, enemy.Position, Vector.Zero, nil):ToEffect()
@@ -129,7 +129,7 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 					-- Give stats
 					local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM)
 					local buffChoice = rng:RandomInt(#statObjs) + 1
-					buffs[buffChoice] = buffs[buffChoice] + 0.1
+					buffs[buffChoice] = buffs[buffChoice] + 1
 				end
 			end
 		end
@@ -140,6 +140,7 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 
 	return true
 end
+
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseKTTK, CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM)
 
 
@@ -152,6 +153,7 @@ function mod:KTTKrecharge(player, flag)
 		SFXManager():Stop(SoundEffect.SOUND_ITEMRECHARGE)
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.KTTKrecharge)
 
 
@@ -160,15 +162,16 @@ function mod:KTTKbuffs(player, flag)
 	local data = mod:GetData(player)
 	if data.KTTKBuffs == nil then return end
 
-	for i, buff in ipairs(data.KTTKBuffs) do
+	for i, buffCount in ipairs(data.KTTKBuffs) do
 		local stat = statObjs[i]
 
 		if stat.Flag == flag then
-			player[stat.Name] = player[stat.Name] + buff
+			player[stat.Name] = player[stat.Name] + buffCount * stat.Buff
 			break
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.KTTKbuffs)
 
 
@@ -176,28 +179,30 @@ function mod:KTTKTempbuffs(player, flag)
 	local data = mod:GetData(player)
 	if data.KTTKTempBuffs == nil then return end
 
-	for i, buff in ipairs(data.KTTKTempBuffs) do
+	for i, buffCount in ipairs(data.KTTKTempBuffs) do
 		local stat = statObjs[i]
 
 		if stat.Flag == flag then
-			player[stat.Name] = player[stat.Name] + buff
+			player[stat.Name] = player[stat.Name] + buffCount * stat.TempBuff
 			break
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.KTTKTempbuffs)
 
 function mod:removeKTTKTbuffs()
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = game:GetPlayer(i)
 		local data = mod:GetData(player)
-		
+
 		data.KTTKTempBuffs = nil
-		
+
 		player:AddCacheFlags(ALL_BUFFED_FLAGS)
 		player:EvaluateItems()
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.removeKTTKTbuffs)
 
 
@@ -212,7 +217,7 @@ function mod:kttkKills(entity)
 
 			elseif entity:IsActiveEnemy(true) and checkForKTTK(entity) == true and not entity:IsInvincible() then
 				local kttkRNG = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM)
-				
+
 				if (kttkRNG:RandomInt(100) + 1) <= (entity.MaxHitPoints * 2.5) then -- Regular enemies have a chance to give a soul based on their Max HP
 					Isaac.Spawn(EntityType.ENTITY_EFFECT, 7887, 0, entity.Position, Vector.Zero, player):ToEffect()
 				end
@@ -220,6 +225,7 @@ function mod:kttkKills(entity)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.kttkKills)
 
 
@@ -235,7 +241,7 @@ function mod:EnemySouls(effect)
 			suffix = "Boss"
 			charges = 3
 		end
-		
+
 		if not sprite:IsPlaying("Move" .. suffix) then
 			sprite:Play("Move" .. suffix, true)
 		end
@@ -282,7 +288,7 @@ function mod:EnemySouls(effect)
 						SFXManager():Play(SoundEffect.SOUND_BATTERYCHARGE)
 					end
 
-					player:SetColor(Color(1,1,1, 1, 0.25,0.25,0.25), 5, 1, true, false)
+					player:SetColor(Color(1, 1, 1, 1, 0.25, 0.25, 0.25), 5, 1, true, false)
 					SFXManager():Play(SoundEffect.SOUND_SOUL_PICKUP)
 				end
 
@@ -291,7 +297,7 @@ function mod:EnemySouls(effect)
 		end
 
 
-	-- Rising soul
+		-- Rising soul
 	elseif effect.SubType == 100 or effect.SubType == 101 then
 		local suffix = ""
 		local soundID = SoundEffect.SOUND_HOLY
@@ -299,28 +305,29 @@ function mod:EnemySouls(effect)
 			suffix = "Boss"
 			soundID = SoundEffect.SOUND_DOGMA_ANGEL_TRANSFORM_END
 		end
-		
+
 		if not sprite:IsPlaying("Spared" .. suffix) then
 			sprite:Play("Spared" .. suffix, true)
 		end
 		if sprite:IsEventTriggered("Sound") then
 			SFXManager():Play(soundID, 1.2)
 		end
-	
-	
-	-- Spotlight
+
+
+		-- Spotlight
 	elseif effect.SubType == 200 then
 		if not effect.Parent and not sprite:IsPlaying("LightDisappear") then
 			sprite:Play("LightDisappear", true)
 		end
 	end
-	
-	
+
+
 	-- Works on both spotlights and rising souls
 	if sprite:IsEventTriggered("Remove") then
 		effect:Remove()
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.EnemySouls, 7887)
 
 
@@ -336,22 +343,22 @@ function mod:spareTimer(entity)
 			if data.spareTimer <= 0 then
 				data.spared = true
 				data.spareTimer = nil
-				
+
 			else
 				-- Shrink spotlight, whiten boss
 				data.spareTimer = data.spareTimer - 1
 				data.whiteColoring = 0.45 - (data.spareTimer / 2000)
-				
+
 				data.spareSpotlight:GetSprite().Scale = Vector(0.75 + data.spareTimer * 0.001, 1.25)
-				entity:SetColor(Color(1,1,1, 1, data.whiteColoring, data.whiteColoring, data.whiteColoring), 5, 1, true, false)
-				
+				entity:SetColor(Color(1, 1, 1, 1, data.whiteColoring, data.whiteColoring, data.whiteColoring), 5, 1, true, false)
+
 				-- Extra coloring right before sparing
 				if data.spareTimer <= 3 then
-					entity:SetColor(Color(1,1,1, 1, 10,10,10), 5, 1, true, false)
+					entity:SetColor(Color(1, 1, 1, 1, 10, 10, 10), 5, 1, true, false)
 				elseif data.spareTimer <= 5 then
-					entity:SetColor(Color(1,1,1, 1, 0.75,0.75,0.75), 5, 1, true, false)
+					entity:SetColor(Color(1, 1, 1, 1, 0.75, 0.75, 0.75), 5, 1, true, false)
 				end
-				
+
 				-- Tint body segments
 				if entity.Type == EntityType.ENTITY_LARRYJR or entity.Type == EntityType.ENTITY_CHUB or entity.Type == EntityType.ENTITY_PIN or entity.Type == EntityType.ENTITY_TURDLET then
 					for i, segments in pairs(Isaac.GetRoomEntities()) do
@@ -361,23 +368,23 @@ function mod:spareTimer(entity)
 					end
 				end
 			end
-		
-		
-		-- Spared
+
+
+			-- Spared
 		elseif data.spared == true then
 			Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.GROUND_GLOW, 0, entity.Position, Vector.Zero, nil):ToEffect():GetSprite().PlaybackSpeed = 0.1
 			Isaac.Spawn(EntityType.ENTITY_EFFECT, 7887, 101, entity.Position, Vector.Zero, nil):ToEffect()
 			data.spareSpotlight:GetSprite():Play("LightDisappear", true)
 			SFXManager():Play(SoundEffect.SOUND_DOGMA_GODHEAD, 0.75, 0, false, 1.1, 0)
-			
+
 			-- CUNT
 			if entity.Type == EntityType.ENTITY_LARRYJR or entity.Type == EntityType.ENTITY_CHUB or entity.Type == EntityType.ENTITY_PIN or entity.Type == EntityType.ENTITY_TURDLET
-			or (entity.Type == EntityType.ENTITY_GEMINI and entity.Variant == 0) then
+				or (entity.Type == EntityType.ENTITY_GEMINI and entity.Variant == 0) then
 				local checkVar = entity.Variant
 				if entity.Type == EntityType.ENTITY_GEMINI then
 					checkVar = 20
 				end
-				
+
 				for _, removee in pairs(Isaac.GetRoomEntities()) do
 					if removee.Type == entity.Type and removee.Variant == checkVar and removee:HasCommonParentWithEntity(entity.Child) then
 						removee:Remove()
@@ -390,7 +397,7 @@ function mod:spareTimer(entity)
 			entity:Die()
 			entity:GetSprite():SetFrame("Death", 99)
 			entity.Visible = false
-			
+
 			-- Give stats
 			for i = 0, game:GetNumPlayers() - 1 do
 				local player = game:GetPlayer(i)
@@ -408,7 +415,7 @@ function mod:spareTimer(entity)
 
 					local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM)
 					local buffChoice = rng:RandomInt(#statObjs) + 1
-					buffs[buffChoice] = buffs[buffChoice] + 0.5
+					buffs[buffChoice] = buffs[buffChoice] + 1
 
 					player:AddCacheFlags(ALL_BUFFED_FLAGS)
 					player:EvaluateItems()
@@ -417,6 +424,7 @@ function mod:spareTimer(entity)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.spareTimer)
 
 
@@ -435,6 +443,7 @@ function mod:spareResetBoss(target, damageAmount, damageFlags, damageSource, dam
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.spareResetBoss)
 
 function mod:spareResetPlayer(target, damageAmount, damageFlags, damageSource, damageCountdownFrames)
@@ -448,7 +457,7 @@ function mod:spareResetPlayer(target, damageAmount, damageFlags, damageSource, d
 			data = damageSource.Entity.SpawnerEntity:GetData()
 			spareCancel = true
 		end
-		
+
 		if spareCancel == true then
 			data.spareTimer = nil
 			data.spareSpotlight:GetSprite():Play("LightDisappear", true)
@@ -458,4 +467,5 @@ function mod:spareResetPlayer(target, damageAmount, damageFlags, damageSource, d
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.spareResetPlayer, EntityType.ENTITY_PLAYER)
