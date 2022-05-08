@@ -83,7 +83,7 @@ function mod:DoubleStuff(pickup)
 			pickup.SpawnerType = EntityType.ENTITY_PLAYER
 			pickup.SpawnerVariant = player.Variant
 			if mod.Flipped and room:IsFirstVisit() then
-				local newItem = Isaac.Spawn(EntityType.ENTITY_PICKUP, pickup.Variant, 0, Isaac.GetFreeNearPosition(pickup.Position, 40), Vector.Zero, player):ToPickup()
+				local newItem = Isaac.Spawn(EntityType.ENTITY_PICKUP, pickup.Variant, 0, Isaac.GetFreeNearPosition(pickup.Position, 80), Vector.Zero, player):ToPickup()
 				newItem.Price = pickup.Price
 				newItem.OptionsPickupIndex = pickup.OptionsPickupIndex
 			end
@@ -102,7 +102,7 @@ function mod:HealthDrain(player)
 		else
 			drainSpeed = 210
 		end
-		if game:GetFrameCount() % drainSpeed == 0 then
+		if game:GetFrameCount()%drainSpeed == 0 then
 			player:AddHearts(-1)
 			local blood = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PLAYER_CREEP_RED, 0, player.Position, Vector.Zero, player):ToEffect()
 			blood.Scale = 1.5
@@ -111,7 +111,7 @@ function mod:HealthDrain(player)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.HealthDrain)
 
-function mod:TougherEnemies(entity, damage, flags, source, frames)
+function mod:TougherEnemies(entity)
 	if mod.Flipped ~= true then return end
 
 	for i = 0, game:GetNumPlayers() - 1 do

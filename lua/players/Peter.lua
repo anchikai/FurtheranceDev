@@ -72,7 +72,7 @@ function mod:Hearts(entity, collider)
 		local player = collider:ToPlayer()
 		local data = mod:GetData(player)
 		if player:GetName() == "PeterB" then -- Prevent Tainted Peter from obtaining Non-Red Health
-			if entity.SubType == HeartSubType.HEART_SOUL or entity.SubType == HeartSubType.HEART_HALF_SOUL then
+			if entity.SubType == HeartSubType.HEART_SOUL or entity.SubType == HeartSubType.HEART_HALF_SOUL or entity.SubType == HeartSubType.HEART_BLACK then
 				return false
 			elseif entity.SubType == HeartSubType.HEART_BLENDED then
 				if player:GetHearts() < player:GetMaxHearts() + (player:GetBoneHearts() * 2) then
@@ -84,55 +84,12 @@ function mod:Hearts(entity, collider)
 				else
 					return false
 				end
-			elseif entity.SubType == HeartSubType.HEART_BLACK then
-				if player:GetActiveCharge(ActiveSlot.SLOT_POCKET) < 6 then
-					entity:GetSprite():Play("Collect", true)
-					entity:Die()
-					local chargeAmount = 2
-					if player:GetActiveCharge(ActiveSlot.SLOT_POCKET) == 5 then
-						chargeAmount = 1
-					end
-					player:SetActiveCharge(player:GetActiveCharge(ActiveSlot.SLOT_POCKET) + chargeAmount, ActiveSlot.SLOT_POCKET)
-					game:GetHUD():FlashChargeBar(player, ActiveSlot.SLOT_POCKET)
-					if player:GetActiveCharge(ActiveSlot.SLOT_POCKET) < 6 then
-						SFXManager():Play(SoundEffect.SOUND_BEEP)
-					else
-						SFXManager():Play(SoundEffect.SOUND_BATTERYCHARGE)
-						SFXManager():Play(SoundEffect.SOUND_ITEMRECHARGE)
-					end
-					SFXManager():Stop(SoundEffect.SOUND_UNHOLY, 1, 0, false)
-				else
-					return false
-				end
 			end
 		end
 	end
 end
 
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.Hearts, PickupVariant.PICKUP_HEART)
-
-function mod:MorphHeart(entity)
-	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
-		if player:GetName() == "PeterB" then
-			if mod.Flipped == true then
-				if entity.SubType ~= HeartSubType.HEART_BLACK then
-					local price = entity.Price
-					entity:Morph(entity.Type, entity.Variant, HeartSubType.HEART_BLACK)
-					entity.Price = price
-				end
-			elseif mod.Flipped == false then
-				if entity.SubType == HeartSubType.HEART_SOUL or entity.SubType == HeartSubType.HEART_HALF_SOUL then
-					local price = entity.Price
-					entity:Morph(entity.Type, entity.Variant, HeartSubType.HEART_BLACK)
-					entity.Price = price
-				end
-			end
-		end
-	end
-end
-
-mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.MorphHeart, PickupVariant.PICKUP_HEART)
 
 function mod:PeterQual(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
