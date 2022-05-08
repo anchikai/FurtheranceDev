@@ -3,6 +3,9 @@ local game = Game()
 local rng = RNG()
 mod.Flipped = false
 
+local FlipSFX = Isaac.GetSoundIdByName("PeterFlip")
+local UnflipSFX = Isaac.GetSoundIdByName("PeterUnflip")
+
 local function clamp(value, min, max)
 	return math.min(math.max(value, min), max)
 end
@@ -36,7 +39,6 @@ local function switchBackground(isFlipped)
 	end
 	SFXManager():Stop(SoundEffect.SOUND_DEATH_CARD)
 end
-
 function mod:UseFlippedCross(_, _, player)
 	game:ShakeScreen(10)
 
@@ -44,13 +46,12 @@ function mod:UseFlippedCross(_, _, player)
 	switchBackground(mod.Flipped)
 
 	if mod.Flipped == true then
-		SFXManager():Play(SoundEffect.SOUND_LAZARUS_FLIP_DEAD)
+		SFXManager():Play(UnflipSFX)
 	else
-		SFXManager():Play(SoundEffect.SOUND_LAZARUS_FLIP_ALIVE)
+		SFXManager():Play(FlipSFX)
 	end
 	return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseFlippedCross, CollectibleType.COLLECTIBLE_MUDDLED_CROSS)
 
 function mod:RoomPersist()
@@ -58,7 +59,6 @@ function mod:RoomPersist()
 		switchBackground(true)
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.RoomPersist)
 
 function mod:UltraSecretPool(pool, decrease, seed)
@@ -70,7 +70,6 @@ function mod:UltraSecretPool(pool, decrease, seed)
 		Rerolled = false
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, mod.UltraSecretPool)
 
 function mod:DoubleStuff(pickup)
@@ -94,7 +93,6 @@ function mod:DoubleStuff(pickup)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.DoubleStuff)
 
 function mod:HealthDrain(player)
@@ -112,7 +110,6 @@ function mod:HealthDrain(player)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.HealthDrain)
 
 function mod:TougherEnemies(entity, damage, flags, source, frames)
@@ -134,7 +131,6 @@ function mod:TougherEnemies(entity, damage, flags, source, frames)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.TougherEnemies)
 
 function mod:FixInputs(entity, hook, button)
@@ -155,19 +151,17 @@ function mod:FixInputs(entity, hook, button)
 		return Input.GetActionValue(ButtonAction.ACTION_SHOOTUP, player.ControllerIndex)
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_INPUT_ACTION, mod.FixInputs, InputHook.GET_ACTION_VALUE)
 
 local flipFactor = 0
 function mod:AnimateFlip()
 	if mod.Flipped == true then
-		flipFactor = flipFactor + 0.1
+		flipFactor = flipFactor + 0.0172413793
 	elseif mod.Flipped == false then
-		flipFactor = flipFactor - 0.1
+		flipFactor = flipFactor - 0.0172413793
 	end
 	flipFactor = clamp(flipFactor, 0, 1)
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.AnimateFlip)
 
 -- Thank you im_tem for the shader!!
@@ -176,7 +170,6 @@ function mod:PeterFlip(name)
 		return { FlipFactor = flipFactor }
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, mod.PeterFlip)
 
 local pauseTime = 0
@@ -195,7 +188,6 @@ function mod:FixMenu()
 		mod.Flipped = true
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.FixMenu)
 
 function mod:ResetFlipped(continued)
@@ -206,5 +198,4 @@ function mod:ResetFlipped(continued)
 		mod.Flipped = false
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.ResetFlipped)

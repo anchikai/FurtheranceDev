@@ -23,7 +23,10 @@
 	<sound name="TambourineShort">
 		<sample weight="1" path="tambourine_short.wav" />		<!-- Thank you Sillst! -->
 	</sound>
-	<sound name="Cork">
-		<sample weight="1" path="cork.wav" />
+	<sound name="PeterFlip">
+		<sample weight="1" path="peterflip1.wav" />
+	</sound>
+	<sound name="PeterUnflip">
+		<sample weight="1" path="peterflip2.wav" />
 	</sound>
 </sounds>
