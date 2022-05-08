@@ -6,6 +6,9 @@ local loadTimer
 local game = Game()
 local rng = RNG()
 
+HeartSubType.HEART_MOON = 225
+mod.DataTable = {}
+
 local laugh = Isaac.GetSoundIdByName("Sitcom_Laugh_Track")
 Furtherance.FailSound = SoundEffect.SOUND_EDEN_GLITCH
 mod.isLoadingData = false
@@ -182,6 +185,43 @@ include("lua/challenges/WhereAmI.lua")
 -- Save Data/Unlocks
 --include("lua/achievements.lua")
 
+function mod:GetEntityIndex(entity)
+	if entity then
+		if entity.Type == EntityType.ENTITY_PLAYER then
+			local player = entity:ToPlayer()
+			if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
+				player = player:GetOtherTwin()
+			end
+			local id = 1
+			if player:GetPlayerType() == PlayerType.PLAYER_LAZARUS2_B then
+				id = 2
+			end
+			local index = player:GetCollectibleRNG(id):GetSeed()
+			if not mod.DataTable[index] then
+				mod.DataTable[index] = {}
+			end
+			if not mod.DataTable[index].FurtheranceMoonHeart then
+				mod.DataTable[index].FurtheranceMoonHeart = 0
+			end
+			if not mod.DataTable[index].lastEternalHearts or not mod.DataTable[index].lastMaxHearts then
+				mod.DataTable[index].lastEternalHearts = 0
+				mod.DataTable[index].lastMaxHearts = 0
+			end
+			if player:GetPlayerType() == PlayerType.PLAYER_BETHANY and not mod.DataTable[index].ImmortalCharge then
+				mod.DataTable[index].ImmortalCharge = 0
+			end
+			return index
+		elseif entity.Type == EntityType.ENTITY_FAMILIAR then
+			local index = entity:ToFamiliar().InitSeed
+			if not mod.DataTable[index] then
+				mod.DataTable[index] = {}
+			end
+			return index
+		end
+	end
+	return nil
+end
+
 function mod:OnSave(isSaving)
 	local save = {}
 	if isSaving then
@@ -231,6 +271,10 @@ function mod:OnLoad(isLoading)
 		for i = 0, game:GetNumPlayers() - 1 do
 			local player = Isaac.GetPlayer(i)
 			local data = mod:GetData(player)
+			local index = mod:GetEntityIndex(player)
+			if isLoading == false or mod.DataTable[index].FurtheranceMoonHeart == nil then
+				mod.DataTable[index].FurtheranceMoonHeart = 0
+			end
 			if player:GetName() == "Leah" then -- leah's Data
 				if loadData["player_" .. tostring(i + 1)].kills then
 					data.leahkills = loadData["player_" .. tostring(i + 1)].kills
