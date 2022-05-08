@@ -1,6 +1,5 @@
 local mod = Furtherance
 local game = Game()
-local rng = RNG()
 mod.Flipped = false
 
 local FlipSFX = Isaac.GetSoundIdByName("PeterFlip")
@@ -46,9 +45,9 @@ function mod:UseFlippedCross(_, _, player)
 	switchBackground(mod.Flipped)
 
 	if mod.Flipped == true then
-		SFXManager():Play(UnflipSFX)
-	else
 		SFXManager():Play(FlipSFX)
+	else
+		SFXManager():Play(UnflipSFX)
 	end
 	return true
 end
