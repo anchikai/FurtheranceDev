@@ -586,6 +586,10 @@ local Wiki = {
 			{str = "- While flipped, Isaac will lose half a heart every 7 seconds."},
 			{str = "The item pool for all items while flipped is the Ultra Secret Room item pool."},
 		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "When entering a new floor while flipped, you will no longer be flipped."}
+		},
 	},
 	AlabasterScrap = {
 		{ -- Effect
@@ -1104,7 +1108,7 @@ local Wiki = {
 			{str = "Stats:"},
 			{str = "- HP: 2 Red Hearts, 1 Soul Heart"},
 			{str = "- Speed: 0.75"},
-			{str = "- Tear rate: 1.06"},
+			{str = "- Tear rate: 1.52"},
 			{str = "- Damage: 3.00"},
 			{str = "- Range: 7.00"},
 			{str = "- Shot speed: 1.00"},
@@ -1167,11 +1171,7 @@ local Wiki = {
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			
-		},
-		{ -- Trivia
-			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
-			
+			{str = "When entering a new floor while flipped, you will no longer be flipped."}
 		},
 	},
 	Miriam = {
