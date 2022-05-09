@@ -42,11 +42,11 @@ function mod:MoonHeartCollision(entity, collider)
 			player = player:GetMainTwin()
 		end
 		local data = mod.DataTable[mod:GetEntityIndex(player)]
-		if player:GetPlayerType() ~= PlayerType.PLAYER_BETHANY or player:GetName() ~= "PeterB" then
-			return false
-		elseif data.FurtheranceMoonHeart < (player:GetHeartLimit() - player:GetEffectiveMaxHearts()) and data.FurtheranceMoonHeart < 2 then
+		if data.FurtheranceMoonHeart < (player:GetHeartLimit() - player:GetEffectiveMaxHearts()) and data.FurtheranceMoonHeart < 2 then
 			if entity.SubType == HeartSubType.HEART_MOON then
-				if player:GetPlayerType() ~= PlayerType.PLAYER_THELOST and player:GetPlayerType() ~= PlayerType.PLAYER_THELOST_B then
+				if player:GetPlayerType() == PlayerType.PLAYER_BETHANY or player:GetName() == "PeterB" then
+					return false
+				elseif player:GetPlayerType() ~= PlayerType.PLAYER_THELOST and player:GetPlayerType() ~= PlayerType.PLAYER_THELOST_B then
 					Furtherance.AddMoonHearts(player, 2)
 				end
 				entity.Velocity = Vector.Zero

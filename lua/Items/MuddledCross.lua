@@ -153,21 +153,20 @@ end
 mod:AddCallback(ModCallbacks.MC_INPUT_ACTION, mod.FixInputs, InputHook.GET_ACTION_VALUE)
 
 local flipFactor = 0
-
 local NewFloor = false
 function mod:NewFloor()
 	if game:GetFrameCount() > 0 then
 		NewFloor = true
 	end
-end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.NewFloor)
-
-function mod:AnimateFlip()
 	if mod.Flipped and NewFloor then
 		mod.Flipped = false
 		NewFloor = false
 		flipFactor = 0
 	end
+end
+mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.NewFloor)
+
+function mod:AnimateFlip()
 	if mod.Flipped == true then
 		flipFactor = flipFactor + 0.0172413793
 	elseif mod.Flipped == false then
