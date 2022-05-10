@@ -83,6 +83,7 @@ CollectibleType.COLLECTIBLE_OLD_CAMERA = Isaac.GetItemIdByName("Old Camera")
 CollectibleType.COLLECTIBLE_BUTTERFLY = Isaac.GetItemIdByName("Butterfly")
 CollectibleType.COLLECTIBLE_ALTERNATE_REALITY = Isaac.GetItemIdByName("Alternate Reality")
 CollectibleType.COLLECTIBLE_CORK = Isaac.GetItemIdByName("Cork")
+CollectibleType.COLLECTIBLE_FLUX = Isaac.GetItemIdByName("Flux")
 
 -- Cards/Runes/Pills/etc
 RUNE_SOUL_OF_LEAH = Isaac.GetCardIdByName("Soul of Leah")
@@ -164,6 +165,7 @@ include("lua/items/OldCamera.lua")
 include("lua/items/Butterfly.lua")
 include("lua/items/AlternateReality.lua")
 include("lua/items/Cork.lua")
+include("lua/items/Flux.lua")
 
 -- Card Luas
 include("lua/cards/SoulOfLeah.lua")
