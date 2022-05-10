@@ -167,6 +167,9 @@ include("lua/items/AlternateReality.lua")
 include("lua/items/Cork.lua")
 include("lua/items/Flux.lua")
 
+-- Enemy luas
+include("lua/enemies/Hostikai.lua")
+
 -- Card Luas
 include("lua/cards/SoulOfLeah.lua")
 include("lua/cards/TwoOfShields.lua")
