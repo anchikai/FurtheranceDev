@@ -22,7 +22,7 @@ end
 
 
 -- Blacklisted enemies --
-function checkForKTTK(enemy)
+local function KTTKignores(enemy)
 	if not (
 		(enemy.Type == EntityType.ENTITY_VIS and enemy.Variant == 22)
 			or (enemy.Type == EntityType.ENTITY_GEMINI and enemy.Variant == 20)
@@ -92,25 +92,33 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 			if enemy:IsActiveEnemy(false) and not enemy:IsInvincible() then -- This makes stonies and other fuckers not get spared so don't change it :)
 				-- Spare timer for bosses
 				if enemy:IsBoss() then
+					local enemyData = mod:GetData(enemy)
 					if hasSpareTarget == false
-						and not ((enemy.Type == EntityType.ENTITY_LARRYJR or enemy.Type == EntityType.ENTITY_CHUB or enemy.Type == EntityType.ENTITY_PIN or enemy.Type == EntityType.ENTITY_TURDLET) and enemy.Parent ~= nil)
-						and not enemy:GetData().spareTimer then
-						enemy:GetData().spareTimer = spareTime
+						and ((enemy.Type ~= EntityType.ENTITY_LARRYJR
+							and enemy.Type ~= EntityType.ENTITY_CHUB
+							and enemy.Type ~= EntityType.ENTITY_PIN
+							and enemy.Type ~= EntityType.ENTITY_TURDLET
+							) or enemy.Parent == nil
+						) and not enemyData.spareTimer
+					then
+						enemyData.spareTimer = spareTime
 
 						-- Spotlight
-						if not enemy:GetData().spareSpotlight then
-							enemy:GetData().spareSpotlight = Isaac.Spawn(EntityType.ENTITY_EFFECT, 7887, 200, enemy.Position, Vector.Zero, nil):ToEffect()
-							enemy:GetData().spareSpotlight:GetSprite():Play("LightAppear", true)
-							enemy:GetData().spareSpotlight:FollowParent(enemy)
-							enemy:GetData().spareSpotlight.Parent = enemy
-							enemy:GetData().spareSpotlight:GetSprite().Scale = Vector(0.75 + spareTime * 0.001, 1.25)
+						if not enemyData.spareSpotlight then
+							local spareSpotlight = Isaac.Spawn(EntityType.ENTITY_EFFECT, 7887, 200, enemy.Position, Vector.Zero, nil):ToEffect()
+							spareSpotlight = Isaac.Spawn(EntityType.ENTITY_EFFECT, 7887, 200, enemy.Position, Vector.Zero, nil):ToEffect()
+							spareSpotlight:GetSprite():Play("LightAppear", true)
+							spareSpotlight.Parent = enemy
+							spareSpotlight:FollowParent(enemy)
+							spareSpotlight:GetSprite().Scale = Vector(0.75 + spareTime * 0.001, 1.25)
+							enemyData.spareSpotlight = spareSpotlight
 						end
 						hasSpareTarget = true
 					end
 
 
 					-- Spare regular enemies
-				elseif checkForKTTK(enemy) == true then
+				elseif KTTKignores(enemy) == true then
 					Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.GROUND_GLOW, 0, enemy.Position, Vector.Zero, nil):ToEffect():GetSprite().PlaybackSpeed = 0.1
 					Isaac.Spawn(EntityType.ENTITY_EFFECT, 7887, 100, enemy.Position, Vector.Zero, nil):ToEffect()
 
@@ -206,7 +214,7 @@ function mod:kttkKills(entity)
 			if entity:IsBoss() then -- Bosses always give a soul with 3 charges
 				Isaac.Spawn(EntityType.ENTITY_EFFECT, 7887, 1, entity.Position, Vector.Zero, player):ToEffect()
 
-			elseif entity:IsActiveEnemy(true) and checkForKTTK(entity) == true and not entity:IsInvincible() then
+			elseif entity:IsActiveEnemy(true) and KTTKignores(entity) == true and not entity:IsInvincible() then
 				local kttkRNG = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM)
 
 				if (kttkRNG:RandomInt(100) + 1) <= (entity.MaxHitPoints * 2.5) then -- Regular enemies have a chance to give a soul based on their Max HP
@@ -321,7 +329,7 @@ mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.EnemySouls, 7887)
 -- Sparing --
 function mod:spareTimer(entity)
 	if entity:IsBoss() then
-		local data = entity:GetData()
+		local data = mod:GetData(entity)
 
 		-- Timer
 		if data.spareTimer then
@@ -423,7 +431,7 @@ mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.spareTimer)
 -- Reset timer --
 function mod:spareResetBoss(target, damageAmount, damageFlags, damageSource, damageCountdownFrames)
 	if target and target:IsBoss() then
-		local data = target:GetData()
+		local data = mod:GetData(target)
 
 		if data.spareTimer then
 			if damageSource.Entity and damageSource.Entity.SpawnerEntity then
@@ -441,11 +449,11 @@ function mod:spareResetPlayer(target, damageAmount, damageFlags, damageSource, d
 	if damageSource.Entity and damageSource.Entity:IsBoss() then
 		local spareCancel = false
 		local data = nil
-		if damageSource.Entity:GetData().spareTimer then
-			data = damageSource.Entity:GetData()
+		if mod:GetData(damageSource.Entity).spareTimer then
+			data = mod:GetData(damageSource.Entity)
 			spareCancel = true
-		elseif damageSource.Entity.SpawnerEntity and damageSource.Entity.SpawnerEntity:GetData().spareTimer then
-			data = damageSource.Entity.SpawnerEntity:GetData()
+		elseif damageSource.Entity.SpawnerEntity and mod:GetData(damageSource.Entity.SpawnerEntity).spareTimer then
+			data = mod:GetData(damageSource.Entity.SpawnerEntity)
 			spareCancel = true
 		end
 

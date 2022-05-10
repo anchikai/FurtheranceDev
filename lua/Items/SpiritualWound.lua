@@ -20,7 +20,7 @@ end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetSpiritualWound)
 
 function mod:EnemyTethering(player)
-	local data = player:GetData()
+	local data = mod:GetData(player)
 	local room = game:GetRoom()
 
 	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)) or player:GetName() == "MiriamB" then
@@ -52,12 +52,12 @@ function mod:EnemyTethering(player)
 		-- If target exists
 		if data.spiritualWoundTarget and data.spiritualWoundTarget:Exists() then
 			local target = data.spiritualWoundTarget
-			local targetData = target:GetData()
+			local targetData = mod:GetData(target)
 			targetData.snapCooldown = nil
 
 			-- Movement
 			if targetData.vector == nil then
-				targetData.vector = Vector.Zero
+				targetData.vector = Vector(0, 0)
 			end
 			if not (b_left or b_right) then
 				targetData.vector.X = 0
@@ -80,7 +80,7 @@ function mod:EnemyTethering(player)
 			if targetData.vector ~= nil then
 				-- Snap to closest enemy if player isn't moving target
 				if not isAttacking then
-					if targetData.cooldown <= 0 and targetData.enemyTarget and targetData.enemyTarget:GetData().spiritualWound == true then
+					if targetData.cooldown <= 0 and targetData.enemyTarget and mod:GetData(targetData.enemyTarget).spiritualWound == true then
 						--target.Position = targetData.enemyTarget.Position
 						if target.Position:Distance(targetData.enemyTarget.Position) > 10 then
 							target.Velocity = (target.Velocity + ((targetData.enemyTarget.Position - target.Position):Normalized() * 75 - target.Velocity) * 0.25)
@@ -109,7 +109,7 @@ function mod:EnemyTethering(player)
 						if NewDistance < ClosestEnemyDistance then
 							targetData.enemyTarget = entity
 							ClosestEnemyDistance = NewDistance
-							entity:GetData().spiritualWound = true
+							mod:GetData(entity).spiritualWound = true
 						end
 					end
 				end
@@ -162,8 +162,8 @@ function mod:SpiritualKill(entity)
 		end
 	end
 
-	if entity:GetData().spiritualWound then
-		entity:GetData().spiritualWound = false
+	if mod:GetData(entity).spiritualWound then
+		mod:GetData(entity).spiritualWound = false
 	end
 end
 
