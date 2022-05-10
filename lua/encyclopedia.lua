@@ -1952,10 +1952,7 @@ Encyclopedia.AddItem({
 	ID = CollectibleType.COLLECTIBLE_HEART_EMBEDDED_COIN,
 	WikiDesc = Wiki.HeartEmbeddedCoin,
 	Pools = {
-		Encyclopedia.ItemPools.POOL_SHOP,
-		Encyclopedia.ItemPools.POOL_SECRET,
-		Encyclopedia.ItemPools.POOL_GREED_SHOP,
-		Encyclopedia.ItemPools.POOL_GREED_SECRET,
+		
 	},
 })
 
@@ -1985,7 +1982,10 @@ Encyclopedia.AddItem({
 	ID = CollectibleType.COLLECTIBLE_FLUX,
 	WikiDesc = Wiki.Flux,
 	Pools = {
-
+		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_SECRET,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		Encyclopedia.ItemPools.POOL_GREED_SECRET,
 	},
 })
 
