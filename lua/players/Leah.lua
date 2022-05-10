@@ -9,8 +9,7 @@ taintedLeah = Isaac.GetPlayerTypeByName("LeahB", true)
 COSTUME_LEAH_A_HAIR = Isaac.GetCostumeIdByPath("gfx/characters/Character_001_Leah_Hair.anm2")
 COSTUME_LEAH_B_HAIR = Isaac.GetCostumeIdByPath("gfx/characters/Character_001b_Leah_Hair.anm2")
 
-function IsEnemyNear(player) -- Enemy detection
-	local data = player:GetData()
+local function IsEnemyNear(player) -- Enemy detection
 	for _, enemies in pairs(Isaac.FindInRadius(player.Position, 100)) do
 		if enemies:IsVulnerableEnemy() and enemies:IsActiveEnemy() then
 			return true
