@@ -967,6 +967,19 @@ local Wiki = {
 			
 		},
 	},
+	Flux = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "+9.75 Range up and Spectral tears."},
+			{str = "Isaac now fires a tear from the back of his head and his tears now only move when he is moving."},
+			{str = "The speed of the tears use this equation: Speed X (2 + Shot speed X 1.25)"},
+			{str = "The tear fired from the back of Isaac's head will have the exact opposite movement of the normally fired tear."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "While moving, Isaac's tears will always be faster than Isaac."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -1939,7 +1952,10 @@ Encyclopedia.AddItem({
 	ID = CollectibleType.COLLECTIBLE_HEART_EMBEDDED_COIN,
 	WikiDesc = Wiki.HeartEmbeddedCoin,
 	Pools = {
-		
+		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_SECRET,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		Encyclopedia.ItemPools.POOL_GREED_SECRET,
 	},
 })
 
@@ -1958,6 +1974,16 @@ Encyclopedia.AddItem({
 	Class = "Furtherance",
 	ID = CollectibleType.COLLECTIBLE_LITTLE_SISTER,
 	WikiDesc = Wiki.LittleSister,
+	Pools = {
+
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_FLUX,
+	WikiDesc = Wiki.Flux,
 	Pools = {
 
 	},

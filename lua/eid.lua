@@ -312,6 +312,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_MANDRAKE, "{{TreasureRoom}} Two i
 -- Little Sister
 EID:addCollectible(CollectibleType.COLLECTIBLE_LITTLE_SISTER, "", "Little Sister", "en_us")
 
+-- Flux
+EID:addCollectible(CollectibleType.COLLECTIBLE_FLUX, "↑ {{Range}} +9.75 Range up#Spectral tears#A tear is fired from the back of your head#Tears only move when you're moving#The tear fired from the back has opposite movement", "Flux", "en_us")
+
 
 
 -- Soul of Leah

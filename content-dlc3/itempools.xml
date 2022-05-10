@@ -23,6 +23,7 @@
 	<Pool Name="shop">
 		<Item Name="Tambourine" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Cork" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Flux" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="boss">
 		<Item Name="Brunch" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -62,6 +63,7 @@
 		<Item Name="Tab Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Muddled Cross" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Alternate Reality" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Flux" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
     </Pool>
 	<Pool Name="library">
 		<Item Name="Book of Swiftness" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -132,6 +134,7 @@
 		<Item Name="F4 Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Parasitic Poofer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Cork" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Flux" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedDevil">
 		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -160,6 +163,7 @@
 		<Item Name="Tab Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Muddled Cross" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Alternate Reality" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Flux" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="craneGame">
 		<Item Name="Polydipsia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
