@@ -92,7 +92,7 @@ CARD_ACE_OF_SHIELDS = Isaac.GetCardIdByName("Ace of Shields")
 CARD_TRAP = Isaac.GetCardIdByName("Trap Card")
 CARD_KEY = Isaac.GetCardIdByName("Key Card")
 
-function mod:playFailSound()
+function Furtherance:playFailSound()
 	SFXManager():Play(Furtherance.FailSound)
 end
 
@@ -190,7 +190,7 @@ include("lua/challenges/WhereAmI.lua")
 -- Save Data/Unlocks
 --include("lua/achievements.lua")
 
-function mod:GetEntityIndex(entity)
+function Furtherance:GetEntityIndex(entity)
 	if entity then
 		if entity.Type == EntityType.ENTITY_PLAYER then
 			local player = entity:ToPlayer()
@@ -269,6 +269,7 @@ function mod:OnSave(isSaving)
 	save.Unlocks = mod.Unlocks
 	mod:SaveData(json.encode(save))
 end
+
 mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.OnSave)
 
 function mod:OnLoad(isLoading)
@@ -366,6 +367,7 @@ function mod:OnLoad(isLoading)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnLoad)
 
 function mod:LoadDataCacheEval(player)
@@ -374,6 +376,7 @@ function mod:LoadDataCacheEval(player)
 		player:EvaluateItems()
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.LoadDataCacheEval)
 
 -- Players
@@ -460,50 +463,34 @@ end
 --Helper Functions (thanks piber)--
 -----------------------------------
 
-function mod:GetPlayers(functionCheck, ...)
-
+function Furtherance:GetPlayers(functionCheck, ...)
 	local args = { ... }
 	local players = {}
-
-	local game = Game()
-
 	for i = 1, game:GetNumPlayers() do
-
 		local player = Isaac.GetPlayer(i - 1)
-
 		local argsPassed = true
 
 		if type(functionCheck) == "function" then
-
 			for j = 1, #args do
-
 				if args[j] == "player" then
 					args[j] = player
 				elseif args[j] == "currentPlayer" then
 					args[j] = i
 				end
-
 			end
-
 			if not functionCheck(table.unpack(args)) then
-
 				argsPassed = false
-
 			end
-
 		end
 
 		if argsPassed then
-			players[#players + 1] = player
+			table.insert(players, player)
 		end
-
 	end
-
 	return players
-
 end
 
-function mod:GetPlayerFromTear(tear)
+function Furtherance:GetPlayerFromTear(tear)
 	local check = tear.Parent or mod:GetSpawner(tear) or tear.SpawnerEntity
 	if check then
 		if check.Type == EntityType.ENTITY_PLAYER then
@@ -517,7 +504,7 @@ function mod:GetPlayerFromTear(tear)
 	return nil
 end
 
-function mod:GetSpawner(entity)
+function Furtherance:GetSpawner(entity)
 	if entity and entity.GetData then
 		local spawnData = mod:GetSpawnData(entity)
 		if spawnData and spawnData.SpawnerEntity then
@@ -528,7 +515,7 @@ function mod:GetSpawner(entity)
 	return nil
 end
 
-function mod:GetSpawnData(entity)
+function Furtherance:GetSpawnData(entity)
 	if entity and entity.GetData then
 		local data = mod:GetData(entity)
 		return data.SpawnData
@@ -536,7 +523,7 @@ function mod:GetSpawnData(entity)
 	return nil
 end
 
-function mod:GetPtrHashEntity(entity)
+function Furtherance:GetPtrHashEntity(entity)
 	if entity then
 		if entity.Entity then
 			entity = entity.Entity
@@ -550,7 +537,7 @@ function mod:GetPtrHashEntity(entity)
 	return nil
 end
 
-function mod:GetData(entity)
+function Furtherance:GetData(entity)
 	if entity and entity.GetData then
 		local data = entity:GetData()
 		if not data.Furtherance then
@@ -586,14 +573,14 @@ mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
 	mod.entitySpawnData = {}
 end)]]
 
-function mod:Contains(list, x)
+function Furtherance:Contains(list, x)
 	for _, v in pairs(list) do
 		if v == x then return true end
 	end
 	return false
 end
 
-function mod:GetRandomNumber(numMin, numMax, rng)
+function Furtherance:GetRandomNumber(numMin, numMax, rng)
 	if not numMax then
 		numMax = numMin
 		numMin = nil
@@ -651,6 +638,7 @@ function mod:DelayFunction(func, delay, args, removeOnNewRoom, useRender)
 	}
 	table.insert(DelayedFunctions, delayFunctionData)
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
 	for i, delayFunctionData in ripairs(DelayedFunctions) do
 		if delayFunctionData.RemoveOnNewRoom then
@@ -679,6 +667,7 @@ local function delayFunctionHandling(onRender)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
 	delayFunctionHandling(false)
 end)
@@ -689,6 +678,13 @@ end)
 
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
 	DelayedFunctions = {}
+end)
+
+mod:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, function(tear)
+	local data = mod:GetData(tear)
+	if data.AppliedTearFlags == nil then
+		data.AppliedTearFlags = {}
+	end
 end)
 
 function mod.EsauCheck(player)
@@ -743,6 +739,7 @@ function mod:StopPausing()
 	isPausingGame = false
 	isPausingGameTimer = 0
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
 	if isPausingGame then
 		isPausingGameTimer = isPausingGameTimer - 1
@@ -836,6 +833,7 @@ function mod:DoBigbook(spritesheet, sound, animationToPlay, animationFile, doPau
 	end
 
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
 	if mod:ShouldRender() then
 		local centerPos = mod:GetScreenCenterPosition()

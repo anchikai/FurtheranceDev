@@ -45,15 +45,6 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.AddFiredByPlayerField)
 
-function mod:TearInit(tear)
-    local data = mod:GetData(tear)
-    if data.AppliedTearFlags == nil then
-        data.AppliedTearFlags = {}
-    end
-end
-
-mod:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, mod.TearInit)
-
 function mod:FluxFlags(player, flag)
     if player:HasCollectible(CollectibleType.COLLECTIBLE_FLUX) then
         if flag == CacheFlag.CACHE_TEARFLAG then
