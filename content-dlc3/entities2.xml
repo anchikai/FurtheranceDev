@@ -20,4 +20,7 @@
 	<entity anm2path="spared_soul.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="60" friction="1" id="1000" name="Keys to the Kingdom Effects" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="7887" >
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
+	<entity anm2path="miriams_well.anm2" tags="cansacrifice" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionInterval="7" collisionMass="3" collisionRadius="8" friction="1" id="3" name="Miriam's Well" numGridCollisionPoints="12" shadowSize="14" stageHP="0" variant="325332436">
+        <gibs amount="3" blood="0" bone="1" eye="0" gut="0" large="0" />
+    </entity>
 </entities>

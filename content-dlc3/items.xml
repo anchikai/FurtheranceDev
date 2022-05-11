@@ -39,7 +39,6 @@
 	<passive id="42" name="Kareth" description="Divine punishment" gfx="kareth.png" devilprice="1" quality="3" />
 	<passive id="43" name="Pillar of Fire" description="The path is illuminated" gfx="pillar_of_fire.png" quality="3" />
 	<passive id="44" name="Pillar of Clouds" description="The path is clouded" gfx="pillar_of_clouds.png" quality="3" />
-	<passive id="46" name="Miriam's Well" description="Spew forth" gfx="miriams_well.png" quality="1" />
 	<passive id="47" name="Quarantine" description="Social distancing" gfx="quarantine.png" quality="0" />
 	<passive id="53" name="Mandrake" description="Tropane alkaloids" gfx="mandrake.png" quality="2" />
 	<passive id="54" name="Little Sister" description="Rachel..." gfx="little_sister.png" quality="2" />
@@ -81,4 +80,5 @@
 	<!-- Familiars -->
 	<familiar id="35" name="Binds of Devotion" description="Bound by love" gfx="binds_of_devotion.png" quality="2" persistent="true" />
 	<familiar id="45" name="Firstborn Son" description="Fleeting friend" gfx="firstborn_son.png" quality="1" tags="baby" />
+	<familiar id="46" name="Miriam's Well" description="Spew forth" gfx="miriams_well.png" quality="1" />
 </items>
