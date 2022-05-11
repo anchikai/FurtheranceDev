@@ -81,4 +81,5 @@
 	<familiar id="35" name="Binds of Devotion" description="Bound by love" gfx="binds_of_devotion.png" quality="2" persistent="true" />
 	<familiar id="45" name="Firstborn Son" description="Fleeting friend" gfx="firstborn_son.png" quality="1" tags="baby" />
 	<familiar id="46" name="Miriam's Well" description="Spew forth" gfx="miriams_well.png" quality="1" />
+	<familiar id="60" name="Brainstorm" description="Problem solving" gfx="brainstorm.png" quality="2" />
 </items>

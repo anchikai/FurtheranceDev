@@ -84,6 +84,7 @@ CollectibleType.COLLECTIBLE_BUTTERFLY = Isaac.GetItemIdByName("Butterfly")
 CollectibleType.COLLECTIBLE_ALTERNATE_REALITY = Isaac.GetItemIdByName("Alternate Reality")
 CollectibleType.COLLECTIBLE_CORK = Isaac.GetItemIdByName("Cork")
 CollectibleType.COLLECTIBLE_FLUX = Isaac.GetItemIdByName("Flux")
+CollectibleType.COLLECTIBLE_BRAINSTORM = Isaac.GetItemIdByName("Brainstorm")
 
 -- Cards/Runes/Pills/etc
 RUNE_SOUL_OF_LEAH = Isaac.GetCardIdByName("Soul of Leah")
@@ -166,6 +167,7 @@ include("lua/items/Butterfly.lua")
 include("lua/items/AlternateReality.lua")
 include("lua/items/Cork.lua")
 include("lua/items/Flux.lua")
+include("lua/items/Brainstorm.lua")
 
 -- Enemy luas
 include("lua/enemies/Hostikai.lua")
