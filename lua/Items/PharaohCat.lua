@@ -12,17 +12,24 @@ local TearPositions = {
 	Vector(-30, 0),
 }
 
+---@param tear EntityTear
 function mod:PyramidTears(tear)
-	if tear.FrameCount ~= 1 or mod:GetData(tear).isExtraEntityTear then return end
+	local data = mod:GetData(tear)
+	if tear.FrameCount ~= 1 or not data.FiredByPlayer or data.AppliedTearFlags.PharaohCat then return end
 
 	local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
 	if player == nil or not player:HasCollectible(CollectibleType.COLLECTIBLE_PHARAOH_CAT) then return end
 
+	data.AppliedTearFlags.PharaohCat = true
+
 	local direction = tear.Velocity:GetAngleDegrees()
 	for _, position in ipairs(TearPositions) do
 		local extraTear = player:FireTear(tear.Position + position:Rotated(direction), tear.Velocity, true, false, true, player, 1)
-		extraTear:ClearTearFlags(SplitTearFlags)
-		mod:GetData(extraTear).isExtraEntityTear = true
+		extraTear:SetColor(tear.Color, 0, 0, false, false)
+
+		local extraData = mod:GetData(extraTear)
+		extraData.AppliedTearFlags.PharaohCat = true
+		extraData.AppliedTearFlags.Flux = data.AppliedTearFlags.Flux
 	end
 end
 
