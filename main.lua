@@ -680,7 +680,7 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
 	DelayedFunctions = {}
 end)
 
-mod:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, function(tear)
+mod:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, function(self, tear)
 	local data = mod:GetData(tear)
 	if data.AppliedTearFlags == nil then
 		data.AppliedTearFlags = {}
