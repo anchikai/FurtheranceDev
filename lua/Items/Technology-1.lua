@@ -1,7 +1,7 @@
 local mod = Furtherance
 
 function mod:Minus1Shots(tear)
-    local player = tear.SpawnerEntity:ToPlayer()
+	local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
 	if player and player:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY_MINUS_1) then
 		local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_TECHNOLOGY_MINUS_1)
 		if rng:RandomFloat() <= 0.0314 then
@@ -11,7 +11,8 @@ function mod:Minus1Shots(tear)
 			tear:Die()
 		end
 		tear.Color = Color(0.75, 0, 0, 1, 0.25, 0, 0)
-    end
+	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, mod.Minus1Shots)
 mod:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, mod.Minus1Shots)

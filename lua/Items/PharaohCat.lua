@@ -15,6 +15,9 @@ local TearPositions = {
 ---@param tear EntityTear
 function mod:PyramidTears(tear)
 	local data = mod:GetData(tear)
+	if data.AppliedTearFlags == nil then
+		data.AppliedTearFlags = {}
+	end
 	if tear.FrameCount ~= 1 or not data.FiredByPlayer or data.AppliedTearFlags.PharaohCat then return end
 
 	local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()

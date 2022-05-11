@@ -5,6 +5,9 @@ local fluxTearColor = Color(0.1, 0.5, 0.75, 0.75, 0, 0, 0.25)
 ---@param tear EntityTear
 function mod:AddFluxTears(tear)
     local data = mod:GetData(tear)
+    if data.AppliedTearFlags == nil then
+        data.AppliedTearFlags = {}
+    end
 
     local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
     if player == nil or not player:HasCollectible(CollectibleType.COLLECTIBLE_FLUX) then return end
