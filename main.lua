@@ -93,6 +93,8 @@ CARD_ACE_OF_SHIELDS = Isaac.GetCardIdByName("Ace of Shields")
 CARD_TRAP = Isaac.GetCardIdByName("Trap Card")
 CARD_KEY = Isaac.GetCardIdByName("Key Card")
 
+FamiliarVariant.FIRSTBORN_SON = 7888
+
 function Furtherance:playFailSound()
 	SFXManager():Play(Furtherance.FailSound)
 end

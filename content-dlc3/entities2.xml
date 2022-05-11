@@ -1,23 +1,26 @@
 <entities anm2root="gfx/" version="5">
-	<entity anm2path="lightbeam.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="8" friction="1" id="5" variant="2868" subtype="100" name="Light Beam" numGridCollisionPoints="24" shadowSize="0" stageHP="0" >
+    <entity anm2path="lightbeam.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="8" friction="1" id="5" variant="2868" subtype="100" name="Light Beam" numGridCollisionPoints="24" shadowSize="0" stageHP="0">
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
-	<entity anm2path="soulofleah.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" name="Soul of Leah" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="104">
+    <entity anm2path="soulofleah.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" name="Soul of Leah" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="104">
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
-	<entity anm2path="moonheart.anm2" baseHP="0" boss="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" name="Moon Heart" numGridCollisionPoints="24" shadowSize="17" stageHP="0" variant="10" subtype="225">
-		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
-	</entity>
-	<entity anm2path="manna_orb.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="8" collisionRadius="8" friction="1" id="5" name="Manna Orb" numGridCollisionPoints="0" shadowSize="10" stageHP="0" variant="200">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
+    <entity anm2path="moonheart.anm2" baseHP="0" boss="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" name="Moon Heart" numGridCollisionPoints="24" shadowSize="17" stageHP="0" variant="10" subtype="225">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity anm2path="manna_orb.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="8" collisionRadius="8" friction="1" id="5" name="Manna Orb" numGridCollisionPoints="0" shadowSize="10" stageHP="0" variant="200">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
     <entity anm2path="polydipsia_puddle.anm2" baseHP="0" boss="0" champion="0" collisionDamage="1" collisionMass="0" collisionRadius="60" friction="1" id="1000" name="Polydipsia Puddle" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="54" subtype="1">
-        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0"/>
-    </entity>
-	<entity anm2path="spiritual_wound_target.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="60" friction="1" id="1000" name="Spiritual Wound Target" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="7886" >
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
-	<entity anm2path="spared_soul.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="60" friction="1" id="1000" name="Keys to the Kingdom Effects" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="7887" >
+    <entity anm2path="spiritual_wound_target.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="60" friction="1" id="1000" name="Spiritual Wound Target" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="7886">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity anm2path="spared_soul.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="60" friction="1" id="1000" name="Keys to the Kingdom Effects" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="7887">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
+    <entity anm2path="firstborn_son.anm2" tags="cansacrifice" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Firstborn Son" numGridCollisionPoints="12" shadowSize="11" stageHP="0" variant="7888">
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
 	<entity anm2path="miriams_well.anm2" tags="cansacrifice" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionInterval="7" collisionMass="3" collisionRadius="8" friction="1" id="3" name="Miriam's Well" numGridCollisionPoints="12" shadowSize="14" stageHP="0" variant="325332436">
