@@ -1,5 +1,7 @@
 local mod = Furtherance
 
+local fluxTearColor = Color(0.1, 0.5, 0.75, 0.75, 0, 0, 0.25)
+
 ---@param tear EntityTear
 function mod:AddFluxTears(tear)
     local data = mod:GetData(tear)
@@ -12,7 +14,7 @@ function mod:AddFluxTears(tear)
     data.AppliedTearFlags.Flux = 1
 
     local extraTear = player:FireTear(tear.Position, -tear.Velocity, true, false, true, player, 1)
-    extraTear.Color = Color(0.1, 0.5, 0.75, 0.75, 0, 0, 0.25)
+    extraTear:SetColor(fluxTearColor, 0, 0, false, false)
 
     local extraData = mod:GetData(extraTear)
     extraData.AppliedTearFlags.PharaohCat = data.AppliedTearFlags.PharaohCat
@@ -23,7 +25,7 @@ mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, mod.AddFluxTears)
 
 function mod:FluxTears(tear)
     local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
-    if player == nil or not player:HasCollectible(CollectibleType.COLLECTIBLE_FLUX) then return end
+    if player == nil then return end
 
     local data = mod:GetData(tear)
     if data.AppliedTearFlags.Flux == 1 then
