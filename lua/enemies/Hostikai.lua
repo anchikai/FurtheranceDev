@@ -3,7 +3,7 @@ local rng = RNG()
 
 function mod:Hostikai(entity)
 	local sprite = entity:GetSprite()
-	if rng:RandomFloat() <= 0.1 then
+	if rng:RandomFloat() <= 0.02 then
 		sprite:ReplaceSpritesheet(0, "gfx/monsters/hostikai.png")
 		sprite:LoadGraphics()
 	end
