@@ -776,11 +776,14 @@ local Wiki = {
 	MiriamsWell = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "Spawns a well that orbits Isaac and blocks enemy shots."},
+			{str = "When the well blocks a shot or collides with an enemy, the well will tip over and spill water creep, which deals 0.5x of Isaac's damage."},
+			{str = "- The well won't be active for 8 seconds after tipping over."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "Miriam's Well does not deal contact damage."},
+			{str = "The well has a considerably larger hitbox than other orbital familiars."},
 		},
 	},
 	Quarantine = {
