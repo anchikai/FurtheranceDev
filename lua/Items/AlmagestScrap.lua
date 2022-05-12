@@ -15,21 +15,63 @@ local function someoneHasAlmagest()
 end
 
 local function isTreasureRoom()
-    local level = game:GetLevel()
-    local room = level:GetCurrentRoom()
+    local room = game:GetRoom()
     return room:GetType() == RoomType.ROOM_TREASURE
 end
 
 function mod:ConvertToPlanetarium()
-    if isTreasureRoom() and someoneHasAlmagest() then
-        game:ShowHallucination(0, BackdropType.PLANETARIUM)
-        SFXManager():Stop(SoundEffect.SOUND_DEATH_CARD)
+    shopItemSpriteMap = {}
+    if not isTreasureRoom() or not someoneHasAlmagest() then return end
+
+    game:ShowHallucination(0, BackdropType.PLANETARIUM)
+    SFXManager():Stop(SoundEffect.SOUND_DEATH_CARD)
+
+    ---@type EntityPickup[]
+    local collectibles = Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, -1, false, false)
+
+    local itemConfig = Isaac.GetItemConfig()
+    for _, collectible in ipairs(collectibles) do
+        local data = mod:GetData(collectible)
+        local configItem = itemConfig:GetCollectible(collectible.SubType)
+        if configItem.Quality == 0 or configItem.Quality == 1 then
+            data.BrokenHeartsPrice = 1
+        elseif configItem.Quality == 2 or configItem.Quality == 3 then
+            data.BrokenHeartsPrice = 2
+        elseif configItem.Quality == 4 then
+            data.BrokenHeartsPrice = 3
+        end
     end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.ConvertToPlanetarium)
 
+local pickupOffset = Vector(0, 25)
+
+---@param pickup EntityPickup
+function mod:RenderBrokenHeartPrice(pickup)
+    local data = mod:GetData(pickup)
+    local room = game:GetRoom()
+
+    if data.BrokenHeartsPrice then
+        local sprite = Sprite()
+        sprite:Load("gfx/ui/ui_broken_heart_prices.anm2", true)
+
+        if data.BrokenHeartsPrice == 1 then
+            sprite:SetFrame("One", 0)
+        elseif data.BrokenHeartsPrice == 2 then
+            sprite:SetFrame("Two", 0)
+        elseif data.BrokenHeartsPrice == 3 then
+            sprite:SetFrame("Three", 0)
+        end
+
+        sprite:Render(room:WorldToScreenPosition(pickup.Position) + pickupOffset, Vector.Zero, Vector.Zero)
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, mod.RenderBrokenHeartPrice)
+
 function mod:PlanetariumPool(pool, decrease, seed)
-	if isTreasureRoom() and someoneHasAlmagest() then
+    if isTreasureRoom() and someoneHasAlmagest() then
         if Rerolled ~= true then
             Rerolled = true
             return game:GetItemPool():GetCollectible(ItemPoolType.POOL_PLANETARIUM, false, seed, CollectibleType.COLLECTIBLE_NULL)
@@ -37,6 +79,7 @@ function mod:PlanetariumPool(pool, decrease, seed)
         Rerolled = false
     end
 end
+
 mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, mod.PlanetariumPool)
 
 local qualityPriceMap = {
@@ -71,7 +114,9 @@ function mod:PrePickupCollision(pickup, collider)
         -- check whether the pickup's price
         local data = mod:GetData(pickup)
         local price = data.BrokenHeartsPrice
-        if player:GetBrokenHearts() >= price then
+        if price == nil then
+            return nil
+        elseif player:GetBrokenHearts() >= price then
             player:AddBrokenHearts(-price)
             return nil
         else
@@ -80,4 +125,5 @@ function mod:PrePickupCollision(pickup, collider)
     end
 
 end
+
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.PrePickupCollision)
