@@ -54,10 +54,250 @@ local LaserVariant = {
     [6] = 15
 }
 --]]
-
 local mod = Furtherance
 local game = Game()
 local level = game:GetLevel()
+
+local bossRushWave = 0
+
+---A mapping of entity types to variants to booleans.
+---`true` means that they have spawned, `false` means that they haven't.
+---@type table<integer, table<integer, boolean>>
+local spawnedFlags = {
+    [EntityType.ENTITY_LARRYJR] = {
+        [0] = false,
+        [1] = false,
+    },
+    [EntityType.ENTITY_MONSTRO] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_CHUB] = {
+        [0] = false,
+        [1] = false,
+        [2] = false,
+    },
+    [EntityType.ENTITY_GURDY] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_MONSTRO2] = {
+        [0] = false,
+        [1] = false,
+    },
+    [EntityType.ENTITY_PIN] = {
+        [0] = false,
+        [2] = false,
+    },
+    [EntityType.ENTITY_FAMINE] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_PESTILENCE] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_WAR] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_DEATH] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_DUKE] = { -- Duke of Flies
+        [0] = false,
+        [1] = false,
+    },
+    [EntityType.ENTITY_PEEP] = {
+        [0] = false,
+        [1] = false,
+    },
+    [EntityType.ENTITY_LOKI] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_FISTULA_BIG] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_BLASTOCYST_BIG] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_GEMINI] = {
+        [0] = false,
+        [1] = false,
+        [2] = false,
+    },
+    [EntityType.ENTITY_FALLEN] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_HEADLESS_HORSEMAN] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_MASK_OF_INFAMY] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_GURDY_JR] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_WIDOW] = {
+        [0] = false,
+        [1] = false,
+    },
+    [EntityType.ENTITY_GURGLING] = {
+        [1] = false,
+        [2] = false,
+    },
+    [EntityType.ENTITY_THE_HAUNT] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_DINGLE] = {
+        [0] = false,
+        [1] = false,
+    },
+    [EntityType.ENTITY_MEGA_MAW] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_GATE] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_MEGA_FATTY] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_CAGE] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_DARK_ONE] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_ADVERSARY] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_POLYCEPHALUS] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_URIEL] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_GABRIEL] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_STAIN] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_BROWNIE] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_FORSAKEN] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_LITTLE_HORN] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_RAG_MAN] = {
+        [0] = false,
+    },
+}
+
+-- make this table point to the same flags
+spawnedFlags[EntityType.ENTITY_HORSEMAN_HEAD] = spawnedFlags[EntityType.ENTITY_HEADLESS_HORSEMAN]
+
+-- similar mapping for compatibility with Updated Boss Rush
+local updatedSpawnedFlags = {
+    -- Afterbirth+ Bosses
+    [EntityType.ENTITY_RAG_MEGA] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_BIG_HORN] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_SISTERS_VIS] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_MATRIARCH] = {
+        [0] = false,
+    },
+
+    [EntityType.ENTITY_WAR] = {
+        [1] = false, -- Conquest
+    },
+
+    -- Repentance Bosses
+    [EntityType.ENTITY_BABY_PLUM] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_BUMBINO] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_REAP_CREEP] = {
+        [0] = false,
+    },
+    [EntityType.ENTITY_POLYCEPHALUS] = {
+        [1] = false, -- The Pile
+    },
+}
+
+local inBossRush = false
+
+function mod:CheckBossRush()
+    local room = game:GetRoom()
+    inBossRush = room:GetType() == RoomType.ROOM_BOSSRUSH
+    if inBossRush and bossRushWave < 15 then
+        mod:ResetBossRushWaveCounter()
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.CheckBossRush)
+
+function mod:ResetBossRushWaveCounter()
+    bossRushWave = 0
+
+    for _, variantMap in pairs(spawnedFlags) do
+        for key in pairs(variantMap) do
+            variantMap[key] = false
+        end
+    end
+
+    if UpdatedBossRush then
+        for _, variantMap in pairs(updatedSpawnedFlags) do
+            for key in pairs(variantMap) do
+                variantMap[key] = false
+            end
+        end
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.ResetBossRushWaveCounter)
+
+---bosses will spawn in 15 waves of two bosses each, each boss can only spawn once, but bosses some bosses such as larryJr will spawn in as three separate bosses.
+---I cant just check to see if the number of bosses has increased since the last run of the function because some bosses like fistula can split into more bosses and increase the wave number even if the wave hasn't finished.
+---because of this, the loop will only look for each individual type and varient of a boss once, and if it finds one of them, it won't count the possible other copies of the same boss towards the newSpawns integer
+---this will loop through all the bosses that are currently in the room
+---if the loop finds a boss that hasn't spawned before, it will update the newSpawns integer.
+---if the newSpawns integer is 2 (or greater than 2 for whatever reason), that means that a new wave has started and the waves number gets updated
+function mod:UpdateBossRushWaveCounter()
+    if not inBossRush then return end
+
+    local newSpawns = 0
+
+    for _, entity in ipairs(Isaac.GetRoomEntities()) do
+        if entity:IsBoss() and not entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then
+            local typeFlags = spawnedFlags[entity.Type]
+            if typeFlags and typeFlags[entity.Variant] == false then
+                newSpawns = newSpawns + 1
+                typeFlags[entity.Variant] = true
+            end
+
+            if UpdatedBossRush then
+                local updatedTypeFlags = spawnedFlags[entity.Type]
+                if updatedTypeFlags and updatedTypeFlags[entity.Variant] == false then
+                    newSpawns = newSpawns + 1
+                    updatedTypeFlags[entity.Variant] = true
+                end
+            end
+
+        end
+    end
+
+    if newSpawns >= 2 then
+        bossRushWave = bossRushWave + 1
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.UpdateBossRushWaveCounter)
 
 ---@param entities Entity[]
 ---@param source Entity
@@ -220,7 +460,8 @@ local function shootFatalTear(familiar, target)
     end, 10, nil, nil, true)
 end
 
-local oldGreedWavesNum = level.GreedModeWave
+local oldGreedWave = level.GreedModeWave
+local oldBossRushWave = bossRushWave
 
 ---@param familiar EntityFamiliar
 function mod:FirstbornSonUpdate(familiar)
@@ -240,8 +481,13 @@ function mod:FirstbornSonUpdate(familiar)
     end
 
     -- make the familiar shoot a tear some time if they are in an uncleared room
-    if room:IsClear() or oldGreedWavesNum ~= level.GreedModeWave then
-        oldGreedWavesNum = level.GreedModeWave
+    -- OR if a wave just started in greed mode or boss rush.
+    if (room:IsClear()
+        or (game:IsGreedMode() and oldGreedWave ~= level.GreedModeWave)) -- room is not clear during greed mode
+        and (room:GetType() ~= RoomType.ROOM_BOSSRUSH or oldBossRushWave == bossRushWave) -- room is always clear during boss rush
+    then
+        oldBossRushWave = bossRushWave
+        oldGreedWave = level.GreedModeWave
         data.ShotTear = false
         data.UnclearDelay = 30
     elseif data.UnclearDelay > 0 then
