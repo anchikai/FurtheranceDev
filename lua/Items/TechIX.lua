@@ -10,25 +10,33 @@ local pharaohCatPositions = {
 	Vector(-30, 0),
 }
 
+local techIXColor = Color(0, 1, 0, 1, 0, 1, 0.6)
+
+---@param tear EntityTear
 function mod:IXShots(tear)
 	local player = tear.Parent and tear.Parent:ToPlayer()
 	if player == nil then return end
 
 	if ((player:HasCollectible(CollectibleType.COLLECTIBLE_POLYPHEMUS) or player:HasCollectible(CollectibleType.COLLECTIBLE_HAEMOLACRIA)) and player:HasCollectible(CollectibleType.COLLECTIBLE_TECH_IX)) then -- [[BIG SHOT]] synergies
-		player:FireTechXLaser(tear.Position, tear.Velocity, 40, player, 0.66)
+		local laser = player:FireTechXLaser(tear.Position, tear.Velocity, 40, player, 0.66)
+		laser:SetColor(techIXColor, 0, 0, false, false)
 		tear:Remove()
 	elseif (player:HasCollectible(CollectibleType.COLLECTIBLE_VESTA) and player:HasCollectible(CollectibleType.COLLECTIBLE_TECH_IX)) then -- Vesta Synergy
-		player:FireTechXLaser(tear.Position, tear.Velocity, 1, player, 0.66)
+		local laser = player:FireTechXLaser(tear.Position, tear.Velocity, 1, player, 0.66)
+		laser:SetColor(techIXColor, 0, 0, false, false)
 		tear:Remove()
 	elseif (player:HasCollectible(CollectibleType.COLLECTIBLE_PHARAOH_CAT) and player:HasCollectible(CollectibleType.COLLECTIBLE_TECH_IX)) then -- Pharaoh Cat Synergy
 		local direction = tear.Velocity:GetAngleDegrees()
-		player:FireTechXLaser(tear.Position, tear.Velocity, 10, player, 0.66)
+		local laser = player:FireTechXLaser(tear.Position, tear.Velocity, 10, player, 0.66)
+		laser:SetColor(techIXColor, 0, 0, false, false)
 		for _, position in ipairs(pharaohCatPositions) do
-			player:FireTechXLaser(tear.Position + position:Rotated(direction), tear.Velocity, 10, player, 0.66)
+			local extraLaser = player:FireTechXLaser(tear.Position + position:Rotated(direction), tear.Velocity, 10, player, 0.66)
+			extraLaser:SetColor(techIXColor, 0, 0, false, false)
 		end
 		tear:Remove()
 	elseif (player:HasCollectible(CollectibleType.COLLECTIBLE_TECH_IX)) then -- double check the tear belongs to a player
-		player:FireTechXLaser(tear.Position, tear.Velocity, 10, player, 0.66)
+		local laser = player:FireTechXLaser(tear.Position, tear.Velocity, 10, player, 0.66)
+		laser:SetColor(techIXColor, 0, 0, false, false)
 		tear:Remove()
 	end
 end
@@ -44,10 +52,3 @@ function mod:TechIXDebuff(player, cacheFlag)
 end
 
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.TechIXDebuff)
-
-function mod:TechIXColor(laser)
-	local sprite = laser:GetSprite()
-	sprite.Color = Color(0, 1, 0, 1, 0, 1, 0.6)
-end
-
-mod:AddCallback(ModCallbacks.MC_POST_LASER_RENDER, mod.TechIXColor, 2)
