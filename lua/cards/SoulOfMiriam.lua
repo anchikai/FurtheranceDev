@@ -1,8 +1,10 @@
 local mod = Furtherance
 local game = Game()
+local WaterLoop = Isaac.GetSoundIdByName("FixYourFuckingAPI")
 
 function mod:UseSoulOfMiriam(card, player, flag)
 	RainTimer = 1200
+    SFXManager():SetAmbientSound(WaterLoop, 1, 1)
 end
 mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseSoulOfMiriam, RUNE_SOUL_OF_MIRIAM)
 
@@ -18,7 +20,20 @@ function mod:Rain(player)
                 end
             end
         end
+        --[[if game:GetFrameCount()%150 == 0 then
+            SFXManager():Play(WaterLoop, 1, 2, true)
+            print("Loop")
+        end]]
+        local room = game:GetRoom()
+        Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.RAIN_DROP, 0, room:GetRandomPosition(0), Vector.Zero, nil)
     end
-    print(RainTimer)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.Rain)
+
+function mod:ResetSoul(continued)
+    if continued == false then
+        RainTimer = 0
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.ResetSoul)

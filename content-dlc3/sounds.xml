@@ -29,4 +29,7 @@
 	<sound name="PeterFlip">
 		<sample weight="1" path="peterflip2.wav" />
 	</sound>
+	<sound name="FixYourFuckingAPI">
+		<sample weight="1" path="miriam_water_flow_loop.wav" />
+	</sound>
 </sounds>
