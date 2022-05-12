@@ -4,7 +4,7 @@
 -- Mod Icon
 EID:setModIndicatorName("Furtherance")
 local iconSprite = Sprite()
-iconSprite:Load("gfx/eid_icon_furtherance.anm2", true)
+iconSprite:Load("gfx/eid_icon.anm2", true)
 EID:addIcon("Furtherance Icon", "Furtherance icon", 0, 12, 11, 6, 6, iconSprite)
 EID:setModIndicatorIcon("Furtherance Icon")
 local normalLeah = Isaac.GetPlayerTypeByName("Leah", false)
