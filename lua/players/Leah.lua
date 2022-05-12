@@ -211,7 +211,6 @@ function mod:LeahKill(entity)
 					player:EvaluateItems()
 				end
 			end
-			print(data.leahkills)
 		end
 	end
 end
