@@ -19,9 +19,17 @@ local function isTreasureRoom()
     return room:GetType() == RoomType.ROOM_TREASURE
 end
 
+local convertedRooms = {}
+
 function mod:ConvertToPlanetarium()
-    shopItemSpriteMap = {}
-    if not isTreasureRoom() or not someoneHasAlmagest() then return end
+    if not isTreasureRoom() then return end
+
+    local room = game:GetRoom()
+    local level = game:GetLevel()
+    local roomIndex = level:GetCurrentRoomIndex()
+
+    if not convertedRooms[roomIndex] and not (room:IsFirstVisit() and someoneHasAlmagest()) then return end
+    convertedRooms[roomIndex] = true
 
     game:ShowHallucination(0, BackdropType.PLANETARIUM)
     SFXManager():Stop(SoundEffect.SOUND_DEATH_CARD)
@@ -44,6 +52,7 @@ function mod:ConvertToPlanetarium()
         end
     end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.ConvertToPlanetarium)
 
 local pickupOffset = Vector(0, 20)
@@ -68,10 +77,13 @@ function mod:RenderBrokenHeartPrice(pickup)
         sprite:Render(room:WorldToScreenPosition(pickup.Position) + pickupOffset, Vector.Zero, Vector.Zero)
     end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, mod.RenderBrokenHeartPrice)
 
 function mod:PlanetariumPool(pool, decrease, seed)
-    if isTreasureRoom() and someoneHasAlmagest() then
+    local level = game:GetLevel()
+    local roomIndex = level:GetCurrentRoomIndex()
+    if convertedRooms[roomIndex] then
         if Rerolled ~= true then
             Rerolled = true
             return game:GetItemPool():GetCollectible(ItemPoolType.POOL_PLANETARIUM, false, seed, CollectibleType.COLLECTIBLE_NULL)
@@ -79,6 +91,7 @@ function mod:PlanetariumPool(pool, decrease, seed)
         Rerolled = false
     end
 end
+
 mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, mod.PlanetariumPool)
 
 local qualityPriceMap = {
@@ -124,4 +137,5 @@ function mod:PrePickupCollision(pickup, collider)
     end
 
 end
+
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.PrePickupCollision)
