@@ -33,6 +33,8 @@ function mod:ConvertToPlanetarium()
     for _, collectible in ipairs(collectibles) do
         local data = mod:GetData(collectible)
         local configItem = itemConfig:GetCollectible(collectible.SubType)
+        collectible:ToPickup().Price = -10
+        collectible:ToPickup().AutoUpdatePrice = false
         if configItem.Quality == 0 or configItem.Quality == 1 then
             data.BrokenHeartsPrice = 1
         elseif configItem.Quality == 2 or configItem.Quality == 3 then
@@ -42,10 +44,9 @@ function mod:ConvertToPlanetarium()
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.ConvertToPlanetarium)
 
-local pickupOffset = Vector(0, 25)
+local pickupOffset = Vector(0, 20)
 
 ---@param pickup EntityPickup
 function mod:RenderBrokenHeartPrice(pickup)
@@ -67,7 +68,6 @@ function mod:RenderBrokenHeartPrice(pickup)
         sprite:Render(room:WorldToScreenPosition(pickup.Position) + pickupOffset, Vector.Zero, Vector.Zero)
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, mod.RenderBrokenHeartPrice)
 
 function mod:PlanetariumPool(pool, decrease, seed)
@@ -79,7 +79,6 @@ function mod:PlanetariumPool(pool, decrease, seed)
         Rerolled = false
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, mod.PlanetariumPool)
 
 local qualityPriceMap = {
@@ -125,5 +124,4 @@ function mod:PrePickupCollision(pickup, collider)
     end
 
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.PrePickupCollision)

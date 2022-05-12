@@ -224,5 +224,4 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function() -- The actual heart coun
 			charoffset = charoffset + 12
 		end
 	end
-end
-)
+end)
