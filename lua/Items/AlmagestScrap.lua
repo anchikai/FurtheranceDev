@@ -34,15 +34,16 @@ function mod:ConvertToPlanetarium()
     game:ShowHallucination(0, BackdropType.PLANETARIUM)
     SFXManager():Stop(SoundEffect.SOUND_DEATH_CARD)
 
-    ---@type EntityPickup[]
-    local collectibles = Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, -1, false, false)
+    ---@type Entity[]
+    local entities = Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, -1, false, false)
 
     local itemConfig = Isaac.GetItemConfig()
-    for _, collectible in ipairs(collectibles) do
+    for _, entity in ipairs(entities) do
+        local collectible = entity:ToPickup()
         local data = mod:GetData(collectible)
         local configItem = itemConfig:GetCollectible(collectible.SubType)
-        collectible:ToPickup().Price = -10
-        collectible:ToPickup().AutoUpdatePrice = false
+        collectible.Price = -10
+        collectible.AutoUpdatePrice = false
         if configItem.Quality == 0 or configItem.Quality == 1 then
             data.BrokenHeartsPrice = 1
         elseif configItem.Quality == 2 or configItem.Quality == 3 then
