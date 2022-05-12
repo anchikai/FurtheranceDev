@@ -30,7 +30,6 @@ function mod:OnInit(player)
 		player:AddNullCostume(COSTUME_LEAH_B_HAIR)
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
 
 function mod:OnUpdate(player)
@@ -112,7 +111,6 @@ function mod:OnUpdate(player)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.OnUpdate)
 
 function mod:Hearts(entity, collider)
@@ -134,7 +132,6 @@ function mod:Hearts(entity, collider)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.Hearts, PickupVariant.PICKUP_HEART)
 
 function mod:leahStats(player, flag)
@@ -192,7 +189,6 @@ function mod:leahStats(player, flag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.leahStats)
 
 function mod:LeahKill(entity)
@@ -203,19 +199,9 @@ function mod:LeahKill(entity)
 			data.leahkills = data.leahkills + 1
 			player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
 			player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
-			local hrRNG = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_HEART_RENOVATOR)
-			if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) == false then
-				if data.leahkills >= 20 then
-					data.leahkills = 0
-					SFXManager():Play(SoundEffect.SOUND_HEARTBEAT)
-					player:AddBrokenHearts(-1)
-					data.RenovatorDamage = data.RenovatorDamage + 0.5
-					player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
-					player:AddCacheFlags(CacheFlag.CACHE_RANGE)
-					player:EvaluateItems()
-				end
-			else
-				if data.leahkills >= 10 then
+			if player:GetBrokenHearts() > 0 then
+				if (player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and data.leahkills >= 10)
+				or (player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) == false and data.leahkills >= 20) then
 					data.leahkills = 0
 					SFXManager():Play(SoundEffect.SOUND_HEARTBEAT)
 					player:AddBrokenHearts(-1)
@@ -225,10 +211,10 @@ function mod:LeahKill(entity)
 					player:EvaluateItems()
 				end
 			end
+			print(data.leahkills)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.LeahKill)
 
 function mod:LeahbBrokenTears(tear)
@@ -256,7 +242,6 @@ function mod:LeahbBrokenTears(tear)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.LeahbBrokenTears)
 
 function mod:ClickerFix(_, _, player)
@@ -268,6 +253,5 @@ function mod:ClickerFix(_, _, player)
 		player:AddNullCostume(COSTUME_LEAH_B_HAIR)
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.ClickerFix, CollectibleType.COLLECTIBLE_CLICKER)
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.ClickerFix, CollectibleType.COLLECTIBLE_SHIFT_KEY)
