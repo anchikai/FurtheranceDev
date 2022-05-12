@@ -44,3 +44,10 @@ function mod:TechIXDebuff(player, cacheFlag)
 end
 
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.TechIXDebuff)
+
+function mod:TechIXColor(laser)
+	local sprite = laser:GetSprite()
+	sprite.Color = Color(0, 1, 0, 1, 0, 1, 0.6)
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_LASER_RENDER, mod.TechIXColor, 2)
