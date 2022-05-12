@@ -173,6 +173,7 @@ include("lua/items/Brainstorm.lua")
 
 -- Enemy luas
 include("lua/enemies/Hostikai.lua")
+include("lua/enemies/Illusioner.lua")
 
 -- Card Luas
 include("lua/cards/SoulOfLeah.lua")
