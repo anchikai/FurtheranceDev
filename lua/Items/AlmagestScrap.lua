@@ -55,6 +55,19 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.ConvertToPlanetarium)
 
+function mod:ResetConvertedRoomsOnNewLevel()
+    convertedRooms = {}
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.ResetConvertedRoomsOnNewLevel)
+
+---@param isContinued boolean
+function mod:ResetConvertedRoomsOnRestart(isContinued)
+    if not isContinued then
+        convertedRooms = {}
+    end
+end
+
 local pickupOffset = Vector(0, 20)
 
 ---@param pickup EntityPickup
