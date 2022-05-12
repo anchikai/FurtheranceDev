@@ -1,5 +1,7 @@
 <pocketitems>
     <card type="rune" pickup="104" description="Heartache" hud="Soul of Leah" name="Soul of Leah" mimiccharge="6" />
+    <card type="rune" pickup="105" description="Hey Lois" hud="Soul of Peter" name="Soul of Peter" mimiccharge="6" />
+    <card type="rune" pickup="106" description="Drown" hud="Soul of Miriam" name="Soul of Miriam" mimiccharge="12" />
     <card type="suit" pickup="2" description="Item multiplier" hud="Two of Shields" name="Two of Shields" mimiccharge="12" />
     <card type="suit" pickup="2" description="Convert all" hud="Ace of Shields" name="Ace of Shields" mimiccharge="12" />
     <card type="special" pickup="8" description="It's time to duel" hud="Trap Card" name="Trap Card" mimiccharge="1" />

@@ -92,6 +92,8 @@ CARD_TWO_OF_SHIELDS = Isaac.GetCardIdByName("Two of Shields")
 CARD_ACE_OF_SHIELDS = Isaac.GetCardIdByName("Ace of Shields")
 CARD_TRAP = Isaac.GetCardIdByName("Trap Card")
 CARD_KEY = Isaac.GetCardIdByName("Key Card")
+RUNE_SOUL_OF_PETER = Isaac.GetCardIdByName("Soul of Peter")
+RUNE_SOUL_OF_MIRIAM = Isaac.GetCardIdByName("Soul of Miriam")
 
 FamiliarVariant.FIRSTBORN_SON = 7888
 
@@ -181,6 +183,8 @@ include("lua/cards/TwoOfShields.lua")
 include("lua/cards/AceOfShields.lua")
 include("lua/cards/TrapCard.lua")
 include("lua/cards/KeyCard.lua")
+include("lua/cards/SoulOfPeter.lua")
+include("lua/cards/SoulOfMiriam.lua")
 
 -- Pickup Luas
 include("lua/pickups/MoonHeart.lua")

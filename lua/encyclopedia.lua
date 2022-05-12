@@ -1002,6 +1002,24 @@ local Wiki = {
 			{str = "Getting this soul stone as Leah or Tainted Leah effectively acts as a free large stat upgrade if used correctly."},
 		},
 	},
+	SoulOfPeter = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
+	SoulOfMiriam = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, it will rain in uncleared rooms, building up a water puddle over time that grows in size until it covers the whole room."},
+			{str = "- This puddle deals 0.33x Isaac's damage every 0.5 seconds."},
+			{str = "This effect persists through rooms and floors and lasts a total of 40 seconds."},
+		},
+	},
 	TwoOfShields = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -2000,6 +2018,24 @@ Encyclopedia.AddSoul({
 	Sprite = Encyclopedia.RegisterSprite(mod.path .. "resources/gfx/soulofleah.anm2", "HUD", 0),
     WikiDesc = Wiki.SoulOfLeah,
 	Name = "Leah's Soul",
+})
+
+Encyclopedia.AddSoul({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("Soul of Peter"),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "resources/gfx/soulofpeter.anm2", "HUD", 0),
+    WikiDesc = Wiki.SoulOfPeter,
+	Name = "Peter's Soul",
+})
+
+Encyclopedia.AddSoul({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("Soul of Miriam"),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "resources/gfx/soulofmiriam.anm2", "HUD", 0),
+    WikiDesc = Wiki.SoulOfMiriam,
+	Name = "Miriam's Soul",
 })
 
 Encyclopedia.AddCard({

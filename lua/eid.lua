@@ -4,7 +4,7 @@
 -- Mod Icon
 EID:setModIndicatorName("Furtherance")
 local iconSprite = Sprite()
-iconSprite:Load("gfx/eid_icon.anm2", true)
+iconSprite:Load("gfx/ui/eid_icon.anm2", true)
 EID:addIcon("Furtherance Icon", "Furtherance icon", 0, 12, 11, 6, 6, iconSprite)
 EID:setModIndicatorIcon("Furtherance Icon")
 local normalLeah = Isaac.GetPlayerTypeByName("Leah", false)
@@ -319,6 +319,12 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_FLUX, "↑ {{Range}} +9.75 Range 
 
 -- Soul of Leah
 EID:addCard(RUNE_SOUL_OF_LEAH, "{{BrokenHeart}} Grants between 1 to 5 broken hearts#↑ All the broken hearts will give either a damage up or tears up#The amount of damage or tears gained is dependent on how many broken hearts are gained", "Soul of Leah", "en_us")
+
+-- Soul of Peter
+EID:addCard(RUNE_SOUL_OF_PETER, "", "Soul of Peter", "en_us")
+
+-- Soul of Miriam
+EID:addCard(RUNE_SOUL_OF_MIRIAM, "It will rain in uncleared rooms, building up water until it covers the whole room#Water deals 0.33x your damage every 0.5 seconds#Effect persists for 40 seconds", "Soul of Miriam", "en_us")
 
 -- Two of Shields
 EID:addCard(CARD_TWO_OF_SHIELDS, "{{Battery}} Duplicate your active charge", "Two of Shields", "en_us")
