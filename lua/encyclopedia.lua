@@ -983,6 +983,27 @@ local Wiki = {
 			{str = "While moving, Isaac's tears will always be faster than Isaac."},
 		},
 	},
+	CosmicOmnibus = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, randomly teleports Isaac to a non-normal room."},
+			{str = "There is always a 30% chance to teleport to a Planetarium regardless of the Planetarium chance or if there is one on the floor."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "Isaac will only be teleported to rooms that have not been explored."},
+			{str = "- Once all non-normal rooms have been explored, you will always be teleported to a new Planetarium room."},
+			{str = "You cannot be teleported to the Ultra Secret room."},
+		},
+	},
+	LittleRaincoat = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Every 6 hits, Isaac will get a Power Pill like effect."},
+			{str = "Food items have a 6% chance to be rerolled into a new item."},
+			{str = "Decreases Isaac's size, making him less likely to be hit."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -2007,6 +2028,27 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_SECRET,
 		Encyclopedia.ItemPools.POOL_GREED_SHOP,
 		Encyclopedia.ItemPools.POOL_GREED_SECRET,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_COSMIC_OMNIBUS,
+	WikiDesc = Wiki.CosmicOmnibus,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_LIBRARY
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_LITTLE_RAINCOAT,
+	WikiDesc = Wiki.LittleRaincoat,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_BOSS,
 	},
 })
 

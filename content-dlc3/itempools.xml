@@ -24,10 +24,12 @@
 		<Item Name="Tambourine" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Cork" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Flux" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Little Raincoat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="boss">
 		<Item Name="Brunch" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Crab Legs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Little Raincoat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="devil">
 		<Item Name="Owl's Eye" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -69,6 +71,7 @@
 		<Item Name="Book of Swiftness" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Ambit" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Guidance" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Cosmic Omnibus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
     <Pool Name="shellGame">
 		

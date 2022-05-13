@@ -8,6 +8,9 @@
 	<entity anm2path="firstborn_son.anm2" tags="cansacrifice" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Firstborn Son" numGridCollisionPoints="12" shadowSize="11" stageHP="0" variant="325332438">
         <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
     </entity>
+	<entity anm2path="blood_cyst.anm2" tags="cansacrifice" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="100" collisionRadius="13" friction="1" id="3" name="Blood Cyst" numGridCollisionPoints="12" shadowSize="17" stageHP="0" variant="325332438">
+        <gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+    </entity>
 
 	<entity anm2path="lightbeam.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="8" friction="1" id="5" variant="2868" subtype="100" name="Light Beam" numGridCollisionPoints="24" shadowSize="0" stageHP="0"/>
 	<entity anm2path="soulofleah.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" name="Soul of Leah" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="104"/>
