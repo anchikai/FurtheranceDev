@@ -85,6 +85,7 @@ CollectibleType.COLLECTIBLE_ALTERNATE_REALITY = Isaac.GetItemIdByName("Alternate
 CollectibleType.COLLECTIBLE_CORK = Isaac.GetItemIdByName("Cork")
 CollectibleType.COLLECTIBLE_FLUX = Isaac.GetItemIdByName("Flux")
 CollectibleType.COLLECTIBLE_BRAINSTORM = Isaac.GetItemIdByName("Brainstorm")
+CollectibleType.COLLECTIBLE_COSMIC_OMNIBUS = Isaac.GetItemIdByName("Cosmic Omnibus")
 
 -- Cards/Runes/Pills/etc
 RUNE_SOUL_OF_LEAH = Isaac.GetCardIdByName("Soul of Leah")
@@ -170,6 +171,7 @@ include("lua/items/AlternateReality.lua")
 include("lua/items/Cork.lua")
 include("lua/items/Flux.lua")
 include("lua/items/Brainstorm.lua")
+include("lua/items/CosmicOmnibus.lua")
 
 -- Enemy luas
 include("lua/enemies/Hostikai.lua")
