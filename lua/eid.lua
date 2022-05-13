@@ -315,6 +315,15 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_LITTLE_SISTER, "", "Little Sister
 -- Flux
 EID:addCollectible(CollectibleType.COLLECTIBLE_FLUX, "↑ {{Range}} +9.75 Range up#Spectral tears#A tear is fired from the back of your head#Tears only move when you're moving#The tear fired from the back has opposite movement", "Flux", "en_us")
 
+-- Cosmic Omnibus
+EID:addCollectible(CollectibleType.COLLECTIBLE_COSMIC_OMNIBUS, "Randomly teleports you to a non-normal room#30% chance that room will be a newly generated Planetarium", "Cosmic Omnibus", "en_us")
+
+-- Little Raincoat
+EID:addCollectible(CollectibleType.COLLECTIBLE_LITTLE_RAINCOAT, "You get a Power Pill like effect every 6 hits#6% chance for food items to be rerolled#↑ Size down", "Little Raincoat", "en_us")
+
+-- Blood Cyst
+EID:addCollectible(CollectibleType.COLLECTIBLE_BLOOD_CYST, "Entering an uncleared room will spawn a Blood Cyst in a random area#Shooting or walking into it will make it burst into 8 tears", "Blood Cyst", "en_us")
+
 
 
 -- Soul of Leah

@@ -12,7 +12,6 @@ local pharaohCatPositions = {
 
 local techIXColor = Color(0, 1, 0, 1, 0, 1, 0.6)
 
----@param tear EntityTear
 function mod:IXShots(tear)
 	local player = tear.Parent and tear.Parent:ToPlayer()
 	if player == nil then return end
@@ -40,7 +39,6 @@ function mod:IXShots(tear)
 		tear:Remove()
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.IXShots)
 
 function mod:TechIXDebuff(player, cacheFlag)
@@ -50,5 +48,4 @@ function mod:TechIXDebuff(player, cacheFlag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.TechIXDebuff)

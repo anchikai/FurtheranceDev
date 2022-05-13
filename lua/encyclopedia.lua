@@ -1004,6 +1004,17 @@ local Wiki = {
 			{str = "Decreases Isaac's size, making him less likely to be hit."},
 		},
 	},
+	BloodCyst = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Entering an uncleared room will spawn a Blood Cyst in a random position in the room."},
+			{str = "Shooting or walking into the Cyst will make it burst into 8 tears."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "The tears fired from the Cyst deal 3.5 damage."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -2048,6 +2059,16 @@ Encyclopedia.AddItem({
 	WikiDesc = Wiki.LittleRaincoat,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_BOSS,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_BLOOD_CYST,
+	WikiDesc = Wiki.BloodCyst,
+	Pools = {
 		Encyclopedia.ItemPools.POOL_BOSS,
 	},
 })

@@ -56,12 +56,9 @@ function mod:FireTears(entity)
             if rng:RandomFloat() < 0.0025 then
                 local target = getNearestEnemy(entity)
                 if not target then return end
-
                 local direction = (target.Position - entity.Position):Normalized()
-
                 local speed = 4
                 local velocity = direction * speed
-
                 Isaac.Spawn(EntityType.ENTITY_TEAR, TearVariant.BLOOD, 0, entity.Position, velocity, entity)
             end
         end
