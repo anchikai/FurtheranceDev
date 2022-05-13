@@ -87,5 +87,5 @@
 	<familiar id="46" name="Miriam's Well" description="Spew forth" gfx="miriams_well.png" quality="1" />
 	<familiar id="60" name="Brainstorm" description="Problem solving" gfx="brainstorm.png" quality="2" />
 	<familiar id="63" name="Blood Cyst" description="It's about to pop" gfx="blood_cyst.png" quality="2" persistent="true" />
-	<familiar id="63" name="Polaris" description="May the Star Shine Bright" gfx="polaris.png" quality="4" />
+	<familiar id="64" name="Polaris" description="May the star shine bright" gfx="polaris.png" quality="4" />
 </items>
