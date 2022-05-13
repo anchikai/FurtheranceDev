@@ -100,6 +100,8 @@ CARD_TRAP = Isaac.GetCardIdByName("Trap Card")
 CARD_KEY = Isaac.GetCardIdByName("Key Card")
 RUNE_SOUL_OF_PETER = Isaac.GetCardIdByName("Soul of Peter")
 RUNE_SOUL_OF_MIRIAM = Isaac.GetCardIdByName("Soul of Miriam")
+OBJ_ESSENCE_OF_LIFE = Isaac.GetCardIdByName("Essence of Life")
+OBJ_ESSENCE_OF_DEATH = Isaac.GetCardIdByName("Essence of Death")
 
 function Furtherance:playFailSound()
 	SFXManager():Play(Furtherance.FailSound)
@@ -194,6 +196,8 @@ include("lua/cards/TrapCard.lua")
 include("lua/cards/KeyCard.lua")
 include("lua/cards/SoulOfPeter.lua")
 include("lua/cards/SoulOfMiriam.lua")
+include("lua/cards/EssenceOfLife.lua")
+include("lua/cards/EssenceOfDeath.lua")
 
 -- Pickup Luas
 include("lua/pickups/MoonHeart.lua")

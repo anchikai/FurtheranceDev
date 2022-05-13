@@ -347,5 +347,11 @@ EID:addCard(CARD_TRAP, "Chains down the nearest enemy for 5 seconds, preventing 
 -- Key Card
 EID:addCard(CARD_KEY, "{{Shop}} creates a trapdoor that leads to a second shop with a unique stock", "Key Card", "en_us")
 
+-- Essence of Life
+EID:addCard(OBJ_ESSENCE_OF_LIFE, "Spawns a Minisaac on each enemy in the room", "Essence of Life", "en_us")
+
+-- Essence of Death
+EID:addCard(OBJ_ESSENCE_OF_DEATH, "Kills all non-boss enemies in the room#Grants a Swarm Fly orbital for each enemy killed", "Essence of Death", "en_us")
+
 -- Moon Heart
 EID:addEntity(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, 225, "Moon Heart", "Worth 2 HP#Teleports you to the Secret Room when depleted#↓ Only 1 can be held at a time", "en_us")

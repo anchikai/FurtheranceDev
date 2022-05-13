@@ -1077,6 +1077,19 @@ local Wiki = {
 			{str = "Creates a trapdoor leading to the Member Card Shop."},
 		},
 	},
+	EssenceOfLife = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, Isaac will summon micro-Isaac familiars, known as Minisaacs, on top of each enemy in the room."},
+		},
+	},
+	EssenceOfDeath = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, kills all non-boss enemies in the room."},
+			{str = "For each enemy killed, a swarm fly orbital will be added."},
+		},
+	},
 
 	-- Characters
 	Leah = {
@@ -2139,6 +2152,24 @@ Encyclopedia.AddCard({
 	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Key Card", 0),
     WikiDesc = Wiki.KeyCard,
 	Name = "Key Card",
+})
+
+Encyclopedia.AddCard({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("Essence of Life"),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Essence of Life", 0),
+    WikiDesc = Wiki.EssenceOfLife,
+	Name = "Essence of Life",
+})
+
+Encyclopedia.AddCard({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("Essence of Death"),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Essence of Death", 0),
+    WikiDesc = Wiki.EssenceOfDeath,
+	Name = "Essence of Death",
 })
 
 -- Characters
