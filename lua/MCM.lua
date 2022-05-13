@@ -1,9 +1,4 @@
 local laugh = Isaac.GetSoundIdByName("Sitcom_Laugh_Track")
-    local Options = {
-        [1] = "Slow (Default)",
-        [2] = "Medium",
-		[3] = "Fast",
-    }
 
 if ModConfigMenu then
 
