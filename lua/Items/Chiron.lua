@@ -1,20 +1,13 @@
 local mod = Furtherance
-local rng = RNG()
+local game = Game()
 
 -- Thank you for all the fixes manaphoenix!
 
-local game = Game() -- Don't keep regetting Game(), store it.
-
-local function GetPlayers() -- its better to turn this into a utility function with how much your using it.
-    local t = {}
-    for i = 0, game:GetNumPlayers() - 1 do table.insert(t, game:GetPlayer(i)) end
-    return t
-end
-
 function mod:ChironMapping() -- Apply a random map effect every floor
-    local players = GetPlayers()
-    for _, player in pairs(players) do
+    for i = 0, game:GetNumPlayers() - 1 do
+        local player = Isaac.GetPlayer(i)
         if player:HasCollectible(CollectibleType.COLLECTIBLE_CHIRON) then
+            local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_CHIRON)
             local level = game:GetLevel()
             local rollMap = rng:RandomInt(3)
             if rollMap == 1 then
@@ -30,23 +23,14 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.ChironMapping)
 
-local function IsActiveEnemy(player) -- Enemy detection
-    local enemies = Isaac.FindInRadius(player.position, 1000, EntityPartition.ENEMY) -- this method of doing it gets only the enemies, instead of every entity in the entire room.
-    for _, enemy in pairs(enemies) do
-        if enemy:IsVulnerableEnemy() and enemy:IsActiveEnemy() and
-            not EntityRef(enemy).IsCharmed then return true end
-    end
-    return false
-end
-
 function mod:BossDetection() -- If the room is a boss room
     local room = game:GetRoom()
     if not room:IsCurrentRoomLastBoss() then
         return
     end -- check to make sure its a boss. if not, stop the rest of the checks/code
 
-    local players = GetPlayers()
-    for _, player in pairs(players) do
+    for i = 0, game:GetNumPlayers() - 1 do
+        local player = Isaac.GetPlayer(i)
         if player:HasCollectible(CollectibleType.COLLECTIBLE_CHIRON) and room:IsFirstVisit() == true and room:GetFrameCount() == 1 then -- Guwah you legend
             mod:BossBook(player) -- Use a random book
         end
@@ -56,6 +40,7 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.BossDetection)
 
 function mod:BossBook(player) -- Roll a random book effect
+    local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_CHIRON)
     local rollBook = rng:RandomInt(5) + 1
     if rollBook == 1 then
         player:UseActiveItem(CollectibleType.COLLECTIBLE_BOOK_OF_BELIAL, UseFlag.USE_NOANNOUNCER, -1)
