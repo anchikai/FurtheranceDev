@@ -347,6 +347,12 @@ EID:addCard(CARD_TRAP, "Chains down the nearest enemy for 5 seconds, preventing 
 -- Key Card
 EID:addCard(CARD_KEY, "{{Shop}} creates a trapdoor that leads to a second shop with a unique stock", "Key Card", "en_us")
 
+-- Essence of Love
+EID:addCard(OBJ_ESSENCE_OF_LOVE, "", "Essence of Love", "en_us")
+
+-- Essence of Hate
+EID:addCard(OBJ_ESSENCE_OF_HATE, "", "Essence of Hate", "en_us")
+
 -- Essence of Life
 EID:addCard(OBJ_ESSENCE_OF_LIFE, "Spawns a Minisaac on each enemy in the room", "Essence of Life", "en_us")
 

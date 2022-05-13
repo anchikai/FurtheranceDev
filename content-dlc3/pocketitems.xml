@@ -6,6 +6,8 @@
     <card type="rune" pickup="104" description="Heartache" hud="Soul of Leah" name="Soul of Leah" mimiccharge="6" />
     <card type="rune" pickup="105" description="Hey Lois" hud="Soul of Peter" name="Soul of Peter" mimiccharge="6" />
     <card type="rune" pickup="106" description="Drown" hud="Soul of Miriam" name="Soul of Miriam" mimiccharge="12" />
-    <card type="object" pickup="107" description="Between birth and death" hud="Essence of Life" name="Essence of Life" />
-    <card type="object" pickup="108" description="Permanence" hud="Essence of Death" name="Essence of Death" />
+    <card type="object" pickup="111" description="Deep affection" hud="Essence of Love" name="Essence of Love" />
+    <card type="object" pickup="112" description="Regret" hud="Essence of Hate" name="Essence of Hate" />
+    <card type="object" pickup="113" description="Between birth and death" hud="Essence of Life" name="Essence of Life" />
+    <card type="object" pickup="114" description="Permanence" hud="Essence of Death" name="Essence of Death" />
 </pocketitems>
