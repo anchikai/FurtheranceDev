@@ -59,6 +59,7 @@ local game = Game()
 local level = game:GetLevel()
 
 local bossRushWave = 0
+local FirstbornSonFamiliar = Isaac.GetEntityVariantByName("Firstborn Son")
 
 ---A mapping of entity types to variants to booleans.
 ---`true` means that they have spawned, `false` means that they haven't.
@@ -384,28 +385,18 @@ local function getClosestHighestHPEnemyFavorNonBoss(source)
     end
 end
 
----@param player EntityPlayer
 function mod:SpawnFirstbornSon(player)
-    player:CheckFamiliar(
-        FamiliarVariant.FIRSTBORN_SON,
-        player:GetCollectibleNum(CollectibleType.COLLECTIBLE_FIRSTBORN_SON, false),
-        player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_FIRSTBORN_SON),
-        Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_FIRSTBORN_SON),
-        0
-    )
+    player:CheckFamiliar(FirstbornSonFamiliar, player:GetCollectibleNum(CollectibleType.COLLECTIBLE_FIRSTBORN_SON, false), player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_FIRSTBORN_SON), Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_FIRSTBORN_SON), 0)
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.SpawnFirstbornSon, CacheFlag.CACHE_FAMILIARS)
 
----@param familiar EntityFamiliar
 function mod:FirstbornSonInit(familiar)
     local data = mod:GetData(familiar)
     data.ShotTear = false
     data.UnclearDelay = 30
     familiar.IsFollower = true
 end
-
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, mod.FirstbornSonInit, FamiliarVariant.FIRSTBORN_SON)
+mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, mod.FirstbornSonInit, FirstbornSonFamiliar)
 
 local directionBoundaries = {
     { -135, Direction.LEFT },
@@ -436,23 +427,13 @@ local function shootFatalTear(familiar, target)
     local velocity = (target.Position - familiar.Position):Normalized() * 10
 
     ---@type EntityTear
-    local tear = Isaac.Spawn(
-        EntityType.ENTITY_TEAR,
-        TearVariant.BLUE,
-        0,
-        familiar.Position,
-        velocity,
-        familiar
-    ):ToTear()
-
+    local tear = Isaac.Spawn(EntityType.ENTITY_TEAR, TearVariant.BLUE, 0, familiar.Position, velocity, familiar):ToTear()
     local tearData = mod:GetData(tear)
     tearData.IsFirstbornSonTear = true
-
     tear.Scale = 2
     tear:AddTearFlags(TearFlags.TEAR_SPECTRAL | TearFlags.TEAR_HOMING | TearFlags.TEAR_LIGHT_FROM_HEAVEN)
     tear.Target = target
     tear.Height = -20
-
     data.ShotTear = true
     data.ShootingDirection = getDirectionFromAngle(velocity:GetAngleDegrees())
     mod:DelayFunction(function()
@@ -499,21 +480,18 @@ function mod:FirstbornSonUpdate(familiar)
         end
     end
 end
-
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, mod.FirstbornSonUpdate, FamiliarVariant.FIRSTBORN_SON)
+mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, mod.FirstbornSonUpdate, FirstbornSonFamiliar)
 
 function mod:FirstbornSonNewRoom()
-    local familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.FIRSTBORN_SON, 0, false, false)
+    local familiars = Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FirstbornSonFamiliar, 0, false, false)
     for _, familiar in ipairs(familiars) do
         local data = mod:GetData(familiar)
         data.ShotTear = false
         data.UnclearDelay = 30
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.FirstbornSonNewRoom)
 
----@param tear EntityTear
 function mod:FirstbornSonTearUpdate(tear)
     if tear.FrameCount == 0 or tear:IsDead() then return end
 
@@ -527,7 +505,6 @@ function mod:FirstbornSonTearUpdate(tear)
 
     tear.Height = -20
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, mod.FirstbornSonTearUpdate)
 
 ---@param tear EntityTear
@@ -551,5 +528,4 @@ function mod:FirstbornSonTearHit(tear, collider)
     end
     tear:Die()
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, mod.FirstbornSonTearHit)

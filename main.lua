@@ -95,8 +95,6 @@ CARD_KEY = Isaac.GetCardIdByName("Key Card")
 RUNE_SOUL_OF_PETER = Isaac.GetCardIdByName("Soul of Peter")
 RUNE_SOUL_OF_MIRIAM = Isaac.GetCardIdByName("Soul of Miriam")
 
-FamiliarVariant.FIRSTBORN_SON = 7888
-
 function Furtherance:playFailSound()
 	SFXManager():Play(Furtherance.FailSound)
 end
