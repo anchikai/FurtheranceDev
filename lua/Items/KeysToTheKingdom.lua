@@ -42,9 +42,12 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 	local data = mod:GetData(player)
 	local room = game:GetRoom()
 	local roomType = room:GetType()
-	local level = game:GetLevel()
 	local hasSpareTarget = false
-
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+		SpareTimeOffset = 30 * 15
+	else
+		SpareTimeOffset = 0
+	end
 
 	-- Free Devil items
 	if roomType == RoomType.ROOM_DEVIL then
@@ -101,7 +104,7 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 							) or enemy.Parent == nil
 						) and not enemyData.spareTimer
 					then
-						enemyData.spareTimer = spareTime
+						enemyData.spareTimer = spareTime - SpareTimeOffset
 
 						-- Spotlight
 						if not enemyData.spareSpotlight then
@@ -110,7 +113,7 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 							spareSpotlight:GetSprite():Play("LightAppear", true)
 							spareSpotlight.Parent = enemy
 							spareSpotlight:FollowParent(enemy)
-							spareSpotlight:GetSprite().Scale = Vector(0.75 + spareTime * 0.001, 1.25)
+							spareSpotlight:GetSprite().Scale = Vector(0.75 + (spareTime - SpareTimeOffset) * 0.001, 1.25)
 							enemyData.spareSpotlight = spareSpotlight
 						end
 						hasSpareTarget = true
@@ -436,7 +439,7 @@ function mod:spareResetBoss(target, damageAmount, damageFlags, damageSource, dam
 		if data.spareTimer then
 			if damageSource.Entity and damageSource.Entity.SpawnerEntity then
 				if damageSource.Entity.SpawnerEntity.Type ~= target.Type then
-					data.spareTimer = spareTime
+					data.spareTimer = spareTime - SpareTimeOffset
 					SFXManager():Play(SoundEffect.SOUND_BISHOP_HIT, 1.25)
 				end
 			end
