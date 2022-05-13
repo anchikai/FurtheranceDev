@@ -15,7 +15,7 @@
 		skin="Character_002_Peter_A.png"
 		nameimage="playername_Peter.png"
 		portrait="playerportrait_Peter_A.png"
-		birthright="???" />
+		birthright="Mercy up" />
 	<player name="PeterB" bSkinParent="Peter" skinColor="-1" hp="6" costumeSuffix="peterb"
 		skin="Character_002_Peter_B.png"
 		nameimage="playername_Peter.png"

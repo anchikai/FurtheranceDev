@@ -1161,7 +1161,7 @@ local Wiki = {
 		},
 		{ -- Birthright
 			{str = "Birthright", fsize = 2, clr = 3, halign = 0},
-			
+			{str = "Peter's spare timer is now 15 seconds instead of 30."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
