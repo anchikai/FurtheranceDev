@@ -1,75 +1,55 @@
 local mod = Furtherance
+local game = Game()
+
+-- NOTE: -- functions are defined on Furtherance so my autocomplete picks it up
+
 -----------------------------------
 --Helper Functions (thanks piber)--
 -----------------------------------
 
-function mod:GetPlayers(functionCheck, ...)
-
-	local args = {...}
+function Furtherance:GetPlayers(functionCheck, ...)
+	local args = { ... }
 	local players = {}
-	
-	local game = Game()
-	
-	for i=1, game:GetNumPlayers() do
-	
-		local player = Isaac.GetPlayer(i-1)
-		
+	for i = 1, game:GetNumPlayers() do
+		local player = Isaac.GetPlayer(i - 1)
 		local argsPassed = true
-		
+
 		if type(functionCheck) == "function" then
-		
-			for j=1, #args do
-			
+			for j = 1, #args do
 				if args[j] == "player" then
 					args[j] = player
 				elseif args[j] == "currentPlayer" then
 					args[j] = i
 				end
-				
 			end
-			
+
 			if not functionCheck(table.unpack(args)) then
-			
 				argsPassed = false
-				
 			end
-			
 		end
-		
+
 		if argsPassed then
-			players[#players+1] = player
+			table.insert(players, player)
 		end
-		
 	end
-	
 	return players
-	
 end
 
-function mod:GetPlayerFromTear(tear)
-	for i=1, 3 do
-		local check = nil
-		if i == 1 then
-			check = tear.Parent
-		elseif i == 2 then
-			check = mod:GetSpawner(tear)
-		elseif i == 3 then
-			check = tear.SpawnerEntity
-		end
-		if check then
-			if check.Type == EntityType.ENTITY_PLAYER then
-				return mod:GetPtrHashEntity(check):ToPlayer()
-			elseif check.Type == EntityType.ENTITY_FAMILIAR and check.Variant == FamiliarVariant.INCUBUS then
-				local data = mod:GetData(tear)
-				data.IsIncubusTear = true
-				return check:ToFamiliar().Player:ToPlayer()
-			end
+function Furtherance:GetPlayerFromTear(tear)
+	local check = tear.Parent or mod:GetSpawner(tear) or tear.SpawnerEntity
+	if check then
+		if check.Type == EntityType.ENTITY_PLAYER then
+			return mod:GetPtrHashEntity(check):ToPlayer()
+		elseif check.Type == EntityType.ENTITY_FAMILIAR and check.Variant == FamiliarVariant.INCUBUS then
+			local data = mod:GetData(tear)
+			data.IsIncubusTear = true
+			return mod:GetPtrHashEntity(check:ToFamiliar().Player):ToPlayer()
 		end
 	end
 	return nil
 end
 
-function mod:GetSpawner(entity)
+function Furtherance:GetSpawner(entity)
 	if entity and entity.GetData then
 		local spawnData = mod:GetSpawnData(entity)
 		if spawnData and spawnData.SpawnerEntity then
@@ -80,7 +60,7 @@ function mod:GetSpawner(entity)
 	return nil
 end
 
-function mod:GetSpawnData(entity)
+function Furtherance:GetSpawnData(entity)
 	if entity and entity.GetData then
 		local data = mod:GetData(entity)
 		return data.SpawnData
@@ -88,7 +68,7 @@ function mod:GetSpawnData(entity)
 	return nil
 end
 
-function mod:GetPtrHashEntity(entity)
+function Furtherance:GetPtrHashEntity(entity)
 	if entity then
 		if entity.Entity then
 			entity = entity.Entity
@@ -102,13 +82,13 @@ function mod:GetPtrHashEntity(entity)
 	return nil
 end
 
-function mod:GetData(entity)
+function Furtherance:GetData(entity)
 	if entity and entity.GetData then
 		local data = entity:GetData()
-		if not data.furtherance then
-			data.furtherance = {}
+		if not data.Furtherance then
+			data.Furtherance = {}
 		end
-		return data.furtherance
+		return data.Furtherance
 	end
 	return nil
 end
@@ -138,19 +118,19 @@ mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
 	mod.entitySpawnData = {}
 end)]]
 
-function mod:Contains(list, x)
+function Furtherance:Contains(list, x)
 	for _, v in pairs(list) do
 		if v == x then return true end
 	end
 	return false
 end
 
-function mod:GetRandomNumber(numMin, numMax, rng)
+function Furtherance:GetRandomNumber(numMin, numMax, rng)
 	if not numMax then
 		numMax = numMin
 		numMin = nil
 	end
-	
+
 	rng = rng or RNG()
 
 	if type(rng) == "number" then
@@ -158,7 +138,7 @@ function mod:GetRandomNumber(numMin, numMax, rng)
 		rng = RNG()
 		rng:SetSeed(seed, 1)
 	end
-	
+
 	if numMin and numMax then
 		return rng:Next() % (numMax - numMin + 1) + numMin
 	elseif numMax then
@@ -171,28 +151,29 @@ OnRenderCounter = 0
 IsEvenRender = true
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
 	OnRenderCounter = OnRenderCounter + 1
-	
+
 	IsEvenRender = false
-	if Isaac.GetFrameCount()%2 == 0 then
+	if Isaac.GetFrameCount() % 2 == 0 then
 		IsEvenRender = true
 	end
 end)
 
 --ripairs stuff from revel
-function ripairs_it(t,i)
-	i=i-1
-	local v=t[i]
-	if v==nil then return v end
-	return i,v
+function ripairs_it(t, i)
+	i = i - 1
+	local v = t[i]
+	if v == nil then return v end
+	return i, v
 end
+
 function ripairs(t)
-	return ripairs_it, t, #t+1
+	return ripairs_it, t, #t + 1
 end
 
 --delayed functions
 DelayedFunctions = {}
 
-function mod:DelayFunction(func, delay, args, removeOnNewRoom, useRender)
+function Furtherance:DelayFunction(func, delay, args, removeOnNewRoom, useRender)
 	local delayFunctionData = {
 		Function = func,
 		Delay = delay,
@@ -202,6 +183,7 @@ function mod:DelayFunction(func, delay, args, removeOnNewRoom, useRender)
 	}
 	table.insert(DelayedFunctions, delayFunctionData)
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
 	for i, delayFunctionData in ripairs(DelayedFunctions) do
 		if delayFunctionData.RemoveOnNewRoom then
@@ -230,6 +212,7 @@ local function delayFunctionHandling(onRender)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
 	delayFunctionHandling(false)
 end)
@@ -242,13 +225,13 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
 	DelayedFunctions = {}
 end)
 
-function mod.EsauCheck(player)
+function Furtherance:EsauCheck(player)
 	if not player or (player and not player.GetData) then
 		return nil
 	end
 	local currentPlayer = 1
-	for i=1, Game():GetNumPlayers() do
-		local otherPlayer = Isaac.GetPlayer(i-1)
+	for i = 1, Game():GetNumPlayers() do
+		local otherPlayer = Isaac.GetPlayer(i - 1)
 		local searchPlayer = i
 		--added GetPlayerType() to get Jacob and Easu seperatly
 		if otherPlayer.ControllerIndex == player.ControllerIndex and otherPlayer:GetPlayerType() == player:GetPlayerType() then
