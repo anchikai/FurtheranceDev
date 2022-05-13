@@ -83,14 +83,14 @@ function Furtherance:GetPtrHashEntity(entity)
 end
 
 function Furtherance:GetData(entity)
-	if entity and entity.GetData then
-		local data = entity:GetData()
-		if not data.Furtherance then
-			data.Furtherance = {}
-		end
-		return data.Furtherance
+	assert(entity ~= nil and entity.GetData, "Invalid argument, expected an Entity")
+
+	local data = entity:GetData()
+	if not data.Furtherance then
+		data.Furtherance = {}
 	end
-	return nil
+
+	return data.Furtherance
 end
 
 --[[mod.entitySpawnData = {}
