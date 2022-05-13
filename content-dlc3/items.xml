@@ -11,26 +11,27 @@
 	<active id="8" name="Caps Key" description="Locked in size" gfx="caps.png" maxcharges="6" quality="3" />
 	<active id="9" name="Enter Key" description="Meet no boundaries" gfx="enter.png" maxcharges="12" initcharge="0" quality="3" />
 	<active id="10" cache="damage" name="Shift Key" description="Temporary DMG up" gfx="shift.png" maxcharges="12" persistent="true" cooldown="1800" quality="3" tags="offensive" />
-	
-	<!-- Astrological Signs -->	<!-- Rework Concepts by Losfrail! -->
+
+	<!-- Astrological Signs -->
+	<!-- Rework Concepts by Losfrail! -->
 	<passive id="11" cache="tearflag damage firedelay" name="Ophiuchus" description="The dream that holds together" gfx="ophiuchus.png" soulhearts="2" quality="2" tags="stars tearsup offensive" />
-	<passive id="12" cache="speed" name="Chiron" description="The wisest and justest" gfx="chiron.png" tags="syringe book offensive" quality="3" tags="stars offensive" />
+	<passive id="12" cache="speed" name="Chiron" description="The wisest and justest" gfx="chiron.png" quality="3" tags="syringe book stars offensive" />
 	<passive id="13" name="Juno" description="Ruler of Everything" gfx="juno.png" soulhearts="4" quality="4" tags="stars offensive" />
 	<passive id="14" cache="tearflag" name="Pallas" description="Weathered by time" gfx="pallas.png" quality="3" />
 	<passive id="15" cache="tearflag damage" name="Ceres" description="It shimmers with life..." gfx="ceres.png" quality="4" />
 	<passive id="16" cache="tearflag damage tearcolor" name="Vesta" description="Faintly visible to the naked eye" gfx="vesta.png" quality="3" />
-	
+
 	<!-- New -->
 	<!-- Passive Items -->
-	<passive id="17" cache="firedelay" name="Tech IX" description="Experimental laser ring tears" gfx="tech_ix.png" quality="3" tags="tech offensive"/>
-	<passive id="18" name="Leaking Tank" description="I'm leaking?!" gfx="leaking_tank.png" quality="2" />																<!-- Concept by SybilScribble! -->
-	<passive id="19" name="Unstable Core" description="Shockingly active" gfx="unstable_core.png" quality="2" />														<!-- Concept by SybilScribble! -->
+	<passive id="17" cache="firedelay" name="Tech IX" description="Experimental laser ring tears" gfx="tech_ix.png" quality="3" tags="tech offensive" />
+	<passive id="18" name="Leaking Tank" description="I'm leaking?!" gfx="leaking_tank.png" quality="2" /> <!-- Concept by SybilScribble! -->
+	<passive id="19" name="Unstable Core" description="Shockingly active" gfx="unstable_core.png" quality="2" /> <!-- Concept by SybilScribble! -->
 	<passive id="20" name="Technology -1" description="Underflow shots" gfx="technology_-1.png" quality="3" tags="tech" />
-	<passive id="28" name="ZZZZoptionsZZZZ" description="ZZZZmZZZZoZZZZrZZZZeZZZZ" gfx="ZZZZoptionsZZZZ.PNG" quality="2" tags="nocantrip offensive" />					<!-- Concept by Joply! -->
-	<passive id="27" cache="shotspeed" name="Brunch" description="HP + shot speed up" gfx="brunch.png" hearts="6" maxhearts="4" quality="2" />							<!-- Concept by Tesseract! -->
-	<passive id="26" cache="speed" name="Crab Legs" description="You will never make the crab walk straight" gfx="crab_legs.png" hearts="4" maxhearts="2" quality="2" /><!-- Concept by Tesseract! -->
-	<passive id="23" cache="tearflag damage" name="Owl's Eye" description="The master guides you" gfx="owls_eye.png" quality="3" />										<!-- Concept by Freg! -->
-	<passive id="30" cache="firedelay" name="Pharaoh Cat" description="Pyramid shot" gfx="pharaoh_cat.png" quality="4" />												<!-- Concept by Freg! (reworked by me :troll:) -->
+	<passive id="28" name="ZZZZoptionsZZZZ" description="ZZZZmZZZZoZZZZrZZZZeZZZZ" gfx="ZZZZoptionsZZZZ.PNG" quality="2" tags="nocantrip offensive" /> <!-- Concept by Joply! -->
+	<passive id="27" cache="shotspeed" name="Brunch" description="HP + shot speed up" gfx="brunch.png" hearts="6" maxhearts="4" quality="2" /> <!-- Concept by Tesseract! -->
+	<passive id="26" cache="speed" name="Crab Legs" description="You will never make the crab walk straight" gfx="crab_legs.png" hearts="4" maxhearts="2" quality="2" /> <!-- Concept by Tesseract! -->
+	<passive id="23" cache="tearflag damage" name="Owl's Eye" description="The master guides you" gfx="owls_eye.png" quality="3" /> <!-- Concept by Freg! -->
+	<passive id="30" cache="firedelay" name="Pharaoh Cat" description="Pyramid shot" gfx="pharaoh_cat.png" quality="4" /> <!-- Concept by Freg! (reworked by me :troll:) -->
 	<passive id="37" name="Parasitic Poofer" description="He loves you" gfx="parasitic_poofer.png" quality="2" />
 	<passive id="38" name="Heart Embedded Coin" description="A symbol of love" gfx="heart_embedded_coin.png" quality="2" />
 	<passive id="39" cache="range" name="Spiritual Wound" description="Drain their lives" gfx="spiritual_wound.png" devilprice="2" quality="4" tags="devil" />
@@ -46,11 +47,11 @@
 	<passive id="58" name="Cork" description="Pop!" gfx="cork.png" quality="2" />
 	<passive id="59" cache="tearflag range" name="Flux" description="Continuity" gfx="flux.png" quality="3" />
 	<passive id="62" cache="size" name="Little Raincoat" description="Become the nightmare" gfx="little_raincoat.png" quality="2" />
-	
+
 	<!-- Active Items -->
 	<active id="21" cache="speed" name="Book of Swiftness" description="Temporary speed up" gfx="book_of_swiftness.png" maxcharges="3" quality="3" tags="book offensive lazarussharedglobal" />
 	<active id="22" cache="range tearflag" name="Book of Ambit" description="Temporary range up" gfx="book_of_ambit.png" maxcharges="3" quality="2" tags="book offensive lazarussharedglobal" />
-	<active id="25" name="Plug N' Play" description="Comes with 1000 games!" gfx="plug_n_play.png" maxcharges="6" quality="2" tags="nocantrip offensive" />				<!-- Concept by Freg! -->
+	<active id="25" name="Plug N' Play" description="Comes with 1000 games!" gfx="plug_n_play.png" maxcharges="6" quality="2" tags="nocantrip offensive" /> <!-- Concept by Freg! -->
 	<active id="29" name="Heart Renovator" description="Eternal triumph" gfx="heart_renovator.png" maxcharges="3" initcharge="3" quality="3" tags="angel nokeeper nolostbr" />
 	<active id="31" name="F4 Key" description="Be careful..." gfx="f4.png" shopprice="30" devilprice="2" maxcharges="6" quality="4" />
 	<active id="32" name="Tab Key" description="Pretty useful!" gfx="tab.png" maxcharges="4" quality="3" />
@@ -66,12 +67,12 @@
 	<active id="55" name="Old Camera" description="Take a photo to remember" gfx="old_camera.png" maxcharges="6" quality="3" />
 	<active id="57" name="Alternate Reality" description="All" gfx="alternate_reality.png" quality="4" />
 	<active id="61" name="Cosmic Omnibus" description="Soar above the heavens" gfx="cosmic_omnibus.png" maxcharges="6" quality="3" tags="book offensive lazarussharedglobal" />
-	
+
 	<!-- Trinkets -->
-	<trinket id="0" name="Holy Heart" description="Protective hearts" gfx="holy_heart.png" />																			<!-- Concept by PootisTweet! -->
-	<trinket id="1" name="Cringe" description="You're posting it" gfx="cringe.png" />																					<!-- Concept by Freg! -->
-	<trinket id="2" name="Slick Worm" description="Sliiiick" gfx="slick_worm.png" />																					<!-- Concept by Freg! -->
-	<trinket id="3" name="Grass" description="Go touch some" gfx="grass.png" />																							<!-- Concept by Aeronaut! -->
+	<trinket id="0" name="Holy Heart" description="Protective hearts" gfx="holy_heart.png" /> <!-- Concept by PootisTweet! -->
+	<trinket id="1" name="Cringe" description="You're posting it" gfx="cringe.png" /> <!-- Concept by Freg! -->
+	<trinket id="2" name="Slick Worm" description="Sliiiick" gfx="slick_worm.png" /> <!-- Concept by Freg! -->
+	<trinket id="3" name="Grass" description="Go touch some" gfx="grass.png" /> <!-- Concept by Aeronaut! -->
 	<trinket id="4" name="Alabaster Scrap" description="FT" gfx="alabaster_scrap.png" />
 	<trinket id="5" name="Leah's Lock" description="No pain? no gain" gfx="leahs_lock.png" />
 	<trinket id="6" name="Infested Penny" description="Wealth of spiders" gfx="infested_penny.png" />
@@ -85,4 +86,5 @@
 	<familiar id="46" name="Miriam's Well" description="Spew forth" gfx="miriams_well.png" quality="1" />
 	<familiar id="60" name="Brainstorm" description="Problem solving" gfx="brainstorm.png" quality="2" />
 	<familiar id="63" name="Blood Cyst" description="It's about to pop" gfx="blood_cyst.png" quality="2" persistent="true" />
+	<familiar id="63" name="Polaris" description="May the Star Shine Bright" gfx="polaris.png" quality="4" />
 </items>
