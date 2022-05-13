@@ -118,10 +118,13 @@
 		<Item Name="Pharaoh Cat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Parasitic Poofer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Cork" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Cosmic Omnibus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
 		<Item Name="Brunch" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Crab Legs" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Little Raincoat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Blood Cyst" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedShop">
 		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -139,6 +142,7 @@
 		<Item Name="Parasitic Poofer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Cork" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Flux" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Little Raincoat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedDevil">
 		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>

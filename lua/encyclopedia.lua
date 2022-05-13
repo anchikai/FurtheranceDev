@@ -2048,7 +2048,8 @@ Encyclopedia.AddItem({
 	ID = CollectibleType.COLLECTIBLE_COSMIC_OMNIBUS,
 	WikiDesc = Wiki.CosmicOmnibus,
 	Pools = {
-		Encyclopedia.ItemPools.POOL_LIBRARY
+		Encyclopedia.ItemPools.POOL_LIBRARY,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 	},
 })
 
@@ -2060,6 +2061,8 @@ Encyclopedia.AddItem({
 	Pools = {
 		Encyclopedia.ItemPools.POOL_SHOP,
 		Encyclopedia.ItemPools.POOL_BOSS,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		Encyclopedia.ItemPools.POOL_GREED_BOSS,
 	},
 })
 
@@ -2070,6 +2073,7 @@ Encyclopedia.AddItem({
 	WikiDesc = Wiki.BloodCyst,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_BOSS,
+		Encyclopedia.ItemPools.POOL_GREED_BOSS,
 	},
 })
 
