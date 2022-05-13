@@ -167,10 +167,17 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.NewFloor)
 
 function mod:AnimateFlip()
+	if Furtherance.FlipSpeed == 1 then
+		speed = 0.0172413793
+	elseif Furtherance.FlipSpeed == 2 then
+		speed = 0.05
+	elseif Furtherance.FlipSpeed == 3 then
+		speed = 0.1
+	end
 	if mod.Flipped == true then
-		flipFactor = flipFactor + 0.0172413793
+		flipFactor = flipFactor + speed
 	elseif mod.Flipped == false then
-		flipFactor = flipFactor - 0.0172413793
+		flipFactor = flipFactor - speed
 	end
 	flipFactor = clamp(flipFactor, 0, 1)
 end

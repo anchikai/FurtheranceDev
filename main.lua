@@ -9,8 +9,9 @@ local rng = RNG()
 HeartSubType.HEART_MOON = 225
 mod.DataTable = {}
 
-local laugh = Isaac.GetSoundIdByName("Sitcom_Laugh_Track")
 Furtherance.FailSound = SoundEffect.SOUND_EDEN_GLITCH
+Furtherance.FlipSpeed = 1
+
 mod.isLoadingData = false
 -- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
@@ -446,41 +447,8 @@ if MiniMapiItemsAPI then
 	MinimapAPI:AddPickup(225, "MoonHeartIcon", 5, 10, 225, MinimapAPI.PickupNotCollected, "hearts", 13000)
 end
 
-local MCMLoaded, MCM = pcall(require, "scripts.modconfig")
-
-if MCMLoaded then
-	function AnIndexOf(t, val)
-		for k, v in ipairs(t) do
-			if v == val then
-				return k
-			end
-		end
-		return 1
-	end
-
-	MCM.AddSetting(
-		"Furtherance",
-		"Sound Effects",
-		{
-		Type = ModConfigMenu.OptionType.BOOLEAN,
-		CurrentSetting = function()
-			return Furtherance.FailSound ~= laugh
-		end,
-		Display = function()
-			local sstr = "???"
-			if Furtherance.FailSound == laugh then sstr = "Laugh Track"
-			elseif Furtherance.FailSound == SoundEffect.SOUND_EDEN_GLITCH then sstr = "Default" end
-			return "Item Fails Sound Effect: " .. sstr
-		end,
-		OnChange = function(current_bool)
-			if current_bool then
-				Furtherance.FailSound = SoundEffect.SOUND_EDEN_GLITCH
-			else
-				Furtherance.FailSound = laugh
-			end
-		end
-	}
-	)
+if ModConfigMenu then
+	include("lua/MCM.lua")
 end
 
 ----- Mod Support End -----
