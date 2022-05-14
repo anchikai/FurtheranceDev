@@ -365,5 +365,11 @@ EID:addCard(OBJ_ESSENCE_OF_PROSPERITY, "A rain drop will fall on every enemy#Whe
 -- Essence of Drought
 EID:addCard(OBJ_ESSENCE_OF_DROUGHT, "All non-boss enemies will begin to bleed out#When they die, they will be frozen solid", "Essence of Drought", "en_us")
 
+-- Heartache Up
+EID:addPill(PILLEFFECT_HEARTACHE_UP, "↓ Adds one {{BrokenHeart}} Broken Heart", "Heartache Up", "en_us")
+
+-- Heartache Down
+EID:addPill(PILLEFFECT_HEARTACHE_DOWN, "↑ Removes one {{BrokenHeart}} Broken Heart", "Heartache Down", "en_us")
+
 -- Moon Heart
 EID:addEntity(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, 225, "Moon Heart", "Worth 2 HP#Teleports you to the Secret Room when depleted#↓ Only 1 can be held at a time", "en_us")

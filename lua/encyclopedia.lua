@@ -1121,6 +1121,22 @@ local Wiki = {
 			{str = "When in a room that has rain, it will cause it to stop."},
 		},
 	},
+	HeartacheUp = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Adds one broken heart upon use."},
+			{str = "Effect (Horse)", fsize = 2, clr = 3, halign = 0},
+			{str = "Adds two broken hearts."},
+		},
+	},
+	HeartacheDown = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Removes one broken heart upon use."},
+			{str = "Effect (Horse)", fsize = 2, clr = 3, halign = 0},
+			{str = "Removes two broken hearts."},
+		},
+	},
 
 	-- Characters
 	Leah = {
@@ -2237,6 +2253,24 @@ Encyclopedia.AddCard({
 	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Essence of Drought", 0),
     WikiDesc = Wiki.EssenceOfDrought,
 	Name = "Essence of Drought",
+})
+
+Encyclopedia.AddPill({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+    ID = PILLEFFECT_HEARTACHE_UP,
+    WikiDesc = Wiki.HeartacheUp,
+	Color = 4,
+	Description = "Negative",
+})
+
+Encyclopedia.AddPill({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+    ID = PILLEFFECT_HEARTACHE_DOWN,
+    WikiDesc = Wiki.HeartacheDown,
+	Color = 9,
+	Description = "Positive",
 })
 
 -- Characters
