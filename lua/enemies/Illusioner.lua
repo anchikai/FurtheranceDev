@@ -6,9 +6,10 @@ local Settings = {
 	AngrySpeed = 5.5,
 	Cooldown = 90,
 	Range = 160,
-	ShotSpeed = 12,
+	ShotSpeed = 11,
 	FearTime = 45,
 	WanderOffTimer = {60,150},
+	RandomOffset = 10,
 	
 	VariantID = 3070,
 	RealID = 0,
@@ -45,15 +46,15 @@ function mod:shyGalInit(entity)
 		-- Subtypes
 		-- Spawn clones
 		if entity.SubType >= Settings.ExtraID then
-			data.clones = {}
-			for i = 0, entity.SubType - 16 do
-				table.insert(data.clones, Isaac.Spawn(entity.Type, entity.Variant, Settings.CloneID, entity.Position + Vector(math.random(-20,20), math.random(-20,20)), Vector.Zero, nil))
+			for i = 0, entity.SubType - 16 do -- High amounts near rocks will most likely result in some of them spawning on top of the rocks!
+				local getPos = Vector(math.random(-Settings.RandomOffset, Settings.RandomOffset), math.random(-Settings.RandomOffset, Settings.RandomOffset))
+				Isaac.Spawn(entity.Type, entity.Variant, Settings.CloneID, entity.Position + getPos, Vector.Zero, nil)
 			end
-			entity.Position = entity.Position + Vector(math.random(-20,20), math.random(-20,20))
+			entity.Position = entity.Position + Vector(math.random(-Settings.RandomOffset, Settings.RandomOffset), math.random(-Settings.RandomOffset, Settings.RandomOffset))
 			entity.SubType = Settings.RealID
 		
 		elseif entity.SubType == Settings.UnmaskID then
-			data.state = States.Unmask
+			data.state = States.Angry
 
 		elseif entity.SubType > Settings.CloneID and entity.SubType < Settings.ExtraID then
 			entity.SubType = Settings.CloneID
@@ -68,14 +69,7 @@ function mod:shyGalUpdate(entity)
 		local sprite = entity:GetSprite()
 		local data = entity:GetData()
 		local target = entity:GetPlayerTarget()
-		
-		
-		-- Make all extra clones champions too
-		if entity:IsChampion() and data.clones then
-			for j,v in pairs(data.clones) do
-				v:ToNPC():MakeChampion(1, entity:GetChampionColorIdx(), true)
-			end
-		end
+
 		
 		-- Kill the clones if all real ones are dead
 		if entity.SubType == Settings.CloneID then
@@ -188,6 +182,11 @@ function mod:shyGalUpdate(entity)
 				end
 			end
 		end
+		
+		-- Don't animate head if not moving
+		if entity.Velocity:Length() < 0.1 and data.state ~= States.Attacking then
+			sprite:SetOverlayFrame(sprite:GetOverlayAnimation(), 0)
+		end
 
 
 		-- Death effects
@@ -232,7 +231,7 @@ mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.shyGalUpdate, 200)
 -- Fear effect from clones
 function mod:shyGalDie(target, damageAmount, damageFlags, damageSource, damageCountdownFrames)
 	if target.Variant == Settings.VariantID and target.SubType == Settings.CloneID and target.HitPoints <= damageAmount and damageSource and damageSource.Entity then
-		if damageSource.Entity.Type < 10 and damageSource.Entity.Type ~= 1 and damageSource.Entity.SpawnerEntity then
+		if ((damageSource.Entity.Type < 10 and damageSource.Entity.Type ~= 1) or damageSource.Entity.Type > 999) and damageSource.Entity.SpawnerEntity then
 			damageSource.Entity.SpawnerEntity:AddFear(EntityRef(target), Settings.FearTime)
 		else
 			damageSource.Entity:AddFear(EntityRef(target), Settings.FearTime)
