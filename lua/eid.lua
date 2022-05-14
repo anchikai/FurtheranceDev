@@ -342,22 +342,22 @@ EID:addCard(CARD_TWO_OF_SHIELDS, "{{Battery}} Duplicate your active charge", "Tw
 EID:addCard(CARD_ACE_OF_SHIELDS, "{{Battery}} Turns all pickups, chests and non-boss enemies into micro batteries", "Ace of Shields", "en_us")
 
 -- Trap Card
-EID:addCard(CARD_TRAP, "Chains down the nearest enemy for 5 seconds, preventing them from acting", "Trap Card", "en_us")
+EID:addCard(CARD_TRAP, "↑ Chains down the nearest enemy for 5 seconds, preventing them from acting", "Trap Card", "en_us")
 
 -- Key Card
 EID:addCard(CARD_KEY, "{{Shop}} creates a trapdoor that leads to a second shop with a unique stock", "Key Card", "en_us")
 
 -- Essence of Love
-EID:addCard(OBJ_ESSENCE_OF_LOVE, "", "Essence of Love", "en_us")
+EID:addCard(OBJ_ESSENCE_OF_LOVE, "Permanently charms all enemies in the room", "Essence of Love", "en_us")
 
 -- Essence of Hate
-EID:addCard(OBJ_ESSENCE_OF_HATE, "", "Essence of Hate", "en_us")
+EID:addCard(OBJ_ESSENCE_OF_HATE, "Adds {{BrokenHeart}} broken hearts until you have 11#↑ Spawns a random pickup for each broken heart added", "Essence of Hate", "en_us")
 
 -- Essence of Life
 EID:addCard(OBJ_ESSENCE_OF_LIFE, "Spawns a Minisaac on each enemy in the room", "Essence of Life", "en_us")
 
 -- Essence of Death
-EID:addCard(OBJ_ESSENCE_OF_DEATH, "Kills all non-boss enemies in the room#Grants a Swarm Fly orbital for each enemy killed", "Essence of Death", "en_us")
+EID:addCard(OBJ_ESSENCE_OF_DEATH, "↑ Kills all non-boss enemies in the room#↑ Grants a Swarm Fly orbital for each enemy killed", "Essence of Death", "en_us")
 
 -- Moon Heart
 EID:addEntity(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, 225, "Moon Heart", "Worth 2 HP#Teleports you to the Secret Room when depleted#↓ Only 1 can be held at a time", "en_us")
