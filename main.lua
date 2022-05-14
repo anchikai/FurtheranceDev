@@ -91,7 +91,6 @@ CollectibleType.COLLECTIBLE_LITTLE_RAINCOAT = Isaac.GetItemIdByName("Little Rain
 CollectibleType.COLLECTIBLE_BLOOD_CYST = Isaac.GetItemIdByName("Blood Cyst")
 CollectibleType.COLLECTIBLE_POLARIS = Isaac.GetItemIdByName("Polaris")
 TrinketType.TRINKET_ESCAPE_PLAN = Isaac.GetTrinketIdByName("Escape Plan")
-CollectibleType.COLLECTIBLE_BARF_BAG = Isaac.GetItemIdByName("Barf Bag")
 
 -- Cards/Runes/Pills/etc
 RUNE_SOUL_OF_LEAH = Isaac.GetCardIdByName("Soul of Leah")
@@ -190,7 +189,6 @@ include("lua/items/LittleRaincoat.lua")
 include("lua/items/BloodCyst.lua")
 include("lua/items/Polaris.lua")
 include("lua/items/EscapePlan.lua")
-include("lua/items/BarfBag.lua")
 
 -- Enemy luas
 include("lua/enemies/Hostikai.lua")

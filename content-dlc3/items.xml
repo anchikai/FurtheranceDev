@@ -47,7 +47,6 @@
 	<passive id="58" name="Cork" description="Pop!" gfx="cork.png" quality="2" />
 	<passive id="59" cache="tearflag range" name="Flux" description="Continuity" gfx="flux.png" quality="3" />
 	<passive id="62" cache="size" name="Little Raincoat" description="Become the nightmare" gfx="little_raincoat.png" quality="2" />
-	<passive id="65" cache="shotspeed range" name="Barf Bag" description="You'll need it" gfx="barf_bag.png" quality="2" />
 
 	<!-- Active Items -->
 	<active id="21" cache="speed" name="Book of Swiftness" description="Temporary speed up" gfx="book_of_swiftness.png" maxcharges="3" quality="3" tags="book offensive lazarussharedglobal" />
