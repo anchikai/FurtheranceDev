@@ -1077,6 +1077,19 @@ local Wiki = {
 			{str = "Creates a trapdoor leading to the Member Card Shop."},
 		},
 	},
+	EssenceOfLove = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, all enemies will be permanently charmed."},
+		},
+	},
+	EssenceOfHate = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, broken hearts will be added to Isaac until he reaches 11 of them."},
+			{str = "For each broken heart added, a random pickup will be spawned."},
+		},
+	},
 	EssenceOfLife = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -2095,7 +2108,7 @@ Encyclopedia.AddSoul({
 	ModName = "Furtherance",
     Class = "Furtherance",
 	ID = Isaac.GetCardIdByName("Soul of Leah"),
-	Sprite = Encyclopedia.RegisterSprite(mod.path .. "resources/gfx/soulofleah.anm2", "HUD", 0),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "resources/gfx/soulofleah.anm2", "HUD", 0),
     WikiDesc = Wiki.SoulOfLeah,
 	Name = "Leah's Soul",
 })
@@ -2104,7 +2117,7 @@ Encyclopedia.AddSoul({
 	ModName = "Furtherance",
     Class = "Furtherance",
 	ID = Isaac.GetCardIdByName("Soul of Peter"),
-	Sprite = Encyclopedia.RegisterSprite(mod.path .. "resources/gfx/soulofpeter.anm2", "HUD", 0),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "resources/gfx/soulofpeter.anm2", "HUD", 0),
     WikiDesc = Wiki.SoulOfPeter,
 	Name = "Peter's Soul",
 })
@@ -2113,7 +2126,7 @@ Encyclopedia.AddSoul({
 	ModName = "Furtherance",
     Class = "Furtherance",
 	ID = Isaac.GetCardIdByName("Soul of Miriam"),
-	Sprite = Encyclopedia.RegisterSprite(mod.path .. "resources/gfx/soulofmiriam.anm2", "HUD", 0),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "resources/gfx/soulofmiriam.anm2", "HUD", 0),
     WikiDesc = Wiki.SoulOfMiriam,
 	Name = "Miriam's Soul",
 })
@@ -2122,7 +2135,7 @@ Encyclopedia.AddCard({
 	ModName = "Furtherance",
     Class = "Furtherance",
 	ID = Isaac.GetCardIdByName("Two of Shields"),
-	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Two of Shields", 0),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Two of Shields", 0),
     WikiDesc = Wiki.TwoOfShields,
 	Name = "Two of Shields",
 })
@@ -2131,7 +2144,7 @@ Encyclopedia.AddCard({
 	ModName = "Furtherance",
     Class = "Furtherance",
 	ID = Isaac.GetCardIdByName("Ace of Shields"),
-	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Ace of Shields", 0),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Ace of Shields", 0),
     WikiDesc = Wiki.AceOfShields,
 	Name = "Ace of Shields",
 })
@@ -2140,7 +2153,7 @@ Encyclopedia.AddCard({
 	ModName = "Furtherance",
     Class = "Furtherance",
 	ID = Isaac.GetCardIdByName("Trap Card"),
-	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Trap Card", 0),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Trap Card", 0),
     WikiDesc = Wiki.TrapCard,
 	Name = "Trap Card",
 })
@@ -2149,7 +2162,7 @@ Encyclopedia.AddCard({
 	ModName = "Furtherance",
     Class = "Furtherance",
 	ID = Isaac.GetCardIdByName("Key Card"),
-	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Key Card", 0),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Key Card", 0),
     WikiDesc = Wiki.KeyCard,
 	Name = "Key Card",
 })
@@ -2157,8 +2170,26 @@ Encyclopedia.AddCard({
 Encyclopedia.AddCard({
 	ModName = "Furtherance",
     Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("Essence of Love"),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Essence of Love", 0),
+    WikiDesc = Wiki.EssenceOfLove,
+	Name = "Essence of Love",
+})
+
+Encyclopedia.AddCard({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("Essence of Hate"),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Essence of Hate", 0),
+    WikiDesc = Wiki.EssenceOfHate,
+	Name = "Essence of Hate",
+})
+
+Encyclopedia.AddCard({
+	ModName = "Furtherance",
+    Class = "Furtherance",
 	ID = Isaac.GetCardIdByName("Essence of Life"),
-	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Essence of Life", 0),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Essence of Life", 0),
     WikiDesc = Wiki.EssenceOfLife,
 	Name = "Essence of Life",
 })
@@ -2167,7 +2198,7 @@ Encyclopedia.AddCard({
 	ModName = "Furtherance",
     Class = "Furtherance",
 	ID = Isaac.GetCardIdByName("Essence of Death"),
-	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Essence of Death", 0),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Essence of Death", 0),
     WikiDesc = Wiki.EssenceOfDeath,
 	Name = "Essence of Death",
 })
@@ -2177,7 +2208,7 @@ Encyclopedia.AddCharacter({
     ModName = "Furtherance",
     Name = "Leah",
     ID = Isaac.GetPlayerTypeByName("Leah", false),
-	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraits.anm2", "Leah", 0),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraits.anm2", "Leah", 0),
 	WikiDesc = Wiki.Leah,
 })
 
@@ -2186,7 +2217,7 @@ Encyclopedia.AddCharacterTainted({
     Name = "Leah",
     Description = "The Unloved",
     ID = Isaac.GetPlayerTypeByName("LeahB", true),
-	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "LeahB", 0, mod.path .. "content-dlc3/gfx/charactermenu_leahb.png"),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "LeahB", 0, mod.path .. "content-dlc3/gfx/charactermenu_leahb.png"),
 	WikiDesc = Wiki.TaintedLeah,
 })
 
@@ -2194,7 +2225,7 @@ Encyclopedia.AddCharacter({
     ModName = "Furtherance",
     Name = "Peter",
     ID = Isaac.GetPlayerTypeByName("Peter", false),
-	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraits.anm2", "Peter", 0),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraits.anm2", "Peter", 0),
 	WikiDesc = Wiki.Peter,
 })
 
@@ -2203,7 +2234,7 @@ Encyclopedia.AddCharacterTainted({
     Name = "Peter",
     Description = "The Martyr",
     ID = Isaac.GetPlayerTypeByName("PeterB", true),
-	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "PeterB", 0, mod.path .. "content-dlc3/gfx/charactermenu_peterb.png"),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "PeterB", 0, mod.path .. "content-dlc3/gfx/charactermenu_peterb.png"),
 	WikiDesc = Wiki.TaintedPeter,
 })
 
@@ -2211,7 +2242,7 @@ Encyclopedia.AddCharacter({
     ModName = "Furtherance",
     Name = "Miriam",
     ID = Isaac.GetPlayerTypeByName("Miriam", false),
-	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraits.anm2", "Miriam", 0),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraits.anm2", "Miriam", 0),
 	WikiDesc = Wiki.Miriam,
 })
 
@@ -2220,6 +2251,6 @@ Encyclopedia.AddCharacterTainted({
     Name = "Miriam",
     Description = "The Condemned",
     ID = Isaac.GetPlayerTypeByName("MiriamB", true),
-	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "MiriamB", 0, mod.path .. "content-dlc3/gfx/charactermenu_miriamb.png"),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "MiriamB", 0, mod.path .. "content-dlc3/gfx/charactermenu_miriamb.png"),
 	WikiDesc = Wiki.TaintedMiriam,
 })
