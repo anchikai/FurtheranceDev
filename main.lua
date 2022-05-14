@@ -104,6 +104,8 @@ OBJ_ESSENCE_OF_LOVE = Isaac.GetCardIdByName("Essence of Love")
 OBJ_ESSENCE_OF_HATE = Isaac.GetCardIdByName("Essence of Hate")
 OBJ_ESSENCE_OF_LIFE = Isaac.GetCardIdByName("Essence of Life")
 OBJ_ESSENCE_OF_DEATH = Isaac.GetCardIdByName("Essence of Death")
+OBJ_ESSENCE_OF_PROSPERITY = Isaac.GetCardIdByName("Essence of Prosperity")
+OBJ_ESSENCE_OF_DROUGHT = Isaac.GetCardIdByName("Essence of Drought")
 
 function Furtherance:playFailSound()
 	SFXManager():Play(Furtherance.FailSound)
@@ -202,6 +204,8 @@ include("lua/cards/EssenceOfLove.lua")
 include("lua/cards/EssenceOfHate.lua")
 include("lua/cards/EssenceOfLife.lua")
 include("lua/cards/EssenceOfDeath.lua")
+include("lua/cards/EssenceOfProsperity.lua")
+include("lua/cards/EssenceOfDrought.lua")
 
 -- Pickup Luas
 include("lua/pickups/MoonHeart.lua")

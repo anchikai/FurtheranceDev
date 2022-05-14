@@ -10,4 +10,6 @@
     <card type="object" pickup="112" description="Regret" hud="Essence of Hate" name="Essence of Hate" />
     <card type="object" pickup="113" description="Between birth and death" hud="Essence of Life" name="Essence of Life" />
     <card type="object" pickup="114" description="Permanence" hud="Essence of Death" name="Essence of Death" />
+    <card type="object" pickup="115" description="Buoyant" hud="Essence of Prosperity" name="Essence of Prosperity" />
+    <card type="object" pickup="116" description="Shortage" hud="Essence of Drought" name="Essence of Drought" />
 </pocketitems>

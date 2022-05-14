@@ -359,5 +359,11 @@ EID:addCard(OBJ_ESSENCE_OF_LIFE, "Spawns a Minisaac on each enemy in the room", 
 -- Essence of Death
 EID:addCard(OBJ_ESSENCE_OF_DEATH, "↑ Kills all non-boss enemies in the room#↑ Grants a Swarm Fly orbital for each enemy killed", "Essence of Death", "en_us")
 
+-- Essence of Prosperity
+EID:addCard(OBJ_ESSENCE_OF_PROSPERITY, "A rain drop will fall on every enemy#When they hit, they deal 0.66x your damage and slow them for 5 seconds", "Essence of Prosperity", "en_us")
+
+-- Essence of Drought
+EID:addCard(OBJ_ESSENCE_OF_DROUGHT, "All non-boss enemies will begin to bleed out#When they die, they will be frozen solid", "Essence of Drought", "en_us")
+
 -- Moon Heart
 EID:addEntity(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, 225, "Moon Heart", "Worth 2 HP#Teleports you to the Secret Room when depleted#↓ Only 1 can be held at a time", "en_us")

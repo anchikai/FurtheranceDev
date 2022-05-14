@@ -1103,6 +1103,24 @@ local Wiki = {
 			{str = "For each enemy killed, a swarm fly orbital will be added."},
 		},
 	},
+	EssenceOfProsperity = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, a rain drop will fall on every enemy."},
+			{str = "When the rain drop hits the enemy, it will deal 0.66x of Isaac's damage and slow them for 5 seconds."},
+		},
+	},
+	EssenceOfDrought = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, all non-boss enemies will begin to bleed out."},
+			{str = "When they die, they will become frozen solid."},
+		},
+		{ -- Interactions
+			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
+			{str = "When in a room that has rain, it will cause it to stop."},
+		},
+	},
 
 	-- Characters
 	Leah = {
@@ -2201,6 +2219,24 @@ Encyclopedia.AddCard({
 	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Essence of Death", 0),
     WikiDesc = Wiki.EssenceOfDeath,
 	Name = "Essence of Death",
+})
+
+Encyclopedia.AddCard({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("Essence of Prosperity"),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Essence of Prosperity", 0),
+    WikiDesc = Wiki.EssenceOfProsperity,
+	Name = "Essence of Prosperity",
+})
+
+Encyclopedia.AddCard({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("Essence of Drought"),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Essence of Drought", 0),
+    WikiDesc = Wiki.EssenceOfDrought,
+	Name = "Essence of Drought",
 })
 
 -- Characters
