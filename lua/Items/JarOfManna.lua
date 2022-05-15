@@ -1,96 +1,164 @@
 local mod = Furtherance
 local game = Game()
 
-MannaOrb = Isaac.GetEntityVariantByName("Manna Orb")
+local MannaStatObjs = {
+	{ Name = "Damage", Flag = CacheFlag.CACHE_DAMAGE, Buff = 0.25 },
+	{ Name = "TearRange", Flag = CacheFlag.CACHE_RANGE, Buff = 0.5*40 },
+	{ Name = "ShotSpeed", Flag = CacheFlag.CACHE_SHOTSPEED, Buff = 0.25 },
+	{ Name = "MoveSpeed", Flag = CacheFlag.CACHE_SPEED, Buff = 0.10 },
+	{ Name = "Luck", Flag = CacheFlag.CACHE_LUCK, Buff = 0.5 }
+}
 
+local ALL_MANNA_FLAGS = 0
+for _, obj in ipairs(MannaStatObjs) do
+	ALL_MANNA_FLAGS = ALL_MANNA_FLAGS | obj.Flag
+end
+
+
+-- Get effect to give
 function mod:UseMannaJar(_, _, player)
 	local data = mod:GetData(player)
 	data.MannaCount = 0
-	local bombs = player:GetNumBombs()
-	local keys = player:GetNumKeys()
-	local coins = player:GetNumCoins()
-	-- If the
-	if (coins == bombs) and (coins == keys) then -- Player has the same amount of coins, bombs & keys
-		-- TODO: add a proper handler here
-		print("well what the fuck")
 
-	elseif (coins < bombs) and (coins < keys) then -- Player has the least amount of coins
+	if player:GetEffectiveMaxHearts() < 23 then
+		player:AddMaxHearts(2, true)
+		player:AddHearts(2, true)
+		SFXManager():Play(SoundEffect.SOUND_VAMP_GULP, 1.25)
+		
+	elseif player:GetNumCoins() < 15 then
 		player:AddCoins(1)
-
-	elseif (bombs <= coins) and (bombs <= keys) then -- Player has the least amount of bombs; coins or keys can be equal
-		player:AddBombs(1)
-
-	elseif (keys <= coins) and (keys < bombs) then -- Player has the least amount of keys; coins can be equal
+		SFXManager():Play(SoundEffect.SOUND_PENNYPICKUP, 1.5)
+		
+	elseif player:GetNumKeys() < 5 then
 		player:AddKeys(1)
-
+		SFXManager():Play(SoundEffect.SOUND_KEYPICKUP_GAUNTLET, 1.25)
+		
+	elseif player:GetNumBombs() < 5 then
+		player:AddBombs(1)
+		SFXManager():Play(SoundEffect.SOUND_FETUS_FEET, 1.5)
+		
+	else
+		local buffs = data.MannaBuffs
+		if buffs == nil then
+			buffs = {}
+			for i = 1, #MannaStatObjs do
+				buffs[i] = 0
+			end
+			data.MannaBuffs = buffs
+		end
+		
+		-- Give stats
+		local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_JAR_OF_MANNA)
+		local buffChoice = rng:RandomInt(#MannaStatObjs) + 1
+		buffs[buffChoice] = buffs[buffChoice] + 1
+		
+		SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER, 1.25)
+		player:AddCacheFlags(ALL_MANNA_FLAGS)
+		player:EvaluateItems()
 	end
+
 	return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseMannaJar, CollectibleType.COLLECTIBLE_JAR_OF_MANNA)
 
+-- Stats --
+function mod:MannaBuffs(player, flag)
+    local data = mod:GetData(player)
+    if data.MannaBuffs == nil then return end
+
+    for i, buffCount in ipairs(data.MannaBuffs) do
+        local stat = MannaStatObjs[i]
+
+        if stat.Flag == flag then
+            player[stat.Name] = player[stat.Name] + buffCount * stat.Buff
+            break
+        end
+    end
+end
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.MannaBuffs)
+
+
+-- Spawn manna --
 function mod:SpawnMana(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = game:GetPlayer(i)
 		local data = mod:GetData(player)
+
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_JAR_OF_MANNA) then
-			--[[manna = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.ENEMY_SOUL, 2, entity.Position, Vector.Zero, player):ToEffect()
-			manna.Timeout = 1
-			manna.LifeSpan = 1
-			data.MannaTimer = 60]]
-			if data.MannaCount < 21 then
-				data.MannaCount = data.MannaCount + 1
+			if not data.MannaCount then
+				data.MannaCount = 0
 			end
-			if data.MannaCount == 20 then
-				if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == CollectibleType.COLLECTIBLE_JAR_OF_MANNA then
-					player:SetActiveCharge(1, ActiveSlot.SLOT_PRIMARY)
-					game:GetHUD():FlashChargeBar(player, ActiveSlot.SLOT_PRIMARY)
-				elseif player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == CollectibleType.COLLECTIBLE_JAR_OF_MANNA then
-					player:SetActiveCharge(1, ActiveSlot.SLOT_SECONDARY)
-					game:GetHUD():FlashChargeBar(player, ActiveSlot.SLOT_SECONDARY)
-				end
-				SFXManager():Play(SoundEffect.SOUND_BATTERYCHARGE)
-				SFXManager():Play(SoundEffect.SOUND_ITEMRECHARGE)
+			if data.MannaCount < 20 then
+				Isaac.Spawn(EntityType.ENTITY_EFFECT, 7888, 0, entity.Position, Vector.Zero, player):ToEffect():SetTimeout(75)
 			end
-			print(data.MannaCount)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.SpawnMana)
 
-function mod:MannaEffect(effect)
+-- Effects --
+function mod:MannaPickup(effect)
+	local sprite = effect:GetSprite()
+	local collectible = true
+
+	if effect.Timeout <= 0 then
+		collectible = false
+		if not sprite:IsPlaying("Collect") then
+			sprite:Play("Collect", true)
+		end
+		if sprite:GetFrame() == 7 then
+			effect:Remove()
+		end
+
+	elseif effect.Timeout < 30 then
+		if not sprite:IsPlaying("Blink") then
+			sprite:SetAnimation("Blink", false)
+		end
+	end
+
+
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = game:GetPlayer(i)
 		local data = mod:GetData(player)
-		if data.MannaCount == nil then
-			data.MannaCount = 0
+
+		-- Collect soul
+		if collectible == true and effect.Position:DistanceSquared(player.Position) < 1200 then
+			effect.Timeout = 0
+			data.manna = true
 		end
-		if data.MannaTimer == nil or data.MannaTimer < 0 then
-			data.MannaTimer = 0
 
-		elseif data.MannaTimer > 0 then
-			data.MannaTimer = data.MannaTimer - 1
-		end
-	end
-end
-
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.MannaEffect, MannaOrb)
-
-function mod:MannaCollide(entity, collider)
-	for i = 0, game:GetNumPlayers() - 1 do
-		local player = Isaac.GetPlayer(i)
-		local data = mod:GetData(player)
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_JAR_OF_MANNA) then
-			if collider.Type == EntityType.ENTITY_PLAYER then
-				if entity.Variant == MannaOrb then
-					entity:Remove()
-					data.MannaCount = data.MannaCount + 1
-				end
+		-- Get charge from manna
+		if data.manna == true then
+			local slot = nil
+			if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == CollectibleType.COLLECTIBLE_JAR_OF_MANNA then
+				slot = ActiveSlot.SLOT_PRIMARY
+			elseif player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == CollectibleType.COLLECTIBLE_JAR_OF_MANNA then
+				slot = ActiveSlot.SLOT_SECONDARY
+			elseif player:GetActiveItem(ActiveSlot.SLOT_POCKET) == CollectibleType.COLLECTIBLE_JAR_OF_MANNA then
+				slot = ActiveSlot.SLOT_POCKET
 			end
-			print(data.MannaCount)
+
+			if slot ~= nil then
+				if data.MannaCount < 21 then
+					data.MannaCount = data.MannaCount + 1
+
+					if data.MannaCount == 20 then
+						player:SetActiveCharge(1, slot)
+						game:GetHUD():FlashChargeBar(player, slot)
+						SFXManager():Play(SoundEffect.SOUND_BEEP)
+						SFXManager():Play(SoundEffect.SOUND_BATTERYCHARGE)
+					end
+				else
+					game:GetHUD():FlashChargeBar(player, slot)
+					SFXManager():Play(SoundEffect.SOUND_BATTERYCHARGE)
+				end
+
+				player:SetColor(Color(1, 1, 1, 1, 0.25, 0.25, 0.25), 5, 1, true, false)
+				SFXManager():Play(SoundEffect.SOUND_SOUL_PICKUP)
+			end
+
+			data.manna = false
 		end
 	end
 end
-
-mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.MannaCollide)
+mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.MannaPickup, 7888)

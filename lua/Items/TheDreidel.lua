@@ -2,11 +2,12 @@ local mod = Furtherance
 local game = Game()
 
 local DreidelStatObjs = {
-	{ Name = "Damage", Flag = CacheFlag.CACHE_DAMAGE },
-	{ Name = "TearRange", Flag = CacheFlag.CACHE_RANGE },
-	{ Name = "ShotSpeed", Flag = CacheFlag.CACHE_SHOTSPEED },
-	{ Name = "MoveSpeed", Flag = CacheFlag.CACHE_SPEED },
-	{ Name = "Luck", Flag = CacheFlag.CACHE_LUCK }
+	{ Name = "Damage", Flag = CacheFlag.CACHE_DAMAGE, Buff = 0.25 },
+	{ Name = "MaxFireDelay", Flag = CacheFlag.CACHE_FIREDELAY, Buff = -0.2*5 },
+	{ Name = "TearRange", Flag = CacheFlag.CACHE_RANGE, Buff = 0.5*40 },
+	{ Name = "ShotSpeed", Flag = CacheFlag.CACHE_SHOTSPEED, Buff = 0.25 },
+	{ Name = "MoveSpeed", Flag = CacheFlag.CACHE_SPEED, Buff = 0.10 },
+	{ Name = "Luck", Flag = CacheFlag.CACHE_LUCK, Buff = 0.5 }
 }
 
 local ALL_DREIDEL_FLAGS = 0
@@ -51,8 +52,7 @@ function mod:DreidelQual(player)
 				end
 				data.DreidelStats = stats
 			end
-			
-			-- TODO: MAKE IT SO IT CANT LOWER THE SAME STAT MULTIPLE TIMES FROM ONE ITEM
+
 			for j = 1, itemConfig:GetCollectible(Item.SubType).Quality do
 				local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_THE_DREIDEL)
 				local statChoice = rng:RandomInt(#DreidelStatObjs) + 1
@@ -68,24 +68,18 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.DreidelQual)
 
 
+-- Stats --
 function mod:DreidelStats(player, flag)
-	local data = mod:GetData(player)
-	if data.DreidelStats == nil then return end
+    local data = mod:GetData(player)
+    if data.DreidelStats == nil then return end
 
-	for i, amount in ipairs(data.DreidelStats) do
-		local stat = DreidelStatObjs[i]
+    for i, statCount in ipairs(data.DreidelStats) do
+        local stat = DreidelStatObjs[i]
 
-		if stat.Flag == flag then
-			if flag == CacheFlag.CACHE_RANGE then
-				player[stat.Name] = player[stat.Name] - (amount * 50)
-			elseif flag == CacheFlag.CACHE_SPEED then
-				player[stat.Name] = player[stat.Name] - (amount / 2)
-			else
-				player[stat.Name] = player[stat.Name] - amount
-			end
-			
-			break
-		end
-	end
+        if stat.Flag == flag then
+            player[stat.Name] = player[stat.Name] - statCount * (stat.Buff * 5)
+            break
+        end
+    end
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.DreidelStats)

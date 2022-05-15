@@ -91,6 +91,7 @@ CollectibleType.COLLECTIBLE_LITTLE_RAINCOAT = Isaac.GetItemIdByName("Little Rain
 CollectibleType.COLLECTIBLE_BLOOD_CYST = Isaac.GetItemIdByName("Blood Cyst")
 CollectibleType.COLLECTIBLE_POLARIS = Isaac.GetItemIdByName("Polaris")
 TrinketType.TRINKET_ESCAPE_PLAN = Isaac.GetTrinketIdByName("Escape Plan")
+CollectibleType.COLLECTIBLE_BARF_BAG = Isaac.GetItemIdByName("Barf Bag")
 
 -- Cards/Runes/Pills/etc
 RUNE_SOUL_OF_LEAH = Isaac.GetCardIdByName("Soul of Leah")
@@ -189,6 +190,7 @@ include("lua/items/LittleRaincoat.lua")
 include("lua/items/BloodCyst.lua")
 include("lua/items/Polaris.lua")
 include("lua/items/EscapePlan.lua")
+include("lua/items/BarfBag.lua")
 
 -- Enemy luas
 include("lua/enemies/Hostikai.lua")
@@ -284,6 +286,8 @@ function mod:OnSave(isSaving)
 			saveData["player_" .. tostring(i + 1)].SpareCount = data.SpareCount
 			saveData["player_" .. tostring(i + 1)].KTTKBuffs = data.KTTKBuffs
 			saveData["player_" .. tostring(i + 1)].KTTKTempBuffs = data.KTTKTempBuffs
+			saveData["player_" .. tostring(i + 1)].MannaCount = data.MannaCount
+			saveData["player_" .. tostring(i + 1)].MannaBuffs = data.MannaBuffs
 			if player:GetName() == "Leah" then
 				saveData["player_" .. tostring(i + 1)].kills = data.leahkills
 			end
@@ -386,6 +390,12 @@ function mod:OnLoad(isLoading)
 			end
 			if loadData["player_" .. tostring(i + 1)].KTTKTempBuffs then
 				data.KTTKTempBuffs = loadData["player_" .. tostring(i + 1)].KTTKTempBuffs
+			end
+			if loadData["player_" .. tostring(i + 1)].MannaCount then
+				data.MannaCount = loadData["player_" .. tostring(i + 1)].MannaCount
+			end
+			if loadData["player_" .. tostring(i + 1)].MannaBuffs then
+				data.MannaBuffs = loadData["player_" .. tostring(i + 1)].MannaBuffs
 			end
 		end
 		if loadData.Flipped then
