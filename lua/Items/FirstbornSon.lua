@@ -388,6 +388,7 @@ end
 function mod:SpawnFirstbornSon(player)
     player:CheckFamiliar(FirstbornSonFamiliar, player:GetCollectibleNum(CollectibleType.COLLECTIBLE_FIRSTBORN_SON, false), player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_FIRSTBORN_SON), Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_FIRSTBORN_SON), 0)
 end
+
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.SpawnFirstbornSon, CacheFlag.CACHE_FAMILIARS)
 
 function mod:FirstbornSonInit(familiar)
@@ -396,6 +397,7 @@ function mod:FirstbornSonInit(familiar)
     data.UnclearDelay = 30
     familiar.IsFollower = true
 end
+
 mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, mod.FirstbornSonInit, FirstbornSonFamiliar)
 
 local directionBoundaries = {
@@ -461,14 +463,34 @@ function mod:FirstbornSonUpdate(familiar)
         familiar:PlayFloatAnim(Direction.DOWN)
     end
 
-    -- make the familiar shoot a tear some time if they are in an uncleared room
-    -- OR if a wave just started in greed mode or boss rush.
-    if (room:IsClear()
-        or (game:IsGreedMode() and oldGreedWave ~= level.GreedModeWave)) -- room is not clear during greed mode
-        and (room:GetType() ~= RoomType.ROOM_BOSSRUSH or oldBossRushWave == bossRushWave) -- room is always clear during boss rush
-    then
-        oldBossRushWave = bossRushWave
-        oldGreedWave = level.GreedModeWave
+    if game:IsGreedMode() then
+        -- room is never clear during greed mode waves
+        if room:IsClear() or oldGreedWave == level.GreedModeWave then
+            data.ShotTear = false
+            data.UnclearDelay = 30
+        elseif data.UnclearDelay > 0 then
+            data.UnclearDelay = data.UnclearDelay - 1
+        elseif not data.ShotTear then
+            local target = getClosestHighestHPEnemyFavorNonBoss(familiar)
+            if target then
+                oldGreedWave = level.GreedModeWave
+                shootFatalTear(familiar, target)
+            end
+        end
+    elseif room:GetType() == RoomType.ROOM_BOSSRUSH then
+        if oldBossRushWave == bossRushWave then
+            data.ShotTear = false
+            data.UnclearDelay = 30
+        elseif data.UnclearDelay > 0 then
+            data.UnclearDelay = data.UnclearDelay - 1
+        elseif not data.ShotTear then
+            local target = getClosestHighestHPEnemyFavorNonBoss(familiar)
+            if target then
+                oldBossRushWave = bossRushWave
+                shootFatalTear(familiar, target)
+            end
+        end
+    elseif room:IsClear() then -- make the familiar shoot a tear some time if they are in an uncleared room
         data.ShotTear = false
         data.UnclearDelay = 30
     elseif data.UnclearDelay > 0 then
@@ -480,6 +502,7 @@ function mod:FirstbornSonUpdate(familiar)
         end
     end
 end
+
 mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, mod.FirstbornSonUpdate, FirstbornSonFamiliar)
 
 function mod:FirstbornSonNewRoom()
@@ -490,6 +513,7 @@ function mod:FirstbornSonNewRoom()
         data.UnclearDelay = 30
     end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.FirstbornSonNewRoom)
 
 function mod:FirstbornSonTearUpdate(tear)
@@ -505,6 +529,7 @@ function mod:FirstbornSonTearUpdate(tear)
 
     tear.Height = -20
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, mod.FirstbornSonTearUpdate)
 
 ---@param tear EntityTear
@@ -528,4 +553,5 @@ function mod:FirstbornSonTearHit(tear, collider)
     end
     tear:Die()
 end
+
 mod:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, mod.FirstbornSonTearHit)
