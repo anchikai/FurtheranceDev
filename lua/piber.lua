@@ -83,7 +83,9 @@ function Furtherance:GetPtrHashEntity(entity)
 end
 
 function Furtherance:GetData(entity)
-	assert(entity ~= nil and entity.GetData, "Invalid argument, expected an Entity")
+	if entity == nil or not entity.GetData then
+		error("Invalid argument, expected an Entity", 2)
+	end
 
 	local data = entity:GetData()
 	if not data.Furtherance then
