@@ -1,14 +1,16 @@
 local mod = Furtherance
 local game = Game()
 
+---@param player EntityPlayer
+---@param flag integer
 function mod:GetRaincoat(player, flag)
-	if player:HasCollectible(CollectibleType.COLLECTIBLE_LITTLE_RAINCOAT) then
-		if flag == CacheFlag.CACHE_SIZE then
-			player.Size = player.Size - 0.2
-		end
-	end
+    local numRaincoats = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_LITTLE_RAINCOAT)
+    if numRaincoats > 0 then
+        player.SpriteScale = player.SpriteScale * 0.8 ^ numRaincoats
+    end
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetRaincoat)
+
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetRaincoat, CacheFlag.CACHE_SIZE)
 
 function mod:RerollFood(pickup)
     local rng = RNG()
@@ -19,6 +21,7 @@ function mod:RerollFood(pickup)
         end
     end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.RerollFood, PickupVariant.PICKUP_COLLECTIBLE)
 
 local damageCounter = 0
@@ -32,6 +35,7 @@ function mod:RaincoatDamage(entity)
         end
     end
 end
+
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.RaincoatDamage, EntityType.ENTITY_PLAYER)
 
 function mod:ResetCounter(continued)
