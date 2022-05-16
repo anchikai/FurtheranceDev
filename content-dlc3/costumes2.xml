@@ -3,20 +3,21 @@
 	<costume id="17" anm2path="techix.anm2" type="passive" hasOverlay="true" hasSkinAlt="false" />
 	<costume id="20" anm2path="technology-1.anm2" type="passive" hasOverlay="true" hasSkinAlt="true" />
 	<costume id="3" anm2path="grass.anm2" type="trinket" hasOverlay="true" hasSkinAlt="false" />
-	
+	<costume id="62" anm2path="little_raincoat.anm2" type="passive" hasOverlay="true" hasSkinAlt="false" />
+
 	<!-- Leah -->
-    <costume anm2path="Character_001_Leah_Hair.anm2" type="none" priority="99" />
+	<costume anm2path="Character_001_Leah_Hair.anm2" type="none" priority="99" />
 	<costume anm2path="Character_001_Leah_Pog.anm2" type="none" priority="99" />
 	<!-- Tainted Leah -->
-    <costume anm2path="Character_001b_Leah_Hair.anm2" type="none" priority="99" />
-    <costume anm2path="Character_001b_Leah_Pog.anm2" type="none" priority="99" />
+	<costume anm2path="Character_001b_Leah_Hair.anm2" type="none" priority="99" />
+	<costume anm2path="Character_001b_Leah_Pog.anm2" type="none" priority="99" />
 	<!-- Peter -->
-    <costume anm2path="Character_002_Peter_Drip.anm2" type="none" priority="99" />
+	<costume anm2path="Character_002_Peter_Drip.anm2" type="none" priority="99" />
 	<!-- Tainted Peter -->
-    <costume anm2path="Character_002b_Peter_Drip.anm2" type="none" priority="99" />
+	<costume anm2path="Character_002b_Peter_Drip.anm2" type="none" priority="99" />
 	<!-- Miriam -->
-    <costume anm2path="Character_003_Miriam_Hair.anm2" type="none" priority="99" />
+	<costume anm2path="Character_003_Miriam_Hair.anm2" type="none" priority="99" />
 	<costume anm2path="Character_003_Miriam_Pog.anm2" type="none" priority="99" />
 	<!-- Tainted Miriam -->
-    <costume anm2path="Character_003b_Miriam_Hair.anm2" type="none" priority="99" />
+	<costume anm2path="Character_003b_Miriam_Hair.anm2" type="none" priority="99" />
 </costumes>
