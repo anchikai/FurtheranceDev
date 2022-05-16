@@ -91,6 +91,8 @@ CollectibleType.COLLECTIBLE_LITTLE_RAINCOAT = Isaac.GetItemIdByName("Little Rain
 CollectibleType.COLLECTIBLE_BLOOD_CYST = Isaac.GetItemIdByName("Blood Cyst")
 CollectibleType.COLLECTIBLE_POLARIS = Isaac.GetItemIdByName("Polaris")
 TrinketType.TRINKET_ESCAPE_PLAN = Isaac.GetTrinketIdByName("Escape Plan")
+CollectibleType.COLLECTIBLE_D9 = Isaac.GetItemIdByName("D9")
+CollectibleType.COLLECTIBLE_D11 = Isaac.GetItemIdByName("D11")
 
 -- Cards/Runes/Pills/etc
 RUNE_SOUL_OF_LEAH = Isaac.GetCardIdByName("Soul of Leah")

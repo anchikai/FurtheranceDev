@@ -67,6 +67,8 @@
 	<active id="55" name="Old Camera" description="Take a photo to remember" gfx="old_camera.png" maxcharges="6" quality="3" />
 	<active id="57" name="Alternate Reality" description="All" gfx="alternate_reality.png" quality="4" />
 	<active id="61" name="Cosmic Omnibus" description="Soar above the heavens" gfx="cosmic_omnibus.png" maxcharges="6" quality="3" tags="book offensive lazarussharedglobal" />
+	<active id="65" name="D9" description="Reroll your journey" gfx="d9.png" maxcharges="4" quality="3" />
+	<active id="66" name="D11" description="Reroll your pockets" gfx="d11.png" maxcharges="3" quality="2" />
 
 	<!-- Trinkets -->
 	<trinket id="0" name="Holy Heart" description="Protective hearts" gfx="holy_heart.png" /> <!-- Concept by PootisTweet! -->
