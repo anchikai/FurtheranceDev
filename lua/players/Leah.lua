@@ -44,16 +44,6 @@ function mod:OnUpdate(player)
 			mod.isLoadingData = false
 			data.Init = nil
 		end
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and data.BR ~= 2 then -- Add 3 Broken Hearts when taking Birthright & reset kill count to prevent softlocks
-			data.BR = 1
-			player:AddBrokenHearts(3)
-			player:AddCacheFlags(CacheFlag.CACHE_RANGE)
-			player:EvaluateItems()
-			data.leahkills = 0
-			data.BR = 2
-		elseif player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) == false and data.BR ~= 0 then -- If the player for some reason loses Birthright
-			data.BR = 0
-		end
 	elseif player:GetName() == "LeahB" then
 		if player.FrameCount < 10 and (not mod.isLoadingData and data.Init) then
 			player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_SHATTERED_HEART, ActiveSlot.SLOT_POCKET, false)
@@ -194,7 +184,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.leahStats)
 function mod:LeahKill(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = game:GetPlayer(i)
-		if player:GetName() == "Leah" then
+		if player:GetName() == "Leah" and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 			local data = mod:GetData(player)
 			data.leahkills = data.leahkills + 1
 			player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)

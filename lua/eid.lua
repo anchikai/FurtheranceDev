@@ -20,9 +20,7 @@ EID:addIcon("Player"..normalPeter, "Peter", 0, 12, 12, -1, 1, PlayerIconSprite)
 EID:addIcon("Player"..taintedPeter, "PeterB", 0, 12, 12, -1, 1, PlayerIconSprite)
 
 -- Leah
-EID:addBirthright(normalLeah, "↑ Damage gained through kills and Heart Renovator is 2x effective#↑ A broken heart is now removed every 10 kills instead of every 20#↑ Heart counter now caps at 999#{{BrokenHeart}} +3 broken hearts", "Leah", "en_us")
-EID:addBirthright(normalLeah, "↓ {{BrokenHeart}} +3 сломанных сердец#↑ Сломанное сердце удаляется каждые 10 убийств вместо каждых 20#↑ Характеристики, полученные убийствами, 2x эффективнее", "Лия", "ru")
-EID:addBirthright(normalLeah, "↓ {{BrokenHeart}} +3 Corazones rotos#Perderás un corazón roto al matar 10 enemigos en vez de 20#↑ Las estadísticas ganadas por asesinatos se duplican", "Leah", "spa")
+EID:addBirthright(normalLeah, "↑ Heart counter now caps at 999#{{BrokenHeart}} A broken heart will be removed every 20 kills#It will grant damage half as effective as Heart Renovator", "Leah", "en_us")
 
 -- Tainted Leah
 EID:addBirthright(taintedLeah, "Tainted Leah will no longer constantly refill back to {{BrokenHeart}} 11 broken hearts#She will instead refill to only 6#She will gain 0.05 speed for every broken heart instead of lose#↑ +20% chance to charm enemies", "Tainted Leah", "en_us")
