@@ -386,7 +386,7 @@ local function getClosestHighestHPEnemyFavorNonBoss(source)
 end
 
 function mod:SpawnFirstbornSon(player)
-    player:CheckFamiliar(FirstbornSonFamiliar, player:GetCollectibleNum(CollectibleType.COLLECTIBLE_FIRSTBORN_SON, false), player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_FIRSTBORN_SON), Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_FIRSTBORN_SON), 0)
+    player:CheckFamiliar(FirstbornSonFamiliar, player:GetCollectibleNum(CollectibleType.COLLECTIBLE_FIRSTBORN_SON, false), RNG(), Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_FIRSTBORN_SON), 0)
 end
 
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.SpawnFirstbornSon, CacheFlag.CACHE_FAMILIARS)
