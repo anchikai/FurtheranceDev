@@ -191,6 +191,8 @@ include("lua/items/LittleRaincoat.lua")
 include("lua/items/BloodCyst.lua")
 include("lua/items/Polaris.lua")
 include("lua/items/EscapePlan.lua")
+include("lua/items/D9.lua")
+include("lua/items/D11.lua")
 
 -- Enemy luas
 include("lua/enemies/Hostikai.lua")

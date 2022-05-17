@@ -38,6 +38,7 @@ local function switchBackground(isFlipped)
 	end
 	SFXManager():Stop(SoundEffect.SOUND_DEATH_CARD)
 end
+
 function mod:UseFlippedCross(_, _, player)
 	game:ShakeScreen(10)
 
