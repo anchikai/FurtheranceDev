@@ -726,3 +726,11 @@ function mod:GetScreenTopLeft(offset)
 	return pos
 
 end
+
+function mod:GetFireDelayFromTears(tearsPerSecond)
+	return 30 / tearsPerSecond - 1
+end
+
+function mod:GetTearsFromFireDelay(fireDelay)
+	return 30 / (fireDelay + 1)
+end
