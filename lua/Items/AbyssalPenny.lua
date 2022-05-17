@@ -8,8 +8,7 @@ function mod:CollectCoin(pickup, collider)
 			if collider.Type == EntityType.ENTITY_PLAYER then
 				if pickup.SubType ~= CoinSubType.COIN_STICKYNICKEL then
 					local Water = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PLAYER_CREEP_HOLYWATER, 0, pickup.Position, Vector.Zero, player)
-					local sprite = Water:GetSprite()
-					sprite.Scale = Vector.Zero
+					Water:GetSprite().Scale = Vector.Zero
 				end
 			end
 		end
