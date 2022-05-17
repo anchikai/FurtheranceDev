@@ -99,6 +99,8 @@ function mod:UseMannaJar(_, _, player)
 		end
 
 		-- Give stats
+
+		-- get the lowest relative stat
 		local lowestStatValue = math.huge
 		for _, stat in ipairs(MannaStatObjs) do
 			local statValue = getStatValue(player, stat)
@@ -108,6 +110,7 @@ function mod:UseMannaJar(_, _, player)
 			end
 		end
 
+		-- get a list of stats to randomly pick from if multiple are the lowest
 		local possibleBuffs = {}
 		for i, stat in ipairs(MannaStatObjs) do
 			local statValue = getStatValue(player, stat)
@@ -117,6 +120,7 @@ function mod:UseMannaJar(_, _, player)
 			end
 		end
 
+		-- pick one of the lowest stats
 		local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_JAR_OF_MANNA)
 		local possibleChoice = rng:RandomInt(#possibleBuffs) + 1
 		local buffChoice = possibleBuffs[possibleChoice]
