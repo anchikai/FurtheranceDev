@@ -2,9 +2,8 @@ local mod = Furtherance
 local game = Game()
 
 function mod:CollectCoin(pickup, collider)
-	for i = 0, game:GetNumPlayers() - 1 do
-		local player = Isaac.GetPlayer(i)
-		local goldenbox = player:GetTrinketMultiplier(TrinketType.TRINKET_ABYSSAL_PENNY)
+	if collider.Type == EntityType.ENTITY_PLAYER then
+		local player = collider:ToPlayer()
 		if player:HasTrinket(TrinketType.TRINKET_ABYSSAL_PENNY, false) then
 			if collider.Type == EntityType.ENTITY_PLAYER then
 				if pickup.SubType ~= CoinSubType.COIN_STICKYNICKEL then
