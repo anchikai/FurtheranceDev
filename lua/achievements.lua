@@ -399,7 +399,7 @@ function mod:StartUnlocks()
 		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)
 	end
 	if mod.Unlocks.MiriamB.Mother == false then
-		game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_INFESTED_PENNY)
+		game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_ABYSSAL_PENNY)
 	end
 	if mod.Unlocks.MiriamB.Beast == false then
 		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_JAR_OF_MANNA)

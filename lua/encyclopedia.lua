@@ -1995,7 +1995,7 @@ Encyclopedia.AddItem({
 Encyclopedia.AddTrinket({
 	ModName = "Furtherance",
 	Class = "Furtherance",
-	ID = TrinketType.TRINKET_INFESTED_PENNY,
+	ID = TrinketType.TRINKET_ABYSSAL_PENNY,
 	WikiDesc = Wiki.InfestedPenny,
 })
 

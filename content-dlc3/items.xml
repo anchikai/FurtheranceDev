@@ -77,7 +77,7 @@
 	<trinket id="3" name="Grass" description="Go touch some" gfx="grass.png" /> <!-- Concept by Aeronaut! -->
 	<trinket id="4" name="Alabaster Scrap" description="FT" gfx="alabaster_scrap.png" />
 	<trinket id="5" name="Leah's Lock" description="No pain? no gain" gfx="leahs_lock.png" />
-	<trinket id="6" name="Infested Penny" description="Wealth of spiders" gfx="infested_penny.png" />
+	<trinket id="6" name="Abyssal Penny" description="Wealth of H2O" gfx="abyssal_penny.png" />
 	<trinket id="7" name="Saline Spray" description="Salty shots" gfx="saline_spray.png" />
 	<trinket id="8" name="Almagest Scrap" description="Chart the stars" gfx="almagest_scrap.png" />
 	<trinket id="9" name="Wormwood Leaf" description="Tastes bitter" gfx="wormwood_leaf.png" />
