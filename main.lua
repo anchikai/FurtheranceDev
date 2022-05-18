@@ -7,6 +7,7 @@ local game = Game()
 local rng = RNG()
 
 HeartSubType.HEART_MOON = 225
+SackSubType.SACK_GOLDEN = 3
 mod.DataTable = {}
 
 Furtherance.FailSound = SoundEffect.SOUND_EDEN_GLITCH
@@ -216,6 +217,7 @@ include("lua/pocket/Heartache.lua")
 
 -- Pickup Luas
 include("lua/pickups/MoonHeart.lua")
+include("lua/pickups/GoldenSack.lua")
 
 -- Floor Generation Luas
 --include("lua/rooms/NoahsArk.lua")
