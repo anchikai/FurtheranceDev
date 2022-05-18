@@ -22,7 +22,7 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.InitGoldenSack, PickupVariant.PICKUP_GRAB_BAG)
 
 function mod:GoldenSackRespawn(pickup, collider)
-    if collider.Type ~= EntityType.ENTITY_PLAYER or pickup.SubType == SackSubType.SACK_GOLDEN then return end
+    if collider.Type ~= EntityType.ENTITY_PLAYER or pickup.SubType ~= SackSubType.SACK_GOLDEN then return end
 
     local data = mod:GetData(pickup)
     local room = game:GetRoom()
