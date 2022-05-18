@@ -4,12 +4,13 @@ local rng = RNG()
 
 function mod:MakeGolden(pickup)
     local float = rng:RandomFloat()
-    if pickup.SubType == SackSubType.SACK_NORMAL and float <= 0.5 then
+    if pickup.SubType == SackSubType.SACK_NORMAL and float <= 0.1 then
         pickup:Morph(pickup.Type, PickupVariant.PICKUP_GRAB_BAG, SackSubType.SACK_GOLDEN)
         local data = mod:GetData(pickup)
         data.Despawn = 0.1
     end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.MakeGolden, PickupVariant.PICKUP_GRAB_BAG)
 
 function mod:SackTele(pickup, collider)
@@ -25,4 +26,5 @@ function mod:SackTele(pickup, collider)
         end
     end
 end
+
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.SackTele, PickupVariant.PICKUP_GRAB_BAG)
