@@ -19,9 +19,7 @@ end
 
 function mod:UseGoldCard(card, player, flags)
     if rng:RandomFloat() <= 0.5 then
-        if player:HasCollectible(CollectibleType.COLLECTIBLE_BLANK_CARD) then
-            player:SetCard(0, 0)
-        else
+        if player:HasCollectible(CollectibleType.COLLECTIBLE_BLANK_CARD) == false then
             player:AddCard(CARD_GOLDEN)
         end
     end
