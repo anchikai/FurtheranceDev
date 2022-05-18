@@ -2,11 +2,54 @@ local mod = Furtherance
 local game = Game()
 
 local MannaStatObjs = {
-	{ Name = "Damage", Flag = CacheFlag.CACHE_DAMAGE, Buff = 0.25 },
-	{ Name = "TearRange", Flag = CacheFlag.CACHE_RANGE, Buff = 0.5*40 },
-	{ Name = "ShotSpeed", Flag = CacheFlag.CACHE_SHOTSPEED, Buff = 0.25 },
-	{ Name = "MoveSpeed", Flag = CacheFlag.CACHE_SPEED, Buff = 0.10 },
-	{ Name = "Luck", Flag = CacheFlag.CACHE_LUCK, Buff = 0.5 }
+	{
+		Name = "Damage",
+		Flag = CacheFlag.CACHE_DAMAGE,
+		Buff = 0.25,
+		BaseStat = 3.5,
+		Capacity = math.huge,
+		Weight = 1,
+	},
+	{
+		Name = "TearRange",
+		Flag = CacheFlag.CACHE_RANGE,
+		Buff = 0.5 * 40,
+		BaseStat = 260,
+		Capacity = math.huge,
+		Weight = 1 / 40
+	},
+	{
+		Name = "ShotSpeed",
+		Flag = CacheFlag.CACHE_SHOTSPEED,
+		Buff = 0.25,
+		BaseStat = 1,
+		Capacity = math.huge,
+		Weight = 1
+	},
+	{
+		Name = "MoveSpeed",
+		Flag = CacheFlag.CACHE_SPEED,
+		Buff = 0.10,
+		BaseStat = 1,
+		Capacity = 2,
+		Weight = 1
+	},
+	{
+		Name = "Luck",
+		Flag = CacheFlag.CACHE_LUCK,
+		Buff = 0.5,
+		BaseStat = 0,
+		Capacity = math.huge,
+		Weight = 1
+	},
+	{
+		Name = "MaxFireDelay",
+		Flag = CacheFlag.CACHE_FIREDELAY,
+		Buff = 0.5,
+		BaseStat = 2.73,
+		Capacity = 120,
+		Weight = 1
+	}
 }
 
 local ALL_MANNA_FLAGS = 0
@@ -14,29 +57,37 @@ for _, obj in ipairs(MannaStatObjs) do
 	ALL_MANNA_FLAGS = ALL_MANNA_FLAGS | obj.Flag
 end
 
+local function getStatValue(player, statObj)
+	local statValue = player[statObj.Name]
+	if statObj.Flag == CacheFlag.CACHE_FIREDELAY then
+		statValue = mod:GetTearsFromFireDelay(statValue)
+	end
+
+	return statValue
+end
 
 -- Get effect to give
+---@param player EntityPlayer
 function mod:UseMannaJar(_, _, player)
 	local data = mod:GetData(player)
 	data.MannaCount = 0
 
-	if player:GetEffectiveMaxHearts() < 23 then
-		player:AddMaxHearts(2, true)
-		player:AddHearts(2, true)
+	if not player:HasFullHearts() then
+		player:AddHearts(2)
 		SFXManager():Play(SoundEffect.SOUND_VAMP_GULP, 1.25)
-		
+
 	elseif player:GetNumCoins() < 15 then
 		player:AddCoins(1)
 		SFXManager():Play(SoundEffect.SOUND_PENNYPICKUP, 1.5)
-		
+
 	elseif player:GetNumKeys() < 5 then
 		player:AddKeys(1)
 		SFXManager():Play(SoundEffect.SOUND_KEYPICKUP_GAUNTLET, 1.25)
-		
+
 	elseif player:GetNumBombs() < 5 then
 		player:AddBombs(1)
 		SFXManager():Play(SoundEffect.SOUND_FETUS_FEET, 1.5)
-		
+
 	else
 		local buffs = data.MannaBuffs
 		if buffs == nil then
@@ -46,12 +97,35 @@ function mod:UseMannaJar(_, _, player)
 			end
 			data.MannaBuffs = buffs
 		end
-		
+
 		-- Give stats
+
+		-- get the lowest relative stat
+		local lowestStatValue = math.huge
+		for _, stat in ipairs(MannaStatObjs) do
+			local statValue = getStatValue(player, stat)
+			local statWeight = stat.Weight * (statValue - stat.BaseStat)
+			if statValue < stat.Capacity and statWeight < lowestStatValue then
+				lowestStatValue = statWeight
+			end
+		end
+
+		-- get a list of stats to randomly pick from if multiple are the lowest
+		local possibleBuffs = {}
+		for i, stat in ipairs(MannaStatObjs) do
+			local statValue = getStatValue(player, stat)
+			local statWeight = stat.Weight * (statValue - stat.BaseStat)
+			if statValue < stat.Capacity and statWeight <= lowestStatValue then
+				table.insert(possibleBuffs, i)
+			end
+		end
+
+		-- pick one of the lowest stats
 		local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_JAR_OF_MANNA)
-		local buffChoice = rng:RandomInt(#MannaStatObjs) + 1
+		local possibleChoice = rng:RandomInt(#possibleBuffs) + 1
+		local buffChoice = possibleBuffs[possibleChoice]
 		buffs[buffChoice] = buffs[buffChoice] + 1
-		
+
 		SFXManager():Play(SoundEffect.SOUND_POWERUP_SPEWER, 1.25)
 		player:AddCacheFlags(ALL_MANNA_FLAGS)
 		player:EvaluateItems()
@@ -59,22 +133,31 @@ function mod:UseMannaJar(_, _, player)
 
 	return true
 end
+
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseMannaJar, CollectibleType.COLLECTIBLE_JAR_OF_MANNA)
 
 -- Stats --
 function mod:MannaBuffs(player, flag)
-    local data = mod:GetData(player)
-    if data.MannaBuffs == nil then return end
+	local data = mod:GetData(player)
+	if data.MannaBuffs == nil then return end
 
-    for i, buffCount in ipairs(data.MannaBuffs) do
-        local stat = MannaStatObjs[i]
+	if flag == CacheFlag.CACHE_FIREDELAY then
+		local tears = mod:GetTearsFromFireDelay(player.MaxFireDelay)
+		tears = tears + MannaStatObjs[6].Buff * data.MannaBuffs[6]
+		player.MaxFireDelay = mod:GetFireDelayFromTears(tears)
+		return
+	end
 
-        if stat.Flag == flag then
-            player[stat.Name] = player[stat.Name] + buffCount * stat.Buff
-            break
-        end
-    end
+	for i, buffCount in ipairs(data.MannaBuffs) do
+		local stat = MannaStatObjs[i]
+
+		if stat.Flag == flag then
+			player[stat.Name] = player[stat.Name] + buffCount * stat.Buff
+			break
+		end
+	end
 end
+
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.MannaBuffs)
 
 
@@ -94,6 +177,7 @@ function mod:SpawnMana(entity)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.SpawnMana)
 
 -- Effects --
@@ -139,7 +223,7 @@ function mod:MannaPickup(effect)
 			end
 
 			if slot ~= nil then
-				if data.MannaCount < 21 then
+				if data.MannaCount < 20 then
 					data.MannaCount = data.MannaCount + 1
 
 					if data.MannaCount == 20 then
@@ -161,4 +245,5 @@ function mod:MannaPickup(effect)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.MannaPickup, 7888)

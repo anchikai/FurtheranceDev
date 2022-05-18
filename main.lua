@@ -7,6 +7,7 @@ local game = Game()
 local rng = RNG()
 
 HeartSubType.HEART_MOON = 225
+SackSubType.SACK_GOLDEN = 3
 mod.DataTable = {}
 
 Furtherance.FailSound = SoundEffect.SOUND_EDEN_GLITCH
@@ -74,7 +75,7 @@ CollectibleType.COLLECTIBLE_JAR_OF_MANNA = Isaac.GetItemIdByName("Jar of Manna")
 CollectibleType.COLLECTIBLE_TAMBOURINE = Isaac.GetItemIdByName("Tambourine")
 CollectibleType.COLLECTIBLE_THE_DREIDEL = Isaac.GetItemIdByName("The Dreidel")
 CollectibleType.COLLECTIBLE_APOCALYPSE = Isaac.GetItemIdByName("Apocalypse")
-TrinketType.TRINKET_INFESTED_PENNY = Isaac.GetTrinketIdByName("Infested Penny")
+TrinketType.TRINKET_ABYSSAL_PENNY = Isaac.GetTrinketIdByName("Abyssal Penny")
 TrinketType.TRINKET_SALINE_SPRAY = Isaac.GetTrinketIdByName("Saline Spray")
 TrinketType.TRINKET_ALMAGEST_SCRAP = Isaac.GetTrinketIdByName("Almagest Scrap")
 TrinketType.TRINKET_WORMWOOD_LEAF = Isaac.GetTrinketIdByName("Wormwood Leaf")
@@ -174,7 +175,7 @@ include("lua/items/JarOfManna.lua")
 include("lua/items/Tambourine.lua")
 include("lua/items/TheDreidel.lua")
 include("lua/items/Apocalypse.lua")
-include("lua/items/InfestedPenny.lua")
+include("lua/items/AbyssalPenny.lua")
 include("lua/items/SalineSpray.lua")
 include("lua/items/AlmagestScrap.lua")
 include("lua/items/WormwoodLeaf.lua")
@@ -216,6 +217,7 @@ include("lua/pocket/Heartache.lua")
 
 -- Pickup Luas
 include("lua/pickups/MoonHeart.lua")
+include("lua/pickups/GoldenSack.lua")
 
 -- Floor Generation Luas
 --include("lua/rooms/NoahsArk.lua")
@@ -725,4 +727,12 @@ function mod:GetScreenTopLeft(offset)
 
 	return pos
 
+end
+
+function Furtherance:GetFireDelayFromTears(tearsPerSecond)
+	return 30 / tearsPerSecond - 1
+end
+
+function Furtherance:GetTearsFromFireDelay(fireDelay)
+	return 30 / (fireDelay + 1)
 end
