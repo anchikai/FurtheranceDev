@@ -41,9 +41,3 @@ function mod:EpitaphDied(entity)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.EpitaphDied, EntityType.ENTITY_PLAYER)
-
-function mod:Testing(player)
-    local data = mod:GetData(player)
-    print(data.EpitaphStage, data.DiedWithEpitaph)
-end
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.Testing)
