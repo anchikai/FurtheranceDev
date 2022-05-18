@@ -1,7 +1,6 @@
 local mod = Furtherance
 local game = Game()
 local CorkPop = Isaac.GetSoundIdByName("Cork")
-
 local tearCount = 0
 
 function mod:CorkTear(tear)
@@ -22,7 +21,6 @@ function mod:CorkTear(tear)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.CorkTear)
 
 function mod:ResetCork(continued)
@@ -30,5 +28,4 @@ function mod:ResetCork(continued)
         tearCount = 0
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.ResetCork)

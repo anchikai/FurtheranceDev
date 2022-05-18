@@ -81,6 +81,7 @@
 	<trinket id="8" name="Almagest Scrap" description="Chart the stars" gfx="almagest_scrap.png" />
 	<trinket id="9" name="Wormwood Leaf" description="Tastes bitter" gfx="wormwood_leaf.png" />
 	<trinket id="10" name="Escape Plan" description="When the going gets tough" gfx="escape_plan.png" />
+	<trinket id="10" name="Epitaph" description="You will remember this name." gfx="epitaph.png" />
 
 	<!-- Familiars -->
 	<familiar id="35" name="Binds of Devotion" description="Bound by love" gfx="binds_of_devotion.png" quality="2" persistent="true" />

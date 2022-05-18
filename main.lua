@@ -4,7 +4,6 @@ local json = require("json")
 local loading = {}
 local loadTimer
 local game = Game()
-local rng = RNG()
 
 HeartSubType.HEART_MOON = 225
 SackSubType.SACK_GOLDEN = 3
@@ -94,7 +93,7 @@ TrinketType.TRINKET_SALINE_SPRAY = Isaac.GetTrinketIdByName("Saline Spray")
 TrinketType.TRINKET_ALMAGEST_SCRAP = Isaac.GetTrinketIdByName("Almagest Scrap")
 TrinketType.TRINKET_WORMWOOD_LEAF = Isaac.GetTrinketIdByName("Wormwood Leaf")
 TrinketType.TRINKET_ESCAPE_PLAN = Isaac.GetTrinketIdByName("Escape Plan")
-
+TrinketType.TRINKET_EPITAPH = Isaac.GetTrinketIdByName("Epitaph")
 -- Cards/Runes/Pills/etc
 RUNE_SOUL_OF_LEAH = Isaac.GetCardIdByName("Soul of Leah")
 CARD_TWO_OF_SHIELDS = Isaac.GetCardIdByName("Two of Shields")
@@ -112,10 +111,6 @@ OBJ_ESSENCE_OF_DROUGHT = Isaac.GetCardIdByName("Essence of Drought")
 PILLEFFECT_HEARTACHE_UP = Isaac.GetPillEffectByName("Heartache Up")
 PILLEFFECT_HEARTACHE_DOWN = Isaac.GetPillEffectByName("Heartache Down")
 CARD_GOLDEN = Isaac.GetCardIdByName("Golden Card")
-
-function Furtherance:playFailSound()
-	SFXManager():Play(Furtherance.FailSound)
-end
 
 -- Item Luas
 include("lua/items/Esc.lua")
@@ -194,12 +189,10 @@ include("lua/items/BloodCyst.lua")
 include("lua/items/Polaris.lua")
 include("lua/items/EscapePlan.lua")
 include("lua/items/D9.lua")
-include("lua/items/D11.lua")
-
+include("lua/items/Epitaph.lua")
 -- Enemy luas
 include("lua/enemies/Hostikai.lua")
 include("lua/enemies/Illusioner.lua")
-
 -- Pocket Item Luas
 include("lua/pocket/SoulOfLeah.lua")
 include("lua/pocket/TwoOfShields.lua")
@@ -216,20 +209,20 @@ include("lua/pocket/EssenceOfProsperity.lua")
 include("lua/pocket/EssenceOfDrought.lua")
 include("lua/pocket/Heartache.lua")
 include("lua/pocket/GoldenCard.lua")
-
 -- Pickup Luas
 include("lua/pickups/MoonHeart.lua")
 include("lua/pickups/GoldenSack.lua")
-
 -- Floor Generation Luas
 --include("lua/rooms/NoahsArk.lua")
 --include("lua/rooms/HomeExit.lua")
-
 -- Custom Challenge Luas
 include("lua/challenges/WhereAmI.lua")
-
 -- Save Data/Unlocks
 --include("lua/achievements.lua")
+
+function Furtherance:playFailSound()
+	SFXManager():Play(Furtherance.FailSound)
+end
 
 function Furtherance:GetEntityIndex(entity)
 	if entity then
@@ -294,6 +287,8 @@ function mod:OnSave(isSaving)
 			saveData["player_" .. tostring(i + 1)].KTTKTempBuffs = data.KTTKTempBuffs
 			saveData["player_" .. tostring(i + 1)].MannaCount = data.MannaCount
 			saveData["player_" .. tostring(i + 1)].MannaBuffs = data.MannaBuffs
+			saveData["player_" .. tostring(i + 1)].DiedWithEpitaph = data.DiedWithEpitaph
+			saveData["player_" .. tostring(i + 1)].EpitaphStage = data.EpitaphStage
 			if player:GetName() == "Leah" then
 				saveData["player_" .. tostring(i + 1)].kills = data.leahkills
 			end
@@ -312,7 +307,6 @@ function mod:OnSave(isSaving)
 	save.Unlocks = mod.Unlocks
 	mod:SaveData(json.encode(save))
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.OnSave)
 
 function mod:OnLoad(isLoading)
@@ -403,6 +397,12 @@ function mod:OnLoad(isLoading)
 			if loadData["player_" .. tostring(i + 1)].MannaBuffs then
 				data.MannaBuffs = loadData["player_" .. tostring(i + 1)].MannaBuffs
 			end
+			if loadData["player_" .. tostring(i + 1)].DiedWithEpitaph then
+				data.DiedWithEpitaph = loadData["player_" .. tostring(i + 1)].DiedWithEpitaph
+			end
+			if loadData["player_" .. tostring(i + 1)].EpitaphStage then
+				data.EpitaphStage = loadData["player_" .. tostring(i + 1)].EpitaphStage
+			end
 		end
 		if loadData.Flipped then
 			mod.Flipped = loadData.Flipped
@@ -416,7 +416,6 @@ function mod:OnLoad(isLoading)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnLoad)
 
 function mod:LoadDataCacheEval(player)
@@ -425,7 +424,6 @@ function mod:LoadDataCacheEval(player)
 		player:EvaluateItems()
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.LoadDataCacheEval)
 
 -- Players
@@ -492,12 +490,9 @@ include("lua/piber.lua")
 local hideBerkano = false
 function mod:DoBigbookPause()
 	local player = Isaac.GetPlayer(0)
-
 	local sfx = SFXManager()
-
 	hideBerkano = true
 	player:UseCard(Card.RUNE_BERKANO, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER) --we undo berkano's effects later, this is done purely for the bigbook which our housing mod should have made blank if we got here
-
 	--remove the blue flies and spiders that just spawned
 	for _, bluefly in pairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_FLY, -1, false, false)) do
 		if bluefly:Exists() and bluefly.FrameCount <= 0 then
@@ -537,21 +532,18 @@ mod:AddCallback(ModCallbacks.MC_USE_CARD, function()
 	if not hideBerkano then
 		mod:DelayFunction(function()
 			local stuffWasSpawned = false
-
 			for _, bluefly in pairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_FLY, -1, false, false)) do
 				if bluefly:Exists() and bluefly.FrameCount <= 1 then
 					stuffWasSpawned = true
 					break
 				end
 			end
-
 			for _, bluespider in pairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_SPIDER, -1, false, false)) do
 				if bluespider:Exists() and bluespider.FrameCount <= 1 then
 					stuffWasSpawned = true
 					break
 				end
 			end
-
 			if stuffWasSpawned then
 				mod:DoBigbook("gfx/ui/giantbook/rune_07_berkano.png", nil, nil, nil, false)
 			end
@@ -566,18 +558,15 @@ local giantbookUI = Sprite()
 giantbookUI:Load("gfx/ui/giantbook/giantbook.anm2", true)
 local giantbookAnimation = "Appear"
 function mod:DoBigbook(spritesheet, sound, animationToPlay, animationFile, doPause)
-
 	if doPause == nil then
 		doPause = true
 	end
 	if doPause then
 		mod:DoBigbookPause()
 	end
-
 	if not animationToPlay then
 		animationToPlay = "Appear"
 	end
-
 	if not animationFile then
 		animationFile = "gfx/ui/giantbook/giantbook.anm2"
 		if animationToPlay == "Appear" or animationToPlay == "Shake" then
@@ -600,7 +589,6 @@ function mod:DoBigbook(spritesheet, sound, animationToPlay, animationFile, doPau
 			animationFile = "gfx/ui/giantbook/giantbookbig.anm2"
 		end
 	end
-
 	giantbookAnimation = animationToPlay
 	giantbookUI:Load(animationFile, true)
 	if spritesheet then
@@ -609,12 +597,10 @@ function mod:DoBigbook(spritesheet, sound, animationToPlay, animationFile, doPau
 	end
 	giantbookUI:Play(animationToPlay, true)
 	shouldRenderGiantbook = true
-
 	if sound then
 		local sfx = SFXManager()
 		sfx:Play(sound, 1, 0, false, 1)
 	end
-
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
@@ -651,7 +637,6 @@ function mod:GetScreenCenterPosition()
 	local shape = room:GetRoomShape()
 	local centerOffset = (room:GetCenterPos()) - room:GetTopLeftPos()
 	local pos = room:GetCenterPos()
-
 	if centerOffset.X > 260 then
 		pos.X = pos.X - 260
 	end
@@ -664,71 +649,50 @@ function mod:GetScreenCenterPosition()
 	if shape == RoomShape.ROOMSHAPE_LTR or shape == RoomShape.ROOMSHAPE_LTL then
 		pos.Y = pos.Y - 140
 	end
-
 	return Isaac.WorldToRenderPosition(pos, false)
-
 end
 
 function mod:GetScreenSize()
 	local pos = room:WorldToScreenPosition(Vector(0, 0)) - room:GetRenderScrollOffset() - game.ScreenShakeOffset
 	local rx = pos.X + 60 * 26 / 40
 	local ry = pos.Y + 140 * (26 / 40)
-
 	return Vector(rx * 2 + 13 * 26, ry * 2 + 7 * 26)
 end
 
 function mod:GetScreenCenter()
-
 	return mod:GetScreenSize() / 2
-
 end
 
 function mod:GetScreenBottomRight(offset)
-
 	offset = offset or 0
-
 	local pos = mod:GetScreenSize()
 	local hudOffset = Vector(-offset * 2.2, -offset * 1.6)
 	pos = pos + hudOffset
-
 	return pos
-
 end
 
 function mod:GetScreenBottomLeft(offset)
-
 	offset = offset or 0
-
 	local pos = Vector(0, mod:GetScreenBottomRight(0).Y)
 	local hudOffset = Vector(offset * 2.2, -offset * 1.6)
 	pos = pos + hudOffset
-
 	return pos
-
 end
 
 function mod:GetScreenTopRight(offset)
-
 	offset = offset or 0
-
 	local pos = Vector(mod:GetScreenBottomRight(0).X, 0)
 	local hudOffset = Vector(-offset * 2.2, offset * 1.2)
 	pos = pos + hudOffset
-
 	return pos
-
 end
 
 function mod:GetScreenTopLeft(offset)
-
 	offset = offset or 0
-
 	local pos = Vector.Zero
 	local hudOffset = Vector(offset * 2, offset * 1.2)
 	pos = pos + hudOffset
-
 	return pos
-
 end
 
 function Furtherance:GetFireDelayFromTears(tearsPerSecond)
