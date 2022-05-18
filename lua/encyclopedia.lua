@@ -1137,6 +1137,13 @@ local Wiki = {
 			{str = "Removes two broken hearts."},
 		},
 	},
+	GoldenCard = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, a random card effect will be used."},
+			{str = "- There is a 50% chance for the card to destroy itself."},
+		},
+	},
 
 	-- Characters
 	Leah = {
@@ -2197,6 +2204,15 @@ Encyclopedia.AddCard({
 	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Key Card", 0),
     WikiDesc = Wiki.KeyCard,
 	Name = "Key Card",
+})
+
+Encyclopedia.AddCard({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("Golden Card"),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Golden Card", 0),
+    WikiDesc = Wiki.GoldenCard,
+	Name = "Golden Card",
 })
 
 Encyclopedia.AddCard({

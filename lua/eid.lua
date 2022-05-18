@@ -346,7 +346,7 @@ EID:addCard(CARD_TRAP, "↑ Chains down the nearest enemy for 5 seconds, prevent
 EID:addCard(CARD_KEY, "{{Shop}} creates a trapdoor that leads to a second shop with a unique stock", "Key Card", "en_us")
 
 -- Golden Card
-EID:addCard(CARD_GOLDEN, "Random card effecrt#Destroys itself after a few uses", "Golden Card", "en_us")
+EID:addCard(CARD_GOLDEN, "Random card effect#Destroys itself after a few uses", "Golden Card", "en_us")
 
 -- Essence of Love
 EID:addCard(OBJ_ESSENCE_OF_LOVE, "Permanently charms all enemies in the room", "Essence of Love", "en_us")
