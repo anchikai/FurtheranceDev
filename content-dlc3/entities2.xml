@@ -29,6 +29,7 @@
 	<entity anm2path="essenceofdrought.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" name="Essence of Drought" numGridCollisionPoints="24" shadowSize="16" stageHP="0" variant="300" subtype="116" />
 	<entity anm2path="moonheart.anm2" baseHP="0" boss="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" name="Moon Heart" numGridCollisionPoints="24" shadowSize="17" stageHP="0" variant="10" subtype="225" />
 	<entity anm2path="goldensack.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" name="Golden Sack" numGridCollisionPoints="24" shadowSize="18" stageHP="0" subtype="3" variant="69" />
+	<entity anm2path="goldencard.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="12" friction="1" id="5" name="Golden Card" numGridCollisionPoints="24" shadowSize="16" stageHP="0" subtype="99" variant="300" />
 
 	<!-- Monsters -->
 	<entity anm2path="monsters/illusioner.anm2" baseHP="30" boss="0" champion="1" collisionDamage="1" collisionMass="5" collisionRadius="14" friction="1" id="200" name="Illusioner" numGridCollisionPoints="12" portrait="0" reroll="true" shadowSize="15" stageHP="0" variant="3070">

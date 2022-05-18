@@ -111,6 +111,7 @@ OBJ_ESSENCE_OF_PROSPERITY = Isaac.GetCardIdByName("Essence of Prosperity")
 OBJ_ESSENCE_OF_DROUGHT = Isaac.GetCardIdByName("Essence of Drought")
 PILLEFFECT_HEARTACHE_UP = Isaac.GetPillEffectByName("Heartache Up")
 PILLEFFECT_HEARTACHE_DOWN = Isaac.GetPillEffectByName("Heartache Down")
+CARD_GOLDEN = Isaac.GetCardIdByName("Golden Card")
 
 function Furtherance:playFailSound()
 	SFXManager():Play(Furtherance.FailSound)
@@ -214,6 +215,7 @@ include("lua/pocket/EssenceOfDeath.lua")
 include("lua/pocket/EssenceOfProsperity.lua")
 include("lua/pocket/EssenceOfDrought.lua")
 include("lua/pocket/Heartache.lua")
+include("lua/pocket/GoldenCard.lua")
 
 -- Pickup Luas
 include("lua/pickups/MoonHeart.lua")
