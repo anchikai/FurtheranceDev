@@ -1,8 +1,8 @@
 <AnimatedActor>
-	<Info CreatedBy="anchikai." CreatedOn="5/8/2022 4:44:25 PM" Version="11" Fps="30"/>
+	<Info CreatedBy="anchikai." CreatedOn="5/19/2022 4:56:30 PM" Version="12" Fps="30"/>
 	<Content>
 		<Spritesheets>
-			<Spritesheet Path="ui_moonheart.png" Id="0"/>
+			<Spritesheet Path="ui_furtheranceheart.png" Id="0"/>
 			<Spritesheet Path="ui_hearts.png" Id="1"/>
 		</Spritesheets>
 		<Layers>

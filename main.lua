@@ -6,6 +6,7 @@ local loadTimer
 local game = Game()
 
 HeartSubType.HEART_MOON = 225
+HeartSubType.HEART_ROCK = 226
 SackSubType.SACK_GOLDEN = 3
 mod.DataTable = {}
 
@@ -211,6 +212,7 @@ include("lua/pocket/Heartache.lua")
 include("lua/pocket/GoldenCard.lua")
 -- Pickup Luas
 include("lua/pickups/MoonHeart.lua")
+include("lua/pickups/RockHeart.lua")
 include("lua/pickups/GoldenSack.lua")
 -- Floor Generation Luas
 --include("lua/rooms/NoahsArk.lua")
@@ -241,6 +243,9 @@ function Furtherance:GetEntityIndex(entity)
 			end
 			if not mod.DataTable[index].FurtheranceMoonHeart then
 				mod.DataTable[index].FurtheranceMoonHeart = 0
+			end
+			if not mod.DataTable[index].FurtheranceRockHeart then
+				mod.DataTable[index].FurtheranceRockHeart = 0
 			end
 			if not mod.DataTable[index].lastEternalHearts or not mod.DataTable[index].lastMaxHearts then
 				mod.DataTable[index].lastEternalHearts = 0
@@ -471,9 +476,13 @@ end
 
 if MiniMapiItemsAPI then
 	local MoonHeartSprite = Sprite()
-	MoonHeartSprite:Load("gfx/ui/moonheart_icon.anm2", true)
+	MoonHeartSprite:Load("gfx/ui/heart_icon.anm2", true)
+	-- Moon Heart
 	MinimapAPI:AddIcon("MoonHeartIcon", MoonHeartSprite, "MoonHeart", 0)
-	MinimapAPI:AddPickup(225, "MoonHeartIcon", 5, 10, 225, MinimapAPI.PickupNotCollected, "hearts", 13000)
+	MinimapAPI:AddPickup(HeartSubType.HEART_MOON, "MoonHeartIcon", 5, 10, HeartSubType.HEART_MOON, MinimapAPI.PickupNotCollected, "hearts", 13000)
+	-- Rock Heart
+	MinimapAPI:AddIcon("RockHeartIcon", RockHeartSprite, "RockHeart", 0)
+	MinimapAPI:AddPickup(HeartSubType.HEART_ROCK, "RockHeartIcon", 5, 10, HeartSubType.HEART_ROCK, MinimapAPI.PickupNotCollected, "hearts", 13000)
 end
 
 if ModConfigMenu then
