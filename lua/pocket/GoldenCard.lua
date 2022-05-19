@@ -3,7 +3,7 @@ local game = Game()
 local rng = RNG()
 
 local function isCard(num)
-    return num < 32 or (num > 41 and num ~= 55 and num <= 80)
+    return num < 32 or (num > 41 and num ~= 55)
 end
 
 local allCards = {}
@@ -25,4 +25,5 @@ function mod:UseGoldCard(card, player, flags)
     end
     player:UseCard(pickCard(), UseFlag.USE_NOANIM)
 end
+
 mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseGoldCard, CARD_GOLDEN)
