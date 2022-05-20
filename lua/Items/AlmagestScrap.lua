@@ -34,7 +34,6 @@ function mod:ConvertToPlanetarium()
     game:ShowHallucination(0, BackdropType.PLANETARIUM)
     SFXManager():Stop(SoundEffect.SOUND_DEATH_CARD)
 
-    ---@type Entity[]
     local entities = Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, -1, false, false)
 
     local itemConfig = Isaac.GetItemConfig()
@@ -53,33 +52,26 @@ function mod:ConvertToPlanetarium()
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.ConvertToPlanetarium)
 
 function mod:ResetConvertedRoomsOnNewLevel()
     convertedRooms = {}
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.ResetConvertedRoomsOnNewLevel)
 
----@param isContinued boolean
 function mod:ResetConvertedRoomsOnRestart(isContinued)
     if not isContinued then
         convertedRooms = {}
     end
 end
-
 local pickupOffset = Vector(0, 20)
 
----@param pickup EntityPickup
 function mod:RenderBrokenHeartPrice(pickup)
     local data = mod:GetData(pickup)
     local room = game:GetRoom()
-
     if data.BrokenHeartsPrice then
         local sprite = Sprite()
         sprite:Load("gfx/ui/ui_broken_heart_prices.anm2", true)
-
         if data.BrokenHeartsPrice == 1 then
             sprite:SetFrame("One", 0)
         elseif data.BrokenHeartsPrice == 2 then
@@ -87,11 +79,9 @@ function mod:RenderBrokenHeartPrice(pickup)
         elseif data.BrokenHeartsPrice == 3 then
             sprite:SetFrame("Three", 0)
         end
-
         sprite:Render(room:WorldToScreenPosition(pickup.Position) + pickupOffset, Vector.Zero, Vector.Zero)
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, mod.RenderBrokenHeartPrice)
 
 function mod:PlanetariumPool(pool, decrease, seed)
@@ -105,7 +95,6 @@ function mod:PlanetariumPool(pool, decrease, seed)
         Rerolled = false
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, mod.PlanetariumPool)
 
 local qualityPriceMap = {
@@ -151,5 +140,4 @@ function mod:PrePickupCollision(pickup, collider)
     end
 
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.PrePickupCollision)

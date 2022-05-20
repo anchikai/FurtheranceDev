@@ -2,7 +2,6 @@ local mod = Furtherance
 
 local fluxTearColor = Color(0.1, 0.5, 0.75, 0.75, 0, 0, 0.25)
 
----@param tear EntityTear
 function mod:AddFluxTears(tear)
     local data = mod:GetData(tear)
     if data.AppliedTearFlags == nil then
@@ -23,7 +22,6 @@ function mod:AddFluxTears(tear)
     extraData.AppliedTearFlags.PharaohCat = data.AppliedTearFlags.PharaohCat
     extraData.AppliedTearFlags.Flux = 2
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, mod.AddFluxTears)
 
 function mod:FluxTears(tear)
@@ -37,15 +35,12 @@ function mod:FluxTears(tear)
         tear.Velocity = player.Velocity * (2 + -player.ShotSpeed * 1.25)
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, mod.FluxTears)
 
----@param tear EntityTear
 function mod:AddFiredByPlayerField(tear)
     local data = mod:GetData(tear)
     data.FiredByPlayer = true
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.AddFiredByPlayerField)
 
 function mod:FluxFlags(player, flag)
@@ -58,5 +53,4 @@ function mod:FluxFlags(player, flag)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.FluxFlags)

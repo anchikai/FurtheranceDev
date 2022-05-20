@@ -24,7 +24,6 @@ for _, buff in ipairs(BuffWeights) do
     TotalBuffWeight = TotalBuffWeight + buff.Weight
 end
 
----@param player EntityPlayer
 local function pickColorBuff(player)
     local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_POLARIS)
     local buffChoice = rng:RandomFloat() * TotalBuffWeight
@@ -36,11 +35,9 @@ local function pickColorBuff(player)
             break
         end
     end
-
     return chosenBuff
 end
 
----@param player EntityPlayer
 local function updatePolarisBuffForPlayer(player)
     local data = mod:GetData(player)
 
@@ -50,9 +47,7 @@ local function updatePolarisBuffForPlayer(player)
             player:AddMaxHearts(-1, false)
         end
     end
-
     data.PolarisBuff = pickColorBuff(player)
-
     -- handling new state
     if data.PolarisBuff.ColorEnum == ColorEnum.YELLOW then
         player:AddMaxHearts(1, false)
@@ -70,22 +65,17 @@ function mod:UpdatePolarisBuffs()
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.UpdatePolarisBuffs)
 
----@param player EntityPlayer
----@param flag integer
 function mod:AddPlayerBuffs(player, flag)
     if flag == CacheFlag.CACHE_FAMILIARS then
         player:CheckFamiliar(FamiliarVariantPolaris, player:GetCollectibleNum(CollectibleType.COLLECTIBLE_POLARIS, false), player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_POLARIS), Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_POLARIS), 0)
     end
-
     local data = mod:GetData(player)
     if player:HasCollectible(CollectibleType.COLLECTIBLE_POLARIS) then
         if data.PolarisBuff == nil then
             updatePolarisBuffForPlayer(player)
         end
-
         local colorEnum = data.PolarisBuff.ColorEnum
         if colorEnum == ColorEnum.RED then
             if flag == CacheFlag.CACHE_SHOTSPEED then
@@ -118,10 +108,8 @@ function mod:AddPlayerBuffs(player, flag)
         data.PolarisBuff = nil
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.AddPlayerBuffs)
 
----@param tear EntityTear
 function mod:PolarisTearBuffs(tear)
     local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
     if player == nil or not player:HasCollectible(CollectibleType.COLLECTIBLE_POLARIS) then return end
@@ -142,11 +130,8 @@ function mod:PolarisTearBuffs(tear)
         tear.Scale = tear.Scale * 2
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.PolarisTearBuffs)
 
----@param tear EntityTear
----@param collider Entity
 function mod:PolarisTearHit(tear, collider)
     local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
     if player == nil or not player:HasCollectible(CollectibleType.COLLECTIBLE_POLARIS) then return end
@@ -155,35 +140,26 @@ function mod:PolarisTearHit(tear, collider)
     if data.PolarisBuff == nil then
         updatePolarisBuffForPlayer(player)
     end
-
     if data.PolarisBuff.ColorEnum == ColorEnum.BLUE then
         if collider:IsActiveEnemy(false) and collider:IsVulnerableEnemy() then
             collider:TakeDamage(10, DamageFlag.DAMAGE_FIRE, EntityRef(tear), 0)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, mod.PolarisTearHit)
 
----@param familiar EntityFamiliar
 function mod:PolarisFamiliarInit(familiar)
     familiar.IsFollower = true
 end
-
 mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, mod.PolarisFamiliarInit, FamiliarVariantPolaris)
 
----@param familiar EntityFamiliar
 function mod:PolarisFamiliarUpdate(familiar)
     local player = familiar.SpawnerEntity:ToPlayer()
-
     local data = mod:GetData(player)
     if data.PolarisBuff == nil then
         updatePolarisBuffForPlayer(player)
     end
-
     familiar:SetColor(data.PolarisBuff.Color, 0, 0, false, false)
-
     familiar:FollowParent()
 end
-
 mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, mod.PolarisFamiliarUpdate, FamiliarVariantPolaris)

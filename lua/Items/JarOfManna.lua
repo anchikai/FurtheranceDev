@@ -67,7 +67,6 @@ local function getStatValue(player, statObj)
 end
 
 -- Get effect to give
----@param player EntityPlayer
 function mod:UseMannaJar(_, _, player)
 	local data = mod:GetData(player)
 	data.MannaCount = 0
@@ -133,7 +132,6 @@ function mod:UseMannaJar(_, _, player)
 
 	return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseMannaJar, CollectibleType.COLLECTIBLE_JAR_OF_MANNA)
 
 -- Stats --
@@ -157,7 +155,6 @@ function mod:MannaBuffs(player, flag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.MannaBuffs)
 
 
@@ -177,7 +174,6 @@ function mod:SpawnMana(entity)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.SpawnMana)
 
 -- Effects --
@@ -245,5 +241,4 @@ function mod:MannaPickup(effect)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.MannaPickup, 7888)

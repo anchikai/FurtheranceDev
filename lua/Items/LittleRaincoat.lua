@@ -1,8 +1,6 @@
 local mod = Furtherance
 local game = Game()
 
----@param player EntityPlayer
----@param flag integer
 function mod:GetRaincoat(player, flag)
     local numRaincoats = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_LITTLE_RAINCOAT)
     if numRaincoats > 0 then
@@ -21,7 +19,6 @@ function mod:RerollFood(pickup)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.RerollFood, PickupVariant.PICKUP_COLLECTIBLE)
 
 local damageCounter = 0
@@ -35,7 +32,6 @@ function mod:RaincoatDamage(entity)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.RaincoatDamage, EntityType.ENTITY_PLAYER)
 
 function mod:ResetCounter(continued)
@@ -43,5 +39,4 @@ function mod:ResetCounter(continued)
         damageCounter = 0
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.ResetCounter)

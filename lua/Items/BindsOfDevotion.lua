@@ -3,8 +3,6 @@ local game = Game()
 
 local PLAYERTYPE_FAKE_JACOB = Isaac.GetPlayerTypeByName("FakeJacob", false)
 
----@param player EntityPlayer
----@param isJacob boolean
 function mod:addJacob(player, isJacob)
 	local id = game:GetNumPlayers() - 1
 	Isaac.ExecuteCommand('addplayer '..PLAYERTYPE_FAKE_JACOB..' '..player.ControllerIndex)
@@ -42,8 +40,6 @@ function mod:addJacob(player, isJacob)
 	return jacob
 end
 
----@param player EntityPlayer
----@param flag CacheFlag
 function mod:FakeJacobStats(player, flag)
 	local data = mod:GetData(player)
 	if player:GetPlayerType() == PLAYERTYPE_FAKE_JACOB then -- If the player is Peter it will apply his stats
@@ -66,8 +62,6 @@ function mod:FakeJacobStats(player, flag)
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.FakeJacobStats)
 
----@param player EntityPlayer
----@param flag CacheFlag
 function mod:addNewJacob(player, flag)
 	local data = mod:GetData(player)
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_BINDS_OF_DEVOTION) and data.HasBinds ~= true then
@@ -78,7 +72,6 @@ function mod:addNewJacob(player, flag)
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.addNewJacob)
 
----@param player EntityPlayer
 function mod:preUseItem(_, _, player) 
 	local data = mod:GetData(player)
 	if data.FromBinds then -- for some reason Jacob/Esau can use items so (not me) has to do this

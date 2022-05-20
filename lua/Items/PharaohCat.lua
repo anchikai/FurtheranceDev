@@ -12,7 +12,6 @@ local TearPositions = {
 	Vector(-30, 0),
 }
 
----@param tear EntityTear
 function mod:PyramidTears(tear)
 	local data = mod:GetData(tear)
 	if data.AppliedTearFlags == nil then
@@ -35,7 +34,6 @@ function mod:PyramidTears(tear)
 		extraData.AppliedTearFlags.Flux = data.AppliedTearFlags.Flux
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, mod.PyramidTears)
 
 -- directional offset from original direction when shot to the right
@@ -45,7 +43,6 @@ local LaserDirections = {
 	Vector(4, 1),
 	Vector(4, -1),
 }
-
 function mod:PyramidLasers(laser)
 	if laser.FrameCount ~= 1 then return end
 
@@ -62,7 +59,6 @@ function mod:PyramidLasers(laser)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, mod.PyramidLasers)
 
 function mod:PyramidBombs(bomb)
@@ -74,7 +70,6 @@ function mod:PyramidBombs(bomb)
 		player:FireTear(bomb.Position + Vector(30, 0):Rotated(direction), bomb.Velocity, true, false, true, player, 1)
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, mod.PyramidBombs)
 
 function mod:PharaohCatDebuff(player, cacheFlag)
@@ -84,5 +79,4 @@ function mod:PharaohCatDebuff(player, cacheFlag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.PharaohCatDebuff)
