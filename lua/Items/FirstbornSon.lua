@@ -283,7 +283,7 @@ function mod:UpdateBossRushWaveCounter()
             end
 
             if UpdatedBossRush then
-                local updatedTypeFlags = spawnedFlags[entity.Type]
+                local updatedTypeFlags = updatedSpawnedFlags[entity.Type]
                 if updatedTypeFlags and updatedTypeFlags[entity.Variant] == false then
                     newSpawns = newSpawns + 1
                     updatedTypeFlags[entity.Variant] = true
@@ -395,6 +395,9 @@ function mod:FirstbornSonInit(familiar)
     local data = mod:GetData(familiar)
     data.ShotTear = false
     data.UnclearDelay = 30
+    data.OldGreedWave = level.GreedModeWave
+    data.OldBossRushWave = bossRushWave
+
     familiar.IsFollower = true
 end
 
@@ -443,9 +446,6 @@ local function shootFatalTear(familiar, target)
     end, 10, nil, nil, true)
 end
 
-local oldGreedWave = level.GreedModeWave
-local oldBossRushWave = bossRushWave
-
 ---@param familiar EntityFamiliar
 function mod:FirstbornSonUpdate(familiar)
     familiar:FollowParent()
@@ -455,7 +455,7 @@ function mod:FirstbornSonUpdate(familiar)
 
     -- animation
 
-    if data.ShootingAngle then
+    if data.ShootingDirection then
         familiar:PlayShootAnim(data.ShootingDirection)
     elseif familiar.Velocity:LengthSquared() >= 10 then
         familiar:PlayFloatAnim(getDirectionFromAngle(familiar.Velocity:GetAngleDegrees()))
@@ -465,7 +465,7 @@ function mod:FirstbornSonUpdate(familiar)
 
     if game:IsGreedMode() then
         -- room is never clear during greed mode waves
-        if room:IsClear() or oldGreedWave == level.GreedModeWave then
+        if room:IsClear() or data.OldGreedWave == level.GreedModeWave then
             data.ShotTear = false
             data.UnclearDelay = 30
         elseif data.UnclearDelay > 0 then
@@ -473,12 +473,12 @@ function mod:FirstbornSonUpdate(familiar)
         elseif not data.ShotTear then
             local target = getClosestHighestHPEnemyFavorNonBoss(familiar)
             if target then
-                oldGreedWave = level.GreedModeWave
+                data.OldGreedWave = level.GreedModeWave
                 shootFatalTear(familiar, target)
             end
         end
     elseif room:GetType() == RoomType.ROOM_BOSSRUSH then
-        if oldBossRushWave == bossRushWave then
+        if data.OldBossRushWave == bossRushWave then
             data.ShotTear = false
             data.UnclearDelay = 30
         elseif data.UnclearDelay > 0 then
@@ -486,7 +486,7 @@ function mod:FirstbornSonUpdate(familiar)
         elseif not data.ShotTear then
             local target = getClosestHighestHPEnemyFavorNonBoss(familiar)
             if target then
-                oldBossRushWave = bossRushWave
+                data.OldBossRushWave = bossRushWave
                 shootFatalTear(familiar, target)
             end
         end
