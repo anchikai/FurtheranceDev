@@ -9,12 +9,6 @@ local rng = RNG()
 
 function Furtherance.AddRockHearts(player, amount, data) -- data is optional
 	local index = mod:GetEntityIndex(player)
-	if amount % 2 == 0 then
-		if player:GetSoulHearts() % 2 ~= 0 then
-			amount = amount - 1 -- if you already have a half heart, a new full rock heart always replaces it instead of adding another heart
-		end
-	end
-	
 	if player:CanPickBlackHearts() or amount < 0 then
 		player:AddBlackHearts(amount)
 	end
@@ -42,7 +36,7 @@ function mod:RockHeartCollision(entity, collider)
 			player = player:GetMainTwin()
 		end
 		local data = mod.DataTable[mod:GetEntityIndex(player)]
-		if data.FurtheranceRockHeart < (player:GetHeartLimit() - player:GetEffectiveMaxHearts()) and data.FurtheranceRockHeart < 2 then
+		if data.FurtheranceRockHeart < (player:GetHeartLimit() - player:GetEffectiveMaxHearts()) and data.FurtheranceRockHeart < 24 then
 			if entity.SubType == HeartSubType.HEART_ROCK then
 				if player:GetPlayerType() == PlayerType.PLAYER_BETHANY or player:GetName() == "PeterB" then
 					return false
