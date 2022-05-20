@@ -1,170 +1,195 @@
 local mod = Furtherance
 local game = Game()
 
-function mod.SetCanShoot(player, canshoot) -- Funciton Credit: im_tem
+local EffectVariantTarget = Isaac.GetEntityVariantByName("Spiritual Wound Target")
+
+---@param player EntityPlayer
+---@return boolean
+local function hasItem(player)
+	return player ~= nil and (player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND) or player:GetName() == "MiriamB")
+end
+
+---@param player EntityPlayer
+---@param canShoot boolean
+local function setCanShoot(player, canShoot) -- Funciton Credit: im_tem
 	local oldchallenge = game.Challenge
 
-	game.Challenge = canshoot and 0 or 6
+	game.Challenge = canShoot and Challenge.CHALLENGE_NULL or Challenge.CHALLENGE_SOLAR_SYSTEM
 	player:UpdateCanShoot()
 	game.Challenge = oldchallenge
 end
 
-function mod:GetSpiritualWound(player, flag)
-	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)) or player:GetName() == "MiriamB" then
-		mod.SetCanShoot(player, false)
+---@param player EntityPlayer
+function mod:GetSpiritualWound(player)
+	if hasItem(player) then
+		setCanShoot(player, false)
 	else
-		mod.SetCanShoot(player, true)
+		setCanShoot(player, true)
 	end
 end
 
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetSpiritualWound)
 
+---@param source Entity
+---@param targetPos Vector
+local function fireSpiritualWound(source, targetPos)
+	local room = game:GetRoom()
+	-- Set laser start and end position
+	local sourcePos = source.Position
+	local laser = EntityLaser.ShootAngle(2, sourcePos, ((targetPos - sourcePos):GetAngleDegrees()), 1, Vector(0, source.SpriteScale.Y * -32), source)
+	local _, endPos = room:CheckLine(sourcePos, targetPos, 3)
+	laser:SetMaxDistance(sourcePos:Distance(targetPos) + 60)
+
+	-- Extra parameters
+	laser.Mass = 0
+	laser.TearFlags = laser.TearFlags | TearFlags.TEAR_HOMING
+	laser.CollisionDamage = -100 -- they still do 0.1 damage........
+
+	--laser_ent_pair.laser:GetSprite():ReplaceSpritesheet(0, "gfx/effects/effect_018_tractorbeamlaser.png")
+	--laser_ent_pair.laser:GetSprite():LoadGraphics()
+end
+
+---@param player EntityPlayer
 function mod:EnemyTethering(player)
 	local data = mod:GetData(player)
 	local room = game:GetRoom()
 
-	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)) or player:GetName() == "MiriamB" then
-		-- Target (credit to lambchop_is_ok for the base for this)
-		local b_left = Input.IsActionPressed(ButtonAction.ACTION_SHOOTLEFT, player.ControllerIndex)
-		local b_right = Input.IsActionPressed(ButtonAction.ACTION_SHOOTRIGHT, player.ControllerIndex)
-		local b_up = Input.IsActionPressed(ButtonAction.ACTION_SHOOTUP, player.ControllerIndex)
-		local b_down = Input.IsActionPressed(ButtonAction.ACTION_SHOOTDOWN, player.ControllerIndex)
-		local b_drop = Input.IsActionPressed(ButtonAction.ACTION_DROP, player.ControllerIndex)
-		local isAttacking = (b_down or b_right or b_left or b_up)
+	if not hasItem(player) then return end
 
-		-- Reset data on new room
-		if data.spiritualWoundTarget and not data.spiritualWoundTarget:Exists() then
-			data.spiritualWoundTarget = nil
+	-- Target (credit to lambchop_is_ok for the base for this)
+	local b_left = Input.GetActionValue(ButtonAction.ACTION_SHOOTLEFT, player.ControllerIndex)
+	local b_right = Input.GetActionValue(ButtonAction.ACTION_SHOOTRIGHT, player.ControllerIndex)
+	local b_up = Input.GetActionValue(ButtonAction.ACTION_SHOOTUP, player.ControllerIndex)
+	local b_down = Input.GetActionValue(ButtonAction.ACTION_SHOOTDOWN, player.ControllerIndex)
+	local isAttacking = (b_down + b_right + b_left + b_up) > 0
+
+	-- Create target
+	if isAttacking and not data.spiritualWoundTarget then
+		---@type EntityEffect
+		local target = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariantTarget, 0, player.Position, Vector.Zero, player):ToEffect()
+		data.spiritualWoundTarget = target
+
+		target.Parent = player
+		target.SpawnerEntity = player
+		target.DepthOffset = -100
+		target:GetSprite():Play("Blink", true)
+		target.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_WALLS
+	end
+
+	-- If target exists
+	if not data.spiritualWoundTarget then return end
+	if not data.spiritualWoundTarget:Exists() then
+		data.spiritualWoundTarget = nil
+		return
+	end
+
+	local target = data.spiritualWoundTarget
+	local targetData = mod:GetData(target)
+	targetData.snapCooldown = nil
+
+	-- Movement
+	targetData.vector = Vector(b_right - b_left, b_down - b_up)
+
+	-- Snap to closest enemy if player isn't moving target
+	if not isAttacking then
+		if targetData.cooldown <= 0 and targetData.enemyTarget and mod:GetData(targetData.enemyTarget).spiritualWound then
+			--target.Position = targetData.enemyTarget.Position
+			if target.Position:Distance(targetData.enemyTarget.Position) > 10 then
+				target.Velocity = (target.Velocity + ((targetData.enemyTarget.Position - target.Position):Normalized() * 75 - target.Velocity) * 0.25)
+			else
+				target.Velocity = targetData.enemyTarget.Velocity
+				target.Position = targetData.enemyTarget.Position
+			end
+		else
+			targetData.cooldown = targetData.cooldown - 1
 		end
+	else
+		targetData.cooldown = 15
+	end
 
-		-- Create target
-		if isAttacking and not data.spiritualWoundTarget then
-			data.spiritualWoundTarget = Isaac.Spawn(1000, 7886, 0, player.Position, Vector.Zero, player):ToEffect()
-			local target = data.spiritualWoundTarget
+	target.Velocity = (target.Velocity + (targetData.vector * (player.ShotSpeed * 6.25) - target.Velocity) * 0.5)
 
-			target.Parent = player
-			target.SpawnerEntity = player
-			target.DepthOffset = -100
-			target:GetSprite():Play("Blink", true)
-			target.GridCollisionClass = EntityGridCollisionClass.GRIDCOLL_WALLS
+	if room:GetAliveBossesCount() + room:GetAliveEnemiesCount() <= 0 then return end
+
+	-- Damaging
+
+	-- Detect which enemy is the closest to the target
+	local closestEnemyDistance = player.TearRange ^ 2
+	local closestEnemy
+	for _, entity in ipairs(Isaac.FindInRadius(target.Position, player.TearRange, EntityPartition.ENEMY)) do
+		if entity:IsVulnerableEnemy() and entity.Type ~= EntityType.ENTITY_FIREPLACE and not entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY | EntityFlag.FLAG_PERSISTENT) then
+			local distance = entity.Position:DistanceSquared(target.Position)
+			if distance < closestEnemyDistance then
+				closestEnemy = entity
+				closestEnemyDistance = distance
+			end
 		end
+	end
 
-		-- If target exists
-		if data.spiritualWoundTarget and data.spiritualWoundTarget:Exists() then
-			local target = data.spiritualWoundTarget
-			local targetData = mod:GetData(target)
-			targetData.snapCooldown = nil
-
-			-- Movement
-			if targetData.vector == nil then
-				targetData.vector = Vector(0, 0)
+	-- increments/decrements a count of items targeting this entity
+	-- Only used to work with multiplayer
+	if targetData.enemyTarget and targetData.enemyTarget:Exists() then
+		local oldEnemyData = mod:GetData(targetData.enemyTarget)
+		oldEnemyData.spiritualWound = oldEnemyData.spiritualWound and oldEnemyData.spiritualWound > 1 and oldEnemyData.spiritualWound - 1 or nil
+		if oldEnemyData.spiritualWound ~= nil then
+			if oldEnemyData.spiritualWound > 1 then
+				oldEnemyData.spiritualWound = oldEnemyData.spiritualWound - 1
+			else
+				oldEnemyData.spiritualWound = nil
 			end
-			if not (b_left or b_right) then
-				targetData.vector.X = 0
-			end
-			if not (b_up or b_down) then
-				targetData.vector.Y = 0
-			end
+		end
+	end
 
-			if b_left and not b_right then
-				targetData.vector.X = -1
-			elseif b_right then
-				targetData.vector.X = 1
-			end
-			if b_up and not b_down then
-				targetData.vector.Y = -1
-			elseif b_down then
-				targetData.vector.Y = 1
-			end
+	if closestEnemy then
+		local newEnemyData = mod:GetData(closestEnemy)
+		newEnemyData.spiritualWound = (newEnemyData.spiritualWound or 0) + 1
+		targetData.enemyTarget = closestEnemy
+	end
 
-			if targetData.vector ~= nil then
-				-- Snap to closest enemy if player isn't moving target
-				if not isAttacking then
-					if targetData.cooldown <= 0 and targetData.enemyTarget and mod:GetData(targetData.enemyTarget).spiritualWound == true then
-						--target.Position = targetData.enemyTarget.Position
-						if target.Position:Distance(targetData.enemyTarget.Position) > 10 then
-							target.Velocity = (target.Velocity + ((targetData.enemyTarget.Position - target.Position):Normalized() * 75 - target.Velocity) * 0.25)
-						else
-							target.Velocity = targetData.enemyTarget.Velocity
-							target.Position = targetData.enemyTarget.Position
-						end
-					else
-						targetData.cooldown = targetData.cooldown - 1
-					end
-				else
-					targetData.cooldown = 15
-				end
+	-- Damage the closest enemy every (player fire delay) frames with 0.33x of the players damage
+	if targetData.enemyTarget ~= nil and game:GetFrameCount() % math.floor(player.MaxFireDelay + 0.5) == 0 then
+		targetData.enemyTarget:TakeDamage(player.Damage * 0.33, DamageFlag.DAMAGE_NO_MODIFIERS, EntityRef(player), 1)
+		targetData.enemyTarget:SetColor(Color(1, 0, 0, 1, 0, 0, 0), 12, 1, false, false)
 
-				target.Velocity = (target.Velocity + (targetData.vector * (player.ShotSpeed * 6.25) - target.Velocity) * 0.5)
-			end
-
-			-- Damaging
-			if (room:GetAliveBossesCount() + room:GetAliveEnemiesCount() > 0) then
-				local ClosestEnemyDistance = 9999999999
-
-				-- Detect which enemy is the closest to the target
-				for _, entity in ipairs(Isaac.FindInRadius(target.Position, player.TearRange, EntityPartition.ENEMY)) do
-					if entity:IsVulnerableEnemy() and entity.Type ~= EntityType.ENTITY_FIREPLACE and (not entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY | EntityFlag.FLAG_PERSISTENT)) then
-						local NewDistance = entity.Position:DistanceSquared(target.Position)
-						if NewDistance < ClosestEnemyDistance then
-							targetData.enemyTarget = entity
-							ClosestEnemyDistance = NewDistance
-							mod:GetData(entity).spiritualWound = true
-						end
-					end
-				end
-
-				local function spiritualWoundLaser(source, targetpos)
-					-- Set laser start and end position
-					local laser_source_pos = source.Position
-					local laser_ent_pair = { laser = EntityLaser.ShootAngle(2, laser_source_pos, ((targetpos - laser_source_pos):GetAngleDegrees()), 1, Vector(0, source.SpriteScale.Y * -32), source), source }
-					local _, endPos = room:CheckLine(laser_source_pos, targetpos, 3)
-					laser_ent_pair.laser:SetMaxDistance(laser_source_pos:Distance(targetpos * 1.2))
-
-					-- Extra parameters
-					laser_ent_pair.laser.Mass = 0
-					laser_ent_pair.laser.TearFlags = laser_ent_pair.laser.TearFlags | TearFlags.TEAR_HOMING
-					laser_ent_pair.laser.CollisionDamage = -100 -- they still do 0.1 damage........
-
-					--laser_ent_pair.laser:GetSprite():ReplaceSpritesheet(0, "gfx/effects/effect_018_tractorbeamlaser.png")
-					--laser_ent_pair.laser:GetSprite():LoadGraphics()
-				end
-
-				-- Damage the closest enemy every (player fire delay) frames with 0.33x of the players damage
-				if targetData.enemyTarget ~= nil or targetData.enemyTarget.Type == EntityType.ENTITY_DUMMY and game:GetFrameCount() % player.MaxFireDelay == 0 then
-					targetData.enemyTarget:TakeDamage(player.Damage * 0.33, DamageFlag.DAMAGE_NO_MODIFIERS, EntityRef(player), 1)
-					targetData.enemyTarget:SetColor(Color(1, 0, 0, 1, 0, 0, 0), 12, 1, false, false)
-
-					-- 3 of them at the same time look the best
-					for _ = 1, 3 do
-						spiritualWoundLaser(player, targetData.enemyTarget.Position + Vector(math.random(-75, 75), math.random(-75, 75)))
-					end
-				end
-			end
+		-- 3 of them at the same time look the best
+		for _ = 1, 3 do
+			local positionOffset = Vector(math.random(-75, 75), math.random(-75, 75))
+			fireSpiritualWound(player, targetData.enemyTarget.Position + positionOffset)
 		end
 	end
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.EnemyTethering)
 
-function mod:SpiritualKill(entity)
+function mod:ResetSpiritualWoundTarget()
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = game:GetPlayer(i)
+		local data = mod:GetData(player)
+		if data.spiritualWoundTarget and not data.spiritualWoundTarget:Exists() then
+			data.spiritualWoundTarget = nil
+		end
+	end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.ResetSpiritualWoundTarget)
+
+---@param entity Entity
+function mod:SpiritualKill(entity)
+	local data = mod:GetData(entity)
+	if data.spiritualWound == nil then return end
+
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = game:GetPlayer(i)
+
 		local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)
-		if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)) or player:GetName() == "MiriamB" then
-			if entity.Type ~= EntityType.ENTITY_FIREPLACE and (not entity:HasEntityFlags(EntityFlag.FLAG_FRIENDLY | EntityFlag.FLAG_PERSISTENT)) then
-				if rng:RandomInt(20) == 1 then
-					SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
-					Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 0, player.Position, Vector.Zero, player)
-					player:AddHearts(1)
-				end
-			end
+		if hasItem(player) and rng:RandomFloat() <= 0.05 then
+			SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
+			Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 0, player.Position, Vector.Zero, player)
+			player:AddHearts(1)
 		end
 	end
 
-	if mod:GetData(entity).spiritualWound then
-		mod:GetData(entity).spiritualWound = false
-	end
+	data.spiritualWound = nil
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.SpiritualKill)
