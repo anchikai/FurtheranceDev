@@ -17,6 +17,17 @@ local function pickCard()
     return allCards[rng:RandomInt(#allCards) + 1]
 end
 
+function mod:SpawnGoldenCard(entityType, variant, subType, _, _, _, seed)
+    if entityType == EntityType.ENTITY_PICKUP and variant == PickupVariant.PICKUP_TAROTCARD then
+        if rng:RandomFloat() <= 0.1 then
+            print("gold")
+            return { entityType, variant, CARD_GOLDEN, seed }
+        end
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, mod.SpawnGoldenCard)
+
 function mod:UseGoldCard(card, player, flags)
     if rng:RandomFloat() <= 0.5 then
         if player:HasCollectible(CollectibleType.COLLECTIBLE_BLANK_CARD) == false then
