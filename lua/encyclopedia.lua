@@ -1015,6 +1015,66 @@ local Wiki = {
 			{str = "The tears fired from the Cyst deal 3.5 damage."},
 		},
 	},
+	LeahsHairTie = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
+	LeahsTornHeart = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
+	PetersHeadband = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
+	PetersBloodyFracture = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
+	MiriamsHeadband = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
+	MiriamsPutridVeil = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -2139,6 +2199,66 @@ Encyclopedia.AddItem({
 	Pools = {
 		Encyclopedia.ItemPools.POOL_BOSS,
 		Encyclopedia.ItemPools.POOL_GREED_BOSS,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_LEAHS_HAIR_TIE,
+	WikiDesc = Wiki.LeahsHairTie,
+	Pools = {
+		
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_LEAHS_TORN_HEART,
+	WikiDesc = Wiki.LeahsTornHeart,
+	Pools = {
+		
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_PETERS_HEADBAND,
+	WikiDesc = Wiki.PetersHeadband,
+	Pools = {
+		
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_PETERS_BLOODY_FRACTURE,
+	WikiDesc = Wiki.PetersBloodyFracture,
+	Pools = {
+		
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_MIRIAMS_HEADBAND,
+	WikiDesc = Wiki.MiriamsHeadband,
+	Pools = {
+		
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_MIRIAMS_PUTRID_VEIL,
+	WikiDesc = Wiki.MiriamsPutridVeil,
+	Pools = {
+		
 	},
 })
 
