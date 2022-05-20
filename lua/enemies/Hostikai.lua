@@ -1,6 +1,6 @@
 local mod = Furtherance
 local rng = RNG()
-
+local game = Game()
 
 function mod:Hostikai(entity)
 	if entity.SubType == 3070 then
