@@ -1,8 +1,11 @@
 local mod = Furtherance
 local game = Game()
 
+local HeadbandRoomCount = 0
+
 function mod:Rapturing()
     local room = game:GetRoom()
+
     if room:IsFirstVisit() then
         HeadbandRoomCount = HeadbandRoomCount + 1
     end
@@ -16,6 +19,7 @@ function mod:Rapturing()
         end
     end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.Rapturing)
 
 function mod:ResetCounter(continued)
@@ -23,4 +27,5 @@ function mod:ResetCounter(continued)
         HeadbandRoomCount = 0
     end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.ResetCounter)
