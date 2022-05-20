@@ -32,7 +32,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetSpiritualWound)
 
 ---@param source Entity
 ---@param targetPos Vector
-local function fireSpiritualWound(source, targetPos)
+local function fireSpiritualWoundLaser(source, targetPos)
 	local room = game:GetRoom()
 	-- Set laser start and end position
 	local sourcePos = source.Position
@@ -154,7 +154,7 @@ function mod:EnemyTethering(player)
 		-- 3 of them at the same time look the best
 		for _ = 1, 3 do
 			local positionOffset = Vector(math.random(-75, 75), math.random(-75, 75))
-			fireSpiritualWound(player, targetData.enemyTarget.Position + positionOffset)
+			fireSpiritualWoundLaser(player, targetData.enemyTarget.Position + positionOffset)
 		end
 	end
 end
