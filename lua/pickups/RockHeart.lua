@@ -183,13 +183,13 @@ function mod:RockDamage(entity, damage, flag, source, cooldown)
 					local isLastRock = mod.DataTable[index].FurtheranceRockHeart == 1 and player:GetSoulHearts() == 1 and player:GetEffectiveMaxHearts() == 0 and player:GetEternalHearts() > 0
 					local NumSoulHearts = player:GetSoulHearts() - (1 - player:GetSoulHearts() % 2)
 					if (mod.DataTable[index].FurtheranceRockHeart % 2 ~= 0) and not isLastRock then
-						player:UseActiveItem(CollectibleType.COLLECTIBLE_WAIT_WHAT, false, false, true, false, -1)
 						player:RemoveBlackHeart(NumSoulHearts)
 					end
 					--Checking for Half Rock and Eternal heart
 					if not isLastRock then
 						mod.DataTable[index].FurtheranceRockHeart = mod.DataTable[index].FurtheranceRockHeart - 1
 						player:UseActiveItem(CollectibleType.COLLECTIBLE_WAIT_WHAT, false, false, true, false, -1)
+						SFXManager():Stop(SoundEffect.SOUND_FART)
 					end
 					mod.DataTable[index].RockTakeDmg = true
 					player:TakeDamage(1, flag | DamageFlag.DAMAGE_NO_MODIFIERS, source, cooldown)
@@ -202,6 +202,9 @@ function mod:RockDamage(entity, damage, flag, source, cooldown)
 							player:GetOtherTwin():ResetDamageCooldown()
 							player:GetOtherTwin():SetMinDamageCooldown(cd)
 						end
+					end
+					for _, fart in ipairs(Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.FART)) do
+						fart:Remove()
 					end
 					return false
 				end
