@@ -13,6 +13,7 @@ function mod:EpitaphData(continued)
         end
     end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.EpitaphData)
 
 function mod:EpitaphRoom()
@@ -20,7 +21,7 @@ function mod:EpitaphRoom()
         local player = Isaac.GetPlayer(i)
         local data = mod:GetData(player)
         local level = game:GetLevel()
-        print(data.EpitaphStage, data.DiedWithEpitaph)
+        -- print(data.EpitaphStage, data.DiedWithEpitaph)
         if data.DiedWithEpitaph == true and level:GetStage() == data.EpitaphStage then
             data.DiedWithEpitaph = false
             for _ = 1, 2 do
@@ -30,6 +31,7 @@ function mod:EpitaphRoom()
         end
     end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.EpitaphRoom)
 
 function mod:EpitaphDied(entity)
@@ -41,6 +43,7 @@ function mod:EpitaphDied(entity)
         data.EpitaphStage = level:GetStage()
     end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.EpitaphDied, EntityType.ENTITY_PLAYER)
 
 --[[mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
