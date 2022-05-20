@@ -43,7 +43,7 @@ function mod:EpitaphDied(entity)
 end
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.EpitaphDied, EntityType.ENTITY_PLAYER)
 
-mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
+--[[mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = game:GetPlayer(i)
 		local data = mod:GetData(player)
@@ -59,4 +59,4 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
         f:DrawString("Died with Epitaph? ", 75, 240, KColor(1, 1, 1, 1), 0, true)
         f:DrawString(bruh, 148+25, 240, KColor(1, 1, 1, 1), 0, true)
 	end
-end)
+end)]]
