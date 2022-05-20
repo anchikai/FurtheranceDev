@@ -3,6 +3,8 @@ local game = Game()
 
 local EffectVariantTarget = Isaac.GetEntityVariantByName("Spiritual Wound Target")
 
+local SpiritualWoundSoundStart = Isaac.GetSoundIdByName("SpiritualWoundStart")
+local SpiritualWoundSoundLoop = Isaac.GetSoundIdByName("SpiritualWoundLoop")
 
 local function pureLerp(v1, v2, a)
 	return v1 * (1 - a) + v2 * a
@@ -83,8 +85,21 @@ local function fireSpiritualWoundLaser(source, targetPos)
 end
 
 ---@param laser EntityLaser
+function mod:SpiritualWoundUpdate(laser)
+	local data = mod:GetData(laser)
+	if data.IsSpiritualWound then
+		SFXManager():Stop(SoundEffect.SOUND_ANGEL_BEAM)
+	end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, mod.SpiritualWoundUpdate)
+
+---@param laser EntityLaser
 function mod:SpiritualWoundRender(laser)
-	laser.SpriteScale = Vector.One * 0.3
+	local data = mod:GetData(laser)
+	if data.IsSpiritualWound then
+		laser.SpriteScale = Vector.One * 0.3
+	end
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_LASER_RENDER, mod.SpiritualWoundRender)
@@ -198,6 +213,9 @@ function mod:EnemyTethering(player)
 				local positionOffset = 150 * Vector(rng:RandomFloat() - 0.5, rng:RandomFloat() - 0.5)
 				itemData.Lasers[i] = fireSpiritualWoundLaser(player, closestEnemy.Position + positionOffset)
 			end
+
+			SFXManager():Play(SpiritualWoundSoundLoop, nil, nil, true)
+			SFXManager():Play(SpiritualWoundSoundStart)
 		end
 
 		if game:GetFrameCount() % 2 == 0 then
@@ -217,6 +235,7 @@ function mod:EnemyTethering(player)
 		for _, laser in ipairs(itemData.Lasers) do
 			laser:Die()
 		end
+		SFXManager():Stop(SpiritualWoundSoundLoop)
 		itemData.Lasers = nil
 	end
 

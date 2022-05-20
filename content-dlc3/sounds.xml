@@ -5,23 +5,25 @@
 	<sound name="Bruh">
 		<sample weight="1" path="bruh.wav" />
 	</sound>
-	<sound name="BrokenHeartbeat">								<!-- Thank you Sillst! -->
+	<sound name="BrokenHeartbeat">
+		<!-- Thank you Sillst! -->
 		<sample weight="1" path="BrokenHeartbeat.wav" />
 	</sound>
-	<sound name="MoonHeartPickup">								<!-- Thank you Sillst! -->
+	<sound name="MoonHeartPickup">
+		<!-- Thank you Sillst! -->
 		<sample weight="1" path="moonheart_pickup1.wav" />
 	</sound>
 	<sound name="FaithfulHeartPickup">
 		<sample weight="1" path="faithfulheart_pickup1.wav" />
 	</sound>
 	<sound name="TambourineLong">
-		<sample weight="1" path="tambourine_long.wa" />			<!-- Thank you Sillst! -->
+		<sample weight="1" path="tambourine_long.wa" /> <!-- Thank you Sillst! -->
 	</sound>
 	<sound name="TambourineMedium">
-		<sample weight="1" path="tambourine_medium.wav" />		<!-- Thank you Sillst! -->
+		<sample weight="1" path="tambourine_medium.wav" /> <!-- Thank you Sillst! -->
 	</sound>
 	<sound name="TambourineShort">
-		<sample weight="1" path="tambourine_short.wav" />		<!-- Thank you Sillst! -->
+		<sample weight="1" path="tambourine_short.wav" /> <!-- Thank you Sillst! -->
 	</sound>
 	<sound name="PeterUnflip">
 		<sample weight="1" path="peterflip1.wav" />
@@ -31,5 +33,11 @@
 	</sound>
 	<sound name="FixYourFuckingAPI">
 		<sample weight="1" path="miriam_water_flow_loop.wav" />
+	</sound>
+	<sound name="SpiritualWoundStart">
+		<sample weight="1" path="spiritualwound_start.wav" />
+	</sound>
+	<sound name="SpiritualWoundLoop">
+		<sample weight="1" path="spiritualwound_loop.wav" />
 	</sound>
 </sounds>
