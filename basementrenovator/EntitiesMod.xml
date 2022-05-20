@@ -1,6 +1,8 @@
 <data>
 	<group Name="Global Enemies">
 		<group Name="Furtherance" Label="Furtherance">
+			<entity BaseHP="30" Boss="0" Champion="1" ID="27" Image="resources/Entities/Hostikai.png" Name="Hostikai" Subtype="3070" Variant="0"/>
+
 			<entity BaseHP="30" Boss="0" Champion="1" ID="200" Image="resources/Entities/Illusioner (Real).png" Name="Illusioner (Real)" Subtype="0" Variant="3070"/>
 			<entity BaseHP="30" Boss="0" Champion="1" ID="200" Image="resources/Entities/Illusioner (Unmasked).png" Name="Illusioner (Unmasked)" Subtype="1" Variant="3070"/>
 			<entity BaseHP="30" Boss="0" Champion="1" ID="200" Image="resources/Entities/Illusioner (Clone).png" Name="Illusioner (Clone)" Subtype="2" Variant="3070"/>
