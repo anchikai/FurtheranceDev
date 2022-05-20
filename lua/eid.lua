@@ -323,10 +323,10 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_LITTLE_RAINCOAT, "You get a Power
 EID:addCollectible(CollectibleType.COLLECTIBLE_BLOOD_CYST, "Entering an uncleared room will spawn a Blood Cyst in a random area#Shooting or walking into it will make it burst into 8 tears", "Blood Cyst", "en_us")
 
 -- Leah's Hair Tie
-EID:addCollectible(CollectibleType.COLLECTIBLE_LEAHS_HAIR_TIE, "{{Broken Heart}} +1 Broken Heart#Killing enemies has less of a chance to grant a broken based on how many you have#↑ Removes 1 broken heart every 3 rooms#↑ Grants two temporary decaying stat ups every 3 rooms", "Leah's Hair Tie", "en_us")
+EID:addCollectible(CollectibleType.COLLECTIBLE_LEAHS_HAIR_TIE, "{{BrokenHeart}} +1 Broken Heart#Killing enemies has less of a chance to grant a broken heart based on how many you have#↑ Removes 1 broken heart every 3 rooms#↑ Grants 2 temporary decaying stat ups every 3 rooms", "Leah's Hair Tie", "en_us")
 
 -- Leah's Torn Heart
-EID:addCollectible(CollectibleType.COLLECTIBLE_LEAHS_TORN_HEART, "{{Broken Heart}} +1 Broken Heart#↑ Minor all stats up for every broken heart#1 broken heart is added every floor#15% chance for a machine to be a confessional", "Leah's Torn Heart", "en_us")
+EID:addCollectible(CollectibleType.COLLECTIBLE_LEAHS_TORN_HEART, "{{BrokenHeart}} +1 Broken Heart#↑ Minor all stats up for every broken heart#1 broken heart is added every floor#15% chance for a machine to be a confessional", "Leah's Torn Heart", "en_us")
 
 -- Peter's Headband
 EID:addCollectible(CollectibleType.COLLECTIBLE_PETERS_HEADBAND, "↑ {{Key}} +1 Key#All enemies in the current room will be raptured every 12 rooms#↑ Rapturing grants random temporary stat increases#↑ Bosses can be raptured", "Peter's Headband", "en_us")
