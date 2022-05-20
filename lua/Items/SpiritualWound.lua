@@ -67,11 +67,12 @@ local function fireSpiritualWoundLaser(source, targetPos)
 	local room = game:GetRoom()
 	-- Set laser start and end position
 	local sourcePos = source.Position
-	local laser = EntityLaser.ShootAngle(LaserVariant.LIGHT_BEAM, sourcePos, ((targetPos - sourcePos):GetAngleDegrees()), 0, Vector(0, source.SpriteScale.Y * -32), source)
+	local laser = EntityLaser.ShootAngle(LaserVariant.BRIMTECH, sourcePos, ((targetPos - sourcePos):GetAngleDegrees()), 0, Vector(0, source.SpriteScale.Y * -32), source)
 	laser:SetMaxDistance(sourcePos:Distance(targetPos) + 50)
 
 	local color = Color(1, 1, 1, 1, 0, 0, 0)
-	color:SetOffset(1, 0, 0)
+	color:SetColorize(1, 1, 1, 1)
+	color:SetOffset(0.5, 0.8, 1)
 	laser:SetColor(color, 0, 1)
 
 	-- Extra parameters
@@ -93,6 +94,16 @@ function mod:SpiritualWoundUpdate(laser)
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, mod.SpiritualWoundUpdate)
+
+---@param effect EntityEffect
+function mod:RemoveBrimstoneSplash(entityType, variant)
+	if entityType == EntityType.ENTITY_EFFECT and variant == EffectVariant.LASER_IMPACT then
+		-- hack that makes the impact super hard to see
+		return { entityType, EffectVariant.EMBER_PARTICLE }
+	end
+end
+
+mod:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, mod.RemoveBrimstoneSplash)
 
 ---@param laser EntityLaser
 function mod:SpiritualWoundRender(laser)
