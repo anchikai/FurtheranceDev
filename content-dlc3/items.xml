@@ -49,7 +49,7 @@
 	<passive id="62" cache="size" name="Little Raincoat" description="Become the nightmare" gfx="little_raincoat.png" quality="2" />
 	<passive id="66" name="Leah's Hair Tie" description="Fasten your hair" gfx="leahs_hair_tie.png" quality="2" />
 	<passive id="67" name="Leah's Torn Heart" description="" gfx="leahs_torn_heart.png" quality="2" />
-	<passive id="68" name="Peter's Headband" description="" gfx="peters_headband.png" quality="4" />
+	<passive id="68" name="Peter's Headband" description="" gfx="peters_headband.png" quality="4" keys="1" />
 	<passive id="69" name="Peter's Bloody Fracture" description="" gfx="peters_bloody_fracture.png" quality="3" />
 	<passive id="70" name="Miriam's Headband" description="" gfx="miriams_headband.png" quality="3" />
 	<passive id="71" name="Miriam's Putrid Veil" description="" gfx="miriams_putrid_veil.png" quality="3" />
