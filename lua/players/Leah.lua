@@ -184,21 +184,26 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.leahStats)
 function mod:LeahKill(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = game:GetPlayer(i)
-		if player:GetName() == "Leah" and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-			local data = mod:GetData(player)
-			data.leahkills = data.leahkills + 1
-			player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
-			player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
-			if player:GetBrokenHearts() > 0 then
-				if (player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and data.leahkills >= 10)
-				or (player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) == false and data.leahkills >= 20) then
-					data.leahkills = 0
-					SFXManager():Play(SoundEffect.SOUND_HEARTBEAT)
-					player:AddBrokenHearts(-1)
-					data.RenovatorDamage = data.RenovatorDamage + 0.5
-					player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
-					player:AddCacheFlags(CacheFlag.CACHE_RANGE)
-					player:EvaluateItems()
+		local data = mod:GetData(player)
+		if player:GetName() == "Leah" then
+			if rng:RandomFloat() <= 0.0625 then
+				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_SCARED, entity.Position, Vector.Zero, player)
+			end
+			if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+				data.leahkills = data.leahkills + 1
+				player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+				player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
+				if player:GetBrokenHearts() > 0 then
+					if (player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and data.leahkills >= 10)
+					or (player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) == false and data.leahkills >= 20) then
+						data.leahkills = 0
+						SFXManager():Play(SoundEffect.SOUND_HEARTBEAT)
+						player:AddBrokenHearts(-1)
+						data.RenovatorDamage = data.RenovatorDamage + 0.5
+						player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+						player:AddCacheFlags(CacheFlag.CACHE_RANGE)
+						player:EvaluateItems()
+					end
 				end
 			end
 		end
