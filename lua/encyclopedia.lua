@@ -1233,7 +1233,6 @@ local Wiki = {
 			{str = "For every 20th enemy she kills, one broken heart will be removed and gain a small Damage up."},
 			{str = "- Damage gained through kills is half as effective as Damage through Heart Renovator."},
 			{str = "The heart counter will be capped at 999 instead of 99."},
-			{str = "Grants three broken hearts."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
