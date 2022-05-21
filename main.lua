@@ -5,9 +5,6 @@ local loading = {}
 local loadTimer
 local game = Game()
 
-HeartSubType.HEART_MOON = 225
-HeartSubType.HEART_ROCK = 226
-SackSubType.SACK_GOLDEN = 3
 mod.DataTable = {}
 
 Furtherance.FailSound = SoundEffect.SOUND_EDEN_GLITCH
@@ -118,6 +115,10 @@ OBJ_ESSENCE_OF_DROUGHT = Isaac.GetCardIdByName("Essence of Drought")
 PILLEFFECT_HEARTACHE_UP = Isaac.GetPillEffectByName("Heartache Up")
 PILLEFFECT_HEARTACHE_DOWN = Isaac.GetPillEffectByName("Heartache Down")
 CARD_GOLDEN = Isaac.GetCardIdByName("Golden Card")
+-- Pickups
+HeartSubType.HEART_MOON = 225
+HeartSubType.HEART_ROCK = 226
+SackSubType.SACK_GOLDEN = 3
 
 -- Item Luas
 include("lua/items/Esc.lua")
