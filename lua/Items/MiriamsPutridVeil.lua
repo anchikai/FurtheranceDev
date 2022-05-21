@@ -11,13 +11,11 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetVeil, CacheFlag.CACHE_RAN
 function mod:HealChance(entity)
     for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-        local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_MIRIAMS_PUTRID_VEIL)
-        if player and player:HasCollectible(CollectibleType.COLLECTIBLE_MIRIAMS_PUTRID_VEIL) and rng:RandomFloat() <= 0.05 then
-            if entity:IsActiveEnemy(false) and entity:IsVulnerableEnemy() then
-                SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
-                Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 0, player.Position, Vector.Zero, player)
-                player:AddHearts(1)
-            end
+        local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_MIRIAMS_PUTRID_VEIL):RandomFloat()
+        if player and player:HasCollectible(CollectibleType.COLLECTIBLE_MIRIAMS_PUTRID_VEIL) and rng <= 0.05 then
+            SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
+            Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 0, player.Position, Vector.Zero, player)
+            player:AddHearts(1)
         end
     end
 end
