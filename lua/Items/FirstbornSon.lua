@@ -1,35 +1,4 @@
 --[[
-	Firstborn Son - "Fleeting friend"
-	A familiar baby that:
-
-    * Upon entering an uncleared room,
-        * it immediately chases down and kills the enemy with the highest HP in
-        the room that is not a boss/mini boss.
-            * Ideally, this would be done using Spiritual Wound (basically
-            homing lasers)
-            * If too difficult, it can fire a fatal holy shot instead
-        * it targets the nearest enemy if there's multiple.
-
-    * If there are no normal enemies, it deals 10% of total HP damage to
-    bosses.
-    * It will respawn after each "wave" of enemies, if in Boss Rush/Mega Satan
-    /The Beast/Greed Mode.
-
-    Quality: 1
-	Type: Familiar
-	Item Pool: Treasure, Ultra Secret Room
-	Transformations: Conjoined
-	Item Sprite: Flesh coloured baby with Xs for eyes and blood painted on their forehead and arms.
-	Appearance: See above. Animation for attack has the baby shoot a homing
-    blue "holy shot" at the chosen target.
-]]
-
---[[ see:
-    Familiars Who Follow: https://www.youtube.com/watch?v=Vw5qQBaecGY&list=PLMZJyHSWa_My5DDoTQcKCgs475xIpQHSF&index=16
-    Following Familiars Followup: https://www.youtube.com/watch?v=88uQQeqRWrg&list=PLMZJyHSWa_My5DDoTQcKCgs475xIpQHSF&index=21
-]]
-
---[[
 local LaserHomingType = {
     NORMAL = 0,
     FREEZE = 1,
