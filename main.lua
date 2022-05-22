@@ -264,9 +264,6 @@ function Furtherance:GetEntityIndex(entity)
 				mod.DataTable[index].lastEternalHearts = 0
 				mod.DataTable[index].lastMaxHearts = 0
 			end
-			if player:GetPlayerType() == PlayerType.PLAYER_BETHANY and not mod.DataTable[index].ImmortalCharge then
-				mod.DataTable[index].ImmortalCharge = 0
-			end
 			return index
 		elseif entity.Type == EntityType.ENTITY_FAMILIAR then
 			local index = entity:ToFamiliar().InitSeed
@@ -288,9 +285,7 @@ function mod:OnSave(isSaving)
 			local data = mod:GetData(player)
 			saveData["player_" .. tostring(i + 1)] = {}
 			saveData["player_" .. tostring(i + 1)].numAngelItems = data.numAngelItems
-			saveData["player_" .. tostring(i + 1)].solTR = data.solTR
-			saveData["player_" .. tostring(i + 1)].solDMG = data.solDMG
-			saveData["player_" .. tostring(i + 1)].llTR = data.llTR
+			saveData["player_" .. tostring(i + 1)].LeahsLockTears = data.LeahsLockTears
 			saveData["player_" .. tostring(i + 1)].MoonHeart = data.MoonHeart
 			saveData["player_" .. tostring(i + 1)].RenovatorDamage = data.RenovatorDamage
 			saveData["player_" .. tostring(i + 1)].HeartCount = data.HeartCount
@@ -364,14 +359,8 @@ function mod:OnLoad(isLoading)
 			if loadData["player_" .. tostring(i + 1)].numAngelItems then
 				data.numAngelItems = loadData["player_" .. tostring(i + 1)].numAngelItems
 			end
-			if loadData["player_" .. tostring(i + 1)].solTR then
-				data.solTR = loadData["player_" .. tostring(i + 1)].solTR
-			end
-			if loadData["player_" .. tostring(i + 1)].solDMG then
-				data.solDMG = loadData["player_" .. tostring(i + 1)].solDMG
-			end
-			if loadData["player_" .. tostring(i + 1)].llTR then
-				data.llTR = loadData["player_" .. tostring(i + 1)].llTR
+			if loadData["player_" .. tostring(i + 1)].LeahsLockTears then
+				data.LeahsLockTears = loadData["player_" .. tostring(i + 1)].LeahsLockTears
 			end
 			if loadData["player_" .. tostring(i + 1)].MoonHeart then
 				data.MoonHeart = loadData["player_" .. tostring(i + 1)].MoonHeart
