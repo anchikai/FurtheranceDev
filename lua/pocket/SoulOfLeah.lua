@@ -1,25 +1,35 @@
 local mod = Furtherance
 local game = Game()
-local rng = RNG()
-local bhb = Isaac.GetSoundIdByName("BrokenHeartbeat")
 
-function mod:UseSoulOfLeah(card, player, useflags)
-	local data = mod:GetData(player)
-	local solRNG = rng:RandomInt(5)+1
-	player:AddBrokenHearts(solRNG)
-	SFXManager():Play(bhb)
-	if player.MaxFireDelay > 5 then
-		if rng:RandomInt(2) == 0 then
-			data.solDMG = data.solDMG + solRNG
-			player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
-		else
-			data.solTR = data.solTR + solRNG
-			player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
+function mod:UseSoulOfLeah(card, player, flag)
+	SFXManager():Play(Isaac.GetSoundIdByName("BrokenHeartbeat"))
+	local level = game:GetLevel()
+	local roomsList = level:GetRooms()
+	for i = 0, roomsList.Size - 1 do
+		local room = roomsList:Get(i)
+		if room.Data.Type ~= RoomType.ROOM_SUPERSECRET and room.Data.Type ~= RoomType.ROOM_ULTRASECRET then -- based off of world card which doesn't reveal these
+			if not room.Clear then
+				player:AddBrokenHearts(1)
+				if SoulOfLeahDamage == nil then
+					SoulOfLeahDamage = 0
+				end
+				SoulOfLeahDamage = SoulOfLeahDamage + 0.75
+			end
 		end
-	else
-		data.solDMG = data.solDMG + solRNG
-		player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
 	end
+	player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
 	player:EvaluateItems()
 end
 mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseSoulOfLeah, RUNE_SOUL_OF_LEAH)
+
+function mod:SoulDamage(player, flag)
+	player.Damage = player.Damage + SoulOfLeahDamage
+end
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.SoulDamage, CacheFlag.CACHE_DAMAGE)
+
+function mod:ResetCounter(continued)
+    if continued == false then
+        SoulOfLeahDamage = 0
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.ResetCounter)
