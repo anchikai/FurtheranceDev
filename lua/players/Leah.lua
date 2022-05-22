@@ -136,6 +136,9 @@ function mod:leahStats(player, flag)
 		if flag == CacheFlag.CACHE_RANGE then
 			player.TearRange = player.TearRange - 195.6
 			player.TearRange = player.TearRange + player:GetBrokenHearts() * 40
+			if player.TearRange > 640 then
+				player.TearRange = 640
+			end
 		end
 	elseif player:GetName() == "LeahB" then -- If the player is Tainted Leah it will apply her stats
 		if flag == CacheFlag.CACHE_FIREDELAY then
