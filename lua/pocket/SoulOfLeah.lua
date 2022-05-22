@@ -3,6 +3,7 @@ local game = Game()
 
 function mod:UseSoulOfLeah(card, player, flag)
 	SFXManager():Play(Isaac.GetSoundIdByName("BrokenHeartbeat"))
+	local data = mod:GetData(player)
 	local level = game:GetLevel()
 	local roomsList = level:GetRooms()
 	for i = 0, roomsList.Size - 1 do
@@ -13,23 +14,21 @@ function mod:UseSoulOfLeah(card, player, flag)
 				if SoulOfLeahDamage == nil then
 					SoulOfLeahDamage = 0
 				end
-				SoulOfLeahDamage = SoulOfLeahDamage + 0.75
+				data.SoulOfLeahDamage = data.SoulOfLeahDamage + 0.75
 			end
 		end
 	end
 	player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
 	player:EvaluateItems()
 end
+
 mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseSoulOfLeah, RUNE_SOUL_OF_LEAH)
 
 function mod:SoulDamage(player, flag)
-	player.Damage = player.Damage + SoulOfLeahDamage
+	local data = mod:GetData(player)
+	if data.SoulOfLeahDamage then
+		player.Damage = player.Damage + data.SoulOfLeahDamage
+	end
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.SoulDamage, CacheFlag.CACHE_DAMAGE)
 
-function mod:ResetCounter(continued)
-    if continued == false then
-        SoulOfLeahDamage = 0
-    end
-end
-mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.ResetCounter)
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.SoulDamage, CacheFlag.CACHE_DAMAGE)
