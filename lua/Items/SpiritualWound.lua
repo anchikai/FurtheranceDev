@@ -98,15 +98,20 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, mod.SpiritualWoundUpdate)
 
----@param effect EntityEffect
-function mod:RemoveBrimstoneSplash(entityType, variant)
-	if entityType == EntityType.ENTITY_EFFECT and variant == EffectVariant.LASER_IMPACT then
+---@param entityType integer
+---@param variant integer
+---@param spawner Entity
+function mod:ReplaceBrimstoneSplash(entityType, variant, _, _, _, spawner)
+	if spawner == nil then return end
+	local laserSpawner = spawner.SpawnerEntity and spawner.SpawnerEntity:ToPlayer()
+
+	if entityType == EntityType.ENTITY_EFFECT and variant == EffectVariant.LASER_IMPACT and hasItem(laserSpawner) then
 		-- hack that makes the impact super hard to see
 		return { EntityType.ENTITY_EFFECT, EffectVariantImpact }
 	end
 end
 
-mod:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, mod.RemoveBrimstoneSplash)
+mod:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, mod.ReplaceBrimstoneSplash)
 
 ---@param laser EntityLaser
 function mod:SpiritualWoundRender(laser)
