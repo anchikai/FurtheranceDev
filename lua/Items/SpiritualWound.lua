@@ -2,9 +2,11 @@ local mod = Furtherance
 local game = Game()
 
 local EffectVariantTarget = Isaac.GetEntityVariantByName("Spiritual Wound Target")
+local EffectVariantImpact = Isaac.GetEntityVariantByName("Spiritual Wound Impact")
 
 local SpiritualWoundSoundStart = Isaac.GetSoundIdByName("SpiritualWoundStart")
 local SpiritualWoundSoundLoop = Isaac.GetSoundIdByName("SpiritualWoundLoop")
+
 
 local function pureLerp(v1, v2, a)
 	return v1 * (1 - a) + v2 * a
@@ -79,7 +81,7 @@ local function fireSpiritualWoundLaser(source, targetPos)
 	laser.SpriteScale = Vector.One * 0.3
 	laser.Mass = 0
 	laser:AddTearFlags(TearFlags.TEAR_HOMING)
-	laser.CollisionDamage = 0.01 -- they still do 0.1 damage........
+	laser.CollisionDamage = 0 -- they still do 0.1 damage...
 	mod:GetData(laser).IsSpiritualWound = true
 
 	return laser
@@ -89,7 +91,8 @@ end
 function mod:SpiritualWoundUpdate(laser)
 	local data = mod:GetData(laser)
 	if data.IsSpiritualWound then
-		SFXManager():Stop(SoundEffect.SOUND_ANGEL_BEAM)
+		SFXManager():Stop(SoundEffect.SOUND_BLOOD_LASER)
+		SFXManager():Stop(SoundEffect.SOUND_BLOOD_LASER_LOOP)
 	end
 end
 
@@ -99,7 +102,7 @@ mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, mod.SpiritualWoundUpdate)
 function mod:RemoveBrimstoneSplash(entityType, variant)
 	if entityType == EntityType.ENTITY_EFFECT and variant == EffectVariant.LASER_IMPACT then
 		-- hack that makes the impact super hard to see
-		return { entityType, EffectVariant.EMBER_PARTICLE }
+		return { EntityType.ENTITY_EFFECT, EffectVariantImpact }
 	end
 end
 
