@@ -40,4 +40,7 @@
 	<sound name="SpiritualWoundLoop">
 		<sample weight="1" path="spiritualwound_loop.wav" />
 	</sound>
+	<sound name="Cork">
+		<sample weight="1" path="cork.wav" />
+	</sound>
 </sounds>

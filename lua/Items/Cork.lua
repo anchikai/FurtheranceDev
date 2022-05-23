@@ -5,7 +5,7 @@ local tearCount = 0
 
 function mod:CorkTear(tear)
     local player = tear.Parent:ToPlayer()
-    if player and player:HasCollectible(CollectibleType.COLLECTIBLE_CORK) then
+    if player and player:HasCollectible(CollectibleType.COLLECTIBLE_CORK) and player:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN and player:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN_B then
         if tearCount > 16 then
             tearCount = 0
         elseif tearCount < 17 then
@@ -36,7 +36,7 @@ function mod:ForgorCork(player)
     if isAttacking then
         InputHeld = InputHeld + 1
     end
-    if player and player:HasCollectible(CollectibleType.COLLECTIBLE_CORK) then
+    if player and player:HasCollectible(CollectibleType.COLLECTIBLE_CORK) and player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN or player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN_B then
         if tearCount > 16 then
             tearCount = 0
         elseif tearCount < 17 and InputHeld == 1 then
@@ -45,7 +45,6 @@ function mod:ForgorCork(player)
         if (16 - player:GetCollectibleNum(CollectibleType.COLLECTIBLE_CORK, true) < 2 and tearCount == 2) or (tearCount == 16 - player:GetCollectibleNum(CollectibleType.COLLECTIBLE_CORK, true) and player:GetCollectibleNum(CollectibleType.COLLECTIBLE_CORK, true) < 15) then
             tearCount = -1
             local Cork = player:FireTear(player.Position, player:GetAimDirection()*10 * (player.ShotSpeed * 1.25), true, false, true, player, 2)
-            SFXManager():Stop(SoundEffect.SOUND_TEARS_FIRE)
             SFXManager():Play(CorkPop, 2)
             Cork.Scale = 1.5
         end
