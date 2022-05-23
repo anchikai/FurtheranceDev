@@ -36,6 +36,33 @@ function mod:PyramidTears(tear)
 end
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, mod.PyramidTears)
 
+local InputHeld = 0
+function mod:ForgorCat(player)
+    local b_left = Input.GetActionValue(ButtonAction.ACTION_SHOOTLEFT, player.ControllerIndex)
+    local b_right = Input.GetActionValue(ButtonAction.ACTION_SHOOTRIGHT, player.ControllerIndex)
+    local b_up = Input.GetActionValue(ButtonAction.ACTION_SHOOTUP, player.ControllerIndex)
+    local b_down = Input.GetActionValue(ButtonAction.ACTION_SHOOTDOWN, player.ControllerIndex)
+    local isAttacking = (b_down + b_right + b_left + b_up) > 0
+    if not isAttacking and InputHeld ~= 0 then
+        InputHeld = 0
+    end
+    if isAttacking then
+        InputHeld = InputHeld + 1
+    end
+    if InputHeld == 1 and player and player:HasCollectible(CollectibleType.COLLECTIBLE_PHARAOH_CAT) and player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN or player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN_B then
+		for _, position in ipairs(TearPositions) do
+			local Tear = player:FireTear(player.Position, player:GetAimDirection()*10*player.ShotSpeed, true, false, true, player, 1)
+			local data = mod:GetData(Tear)
+			local direction = Tear.Velocity:GetAngleDegrees()
+			local extraTear = player:FireTear(Tear.Position + position:Rotated(direction), player:GetAimDirection()*player.ShotSpeed, true, false, true, player, 1)
+			local extraData = mod:GetData(extraTear)
+			extraData.AppliedTearFlags.PharaohCat = true
+			extraData.AppliedTearFlags.Flux = data.AppliedTearFlags.Flux
+		end
+	end
+end
+mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.ForgorCat)
+
 -- directional offset from original direction when shot to the right
 local LaserDirections = {
 	Vector(4, 2),
