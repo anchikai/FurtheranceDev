@@ -28,6 +28,7 @@ function mod:PyramidTears(tear)
 	if data.AppliedTearFlags == nil then
 		data.AppliedTearFlags = {}
 	end
+
 	if tear.FrameCount ~= 1 or not data.FiredByPlayer or data.AppliedTearFlags.PharaohCat then return end
 
 	local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
@@ -40,9 +41,15 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, mod.PyramidTears)
 
+-- I hate kidney stone so much
+local spamCollectibles = {
+	CollectibleType.COLLECTIBLE_SOY_MILK,
+	CollectibleType.COLLECTIBLE_ALMOND_MILK,
+}
+
 ---@param player EntityPlayer
 function mod:ForgorCat(player)
-	if player:HasCollectible(CollectibleType.COLLECTIBLE_PHARAOH_CAT) and player:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN and player:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN_B then return end
+	if not player:HasCollectible(CollectibleType.COLLECTIBLE_PHARAOH_CAT) or (player:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN and player:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN) then return end
 
 	local b_left = Input.GetActionValue(ButtonAction.ACTION_SHOOTLEFT, player.ControllerIndex)
 	local b_right = Input.GetActionValue(ButtonAction.ACTION_SHOOTRIGHT, player.ControllerIndex)
@@ -50,16 +57,31 @@ function mod:ForgorCat(player)
 	local b_down = Input.GetActionValue(ButtonAction.ACTION_SHOOTDOWN, player.ControllerIndex)
 	local isAttacking = (b_down + b_right + b_left + b_up) > 0
 
-	if not isAttacking then return end
-
-	local currentFired = game:GetFrameCount()
 	local data = mod:GetData(player)
-	if data.LastFired == nil then
-		data.LastFired = -math.huge
+	local itemData = data.PharaohCat
+	if itemData == nil then
+		itemData = {
+			IsCharging = false,
+			WasAttacking = false,
+		}
+		data.PharaohCat = itemData
 	end
 
-	if currentFired - data.LastFired < player.MaxFireDelay then return end
-	data.LastFired = currentFired
+	if not isAttacking then
+		itemData.IsCharging = false
+		return
+	end
+
+	local hasSpamCollectible = false
+	for _, collectible in ipairs(spamCollectibles) do
+		if player:HasCollectible(collectible) then
+			hasSpamCollectible = true
+			break
+		end
+	end
+
+	if player.FireDelay < player.MaxFireDelay - 1 or (itemData.IsCharging and not hasSpamCollectible) then return end
+	itemData.IsCharging = true
 
 	player:FireTear(player.Position, player:GetAimDirection() * 10 * player.ShotSpeed, true, false, true, player, 1)
 end
