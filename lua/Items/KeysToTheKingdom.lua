@@ -413,15 +413,21 @@ function mod:spareTimer(entity)
 
 					local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM)
 					local choice1 = rng:RandomInt(#statObjs) + 1
-
 					local choice2
+					local choice3
 					repeat
 						choice2 = rng:RandomInt(#statObjs) + 1
 					until choice2 ~= choice1
 
 					buffs[choice1] = buffs[choice1] + 1
 					buffs[choice2] = buffs[choice2] + 1
+					if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and player:GetName() == "Peter" then
+						repeat
+							choice3 = rng:RandomInt(#statObjs) + 1
+						until choice3 ~= choice2
 
+						buffs[choice3] = buffs[choice3] + 1
+					end
 					player:AddCacheFlags(ALL_BUFFED_FLAGS)
 					player:EvaluateItems()
 				end

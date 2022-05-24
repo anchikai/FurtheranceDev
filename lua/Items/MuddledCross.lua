@@ -98,7 +98,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.DoubleStuff)
 function mod:HealthDrain(player)
 	if mod.Flipped == true and player:GetHearts() > 1 and game:GetFrameCount() ~= 0 then
 		local drainSpeed
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and player:GetName() == "PeterB" then
 			drainSpeed = 420
 		else
 			drainSpeed = 210

@@ -28,7 +28,7 @@ EID:addBirthright(taintedLeah, "{{BrokenHeart}} Сломанные серда П
 EID:addBirthright(taintedLeah, "Leah contaminada ya no recibirá {{BrokenHeart}} 11 corazones rotos, en cambio sólo tendrá 6#↑ {{Speed}} Velocidad +0.05 por cada corazón roto que posea#20% de posibilidad de encantar enemigos", "Leah Contaminada", "spa")
 
 -- Peter
-EID:addBirthright(normalPeter, "↑ Peter's spare timer is now 15 seconds instead of 30", "Peter", "en_us")
+EID:addBirthright(normalPeter, "↑ Peter's spare timer is now 15 seconds instead of 30#↑ Sparing bosses now grants 3 permanent stats instead of 2", "Peter", "en_us")
 
 -- Tainted Peter
 EID:addBirthright(taintedPeter, "↑ Bleeding while flipped takes 14 seconds instead of 7", "Tainted Peter", "en_us")

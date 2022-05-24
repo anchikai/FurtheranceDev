@@ -1309,7 +1309,7 @@ local Wiki = {
 			{str = "Traits", fsize = 2, clr = 3, halign = 0},
 			{str = "Peter starts with a pocket active item called ''Keys to the Kingdom.'' When used, it has a variety of effects given the current circumstances:"},
 			{str = "- If used in a active room, all enemies will be ''spared'' and removed from the room, granting temporary stats for the floor."},
-			{str = "- If used on a boss, a 30 second spare timer will begin, similarly to Baby Plum. A beam of light will shine on the boss, slowly shrinking and getting brighter as the timer decreases. Once the timer reaches 0, the boss will be spared and Isaac will gain a permanent stat increase."},
+			{str = "- If used on a boss, a 30 second spare timer will begin, similarly to Baby Plum. A beam of light will shine on the boss, slowly shrinking and getting brighter as the timer decreases. Once the timer reaches 0, the boss will be spared and Isaac will gain two permanent stat increases."},
 			{str = "- When used in a devil room, all deals will become free."},
 			{str = "- When used in a angel room, a random key piece is spawned."},
 			{str = "-- If Peter already has a key piece, the other respective key piece will spawn."},
@@ -1319,6 +1319,7 @@ local Wiki = {
 		{ -- Birthright
 			{str = "Birthright", fsize = 2, clr = 3, halign = 0},
 			{str = "Peter's spare timer is now 15 seconds instead of 30."},
+			{str = "Peter now gains three permanent stat increases from sparing bosses."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
@@ -2412,7 +2413,7 @@ Encyclopedia.AddCharacter({
     ModName = "Furtherance",
     Name = "Leah",
     ID = Isaac.GetPlayerTypeByName("Leah", false),
-	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraits.anm2", "Leah", 0),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraits.anm2", "Leah", 0),
 	WikiDesc = Wiki.Leah,
 })
 
@@ -2421,7 +2422,7 @@ Encyclopedia.AddCharacterTainted({
     Name = "Leah",
     Description = "The Unloved",
     ID = Isaac.GetPlayerTypeByName("LeahB", true),
-	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "LeahB", 0, mod.path .. "content-dlc3/gfx/charactermenu_leahb.png"),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "LeahB", 0, mod.path .. "content-dlc3/gfx/charactermenu_leahb.png"),
 	WikiDesc = Wiki.TaintedLeah,
 })
 
@@ -2429,7 +2430,7 @@ Encyclopedia.AddCharacter({
     ModName = "Furtherance",
     Name = "Peter",
     ID = Isaac.GetPlayerTypeByName("Peter", false),
-	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraits.anm2", "Peter", 0),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraits.anm2", "Peter", 0),
 	WikiDesc = Wiki.Peter,
 })
 
@@ -2438,7 +2439,7 @@ Encyclopedia.AddCharacterTainted({
     Name = "Peter",
     Description = "The Martyr",
     ID = Isaac.GetPlayerTypeByName("PeterB", true),
-	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "PeterB", 0, mod.path .. "content-dlc3/gfx/charactermenu_peterb.png"),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "PeterB", 0, mod.path .. "content-dlc3/gfx/charactermenu_peterb.png"),
 	WikiDesc = Wiki.TaintedPeter,
 })
 
@@ -2446,7 +2447,7 @@ Encyclopedia.AddCharacter({
     ModName = "Furtherance",
     Name = "Miriam",
     ID = Isaac.GetPlayerTypeByName("Miriam", false),
-	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraits.anm2", "Miriam", 0),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraits.anm2", "Miriam", 0),
 	WikiDesc = Wiki.Miriam,
 })
 
@@ -2455,6 +2456,6 @@ Encyclopedia.AddCharacterTainted({
     Name = "Miriam",
     Description = "The Condemned",
     ID = Isaac.GetPlayerTypeByName("MiriamB", true),
-	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "MiriamB", 0, mod.path .. "content-dlc3/gfx/charactermenu_miriamb.png"),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "MiriamB", 0, mod.path .. "content-dlc3/gfx/charactermenu_miriamb.png"),
 	WikiDesc = Wiki.TaintedMiriam,
 })
