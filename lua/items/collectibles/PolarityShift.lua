@@ -59,12 +59,10 @@ function mod:UsePolarityShift(_, _, player)
 
   data.UsedPolarityShift = not data.UsedPolarityShift or nil
   if data.UsedPolarityShift then
-    print("on")
     spiritualWoundData.HitCount = 0
     spiritualWoundData.LaserVariant = SpiritualWoundVariant.POLARITY_SHIFT
     spiritualWoundData.GetDamageMultiplier = getDamageMultiplier
   else
-    print("off")
     spiritualWoundData.LaserVariant = SpiritualWoundVariant.NORMAL
     spiritualWoundData.GetDamageMultiplier = nil
   end

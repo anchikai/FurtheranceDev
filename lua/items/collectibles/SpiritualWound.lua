@@ -370,7 +370,6 @@ function mod:EnemyTethering(player)
 		if itemData.GetDamageMultiplier then
 			damageMultiplier = itemData:GetDamageMultiplier()
 		end
-		print(damageMultiplier)
 
 		targetEnemy:TakeDamage(player.Damage * damageMultiplier, DamageFlag.DAMAGE_NO_MODIFIERS, EntityRef(player), 1)
 		targetEnemy:SetColor(Color(1, 0, 0, 1, 0, 0, 0), 12, 1, false, false)
@@ -432,9 +431,7 @@ function mod:SpiritualKill(entity)
 						end
 					end
 				end
-				print("added a charge")
 			elseif not data.UsedPolarityShift then
-				print("healed")
 				SFXManager():Play(SoundEffect.SOUND_VAMP_GULP)
 				Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HEART, 0, player.Position, Vector.Zero, player)
 				player:AddHearts(1)
