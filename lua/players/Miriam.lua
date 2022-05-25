@@ -25,7 +25,6 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
 
 function mod:OnUpdate(player)
-	local room = game:GetRoom()
 	local data = mod:GetData(player)
 	if player:GetPlayerType() == MiriamA then
 		if data.MiriamRiftTimeout > -1 then
@@ -39,7 +38,9 @@ function mod:OnUpdate(player)
 			end
 		end
 	elseif player:GetPlayerType() == MiriamB then
-
+		if player.FrameCount == 1 and data.Init and not mod.isLoadingData then
+			player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_POLARITY_SHIFT, ActiveSlot.SLOT_POCKET, false)
+		end
 	end
 end
 
