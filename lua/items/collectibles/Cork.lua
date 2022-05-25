@@ -36,7 +36,7 @@ function mod:ForgorCork(player)
     if isAttacking then
         InputHeld = InputHeld + 1
     end
-    if player and player:HasCollectible(CollectibleType.COLLECTIBLE_CORK) and player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN or player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN_B then
+    if player and player:HasCollectible(CollectibleType.COLLECTIBLE_CORK) and (player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN or player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN_B) then
         if tearCount > 16 then
             tearCount = 0
         elseif tearCount < 17 and InputHeld == 1 then
