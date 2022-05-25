@@ -1,9 +1,9 @@
 Furtherance = RegisterMod("Furtherance", 1)
 local mod = Furtherance
+local game = Game()
 local json = require("json")
 local loading = {}
 local loadTimer
-local game = Game()
 
 mod.DataTable = {}
 
@@ -11,25 +11,15 @@ Furtherance.FailSound = SoundEffect.SOUND_EDEN_GLITCH
 Furtherance.FlipSpeed = 1
 
 mod.isLoadingData = false
--- Isaac's Keyboard
-CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
-CollectibleType.COLLECTIBLE_TILDE_KEY = Isaac.GetItemIdByName("Tilde Key")
-CollectibleType.COLLECTIBLE_ALT_KEY = Isaac.GetItemIdByName("Alt Key")
-CollectibleType.COLLECTIBLE_SPACEBAR_KEY = Isaac.GetItemIdByName("Spacebar Key")
-CollectibleType.COLLECTIBLE_BACKSPACE_KEY = Isaac.GetItemIdByName("Backspace Key")
-CollectibleType.COLLECTIBLE_Q_KEY = Isaac.GetItemIdByName("Q Key")
-CollectibleType.COLLECTIBLE_E_KEY = Isaac.GetItemIdByName("E Key")
-CollectibleType.COLLECTIBLE_C_KEY = Isaac.GetItemIdByName("C Key")
-CollectibleType.COLLECTIBLE_CAPS_KEY = Isaac.GetItemIdByName("Caps Key")
-CollectibleType.COLLECTIBLE_ENTER_KEY = Isaac.GetItemIdByName("Enter Key")
-CollectibleType.COLLECTIBLE_SHIFT_KEY = Isaac.GetItemIdByName("Shift Key")
--- Astrological Signs
-CollectibleType.COLLECTIBLE_OPHIUCHUS = Isaac.GetItemIdByName("Ophiuchus")
-CollectibleType.COLLECTIBLE_CHIRON = Isaac.GetItemIdByName("Chiron")
-CollectibleType.COLLECTIBLE_CERES = Isaac.GetItemIdByName("Ceres")
-CollectibleType.COLLECTIBLE_PALLAS = Isaac.GetItemIdByName("Pallas")
-CollectibleType.COLLECTIBLE_JUNO = Isaac.GetItemIdByName("Juno")
-CollectibleType.COLLECTIBLE_VESTA = Isaac.GetItemIdByName("Vesta")
+
+-- Characters
+LeahA = Isaac.GetPlayerTypeByName("Leah", false)
+LeahB = Isaac.GetPlayerTypeByName("Leah", true)
+PeterA = Isaac.GetPlayerTypeByName("Peter", false)
+PeterB = Isaac.GetPlayerTypeByName("Peter", true)
+MiriamA = Isaac.GetPlayerTypeByName("Miriam", false)
+MiriamB = Isaac.GetPlayerTypeByName("Miriam", true)
+
 -- Collectibles
 CollectibleType.COLLECTIBLE_TECH_IX = Isaac.GetItemIdByName("Tech IX")
 CollectibleType.COLLECTIBLE_LEAKING_TANK = Isaac.GetItemIdByName("Leaking Tank")
@@ -85,6 +75,28 @@ CollectibleType.COLLECTIBLE_PETERS_HEADBAND = Isaac.GetItemIdByName("Peter's Hea
 CollectibleType.COLLECTIBLE_PETERS_BLOODY_FRACTURE = Isaac.GetItemIdByName("Peter's Bloody Fracture")
 CollectibleType.COLLECTIBLE_MIRIAMS_HEADBAND = Isaac.GetItemIdByName("Miriam's Headband")
 CollectibleType.COLLECTIBLE_MIRIAMS_PUTRID_VEIL = Isaac.GetItemIdByName("Miriam's Putrid Veil")
+
+-- Isaac's Keyboard
+CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
+CollectibleType.COLLECTIBLE_TILDE_KEY = Isaac.GetItemIdByName("Tilde Key")
+CollectibleType.COLLECTIBLE_ALT_KEY = Isaac.GetItemIdByName("Alt Key")
+CollectibleType.COLLECTIBLE_SPACEBAR_KEY = Isaac.GetItemIdByName("Spacebar Key")
+CollectibleType.COLLECTIBLE_BACKSPACE_KEY = Isaac.GetItemIdByName("Backspace Key")
+CollectibleType.COLLECTIBLE_Q_KEY = Isaac.GetItemIdByName("Q Key")
+CollectibleType.COLLECTIBLE_E_KEY = Isaac.GetItemIdByName("E Key")
+CollectibleType.COLLECTIBLE_C_KEY = Isaac.GetItemIdByName("C Key")
+CollectibleType.COLLECTIBLE_CAPS_KEY = Isaac.GetItemIdByName("Caps Key")
+CollectibleType.COLLECTIBLE_ENTER_KEY = Isaac.GetItemIdByName("Enter Key")
+CollectibleType.COLLECTIBLE_SHIFT_KEY = Isaac.GetItemIdByName("Shift Key")
+
+-- Astrological Signs
+CollectibleType.COLLECTIBLE_OPHIUCHUS = Isaac.GetItemIdByName("Ophiuchus")
+CollectibleType.COLLECTIBLE_CHIRON = Isaac.GetItemIdByName("Chiron")
+CollectibleType.COLLECTIBLE_CERES = Isaac.GetItemIdByName("Ceres")
+CollectibleType.COLLECTIBLE_PALLAS = Isaac.GetItemIdByName("Pallas")
+CollectibleType.COLLECTIBLE_JUNO = Isaac.GetItemIdByName("Juno")
+CollectibleType.COLLECTIBLE_VESTA = Isaac.GetItemIdByName("Vesta")
+
 -- Trinkets
 TrinketType.TRINKET_HOLY_HEART = Isaac.GetTrinketIdByName("Holy Heart")
 TrinketType.TRINKET_CRINGE = Isaac.GetTrinketIdByName("Cringe")
@@ -98,6 +110,7 @@ TrinketType.TRINKET_ALMAGEST_SCRAP = Isaac.GetTrinketIdByName("Almagest Scrap")
 TrinketType.TRINKET_WORMWOOD_LEAF = Isaac.GetTrinketIdByName("Wormwood Leaf")
 TrinketType.TRINKET_ESCAPE_PLAN = Isaac.GetTrinketIdByName("Escape Plan")
 TrinketType.TRINKET_EPITAPH = Isaac.GetTrinketIdByName("Epitaph")
+
 -- Cards/Runes/Pills/etc
 RUNE_SOUL_OF_LEAH = Isaac.GetCardIdByName("Soul of Leah")
 CARD_TWO_OF_SHIELDS = Isaac.GetCardIdByName("Two of Shields")
@@ -115,99 +128,111 @@ OBJ_ESSENCE_OF_DROUGHT = Isaac.GetCardIdByName("Essence of Drought")
 PILLEFFECT_HEARTACHE_UP = Isaac.GetPillEffectByName("Heartache Up")
 PILLEFFECT_HEARTACHE_DOWN = Isaac.GetPillEffectByName("Heartache Down")
 CARD_GOLDEN = Isaac.GetCardIdByName("Golden Card")
+
 -- Pickups
 HeartSubType.HEART_MOON = 225
 HeartSubType.HEART_ROCK = 226
 SackSubType.SACK_GOLDEN = 3
 
--- Item Luas
-include("lua/items/Esc.lua")
-include("lua/items/Tilde.lua")
-include("lua/items/Alt.lua")
-include("lua/items/Spacebar.lua")
-include("lua/items/Backspace.lua")
-include("lua/items/Q.lua")
-include("lua/items/E.lua")
-include("lua/items/C.lua")
-include("lua/items/Caps.lua")
-include("lua/items/Enter.lua")
-include("lua/items/Shift.lua")
-include("lua/items/Ophiuchus.lua")
-include("lua/items/Chiron.lua")
-include("lua/items/Ceres.lua")
-include("lua/items/Pallas.lua")
-include("lua/items/Juno.lua")
-include("lua/items/Vesta.lua")
-include("lua/items/HolyHeart.lua")
-include("lua/items/TechIX.lua")
-include("lua/items/LeakingTank.lua")
-include("lua/items/UnstableCore.lua")
-include("lua/items/Technology-1.lua")
-include("lua/items/BookOfSwiftness.lua")
-include("lua/items/BookOfAmbit.lua")
-include("lua/items/NEASS.lua")
-include("lua/items/Cringe.lua")
-include("lua/items/ZZZZoptionsZZZZ.lua")
-include("lua/items/Brunch.lua")
-include("lua/items/CrabLegs.lua")
-include("lua/items/OwlsEye.lua")
-include("lua/items/SlickWorm.lua")
-include("lua/items/HeartRenovator.lua")
-include("lua/items/PharaohCat.lua")
-include("lua/items/F4.lua")
-include("lua/items/Tab.lua")
-include("lua/items/ShatteredHeart.lua")
-include("lua/items/Grass.lua")
-include("lua/items/KeysToTheKingdom.lua")
-include("lua/items/BindsOfDevotion.lua")
-include("lua/items/AlabasterScrap.lua")
-include("lua/items/LeahsLock.lua")
-include("lua/items/MuddledCross.lua")
-include("lua/items/ParasiticPoofer.lua")
-include("lua/items/HeartEmbeddedCoin.lua")
-include("lua/items/SpiritualWound.lua")
-include("lua/items/CaduceusStaff.lua")
-include("lua/items/Polydipsia.lua")
-include("lua/items/Kareth.lua")
-include("lua/items/PillarOfFire.lua")
-include("lua/items/PillarOfClouds.lua")
-include("lua/items/FirstbornSon.lua")
-include("lua/items/MiriamsWell.lua")
-include("lua/items/Quarantine.lua")
-include("lua/items/BookOfGuidance.lua")
-include("lua/items/JarOfManna.lua")
-include("lua/items/Tambourine.lua")
-include("lua/items/TheDreidel.lua")
-include("lua/items/Apocalypse.lua")
-include("lua/items/AbyssalPenny.lua")
-include("lua/items/SalineSpray.lua")
-include("lua/items/AlmagestScrap.lua")
-include("lua/items/WormwoodLeaf.lua")
-include("lua/items/Mandrake.lua")
-include("lua/items/LittleSister.lua")
-include("lua/items/OldCamera.lua")
-include("lua/items/Butterfly.lua")
-include("lua/items/AlternateReality.lua")
-include("lua/items/Cork.lua")
-include("lua/items/Flux.lua")
-include("lua/items/Brainstorm.lua")
-include("lua/items/CosmicOmnibus.lua")
-include("lua/items/LittleRaincoat.lua")
-include("lua/items/BloodCyst.lua")
-include("lua/items/Polaris.lua")
-include("lua/items/EscapePlan.lua")
-include("lua/items/D9.lua")
-include("lua/items/Epitaph.lua")
-include("lua/items/LeahsHairTie.lua")
-include("lua/items/LeahsTornHeart.lua")
-include("lua/items/PetersHeadband.lua")
-include("lua/items/PetersBloodyFracture.lua")
-include("lua/items/MiriamsHeadband.lua")
-include("lua/items/MiriamsPutridVeil.lua")
--- Enemy luas
+-------- Lua Files --------
+
+-- Players
+include("lua/players/Leah.lua")
+include("lua/players/Peter.lua")
+include("lua/players/Miriam.lua")
+
+-- Collectibles
+include("lua/items/collectibles/Esc.lua")
+include("lua/items/collectibles/Tilde.lua")
+include("lua/items/collectibles/Alt.lua")
+include("lua/items/collectibles/Spacebar.lua")
+include("lua/items/collectibles/Backspace.lua")
+include("lua/items/collectibles/Q.lua")
+include("lua/items/collectibles/E.lua")
+include("lua/items/collectibles/C.lua")
+include("lua/items/collectibles/Caps.lua")
+include("lua/items/collectibles/Enter.lua")
+include("lua/items/collectibles/Shift.lua")
+include("lua/items/collectibles/Ophiuchus.lua")
+include("lua/items/collectibles/Chiron.lua")
+include("lua/items/collectibles/Ceres.lua")
+include("lua/items/collectibles/Pallas.lua")
+include("lua/items/collectibles/Juno.lua")
+include("lua/items/collectibles/Vesta.lua")
+include("lua/items/collectibles/TechIX.lua")
+include("lua/items/collectibles/LeakingTank.lua")
+include("lua/items/collectibles/UnstableCore.lua")
+include("lua/items/collectibles/Technology-1.lua")
+include("lua/items/collectibles/BookOfSwiftness.lua")
+include("lua/items/collectibles/BookOfAmbit.lua")
+include("lua/items/collectibles/NEASS.lua")
+include("lua/items/collectibles/Cringe.lua")
+include("lua/items/collectibles/ZZZZoptionsZZZZ.lua")
+include("lua/items/collectibles/Brunch.lua")
+include("lua/items/collectibles/CrabLegs.lua")
+include("lua/items/collectibles/OwlsEye.lua")
+include("lua/items/collectibles/HeartRenovator.lua")
+include("lua/items/collectibles/PharaohCat.lua")
+include("lua/items/collectibles/F4.lua")
+include("lua/items/collectibles/Tab.lua")
+include("lua/items/collectibles/ShatteredHeart.lua")
+include("lua/items/collectibles/KeysToTheKingdom.lua")
+include("lua/items/collectibles/BindsOfDevotion.lua")
+include("lua/items/collectibles/MuddledCross.lua")
+include("lua/items/collectibles/ParasiticPoofer.lua")
+include("lua/items/collectibles/HeartEmbeddedCoin.lua")
+include("lua/items/collectibles/SpiritualWound.lua")
+include("lua/items/collectibles/CaduceusStaff.lua")
+include("lua/items/collectibles/Polydipsia.lua")
+include("lua/items/collectibles/Kareth.lua")
+include("lua/items/collectibles/PillarOfFire.lua")
+include("lua/items/collectibles/PillarOfClouds.lua")
+include("lua/items/collectibles/FirstbornSon.lua")
+include("lua/items/collectibles/MiriamsWell.lua")
+include("lua/items/collectibles/Quarantine.lua")
+include("lua/items/collectibles/BookOfGuidance.lua")
+include("lua/items/collectibles/JarOfManna.lua")
+include("lua/items/collectibles/Tambourine.lua")
+include("lua/items/collectibles/TheDreidel.lua")
+include("lua/items/collectibles/Apocalypse.lua")
+include("lua/items/collectibles/Mandrake.lua")
+include("lua/items/collectibles/LittleSister.lua")
+include("lua/items/collectibles/OldCamera.lua")
+include("lua/items/collectibles/Butterfly.lua")
+include("lua/items/collectibles/AlternateReality.lua")
+include("lua/items/collectibles/Cork.lua")
+include("lua/items/collectibles/Flux.lua")
+include("lua/items/collectibles/Brainstorm.lua")
+include("lua/items/collectibles/CosmicOmnibus.lua")
+include("lua/items/collectibles/LittleRaincoat.lua")
+include("lua/items/collectibles/BloodCyst.lua")
+include("lua/items/collectibles/Polaris.lua")
+include("lua/items/collectibles/D9.lua")
+include("lua/items/collectibles/LeahsHairTie.lua")
+include("lua/items/collectibles/LeahsTornHeart.lua")
+include("lua/items/collectibles/PetersHeadband.lua")
+include("lua/items/collectibles/PetersBloodyFracture.lua")
+include("lua/items/collectibles/MiriamsHeadband.lua")
+include("lua/items/collectibles/MiriamsPutridVeil.lua")
+
+-- Trinkets
+include("lua/items/trinkets/HolyHeart.lua")
+include("lua/items/trinkets/SlickWorm.lua")
+include("lua/items/trinkets/Grass.lua")
+include("lua/items/trinkets/AlabasterScrap.lua")
+include("lua/items/trinkets/LeahsLock.lua")
+include("lua/items/trinkets/AbyssalPenny.lua")
+include("lua/items/trinkets/SalineSpray.lua")
+include("lua/items/trinkets/AlmagestScrap.lua")
+include("lua/items/trinkets/WormwoodLeaf.lua")
+include("lua/items/trinkets/EscapePlan.lua")
+include("lua/items/trinkets/Epitaph.lua")
+
+-- Enemies
 include("lua/enemies/Hostikai.lua")
 include("lua/enemies/Illusioner.lua")
--- Pocket Item Luas
+
+-- Pockets
 include("lua/pocket/SoulOfLeah.lua")
 include("lua/pocket/TwoOfShields.lua")
 include("lua/pocket/AceOfShields.lua")
@@ -223,17 +248,62 @@ include("lua/pocket/EssenceOfProsperity.lua")
 include("lua/pocket/EssenceOfDrought.lua")
 include("lua/pocket/Heartache.lua")
 include("lua/pocket/GoldenCard.lua")
--- Pickup Luas
+
+-- Pickups
 include("lua/pickups/MoonHeart.lua")
 include("lua/pickups/RockHeart.lua")
 include("lua/pickups/GoldenSack.lua")
--- Floor Generation Luas
+
+-- Floor Generation
 --include("lua/rooms/NoahsArk.lua")
 --include("lua/rooms/HomeExit.lua")
--- Custom Challenge Luas
+
+-- Custom Challenges
 include("lua/challenges/WhereAmI.lua")
--- Save Data/Unlocks
+
+-- Achievements
 --include("lua/achievements.lua")
+
+-- Mod Support
+if EID then
+	include("lua/eid.lua")
+end
+
+if Encyclopedia then
+	include("lua/encyclopedia.lua")
+end
+
+if Poglite then
+	-- Leah
+	local LeahCostumeA = Isaac.GetCostumeIdByPath("gfx/characters/Character_001_Leah_Pog.anm2")
+	Poglite:AddPogCostume("LeahPog", LeahA, LeahCostumeA)
+	-- Tainted Leah
+	local LeahCostumeB = Isaac.GetCostumeIdByPath("gfx/characters/Character_001b_Leah_Pog.anm2")
+	Poglite:AddPogCostume("LeahBPog", LeahB, LeahCostumeB)
+	-- Miriam
+	local MiriamCostumeA = Isaac.GetCostumeIdByPath("gfx/characters/Character_003_Miriam_Pog.anm2")
+	Poglite:AddPogCostume("MiriamPog", MiriamA, MiriamCostumeA)
+end
+
+if MiniMapiItemsAPI then
+	local MoonHeartSprite = Sprite()
+	MoonHeartSprite:Load("gfx/ui/heart_icon.anm2", true)
+	-- Moon Heart
+	MinimapAPI:AddIcon("MoonHeartIcon", MoonHeartSprite, "MoonHeart", 0)
+	MinimapAPI:AddPickup(HeartSubType.HEART_MOON, "MoonHeartIcon", 5, 10, HeartSubType.HEART_MOON, MinimapAPI.PickupNotCollected, "hearts", 13000)
+	-- Rock Heart
+	MinimapAPI:AddIcon("RockHeartIcon", RockHeartSprite, "RockHeart", 0)
+	MinimapAPI:AddPickup(HeartSubType.HEART_ROCK, "RockHeartIcon", 5, 10, HeartSubType.HEART_ROCK, MinimapAPI.PickupNotCollected, "hearts", 13000)
+end
+
+if ModConfigMenu then
+	include("lua/MCM.lua")
+end
+
+-- Other
+include("lua/piber.lua")
+
+-------- Lua Files End --------
 
 function Furtherance:playFailSound()
 	SFXManager():Play(Furtherance.FailSound)
@@ -302,14 +372,14 @@ function mod:OnSave(isSaving)
 			saveData["player_" .. tostring(i + 1)].MannaBuffs = data.MannaBuffs
 			saveData["player_" .. tostring(i + 1)].DiedWithEpitaph = data.DiedWithEpitaph
 			saveData["player_" .. tostring(i + 1)].EpitaphStage = data.EpitaphStage
-			if player:GetName() == "Leah" then
-				saveData["player_" .. tostring(i + 1)].kills = data.leahkills
+			if player:GetPlayerType() == LeahA then
+				saveData["player_" .. tostring(i + 1)].leahkills = data.leahkills
 			end
-			if player:GetName() == "Peter" then
+			if player:GetPlayerType() == PeterA then
 				saveData["player_" .. tostring(i + 1)].DevilCount = data.DevilCount
 				saveData["player_" .. tostring(i + 1)].AngelCount = data.AngelCount
 			end
-			if player:GetName() == "Miriam" then
+			if player:GetPlayerType() == MiriamA then
 				saveData["player_" .. tostring(i + 1)].MiriamTearCount = data.MiriamTearCount
 				saveData["player_" .. tostring(i + 1)].MiriamRiftTimeout = data.MiriamRiftTimeout
 			end
@@ -334,12 +404,12 @@ function mod:OnLoad(isLoading)
 			if isLoading == false or mod.DataTable[index].FurtheranceMoonHeart == nil then
 				mod.DataTable[index].FurtheranceMoonHeart = 0
 			end
-			if player:GetName() == "Leah" then -- leah's Data
-				if loadData["player_" .. tostring(i + 1)].kills then
-					data.leahkills = loadData["player_" .. tostring(i + 1)].kills
+			if player:GetPlayerType() == LeahA then -- leah's Data
+				if loadData["player_" .. tostring(i + 1)].leahkills then
+					data.leahkills = loadData["player_" .. tostring(i + 1)].leahkills
 				end
 			end
-			if player:GetName() == "Peter" then -- Peter's Data
+			if player:GetPlayerType() == PeterA then -- Peter's Data
 				if loadData["player_" .. tostring(i + 1)].DevilCount then
 					data.DevilCount = loadData["player_" .. tostring(i + 1)].DevilCount
 				end
@@ -347,7 +417,7 @@ function mod:OnLoad(isLoading)
 					data.AngelCount = loadData["player_" .. tostring(i + 1)].AngelCount
 				end
 			end
-			if player:GetName() == "Miriam" then -- Miriam's Data
+			if player:GetPlayerType() == MiriamA then -- Miriam's Data
 				if loadData["player_" .. tostring(i + 1)].MiriamTearCount then
 					data.MiriamTearCount = loadData["player_" .. tostring(i + 1)].MiriamTearCount
 				end
@@ -433,11 +503,6 @@ function mod:LoadDataCacheEval(player)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.LoadDataCacheEval)
 
--- Players
-include("lua/players/Leah.lua")
-include("lua/players/Peter.lua")
-include("lua/players/Miriam.lua")
-
 -- prevent shaders crash
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, function()
 	if #Isaac.FindByType(EntityType.ENTITY_PLAYER) == 0 then
@@ -453,47 +518,6 @@ mod:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, function(self, tear)
 		data.AppliedTearFlags = {}
 	end
 end)
-
------ Mod Support -----
-
-if EID then
-	include("lua/eid.lua")
-end
-
-if Encyclopedia then
-	include("lua/encyclopedia.lua")
-end
-
-if Poglite then
-	-- Leah
-	local LeahCostumeA = Isaac.GetCostumeIdByPath("gfx/characters/Character_001_Leah_Pog.anm2")
-	Poglite:AddPogCostume("LeahPog", normalLeah, LeahCostumeA)
-	-- Tainted Leah
-	local LeahCostumeB = Isaac.GetCostumeIdByPath("gfx/characters/Character_001b_Leah_Pog.anm2")
-	Poglite:AddPogCostume("LeahBPog", taintedLeah, LeahCostumeB)
-	-- Miriam
-	local MiriamCostumeA = Isaac.GetCostumeIdByPath("gfx/characters/Character_003_Miriam_Pog.anm2")
-	Poglite:AddPogCostume("MiriamPog", normalMiriam, MiriamCostumeA)
-end
-
-if MiniMapiItemsAPI then
-	local MoonHeartSprite = Sprite()
-	MoonHeartSprite:Load("gfx/ui/heart_icon.anm2", true)
-	-- Moon Heart
-	MinimapAPI:AddIcon("MoonHeartIcon", MoonHeartSprite, "MoonHeart", 0)
-	MinimapAPI:AddPickup(HeartSubType.HEART_MOON, "MoonHeartIcon", 5, 10, HeartSubType.HEART_MOON, MinimapAPI.PickupNotCollected, "hearts", 13000)
-	-- Rock Heart
-	MinimapAPI:AddIcon("RockHeartIcon", RockHeartSprite, "RockHeart", 0)
-	MinimapAPI:AddPickup(HeartSubType.HEART_ROCK, "RockHeartIcon", 5, 10, HeartSubType.HEART_ROCK, MinimapAPI.PickupNotCollected, "hearts", 13000)
-end
-
-if ModConfigMenu then
-	include("lua/MCM.lua")
-end
-
------ Mod Support End -----
-
-include("lua/piber.lua")
 
 -- Big Book Stuff (Thanks kittenchilly!)
 

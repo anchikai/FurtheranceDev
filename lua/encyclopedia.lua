@@ -2422,7 +2422,7 @@ Encyclopedia.AddCharacterTainted({
     Name = "Leah",
     Description = "The Unloved",
     ID = Isaac.GetPlayerTypeByName("LeahB", true),
-	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "LeahB", 0, mod.path .. "content-dlc3/gfx/charactermenu_leahb.png"),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "Leah", 0, mod.path .. "content-dlc3/gfx/charactermenu_leahb.png"),
 	WikiDesc = Wiki.TaintedLeah,
 })
 
@@ -2439,7 +2439,7 @@ Encyclopedia.AddCharacterTainted({
     Name = "Peter",
     Description = "The Martyr",
     ID = Isaac.GetPlayerTypeByName("PeterB", true),
-	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "PeterB", 0, mod.path .. "content-dlc3/gfx/charactermenu_peterb.png"),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "Peter", 0, mod.path .. "content-dlc3/gfx/charactermenu_peterb.png"),
 	WikiDesc = Wiki.TaintedPeter,
 })
 
@@ -2456,6 +2456,6 @@ Encyclopedia.AddCharacterTainted({
     Name = "Miriam",
     Description = "The Condemned",
     ID = Isaac.GetPlayerTypeByName("MiriamB", true),
-	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "MiriamB", 0, mod.path .. "content-dlc3/gfx/charactermenu_miriamb.png"),
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "Miriam", 0, mod.path .. "content-dlc3/gfx/charactermenu_miriamb.png"),
 	WikiDesc = Wiki.TaintedMiriam,
 })

@@ -10,10 +10,10 @@ COSTUME_PETER_B_DRIP = Isaac.GetCostumeIdByPath("gfx/characters/Character_002b_P
 
 function mod:OnInit(player)
 	local data = mod:GetData(player)
-	if player:GetName() == "Peter" then -- If the player is Peter it will apply his drip
+	if player:GetPlayerType() == PeterA then -- If the player is Peter it will apply his drip
 		player:AddNullCostume(COSTUME_PETER_A_DRIP)
 		player:AddTrinket(TrinketType.TRINKET_ALABASTER_SCRAP, true)
-	elseif player:GetName() == "PeterB" then -- Apply different drip for his tainted variant
+	elseif player:GetPlayerType() == PeterB then -- Apply different drip for his tainted variant
 		player:AddNullCostume(COSTUME_PETER_B_DRIP)
 	end
 end
@@ -22,13 +22,13 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
 
 function mod:PeterUpdate(player)
 	local data = mod:GetData(player)
-	if player:GetName() == "Peter" then
+	if player:GetPlayerType() == PeterA then
 		if player.FrameCount == 1 and data.Init then
 			if not mod.isLoadingData then
 				player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, ActiveSlot.SLOT_POCKET, false)
 			end
 		end
-	elseif player:GetName() == "PeterB" then
+	elseif player:GetPlayerType() == PeterB then
 		if player:GetSoulHearts() > 0 then
 			player:AddSoulHearts(-player:GetSoulHearts())
 		end
@@ -45,7 +45,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.PeterUpdate)
 
 function mod:PeterStats(player, flag)
 	local data = mod:GetData(player)
-	if player:GetName() == "Peter" then -- If the player is Peter it will apply his stats
+	if player:GetPlayerType() == PeterA then -- If the player is Peter it will apply his stats
 		if flag == CacheFlag.CACHE_SPEED then
 			player.MoveSpeed = player.MoveSpeed - 0.25
 		end
@@ -58,7 +58,7 @@ function mod:PeterStats(player, flag)
 		if flag == CacheFlag.CACHE_RANGE then
 			player.TearRange = player.TearRange + 20
 		end
-	elseif player:GetName() == "PeterB" then -- If the player is Tainted Peter it will apply his stats
+	elseif player:GetPlayerType() == PeterB then -- If the player is Tainted Peter it will apply his stats
 		if flag == CacheFlag.CACHE_LUCK then
 			player.Luck = player.Luck - 1
 		end
@@ -71,7 +71,7 @@ function mod:Hearts(entity, collider)
 	if collider.Type == EntityType.ENTITY_PLAYER then
 		local player = collider:ToPlayer()
 		local data = mod:GetData(player)
-		if player:GetName() == "PeterB" then -- Prevent Tainted Peter from obtaining Non-Red Health
+		if player:GetPlayerType() == PeterB then -- Prevent Tainted Peter from obtaining Non-Red Health
 			if entity.SubType == HeartSubType.HEART_SOUL or entity.SubType == HeartSubType.HEART_HALF_SOUL or entity.SubType == HeartSubType.HEART_BLACK then
 				return false
 			elseif entity.SubType == HeartSubType.HEART_BLENDED then
@@ -94,7 +94,7 @@ mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.Hearts, PickupVariant.
 function mod:PeterQual(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		if player:GetName() == "PeterB" then
+		if player:GetPlayerType() == PeterB then
 			local itemConfig = Isaac.GetItemConfig()
 			if mod.Flipped == false then
 				if itemConfig:GetCollectible(entity.SubType).Quality > 2 and entity.SubType ~= CollectibleType.COLLECTIBLE_BIRTHRIGHT then
@@ -112,7 +112,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.PeterQual, PickupVariant.P
 
 function mod:BloodyTears(tear)
 	local player = tear.Parent:ToPlayer()
-	if player:GetName() == "PeterB" then
+	if player:GetPlayerType() == PeterB then
 		if tear.Variant == TearVariant.BLUE then
 			tear:ChangeVariant(TearVariant.BLOOD)
 		elseif tear.Variant == TearVariant.CUPID_BLUE then

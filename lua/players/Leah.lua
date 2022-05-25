@@ -3,9 +3,6 @@ local game = Game()
 local rng = RNG()
 local bhb = Isaac.GetSoundIdByName("BrokenHeartbeat")
 
-normalLeah = Isaac.GetPlayerTypeByName("Leah", false)
-taintedLeah = Isaac.GetPlayerTypeByName("LeahB", true)
-
 COSTUME_LEAH_A_HAIR = Isaac.GetCostumeIdByPath("gfx/characters/Character_001_Leah_Hair.anm2")
 COSTUME_LEAH_B_HAIR = Isaac.GetCostumeIdByPath("gfx/characters/Character_001b_Leah_Hair.anm2")
 
@@ -21,11 +18,11 @@ end
 function mod:OnInit(player)
 	local data = mod:GetData(player)
 	data.Init = true
-	if player:GetName() == "Leah" then -- If the player is Leah it will apply her hair
+	if player:GetPlayerType() == LeahA then -- If the player is Leah it will apply her hair
 		player:AddNullCostume(COSTUME_LEAH_A_HAIR)
 		data.leahkills = 0
 		--player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, ActiveSlot.SLOT_POCKET, false)
-	elseif player:GetName() == "LeahB" then -- Apply different hair for her tainted variant
+	elseif player:GetPlayerType() == LeahB then -- Apply different hair for her tainted variant
 		--player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_SHATTERED_HEART, ActiveSlot.SLOT_POCKET, false)
 		player:AddNullCostume(COSTUME_LEAH_B_HAIR)
 	end
@@ -35,7 +32,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
 function mod:OnUpdate(player)
 	local room = game:GetRoom()
 	local data = mod:GetData(player)
-	if player:GetName() == "Leah" then
+	if player:GetPlayerType() == LeahA then
 		if player.FrameCount == 1 and data.Init then
 			if not mod.isLoadingData then
 				player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, ActiveSlot.SLOT_POCKET, false)
@@ -44,7 +41,7 @@ function mod:OnUpdate(player)
 			mod.isLoadingData = false
 			data.Init = nil
 		end
-	elseif player:GetName() == "LeahB" then
+	elseif player:GetPlayerType() == LeahB then
 		if player.FrameCount < 10 and (not mod.isLoadingData and data.Init) then
 			player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_SHATTERED_HEART, ActiveSlot.SLOT_POCKET, false)
 		elseif player.FrameCount >= 10 and data.Init then
@@ -106,7 +103,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.OnUpdate)
 function mod:Hearts(entity, collider)
 	if collider.Type == EntityType.ENTITY_PLAYER then
 		local player = collider:ToPlayer()
-		if player:GetName() == "LeahB" then -- Prevent Tainted Leah from obtaining Red Health
+		if player:GetPlayerType() == LeahB then -- Prevent Tainted Leah from obtaining Red Health
 			if entity.SubType == HeartSubType.HEART_DOUBLEPACK or entity.SubType == HeartSubType.HEART_FULL or entity.SubType == HeartSubType.HEART_HALF
 				or entity.SubType == HeartSubType.HEART_ROTTEN or entity.SubType == HeartSubType.HEART_SCARED then
 				return false
@@ -126,7 +123,7 @@ mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.Hearts, PickupVariant.
 
 function mod:leahStats(player, flag)
 	local data = mod:GetData(player)
-	if player:GetName() == "Leah" then -- If the player is Leah it will apply her stats
+	if player:GetPlayerType() == LeahA then -- If the player is Leah it will apply her stats
 		if flag == CacheFlag.CACHE_FIREDELAY then
 			player.MaxFireDelay = player.MaxFireDelay + 1
 		end
@@ -140,7 +137,7 @@ function mod:leahStats(player, flag)
 				player.TearRange = 640
 			end
 		end
-	elseif player:GetName() == "LeahB" then -- If the player is Tainted Leah it will apply her stats
+	elseif player:GetPlayerType() == LeahB then -- If the player is Tainted Leah it will apply her stats
 		if flag == CacheFlag.CACHE_FIREDELAY then
 			player.MaxFireDelay = player.MaxFireDelay / 2.5
 			if data.LeahbPower == nil then
@@ -188,7 +185,7 @@ function mod:LeahKill(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = game:GetPlayer(i)
 		local data = mod:GetData(player)
-		if player:GetName() == "Leah" then
+		if player:GetPlayerType() == LeahA then
 			if rng:RandomFloat() <= 0.0625 then
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_SCARED, entity.Position, Vector.Zero, player)
 			end
@@ -242,10 +239,10 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.LeahbBrokenTears)
 
 function mod:ClickerFix(_, _, player)
-	if player:GetName() == "Leah" then
+	if player:GetPlayerType() == LeahA then
 		player:TryRemoveNullCostume(COSTUME_LEAH_A_HAIR)
 		player:AddNullCostume(COSTUME_LEAH_A_HAIR)
-	elseif player:GetName() == "LeahB" then
+	elseif player:GetPlayerType() == LeahB then
 		player:TryRemoveNullCostume(COSTUME_LEAH_B_HAIR)
 		player:AddNullCostume(COSTUME_LEAH_B_HAIR)
 	end

@@ -6,7 +6,7 @@
 		nameimage="playername_Leah.png"
 		portrait="playerportrait_Leah_A.png"
 		birthright="Loved once more" />
-	<player name="LeahB" bSkinParent="Leah" skinColor="-1" black="2" broken="11" costumeSuffix="leahb"
+	<player name="Leah" bSkinParent="Leah" skinColor="-1" black="2" broken="11" costumeSuffix="leahb"
 		skin="Character_001_Leah_B.png"
 		nameimage="playername_Leah.png"
 		portrait="playerportrait_Leah_B.png"
@@ -16,7 +16,7 @@
 		nameimage="playername_Peter.png"
 		portrait="playerportrait_Peter_A.png"
 		birthright="Mercy up" />
-	<player name="PeterB" bSkinParent="Peter" skinColor="-1" hp="6" costumeSuffix="peterb"
+	<player name="Peter" bSkinParent="Peter" skinColor="-1" hp="6" costumeSuffix="peterb"
 		skin="Character_002_Peter_B.png"
 		nameimage="playername_Peter.png"
 		portrait="playerportrait_Peter_B.png"
@@ -26,7 +26,7 @@
 		nameimage="playername_Miriam.png"
 		portrait="playerportrait_Miriam_A.png"
 		birthright="Crashing waves" />
-	<player name="MiriamB" bSkinParent="Miriam" skinColor="-1" broken="4" card="55" costumeSuffix="miriamb"
+	<player name="Miriam" bSkinParent="Miriam" skinColor="-1" broken="4" card="55" costumeSuffix="miriamb"
 		skin="Character_003_Miriam_B.png"
 		nameimage="playername_Miriam.png"
 		portrait="playerportrait_Miriam_B.png"
