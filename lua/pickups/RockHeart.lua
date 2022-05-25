@@ -21,9 +21,9 @@ end
 
 local function CanOnlyHaveSoulHearts(player)
 	if player:GetPlayerType() == PlayerType.PLAYER_BLUEBABY
-	or player:GetPlayerType() == PlayerType.PLAYER_BLUEBABY_B or player:GetPlayerType() == PlayerType.PLAYER_BLACKJUDAS
-	or player:GetPlayerType() == PlayerType.PLAYER_JUDAS_B or player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN_B
-	or player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B or player:GetPlayerType() == PlayerType.PLAYER_BETHANY_B then
+		or player:GetPlayerType() == PlayerType.PLAYER_BLUEBABY_B or player:GetPlayerType() == PlayerType.PLAYER_BLACKJUDAS
+		or player:GetPlayerType() == PlayerType.PLAYER_JUDAS_B or player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN_B
+		or player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B or player:GetPlayerType() == PlayerType.PLAYER_BETHANY_B then
 		return true
 	end
 	return false
@@ -53,18 +53,19 @@ function mod:RockHeartCollision(entity, collider)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.RockHeartCollision, PickupVariant.PICKUP_HEART)
 
 function mod:shouldDeHook()
 	local reqs = {
-	  not game:GetHUD():IsVisible(),
-	  game:GetSeeds():HasSeedEffect(SeedEffect.SEED_NO_HUD),
-	  game:GetLevel():GetCurses() & LevelCurse.CURSE_OF_THE_UNKNOWN ~= 0
+		not game:GetHUD():IsVisible(),
+		game:GetSeeds():HasSeedEffect(SeedEffect.SEED_NO_HUD),
+		game:GetLevel():GetCurses() & LevelCurse.CURSE_OF_THE_UNKNOWN ~= 0
 	}
 	return reqs[1] or reqs[2] or reqs[3]
 end
 
-local function renderingHearts(player,playeroffset)
+local function renderingHearts(player, playeroffset)
 	local index = mod:GetEntityIndex(player)
 	local pType = player:GetPlayerType()
 	local isForgotten = pType == PlayerType.PLAYER_THEFORGOTTEN and 1 or 0
@@ -77,26 +78,26 @@ local function renderingHearts(player,playeroffset)
 	if isForgotten == 1 then
 		player = player:GetSubPlayer()
 	end
-	local heartIndex = math.ceil(mod.DataTable[index].FurtheranceRockHeart/2) - 1
+	local heartIndex = math.ceil(mod.DataTable[index].FurtheranceRockHeart / 2) - 1
 	local goldHearts = player:GetGoldenHearts()
 	local getMaxHearts = player:GetEffectiveMaxHearts() + (player:GetSoulHearts() + player:GetSoulHearts() % 2)
 	local eternalHeart = player:GetEternalHearts()
-	for i=0, heartIndex do
+	for i = 0, heartIndex do
 		local RockHeart = Sprite()
-		RockHeart:Load("gfx/ui/ui_rockheart.anm2",true)
+		RockHeart:Load("gfx/ui/ui_rockheart.anm2", true)
 
-		local hearts = ((CanOnlyHaveSoulHearts(player) and player:GetBoneHearts()*2 or player:GetEffectiveMaxHearts()) + player:GetSoulHearts()) - (i * 2)
-		local hpOffset = hearts%2 ~= 0 and (playeroffset == 5 and -6 or 6) or 0
+		local hearts = ((CanOnlyHaveSoulHearts(player) and player:GetBoneHearts() * 2 or player:GetEffectiveMaxHearts()) + player:GetSoulHearts()) - (i * 2)
+		local hpOffset = hearts % 2 ~= 0 and (playeroffset == 5 and -6 or 6) or 0
 		local playersHeartPos = {
-			[1] = Options.HUDOffset * Vector(20, 12) + Vector(hearts*6+36+hpOffset, 12) + Vector(0,10) * isForgotten,
-			[2] = screenHelper.GetScreenTopRight(0) + Vector(hearts*6+hpOffset-123,12) + Options.HUDOffset * Vector(-20*1.2, 12) + Vector(0,20) * isForgotten,
-			[3] = screenHelper.GetScreenBottomLeft(0) + Vector(hearts*6+hpOffset+46,-27) + Options.HUDOffset * Vector(20*1.1, -12*0.5) + Vector(0,20) * isForgotten,
-			[4] = screenHelper.GetScreenBottomRight(0) + Vector(hearts*6+hpOffset-131,-27) + Options.HUDOffset * Vector(-20*0.8, -12*0.5) + Vector(0,20) * isForgotten,
-			[5] = screenHelper.GetScreenBottomRight(0) + Vector((-hearts)*6+hpOffset-36,-27) + Options.HUDOffset * Vector(-20*0.8, -12*0.5)
+			[1] = Options.HUDOffset * Vector(20, 12) + Vector(hearts * 6 + 36 + hpOffset, 12) + Vector(0, 10) * isForgotten,
+			[2] = screenHelper.GetScreenTopRight(0) + Vector(hearts * 6 + hpOffset - 123, 12) + Options.HUDOffset * Vector(-20 * 1.2, 12) + Vector(0, 20) * isForgotten,
+			[3] = screenHelper.GetScreenBottomLeft(0) + Vector(hearts * 6 + hpOffset + 46, -27) + Options.HUDOffset * Vector(20 * 1.1, -12 * 0.5) + Vector(0, 20) * isForgotten,
+			[4] = screenHelper.GetScreenBottomRight(0) + Vector(hearts * 6 + hpOffset - 131, -27) + Options.HUDOffset * Vector(-20 * 0.8, -12 * 0.5) + Vector(0, 20) * isForgotten,
+			[5] = screenHelper.GetScreenBottomRight(0) + Vector((-hearts) * 6 + hpOffset - 36, -27) + Options.HUDOffset * Vector(-20 * 0.8, -12 * 0.5)
 		}
 		local offset = playersHeartPos[playeroffset]
 		local offsetCol = (playeroffset == 1 or playeroffset == 5) and 13 or 7
-		offset.X = offset.X  - math.floor(hearts / offsetCol) * (playeroffset == 5 and (-72) or (playeroffset == 1 and 72 or 36))
+		offset.X = offset.X - math.floor(hearts / offsetCol) * (playeroffset == 5 and (-72) or (playeroffset == 1 and 72 or 36))
 		offset.Y = offset.Y + math.floor(hearts / offsetCol) * 10
 		local anim = "RockHeartFull"
 		if not isTotalEven then
@@ -104,20 +105,20 @@ local function renderingHearts(player,playeroffset)
 				anim = "RockHeartHalf"
 			end
 		end
-		if player:GetEffectiveMaxHearts() == 0 and i == (math.ceil(player:GetSoulHearts()/2) - 1)
-		and eternalHeart > 0 then
-			anim = anim.."Eternal"
+		if player:GetEffectiveMaxHearts() == 0 and i == (math.ceil(player:GetSoulHearts() / 2) - 1)
+			and eternalHeart > 0 then
+			anim = anim .. "Eternal"
 		end
 		if goldHearts - i > 0 then
-			anim = anim.."Gold"
+			anim = anim .. "Gold"
 		end
 		if i == 0 and player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_HOLY_MANTLE)
-		and getMaxHearts == player:GetHeartLimit() and not player:GetEffects():HasNullEffect(NullItemID.ID_LOST_CURSE)
-		and pType ~= PlayerType.PLAYER_JACOB2_B then
-			anim = anim.."Mantle"
+			and getMaxHearts == player:GetHeartLimit() and not player:GetEffects():HasNullEffect(NullItemID.ID_LOST_CURSE)
+			and pType ~= PlayerType.PLAYER_JACOB2_B then
+			anim = anim .. "Mantle"
 		end
-				
-		RockHeart.Color = Color(1,1,1,transperancy)
+
+		RockHeart.Color = Color(1, 1, 1, transperancy)
 		--[[local rendering = RockHeart.Color.A > 0.1 or game:GetFrameCount() < 1
 		if game:IsPaused() then
 			pauseColorTimer = pauseColorTimer + 1
@@ -131,7 +132,7 @@ local function renderingHearts(player,playeroffset)
 		RockHeart:Play(anim, true)
 		RockHeart:LoadGraphics()
 		RockHeart.FlipX = playeroffset == 5
-		RockHeart:Render(Vector(offset.X, offset.Y), Vector(0,0), Vector(0,0))
+		RockHeart:Render(Vector(offset.X, offset.Y), Vector(0, 0), Vector(0, 0))
 	end
 end
 
@@ -145,7 +146,7 @@ function mod:onRender(shadername)
 		if i == 0 and player:GetPlayerType() == PlayerType.PLAYER_JACOB then
 			isJacobFirst = true
 		end
-		
+
 		if (player:GetPlayerType() == PlayerType.PLAYER_LAZARUS_B or player:GetPlayerType() == PlayerType.PLAYER_LAZARUS2_B) then
 			if player:GetOtherTwin() then
 				if mod.DataTable[index].i and mod.DataTable[index].i == i then
@@ -161,14 +162,15 @@ function mod:onRender(shadername)
 		end
 		if player:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B and not player.Parent and not mod.DataTable[index].i then
 			if player:GetPlayerType() == PlayerType.PLAYER_ESAU and isJacobFirst then
-				renderingHearts(player,5)	
+				renderingHearts(player, 5)
 			elseif player:GetPlayerType() ~= PlayerType.PLAYER_ESAU then
-				renderingHearts(player,i+1)
+				renderingHearts(player, i + 1)
 			end
 		end
 	end
 
 end
+
 mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, mod.onRender)
 
 function mod:RockDamage(entity, damage, flag, source, cooldown)
@@ -198,7 +200,7 @@ function mod:RockDamage(entity, damage, flag, source, cooldown)
 						player:ResetDamageCooldown()
 						player:SetMinDamageCooldown(cd)
 						if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B or player:GetPlayerType() == PlayerType.PLAYER_ESAU
-						or player:GetPlayerType() == PlayerType.PLAYER_JACOB then
+							or player:GetPlayerType() == PlayerType.PLAYER_JACOB then
 							player:GetOtherTwin():ResetDamageCooldown()
 							player:GetOtherTwin():SetMinDamageCooldown(cd)
 						end
@@ -216,6 +218,7 @@ function mod:RockDamage(entity, damage, flag, source, cooldown)
 		mod.DataTable[index].RockTakeDmg = nil
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.RockDamage, EntityType.ENTITY_PLAYER)
 
 function mod:HeartHandling(player)
@@ -225,8 +228,8 @@ function mod:HeartHandling(player)
 	local index = mod:GetEntityIndex(player)
 	if mod.DataTable[index].FurtheranceRockHeart > 0 then
 		mod.DataTable[index].FurtheranceRockHeart = mod.DataTable[index].FurtheranceRockHeart > player:GetSoulHearts() and player:GetSoulHearts() or mod.DataTable[index].FurtheranceRockHeart
-		local heartIndex = math.ceil(mod.DataTable[index].FurtheranceRockHeart/2) - 1
-		for i=0, heartIndex do
+		local heartIndex = math.ceil(mod.DataTable[index].FurtheranceRockHeart / 2) - 1
+		for i = 0, heartIndex do
 			local ExtraHearts = math.ceil(player:GetSoulHearts() / 2) + player:GetBoneHearts() - i
 			local imHeartLastIndex = player:GetSoulHearts() - (1 - player:GetSoulHearts() % 2) - i * 2
 			if (player:IsBoneHeart(ExtraHearts - 1)) or not player:IsBlackHeart(player:GetSoulHearts() - (1 - player:GetSoulHearts() % 2) - i * 2) then
@@ -252,18 +255,29 @@ function mod:HeartHandling(player)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.HeartHandling)
 
+local processedHearts = {}
+
 function mod:MorphHeart(entityType, variant, subType, position, velocity, spawner, seed)
-	if entityType == EntityType.ENTITY_PICKUP then
-		if variant == PickupVariant.PICKUP_HEART then
-			if subType == HeartSubType.HEART_ETERNAL or subType == HeartSubType.HEART_GOLDEN then
-				rng:SetSeed(seed, 1)
-				if rng:RandomFloat() <= 0.5 then
-					return {entityType, variant, HeartSubType.HEART_MOON, seed}
-				end
+	if entityType == EntityType.ENTITY_PICKUP and variant == PickupVariant.PICKUP_HEART and processedHearts[seed] == nil then
+		if subType == HeartSubType.HEART_ETERNAL or subType == HeartSubType.HEART_GOLDEN then
+			processedHearts[seed] = true
+			rng:SetSeed(seed, 1)
+			if rng:RandomFloat() <= 0.5 then
+				return { entityType, variant, HeartSubType.HEART_ROCK, seed }
 			end
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, mod.MorphHeart)
+
+function mod:ResetProcessedHearts()
+	for seed in pairs(processedHearts) do
+		processedHearts[seed] = nil
+	end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.ResetProcessedHearts)

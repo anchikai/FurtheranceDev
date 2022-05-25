@@ -17,16 +17,26 @@ local function pickCard()
     return allCards[rng:RandomInt(#allCards) + 1]
 end
 
+local processedCards = {}
+
 function mod:SpawnGoldenCard(entityType, variant, subType, _, _, _, seed)
-    if entityType == EntityType.ENTITY_PICKUP and variant == PickupVariant.PICKUP_TAROTCARD then
+    if entityType == EntityType.ENTITY_PICKUP and variant == PickupVariant.PICKUP_TAROTCARD and processedCards[seed] == nil then
+        processedCards[seed] = true
         if rng:RandomFloat() <= 0.1 then
-            print("gold")
             return { entityType, variant, CARD_GOLDEN, seed }
         end
     end
 end
 
 mod:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, mod.SpawnGoldenCard)
+
+function mod:ResetProcessedCards()
+    for seed in pairs(processedCards) do
+        processedCards[seed] = nil
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.ResetProcessedCards)
 
 function mod:UseGoldCard(card, player, flags)
     if rng:RandomFloat() <= 0.5 then
