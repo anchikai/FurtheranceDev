@@ -2,8 +2,11 @@ local mod = Furtherance
 local game = Game()
 local rng = RNG()
 
+local processedSacks = {}
+
 function mod:SpawnGoldenSack(entityType, variant, subType, _, _, _, seed)
-    if entityType == EntityType.ENTITY_PICKUP and variant == PickupVariant.PICKUP_GRAB_BAG and subType == SackSubType.SACK_NORMAL then
+    if entityType == EntityType.ENTITY_PICKUP and variant == PickupVariant.PICKUP_GRAB_BAG and subType == SackSubType.SACK_NORMAL and processedSacks[seed] == nil then
+        processedSacks[seed] = true
         if rng:RandomFloat() <= 0.1 then
             return { entityType, variant, SackSubType.SACK_GOLDEN, seed }
         end
@@ -12,6 +15,15 @@ end
 
 mod:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, mod.SpawnGoldenSack)
 
+function mod:ResetProcessedSacks()
+    for seed in pairs(processedSacks) do
+        processedSacks[seed] = nil
+    end
+end
+
+mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.ResetProcessedSacks)
+
+---@param pickup EntityPickup
 function mod:InitGoldenSack(pickup)
     if pickup.SubType == SackSubType.SACK_GOLDEN then
         local data = mod:GetData(pickup)
