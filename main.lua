@@ -97,6 +97,8 @@ CollectibleType.COLLECTIBLE_PALLAS = Isaac.GetItemIdByName("Pallas")
 CollectibleType.COLLECTIBLE_JUNO = Isaac.GetItemIdByName("Juno")
 CollectibleType.COLLECTIBLE_VESTA = Isaac.GetItemIdByName("Vesta")
 
+CollectibleType.COLLECTIBLE_POLARITY_SHIFT = Isaac.GetItemIdByName("Polarity Shift")
+
 -- Trinkets
 TrinketType.TRINKET_HOLY_HEART = Isaac.GetTrinketIdByName("Holy Heart")
 TrinketType.TRINKET_CRINGE = Isaac.GetTrinketIdByName("Cringe")
@@ -214,6 +216,7 @@ include("lua/items/collectibles/PetersHeadband.lua")
 include("lua/items/collectibles/PetersBloodyFracture.lua")
 include("lua/items/collectibles/MiriamsHeadband.lua")
 include("lua/items/collectibles/MiriamsPutridVeil.lua")
+include("lua/items/collectibles/PolarityShift.lua")
 
 -- Trinkets
 include("lua/items/trinkets/HolyHeart.lua")
@@ -390,6 +393,7 @@ function mod:OnSave(isSaving)
 	save.Unlocks = mod.Unlocks
 	mod:SaveData(json.encode(save))
 end
+
 mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.OnSave)
 
 function mod:OnLoad(isLoading)
@@ -493,6 +497,7 @@ function mod:OnLoad(isLoading)
 		end
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnLoad)
 
 function mod:LoadDataCacheEval(player)
@@ -501,6 +506,7 @@ function mod:LoadDataCacheEval(player)
 		player:EvaluateItems()
 	end
 end
+
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.LoadDataCacheEval)
 
 -- prevent shaders crash
