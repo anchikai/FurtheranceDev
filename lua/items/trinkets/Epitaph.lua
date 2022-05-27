@@ -36,8 +36,8 @@ mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.EpitaphRoom)
 
 function mod:EpitaphDied(entity)
     local player = entity:ToPlayer()
-    local data = mod:GetData(player)
     if player and player:HasTrinket(TrinketType.TRINKET_EPITAPH) then
+        local data = mod:GetData(player)
         local level = game:GetLevel()
         data.DiedWithEpitaph = true
         data.EpitaphStage = level:GetStage()
