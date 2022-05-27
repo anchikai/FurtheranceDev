@@ -4,39 +4,74 @@ local game = Game()
 local MaxTearDistance = 80 ^ 2
 local MaxEnemyDistance = 80 ^ 2
 
+---@param entity Entity
+---@return table<integer, true>
+local function getProcessedSet(entity)
+    local data = mod:GetData(entity)
+    local processedSet = data.LeviathansTendrilProcessed
+    if processedSet == nil then
+        processedSet = {}
+        data.LeviathansTendrilProcessed = processedSet
+    end
+
+    return processedSet
+end
+
+---@param player EntityPlayer
+---@param projectile EntityProjectile
+---@param angleOffset number
+local function redirectProjectile(player, projectile, angleOffset)
+    -- redirect it in a direction away from the player
+    local delta = projectile.Position - player.Position ---@type Vector
+    projectile.Velocity = delta:Rotated(angleOffset):Resized(projectile.Velocity:Length())
+
+    -- let it hit other enemies and stop homing
+    projectile:AddProjectileFlags(ProjectileFlags.HIT_ENEMIES)
+    projectile:ClearProjectileFlags(ProjectileFlags.SMART)
+    projectile.Target = nil
+end
+
+---@param player EntityPlayer
+---@param enemy Entity
+local function redirectEnemy(player, enemy)
+    local playerRef = EntityRef(player)
+
+    -- redirect it away from the player
+    enemy:AddFear(playerRef, 60)
+
+    -- Deal some damage in the process
+    enemy:TakeDamage(5, 0, playerRef, 0)
+end
+
 ---@param player EntityPlayer
 function mod:LeviathansTendrilUpdate(player)
     if not player:HasTrinket(TrinketType.TRINKET_LEVIATHANS_TENDRIL) then return end
-    local rng = player:GetTrinketRNG(TrinketType.TRINKET_LEVIATHANS_TENDRIL)
 
-    local chanceBonus = 0
     -- give a 5% bonus if they have the Leviathan transformation
-    if player:HasPlayerForm(PlayerForm.PLAYERFORM_EVIL_ANGEL) then
-        chanceBonus = 0.05
-    end
+    local chanceBonus = player:HasPlayerForm(PlayerForm.PLAYERFORM_EVIL_ANGEL) and 0.05 or 0
+    local rng = player:GetTrinketRNG(TrinketType.TRINKET_LEVIATHANS_TENDRIL)
+    local playerIndex = mod:GetEntityIndex(player)
 
     for _, entity in ipairs(Isaac.GetRoomEntities()) do
-        local data = mod:GetData(entity)
-        if data.LeviathansTendrilProcessed then goto continue end
+        local processedSet = getProcessedSet(entity)
+        if processedSet[playerIndex] then goto continue end
 
-        local delta = entity.Position - player.Position ---@type Vector
-        if entity.Type == EntityType.ENTITY_PROJECTILE then
-            if entity.SpawnerType ~= EntityType.ENTITY_PLAYER and delta:LengthSquared() < MaxTearDistance then
-                data.LeviathansTendrilProcessed = true
-                if rng:RandomFloat() < 0.25 + chanceBonus then
-                    local randomAngle = rng:RandomFloat() * 180 - 90
-                    local newVelocity = delta:Rotated(randomAngle):Resized(entity.Velocity)
-                    entity.Velocity = newVelocity
-                end
+        local projectile = entity:ToProjectile()
+        if projectile then
+            if projectile.SpawnerType == EntityType.ENTITY_PLAYER then goto continue end
+            if projectile.Position:DistanceSquared(player.Position) >= MaxTearDistance then goto continue end
+
+            processedSet[playerIndex] = true
+            if rng:RandomFloat() < 0.25 + chanceBonus then
+                local angleOffset = rng:RandomFloat() * 180 - 90
+                redirectProjectile(player, projectile, angleOffset)
             end
-        elseif entity:IsActiveEnemy(false) and entity:IsVulnerableEnemy() and delta:LengthSquared() < MaxEnemyDistance then
-            data.LeviathansTendrilProcessed = true
-            if rng:RandomFloat() < 0.1 + chanceBonus then
-                local playerRef = EntityRef(player)
-                entity:AddFear(playerRef, 60)
+        elseif entity:IsActiveEnemy(false) and entity:IsVulnerableEnemy() then
+            if entity.Position:DistanceSquared(player.Position) >= MaxEnemyDistance then goto continue end
 
-                -- I don't know how much damage this should do
-                entity:TakeDamage(5, 0, playerRef, 0)
+            processedSet[playerIndex] = true
+            if rng:RandomFloat() < 0.1 + chanceBonus then
+                redirectEnemy(player, entity)
             end
         end
         ::continue::
