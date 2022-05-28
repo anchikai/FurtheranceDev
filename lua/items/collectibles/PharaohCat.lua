@@ -38,7 +38,6 @@ function mod:PyramidTears(tear)
 
 	firePharaohCatTears(player, tear)
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, mod.PyramidTears)
 
 -- I hate kidney stone so much
@@ -47,7 +46,6 @@ local spamCollectibles = {
 	CollectibleType.COLLECTIBLE_ALMOND_MILK,
 }
 
----@param player EntityPlayer
 function mod:ForgorCat(player)
 	if not player:HasCollectible(CollectibleType.COLLECTIBLE_PHARAOH_CAT) or (player:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN and player:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN) then return end
 
@@ -85,7 +83,6 @@ function mod:ForgorCat(player)
 
 	player:FireTear(player.Position, player:GetAimDirection() * 10 * player.ShotSpeed, true, false, true, player, 1)
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.ForgorCat)
 
 -- directional offset from original direction when shot to the right
@@ -111,7 +108,6 @@ function mod:PyramidLasers(laser)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, mod.PyramidLasers)
 
 function mod:PyramidBombs(bomb)
@@ -123,7 +119,6 @@ function mod:PyramidBombs(bomb)
 		player:FireTear(bomb.Position + Vector(30, 0):Rotated(direction), bomb.Velocity, true, false, true, player, 1)
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_BOMB_INIT, mod.PyramidBombs)
 
 function mod:PharaohCatDebuff(player, cacheFlag)
@@ -133,5 +128,4 @@ function mod:PharaohCatDebuff(player, cacheFlag)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.PharaohCatDebuff)

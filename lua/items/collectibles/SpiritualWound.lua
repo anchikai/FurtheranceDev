@@ -8,21 +8,14 @@ local SpiritualWoundSoundStart = Isaac.GetSoundIdByName("SpiritualWoundStart")
 local SpiritualWoundSoundLoop = Isaac.GetSoundIdByName("SpiritualWoundLoop")
 
 
----@param vector1 Vector
----@param vector2 Vector
----@param alpha number -- between 0-1
 local function pureLerp(vector1, vector2, alpha)
 	return vector1 * (1 - alpha) + vector2 * alpha
 end
 
----@param player EntityPlayer
----@return boolean
 local function hasItem(player)
 	return player ~= nil and (player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND) or player:GetPlayerType() == MiriamB)
 end
 
----@param player EntityPlayer
----@param canShoot boolean
 local function setCanShoot(player, canShoot) -- Funciton Credit: im_tem
 	local oldchallenge = game.Challenge
 
@@ -31,7 +24,6 @@ local function setCanShoot(player, canShoot) -- Funciton Credit: im_tem
 	game.Challenge = oldchallenge
 end
 
----@param player EntityPlayer
 function mod:GetSpiritualWound(player)
 	if hasItem(player) then
 		setCanShoot(player, false)
@@ -71,9 +63,6 @@ local SpiritualWoundVariant = {
 	POLARITY_SHIFT = LaserVariant.JACOBS_LADDER
 }
 
----@param player EntityPlayer
----@param targetPosition Vector
----@param woundVariant integer
 local function spawnLaser(player, targetPosition, woundVariant)
 	local room = game:GetRoom()
 	-- Set laser start and end position
@@ -99,9 +88,6 @@ local function spawnLaser(player, targetPosition, woundVariant)
 	return laser
 end
 
----@param player EntityPlayer
----@param targetPosition Vector
----@return EntityLaser[]
 local function spawnLasers(player, targetPosition)
 	local data = mod:GetData(player)
 	local itemData = data.SpiritualWound
@@ -119,10 +105,6 @@ local function spawnLasers(player, targetPosition)
 	return lasers
 end
 
----@param player EntityPlayer
----@param laser EntityLaser
----@param targetPosition Vector
----@param angleOffset number
 local function updateLaser(laser, player, targetPosition, angleOffset)
 	local newGoal = pureLerp(laser:GetEndPoint(), targetPosition, 0.4)
 	local delta = newGoal - player.Position
@@ -133,10 +115,6 @@ local function updateLaser(laser, player, targetPosition, angleOffset)
 	laser.TearFlags = laser.TearFlags | TearFlags.TEAR_HOMING
 end
 
----@param lasers EntityLaser[]
----@param player EntityPlayer
----@param target Entity
----@return EntityLaser[]
 local function updateLasers(lasers, player, target)
 	local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)
 	local data = mod:GetData(player)
@@ -164,7 +142,6 @@ local function updateLasers(lasers, player, target)
 
 end
 
----@param laser EntityLaser
 function mod:SpiritualWoundUpdate(laser)
 	local data = mod:GetData(laser)
 	if data.IsSpiritualWound then
@@ -172,12 +149,8 @@ function mod:SpiritualWoundUpdate(laser)
 		SFXManager():Stop(SoundEffect.SOUND_BLOOD_LASER_LOOP)
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, mod.SpiritualWoundUpdate)
 
----@param entityType integer
----@param variant integer
----@param spawner Entity
 function mod:ReplaceBrimstoneSplash(entityType, variant, _, _, _, spawner)
 	if spawner == nil then return end
 	local laserSpawner = spawner.SpawnerEntity and spawner.SpawnerEntity:ToPlayer()
@@ -186,10 +159,8 @@ function mod:ReplaceBrimstoneSplash(entityType, variant, _, _, _, spawner)
 		return { EntityType.ENTITY_EFFECT, EffectVariantImpact }
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, mod.ReplaceBrimstoneSplash)
 
----@param laser EntityLaser
 function mod:SpiritualWoundRender(laser)
 	local data = mod:GetData(laser)
 	if data.IsSpiritualWound then
@@ -200,7 +171,6 @@ function mod:SpiritualWoundRender(laser)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_LASER_RENDER, mod.SpiritualWoundRender)
 
 local function getNewTarget(position, maxDistance)
@@ -219,7 +189,6 @@ local function getNewTarget(position, maxDistance)
 	return newEnemy
 end
 
----@param player EntityPlayer
 local function updateTarget(player)
 	local data = mod:GetData(player)
 	local itemData = data.SpiritualWound
@@ -290,7 +259,6 @@ local function snapTargetEffect(targetEffect)
 	end
 end
 
----@param player EntityPlayer
 function mod:EnemyTethering(player)
 	if not hasItem(player) then return end
 
@@ -315,7 +283,6 @@ function mod:EnemyTethering(player)
 
 	-- Create target
 	if isAttacking and not itemData.Target then
-		---@type EntityEffect
 		local targetEffect = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariantTarget, 0, player.Position, Vector.Zero, player):ToEffect()
 		itemData.Target = targetEffect
 
@@ -353,7 +320,6 @@ function mod:EnemyTethering(player)
 
 	-- Damaging
 	-- Detect which enemy is the closest to the target
-	---@type Entity
 	local targetEnemy = updateTarget(player)
 
 	-- update the lasers every other frame
@@ -379,7 +345,6 @@ function mod:EnemyTethering(player)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.EnemyTethering)
 
 function mod:ResetSpiritualWoundTarget()
@@ -398,16 +363,13 @@ function mod:ResetSpiritualWoundTarget()
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.ResetSpiritualWoundTarget)
 
----@param player EntityPlayer
 local function addActiveCharge(player, amount, activeSlot)
 	local polShiftConfig = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_POLARITY_SHIFT)
 	player:SetActiveCharge(math.min(player:GetActiveCharge(activeSlot) + amount, polShiftConfig.MaxCharges), activeSlot)
 end
 
----@param entity Entity
 function mod:SpiritualKill(entity)
 	local enemyData = mod:GetData(entity)
 	if enemyData.spiritualWound == nil then return end
@@ -442,5 +404,4 @@ function mod:SpiritualKill(entity)
 
 	enemyData.spiritualWound = nil
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.SpiritualKill)

@@ -50,7 +50,6 @@ local function getDamageMultiplier(self)
   return self.HitCount == 1 and 2 or 0.15
 end
 
----@param player EntityPlayer
 function mod:UsePolarityShift(_, _, player)
   -- spiritual wound attack is converted into lightning bolts for the current room
   local data = mod:GetData(player)
@@ -76,11 +75,8 @@ function mod:UsePolarityShift(_, _, player)
 
   return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UsePolarityShift, CollectibleType.COLLECTIBLE_POLARITY_SHIFT)
 
----@param player EntityPlayer
----@param flag integer
 function mod:PolarityShiftBuffs(player, flag)
   local data = mod:GetData(player)
   if not data.UsedPolarityShift then return end
@@ -91,7 +87,6 @@ function mod:PolarityShiftBuffs(player, flag)
     player.MaxFireDelay = mod:GetFireDelayFromTears(mod:GetTearsFromFireDelay(player.MaxFireDelay) + 1)
   end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.PolarityShiftBuffs)
 
 function mod:ResetPolarityShiftBuffs()
@@ -102,5 +97,4 @@ function mod:ResetPolarityShiftBuffs()
     data.UsedPolarityShift = nil
   end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.ResetPolarityShiftBuffs)

@@ -23,7 +23,6 @@ end
 
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.ResetProcessedSacks)
 
----@param pickup EntityPickup
 function mod:InitGoldenSack(pickup)
     if pickup.SubType == SackSubType.SACK_GOLDEN then
         local data = mod:GetData(pickup)

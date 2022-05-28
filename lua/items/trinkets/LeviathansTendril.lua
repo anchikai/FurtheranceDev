@@ -4,8 +4,6 @@ local game = Game()
 local MaxTearDistance = 80 ^ 2
 local MaxEnemyDistance = 80 ^ 2
 
----@param entity Entity
----@return table<integer, true>
 local function getProcessedSet(entity)
     local data = mod:GetData(entity)
     local processedSet = data.LeviathansTendrilProcessed
@@ -17,12 +15,9 @@ local function getProcessedSet(entity)
     return processedSet
 end
 
----@param player EntityPlayer
----@param projectile EntityProjectile
----@param angleOffset number
 local function redirectProjectile(player, projectile, angleOffset)
     -- redirect it in a direction away from the player
-    local delta = projectile.Position - player.Position ---@type Vector
+    local delta = projectile.Position - player.Position
     projectile.Velocity = delta:Rotated(angleOffset):Resized(projectile.Velocity:Length())
 
     -- let it hit other enemies and stop homing
@@ -31,8 +26,6 @@ local function redirectProjectile(player, projectile, angleOffset)
     projectile.Target = nil
 end
 
----@param player EntityPlayer
----@param enemy Entity
 local function redirectEnemy(player, enemy)
     local playerRef = EntityRef(player)
 
@@ -43,7 +36,6 @@ local function redirectEnemy(player, enemy)
     enemy:TakeDamage(5, 0, playerRef, 0)
 end
 
----@param player EntityPlayer
 function mod:LeviathansTendrilUpdate(player)
     if not player:HasTrinket(TrinketType.TRINKET_LEVIATHANS_TENDRIL) then return end
 
@@ -77,14 +69,12 @@ function mod:LeviathansTendrilUpdate(player)
         ::continue::
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.LeviathansTendrilUpdate)
 
 local wormFriendColor = Color(1, 1, 1)
 wormFriendColor:SetColorize(1, 1, 1, 1)
 wormFriendColor:SetTint(0.5, 0.5, 0.5, 1)
 
----@param familiar EntityFamiliar
 function mod:WormFriendColorChange(familiar)
     local player = familiar.SpawnerEntity and familiar.SpawnerEntity:ToPlayer()
 
@@ -92,7 +82,6 @@ function mod:WormFriendColorChange(familiar)
         familiar:SetColor(wormFriendColor, 0, 0)
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_FAMILIAR_RENDER, mod.WormFriendColorChange, FamiliarVariant.WORM_FRIEND)
 
 function mod:WormFriendKilledEnemy(entity)
@@ -100,7 +89,7 @@ function mod:WormFriendKilledEnemy(entity)
 
     local killedByLeviathanWormFriend = false
     for _, wormEntity in ipairs(wormFriends) do
-        local wormFriend = wormEntity:ToFamiliar() ---@type EntityFamiliar
+        local wormFriend = wormEntity:ToFamiliar()
         local owner = wormFriend.SpawnerEntity and wormFriend.SpawnerEntity:ToPlayer()
         if owner and owner:HasTrinket(TrinketType.TRINKET_LEVIATHANS_TENDRIL) and wormFriend.Target and GetPtrHash(wormFriend.Target) == GetPtrHash(entity) then
             killedByLeviathanWormFriend = true
@@ -112,5 +101,4 @@ function mod:WormFriendKilledEnemy(entity)
         Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_BLACK, entity.Position, Vector.Zero, nil)
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.WormFriendKilledEnemy)

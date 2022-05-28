@@ -32,7 +32,6 @@ local FirstbornSonFamiliar = Isaac.GetEntityVariantByName("Firstborn Son")
 
 ---A mapping of entity types to variants to booleans.
 ---`true` means that they have spawned, `false` means that they haven't.
----@type table<integer, table<integer, boolean>>
 local spawnedFlags = {
     [EntityType.ENTITY_LARRYJR] = {
         [0] = false,
@@ -209,7 +208,6 @@ function mod:CheckBossRush()
         mod:ResetBossRushWaveCounter()
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.CheckBossRush)
 
 function mod:ResetBossRushWaveCounter()
@@ -229,7 +227,6 @@ function mod:ResetBossRushWaveCounter()
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.ResetBossRushWaveCounter)
 
 ---bosses will spawn in 15 waves of two bosses each, each boss can only spawn once, but bosses some bosses such as larryJr will spawn in as three separate bosses.
@@ -266,12 +263,8 @@ function mod:UpdateBossRushWaveCounter()
         bossRushWave = bossRushWave + 1
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.UpdateBossRushWaveCounter)
 
----@param entities Entity[]
----@param source Entity
----@return Entity|nil -- the Entity that is closest to `source`. Returns `nil` if the `entities` argument was empty.
 local function getClosestEntity(entities, source)
     local closestDist = math.huge
     local closestEnemy = nil
@@ -286,10 +279,7 @@ local function getClosestEntity(entities, source)
     return closestEnemy
 end
 
----@param entities Entity[]
----@return Entity[] -- an array of the highest max HP entities in the given array.
 local function getMaxHPEntities(entities)
-    ---@type Entity[]
     local allMaxHPEntities = {}
 
     local highestHP = -math.huge
@@ -309,16 +299,13 @@ local function getMaxHPEntities(entities)
     return allMaxHPEntities
 end
 
----@return Entity[]
 local function getEnemies()
-    ---@type Entity[]
     local allEnemies = {}
     for _, entity in ipairs(Isaac.GetRoomEntities()) do
         if entity:IsActiveEnemy(false) and entity:IsVulnerableEnemy() then
             table.insert(allEnemies, entity)
         end
     end
-
     return allEnemies
 end
 
@@ -326,12 +313,8 @@ end
 --- 1. Preferred non-boss
 --- 2. has the highest HP in the room
 --- 3. is the closest enemy to the `source` argument
----@param source Entity
----@return Entity|nil
 local function getClosestHighestHPEnemyFavorNonBoss(source)
-    ---@type Entity[]
     local allNonBosses = {}
-    ---@type Entity[]
     local allBosses = {}
     for _, entity in ipairs(getEnemies()) do
         if GetPtrHash(entity) ~= GetPtrHash(source) then
@@ -357,7 +340,6 @@ end
 function mod:SpawnFirstbornSon(player)
     player:CheckFamiliar(FirstbornSonFamiliar, player:GetCollectibleNum(CollectibleType.COLLECTIBLE_FIRSTBORN_SON, false), RNG(), Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_FIRSTBORN_SON), 0)
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.SpawnFirstbornSon, CacheFlag.CACHE_FAMILIARS)
 
 function mod:FirstbornSonInit(familiar)
@@ -369,7 +351,6 @@ function mod:FirstbornSonInit(familiar)
 
     familiar.IsFollower = true
 end
-
 mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, mod.FirstbornSonInit, FirstbornSonFamiliar)
 
 local directionBoundaries = {
@@ -379,8 +360,6 @@ local directionBoundaries = {
     { 135, Direction.DOWN }
 }
 
----@param angle number -- An angle in degrees
----@return integer -- The corresponding Direction enum
 local function getDirectionFromAngle(angle)
     local result = Direction.LEFT
     for _, array in ipairs(directionBoundaries) do
@@ -390,17 +369,12 @@ local function getDirectionFromAngle(angle)
             break
         end
     end
-
     return result
 end
 
----@param familiar EntityFamiliar -- The familiar shooting the tear
----@param target Entity -- The entity this tear is aimed at
 local function shootFatalTear(familiar, target)
     local data = mod:GetData(familiar)
     local velocity = (target.Position - familiar.Position):Normalized() * 10
-
-    ---@type EntityTear
     local tear = Isaac.Spawn(EntityType.ENTITY_TEAR, TearVariant.BLUE, 0, familiar.Position, velocity, familiar):ToTear()
     local tearData = mod:GetData(tear)
     tearData.IsFirstbornSonTear = true
@@ -415,7 +389,6 @@ local function shootFatalTear(familiar, target)
     end, 10, nil, nil, true)
 end
 
----@param familiar EntityFamiliar
 function mod:FirstbornSonUpdate(familiar)
     familiar:FollowParent()
 
@@ -471,7 +444,6 @@ function mod:FirstbornSonUpdate(familiar)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, mod.FirstbornSonUpdate, FirstbornSonFamiliar)
 
 function mod:FirstbornSonNewRoom()
@@ -482,7 +454,6 @@ function mod:FirstbornSonNewRoom()
         data.UnclearDelay = 30
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.FirstbornSonNewRoom)
 
 function mod:FirstbornSonTearUpdate(tear)
@@ -498,18 +469,12 @@ function mod:FirstbornSonTearUpdate(tear)
 
     tear.Height = -20
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, mod.FirstbornSonTearUpdate)
 
----@param tear EntityTear
----@param collider Entity
----@return boolean|nil
 function mod:FirstbornSonTearHit(tear, collider)
     local tearData = mod:GetData(tear)
-
     if not tearData.IsFirstbornSonTear then return end
 
-    ---@type Entity
     local target = tear.Target
     if collider == nil or GetPtrHash(target) ~= GetPtrHash(collider) then
         return true
@@ -522,5 +487,4 @@ function mod:FirstbornSonTearHit(tear, collider)
     end
     tear:Die()
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, mod.FirstbornSonTearHit)
