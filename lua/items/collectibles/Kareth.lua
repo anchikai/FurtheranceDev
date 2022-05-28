@@ -4,10 +4,8 @@ local game = Game()
 function mod:KarethQual(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		local room = game:GetRoom()
-		if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_KARETH)) then
-			local itemConfig = Isaac.GetItemConfig()
-			local itemPool = Game():GetItemPool()
+		local itemConfig = Isaac.GetItemConfig()
+		if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_KARETH)) and itemConfig:GetCollectible(entity.SubType).Tags & ItemConfig.TAG_QUEST ~= ItemConfig.TAG_QUEST then
 			if itemConfig:GetCollectible(entity.SubType).Quality <= 1 then -- Quality 0 - 1
 				local trinket = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_TRINKET, 0, Isaac.GetFreeNearPosition(entity.Position, 0), Vector.Zero, player):ToPickup()
 				trinket.Price = entity.Price
