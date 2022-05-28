@@ -11,7 +11,6 @@ local whitelistedPickupVariants = {
 	[PickupVariant.PICKUP_THROWABLEBOMB] = true,
 }
 
----@param player EntityPlayer
 function mod:UseAceOfShields(_, player)
 	local room = game:GetRoom()
 	for _, entity in ipairs(Isaac.GetRoomEntities()) do
@@ -25,5 +24,4 @@ function mod:UseAceOfShields(_, player)
 		room:SetClear(true)
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseAceOfShields, CARD_ACE_OF_SHIELDS)

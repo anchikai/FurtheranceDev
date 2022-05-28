@@ -266,7 +266,7 @@ include("lua/pickups/GoldenSack.lua")
 include("lua/challenges/WhereAmI.lua")
 
 -- Achievements
---include("lua/achievements.lua")
+include("lua/achievements.lua")
 
 -- Mod Support
 if EID then

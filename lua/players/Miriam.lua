@@ -127,3 +127,48 @@ end
 
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.ClickerFix, CollectibleType.COLLECTIBLE_CLICKER)
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.ClickerFix, CollectibleType.COLLECTIBLE_SHIFT_KEY)
+
+
+
+function mod:TaintedMiriamHome()
+	local level = game:GetLevel()
+	local room = game:GetRoom()
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = game:GetPlayer(i)
+		if player:GetPlayerType() == MiriamA and level:GetCurrentRoomIndex() == 94 and level:GetStage() == LevelStage.STAGE8 and mod.Unlocks.Miriam.Tainted ~= true  then
+			for _, entity in ipairs(Isaac.GetRoomEntities()) do
+				if (((entity.Type == EntityType.ENTITY_PICKUP and entity.Variant == PickupVariant.PICKUP_COLLECTIBLE)
+				or (entity.Type == EntityType.ENTITY_SHOPKEEPER)) and room:IsFirstVisit())
+				or (entity.Type == EntityType.ENTITY_SLOT and entity.Variant == 14) then
+					entity:Remove()
+					player:ChangePlayerType(MiriamB)
+					local Miriam = Isaac.Spawn(EntityType.ENTITY_SLOT, 14, 0, entity.Position, Vector.Zero, nil)
+					player:ChangePlayerType(MiriamA)
+				end
+			end
+		end
+	end
+end
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.TaintedMiriamHome)
+
+function mod:UnlockTaintedMiriam(player)
+	for _, entity in ipairs(Isaac.GetRoomEntities()) do
+		local sprite = entity:GetSprite()
+		if player:GetPlayerType() == MiriamA and entity.Type == EntityType.ENTITY_SLOT and entity.Variant == 14 and sprite:IsFinished("PayPrize") and mod.Unlocks.Miriam.Tainted ~= true then
+			mod.Unlocks.Miriam.Tainted = true
+			CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/achievement_taintedmiriam.png")
+			for _, poof in ipairs(Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.POOF01)) do
+				poof:Remove()
+			end
+		end
+	end
+end
+mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.UnlockTaintedMiriam)
+
+function mod:ResetTaintedUnlock(cmd)
+	if cmd == "ResetMiriam" then
+		mod.Unlocks.Miriam.Tainted = false
+		print("Miriam has been reset.")
+	end
+end
+mod:AddCallback(ModCallbacks.MC_EXECUTE_CMD, mod.ResetTaintedUnlock)

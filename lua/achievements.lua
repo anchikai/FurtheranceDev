@@ -1,13 +1,5 @@
 local mod = Furtherance
-
 local game = Game()
-
-local normalLeah = Isaac.GetPlayerTypeByName("Leah", false)
-local taintedLeah = Isaac.GetPlayerTypeByName("LeahB", true)
-local normalPeter = Isaac.GetPlayerTypeByName("Peter", false)
-local taintedPeter = Isaac.GetPlayerTypeByName("PeterB", true)
-local normalMiriam = Isaac.GetPlayerTypeByName("Miriam", false)
-local taintedMiriam = Isaac.GetPlayerTypeByName("MiriamB", true)
 
 local AchievementGraphics = {
 	Leah = {
@@ -107,6 +99,7 @@ mod.Unlocks = {
 		Mother = {Unlock = false, Hard = false},
 		Beast = {Unlock = false, Hard = false},
 		GreedMode = {Unlock = false, Hard = false},
+		Tainted = false,
 		FullCompletion = {Unlock = false, Hard = false},
 	},
 	LeahB = {
@@ -139,6 +132,7 @@ mod.Unlocks = {
 		Mother = {Unlock = false, Hard = false},
 		Beast = {Unlock = false, Hard = false},
 		GreedMode = {Unlock = false, Hard = false},
+		Tainted = false,
 		FullCompletion = {Unlock = false, Hard = false},
 	},
 	PeterB = {
@@ -171,6 +165,7 @@ mod.Unlocks = {
 		Mother = {Unlock = false, Hard = false},
 		Beast = {Unlock = false, Hard = false},
 		GreedMode = {Unlock = false, Hard = false},
+		Tainted = false,
 		FullCompletion = {Unlock = false, Hard = false},
 	},
 	MiriamB = {
@@ -202,9 +197,9 @@ local function GetPlayerAchievements(player)
 	local ptype = player:GetPlayerType()
 	local name = player:GetName()
 	local isTainted = nil
-	if ptype == normalLeah or ptype == normalPeter or ptype == normalMiriam then
+	if ptype == LeahA or ptype == PeterA or ptype == MiriamA then
 		isTainted = false
-	elseif ptype == taintedLeah or ptype == taintedPeter or ptype == taintedMiriam then
+	elseif ptype == LeahB or ptype == PeterB or ptype == MiriamB then
 		isTainted = true
 	end
 	if isTainted ~= nil then
@@ -215,200 +210,238 @@ local function GetPlayerAchievements(player)
 end
 
 function mod:StartUnlocks()
-	-- Leah
-	if mod.Unlocks.Leah.MomsHeart == false then
-		
-	end
-	if mod.Unlocks.Leah.Isaac == false then
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_BINDS_OF_DEVOTION)
-	end
-	if mod.Unlocks.Leah.Satan == false then
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PARASITIC_POOFER)
-	end
-	if mod.Unlocks.Leah.BlueBaby == false then
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_MANDRAKE)
-	end
-	if mod.Unlocks.Leah.Lamb == false then
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_LITTLE_SISTER)
-	end
-	if mod.Unlocks.Leah.BossRush == false then
-		game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_LEAHS_LOCK)
-	end
-	if mod.Unlocks.Leah.Hush == false then
-		
-	end
-	if mod.Unlocks.Leah.MegaSatan == false then
-		
-	end
-	if mod.Unlocks.Leah.Delirium == false then
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR)
-	end
-	if mod.Unlocks.Leah.Mother == false then
-		
-	end
-	if mod.Unlocks.Leah.Beast == false then
-		
-	end
-	if mod.Unlocks.Leah.GreedMode == false then
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_HEART_EMBEDDED_COIN)
-	end
-	if mod.Unlocks.Leah.FullCompletion == false then
-		
-	end
-	-- Tainted Leah
-	if mod.Unlocks.LeahB.PolNegPath == false then
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_LEAHS_HEART)
-	end
-	if mod.Unlocks.LeahB.SoulPath == false then
-		
-	end
-	if mod.Unlocks.LeahB.MegaSatan == false then
-		
-	end
-	if mod.Unlocks.LeahB.Delirium == false then
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_SHATTERED_HEART)
-	end
-	if mod.Unlocks.LeahB.Mother == false then
-		
-	end
-	if mod.Unlocks.LeahB.Beast == false then
-		
-	end
-	if mod.Unlocks.LeahB.GreedMode == false then
-		
-	end
-	if mod.Unlocks.LeahB.FullCompletion == false then
-		
-	end
-	-- Peter
-	if mod.Unlocks.Peter.MomsHeart == false then
-		
-	end
-	if mod.Unlocks.Peter.Isaac == false then
-		
-	end
-	if mod.Unlocks.Peter.Satan == false then
-		
-	end
-	if mod.Unlocks.Peter.BlueBaby == false then
-		
-	end
-	if mod.Unlocks.Peter.Lamb == false then
-		
-	end
-	if mod.Unlocks.Peter.BossRush == false then
-		
-	end
-	if mod.Unlocks.Peter.Hush == false then
-		game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_ALABASTER_SCRAP)
-	end
-	if mod.Unlocks.Peter.MegaSatan == false then
-		
-	end
-	if mod.Unlocks.Peter.Delirium == false then
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM)
-	end
-	if mod.Unlocks.Peter.Mother == false then
-		
-	end
-	if mod.Unlocks.Peter.Beast == false then
-		
-	end
-	if mod.Unlocks.Peter.GreedMode == false then
-		
-	end
-	if mod.Unlocks.Peter.FullCompletion == false then
-		
-	end
-	-- Tainted Peter
-	if mod.Unlocks.PeterB.PolNegPath == false then
-		
-	end
-	if mod.Unlocks.PeterB.SoulPath == false then
-		
-	end
-	if mod.Unlocks.PeterB.MegaSatan == false then
-		
-	end
-	if mod.Unlocks.PeterB.Delirium == false then
-		
-	end
-	if mod.Unlocks.PeterB.Mother == false then
-		
-	end
-	if mod.Unlocks.PeterB.Beast == false then
-		
-	end
-	if mod.Unlocks.PeterB.GreedMode == false then
-		
-	end
-	if mod.Unlocks.PeterB.FullCompletion == false then
-		
-	end
-	-- Miriam
-	if mod.Unlocks.Miriam.MomsHeart == false then
-		
-	end
-	if mod.Unlocks.Miriam.Isaac == false then
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_GUIDANCE)
-	end
-	if mod.Unlocks.Miriam.Satan == false then
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_KARETH)
-	end
-	if mod.Unlocks.Miriam.BlueBaby == false then
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PILLAR_OF_CLOUDS)
-	end
-	if mod.Unlocks.Miriam.Lamb == false then
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PILLAR_OF_FIRE)
-	end
-	if mod.Unlocks.Miriam.BossRush == false then
-		game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_WORMWOOD_LEAF)
-	end
-	if mod.Unlocks.Miriam.Hush == false then
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_CADUCEUS_STAFF)
-	end
-	if mod.Unlocks.Miriam.MegaSatan == false then
-		
-	end
-	if mod.Unlocks.Miriam.Delirium == false then
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_TAMBOURINE)
-	end
-	if mod.Unlocks.Miriam.Mother == false then
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_FIRSTBORN_SON)
-	end
-	if mod.Unlocks.Miriam.Beast == false then
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA)
-	end
-	if mod.Unlocks.Miriam.GreedMode == false then
-		game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_SALINE_SPRAY)
-	end
-	if mod.Unlocks.Miriam.FullCompletion == false then
-		
-	end
-	-- Tainted Miriam
-	if mod.Unlocks.MiriamB.PolNegPath == false then
-		game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_ALMAGEST_SCRAP)
-	end
-	if mod.Unlocks.MiriamB.SoulPath == false then
-		
-	end
-	if mod.Unlocks.MiriamB.MegaSatan == false then
-		
-	end
-	if mod.Unlocks.MiriamB.Delirium == false then
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)
-	end
-	if mod.Unlocks.MiriamB.Mother == false then
-		game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_ABYSSAL_PENNY)
-	end
-	if mod.Unlocks.MiriamB.Beast == false then
-		game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_JAR_OF_MANNA)
-	end
-	if mod.Unlocks.MiriamB.GreedMode == false then
-		
-	end
-	if mod.Unlocks.MiriamB.FullCompletion == false then
-		
+	for p = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(p)
+		local data = mod:GetData(player)
+		-- Leah
+		if mod.Unlocks.Leah.MomsHeart == false then
+			
+		end
+		if mod.Unlocks.Leah.Isaac == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_BINDS_OF_DEVOTION)
+		end
+		if mod.Unlocks.Leah.Satan == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PARASITIC_POOFER)
+		end
+		if mod.Unlocks.Leah.BlueBaby == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_MANDRAKE)
+		end
+		if mod.Unlocks.Leah.Lamb == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_LITTLE_SISTER)
+		end
+		if mod.Unlocks.Leah.BossRush == false then
+			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_LEAHS_LOCK)
+		end
+		if mod.Unlocks.Leah.Hush == false then
+			
+		end
+		if mod.Unlocks.Leah.MegaSatan == false then
+			
+		end
+		if mod.Unlocks.Leah.Delirium == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR)
+		end
+		if mod.Unlocks.Leah.Mother == false then
+			
+		end
+		if mod.Unlocks.Leah.Beast == false then
+			
+		end
+		if mod.Unlocks.Leah.GreedMode == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_HEART_EMBEDDED_COIN)
+		end
+		if mod.Unlocks.Leah.Tainted == false and player:GetPlayerType() == LeahB then
+			player:ChangePlayerType(LeahA)
+			player:TryRemoveNullCostume(COSTUME_LEAH_B_HAIR)
+			player:AddNullCostume(COSTUME_LEAH_A_HAIR)
+			player:AddBrokenHearts(-10)
+			player:AddMaxHearts(4)
+			player:AddHearts(4)
+			player:AddSoulHearts(-2)
+		end
+		if mod.Unlocks.Leah.FullCompletion == false then
+			
+		end
+
+		-- Tainted Leah
+		if mod.Unlocks.LeahB.PolNegPath == false then
+			--game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_LEAHS_HEART)
+		end
+		if mod.Unlocks.LeahB.SoulPath == false then
+			
+		end
+		if mod.Unlocks.LeahB.MegaSatan == false then
+			
+		end
+		if mod.Unlocks.LeahB.Delirium == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_SHATTERED_HEART)
+		end
+		if mod.Unlocks.LeahB.Mother == false then
+			
+		end
+		if mod.Unlocks.LeahB.Beast == false then
+			
+		end
+		if mod.Unlocks.LeahB.GreedMode == false then
+			
+		end
+		if mod.Unlocks.LeahB.FullCompletion == false then
+			
+		end
+
+		-- Peter
+		if mod.Unlocks.Peter.MomsHeart == false then
+			
+		end
+		if mod.Unlocks.Peter.Isaac == false then
+			
+		end
+		if mod.Unlocks.Peter.Satan == false then
+			
+		end
+		if mod.Unlocks.Peter.BlueBaby == false then
+			
+		end
+		if mod.Unlocks.Peter.Lamb == false then
+			
+		end
+		if mod.Unlocks.Peter.BossRush == false then
+			
+		end
+		if mod.Unlocks.Peter.Hush == false then
+			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_ALABASTER_SCRAP)
+		end
+		if mod.Unlocks.Peter.MegaSatan == false then
+			
+		end
+		if mod.Unlocks.Peter.Delirium == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM)
+		end
+		if mod.Unlocks.Peter.Mother == false then
+			
+		end
+		if mod.Unlocks.Peter.Beast == false then
+			
+		end
+		if mod.Unlocks.Peter.GreedMode == false then
+			
+		end
+		if mod.Unlocks.Peter.Tainted == false and player:GetPlayerType() == PeterB then
+			player:ChangePlayerType(PeterA)
+			player:TryRemoveNullCostume(COSTUME_PETER_B_DRIP)
+			player:AddNullCostume(COSTUME_PETER_A_DRIP)
+			player:AddMaxHearts(-2)
+			player:AddSoulHearts(2)
+		end
+		if mod.Unlocks.Peter.FullCompletion == false then
+			
+		end
+
+		-- Tainted Peter
+		if mod.Unlocks.PeterB.PolNegPath == false then
+			
+		end
+		if mod.Unlocks.PeterB.SoulPath == false then
+			
+		end
+		if mod.Unlocks.PeterB.MegaSatan == false then
+			
+		end
+		if mod.Unlocks.PeterB.Delirium == false then
+			
+		end
+		if mod.Unlocks.PeterB.Mother == false then
+			
+		end
+		if mod.Unlocks.PeterB.Beast == false then
+			
+		end
+		if mod.Unlocks.PeterB.GreedMode == false then
+			
+		end
+		if mod.Unlocks.PeterB.FullCompletion == false then
+			
+		end
+
+		-- Miriam
+		if mod.Unlocks.Miriam.MomsHeart == false then
+			
+		end
+		if mod.Unlocks.Miriam.Isaac == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_GUIDANCE)
+		end
+		if mod.Unlocks.Miriam.Satan == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_KARETH)
+		end
+		if mod.Unlocks.Miriam.BlueBaby == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PILLAR_OF_CLOUDS)
+		end
+		if mod.Unlocks.Miriam.Lamb == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PILLAR_OF_FIRE)
+		end
+		if mod.Unlocks.Miriam.BossRush == false then
+			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_WORMWOOD_LEAF)
+		end
+		if mod.Unlocks.Miriam.Hush == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_CADUCEUS_STAFF)
+		end
+		if mod.Unlocks.Miriam.MegaSatan == false then
+			
+		end
+		if mod.Unlocks.Miriam.Delirium == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_TAMBOURINE)
+		end
+		if mod.Unlocks.Miriam.Mother == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_FIRSTBORN_SON)
+		end
+		if mod.Unlocks.Miriam.Beast == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA)
+		end
+		if mod.Unlocks.Miriam.GreedMode == false then
+			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_SALINE_SPRAY)
+		end
+		if mod.Unlocks.Miriam.Tainted == false and player:GetPlayerType() == MiriamB then
+			player:ChangePlayerType(MiriamA)
+			data.MiriamTearCount = 0
+			data.MiriamRiftTimeout = 0
+			data.MiriamAOE = 1
+			player:TryRemoveNullCostume(COSTUME_MIRIAM_B_HAIR)
+			player:AddNullCostume(COSTUME_MIRIAM_A_HAIR)
+			player:AddBrokenHearts(-4)
+			player:AddSoulHearts(4)
+			player:AddBoneHearts(-2)
+			player:AddMaxHearts(4)
+			player:AddHearts(4)
+		end
+		if mod.Unlocks.Miriam.FullCompletion == false then
+			
+		end
+
+		-- Tainted Miriam
+		if mod.Unlocks.MiriamB.PolNegPath == false then
+			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_ALMAGEST_SCRAP)
+		end
+		if mod.Unlocks.MiriamB.SoulPath == false then
+			
+		end
+		if mod.Unlocks.MiriamB.MegaSatan == false then
+			
+		end
+		if mod.Unlocks.MiriamB.Delirium == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)
+		end
+		if mod.Unlocks.MiriamB.Mother == false then
+			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_ABYSSAL_PENNY)
+		end
+		if mod.Unlocks.MiriamB.Beast == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_JAR_OF_MANNA)
+		end
+		if mod.Unlocks.MiriamB.GreedMode == false then
+			
+		end
+		if mod.Unlocks.MiriamB.FullCompletion == false then
+			
+		end
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.StartUnlocks)
@@ -426,10 +459,10 @@ function mod:UpdateCompletion(name, difficulty)
 			if TargetTab[name].Unlock == false then
 				TargetTab[name].Unlock = true
 				
-				--if AchievementGraphics[playerName][name] then
+				if AchievementGraphics.Leah[name] then
 					PlayAchievement(AchievementGraphics[playerName][name])
-					--CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics.Edith[name] .. ".png")
-				--end
+					CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics.Leah[name] .. ".png")
+				end
 			end
 			if difficulty == Difficulty.DIFFICULTY_HARD then
 				TargetTab[name].Hard = true
