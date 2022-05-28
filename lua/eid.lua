@@ -233,7 +233,7 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_BUTTERFLY, "Taking damage will ca
 EID:addCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND, "Replaces tears with a single enemy tether attack#A red cursor will appear below enemies, and its controlled with the shoot buttons#The tether damages the nearest enemy until the enemy is dead#The tether will automatically move to the next nearest enemy#Deals 0.33x Isaac's damage per tick#Enemies killed have a 5% chance to heal 1/2 red heart", "Spiritual Wound", "en_us")
 
 -- Caduceus Staff
-EID:addCollectible(CollectibleType.COLLECTIBLE_CADUCEUS_STAFF, "↑ +2 Spiritual Hearts#Grants Isaac a self-healing aura#The aura has a chance to trigger when Isaac takes damage, healing Isaac for 2x the amount of damage that was taken#The chance begins at 1% and doubles for each hit", "Caduceus Staff", "en_us")
+EID:addCollectible(CollectibleType.COLLECTIBLE_CADUCEUS_STAFF, "{{SoulHeart}} +2 Soul Hearts#Chance to negate damage and grant a shield#The chance begins at 1% and doubles for each hit", "Caduceus Staff", "en_us")
 
 -- Polydipsia
 EID:addCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA, "Isaac's tears are fired in an arc#Upon hitting the floor, an obstacle, or an enemy they burst into a puddle of water#↓ {{Tears}} roughly -100% Tears down", "Polydipsia", "en_us")

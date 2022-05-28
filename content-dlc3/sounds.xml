@@ -43,4 +43,7 @@
 	<sound name="Cork">
 		<sample weight="1" path="cork.wav" />
 	</sound>
+	<sound name="CaduceusActivate">
+		<sample weight="1" path="CaduceusActivate.wav" />
+	</sound>
 </sounds>

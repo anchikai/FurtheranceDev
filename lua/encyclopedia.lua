@@ -699,11 +699,9 @@ local Wiki = {
 	CaduceusStaff = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
-		},
-		{ -- Notes
-			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "Grants two soul hearts."},
+			{str = "Upon taking damage, there is a 1% chance to negate the damage taken and grant a Mantle."},
+			{str = "- The chance is doubled every hit and resets back to 1% once the effect procs."},
 		},
 	},
 	Polydipsia = {
@@ -1930,6 +1928,7 @@ Encyclopedia.AddItem({
 	WikiDesc = Wiki.CaduceusStaff,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_ANGEL,
+		Encyclopedia.ItemPools.POOL_GREED_ANGEL,
 	},
 })
 
