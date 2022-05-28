@@ -209,10 +209,65 @@ local function GetPlayerAchievements(player)
 	end
 end
 
+function mod:CantMove(player)
+	return not (player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_MEGA_MUSH) or player:IsCoopGhost() or player:HasCurseMistEffect())
+end
+
+function mod:NoMovement(entity, hook, button)
+	if entity ~= nil and entity.Type == EntityType.ENTITY_PLAYER and not entity:IsDead() and hook == InputHook.GET_ACTION_VALUE then
+		local player = entity:ToPlayer()
+		if mod.Unlocks.Leah.Tainted ~= true and mod:CantMove(player) and player:GetPlayerType() == LeahB then
+			if button == ButtonAction.ACTION_LEFT then
+				return 0
+			end
+			if button == ButtonAction.ACTION_RIGHT then
+				return 0
+			end
+			if button == ButtonAction.ACTION_UP then
+				return 0
+			end
+			if button == ButtonAction.ACTION_DOWN then
+				return 0
+			end
+		end
+	end
+
+end
+mod:AddCallback(ModCallbacks.MC_INPUT_ACTION, mod.NoMovement, 2)
+
+function mod:FuckYou(player, flag)
+	if (mod.Unlocks.Leah.Tainted == false and player:GetPlayerType() == LeahB)
+	or (mod.Unlocks.Peter.Tainted == false and player:GetPlayerType() == PeterB)
+	or (mod.Unlocks.Miriam.Tainted == false and player:GetPlayerType() == MiriamB) then
+		player.SpriteScale = Vector.Zero
+	end
+end
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.FuckYou, CacheFlag.CACHE_SIZE)
+
 function mod:StartUnlocks()
+	local level = game:GetLevel()
+	local room = game:GetRoom()
 	for p = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(p)
 		local data = mod:GetData(player)
+		-- Tainted Stuff
+		if (mod.Unlocks.Leah.Tainted == false and player:GetPlayerType() == LeahB)
+		or (mod.Unlocks.Peter.Tainted == false and player:GetPlayerType() == PeterB)
+		or (mod.Unlocks.Miriam.Tainted == false and player:GetPlayerType() == MiriamB) then
+			Isaac.ExecuteCommand("stage 13")
+			level:MakeRedRoomDoor(95, DoorSlot.LEFT0)
+			level:ChangeRoom(94)
+			room:RemoveDoor(DoorSlot.RIGHT0)
+			for _, entity in ipairs(Isaac.GetRoomEntities()) do
+				if ((entity.Type == EntityType.ENTITY_PICKUP and entity.Variant == PickupVariant.PICKUP_COLLECTIBLE)
+				or (entity.Type == EntityType.ENTITY_SHOPKEEPER)) then
+					local Leah = Isaac.Spawn(EntityType.ENTITY_SLOT, 14, 0, entity.Position, Vector.Zero, nil)
+					entity:Remove()
+				end
+			end
+			game:GetHUD():SetVisible(false)
+		end
+
 		-- Leah
 		if mod.Unlocks.Leah.MomsHeart == false then
 			
@@ -249,15 +304,6 @@ function mod:StartUnlocks()
 		end
 		if mod.Unlocks.Leah.GreedMode == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_HEART_EMBEDDED_COIN)
-		end
-		if mod.Unlocks.Leah.Tainted == false and player:GetPlayerType() == LeahB then
-			player:ChangePlayerType(LeahA)
-			player:TryRemoveNullCostume(COSTUME_LEAH_B_HAIR)
-			player:AddNullCostume(COSTUME_LEAH_A_HAIR)
-			player:AddBrokenHearts(-10)
-			player:AddMaxHearts(4)
-			player:AddHearts(4)
-			player:AddSoulHearts(-2)
 		end
 		if mod.Unlocks.Leah.FullCompletion == false then
 			
@@ -326,13 +372,6 @@ function mod:StartUnlocks()
 		if mod.Unlocks.Peter.GreedMode == false then
 			
 		end
-		if mod.Unlocks.Peter.Tainted == false and player:GetPlayerType() == PeterB then
-			player:ChangePlayerType(PeterA)
-			player:TryRemoveNullCostume(COSTUME_PETER_B_DRIP)
-			player:AddNullCostume(COSTUME_PETER_A_DRIP)
-			player:AddMaxHearts(-2)
-			player:AddSoulHearts(2)
-		end
 		if mod.Unlocks.Peter.FullCompletion == false then
 			
 		end
@@ -399,19 +438,6 @@ function mod:StartUnlocks()
 		end
 		if mod.Unlocks.Miriam.GreedMode == false then
 			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_SALINE_SPRAY)
-		end
-		if mod.Unlocks.Miriam.Tainted == false and player:GetPlayerType() == MiriamB then
-			player:ChangePlayerType(MiriamA)
-			data.MiriamTearCount = 0
-			data.MiriamRiftTimeout = 0
-			data.MiriamAOE = 1
-			player:TryRemoveNullCostume(COSTUME_MIRIAM_B_HAIR)
-			player:AddNullCostume(COSTUME_MIRIAM_A_HAIR)
-			player:AddBrokenHearts(-4)
-			player:AddSoulHearts(4)
-			player:AddBoneHearts(-2)
-			player:AddMaxHearts(4)
-			player:AddHearts(4)
 		end
 		if mod.Unlocks.Miriam.FullCompletion == false then
 			
