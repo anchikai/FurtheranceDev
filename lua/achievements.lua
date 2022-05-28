@@ -249,7 +249,6 @@ function mod:StartUnlocks()
 	local room = game:GetRoom()
 	for p = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(p)
-		local data = mod:GetData(player)
 		-- Tainted Stuff
 		if (mod.Unlocks.Leah.Tainted == false and player:GetPlayerType() == LeahB)
 		or (mod.Unlocks.Peter.Tainted == false and player:GetPlayerType() == PeterB)
@@ -261,7 +260,7 @@ function mod:StartUnlocks()
 			for _, entity in ipairs(Isaac.GetRoomEntities()) do
 				if ((entity.Type == EntityType.ENTITY_PICKUP and entity.Variant == PickupVariant.PICKUP_COLLECTIBLE)
 				or (entity.Type == EntityType.ENTITY_SHOPKEEPER)) then
-					local Leah = Isaac.Spawn(EntityType.ENTITY_SLOT, 14, 0, entity.Position, Vector.Zero, nil)
+					Isaac.Spawn(EntityType.ENTITY_SLOT, 14, 0, entity.Position, Vector.Zero, nil)
 					entity:Remove()
 				end
 			end
