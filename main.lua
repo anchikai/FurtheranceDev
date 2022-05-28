@@ -75,6 +75,7 @@ CollectibleType.COLLECTIBLE_PETERS_HEADBAND = Isaac.GetItemIdByName("Peter's Hea
 CollectibleType.COLLECTIBLE_PETERS_BLOODY_FRACTURE = Isaac.GetItemIdByName("Peter's Bloody Fracture")
 CollectibleType.COLLECTIBLE_MIRIAMS_HEADBAND = Isaac.GetItemIdByName("Miriam's Headband")
 CollectibleType.COLLECTIBLE_MIRIAMS_PUTRID_VEIL = Isaac.GetItemIdByName("Miriam's Putrid Veil")
+CollectibleType.COLLECTIBLE_POLARITY_SHIFT = Isaac.GetItemIdByName("Polarity Shift")
 
 -- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
@@ -96,8 +97,6 @@ CollectibleType.COLLECTIBLE_CERES = Isaac.GetItemIdByName("Ceres")
 CollectibleType.COLLECTIBLE_PALLAS = Isaac.GetItemIdByName("Pallas")
 CollectibleType.COLLECTIBLE_JUNO = Isaac.GetItemIdByName("Juno")
 CollectibleType.COLLECTIBLE_VESTA = Isaac.GetItemIdByName("Vesta")
-
-CollectibleType.COLLECTIBLE_POLARITY_SHIFT = Isaac.GetItemIdByName("Polarity Shift")
 
 -- Trinkets
 TrinketType.TRINKET_HOLY_HEART = Isaac.GetTrinketIdByName("Holy Heart")
