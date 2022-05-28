@@ -216,7 +216,10 @@ end
 function mod:NoMovement(entity, hook, button)
 	if entity ~= nil and entity.Type == EntityType.ENTITY_PLAYER and not entity:IsDead() and hook == InputHook.GET_ACTION_VALUE then
 		local player = entity:ToPlayer()
-		if mod.Unlocks.Leah.Tainted ~= true and mod:CantMove(player) and player:GetPlayerType() == LeahB then
+		if ((mod.Unlocks.Leah.Tainted == false and player:GetPlayerType() == LeahB)
+		or (mod.Unlocks.Peter.Tainted == false and player:GetPlayerType() == PeterB)
+		or (mod.Unlocks.Miriam.Tainted == false and player:GetPlayerType() == MiriamB))
+		and mod:CantMove(player) then
 			if button == ButtonAction.ACTION_LEFT then
 				return 0
 			end
