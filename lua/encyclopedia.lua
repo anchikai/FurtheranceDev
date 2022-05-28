@@ -853,10 +853,10 @@ local Wiki = {
 			{str = "Duplicate items will also be removed."},
 		},
 	},
-	InfestedPenny = {
+	AbyssalPenny = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Spawns a Blue Spider every time a coin is picked up."},
+			{str = "Spawns Holy Water creep every time a coin is picked up."},
 		},
 	},
 	SalineSpray = {
@@ -2064,7 +2064,7 @@ Encyclopedia.AddTrinket({
 	ModName = "Furtherance",
 	Class = "Furtherance",
 	ID = TrinketType.TRINKET_ABYSSAL_PENNY,
-	WikiDesc = Wiki.InfestedPenny,
+	WikiDesc = Wiki.AbyssalPenny,
 })
 
 Encyclopedia.AddTrinket({

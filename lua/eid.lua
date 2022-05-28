@@ -271,8 +271,8 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_THE_DREIDEL, "Reduces 1-4 random 
 -- Apocalypse
 EID:addCollectible(CollectibleType.COLLECTIBLE_APOCALYPSE, "↓ Removes all of your passive items#↑ Increases 2 random stats for each item removed", "Apocalypse", "en_us")
 
--- Infested Penny
-EID:addTrinket(TrinketType.TRINKET_ABYSSAL_PENNY, "Spawns a blue spider when picking up coins", "Infested Penny", "en_us")
+-- Abyssal Penny
+EID:addTrinket(TrinketType.TRINKET_ABYSSAL_PENNY, "Spawns Holy Water creep when picking up coins", "Abyssal Penny", "en_us")
 
 -- Saline Spray
 EID:addTrinket(TrinketType.TRINKET_SALINE_SPRAY, "Tears have a 5% chance to be ice tears#They slow enemies and freeze monsters they kill", "Saline Spray", "en_us")
