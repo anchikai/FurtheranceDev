@@ -341,7 +341,7 @@ EID:assignTransformation("collectible", CollectibleType.COLLECTIBLE_BOOK_OF_BOOK
 
 
 -- Soul of Leah
-EID:addCard(RUNE_SOUL_OF_LEAH, "{{BrokenHeart}} Grants between 1 to 5 broken hearts#↑ All the broken hearts will give either a damage up or tears up#The amount of damage or tears gained is dependent on how many broken hearts are gained", "Soul of Leah", "en_us")
+EID:addCard(RUNE_SOUL_OF_LEAH, "{{BrokenHeart}} Grants a broken heart for every uncleared room on the floor#↑ Each broken heart will give a +0.75 damage up#!!! If there are 12 or more uncleared rooms, it will kill you", "Soul of Leah", "en_us")
 
 -- Soul of Peter
 EID:addCard(RUNE_SOUL_OF_PETER, "", "Soul of Peter", "en_us")

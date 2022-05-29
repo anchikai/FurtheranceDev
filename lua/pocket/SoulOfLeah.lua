@@ -11,8 +11,8 @@ function mod:UseSoulOfLeah(card, player, flag)
 		if room.Data.Type ~= RoomType.ROOM_SUPERSECRET and room.Data.Type ~= RoomType.ROOM_ULTRASECRET then -- based off of world card which doesn't reveal these
 			if not room.Clear then
 				player:AddBrokenHearts(1)
-				if SoulOfLeahDamage == nil then
-					SoulOfLeahDamage = 0
+				if data.SoulOfLeahDamage == nil then
+					data.SoulOfLeahDamage = 0
 				end
 				data.SoulOfLeahDamage = data.SoulOfLeahDamage + 0.75
 			end
@@ -21,7 +21,6 @@ function mod:UseSoulOfLeah(card, player, flag)
 	player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
 	player:EvaluateItems()
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseSoulOfLeah, RUNE_SOUL_OF_LEAH)
 
 function mod:SoulDamage(player, flag)
@@ -30,5 +29,4 @@ function mod:SoulDamage(player, flag)
 		player.Damage = player.Damage + data.SoulOfLeahDamage
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.SoulDamage, CacheFlag.CACHE_DAMAGE)
