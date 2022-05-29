@@ -75,6 +75,7 @@
 	<active id="61" name="Cosmic Omnibus" description="Soar above the heavens" gfx="cosmic_omnibus.png" maxcharges="6" quality="3" tags="book offensive lazarussharedglobal" />
 	<active id="65" name="D9" description="Reroll your journey" gfx="d9.png" maxcharges="4" quality="3" />
 	<active id="72" cache="speed firedelay" name="Polarity Shift" description="???" gfx="polarity_shift.png" chargetype="special" maxcharges="6" quality="2" />
+	<active id="73" name="Book of Books" description="Endless books!" gfx="book_of_books.png" maxcharges="12" quality="4" tags="book" />
 
 	<!-- Trinkets -->
 	<trinket id="0" name="Holy Heart" description="Protective hearts" gfx="holy_heart.png" /> <!-- Concept by PootisTweet! -->

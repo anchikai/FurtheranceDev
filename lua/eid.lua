@@ -337,6 +337,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_MIRIAMS_HEADBAND, "{{Tears}} +1 T
 -- Miriam's Putrid Veil
 EID:addCollectible(CollectibleType.COLLECTIBLE_MIRIAMS_PUTRID_VEIL, "{{Range}} -2 Tear Height#5% chance to regenerate a half red heart on enemy kills#Enemies will keep taking 20% of your damage for 3 seconds after being hit", "Miriam's Putrid Veil", "en_us")
 
+-- Book of Swiftness
+EID:addCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_BOOKS, "Activates every book item at once#Works with modded books", "Book of Books", "en_us")
+EID:assignTransformation("collectible", CollectibleType.COLLECTIBLE_BOOK_OF_BOOKS, "12") -- Bookworm
 
 
 -- Soul of Leah
