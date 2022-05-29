@@ -43,7 +43,7 @@ local Wiki = {
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "The item can only be used once per floor."},
+			{str = "The item can only be used once per 2 floors."},
 			{str = "This item will cause new floors to be generated."},
 		},
 	},
@@ -389,7 +389,7 @@ local Wiki = {
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "You can choose to take both items."},
+			{str = "You can only choose one item."},
 		},
 		{ -- Credits
 			{str = "Credits", fsize = 2, clr = 3, halign = 0},
@@ -1073,23 +1073,36 @@ local Wiki = {
 			{str = ""},
 		},
 	},
+	BookOfBooks = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, every book item will be activated at once."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "Works with modded books."},
+		},
+		{ -- Credits
+			{str = "Credits", fsize = 2, clr = 3, halign = 0},
+			{str = "Concept by retro100!"},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Grants between 1 to 5 broken hearts."},
-			{str = "All of the broken hearts you gain will give either a damage up or tears up."},
-			{str = "The amount of damage or tears gained is dependent on how many broken hearts are gained."},
+			{str = "Grants a broken heart for every uncleared room on the floor."},
+			{str = "Each broken heart will give a +0.75 damage up."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "If the amount of broken hearts gained sets you to 12 broken hearts, it will kill you."},
+			{str = "If there are 12 or more uncleared rooms, it will kill you."},
 			{str = "The tears cap is entirely ignored, and in some rare instances can set you to 120 tears."},
 		},
 		{ -- Interactions
 			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
-			{str = "Getting this soul stone as Leah or Tainted Leah effectively acts as a free large stat upgrade if used correctly."},
+			{str = "Getting this soul stone as Leah or Tainted Leah effectively acts as a free large damage upgrade if used correctly."},
 		},
 	},
 	SoulOfPeter = {
@@ -2259,6 +2272,16 @@ Encyclopedia.AddItem({
 	WikiDesc = Wiki.MiriamsPutridVeil,
 	Pools = {
 		
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_BOOK_OF_BOOKS,
+	WikiDesc = Wiki.BookOfBooks,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_ULTRA_SECRET,
 	},
 })
 

@@ -1,8 +1,7 @@
 local mod = Furtherance
 local game = Game()
 
-function mod:UseAceOfShields(card, player, useflags)
-	local data = mod:GetData(player)
+function mod:UseAceOfShields(card, player, flag)
 	if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) > 0 then
 		if player:GetActiveCharge(ActiveSlot.SLOT_PRIMARY) == 0 then
 			player:SetActiveCharge(player:GetActiveCharge(ActiveSlot.SLOT_PRIMARY)+2, ActiveSlot.SLOT_PRIMARY)

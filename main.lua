@@ -76,6 +76,7 @@ CollectibleType.COLLECTIBLE_PETERS_BLOODY_FRACTURE = Isaac.GetItemIdByName("Pete
 CollectibleType.COLLECTIBLE_MIRIAMS_HEADBAND = Isaac.GetItemIdByName("Miriam's Headband")
 CollectibleType.COLLECTIBLE_MIRIAMS_PUTRID_VEIL = Isaac.GetItemIdByName("Miriam's Putrid Veil")
 CollectibleType.COLLECTIBLE_POLARITY_SHIFT = Isaac.GetItemIdByName("Polarity Shift")
+CollectibleType.COLLECTIBLE_BOOK_OF_BOOKS = Isaac.GetItemIdByName("Book of Books")
 
 -- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
@@ -217,6 +218,7 @@ include("lua/items/collectibles/PetersBloodyFracture.lua")
 include("lua/items/collectibles/MiriamsHeadband.lua")
 include("lua/items/collectibles/MiriamsPutridVeil.lua")
 include("lua/items/collectibles/PolarityShift.lua")
+include("lua/items/collectibles/BookOfBooks.lua")
 
 -- Trinkets
 include("lua/items/trinkets/HolyHeart.lua")

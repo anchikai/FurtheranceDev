@@ -163,9 +163,7 @@ EID:addTrinket(TrinketType.TRINKET_CRINGE, "Все враги в комнате 
 EID:addTrinket(TrinketType.TRINKET_CRINGE, "Todos los enemigos serán congelados por un corto momento al recibir un daño#↑ El efecto de sonido de ser herido será reemplazado con el efecto de sonido 'Bruh'", "Cringe", "spa")
 
 -- ZZZZoptionsZZZZ
-EID:addCollectible(CollectibleType.COLLECTIBLE_ZZZZoptionsZZZZ, "Two items now spawn in all {{TreasureRoom}}Treasure Rooms#You can choose both#One of the items will be 'glitched' and spawn in a random location of the room", "ZZZZoptionsZZZZ", "en_us")
-EID:addCollectible(CollectibleType.COLLECTIBLE_ZZZZoptionsZZZZ, "Два предмета появляются во всех {{TreasureRoom}}комнатах сокровищ#Можно взять оба предмета#Один из них будет 'глючным' и появится в случайном месте комнаты", "0nЦ(2xИ)", "ru")
-EID:addCollectible(CollectibleType.COLLECTIBLE_ZZZZoptionsZZZZ, "Ahora aparecerán dos objetos en la {{TreasureRoom}} Sala del tesoro#Puedes elegir entre los dos#Uno de esos objetos estará 'glitcheado' y aparecerá en una parte aleatoria de la sala", "OpCIoNeZ", "spa")
+EID:addCollectible(CollectibleType.COLLECTIBLE_ZZZZoptionsZZZZ, "Two items now spawn in all {{TreasureRoom}}Treasure Rooms#You can choose one#One of the items will be 'glitched' and spawn in a random location of the room", "ZZZZoptionsZZZZ", "en_us")
 
 -- Brunch
 EID:addCollectible(CollectibleType.COLLECTIBLE_BRUNCH, "↑ {{Heart}} +2 Health up#↑ {{Shotspeed}} +0.16 Shot Speed up#Heals 1 Red Heart", "Brunch", "en_us")
@@ -239,7 +237,7 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_CADUCEUS_STAFF, "{{SoulHeart}} +2
 EID:addCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA, "Isaac's tears are fired in an arc#Upon hitting the floor, an obstacle, or an enemy they burst into a puddle of water#↓ {{Tears}} roughly -100% Tears down", "Polydipsia", "en_us")
 
 -- Kareth
-EID:addCollectible(CollectibleType.COLLECTIBLE_KARETH, "All future items found in the run are replaced with 1-3 trinkets#Amount of trinkets depends on what the items quality was", "Kareth", "en_us")
+EID:addCollectible(CollectibleType.COLLECTIBLE_KARETH, "All future items found in the run are replaced with 1-3 trinkets#Amount of trinkets depends on what the items quality was#All trinkets will be smelted when picked up", "Kareth", "en_us")
 
 -- Pillar of Fire
 EID:addCollectible(CollectibleType.COLLECTIBLE_PILLAR_OF_FIRE, "Chance to burst into five flames when hit, dealing damage to enemies#The flames periodically shoot red tears at enemies", "Pillar of Fire", "en_us")
@@ -337,10 +335,13 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_MIRIAMS_HEADBAND, "{{Tears}} +1 T
 -- Miriam's Putrid Veil
 EID:addCollectible(CollectibleType.COLLECTIBLE_MIRIAMS_PUTRID_VEIL, "{{Range}} -2 Tear Height#5% chance to regenerate a half red heart on enemy kills#Enemies will keep taking 20% of your damage for 3 seconds after being hit", "Miriam's Putrid Veil", "en_us")
 
+-- Book of Swiftness
+EID:addCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_BOOKS, "Activates every book item at once#Works with modded books", "Book of Books", "en_us")
+EID:assignTransformation("collectible", CollectibleType.COLLECTIBLE_BOOK_OF_BOOKS, "12") -- Bookworm
 
 
 -- Soul of Leah
-EID:addCard(RUNE_SOUL_OF_LEAH, "{{BrokenHeart}} Grants between 1 to 5 broken hearts#↑ All the broken hearts will give either a damage up or tears up#The amount of damage or tears gained is dependent on how many broken hearts are gained", "Soul of Leah", "en_us")
+EID:addCard(RUNE_SOUL_OF_LEAH, "{{BrokenHeart}} Grants a broken heart for every uncleared room on the floor#↑ Each broken heart will give a +0.75 damage up#!!! If there are 12 or more uncleared rooms, it will kill you", "Soul of Leah", "en_us")
 
 -- Soul of Peter
 EID:addCard(RUNE_SOUL_OF_PETER, "", "Soul of Peter", "en_us")

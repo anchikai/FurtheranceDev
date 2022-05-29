@@ -7,8 +7,12 @@ function MOD:ZZZZ()
 		for P = 0, GAME:GetNumPlayers() - 1 do
 			local PLAYER = Isaac.GetPlayer(P)
 			if PLAYER:HasCollectible(CollectibleType.COLLECTIBLE_ZZZZoptionsZZZZ) then
+				for _, entity in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE)) do
+					entity:ToPickup().OptionsPickupIndex = 2
+				end
 				PLAYER:AddCollectible(CollectibleType.COLLECTIBLE_TMTRAINER)
-				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 0, Isaac.GetRandomPosition(), Vector.Zero, PLAYER)
+				local AAAAAAAAAAAAAA = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 0, Isaac.GetRandomPosition(), Vector.Zero, PLAYER):ToPickup()
+				AAAAAAAAAAAAAA.OptionsPickupIndex = 2
 				PLAYER:RemoveCollectible(CollectibleType.COLLECTIBLE_TMTRAINER)
 			end
 		end
