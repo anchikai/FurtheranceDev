@@ -163,9 +163,7 @@ EID:addTrinket(TrinketType.TRINKET_CRINGE, "Все враги в комнате 
 EID:addTrinket(TrinketType.TRINKET_CRINGE, "Todos los enemigos serán congelados por un corto momento al recibir un daño#↑ El efecto de sonido de ser herido será reemplazado con el efecto de sonido 'Bruh'", "Cringe", "spa")
 
 -- ZZZZoptionsZZZZ
-EID:addCollectible(CollectibleType.COLLECTIBLE_ZZZZoptionsZZZZ, "Two items now spawn in all {{TreasureRoom}}Treasure Rooms#You can choose both#One of the items will be 'glitched' and spawn in a random location of the room", "ZZZZoptionsZZZZ", "en_us")
-EID:addCollectible(CollectibleType.COLLECTIBLE_ZZZZoptionsZZZZ, "Два предмета появляются во всех {{TreasureRoom}}комнатах сокровищ#Можно взять оба предмета#Один из них будет 'глючным' и появится в случайном месте комнаты", "0nЦ(2xИ)", "ru")
-EID:addCollectible(CollectibleType.COLLECTIBLE_ZZZZoptionsZZZZ, "Ahora aparecerán dos objetos en la {{TreasureRoom}} Sala del tesoro#Puedes elegir entre los dos#Uno de esos objetos estará 'glitcheado' y aparecerá en una parte aleatoria de la sala", "OpCIoNeZ", "spa")
+EID:addCollectible(CollectibleType.COLLECTIBLE_ZZZZoptionsZZZZ, "Two items now spawn in all {{TreasureRoom}}Treasure Rooms#You can choose one#One of the items will be 'glitched' and spawn in a random location of the room", "ZZZZoptionsZZZZ", "en_us")
 
 -- Brunch
 EID:addCollectible(CollectibleType.COLLECTIBLE_BRUNCH, "↑ {{Heart}} +2 Health up#↑ {{Shotspeed}} +0.16 Shot Speed up#Heals 1 Red Heart", "Brunch", "en_us")

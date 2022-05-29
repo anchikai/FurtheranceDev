@@ -389,7 +389,7 @@ local Wiki = {
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "You can choose to take both items."},
+			{str = "You can only choose one item."},
 		},
 		{ -- Credits
 			{str = "Credits", fsize = 2, clr = 3, halign = 0},
