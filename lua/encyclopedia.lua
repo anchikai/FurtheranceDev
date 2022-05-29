@@ -1073,6 +1073,20 @@ local Wiki = {
 			{str = ""},
 		},
 	},
+	BookOfBooks = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, every book item will be activated at once."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "Works with modded books."},
+		},
+		{ -- Credits
+			{str = "Credits", fsize = 2, clr = 3, halign = 0},
+			{str = "Concept by retro100!"},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
