@@ -406,7 +406,7 @@ function mod:StartUnlocks()
 
 		-- Miriam
 		if mod.Unlocks.Miriam.MomsHeart == false then
-			
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_MIRIAMS_WELL)
 		end
 		if mod.Unlocks.Miriam.Isaac == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_GUIDANCE)
@@ -427,7 +427,7 @@ function mod:StartUnlocks()
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_CADUCEUS_STAFF)
 		end
 		if mod.Unlocks.Miriam.MegaSatan == false then
-			
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_APOCALYPSE)
 		end
 		if mod.Unlocks.Miriam.Delirium == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_TAMBOURINE)
@@ -442,7 +442,7 @@ function mod:StartUnlocks()
 			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_SALINE_SPRAY)
 		end
 		if mod.Unlocks.Miriam.FullCompletion == false then
-			
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_QUARANTINE)
 		end
 
 		-- Tainted Miriam
