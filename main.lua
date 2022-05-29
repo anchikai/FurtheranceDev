@@ -136,6 +136,7 @@ CARD_GOLDEN = Isaac.GetCardIdByName("Golden Card")
 HeartSubType.HEART_MOON = 225
 HeartSubType.HEART_ROCK = 226
 SackSubType.SACK_GOLDEN = 3
+CoinSubType.COIN_UNLUCKYPENNY = 117
 
 -------- Lua Files --------
 
@@ -259,6 +260,7 @@ include("lua/pocket/GoldenCard.lua")
 include("lua/pickups/MoonHeart.lua")
 include("lua/pickups/RockHeart.lua")
 include("lua/pickups/GoldenSack.lua")
+include("lua/pickups/UnluckyPenny.lua")
 
 -- Floor Generation
 --include("lua/rooms/NoahsArk.lua")
@@ -378,6 +380,7 @@ function mod:OnSave(isSaving)
 			saveData["player_" .. tostring(i + 1)].MannaBuffs = data.MannaBuffs
 			saveData["player_" .. tostring(i + 1)].DiedWithEpitaph = data.DiedWithEpitaph
 			saveData["player_" .. tostring(i + 1)].EpitaphStage = data.EpitaphStage
+			saveData["player_" .. tostring(i + 1)].UnluckyPennyStat = data.UnluckyPennyStat
 			if player:GetPlayerType() == LeahA then
 				saveData["player_" .. tostring(i + 1)].leahkills = data.leahkills
 			end
@@ -486,6 +489,9 @@ function mod:OnLoad(isLoading)
 			end
 			if loadData["player_" .. tostring(i + 1)].EpitaphStage then
 				data.EpitaphStage = loadData["player_" .. tostring(i + 1)].EpitaphStage
+			end
+			if loadData["player_" .. tostring(i + 1)].UnluckyPennyStat then
+				data.UnluckyPennyStat = loadData["player_" .. tostring(i + 1)].UnluckyPennyStat
 			end
 		end
 		if loadData.Flipped then
