@@ -917,7 +917,7 @@ local Wiki = {
 			{str = "- This includes the Blue Womb."},
 		},
 	},
-	Cork = {
+	WineBottle = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Every 15 shots, Isaac will fire a large, high speed cork."},
@@ -2127,7 +2127,7 @@ Encyclopedia.AddItem({
 	ModName = "Furtherance",
 	Class = "Furtherance",
 	ID = CollectibleType.COLLECTIBLE_WINE_BOTTLE,
-	WikiDesc = Wiki.Cork,
+	WikiDesc = Wiki.WineBottle,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_TREASURE,
 		Encyclopedia.ItemPools.POOL_SHOP,

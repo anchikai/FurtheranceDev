@@ -293,8 +293,8 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_OLD_CAMERA, "The current room wil
 -- Alternate Reality
 EID:addCollectible(CollectibleType.COLLECTIBLE_ALTERNATE_REALITY, "Teleports you to a random floor#!!! Puts you inside a random room on the new floor#↑ The map will be revealed for the floor#!!! The random floor can be Blue Womb", "Alternate Reality", "en_us")
 
--- Cork
-EID:addCollectible(CollectibleType.COLLECTIBLE_WINE_BOTTLE, "A large, high speed cork is fired every 15 shots#↑ The cork has a 2x damage multiplier", "Cork", "en_us")
+-- Wine Bottle
+EID:addCollectible(CollectibleType.COLLECTIBLE_WINE_BOTTLE, "A large, high speed cork is fired every 15 shots#↑ The cork has a 2x damage multiplier", "Wine Bottle", "en_us")
 
 -- Heart Embedded Coin
 EID:addCollectible(CollectibleType.COLLECTIBLE_HEART_EMBEDDED_COIN, "If you normally can't pick up red hearts, they will grant coins instead", "Heart Embedded Coin", "en_us")
