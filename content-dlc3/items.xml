@@ -2,7 +2,7 @@
 	<!-- Isaac's Keyboard -->
 	<active id="24" name="Esc Key" description="I gotta get outta here!" gfx="esc.png" shopprice="30" devilprice="2" quality="3" />
 	<active id="1" name="Tilde Key" description="Dirty cheater" gfx="~.png" maxcharges="12" initcharge="0" quality="4" />
-	<active id="2" name="Alt Key" description="Reality" gfx="alt.png" maxcharges="1" chargetype="special" quality="4" />
+	<active id="2" name="Alt Key" description="Reality" gfx="alt.png" maxcharges="2" chargetype="special" quality="4" />
 	<active id="3" name="Spacebar Key" description="Feedback loop" gfx="spacebar.png" maxcharges="12" quality="4" />
 	<active id="4" name="Backspace Key" description="No, go back!" gfx="backspace.png" maxcharges="1" quality="1" />
 	<active id="5" name="Q Key" description="Plagiarism" gfx="q.png" maxcharges="12" quality="4" />
@@ -60,7 +60,7 @@
 	<active id="25" name="Plug N' Play" description="Comes with 1000 games!" gfx="plug_n_play.png" maxcharges="6" quality="2" tags="nocantrip offensive" /> <!-- Concept by Freg! -->
 	<active id="29" name="Heart Renovator" description="Eternal triumph" gfx="heart_renovator.png" maxcharges="3" initcharge="3" quality="3" tags="angel nokeeper nolostbr" />
 	<active id="31" name="F4 Key" description="Be careful..." gfx="f4.png" shopprice="30" devilprice="2" maxcharges="6" quality="4" />
-	<active id="32" name="Tab Key" description="Pretty useful!" gfx="tab.png" maxcharges="4" quality="3" />
+	<active id="32" name="Tab Key" description="Pretty useful!" gfx="tab.png" maxcharges="12" quality="4" />
 	<active id="33" name="Shattered Heart" description="Eternal sorrow" gfx="shattered_heart.png" chargetype="timed" maxcharges="90" initcharge="0" quality="2" tags="nokeeper nolostbr" />
 	<active name="Shattered Heart No Puddle" description="Eternal sorrow" gfx="shattered_heart_no_puddle.png" chargetype="timed" maxcharges="90" quality="2" tags="nokeeper nolostbr" hidden="true" />
 	<active id="34" name="Keys to the Kingdom" description="Divine control + strength in salvation" gfx="keys_to_the_kingdom.png" maxcharges="6" chargetype="special" quality="4" tags="angel" />

@@ -43,7 +43,7 @@ local Wiki = {
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "The item can only be used once per floor."},
+			{str = "The item can only be used once per 2 floors."},
 			{str = "This item will cause new floors to be generated."},
 		},
 	},

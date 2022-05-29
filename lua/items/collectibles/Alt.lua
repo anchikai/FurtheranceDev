@@ -10,7 +10,7 @@ function mod:UseAlt(_, _, player)
 	local randomREP = rng:RandomInt(2)
 	local data = mod:GetData(player)
 	data.NoChargeAlt = true
-	
+
 	--if the stage is Blue Womb, Sheol, Cathedral, Dark Room, Chest, The Void, or Home
 	if (stage == LevelStage.STAGE4_3) or (stage == LevelStage.STAGE5) or (stage == LevelStage.STAGE6) or (stage == LevelStage.STAGE7) or (stage == LevelStage.STAGE8) then
 		mod:playFailSound()
@@ -49,9 +49,19 @@ function mod:ChargeAlt()
 		local data = mod:GetData(player)
 		if data.NoChargeAlt == false then
 			if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == CollectibleType.COLLECTIBLE_ALT_KEY then
-				player:FullCharge(ActiveSlot.SLOT_PRIMARY, true)
+				AltSlot = ActiveSlot.SLOT_PRIMARY
 			elseif player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == CollectibleType.COLLECTIBLE_ALT_KEY then
-				player:FullCharge(ActiveSlot.SLOT_SECONDARY, true)
+				AltSlot = ActiveSlot.SLOT_SECONDARY
+			end
+			if player:GetActiveCharge(AltSlot) < 2 then
+				player:SetActiveCharge(player:GetActiveCharge(AltSlot)+1, AltSlot)
+			end
+			game:GetHUD():FlashChargeBar(player, AltSlot)
+			if player:GetActiveCharge(AltSlot) < 2 then
+				SFXManager():Play(SoundEffect.SOUND_BEEP)
+			else
+				SFXManager():Play(SoundEffect.SOUND_BATTERYCHARGE)
+				SFXManager():Play(SoundEffect.SOUND_ITEMRECHARGE)
 			end
 		end
 		data.NoChargeAlt = false
