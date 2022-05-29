@@ -22,18 +22,18 @@ local AchievementGraphics = {
 	LeahB = {
 		PolNegPath = "achievement_leahsheart",
 		SoulPath = "achievement_soulofleah",
-		MegaSatan = "achievement_",
+		MegaSatan = "achievement_loveteller",
 		Delirium = "achievement_shatteredheart",
 		Mother = "achievement_",
 		Beast = "achievement_",
-		Greedier = "achievement_",
+		Greedier = "achievement_reversehope",
 		FullCompletion = "achievement.full_completion_b",
 	},
 	Peter = {
 		MomsHeart = "achievement_",
-		Isaac = "achievement_",
+		Isaac = "achievement_pallium",
 		Satan = "achievement_",
-		BlueBaby = "achievement_",
+		BlueBaby = "achievement_phirho",
 		Lamb = "achievement_",
 		BossRush = "achievement_",
 		Hush = "achievement_alabasterscrap",
@@ -50,21 +50,21 @@ local AchievementGraphics = {
 		PolNegPath = "achievement_",
 		SoulPath = "achievement_soulofpeter",
 		MegaSatan = "achievement_",
-		Delirium = "achievement_",
+		Delirium = "achievement_muddledcross",
 		Mother = "achievement_",
 		Beast = "achievement_",
-		Greedier = "achievement_",
+		Greedier = "achievement_reversefaith",
 		FullCompletion = "achievement.full_completion_b",
 	},
 	Miriam = {
-		MomsHeart = "achievement_mosesbaby",
+		MomsHeart = "achievement_miriamswell",
 		Isaac = "achievement_bookofguidance",
 		Satan = "achievement_kareth",
 		BlueBaby = "achievement_pillarofclouds",
 		Lamb = "achievement_pillaroffire",
 		BossRush = "achievement_wormwoodleaf",
 		Hush = "achievement_caduceusstaff",
-		MegaSatan = "achievement_aaronbaby",
+		MegaSatan = "achievement_apocalypse",
 		Delirium = "achievement_tambourine",
 		Mother = "achievement_firstbornson",
 		Beast = "achievement_polydipsia",
@@ -76,11 +76,11 @@ local AchievementGraphics = {
 	MiriamB = {
 		PolNegPath = "achievement_almagestscrap",
 		SoulPath = "achievement_soulofmiriam",
-		MegaSatan = "achievement_spiritualheartfragment",
+		MegaSatan = "achievement_goldensack",
 		Delirium = "achievement_spiritualwound",
-		Mother = "achievement_infestedpenny",
+		Mother = "achievement_abyssalpenny",
 		Beast = "achievement_jarofmanna",
-		Greedier = "achievement_twoaceofshields",
+		Greedier = "achievement_reversecharity",
 		FullCompletion = "achievement.full_completion_b",
 	},
 }
@@ -487,9 +487,9 @@ function mod:UpdateCompletion(name, difficulty)
 			if TargetTab[name].Unlock == false then
 				TargetTab[name].Unlock = true
 				
-				if AchievementGraphics.Leah[name] then
+				if AchievementGraphics[playerName][name] then
 					PlayAchievement(AchievementGraphics[playerName][name])
-					CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics.Leah[name] .. ".png")
+					CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName][name] .. ".png")
 				end
 			end
 			if difficulty == Difficulty.DIFFICULTY_HARD then
@@ -498,7 +498,7 @@ function mod:UpdateCompletion(name, difficulty)
 				if TargetTab[name].Hard == false then
 					TargetTab[name].Hard = true
 					PlayAchievement(AchievementGraphics[playerName].Greedier)
-					--CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics.Edith.Greedier .. ".png")
+					CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName].Greedier .. ".png")
 				end
 			end
 			
@@ -528,7 +528,7 @@ function mod:UpdateCompletion(name, difficulty)
 				if not TargetTab.FullCompletion.Unlock then
 					TargetTab.FullCompletion.Unlock = true
 					PlayAchievement(AchievementGraphics[playerName].FullCompletion)
-					--CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. enums.AchievementGraphics.PlayerJob.FullCompletion .. ".png")]]
+					CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName].FullCompletion .. ".png")
 				
 					if (not MissingHard)
 					and (not TargetTab.FullCompletion.Hard)
@@ -545,7 +545,7 @@ function mod:UpdateCompletion(name, difficulty)
 				
 				if AchievementGraphics[playerName][name] then
 					PlayAchievement(AchievementGraphics[playerName][name])
-					--CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics.EdithB[name] .. ".png")
+					CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName][name] .. ".png")
 				end
 			end
 			if difficulty == Difficulty.DIFFICULTY_HARD then
@@ -554,7 +554,7 @@ function mod:UpdateCompletion(name, difficulty)
 				if TargetTab[name].Hard == false then
 					TargetTab[name].Hard = true
 					PlayAchievement(AchievementGraphics[playerName].Greedier)
-					--CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics.EdithB.Greedier .. ".png")
+					CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName].Greedier .. ".png")
 				end
 			end
 			
@@ -566,7 +566,7 @@ function mod:UpdateCompletion(name, difficulty)
 			then
 				TargetTab.PolNegPath = true
 				PlayAchievement(AchievementGraphics[playerName].PolNegPath)
-				--CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics.EdithB.PolNegPath .. ".png")
+				CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName].PolNegPath .. ".png")
 			end
 			
 			if TargetTab.SoulPath == false
@@ -575,7 +575,7 @@ function mod:UpdateCompletion(name, difficulty)
 			then
 				TargetTab.SoulPath = true
 				PlayAchievement(AchievementGraphics[playerName].SoulPath)
-				--CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics.EdithB.SoulPath .. ".png")
+				CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName].SoulPath .. ".png")
 			end
 			
 			local MissingUnlock = false
@@ -602,7 +602,7 @@ function mod:UpdateCompletion(name, difficulty)
 			if (not MissingUnlock)	then
 				if not TargetTab.FullCompletion.Unlock then
 					TargetTab.FullCompletion.Unlock = true
-					--[[CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics.EdithB.FullCompletion .. ".png")]]
+					CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName].FullCompletion .. ".png")
 					PlayAchievement(AchievementGraphics[playerName].FullCompletion)
 					if (not MissingHard)
 					and (not TargetTab.FullCompletion.Hard)
