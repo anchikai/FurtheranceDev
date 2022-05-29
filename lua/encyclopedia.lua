@@ -2276,6 +2276,16 @@ Encyclopedia.AddItem({
 	},
 })
 
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_BOOK_OF_BOOKS,
+	WikiDesc = Wiki.BookOfBooks,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_ULTRA_SECRET,
+	},
+})
+
 -- Pocket Items
 Encyclopedia.AddSoul({
 	ModName = "Furtherance",
