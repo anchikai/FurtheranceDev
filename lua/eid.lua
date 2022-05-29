@@ -237,7 +237,7 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_CADUCEUS_STAFF, "{{SoulHeart}} +2
 EID:addCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA, "Isaac's tears are fired in an arc#Upon hitting the floor, an obstacle, or an enemy they burst into a puddle of water#↓ {{Tears}} roughly -100% Tears down", "Polydipsia", "en_us")
 
 -- Kareth
-EID:addCollectible(CollectibleType.COLLECTIBLE_KARETH, "All future items found in the run are replaced with 1-3 trinkets#Amount of trinkets depends on what the items quality was", "Kareth", "en_us")
+EID:addCollectible(CollectibleType.COLLECTIBLE_KARETH, "All future items found in the run are replaced with 1-3 trinkets#Amount of trinkets depends on what the items quality was#All trinkets will be smelted when picked up", "Kareth", "en_us")
 
 -- Pillar of Fire
 EID:addCollectible(CollectibleType.COLLECTIBLE_PILLAR_OF_FIRE, "Chance to burst into five flames when hit, dealing damage to enemies#The flames periodically shoot red tears at enemies", "Pillar of Fire", "en_us")
