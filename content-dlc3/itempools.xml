@@ -18,11 +18,11 @@
 		<Item Name="Firstborn Son" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Quarantine" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="The Dreidel" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Cork" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Wine Bottle" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="shop">
 		<Item Name="Tambourine" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Cork" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Wine Bottle" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Flux" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Little Raincoat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
@@ -79,7 +79,7 @@
 	</Pool>
 	<Pool Name="goldenChest">
 		<Item Name="Polydipsia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Cork" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Wine Bottle" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="redChest">
 		<Item Name="Owl's Eye" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -117,7 +117,7 @@
 		<Item Name="Owl's Eye" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Pharaoh Cat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Parasitic Poofer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Cork" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Wine Bottle" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Cosmic Omnibus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
@@ -140,7 +140,7 @@
 		<Item Name="Pharaoh Cat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="F4 Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Parasitic Poofer" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
-		<Item Name="Cork" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Wine Bottle" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Flux" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Little Raincoat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>

@@ -5,16 +5,20 @@ local tearCount = 0
 
 function mod:CorkTear(tear)
     local player = tear.Parent:ToPlayer()
-    if player and player:HasCollectible(CollectibleType.COLLECTIBLE_CORK) and player:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN and player:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN_B then
+    if player and player:HasCollectible(CollectibleType.COLLECTIBLE_WINE_BOTTLE) and player:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN and player:GetPlayerType() ~= PlayerType.PLAYER_THEFORGOTTEN_B then
         if tearCount > 16 then
             tearCount = 0
         elseif tearCount < 17 then
             tearCount = tearCount + 1
         end
-        if (16 - player:GetCollectibleNum(CollectibleType.COLLECTIBLE_CORK, true) < 2 and tearCount == 2) or (tearCount == 16 - player:GetCollectibleNum(CollectibleType.COLLECTIBLE_CORK, true) and player:GetCollectibleNum(CollectibleType.COLLECTIBLE_CORK, true) < 15) then
+        if (16 - player:GetCollectibleNum(CollectibleType.COLLECTIBLE_WINE_BOTTLE, true) < 2 and tearCount == 2) or (tearCount == 16 - player:GetCollectibleNum(CollectibleType.COLLECTIBLE_WINE_BOTTLE, true) and player:GetCollectibleNum(CollectibleType.COLLECTIBLE_WINE_BOTTLE, true) < 15) then
             tearCount = -1
             tear:Remove()
             local Cork = player:FireTear(player.Position, tear.Velocity * (player.ShotSpeed * 1.25), true, false, true, player, 2)
+            local sprite = Cork:GetSprite()
+            sprite:Load("gfx/cork_tears.anm2", true)
+            sprite:ReplaceSpritesheet(0, "gfx/cork_tears.png")
+            sprite:LoadGraphics()
             SFXManager():Stop(SoundEffect.SOUND_TEARS_FIRE)
             SFXManager():Play(CorkPop, 2)
             Cork.Scale = tear.Scale * 1.5
@@ -36,15 +40,16 @@ function mod:ForgorCork(player)
     if isAttacking then
         InputHeld = InputHeld + 1
     end
-    if player and player:HasCollectible(CollectibleType.COLLECTIBLE_CORK) and (player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN or player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN_B) then
+    if player and player:HasCollectible(CollectibleType.COLLECTIBLE_WINE_BOTTLE) and (player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN or player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN_B) then
         if tearCount > 16 then
             tearCount = 0
         elseif tearCount < 17 and InputHeld == 1 then
             tearCount = tearCount + 1
         end
-        if (16 - player:GetCollectibleNum(CollectibleType.COLLECTIBLE_CORK, true) < 2 and tearCount == 2) or (tearCount == 16 - player:GetCollectibleNum(CollectibleType.COLLECTIBLE_CORK, true) and player:GetCollectibleNum(CollectibleType.COLLECTIBLE_CORK, true) < 15) then
+        if (16 - player:GetCollectibleNum(CollectibleType.COLLECTIBLE_WINE_BOTTLE, true) < 2 and tearCount == 2) or (tearCount == 16 - player:GetCollectibleNum(CollectibleType.COLLECTIBLE_WINE_BOTTLE, true) and player:GetCollectibleNum(CollectibleType.COLLECTIBLE_WINE_BOTTLE, true) < 15) then
             tearCount = -1
             local Cork = player:FireTear(player.Position, player:GetAimDirection()*10 * (player.ShotSpeed * 1.25), true, false, true, player, 2)
+            local sprite = Cork:GetSprite()
             SFXManager():Play(CorkPop, 2)
             Cork.Scale = 1.5
         end

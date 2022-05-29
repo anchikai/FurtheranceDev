@@ -2126,7 +2126,7 @@ Encyclopedia.AddItem({
 Encyclopedia.AddItem({
 	ModName = "Furtherance",
 	Class = "Furtherance",
-	ID = CollectibleType.COLLECTIBLE_CORK,
+	ID = CollectibleType.COLLECTIBLE_WINE_BOTTLE,
 	WikiDesc = Wiki.Cork,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_TREASURE,

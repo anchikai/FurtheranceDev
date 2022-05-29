@@ -44,7 +44,7 @@
 	<passive id="53" name="Mandrake" description="Tropane alkaloids" gfx="mandrake.png" quality="2" />
 	<passive id="54" name="Little Sister" description="Rachel..." gfx="little_sister.png" quality="2" />
 	<passive id="56" name="Butterfly" description="Loss of a loved one" gfx="butterfly.png" quality="4" />
-	<passive id="58" name="Cork" description="Pop!" gfx="cork.png" quality="2" />
+	<passive id="58" name="Wine Bottle" description="Pop!" gfx="wine_bottle.png" quality="2" />
 	<passive id="59" cache="tearflag range" name="Flux" description="Continuity" gfx="flux.png" quality="3" />
 	<passive id="62" cache="size" name="Little Raincoat" description="Become the nightmare" gfx="little_raincoat.png" quality="2" />
 	<passive id="66" name="Leah's Hair Tie" description="Fasten your hair" gfx="leahs_hair_tie.png" quality="2" />
