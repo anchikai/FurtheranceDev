@@ -348,7 +348,7 @@ local Wiki = {
 	BookOfAmbit = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Grants +5 range and piercing tears for the current room."},
+			{str = "Grants +5 range, +1.5 shot speed, and piercing tears for the current room."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},

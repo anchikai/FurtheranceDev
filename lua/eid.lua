@@ -117,6 +117,7 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_VESTA, "↑ {{Damage}} +50% Damag
 EID:addCollectible(CollectibleType.COLLECTIBLE_VESTA, "↑ {{Damage}} +50% к урону#Слёзы становятся очень маленькими#Слёзы становятся спектральными и слегка прозрачными#У слёз есть шанс разделиться на 4 слезы", "Веста", "ru")
 EID:addCollectible(CollectibleType.COLLECTIBLE_VESTA, "↑ {{Damage}} Daño +50%#Las lágrimas se vuelven extremadamente pequeñas#Lágrimas espectrales y ligeramente transparentes#Las lágrimas tienen la posibilidad de dividirse en 4 lágrimas", "Vesta", "spa")
 
+
 -- Holy Heart
 EID:addTrinket(TrinketType.TRINKET_HOLY_HEART, "Adds a small chance to gain a shield when picking up hearts", "Holy Heart", "en_us")
 EID:addTrinket(TrinketType.TRINKET_HOLY_HEART, "Даёт маленький шанс получить щит, когда подбираются сердца", "Святое сердце", "ru")
@@ -147,9 +148,7 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_SWIFTNESS, "Ralentiza a  
 EID:assignTransformation("collectible", CollectibleType.COLLECTIBLE_BOOK_OF_SWIFTNESS, "12") -- Bookworm
 
 -- Book of Ambit
-EID:addCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_AMBIT, "↑ {{Range}} +5 Range up when used#Grants piercing tears when used", "Book of Ambit", "en_us")
-EID:addCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_AMBIT, "↑ {{Range}} +5 к дальности при использовании#Дарует cквозные слезы при использовании", "Книга предела", "ru")
-EID:addCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_AMBIT, "Al usarlo, otorga: #↑ {{Range}} Rango +5#Lágrimas penetrantes", "Libro del alcance", "spa")
+EID:addCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_AMBIT, "↑ {{Range}} +5 Range up#↑ {{Shotspeed}} +1.5 Shot Speed up#Grants piercing tears when used", "Book of Ambit", "en_us")
 EID:assignTransformation("collectible", CollectibleType.COLLECTIBLE_BOOK_OF_AMBIT, "12") -- Bookworm
 
 -- Plug N' Play

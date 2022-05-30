@@ -57,7 +57,7 @@
 
 	<!-- Active Items -->
 	<active id="21" cache="speed" name="Book of Swiftness" description="Temporary speed up" gfx="book_of_swiftness.png" maxcharges="3" quality="3" tags="book offensive lazarussharedglobal" />
-	<active id="22" cache="range tearflag" name="Book of Ambit" description="Temporary range up" gfx="book_of_ambit.png" maxcharges="3" quality="2" tags="book offensive lazarussharedglobal" />
+	<active id="22" cache="range shotspeed tearflag" name="Book of Ambit" description="Temporary range up" gfx="book_of_ambit.png" maxcharges="4" quality="2" tags="book offensive lazarussharedglobal" />
 	<active id="25" name="Plug N' Play" description="Comes with 1000 games!" gfx="plug_n_play.png" maxcharges="6" quality="2" tags="nocantrip offensive" /> <!-- Concept by Freg! -->
 	<active id="29" name="Heart Renovator" description="Eternal triumph" gfx="heart_renovator.png" maxcharges="3" initcharge="3" quality="3" tags="angel nokeeper nolostbr" />
 	<active id="31" name="F4 Key" description="Be careful..." gfx="f4.png" shopprice="30" devilprice="2" maxcharges="6" quality="4" />
