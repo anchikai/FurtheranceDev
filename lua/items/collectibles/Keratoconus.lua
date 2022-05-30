@@ -1,12 +1,3 @@
---[[
-
--0.5 Shot Speed
-+0.2 range
-chance to fire a "light beam" tear with a godhead-like aura that can shrink or
-grow non-boss enemies.
-
-]]
-
 local mod = Furtherance
 local game = Game()
 
@@ -27,15 +18,15 @@ function mod:KeratoconusTear(tear)
     if not player:HasCollectible(CollectibleType.COLLECTIBLE_KERATOCONUS) then return end
 
     local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_KERATOCONUS)
-    -- if rng:RandomFloat() >= 0.25 then return end
+    if rng:RandomFloat() < 0.25 then
+        local data = mod:GetData(tear)
+        data.IsKeratoconusTear = true
 
-    local data = mod:GetData(tear)
-    data.IsKeratoconusTear = true
-
-    local glowEffect = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HALLOWED_GROUND, 0, tear.Position, tear.Velocity, tear):ToEffect()
-    glowEffect:FollowParent(tear)
-    data.KeratoconusGlow = glowEffect
-    glowEffect.SpriteScale = glowEffect.SpriteScale / 2.2
+        local glowEffect = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HALLOWED_GROUND, 0, tear.Position, tear.Velocity, tear):ToEffect()
+        glowEffect:FollowParent(tear)
+        data.KeratoconusGlow = glowEffect
+        glowEffect.SpriteScale = glowEffect.SpriteScale / 2.2
+    end
 end
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.KeratoconusTear)
 
@@ -46,17 +37,41 @@ function mod:SizeChanging(tear)
 
     local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_KERATOCONUS)
     for _, entity in ipairs(Isaac.FindInRadius(tear.Position, 40, EntityPartition.ENEMY)) do
-        local data = mod:GetData(entity)
-        if rng:RandomFloat() <= 0.5 then
-            data.KeratoconusScale = 2
-        else
-            data.KeratoconusScale = 0.5
+        if entity:IsActiveEnemy(false) and entity:IsVulnerableEnemy() and entity:IsBoss() == false then
+            local data = mod:GetData(entity)
+            if data.IsAffectedByKer ~= true then
+                data.IsAffectedByKer = true
+                if rng:RandomFloat() <= 0.5 then
+                    data.KeratoconusScale = 2
+                else
+                    data.KeratoconusScale = 0.5
+                end
+                data.AffectedByKerFrame = entity.FrameCount
+            end
         end
-        if data.IsAffectedByKer ~= true then
-            entity:ToNPC().Scale = data.KeratoconusScale
-            data.IsAffectedByKer = true
-        end
-        print(data.KeratoconusScale)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, mod.SizeChanging)
+
+local sizingDuration = 0.5 * 60
+
+local function quadEase(index)
+    if index < 0 then
+        return 0
+    elseif index > 1 then
+        return 1
+    else
+        return -(index - 1) ^ 2 + 1
+    end
+end
+
+function mod:SmoothSizing(entity)
+    local data = mod:GetData(entity)
+    if not data.IsAffectedByKer then return end
+
+    local index = (entity.FrameCount - data.AffectedByKerFrame) / sizingDuration
+    local alpha = quadEase(index)
+    local scaleGoal = data.KeratoconusScale
+    entity.Scale = 1 * (1 - alpha) + scaleGoal * alpha
+end
+mod:AddCallback(ModCallbacks.MC_POST_NPC_RENDER, mod.SmoothSizing)
