@@ -47,12 +47,15 @@ function mod:ChargeAlt()
 	for i = 0, game:GetNumPlayers() - 1 do
         local player = game:GetPlayer(i)
 		local data = mod:GetData(player)
+		local AltSlot
+		if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == CollectibleType.COLLECTIBLE_ALT_KEY then
+			AltSlot = ActiveSlot.SLOT_PRIMARY
+		elseif player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == CollectibleType.COLLECTIBLE_ALT_KEY then
+			AltSlot = ActiveSlot.SLOT_SECONDARY
+		elseif player:GetActiveItem(ActiveSlot.SLOT_POCKET) == CollectibleType.COLLECTIBLE_ALT_KEY then
+			AltSlot = ActiveSlot.SLOT_POCKET
+		end
 		if data.NoChargeAlt == false then
-			if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == CollectibleType.COLLECTIBLE_ALT_KEY then
-				AltSlot = ActiveSlot.SLOT_PRIMARY
-			elseif player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == CollectibleType.COLLECTIBLE_ALT_KEY then
-				AltSlot = ActiveSlot.SLOT_SECONDARY
-			end
 			if player:GetActiveCharge(AltSlot) < 2 then
 				player:SetActiveCharge(player:GetActiveCharge(AltSlot)+1, AltSlot)
 			end
