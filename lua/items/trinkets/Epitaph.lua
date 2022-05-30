@@ -1,7 +1,6 @@
 local mod = Furtherance
 local game = Game()
 
----@param level Level
 local function evalEpitaph(level)
     for i = 0, game:GetNumPlayers() - 1 do
         local player = Isaac.GetPlayer(i)
@@ -34,7 +33,6 @@ function mod:EpitaphData(continued)
 
     evalEpitaph(level)
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.EpitaphData)
 
 function mod:EpitaphRoom()
@@ -42,7 +40,6 @@ function mod:EpitaphRoom()
     if level:GetStage() == LevelStage.STAGE1_1 then return end
     evalEpitaph(level)
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.EpitaphRoom)
 
 function mod:EpitaphDied(entity)
@@ -55,7 +52,6 @@ function mod:EpitaphDied(entity)
         print("epic")
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.EpitaphDied, EntityType.ENTITY_PLAYER)
 
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()

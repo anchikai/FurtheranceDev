@@ -78,6 +78,7 @@ CollectibleType.COLLECTIBLE_MIRIAMS_PUTRID_VEIL = Isaac.GetItemIdByName("Miriam'
 CollectibleType.COLLECTIBLE_POLARITY_SHIFT = Isaac.GetItemIdByName("Polarity Shift")
 CollectibleType.COLLECTIBLE_BOOK_OF_BOOKS = Isaac.GetItemIdByName("Book of Books")
 CollectibleType.COLLECTIBLE_KERATOCONUS = Isaac.GetItemIdByName("Keratoconus")
+CollectibleType.COLLECTIBLE_SERVITUDE = Isaac.GetItemIdByName("Servitude")
 
 -- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
@@ -166,7 +167,9 @@ function mod:OnSave(isSaving)
 				MannaBuffs = data.MannaBuffs,
 				DiedWithEpitaph = data.DiedWithEpitaph,
 				EpitaphStage = data.EpitaphStage,
-				UnluckyPennyStat = data.UnluckyPennyStatd
+				UnluckyPennyStat = data.UnluckyPennyStat,
+				CurrentServitudeItem = data.CurrentServitudeItem,
+				ServitudeCounter = data.ServitudeCounter
 			}
 			if player:GetPlayerType() == LeahA then
 				playerData.leahkills = data.leahkills
@@ -238,6 +241,8 @@ function mod:OnLoad(isLoading)
 			data.DiedWithEpitaph = playerData.DiedWithEpitaph
 			data.EpitaphStage = playerData.EpitaphStage
 			data.UnluckyPennyStat = playerData.UnluckyPennyStat
+			data.CurrentServitudeItem = playerData.CurrentServitudeItem
+			data.ServitudeCounter = playerData.ServitudeCounter
 
 			if player:GetPlayerType() == LeahA then -- Leah's Data
 				data.LeahKills = playerData.LeahKills
@@ -372,6 +377,7 @@ include("lua/items/collectibles/MiriamsPutridVeil.lua")
 include("lua/items/collectibles/PolarityShift.lua")
 include("lua/items/collectibles/BookOfBooks.lua")
 include("lua/items/collectibles/Keratoconus.lua")
+include("lua/items/collectibles/Servitude.lua")
 
 -- Trinkets
 include("lua/items/trinkets/HolyHeart.lua")

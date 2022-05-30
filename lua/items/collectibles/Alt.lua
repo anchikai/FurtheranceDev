@@ -55,7 +55,7 @@ function mod:ChargeAlt()
 		elseif player:GetActiveItem(ActiveSlot.SLOT_POCKET) == CollectibleType.COLLECTIBLE_ALT_KEY then
 			AltSlot = ActiveSlot.SLOT_POCKET
 		end
-		if data.NoChargeAlt == false then
+		if data.NoChargeAlt == false and player:HasCollectible(CollectibleType.COLLECTIBLE_ALT_KEY) then
 			if player:GetActiveCharge(AltSlot) < 2 then
 				player:SetActiveCharge(player:GetActiveCharge(AltSlot)+1, AltSlot)
 			end

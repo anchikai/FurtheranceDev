@@ -1099,6 +1099,20 @@ local Wiki = {
 			{str = "Once the enemies' size is changed, it can't be changed again."},
 		},
 	},
+	Servitude = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "While charged, a marker appears below the closest item pedestal."},
+			{str = "Upon use, a counter appears below Isaac, starting at 7 and counting down to 0."},
+			{str = "The count goes down by 1 for every room cleared without taking damage."},
+			{str = "- If Isaac clears 7 rooms without taking damage, a copy of the marked item will spawn for Isaac to pickup."},
+			{str = "- If he fails, the timer will end and Isaac gains 1 broken heart."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "Servitude cannot be charged while the timer is active."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -2306,6 +2320,17 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_TREASURE,
 		Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_SERVITUDE,
+	WikiDesc = Wiki.Servitude,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
 	},
 })
 

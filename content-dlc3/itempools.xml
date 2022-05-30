@@ -26,6 +26,7 @@
 		<Item Name="Wine Bottle" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Flux" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Little Raincoat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Servitude" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="boss">
 		<Item Name="Brunch" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -122,6 +123,7 @@
 		<Item Name="Wine Bottle" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Cosmic Omnibus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Keratoconus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Servitude" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
 		<Item Name="Brunch" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
