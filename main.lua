@@ -209,8 +209,8 @@ mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.OnSave)
 
 function mod:OnLoad(isLoading)
 	if not mod:HasData() then return end
-	mod.isLoadingData = true
 	if isLoading then
+		mod.isLoadingData = true
 		local load = json.decode(mod:LoadData())
 		local loadData = load.PlayerData
 		for i = 0, game:GetNumPlayers() - 1 do
