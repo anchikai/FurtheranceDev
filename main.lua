@@ -139,7 +139,157 @@ HeartSubType.HEART_ROCK = 226
 SackSubType.SACK_GOLDEN = 3
 CoinSubType.COIN_UNLUCKYPENNY = 117
 
--------- Lua Files --------
+-------- Game Saving Callbacks --------
+function mod:OnSave(isSaving)
+	local save = {}
+	if isSaving then
+		local saveData = {}
+		for i = 0, game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			local data = mod:GetData(player)
+			local playerData = {
+				numAngelItems = data.numAngelItems,
+				LeahsLockTears = data.LeahsLockTears,
+				MoonHeart = data.MoonHeart,
+				RenovatorDamage = data.RenovatorDamage,
+				HeartCount = data.HeartCount,
+				CameraSaved = data.CameraSaved,
+				CurRoomID = data.CurRoomID,
+				ShiftKeyPressed = data.ShiftKeyPressed,
+				ShiftMultiplier = data.ShiftMultiplier,
+				SleptInMomsBed = data.SleptInMomsBed,
+				ApocalypseBuffs = data.ApocalypseBuffs,
+				SpareCount = data.SpareCount,
+				KTTKBuffs = data.KTTKBuffs,
+				KTTKTempBuffs = data.KTTKTempBuffs,
+				MannaCount = data.MannaCount,
+				MannaBuffs = data.MannaBuffs,
+				DiedWithEpitaph = data.DiedWithEpitaph,
+				EpitaphStage = data.EpitaphStage,
+				UnluckyPennyStat = data.UnluckyPennyStatd
+			}
+			if player:GetPlayerType() == LeahA then
+				playerData.leahkills = data.leahkills
+			end
+			if player:GetPlayerType() == PeterA then
+				playerData.DevilCount = data.DevilCount
+				playerData.AngelCount = data.AngelCount
+			end
+			if player:GetPlayerType() == MiriamA then
+				playerData.MiriamTearCount = data.MiriamTearCount
+				playerData.MiriamRiftTimeout = data.MiriamRiftTimeout
+			end
+
+			saveData["player_" .. tostring(i + 1)] = playerData
+		end
+		saveData.Flipped = mod.Flipped
+		save.PlayerData = saveData
+	else
+		local saveData = {}
+		for i = 0, game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			local data = mod:GetData(player)
+			local playerData = {
+				DiedWithEpitaph = data.DiedWithEpitaph,
+				EpitaphStage = data.EpitaphStage,
+			}
+
+			saveData["player_" .. tostring(i + 1)] = playerData
+		end
+		save.PlayerData = saveData
+	end
+	save.Unlocks = mod.Unlocks
+	mod:SaveData(json.encode(save))
+end
+mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.OnSave)
+
+function mod:OnLoad(isLoading)
+	if not mod:HasData() then return end
+	mod.isLoadingData = true
+	if isLoading then
+		local load = json.decode(mod:LoadData())
+		local loadData = load.PlayerData
+		for i = 0, game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			local data = mod:GetData(player)
+			local playerData = loadData[string.format("player_%d", i + 1)]
+
+			-- local index = mod:GetEntityIndex(player)
+			-- if isLoading == false or mod.DataTable[index].FurtheranceMoonHeart == nil then
+			-- 	mod.DataTable[index].FurtheranceMoonHeart = 0
+			-- end
+
+			data.numAngelItems = playerData.numAngelItems
+			data.LeahsLockTears = playerData.LeahsLockTears
+			data.MoonHeart = playerData.MoonHeart
+			data.RenovatorDamage = playerData.RenovatorDamage
+			data.HeartCount = playerData.HeartCount
+			data.CameraSaved = playerData.CameraSaved
+			data.CurRoomID = playerData.CurRoomID
+			data.ShiftKeyPressed = playerData.ShiftKeyPressed
+			data.ShiftMultiplier = playerData.ShiftMultiplier
+			data.SleptInMomsBed = playerData.SleptInMomsBed
+			data.ApocalypseBuffs = playerData.ApocalypseBuffs
+			data.SpareCount = playerData.SpareCount
+			data.KTTKBuffs = playerData.KTTKBuffs
+			data.KTTKTempBuffs = playerData.KTTKTempBuffs
+			data.MannaCount = playerData.MannaCount
+			data.MannaBuffs = playerData.MannaBuffs
+			data.DiedWithEpitaph = playerData.DiedWithEpitaph
+			data.EpitaphStage = playerData.EpitaphStage
+			data.UnluckyPennyStat = playerData.UnluckyPennyStat
+
+			if player:GetPlayerType() == LeahA then -- Leah's Data
+				data.LeahKills = playerData.LeahKills
+			end
+			if player:GetPlayerType() == PeterA then -- Peter's Data
+				data.DevilCount = playerData.DevilCount
+				data.AngelCount = playerData.AngelCount
+			end
+			if player:GetPlayerType() == MiriamA then -- Miriam's Data
+				data.MiriamTearCount = playerData.MiriamTearCount
+				data.MiriamRiftTimeout = playerData.MiriamRiftTimeout
+			end
+		end
+		if loadData.Flipped then
+			mod.Flipped = loadData.Flipped
+		end
+		if loadData.Unlocks then
+			for key in ipairs(mod.Unlocks) do
+				if loadData.Unlocks[key] then
+					mod.Unlocks[key] = loadData.Unlocks[key]
+				end
+			end
+		end
+	else
+		local load = json.decode(mod:LoadData())
+		local loadData = load.PlayerData
+		for i = 0, game:GetNumPlayers() - 1 do
+			local player = Isaac.GetPlayer(i)
+			local data = mod:GetData(player)
+			local playerData = loadData[string.format("player_%d", i + 1)]
+
+			data.DiedWithEpitaph = playerData.DiedWithEpitaph
+			data.EpitaphStage = playerData.EpitaphStage
+
+			if player:GetPlayerType() == LeahA then -- Leah's Data
+				data.LeahKills = playerData.LeahKills
+			end
+			if player:GetPlayerType() == PeterA then -- Peter's Data
+				data.DevilCount = playerData.DevilCount
+				data.AngelCount = playerData.AngelCount
+			end
+			if player:GetPlayerType() == MiriamA then -- Miriam's Data
+				data.MiriamTearCount = playerData.MiriamTearCount
+				data.MiriamRiftTimeout = playerData.MiriamRiftTimeout
+			end
+		end
+	end
+	print("data loaded")
+end
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnLoad)
+
+---- Lua Files ----
 
 -- Players
 include("lua/players/Leah.lua")
@@ -355,161 +505,6 @@ function Furtherance:GetEntityIndex(entity)
 	end
 	return nil
 end
-
-function mod:OnSave(isSaving)
-	local save = {}
-	if isSaving then
-		local saveData = {}
-		for i = 0, game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
-			local data = mod:GetData(player)
-			saveData["player_" .. tostring(i + 1)] = {}
-			saveData["player_" .. tostring(i + 1)].numAngelItems = data.numAngelItems
-			saveData["player_" .. tostring(i + 1)].LeahsLockTears = data.LeahsLockTears
-			saveData["player_" .. tostring(i + 1)].MoonHeart = data.MoonHeart
-			saveData["player_" .. tostring(i + 1)].RenovatorDamage = data.RenovatorDamage
-			saveData["player_" .. tostring(i + 1)].HeartCount = data.HeartCount
-			saveData["player_" .. tostring(i + 1)].CameraSaved = data.CameraSaved
-			saveData["player_" .. tostring(i + 1)].CurRoomID = data.CurRoomID
-			saveData["player_" .. tostring(i + 1)].ShiftKeyPressed = data.ShiftKeyPressed
-			saveData["player_" .. tostring(i + 1)].ShiftMultiplier = data.ShiftMultiplier
-			saveData["player_" .. tostring(i + 1)].SleptInMomsBed = data.SleptInMomsBed
-			saveData["player_" .. tostring(i + 1)].ApocalypseBuffs = data.ApocalypseBuffs
-			saveData["player_" .. tostring(i + 1)].SpareCount = data.SpareCount
-			saveData["player_" .. tostring(i + 1)].KTTKBuffs = data.KTTKBuffs
-			saveData["player_" .. tostring(i + 1)].KTTKTempBuffs = data.KTTKTempBuffs
-			saveData["player_" .. tostring(i + 1)].MannaCount = data.MannaCount
-			saveData["player_" .. tostring(i + 1)].MannaBuffs = data.MannaBuffs
-			saveData["player_" .. tostring(i + 1)].DiedWithEpitaph = data.DiedWithEpitaph
-			saveData["player_" .. tostring(i + 1)].EpitaphStage = data.EpitaphStage
-			saveData["player_" .. tostring(i + 1)].UnluckyPennyStat = data.UnluckyPennyStat
-			if player:GetPlayerType() == LeahA then
-				saveData["player_" .. tostring(i + 1)].leahkills = data.leahkills
-			end
-			if player:GetPlayerType() == PeterA then
-				saveData["player_" .. tostring(i + 1)].DevilCount = data.DevilCount
-				saveData["player_" .. tostring(i + 1)].AngelCount = data.AngelCount
-			end
-			if player:GetPlayerType() == MiriamA then
-				saveData["player_" .. tostring(i + 1)].MiriamTearCount = data.MiriamTearCount
-				saveData["player_" .. tostring(i + 1)].MiriamRiftTimeout = data.MiriamRiftTimeout
-			end
-		end
-		saveData.Flipped = mod.Flipped
-		save.PlayerData = saveData
-	end
-	save.Unlocks = mod.Unlocks
-	mod:SaveData(json.encode(save))
-end
-
-mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.OnSave)
-
-function mod:OnLoad(isLoading)
-	mod.isLoadingData = isLoading
-	if isLoading and mod:HasData() then
-		local load = json.decode(mod:LoadData())
-		local loadData = load.PlayerData
-		for i = 0, game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
-			local data = mod:GetData(player)
-			local index = mod:GetEntityIndex(player)
-			if isLoading == false or mod.DataTable[index].FurtheranceMoonHeart == nil then
-				mod.DataTable[index].FurtheranceMoonHeart = 0
-			end
-			if player:GetPlayerType() == LeahA then -- leah's Data
-				if loadData["player_" .. tostring(i + 1)].leahkills then
-					data.leahkills = loadData["player_" .. tostring(i + 1)].leahkills
-				end
-			end
-			if player:GetPlayerType() == PeterA then -- Peter's Data
-				if loadData["player_" .. tostring(i + 1)].DevilCount then
-					data.DevilCount = loadData["player_" .. tostring(i + 1)].DevilCount
-				end
-				if loadData["player_" .. tostring(i + 1)].AngelCount then
-					data.AngelCount = loadData["player_" .. tostring(i + 1)].AngelCount
-				end
-			end
-			if player:GetPlayerType() == MiriamA then -- Miriam's Data
-				if loadData["player_" .. tostring(i + 1)].MiriamTearCount then
-					data.MiriamTearCount = loadData["player_" .. tostring(i + 1)].MiriamTearCount
-				end
-				if loadData["player_" .. tostring(i + 1)].MiriamRiftTimeout then
-					data.MiriamRiftTimeout = loadData["player_" .. tostring(i + 1)].MiriamRiftTimeout
-				end
-			end
-			-- Other General Data
-			if loadData["player_" .. tostring(i + 1)].numAngelItems then
-				data.numAngelItems = loadData["player_" .. tostring(i + 1)].numAngelItems
-			end
-			if loadData["player_" .. tostring(i + 1)].LeahsLockTears then
-				data.LeahsLockTears = loadData["player_" .. tostring(i + 1)].LeahsLockTears
-			end
-			if loadData["player_" .. tostring(i + 1)].MoonHeart then
-				data.MoonHeart = loadData["player_" .. tostring(i + 1)].MoonHeart
-			end
-			if loadData["player_" .. tostring(i + 1)].RenovatorDamage then
-				data.RenovatorDamage = loadData["player_" .. tostring(i + 1)].RenovatorDamage
-			end
-			if loadData["player_" .. tostring(i + 1)].HeartCount then
-				data.HeartCount = loadData["player_" .. tostring(i + 1)].HeartCount
-			end
-			if loadData["player_" .. tostring(i + 1)].CameraSaved then
-				data.CameraSaved = loadData["player_" .. tostring(i + 1)].CameraSaved
-			end
-			if loadData["player_" .. tostring(i + 1)].CurRoomID then
-				data.CurRoomID = loadData["player_" .. tostring(i + 1)].CurRoomID
-			end
-			if loadData["player_" .. tostring(i + 1)].ShiftKeyPressed then
-				data.ShiftKeyPressed = loadData["player_" .. tostring(i + 1)].ShiftKeyPressed
-			end
-			if loadData["player_" .. tostring(i + 1)].ShiftMultiplier then
-				data.ShiftMultiplier = loadData["player_" .. tostring(i + 1)].ShiftMultiplier
-			end
-			if loadData["player_" .. tostring(i + 1)].SleptInMomsBed then
-				data.SleptInMomsBed = loadData["player_" .. tostring(i + 1)].SleptInMomsBed
-			end
-			if loadData["player_" .. tostring(i + 1)].ApocalypseBuffs then
-				data.ApocalypseBuffs = loadData["player_" .. tostring(i + 1)].ApocalypseBuffs
-			end
-			if loadData["player_" .. tostring(i + 1)].SpareCount then
-				data.SpareCount = loadData["player_" .. tostring(i + 1)].SpareCount
-			end
-			if loadData["player_" .. tostring(i + 1)].KTTKBuffs then
-				data.KTTKBuffs = loadData["player_" .. tostring(i + 1)].KTTKBuffs
-			end
-			if loadData["player_" .. tostring(i + 1)].KTTKTempBuffs then
-				data.KTTKTempBuffs = loadData["player_" .. tostring(i + 1)].KTTKTempBuffs
-			end
-			if loadData["player_" .. tostring(i + 1)].MannaCount then
-				data.MannaCount = loadData["player_" .. tostring(i + 1)].MannaCount
-			end
-			if loadData["player_" .. tostring(i + 1)].MannaBuffs then
-				data.MannaBuffs = loadData["player_" .. tostring(i + 1)].MannaBuffs
-			end
-			if loadData["player_" .. tostring(i + 1)].DiedWithEpitaph then
-				data.DiedWithEpitaph = loadData["player_" .. tostring(i + 1)].DiedWithEpitaph
-			end
-			if loadData["player_" .. tostring(i + 1)].EpitaphStage then
-				data.EpitaphStage = loadData["player_" .. tostring(i + 1)].EpitaphStage
-			end
-			if loadData["player_" .. tostring(i + 1)].UnluckyPennyStat then
-				data.UnluckyPennyStat = loadData["player_" .. tostring(i + 1)].UnluckyPennyStat
-			end
-		end
-		if loadData.Flipped then
-			mod.Flipped = loadData.Flipped
-		end
-		if loadData.Unlocks then
-			for key, value in ipairs(mod.Unlocks) do
-				if loadData.Unlocks[key] then
-					mod.Unlocks[key] = loadData.Unlocks[key]
-				end
-			end
-		end
-	end
-end
-
-mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnLoad)
 
 function mod:LoadDataCacheEval(player)
 	if player.FrameCount == 1 then
