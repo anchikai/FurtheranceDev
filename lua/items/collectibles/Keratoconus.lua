@@ -10,8 +10,6 @@ grow non-boss enemies.
 local mod = Furtherance
 local game = Game()
 
----@param player EntityPlayer
----@param flag integer
 function mod:KeratoconusBuffs(player, flag)
     if not player:HasCollectible(CollectibleType.COLLECTIBLE_KERATOCONUS) then return end
 
@@ -23,7 +21,6 @@ function mod:KeratoconusBuffs(player, flag)
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.KeratoconusBuffs)
 
----@param tear EntityTear
 function mod:KeratoconusTear(tear)
     local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
     if player == nil then return end
@@ -35,21 +32,31 @@ function mod:KeratoconusTear(tear)
     local data = mod:GetData(tear)
     data.IsKeratoconusTear = true
 
-    tear.TearFlags = tear.TearFlags | TearFlags.TEAR_LASERSHOT
     local glowEffect = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.HALLOWED_GROUND, 0, tear.Position, tear.Velocity, tear):ToEffect()
-    glowEffect.SpriteOffset = tear.Velocity:Resized(20)
     glowEffect:FollowParent(tear)
     data.KeratoconusGlow = glowEffect
+    glowEffect.SpriteScale = glowEffect.SpriteScale / 2.2
 end
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.KeratoconusTear)
 
-function mod:KeratoconusTearUpdate(tear)
-    local data = mod:GetData(tear)
-    if not data.IsKeratoconusTear then return end
+function mod:SizeChanging(tear)
+    local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
+    if player == nil then return end
+    if not player:HasCollectible(CollectibleType.COLLECTIBLE_KERATOCONUS) then return end
 
-    local glowEffect = data.KeratoconusGlow
-    if glowEffect == nil then return end
-
-    glowEffect.SpriteOffset = tear.Velocity:Resized(20)
+    local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_KERATOCONUS)
+    for _, entity in ipairs(Isaac.FindInRadius(tear.Position, 40, EntityPartition.ENEMY)) do
+        local data = mod:GetData(entity)
+        if rng:RandomFloat() <= 0.5 then
+            data.KeratoconusScale = 2
+        else
+            data.KeratoconusScale = 0.5
+        end
+        if data.IsAffectedByKer ~= true then
+            entity:ToNPC().Scale = data.KeratoconusScale
+            data.IsAffectedByKer = true
+        end
+        print(data.KeratoconusScale)
+    end
 end
-mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, mod.KeratoconusTearUpdate)
+mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, mod.SizeChanging)
