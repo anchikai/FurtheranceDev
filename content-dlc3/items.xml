@@ -53,6 +53,7 @@
 	<passive id="69" name="Peter's Bloody Fracture" description="" gfx="peters_bloody_fracture.png" quality="3" />
 	<passive id="70" name="Miriam's Headband" description="" gfx="miriams_headband.png" quality="3" />
 	<passive id="71" name="Miriam's Putrid Veil" description="" gfx="miriams_putrid_veil.png" quality="3" />
+	<passive id="74" cache="shotspeed range" name="Keratoconus" description="Soft gazing eyes" gfx="keratoconus.png" quality="2" />
 
 	<!-- Active Items -->
 	<active id="21" cache="speed" name="Book of Swiftness" description="Temporary speed up" gfx="book_of_swiftness.png" maxcharges="3" quality="3" tags="book offensive lazarussharedglobal" />
