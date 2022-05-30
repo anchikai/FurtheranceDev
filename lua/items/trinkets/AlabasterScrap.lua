@@ -1,10 +1,11 @@
 local mod = Furtherance
 local game = Game()
 
+---@param player EntityPlayer
 function mod:CollectPlayerItems(player)
 	local data = mod:GetData(player)
-	local numAngelItems = 0
 	if player:HasTrinket(TrinketType.TRINKET_ALABASTER_SCRAP, false) then
+		local numAngelItems = 0
 		local config = Isaac.GetItemConfig()
 		local max = config:GetCollectibles().Size
 		local n
@@ -20,6 +21,11 @@ function mod:CollectPlayerItems(player)
 				end
 			end
 		end
+		if data.NumAngelItems ~= numAngelItems then
+			data.NumAngelItems = numAngelItems
+			player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+			player:EvaluateItems()
+		end
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.CollectPlayerItems)
@@ -28,11 +34,8 @@ function mod:AlabasterDmg(player, flag)
 	local data = mod:GetData(player)
 	local goldenbox = player:GetTrinketMultiplier(TrinketType.TRINKET_ALABASTER_SCRAP)
 	if player:HasTrinket(TrinketType.TRINKET_ALABASTER_SCRAP, false) then
-		if data.numAngelItems == nil then
-			data.numAngelItems = 0
-		end
 		if flag == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage + data.numAngelItems * goldenbox
+			player.Damage = player.Damage + (data.NumAngelItems or 0) * goldenbox
 		end
 	end
 end
