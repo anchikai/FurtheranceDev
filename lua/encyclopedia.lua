@@ -1087,6 +1087,18 @@ local Wiki = {
 			{str = "Concept by retro100!"},
 		},
 	},
+	Keratoconus = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "+0.2 Range."},
+			{str = "-0.5 Shot Speed."},
+			{str = "Chance to fire a light beam tear with a godhead-like aura that can shrink or grow non-boss enemies."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "Once the enemies' size is changed, it can't be changed again."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -2282,6 +2294,18 @@ Encyclopedia.AddItem({
 	WikiDesc = Wiki.BookOfBooks,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_ULTRA_SECRET,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_KERATOCONUS,
+	WikiDesc = Wiki.Keratoconus,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 	},
 })
 

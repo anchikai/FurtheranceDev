@@ -310,6 +310,7 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_FLUX, "↑ {{Range}} +9.75 Range 
 
 -- Cosmic Omnibus
 EID:addCollectible(CollectibleType.COLLECTIBLE_COSMIC_OMNIBUS, "Randomly teleports you to a non-normal room#30% chance that room will be a newly generated Planetarium", "Cosmic Omnibus", "en_us")
+EID:assignTransformation("collectible", CollectibleType.COLLECTIBLE_COSMIC_OMNIBUS, "12") -- Bookworm
 
 -- Little Raincoat
 EID:addCollectible(CollectibleType.COLLECTIBLE_LITTLE_RAINCOAT, "You get a Power Pill like effect every 6 hits#6% chance for food items to be rerolled#↑ Size down", "Little Raincoat", "en_us")
@@ -335,9 +336,12 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_MIRIAMS_HEADBAND, "{{Tears}} +1 T
 -- Miriam's Putrid Veil
 EID:addCollectible(CollectibleType.COLLECTIBLE_MIRIAMS_PUTRID_VEIL, "{{Range}} -2 Tear Height#5% chance to regenerate a half red heart on enemy kills#Enemies will keep taking 20% of your damage for 3 seconds after being hit", "Miriam's Putrid Veil", "en_us")
 
--- Book of Swiftness
+-- Book of Books
 EID:addCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_BOOKS, "Activates every book item at once#Works with modded books", "Book of Books", "en_us")
 EID:assignTransformation("collectible", CollectibleType.COLLECTIBLE_BOOK_OF_BOOKS, "12") -- Bookworm
+
+-- Keratoconus
+EID:addCollectible(CollectibleType.COLLECTIBLE_KERATOCONUS, "{{Range}} ↑ +0.2 Range#↓ {{Shotspeed}} -0.5 Shot Speed down#Chance to fire a light beam tear with a godhead-like aura that can shrink or grow non-boss enemies", "Keratoconus", "en_us")
 
 
 -- Soul of Leah
