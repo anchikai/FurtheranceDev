@@ -3,18 +3,18 @@ local game = Game()
 
 local AchievementGraphics = {
 	Leah = {
-		MomsHeart = "achievement_",
+		MomsHeart = "achievement_secretdiary",
 		Isaac = "achievement_bindsofdevotion",
-		Satan = "achievement_parasiticpoofer",
+		Satan = "achievement_",
 		BlueBaby = "achievement_mandrake",
 		Lamb = "achievement_littlesister",
 		BossRush = "achievement_leahslock",
-		Hush = "achievement_",
+		Hush = "achievement_keratoconus",
 		MegaSatan = "achievement_",
 		Delirium = "achievement_heartrenovator",
-		Mother = "achievement_",
+		Mother = "achievement_owlseye",
 		Beast = "achievement_",
-		GreedMode = "achievement_",
+		GreedMode = "achievement_holyheart",
 		Greedier = "achievement_heartembeddedcoin",
 		Tainted = "achievement_taintedleah",
 		FullCompletion = "achievement.full_completion",
@@ -30,19 +30,19 @@ local AchievementGraphics = {
 		FullCompletion = "achievement.full_completion_b",
 	},
 	Peter = {
-		MomsHeart = "achievement_",
+		MomsHeart = "achievement_prayerjournal",
 		Isaac = "achievement_pallium",
 		Satan = "achievement_",
 		BlueBaby = "achievement_phirho",
 		Lamb = "achievement_",
 		BossRush = "achievement_",
-		Hush = "achievement_alabasterscrap",
+		Hush = "achievement_",
 		MegaSatan = "achievement_",
 		Delirium = "achievement_keystothekingdom",
 		Mother = "achievement_",
 		Beast = "achievement_",
-		GreedMode = "achievement_unluckypenny",
-		Greedier = "achievement_",
+		GreedMode = "achievement_alabasterscrap",
+		Greedier = "achievement_unluckypenny",
 		Tainted = "achievement_taintedpeter",
 		FullCompletion = "achievement.full_completion",
 	},
@@ -57,14 +57,14 @@ local AchievementGraphics = {
 		FullCompletion = "achievement.full_completion_b",
 	},
 	Miriam = {
-		MomsHeart = "achievement_miriamswell",
-		Isaac = "achievement_bookofguidance",
+		MomsHeart = "achievement_bookofguidance",
+		Isaac = "achievement_apocalypse",
 		Satan = "achievement_kareth",
 		BlueBaby = "achievement_pillarofclouds",
 		Lamb = "achievement_pillaroffire",
 		BossRush = "achievement_wormwoodleaf",
 		Hush = "achievement_caduceusstaff",
-		MegaSatan = "achievement_apocalypse",
+		MegaSatan = "achievement_miriamswell",
 		Delirium = "achievement_tambourine",
 		Mother = "achievement_firstbornson",
 		Beast = "achievement_polydipsia",
@@ -272,13 +272,13 @@ function mod:StartUnlocks()
 
 		-- Leah
 		if mod.Unlocks.Leah.MomsHeart == false then
-			
+			--game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_SECRET_DIARY)
 		end
 		if mod.Unlocks.Leah.Isaac == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_BINDS_OF_DEVOTION)
 		end
 		if mod.Unlocks.Leah.Satan == false then
-			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PARASITIC_POOFER)
+
 		end
 		if mod.Unlocks.Leah.BlueBaby == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_MANDRAKE)
@@ -290,7 +290,7 @@ function mod:StartUnlocks()
 			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_LEAHS_LOCK)
 		end
 		if mod.Unlocks.Leah.Hush == false then
-			
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_KERATOCONUS)
 		end
 		if mod.Unlocks.Leah.MegaSatan == false then
 			
@@ -299,7 +299,7 @@ function mod:StartUnlocks()
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR)
 		end
 		if mod.Unlocks.Leah.Mother == false then
-			
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_OWLS_EYE)
 		end
 		if mod.Unlocks.Leah.Beast == false then
 			
@@ -339,16 +339,16 @@ function mod:StartUnlocks()
 
 		-- Peter
 		if mod.Unlocks.Peter.MomsHeart == false then
-			
+			--game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PRAYER_JOURNAL)
 		end
 		if mod.Unlocks.Peter.Isaac == false then
-			
+			--game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PALLIUM)
 		end
 		if mod.Unlocks.Peter.Satan == false then
 			
 		end
 		if mod.Unlocks.Peter.BlueBaby == false then
-			
+			--game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PHI_RHO)
 		end
 		if mod.Unlocks.Peter.Lamb == false then
 			
@@ -357,7 +357,7 @@ function mod:StartUnlocks()
 			
 		end
 		if mod.Unlocks.Peter.Hush == false then
-			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_ALABASTER_SCRAP)
+			
 		end
 		if mod.Unlocks.Peter.MegaSatan == false then
 			
@@ -372,7 +372,7 @@ function mod:StartUnlocks()
 			
 		end
 		if mod.Unlocks.Peter.GreedMode == false then
-			
+			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_ALABASTER_SCRAP)
 		end
 		if mod.Unlocks.Peter.FullCompletion == false then
 			
@@ -389,7 +389,7 @@ function mod:StartUnlocks()
 			
 		end
 		if mod.Unlocks.PeterB.Delirium == false then
-			
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_MUDDLED_CROSS)
 		end
 		if mod.Unlocks.PeterB.Mother == false then
 			
@@ -406,10 +406,10 @@ function mod:StartUnlocks()
 
 		-- Miriam
 		if mod.Unlocks.Miriam.MomsHeart == false then
-			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_MIRIAMS_WELL)
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_GUIDANCE)
 		end
 		if mod.Unlocks.Miriam.Isaac == false then
-			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_GUIDANCE)
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_APOCALYPSE)
 		end
 		if mod.Unlocks.Miriam.Satan == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_KARETH)
@@ -427,7 +427,7 @@ function mod:StartUnlocks()
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_CADUCEUS_STAFF)
 		end
 		if mod.Unlocks.Miriam.MegaSatan == false then
-			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_APOCALYPSE)
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_MIRIAMS_WELL)
 		end
 		if mod.Unlocks.Miriam.Delirium == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_TAMBOURINE)
