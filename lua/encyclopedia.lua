@@ -1123,6 +1123,24 @@ local Wiki = {
 			{str = "All bone hearts you have or pick up will be converted into a empty heart container."},
 		},
 	},
+	Altruism = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Donating to any type of beggar has a 25% chance do one of the following:"},
+			{str = "- Heal half a red heart."},
+			{str = "- Recieve the resource you donated back."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "If you recieve your resource back, you'll gain one of the following:"},
+			{str = "- Beggar: A penny."},
+			{str = "- Demon Beggar: A half soul heart."},
+			{str = "- Battery Beggar: A penny."},
+			{str = "- Key Beggar: A key."},
+			{str = "- Bomb Beggar: A bomb."},
+			{str = "- Rotten Beggar: A coin."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -2353,6 +2371,13 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_TREASURE,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 	},
+})
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_ALTRUISM,
+	WikiDesc = Wiki.Altruism,
 })
 
 -- Pocket Items

@@ -116,6 +116,7 @@ TrinketType.TRINKET_WORMWOOD_LEAF = Isaac.GetTrinketIdByName("Wormwood Leaf")
 TrinketType.TRINKET_ESCAPE_PLAN = Isaac.GetTrinketIdByName("Escape Plan")
 TrinketType.TRINKET_EPITAPH = Isaac.GetTrinketIdByName("Epitaph")
 TrinketType.TRINKET_LEVIATHANS_TENDRIL = Isaac.GetTrinketIdByName("Leviathan's Tendril")
+TrinketType.TRINKET_ALTRUISM = Isaac.GetTrinketIdByName("Altruism")
 
 -- Cards/Runes/Pills/etc
 RUNE_SOUL_OF_LEAH = Isaac.GetCardIdByName("Soul of Leah")
@@ -382,6 +383,7 @@ include("lua/items/trinkets/WormwoodLeaf.lua")
 include("lua/items/trinkets/EscapePlan.lua")
 include("lua/items/trinkets/Epitaph.lua")
 include("lua/items/trinkets/LeviathansTendril.lua")
+include("lua/items/trinkets/Altruism.lua")
 
 -- Enemies
 include("lua/enemies/Hostikai.lua")

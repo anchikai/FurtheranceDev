@@ -10,7 +10,7 @@ local AchievementGraphics = {
 		Lamb = "achievement_littlesister",
 		BossRush = "achievement_leahslock",
 		Hush = "achievement_keratoconus",
-		MegaSatan = "achievement_d9",
+		MegaSatan = "achievement_d16",
 		Delirium = "achievement_heartrenovator",
 		Mother = "achievement_owlseye",
 		Beast = "achievement_",
@@ -35,7 +35,7 @@ local AchievementGraphics = {
 		Satan = "achievement_",
 		BlueBaby = "achievement_phirho",
 		Lamb = "achievement_",
-		BossRush = "achievement_",
+		BossRush = "achievement_altruism",
 		Hush = "achievement_",
 		MegaSatan = "achievement_",
 		Delirium = "achievement_keystothekingdom",
@@ -189,7 +189,6 @@ Furtherance.Unlocks = {
 
 local function PlayAchievement(achievement)
 	if GiantBookAPI then
-		print("showing achievement")
 		GiantBookAPI.ShowAchievement(achievement .. ".png")
 	end
 end
@@ -355,7 +354,7 @@ function mod:StartUnlocks()
 			
 		end
 		if mod.Unlocks.Peter.BossRush == false then
-			
+			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_ALTRUISM)
 		end
 		if mod.Unlocks.Peter.Hush == false then
 			
@@ -490,7 +489,6 @@ function mod:UpdateCompletion(name, difficulty)
 				
 				if AchievementGraphics[playerName][name] then
 					PlayAchievement(AchievementGraphics[playerName][name])
-					-- CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName][name] .. ".png")
 				end
 			end
 			if difficulty == Difficulty.DIFFICULTY_HARD then
@@ -499,7 +497,6 @@ function mod:UpdateCompletion(name, difficulty)
 				if TargetTab[name].Hard == false then
 					TargetTab[name].Hard = true
 					PlayAchievement(AchievementGraphics[playerName].Greedier)
-					-- CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName].Greedier .. ".png")
 				end
 			end
 			
@@ -529,7 +526,6 @@ function mod:UpdateCompletion(name, difficulty)
 				if not TargetTab.FullCompletion.Unlock then
 					TargetTab.FullCompletion.Unlock = true
 					PlayAchievement(AchievementGraphics[playerName].FullCompletion)
-					-- CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName].FullCompletion .. ".png")
 				
 					if (not MissingHard)
 					and (not TargetTab.FullCompletion.Hard)
@@ -546,7 +542,6 @@ function mod:UpdateCompletion(name, difficulty)
 				
 				if AchievementGraphics[playerName][name] then
 					PlayAchievement(AchievementGraphics[playerName][name])
-					-- CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName][name] .. ".png")
 				end
 			end
 			if difficulty == Difficulty.DIFFICULTY_HARD then
@@ -555,7 +550,6 @@ function mod:UpdateCompletion(name, difficulty)
 				if TargetTab[name].Hard == false then
 					TargetTab[name].Hard = true
 					PlayAchievement(AchievementGraphics[playerName].Greedier)
-					-- CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName].Greedier .. ".png")
 				end
 			end
 			
@@ -567,7 +561,6 @@ function mod:UpdateCompletion(name, difficulty)
 			then
 				TargetTab.PolNegPath = true
 				PlayAchievement(AchievementGraphics[playerName].PolNegPath)
-				-- CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName].PolNegPath .. ".png")
 			end
 			
 			if TargetTab.SoulPath == false
@@ -576,7 +569,6 @@ function mod:UpdateCompletion(name, difficulty)
 			then
 				TargetTab.SoulPath = true
 				PlayAchievement(AchievementGraphics[playerName].SoulPath)
-				-- CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName].SoulPath .. ".png")
 			end
 			
 			local MissingUnlock = false
@@ -603,7 +595,6 @@ function mod:UpdateCompletion(name, difficulty)
 			if (not MissingUnlock)	then
 				if not TargetTab.FullCompletion.Unlock then
 					TargetTab.FullCompletion.Unlock = true
-					-- CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName].FullCompletion .. ".png")
 					PlayAchievement(AchievementGraphics[playerName].FullCompletion)
 					if (not MissingHard)
 					and (not TargetTab.FullCompletion.Hard)
