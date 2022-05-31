@@ -1141,6 +1141,12 @@ local Wiki = {
 			{str = "- Rotten Beggar: A coin."},
 		},
 	},
+	Sunscreen = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Isaac has a 25% chance to block/ignore fire damage."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -2378,6 +2384,19 @@ Encyclopedia.AddTrinket({
 	Class = "Furtherance",
 	ID = TrinketType.TRINKET_ALTRUISM,
 	WikiDesc = Wiki.Altruism,
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_SUNSCREEN,
+	WikiDesc = Wiki.Sunscreen,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+	},
 })
 
 -- Pocket Items

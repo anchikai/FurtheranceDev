@@ -21,6 +21,7 @@
 		<Item Name="Wine Bottle" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Keratoconus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Cardiomyopathy" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Sunscreen" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="shop">
 		<Item Name="Tambourine" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -28,6 +29,7 @@
 		<Item Name="Flux" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Little Raincoat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Servitude" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Sunscreen" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="boss">
 		<Item Name="Brunch" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -126,6 +128,7 @@
 		<Item Name="Keratoconus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Servitude" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Cardiomyopathy" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Sunscreen" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
 		<Item Name="Brunch" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -150,6 +153,7 @@
 		<Item Name="Wine Bottle" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Flux" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Little Raincoat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Sunscreen" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedDevil">
 		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>

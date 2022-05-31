@@ -351,6 +351,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_CARDIOMYOPATHY, "↑ Temporarily 
 -- Altruism
 EID:addTrinket(TrinketType.TRINKET_ALTRUISM, "↑ Donating to any beggar has a chance to heal {{HalfHeart}} half a red heart or receive the resource you donated back", "Altruism", "en_us")
 
+-- Sunscreen
+EID:addCollectible(CollectibleType.COLLECTIBLE_SUNSCREEN, "↑ 25% chance to block/ignore fire damage", "Sunscreen", "en_us")
+
 
 -- Soul of Leah
 EID:addCard(RUNE_SOUL_OF_LEAH, "{{BrokenHeart}} Grants a broken heart for every uncleared room on the floor#↑ Each broken heart will give a +0.75 damage up#!!! If there are 12 or more uncleared rooms, it will kill you", "Soul of Leah", "en_us")
