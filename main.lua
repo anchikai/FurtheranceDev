@@ -167,8 +167,9 @@ function mod:OnSave(isSaving)
 				KTTKTempBuffs = data.KTTKTempBuffs,
 				MannaCount = data.MannaCount,
 				MannaBuffs = data.MannaBuffs,
-				DiedWithEpitaph = data.DiedWithEpitaph,
 				EpitaphStage = data.EpitaphStage,
+				NewEpitaphFirstPassiveItem = data.NewEpitaphFirstPassiveItem,
+				NewEpitaphLastPassiveItem = data.NewEpitaphLastPassiveItem,
 				UnluckyPennyStat = data.UnluckyPennyStat,
 				CurrentServitudeItem = data.CurrentServitudeItem,
 				ServitudeCounter = data.ServitudeCounter
@@ -195,8 +196,9 @@ function mod:OnSave(isSaving)
 			local player = Isaac.GetPlayer(i)
 			local data = mod:GetData(player)
 			local playerData = {
-				DiedWithEpitaph = data.DiedWithEpitaph,
 				EpitaphStage = data.EpitaphStage,
+				EpitaphFirstPassiveItem = data.NewEpitaphFirstPassiveItem,
+				EpitaphLastPassiveItem = data.NewEpitaphLastPassiveItem,
 			}
 
 			saveData["player_" .. tostring(i + 1)] = playerData
@@ -241,8 +243,9 @@ function mod:OnLoad(isLoading)
 			data.KTTKTempBuffs = playerData.KTTKTempBuffs
 			data.MannaCount = playerData.MannaCount
 			data.MannaBuffs = playerData.MannaBuffs
-			data.DiedWithEpitaph = playerData.DiedWithEpitaph
 			data.EpitaphStage = playerData.EpitaphStage
+			data.EpitaphFirstPassiveItem = playerData.EpitaphFirstPassiveItem
+			data.EpitaphLastPassiveItem = playerData.EpitaphLastPassiveItem
 			data.UnluckyPennyStat = playerData.UnluckyPennyStat
 			data.CurrentServitudeItem = playerData.CurrentServitudeItem
 			data.ServitudeCounter = playerData.ServitudeCounter
@@ -277,8 +280,9 @@ function mod:OnLoad(isLoading)
 			local data = mod:GetData(player)
 			local playerData = loadData[string.format("player_%d", i + 1)]
 
-			data.DiedWithEpitaph = playerData.DiedWithEpitaph
 			data.EpitaphStage = playerData.EpitaphStage
+			data.EpitaphFirstPassiveItem = playerData.EpitaphFirstPassiveItem
+			data.EpitaphLastPassiveItem = playerData.EpitaphLastPassiveItem
 		end
 	end
 end
