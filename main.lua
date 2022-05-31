@@ -81,6 +81,7 @@ CollectibleType.COLLECTIBLE_KERATOCONUS = Isaac.GetItemIdByName("Keratoconus")
 CollectibleType.COLLECTIBLE_SERVITUDE = Isaac.GetItemIdByName("Servitude")
 CollectibleType.COLLECTIBLE_CARDIOMYOPATHY = Isaac.GetItemIdByName("Cardiomyopathy")
 CollectibleType.COLLECTIBLE_SUNSCREEN = Isaac.GetItemIdByName("Sunscreen")
+CollectibleType.COLLECTIBLE_SECRET_DIARY = Isaac.GetItemIdByName("Secret Diary")
 
 -- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
@@ -375,6 +376,7 @@ include("lua/items/collectibles/Keratoconus.lua")
 include("lua/items/collectibles/Servitude.lua")
 include("lua/items/collectibles/Cardiomyopathy.lua")
 include("lua/items/collectibles/Sunscreen.lua")
+include("lua/items/collectibles/SecretDiary.lua")
 
 -- Trinkets
 include("lua/items/trinkets/HolyHeart.lua")

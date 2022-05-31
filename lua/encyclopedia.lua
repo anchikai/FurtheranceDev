@@ -1147,6 +1147,12 @@ local Wiki = {
 			{str = "Isaac has a 25% chance to block/ignore fire damage."},
 		},
 	},
+	SecretDiary = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -2396,6 +2402,16 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_SHOP,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_SECRET_DIARY,
+	WikiDesc = Wiki.SecretDiary,
+	Pools = {
+		
 	},
 })
 

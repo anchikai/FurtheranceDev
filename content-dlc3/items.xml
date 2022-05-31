@@ -80,6 +80,7 @@
 	<active id="72" cache="speed firedelay" name="Polarity Shift" description="???" gfx="polarity_shift.png" chargetype="special" maxcharges="6" quality="2" />
 	<active id="73" name="Book of Books" description="Endless books!" gfx="book_of_books.png" maxcharges="12" quality="4" tags="book" /> <!-- Concept by retro100! -->
 	<active id="75" name="Servitude" description="7 years of labour" gfx="servitude.png" maxcharges="6" quality="2" />
+	<active id="78" name="Secret Diary" description="No one can know" gfx="secret_diary.png" maxcharges="6" quality="3" />
 
 	<!-- Trinkets -->
 	<trinket id="0" name="Holy Heart" description="Protective hearts" gfx="holy_heart.png" /> <!-- Concept by PootisTweet! -->

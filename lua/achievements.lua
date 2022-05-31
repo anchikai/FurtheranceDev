@@ -272,7 +272,7 @@ function mod:StartUnlocks()
 
 		-- Leah
 		if mod.Unlocks.Leah.MomsHeart == false then
-			--game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_SECRET_DIARY)
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_SECRET_DIARY)
 		end
 		if mod.Unlocks.Leah.Isaac == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_BINDS_OF_DEVOTION)
