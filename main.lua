@@ -173,7 +173,7 @@ function mod:OnSave(isSaving)
 				ServitudeCounter = data.ServitudeCounter
 			}
 			if player:GetPlayerType() == LeahA then
-				playerData.leahkills = data.leahkills
+				playerData.LeahKills = data.LeahKills
 			end
 			if player:GetPlayerType() == PeterA then
 				playerData.DevilCount = data.DevilCount
@@ -207,6 +207,7 @@ function mod:OnSave(isSaving)
 end
 mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.OnSave)
 
+Furtherance.isLoadingData = false
 function mod:OnLoad(isLoading)
 	if not mod:HasData() then return end
 	if isLoading then
@@ -277,21 +278,8 @@ function mod:OnLoad(isLoading)
 
 			data.DiedWithEpitaph = playerData.DiedWithEpitaph
 			data.EpitaphStage = playerData.EpitaphStage
-
-			if player:GetPlayerType() == LeahA then -- Leah's Data
-				data.LeahKills = playerData.LeahKills
-			end
-			if player:GetPlayerType() == PeterA then -- Peter's Data
-				data.DevilCount = playerData.DevilCount
-				data.AngelCount = playerData.AngelCount
-			end
-			if player:GetPlayerType() == MiriamA then -- Miriam's Data
-				data.MiriamTearCount = playerData.MiriamTearCount
-				data.MiriamRiftTimeout = playerData.MiriamRiftTimeout
-			end
 		end
 	end
-	print("data loaded")
 end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnLoad)
 

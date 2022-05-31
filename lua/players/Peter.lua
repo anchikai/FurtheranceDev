@@ -2,9 +2,6 @@ local mod = Furtherance
 local game = Game()
 local rng = RNG()
 
-normalPeter = Isaac.GetPlayerTypeByName("Peter", false)
-taintedPeter = Isaac.GetPlayerTypeByName("PeterB", true)
-
 COSTUME_PETER_A_DRIP = Isaac.GetCostumeIdByPath("gfx/characters/Character_002_Peter_Drip.anm2")
 COSTUME_PETER_B_DRIP = Isaac.GetCostumeIdByPath("gfx/characters/Character_002b_Peter_Drip.anm2")
 
@@ -17,7 +14,6 @@ function mod:OnInit(player)
 		player:AddNullCostume(COSTUME_PETER_B_DRIP)
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
 
 function mod:PeterUpdate(player)
@@ -40,12 +36,10 @@ function mod:PeterUpdate(player)
 	end
 	-- print(data.SpareCount)
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.PeterUpdate)
 
 function mod:PeterStats(player, flag)
-	local data = mod:GetData(player)
-	if player:GetPlayerType() == PeterA then -- If the player is Peter it will apply his stats
+	if player:GetPlayerType() == PeterA then
 		if flag == CacheFlag.CACHE_SPEED then
 			player.MoveSpeed = player.MoveSpeed - 0.25
 		end
@@ -58,13 +52,12 @@ function mod:PeterStats(player, flag)
 		if flag == CacheFlag.CACHE_RANGE then
 			player.TearRange = player.TearRange + 20
 		end
-	elseif player:GetPlayerType() == PeterB then -- If the player is Tainted Peter it will apply his stats
+	elseif player:GetPlayerType() == PeterB then
 		if flag == CacheFlag.CACHE_LUCK then
 			player.Luck = player.Luck - 1
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.PeterStats)
 
 function mod:Hearts(entity, collider)
@@ -88,7 +81,6 @@ function mod:Hearts(entity, collider)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.Hearts, PickupVariant.PICKUP_HEART)
 
 function mod:PeterQual(entity)
@@ -107,7 +99,6 @@ function mod:PeterQual(entity)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.PeterQual, PickupVariant.PICKUP_COLLECTIBLE)
 
 function mod:BloodyTears(tear)
@@ -120,7 +111,6 @@ function mod:BloodyTears(tear)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.BloodyTears)
 
 
@@ -129,7 +119,7 @@ function mod:TaintedPeterHome()
 	local level = game:GetLevel()
 	local room = game:GetRoom()
 	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
+		local player = Isaac.GetPlayer(i)
 		if player:GetPlayerType() == PeterA and level:GetCurrentRoomIndex() == 94 and level:GetStage() == LevelStage.STAGE8 and mod.Unlocks.Peter.Tainted ~= true then
 			local RememberPocket = player:GetActiveCharge(ActiveSlot.SLOT_POCKET)
 			for _, entity in ipairs(Isaac.GetRoomEntities()) do
@@ -138,7 +128,7 @@ function mod:TaintedPeterHome()
 				or (entity.Type == EntityType.ENTITY_SLOT and entity.Variant == 14) then
 					entity:Remove()
 					player:ChangePlayerType(PeterB)
-					local Peter = Isaac.Spawn(EntityType.ENTITY_SLOT, 14, 0, entity.Position, Vector.Zero, nil)
+					Isaac.Spawn(EntityType.ENTITY_SLOT, 14, 0, entity.Position, Vector.Zero, nil)
 					player:ChangePlayerType(PeterA)
 					player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, ActiveSlot.SLOT_POCKET, false)
 					player:SetActiveCharge(RememberPocket, ActiveSlot.SLOT_POCKET)
@@ -150,22 +140,38 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.TaintedPeterHome)
 
 function mod:UnlockTaintedPeter(player)
-	for _, entity in ipairs(Isaac.GetRoomEntities()) do
+	if player:GetPlayerType() ~= PeterA or mod.Unlocks.Peter.Tainted then return end
+
+	for _, entity in ipairs(Isaac.FindByType(EntityType.ENTITY_SLOT, 14)) do
 		local sprite = entity:GetSprite()
-		if player:GetPlayerType() == PeterA and entity.Type == EntityType.ENTITY_SLOT and entity.Variant == 14 and sprite:IsFinished("PayPrize") and mod.Unlocks.Peter.Tainted ~= true then
+		if sprite:IsFinished("PayPrize") then
 			mod.Unlocks.Peter.Tainted = true
-			CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/achievement_taintedpeter.png")
+			GiantBookAPI.ShowAchievement("achievement_taintedpeter.png")
 			for _, poof in ipairs(Isaac.FindByType(EntityType.ENTITY_EFFECT, EffectVariant.POOF01)) do
 				poof:Remove()
 			end
+			break
 		end
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.UnlockTaintedPeter)
 
 function mod:ResetTaintedUnlock(cmd)
-	if cmd == "ResetPeter" then
+	if string.lower(cmd) == "resetpeter" then
+		mod.Unlocks.Peter.MomsHeart = false
+		mod.Unlocks.Peter.Isaac = false
+		mod.Unlocks.Peter.Satan = false
+		mod.Unlocks.Peter.BlueBaby = false
+		mod.Unlocks.Peter.Lamb = false
+		mod.Unlocks.Peter.BossRush = false
+		mod.Unlocks.Peter.Hush = false
+		mod.Unlocks.Peter.MegaSatan = false
+		mod.Unlocks.Peter.Delirium = false
+		mod.Unlocks.Peter.Mother = false
+		mod.Unlocks.Peter.Beast = false
+		mod.Unlocks.Peter.GreedMode = false
 		mod.Unlocks.Peter.Tainted = false
+		mod.Unlocks.Peter.FullCompletion = false
 		print("Peter has been reset.")
 	end
 end
