@@ -436,6 +436,9 @@ if Poglite then
 	-- Tainted Leah
 	local LeahCostumeB = Isaac.GetCostumeIdByPath("gfx/characters/Character_001b_Leah_Pog.anm2")
 	Poglite:AddPogCostume("LeahBPog", LeahB, LeahCostumeB)
+	-- Tainted Peter
+	local PeterCostumeA = Isaac.GetCostumeIdByPath("gfx/characters/Character_002b_Peter_Pog.anm2")
+	Poglite:AddPogCostume("PeterBPog", PeterB, PeterCostumeA)
 	-- Miriam
 	local MiriamCostumeA = Isaac.GetCostumeIdByPath("gfx/characters/Character_003_Miriam_Pog.anm2")
 	Poglite:AddPogCostume("MiriamPog", MiriamA, MiriamCostumeA)
