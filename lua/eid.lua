@@ -345,6 +345,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_KERATOCONUS, "{{Range}} ↑ +0.2 
 -- Servitude
 EID:addCollectible(CollectibleType.COLLECTIBLE_SERVITUDE, "A marker appears below the closest item pedestal#Using it makes a counter starting at 7 appear below you#The count decreases by 1 for every room you clear without being hit#↑ You will spawn a duplicate of what the nearest item was if successful#↓ You will gain a {{BrokenHeart}} broken heart and reset the counter if you take damage", "Servitude", "en_us")
 
+-- Cardiomyopathy
+EID:addCollectible(CollectibleType.COLLECTIBLE_CARDIOMYOPATHY, "↑ Temporarily gain invulnerability when refilling a red heart container#Luck% chance that picking up a {{Heart}} red heart will grant an empty red heart container#All {{BoneHeart}} bone hearts are converted into empty red heart containers", "Cardiomyopathy", "en_us")
+
 
 -- Soul of Leah
 EID:addCard(RUNE_SOUL_OF_LEAH, "{{BrokenHeart}} Grants a broken heart for every uncleared room on the floor#↑ Each broken heart will give a +0.75 damage up#!!! If there are 12 or more uncleared rooms, it will kill you", "Soul of Leah", "en_us")

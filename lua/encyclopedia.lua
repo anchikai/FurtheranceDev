@@ -1113,6 +1113,16 @@ local Wiki = {
 			{str = "Servitude cannot be charged while the timer is active."},
 		},
 	},
+	Cardiomyopathy = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "When an picking up a red heart, Isaac will be invulnerable for 0.5 seconds."},
+			{str = "Isaac has a Luck% chance to gain a health up when picking up a red heart."},
+			{str = "- 1 Luck translates to 1%, 20 Luck translates to 20% and so on."},
+			{str = "- The health up will not be filled with red hearts."},
+			{str = "All bone hearts you have or pick up will be converted into a empty heart container."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -2331,6 +2341,17 @@ Encyclopedia.AddItem({
 	Pools = {
 		Encyclopedia.ItemPools.POOL_SHOP,
 		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_CARDIOMYOPATHY,
+	WikiDesc = Wiki.Cardiomyopathy,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 	},
 })
 

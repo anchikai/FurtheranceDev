@@ -79,6 +79,7 @@ CollectibleType.COLLECTIBLE_POLARITY_SHIFT = Isaac.GetItemIdByName("Polarity Shi
 CollectibleType.COLLECTIBLE_BOOK_OF_BOOKS = Isaac.GetItemIdByName("Book of Books")
 CollectibleType.COLLECTIBLE_KERATOCONUS = Isaac.GetItemIdByName("Keratoconus")
 CollectibleType.COLLECTIBLE_SERVITUDE = Isaac.GetItemIdByName("Servitude")
+CollectibleType.COLLECTIBLE_CARDIOMYOPATHY = Isaac.GetItemIdByName("Cardiomyopathy")
 
 -- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
@@ -378,6 +379,7 @@ include("lua/items/collectibles/PolarityShift.lua")
 include("lua/items/collectibles/BookOfBooks.lua")
 include("lua/items/collectibles/Keratoconus.lua")
 include("lua/items/collectibles/Servitude.lua")
+include("lua/items/collectibles/Cardiomyopathy.lua")
 
 -- Trinkets
 include("lua/items/trinkets/HolyHeart.lua")

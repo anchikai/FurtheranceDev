@@ -20,6 +20,7 @@
 		<Item Name="The Dreidel" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Wine Bottle" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Keratoconus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Cardiomyopathy" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="shop">
 		<Item Name="Tambourine" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -124,6 +125,7 @@
 		<Item Name="Cosmic Omnibus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Keratoconus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Servitude" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Cardiomyopathy" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
 		<Item Name="Brunch" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
