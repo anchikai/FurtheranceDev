@@ -6,9 +6,9 @@ local TombstoneVariant = Isaac.GetEntityVariantByName("Epitaph Tombstone")
 local Tombstone = {}
 Tombstone.__index = Tombstone
 
----@param owner EntityPlayer
 function Tombstone.new(owner)
-    local instance = Isaac.Spawn(EntityType.ENTITY_EFFECT, TombstoneVariant, 0, Isaac.GetRandomPosition(), Vector.Zero, owner)
+    local room = game:GetRoom()
+    local instance = Isaac.Spawn(EntityType.ENTITY_EFFECT, TombstoneVariant, 0, room:FindFreeTilePosition(Isaac.GetRandomPosition(), 0), Vector.Zero, owner)
     local self = mod:GetData(instance)
     self.Instance = instance
     self.Owner = owner
@@ -51,7 +51,7 @@ function Tombstone:Die()
 end
 
 function Tombstone:TakeDamage()
-    self.Health = math.max(self.Health - 1, 0)
+    self.Health = math.max(self.Health - 1, -1)
     if self.Health == 0 then
         self:Die()
     end
@@ -76,22 +76,15 @@ function mod:EpitaphData(continued)
             data.EpitaphStage = -1
         end
     end
-
-    local level = game:GetLevel()
-    if level:GetStage() == LevelStage.STAGE1_1 then
-        evalEpitaph(level)
-    end
 end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.EpitaphData)
 
----@param player EntityPlayer
 function mod:EpitaphInit(player)
     local data = mod:GetData(player)
     data.OldCollectibleCount = player:GetCollectibleCount()
     data.OldCollectibles = {}
 end
 
----@param player EntityPlayer
 function mod:PickupItem(player)
     local data = mod:GetData(player)
     if data.OldCollectibles == nil then
@@ -139,15 +132,43 @@ function mod:PickupItem(player)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.PickupItem)
 
-function mod:EpitaphRoom()
+function mod:EpitaphLevel()
     local level = game:GetLevel()
-    if level:GetStage() ~= LevelStage.STAGE1_1 then
-        evalEpitaph(level)
+    local roomsList = level:GetRooms()
+    for p = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(p)
+        local rng = player:GetTrinketRNG(TrinketType.TRINKET_EPITAPH)
+        local data = mod:GetData(player)
+        local NormalRooms = {}
+        for i = 0, #roomsList - 1 do
+            local roomDesc = roomsList:Get(i)
+            if roomDesc.Data.Type == RoomType.ROOM_DEFAULT then
+                table.insert(NormalRooms, roomDesc)
+            end
+        end
+
+        if #NormalRooms > 0 then
+            local choice = rng:RandomInt(#NormalRooms) + 1
+            data.randRoom = NormalRooms[choice].GridIndex
+        end
+        print(data.randRoom)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.EpitaphRoom)
+mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.EpitaphLevel)
 
----@param entity Entity
+function mod:EpitaphRoom()
+    local level = game:GetLevel()
+    local room = game:GetRoom()
+    for p = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(p)
+        local data = mod:GetData(player)
+        if level:GetCurrentRoomIndex() == data.randRoom and room:IsFirstVisit() then
+            evalEpitaph(level)
+        end
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.EpitaphRoom)
+
 function mod:EpitaphDied(entity)
     local player = entity:ToPlayer()
     if player then
@@ -162,7 +183,6 @@ function mod:EpitaphDied(entity)
 end
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.EpitaphDied, EntityType.ENTITY_PLAYER)
 
----@param bomb EntityBomb
 function mod:DetectExplosion(bomb)
     local sprite = bomb:GetSprite()
     if not sprite:IsPlaying("Explode") then return end
