@@ -144,6 +144,8 @@ HeartSubType.HEART_ROCK = 226
 SackSubType.SACK_GOLDEN = 3
 CoinSubType.COIN_UNLUCKYPENNY = 117
 
+include("lua/customcallbacks.lua")
+
 -------- Game Saving Callbacks --------
 function mod:OnSave(isSaving)
 	local save = {}
@@ -288,7 +290,7 @@ function mod:OnLoad(isLoading)
 		end
 	end
 end
-mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnLoad)
+mod:AddCustomCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnLoad)
 
 ---- Lua Files ----
 
