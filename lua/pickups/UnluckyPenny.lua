@@ -3,9 +3,7 @@ local game = Game()
 
 function mod:ResetCounter(player)
 	local data = mod:GetData(player)
-	if data.UnluckyPennyStat == nil then
-		data.UnluckyPennyStat = 0
-	end
+	data.UnluckyPennyStat = data.UnluckyPennyStat or 0
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.ResetCounter)
 
@@ -26,6 +24,8 @@ mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.UnluckyPenny, PickupVa
 
 function mod:Lucknt(player, flag)
 	local data = mod:GetData(player)
+	if data.UnluckyPennyStat == nil then return end
+
 	if flag == CacheFlag.CACHE_DAMAGE then
 		player.Damage = player.Damage + (data.UnluckyPennyStat/2)
 	end

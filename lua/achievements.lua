@@ -10,7 +10,7 @@ local AchievementGraphics = {
 		Lamb = "achievement_littlesister",
 		BossRush = "achievement_leahslock",
 		Hush = "achievement_keratoconus",
-		MegaSatan = "achievement_",
+		MegaSatan = "achievement_d16",
 		Delirium = "achievement_heartrenovator",
 		Mother = "achievement_owlseye",
 		Beast = "achievement_",
@@ -35,7 +35,7 @@ local AchievementGraphics = {
 		Satan = "achievement_",
 		BlueBaby = "achievement_phirho",
 		Lamb = "achievement_",
-		BossRush = "achievement_",
+		BossRush = "achievement_altruism",
 		Hush = "achievement_",
 		MegaSatan = "achievement_",
 		Delirium = "achievement_keystothekingdom",
@@ -64,12 +64,12 @@ local AchievementGraphics = {
 		Lamb = "achievement_pillaroffire",
 		BossRush = "achievement_wormwoodleaf",
 		Hush = "achievement_caduceusstaff",
-		MegaSatan = "achievement_miriamswell",
+		MegaSatan = "achievement_thedreidel",
 		Delirium = "achievement_tambourine",
 		Mother = "achievement_firstbornson",
 		Beast = "achievement_polydipsia",
 		GreedMode = "achievement_salinespray",
-		Greedier = "achievement_thedreidel",
+		Greedier = "achievement_miriamswell",
 		Tainted = "achievement_taintedmiriam",
 		FullCompletion = "achievement.full_completion",
 	},
@@ -85,7 +85,7 @@ local AchievementGraphics = {
 	},
 }
 
-mod.Unlocks = {
+Furtherance.Unlocks = {
 	Leah = {
 		MomsHeart = {Unlock = false, Hard = false},
 		Isaac = {Unlock = false, Hard = false},
@@ -187,9 +187,9 @@ mod.Unlocks = {
 	},
 }
 
-local function PlayAchievement(achivement)
+local function PlayAchievement(achievement)
 	if GiantBookAPI then
-		GiantBookAPI.ShowAchievement(achivement .. ".png")
+		GiantBookAPI.ShowAchievement(achievement .. ".png")
 	end
 end
 
@@ -203,7 +203,7 @@ local function GetPlayerAchievements(player)
 		isTainted = true
 	end
 	if isTainted ~= nil then
-		return {name,isTainted}
+		return {name, isTainted}
 	else
 		return nil
 	end
@@ -272,7 +272,7 @@ function mod:StartUnlocks()
 
 		-- Leah
 		if mod.Unlocks.Leah.MomsHeart == false then
-			--game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_SECRET_DIARY)
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_SECRET_DIARY)
 		end
 		if mod.Unlocks.Leah.Isaac == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_BINDS_OF_DEVOTION)
@@ -354,7 +354,7 @@ function mod:StartUnlocks()
 			
 		end
 		if mod.Unlocks.Peter.BossRush == false then
-			
+			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_ALTRUISM)
 		end
 		if mod.Unlocks.Peter.Hush == false then
 			
@@ -489,7 +489,6 @@ function mod:UpdateCompletion(name, difficulty)
 				
 				if AchievementGraphics[playerName][name] then
 					PlayAchievement(AchievementGraphics[playerName][name])
-					CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName][name] .. ".png")
 				end
 			end
 			if difficulty == Difficulty.DIFFICULTY_HARD then
@@ -498,7 +497,6 @@ function mod:UpdateCompletion(name, difficulty)
 				if TargetTab[name].Hard == false then
 					TargetTab[name].Hard = true
 					PlayAchievement(AchievementGraphics[playerName].Greedier)
-					CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName].Greedier .. ".png")
 				end
 			end
 			
@@ -528,7 +526,6 @@ function mod:UpdateCompletion(name, difficulty)
 				if not TargetTab.FullCompletion.Unlock then
 					TargetTab.FullCompletion.Unlock = true
 					PlayAchievement(AchievementGraphics[playerName].FullCompletion)
-					CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName].FullCompletion .. ".png")
 				
 					if (not MissingHard)
 					and (not TargetTab.FullCompletion.Hard)
@@ -545,7 +542,6 @@ function mod:UpdateCompletion(name, difficulty)
 				
 				if AchievementGraphics[playerName][name] then
 					PlayAchievement(AchievementGraphics[playerName][name])
-					CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName][name] .. ".png")
 				end
 			end
 			if difficulty == Difficulty.DIFFICULTY_HARD then
@@ -554,7 +550,6 @@ function mod:UpdateCompletion(name, difficulty)
 				if TargetTab[name].Hard == false then
 					TargetTab[name].Hard = true
 					PlayAchievement(AchievementGraphics[playerName].Greedier)
-					CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName].Greedier .. ".png")
 				end
 			end
 			
@@ -566,7 +561,6 @@ function mod:UpdateCompletion(name, difficulty)
 			then
 				TargetTab.PolNegPath = true
 				PlayAchievement(AchievementGraphics[playerName].PolNegPath)
-				CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName].PolNegPath .. ".png")
 			end
 			
 			if TargetTab.SoulPath == false
@@ -575,7 +569,6 @@ function mod:UpdateCompletion(name, difficulty)
 			then
 				TargetTab.SoulPath = true
 				PlayAchievement(AchievementGraphics[playerName].SoulPath)
-				CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName].SoulPath .. ".png")
 			end
 			
 			local MissingUnlock = false
@@ -602,7 +595,6 @@ function mod:UpdateCompletion(name, difficulty)
 			if (not MissingUnlock)	then
 				if not TargetTab.FullCompletion.Unlock then
 					TargetTab.FullCompletion.Unlock = true
-					CCO.AchievementDisplayAPI.PlayAchievement("gfx/ui/achievements/" .. AchievementGraphics[playerName].FullCompletion .. ".png")
 					PlayAchievement(AchievementGraphics[playerName].FullCompletion)
 					if (not MissingHard)
 					and (not TargetTab.FullCompletion.Hard)

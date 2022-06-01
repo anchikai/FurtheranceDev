@@ -80,6 +80,8 @@ CollectibleType.COLLECTIBLE_BOOK_OF_BOOKS = Isaac.GetItemIdByName("Book of Books
 CollectibleType.COLLECTIBLE_KERATOCONUS = Isaac.GetItemIdByName("Keratoconus")
 CollectibleType.COLLECTIBLE_SERVITUDE = Isaac.GetItemIdByName("Servitude")
 CollectibleType.COLLECTIBLE_CARDIOMYOPATHY = Isaac.GetItemIdByName("Cardiomyopathy")
+CollectibleType.COLLECTIBLE_SUNSCREEN = Isaac.GetItemIdByName("Sunscreen")
+CollectibleType.COLLECTIBLE_SECRET_DIARY = Isaac.GetItemIdByName("Secret Diary")
 
 -- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
@@ -116,6 +118,7 @@ TrinketType.TRINKET_WORMWOOD_LEAF = Isaac.GetTrinketIdByName("Wormwood Leaf")
 TrinketType.TRINKET_ESCAPE_PLAN = Isaac.GetTrinketIdByName("Escape Plan")
 TrinketType.TRINKET_EPITAPH = Isaac.GetTrinketIdByName("Epitaph")
 TrinketType.TRINKET_LEVIATHANS_TENDRIL = Isaac.GetTrinketIdByName("Leviathan's Tendril")
+TrinketType.TRINKET_ALTRUISM = Isaac.GetTrinketIdByName("Altruism")
 
 -- Cards/Runes/Pills/etc
 RUNE_SOUL_OF_LEAH = Isaac.GetCardIdByName("Soul of Leah")
@@ -166,14 +169,15 @@ function mod:OnSave(isSaving)
 				KTTKTempBuffs = data.KTTKTempBuffs,
 				MannaCount = data.MannaCount,
 				MannaBuffs = data.MannaBuffs,
-				DiedWithEpitaph = data.DiedWithEpitaph,
 				EpitaphStage = data.EpitaphStage,
+				NewEpitaphFirstPassiveItem = data.NewEpitaphFirstPassiveItem,
+				NewEpitaphLastPassiveItem = data.NewEpitaphLastPassiveItem,
 				UnluckyPennyStat = data.UnluckyPennyStat,
 				CurrentServitudeItem = data.CurrentServitudeItem,
 				ServitudeCounter = data.ServitudeCounter
 			}
 			if player:GetPlayerType() == LeahA then
-				playerData.leahkills = data.leahkills
+				playerData.LeahKills = data.LeahKills
 			end
 			if player:GetPlayerType() == PeterA then
 				playerData.DevilCount = data.DevilCount
@@ -194,8 +198,9 @@ function mod:OnSave(isSaving)
 			local player = Isaac.GetPlayer(i)
 			local data = mod:GetData(player)
 			local playerData = {
-				DiedWithEpitaph = data.DiedWithEpitaph,
 				EpitaphStage = data.EpitaphStage,
+				EpitaphFirstPassiveItem = data.NewEpitaphFirstPassiveItem,
+				EpitaphLastPassiveItem = data.NewEpitaphLastPassiveItem,
 			}
 
 			saveData["player_" .. tostring(i + 1)] = playerData
@@ -207,6 +212,7 @@ function mod:OnSave(isSaving)
 end
 mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.OnSave)
 
+Furtherance.isLoadingData = false
 function mod:OnLoad(isLoading)
 	if not mod:HasData() then return end
 	if isLoading then
@@ -239,8 +245,9 @@ function mod:OnLoad(isLoading)
 			data.KTTKTempBuffs = playerData.KTTKTempBuffs
 			data.MannaCount = playerData.MannaCount
 			data.MannaBuffs = playerData.MannaBuffs
-			data.DiedWithEpitaph = playerData.DiedWithEpitaph
 			data.EpitaphStage = playerData.EpitaphStage
+			data.EpitaphFirstPassiveItem = playerData.EpitaphFirstPassiveItem
+			data.EpitaphLastPassiveItem = playerData.EpitaphLastPassiveItem
 			data.UnluckyPennyStat = playerData.UnluckyPennyStat
 			data.CurrentServitudeItem = playerData.CurrentServitudeItem
 			data.ServitudeCounter = playerData.ServitudeCounter
@@ -275,23 +282,11 @@ function mod:OnLoad(isLoading)
 			local data = mod:GetData(player)
 			local playerData = loadData[string.format("player_%d", i + 1)]
 
-			data.DiedWithEpitaph = playerData.DiedWithEpitaph
 			data.EpitaphStage = playerData.EpitaphStage
-
-			if player:GetPlayerType() == LeahA then -- Leah's Data
-				data.LeahKills = playerData.LeahKills
-			end
-			if player:GetPlayerType() == PeterA then -- Peter's Data
-				data.DevilCount = playerData.DevilCount
-				data.AngelCount = playerData.AngelCount
-			end
-			if player:GetPlayerType() == MiriamA then -- Miriam's Data
-				data.MiriamTearCount = playerData.MiriamTearCount
-				data.MiriamRiftTimeout = playerData.MiriamRiftTimeout
-			end
+			data.EpitaphFirstPassiveItem = playerData.EpitaphFirstPassiveItem
+			data.EpitaphLastPassiveItem = playerData.EpitaphLastPassiveItem
 		end
 	end
-	print("data loaded")
 end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnLoad)
 
@@ -380,6 +375,8 @@ include("lua/items/collectibles/BookOfBooks.lua")
 include("lua/items/collectibles/Keratoconus.lua")
 include("lua/items/collectibles/Servitude.lua")
 include("lua/items/collectibles/Cardiomyopathy.lua")
+include("lua/items/collectibles/Sunscreen.lua")
+include("lua/items/collectibles/SecretDiary.lua")
 
 -- Trinkets
 include("lua/items/trinkets/HolyHeart.lua")
@@ -394,6 +391,7 @@ include("lua/items/trinkets/WormwoodLeaf.lua")
 include("lua/items/trinkets/EscapePlan.lua")
 include("lua/items/trinkets/Epitaph.lua")
 include("lua/items/trinkets/LeviathansTendril.lua")
+include("lua/items/trinkets/Altruism.lua")
 
 -- Enemies
 include("lua/enemies/Hostikai.lua")
@@ -448,6 +446,9 @@ if Poglite then
 	-- Tainted Leah
 	local LeahCostumeB = Isaac.GetCostumeIdByPath("gfx/characters/Character_001b_Leah_Pog.anm2")
 	Poglite:AddPogCostume("LeahBPog", LeahB, LeahCostumeB)
+	-- Tainted Peter
+	local PeterCostumeA = Isaac.GetCostumeIdByPath("gfx/characters/Character_002b_Peter_Pog.anm2")
+	Poglite:AddPogCostume("PeterBPog", PeterB, PeterCostumeA)
 	-- Miriam
 	local MiriamCostumeA = Isaac.GetCostumeIdByPath("gfx/characters/Character_003_Miriam_Pog.anm2")
 	Poglite:AddPogCostume("MiriamPog", MiriamA, MiriamCostumeA)

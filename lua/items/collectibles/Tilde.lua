@@ -1,11 +1,11 @@
 local mod = Furtherance
 local game = Game()
 
-InfHP = false
-HighDamage = 0
-InfCharge = false
-HighLuck = 0
-QuickKill = false
+local InfHP = false
+local HighDamage = 0
+local InfCharge = false
+local HighLuck = 0
+local QuickKill = false
 function mod:UseTilde(_, _, player)
 	local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_TILDE_KEY)
 	local randomDebug = rng:RandomInt(5)

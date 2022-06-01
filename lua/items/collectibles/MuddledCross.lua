@@ -1,6 +1,6 @@
 local mod = Furtherance
 local game = Game()
-mod.Flipped = false
+Furtherance.Flipped = false
 
 local FlipSFX = Isaac.GetSoundIdByName("PeterFlip")
 local UnflipSFX = Isaac.GetSoundIdByName("PeterUnflip")

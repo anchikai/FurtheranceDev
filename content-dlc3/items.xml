@@ -55,6 +55,7 @@
 	<passive id="71" name="Miriam's Putrid Veil" description="" gfx="miriams_putrid_veil.png" quality="3" />
 	<passive id="74" cache="shotspeed range" name="Keratoconus" description="Soft gazing eyes" gfx="keratoconus.png" quality="2" />
 	<passive id="76" name="Cardiomyopathy" description="My chest hurts" gfx="cardiomyopathy.png" quality="2" />
+	<passive id="77" name="Sunscreen" description="A way to beat the heat!" gfx="sunscreen.png" quality="2" />
 
 	<!-- Active Items -->
 	<active id="21" cache="speed" name="Book of Swiftness" description="Temporary speed up" gfx="book_of_swiftness.png" maxcharges="3" quality="3" tags="book offensive lazarussharedglobal" />
@@ -79,6 +80,7 @@
 	<active id="72" cache="speed firedelay" name="Polarity Shift" description="???" gfx="polarity_shift.png" chargetype="special" maxcharges="6" quality="2" />
 	<active id="73" name="Book of Books" description="Endless books!" gfx="book_of_books.png" maxcharges="12" quality="4" tags="book" /> <!-- Concept by retro100! -->
 	<active id="75" name="Servitude" description="7 years of labour" gfx="servitude.png" maxcharges="6" quality="2" />
+	<active id="78" name="Secret Diary" description="No one can know" gfx="secret_diary.png" maxcharges="6" quality="3" />
 
 	<!-- Trinkets -->
 	<trinket id="0" name="Holy Heart" description="Protective hearts" gfx="holy_heart.png" /> <!-- Concept by PootisTweet! -->
@@ -93,7 +95,8 @@
 	<trinket id="9" name="Wormwood Leaf" description="Tastes bitter" gfx="wormwood_leaf.png" />
 	<trinket id="10" name="Escape Plan" description="When the going gets tough" gfx="escape_plan.png" />
 	<trinket id="11" name="Epitaph" description="You will remember this name." gfx="epitaph.png" />
-	<trinket id="12" name="Leviathan's Tendril" description="An Instrument to Control the Waves" gfx="leviathans_tendril.png" tags="devil" />
+	<trinket id="12" name="Leviathan's Tendril" description="An instrument to control the waves" gfx="leviathans_tendril.png" tags="devil" />
+	<trinket id="13" name="Altruism" description="Blessing of charity" gfx="altruism.png" />
 
 	<!-- Familiars -->
 	<familiar id="35" name="Binds of Devotion" description="Bound by love" gfx="binds_of_devotion.png" quality="2" persistent="true" />

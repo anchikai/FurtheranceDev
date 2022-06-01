@@ -348,6 +348,15 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_SERVITUDE, "A marker appears belo
 -- Cardiomyopathy
 EID:addCollectible(CollectibleType.COLLECTIBLE_CARDIOMYOPATHY, "↑ Temporarily gain invulnerability when refilling a red heart container#Luck% chance that picking up a {{Heart}} red heart will grant an empty red heart container#All {{BoneHeart}} bone hearts are converted into empty red heart containers", "Cardiomyopathy", "en_us")
 
+-- Altruism
+EID:addTrinket(TrinketType.TRINKET_ALTRUISM, "↑ Donating to any beggar has a chance to heal {{HalfHeart}} half a red heart or receive the resource you donated back", "Altruism", "en_us")
+
+-- Sunscreen
+EID:addCollectible(CollectibleType.COLLECTIBLE_SUNSCREEN, "↑ 25% chance to block/ignore fire damage", "Sunscreen", "en_us")
+
+-- Secret Diary
+EID:addCollectible(CollectibleType.COLLECTIBLE_SECRET_DIARY, "", "Secret Diary", "en_us")
+
 
 -- Soul of Leah
 EID:addCard(RUNE_SOUL_OF_LEAH, "{{BrokenHeart}} Grants a broken heart for every uncleared room on the floor#↑ Each broken heart will give a +0.75 damage up#!!! If there are 12 or more uncleared rooms, it will kill you", "Soul of Leah", "en_us")
