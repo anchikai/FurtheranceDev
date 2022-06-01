@@ -6,9 +6,11 @@ local TombstoneVariant = Isaac.GetEntityVariantByName("Epitaph Tombstone")
 local Tombstone = {}
 Tombstone.__index = Tombstone
 
+
 function Tombstone.new(owner)
     local room = game:GetRoom()
-    local instance = Isaac.Spawn(EntityType.ENTITY_EFFECT, TombstoneVariant, 0, room:FindFreeTilePosition(Isaac.GetRandomPosition(), 0), Vector.Zero, owner)
+    local instance = Isaac.Spawn(EntityType.ENTITY_EFFECT, TombstoneVariant, 0, room:FindFreeTilePosition(Isaac.GetRandomPosition(), 0), Vector.Zero, owner):ToEffect()
+
     local self = mod:GetData(instance)
     self.Instance = instance
     self.Owner = owner
@@ -20,7 +22,9 @@ end
 
 function Tombstone:Die()
     local rng = self.Owner:GetTrinketRNG(TrinketType.TRINKET_EPITAPH)
+    local sprite = self.Instance:GetSprite()
 
+    sprite:Play("Destroyed", true)
     -- play broken animation
 
     local coinCount = rng:RandomInt(3) + 3
