@@ -20,12 +20,13 @@ function Tombstone.new(owner, position)
     return self
 end
 
+local IncrementDamage = 1
 function Tombstone:Die()
     local rng = self.Owner:GetTrinketRNG(TrinketType.TRINKET_EPITAPH)
     local sprite = self.Instance:GetSprite()
 
     sprite:Play("Destroyed", true)
-    -- play broken animation
+    IncrementDamage = 1
 
     local coinCount = rng:RandomInt(3) + 3
     for _ = 1, coinCount do
@@ -188,9 +189,12 @@ function mod:DetectExplosion(bomb)
 
     for _, tombstone in ipairs(Isaac.FindByType(EntityType.ENTITY_EFFECT, TombstoneVariant)) do
         tombstone = tombstone:ToEffect()
+        local tombSpr = tombstone:GetSprite()
         local distance = bomb.Position:Distance(tombstone.Position)
         if distance <= 100 then
             mod:GetData(tombstone):TakeDamage()
+            tombSpr:Play("Damaged"..IncrementDamage, true)
+            IncrementDamage = IncrementDamage + 1
         end
     end
 end
