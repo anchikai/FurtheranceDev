@@ -20,13 +20,11 @@ function Tombstone.new(owner, position)
     return self
 end
 
-local IncrementDamage = 1
 function Tombstone:Die()
     local rng = self.Owner:GetTrinketRNG(TrinketType.TRINKET_EPITAPH)
     local sprite = self.Instance:GetSprite()
 
     sprite:Play("Destroyed", true)
-    IncrementDamage = 1
 
     local coinCount = rng:RandomInt(3) + 3
     for _ = 1, coinCount do
@@ -144,6 +142,7 @@ local function setTombstoneRoom(player, roomsList)
     if #NormalRooms > 0 then
         local choice = rng:RandomInt(#NormalRooms) + 1
         data.EpitaphRoom = NormalRooms[choice].GridIndex
+        print(data.EpitaphRoom)
     end
 end
 
@@ -193,10 +192,15 @@ function mod:DetectExplosion(bomb)
         local distance = bomb.Position:Distance(tombstone.Position)
         if distance <= 100 then
             mod:GetData(tombstone):TakeDamage()
-            tombSpr:Play("Damaged"..IncrementDamage, true)
-            IncrementDamage = IncrementDamage + 1
+            if mod:GetData(tombstone).Health == 2 then
+                tombSpr:Play("Damaged1", true)
+            end
+            if mod:GetData(tombstone).Health == 1 then
+                tombSpr:Play("Damaged2", true)
+            end
         end
     end
+
 end
 mod:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, mod.DetectExplosion)
 
