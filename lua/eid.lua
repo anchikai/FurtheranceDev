@@ -357,6 +357,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_SUNSCREEN, "↑ 25% chance to blo
 -- Secret Diary
 EID:addCollectible(CollectibleType.COLLECTIBLE_SECRET_DIARY, "", "Secret Diary", "en_us")
 
+-- Nil Num
+EID:addTrinket(TrinketType.TRINKET_NIL_NUM, "2% chance to spawn a duplicate of one of your items when hit#Gets destroyed afterwards", "Nil Num", "en_us")
+
 
 -- Soul of Leah
 EID:addCard(RUNE_SOUL_OF_LEAH, "{{BrokenHeart}} Grants a broken heart for every uncleared room on the floor#↑ Each broken heart will give a +0.75 damage up#!!! If there are 12 or more uncleared rooms, it will kill you", "Soul of Leah", "en_us")

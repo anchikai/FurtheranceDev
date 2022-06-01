@@ -97,6 +97,7 @@
 	<trinket id="11" name="Epitaph" description="You will remember this name." gfx="epitaph.png" />
 	<trinket id="12" name="Leviathan's Tendril" description="An instrument to control the waves" gfx="leviathans_tendril.png" tags="devil" />
 	<trinket id="13" name="Altruism" description="Blessing of charity" gfx="altruism.png" />
+	<trinket id="13" name="Nil Num" description="Q" gfx="nil_num.png" />
 
 	<!-- Familiars -->
 	<familiar id="35" name="Binds of Devotion" description="Bound by love" gfx="binds_of_devotion.png" quality="2" persistent="true" />

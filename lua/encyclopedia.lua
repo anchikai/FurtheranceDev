@@ -1153,6 +1153,12 @@ local Wiki = {
 			{str = ""},
 		},
 	},
+	NilNum = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Taking damage has a 2% chance to destroy the trinket and spawn a duplicate of one of your items."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -2413,6 +2419,13 @@ Encyclopedia.AddItem({
 	Pools = {
 		
 	},
+})
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_NIL_NUM,
+	WikiDesc = Wiki.NilNum,
 })
 
 -- Pocket Items
