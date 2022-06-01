@@ -7,9 +7,9 @@ local Tombstone = {}
 Tombstone.__index = Tombstone
 
 
-function Tombstone.new(owner)
+function Tombstone.new(owner, position)
     local room = game:GetRoom()
-    local instance = Isaac.Spawn(EntityType.ENTITY_EFFECT, TombstoneVariant, 0, room:FindFreeTilePosition(Isaac.GetRandomPosition(), 0), Vector.Zero, owner):ToEffect()
+    local instance = Isaac.Spawn(EntityType.ENTITY_EFFECT, TombstoneVariant, 0, position, Vector.Zero, owner):ToEffect()
 
     local self = mod:GetData(instance)
     self.Instance = instance
@@ -62,26 +62,18 @@ function Tombstone:TakeDamage()
 end
 
 local function evalEpitaph(level)
+    local room = game:GetRoom()
     for i = 0, game:GetNumPlayers() - 1 do
         local player = Isaac.GetPlayer(i)
         local data = mod:GetData(player)
         if level:GetStage() == data.EpitaphStage then
-            Tombstone.new(player)
-            data.EpitaphStage = -1
+            if data.EpitaphTombstonePosition == nil then
+                data.EpitaphTombstonePosition = room:FindFreeTilePosition(Isaac.GetRandomPosition(), 0)
+            end
+            Tombstone.new(player, data.EpitaphTombstonePosition)
         end
     end
 end
-
-function mod:EpitaphData(continued)
-    for i = 0, game:GetNumPlayers() - 1 do
-        local player = Isaac.GetPlayer(i)
-        local data = mod:GetData(player)
-        if data.EpitaphStage == nil then
-            data.EpitaphStage = -1
-        end
-    end
-end
-mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.EpitaphData)
 
 function mod:EpitaphInit(player)
     local data = mod:GetData(player)
@@ -136,42 +128,45 @@ function mod:PickupItem(player)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.PickupItem)
 
+local function setTombstoneRoom(player, roomsList)
+    local rng = player:GetTrinketRNG(TrinketType.TRINKET_EPITAPH)
+    local data = mod:GetData(player)
+
+    local NormalRooms = {}
+    for i = 0, #roomsList - 1 do
+        local roomDesc = roomsList:Get(i)
+        if roomDesc.Data.Type == RoomType.ROOM_DEFAULT then
+            table.insert(NormalRooms, roomDesc)
+        end
+    end
+
+    if #NormalRooms > 0 then
+        local choice = rng:RandomInt(#NormalRooms) + 1
+        data.EpitaphRoom = NormalRooms[choice].GridIndex
+    end
+end
+
 function mod:EpitaphLevel()
     local level = game:GetLevel()
     local roomsList = level:GetRooms()
     for p = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(p)
-        local rng = player:GetTrinketRNG(TrinketType.TRINKET_EPITAPH)
-        local data = mod:GetData(player)
-        local NormalRooms = {}
-        for i = 0, #roomsList - 1 do
-            local roomDesc = roomsList:Get(i)
-            if roomDesc.Data.Type == RoomType.ROOM_DEFAULT then
-                table.insert(NormalRooms, roomDesc)
-            end
-        end
-
-        if #NormalRooms > 0 then
-            local choice = rng:RandomInt(#NormalRooms) + 1
-            data.randRoom = NormalRooms[choice].GridIndex
-        end
-        print(data.randRoom)
+        setTombstoneRoom(player, roomsList)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.EpitaphLevel)
+mod:AddCustomCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.EpitaphLevel)
 
 function mod:EpitaphRoom()
     local level = game:GetLevel()
-    local room = game:GetRoom()
     for p = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(p)
         local data = mod:GetData(player)
-        if level:GetCurrentRoomIndex() == data.randRoom and room:IsFirstVisit() then
+        if level:GetCurrentRoomIndex() == data.EpitaphRoom then
             evalEpitaph(level)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.EpitaphRoom)
+mod:AddCustomCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.EpitaphRoom)
 
 function mod:EpitaphDied(entity)
     local player = entity:ToPlayer()
@@ -181,7 +176,7 @@ function mod:EpitaphDied(entity)
             local level = game:GetLevel()
             data.EpitaphStage = level:GetStage()
         else
-            data.EpitaphStage = -1
+            data.EpitaphStage = nil
         end
     end
 end
