@@ -148,6 +148,14 @@ CoinSubType.COIN_UNLUCKYPENNY = 117
 include("lua/customcallbacks.lua")
 
 -------- Game Saving Callbacks --------
+local function serialToVector(serial)
+	return serial and Vector(serial.X, serial.Y)
+end
+
+local function vectorToSerial(vector)
+	return vector and { X = vector.X, Y = vector.Y }
+end
+
 function mod:OnSave(isSaving)
 	local save = {}
 	if isSaving then
@@ -173,6 +181,9 @@ function mod:OnSave(isSaving)
 				MannaCount = data.MannaCount,
 				MannaBuffs = data.MannaBuffs,
 				EpitaphStage = data.EpitaphStage,
+				EpitaphRoom = data.EpitaphRoom,
+				EpitaphTombstonePosition = vectorToSerial(data.EpitaphTombstonePosition),
+				EpitaphTombstoneDestroyed = data.EpitaphTombstoneDestroyed,
 				NewEpitaphFirstPassiveItem = data.NewEpitaphFirstPassiveItem,
 				NewEpitaphLastPassiveItem = data.NewEpitaphLastPassiveItem,
 				UnluckyPennyStat = data.UnluckyPennyStat,
@@ -202,8 +213,11 @@ function mod:OnSave(isSaving)
 			local data = mod:GetData(player)
 			local playerData = {
 				EpitaphStage = data.EpitaphStage,
+				EpitaphRoom = data.EpitaphRoom,
 				EpitaphFirstPassiveItem = data.NewEpitaphFirstPassiveItem,
 				EpitaphLastPassiveItem = data.NewEpitaphLastPassiveItem,
+				EpitaphTombstonePosition = vectorToSerial(data.EpitaphTombstonePosition),
+				EpitaphTombstoneDestroyed = data.EpitaphTombstoneDestroyed
 			}
 
 			saveData["player_" .. tostring(i + 1)] = playerData
@@ -249,6 +263,9 @@ function mod:OnLoad(isLoading)
 			data.MannaCount = playerData.MannaCount
 			data.MannaBuffs = playerData.MannaBuffs
 			data.EpitaphStage = playerData.EpitaphStage
+			data.EpitaphRoom = playerData.EpitaphRoom
+			data.EpitaphTombstonePosition = serialToVector(playerData.EpitaphTombstonePosition)
+			data.EpitaphTombstoneDestroyed = playerData.EpitaphTombstoneDestroyed
 			data.EpitaphFirstPassiveItem = playerData.EpitaphFirstPassiveItem
 			data.EpitaphLastPassiveItem = playerData.EpitaphLastPassiveItem
 			data.UnluckyPennyStat = playerData.UnluckyPennyStat
@@ -286,6 +303,9 @@ function mod:OnLoad(isLoading)
 			local playerData = loadData[string.format("player_%d", i + 1)]
 
 			data.EpitaphStage = playerData.EpitaphStage
+			data.EpitaphRoom = playerData.EpitaphRoom
+			data.EpitaphTombstonePosition = serialToVector(playerData.EpitaphTombstonePosition)
+			data.EpitaphTombstoneDestroyed = playerData.EpitaphTombstoneDestroyed
 			data.EpitaphFirstPassiveItem = playerData.EpitaphFirstPassiveItem
 			data.EpitaphLastPassiveItem = playerData.EpitaphLastPassiveItem
 		end
@@ -392,7 +412,7 @@ include("lua/items/trinkets/SalineSpray.lua")
 include("lua/items/trinkets/AlmagestScrap.lua")
 include("lua/items/trinkets/WormwoodLeaf.lua")
 include("lua/items/trinkets/EscapePlan.lua")
-include("lua/items/trinkets/Epitaph.lua")
+include("lua/items/trinkets/Epitaph/Epitaph.lua")
 include("lua/items/trinkets/LeviathansTendril.lua")
 include("lua/items/trinkets/Altruism.lua")
 include("lua/items/trinkets/NilNum.lua")
