@@ -89,7 +89,7 @@ function mod:EpitaphRoom()
     for i = 0, game:GetNumPlayers() - 1 do
         local player = Isaac.GetPlayer(i)
         local data = mod:GetData(player)
-        if level:GetStage() == data.EpitaphStage and level:GetCurrentRoomIndex() == data.EpitaphRoom then
+        if level:GetStage() == data.EpitaphStage and level:GetCurrentRoomDesc().GridIndex == data.EpitaphRoom then
             if data.EpitaphPosition == nil then
                 data.EpitaphPosition = room:FindFreeTilePosition(Isaac.GetRandomPosition(), 0)
             end
