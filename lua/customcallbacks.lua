@@ -35,6 +35,11 @@ end
 local currentStage
 local currentStageType
 local usedGlowingHourGlass
+do
+    local level = game:GetLevel()
+    currentStage = level:GetStage()
+    currentStageType = level:GetStageType()
+end
 
 local function hasSubscriptions()
     for _, callbacks in pairs(allCallbacks) do
