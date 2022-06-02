@@ -709,10 +709,11 @@ function mod:GetScreenCenterPosition()
 	if shape == RoomShape.ROOMSHAPE_LTR or shape == RoomShape.ROOMSHAPE_LTL then
 		pos.Y = pos.Y - 140
 	end
-	return Isaac.WorldToRenderPosition(pos, false)
+	return Isaac.WorldToRenderPosition(pos)
 end
 
 function mod:GetScreenSize()
+	local room = game:GetRoom()
 	local pos = room:WorldToScreenPosition(Vector(0, 0)) - room:GetRenderScrollOffset() - game.ScreenShakeOffset
 	local rx = pos.X + 60 * 26 / 40
 	local ry = pos.Y + 140 * (26 / 40)

@@ -168,6 +168,7 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.NewFloor)
 
 function mod:AnimateFlip()
+	local speed = 0.05
 	if Furtherance.FlipSpeed == 1 then
 		speed = 0.0172413793
 	elseif Furtherance.FlipSpeed == 2 then

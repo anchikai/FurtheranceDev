@@ -17,9 +17,14 @@ if ModConfigMenu then
         Minimum = 1,
         Maximum = 3,
         Display = function()
-            if Furtherance.FlipSpeed == 1 then sstr = "Slow (Default)"
-            elseif Furtherance.FlipSpeed == 2 then sstr = "Medium"
-            elseif Furtherance.FlipSpeed == 3 then sstr = "Fast" end
+            local sstr
+            if Furtherance.FlipSpeed == 1 then 
+                sstr = "Slow (Default)"
+            elseif Furtherance.FlipSpeed == 2 then 
+                sstr = "Medium"
+            elseif Furtherance.FlipSpeed == 3 then 
+                sstr = "Fast" 
+            end
             return 'Tainted Peter Flip Speed: '..sstr
         end,
         OnChange = function(currentNum)
