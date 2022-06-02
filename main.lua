@@ -418,6 +418,7 @@ include("lua/items/trinkets/Epitaph/Epitaph.lua")
 include("lua/items/trinkets/LeviathansTendril.lua")
 include("lua/items/trinkets/Altruism.lua")
 include("lua/items/trinkets/NilNum.lua")
+--include("lua/items/trinkets/EpicExperimentingForSky.lua")
 
 -- Enemies
 include("lua/enemies/Hostikai.lua")
