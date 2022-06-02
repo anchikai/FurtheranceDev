@@ -448,7 +448,7 @@ include("lua/pickups/UnluckyPenny.lua")
 
 -- Floor Generation
 --include("lua/rooms/NoahsArk.lua")
---include("lua/rooms/HomeExit.lua")
+include("lua/rooms/HomeExit.lua")
 
 -- Custom Challenges
 include("lua/challenges/WhereAmI.lua")
