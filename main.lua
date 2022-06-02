@@ -82,6 +82,7 @@ CollectibleType.COLLECTIBLE_SERVITUDE = Isaac.GetItemIdByName("Servitude")
 CollectibleType.COLLECTIBLE_CARDIOMYOPATHY = Isaac.GetItemIdByName("Cardiomyopathy")
 CollectibleType.COLLECTIBLE_SUNSCREEN = Isaac.GetItemIdByName("Sunscreen")
 CollectibleType.COLLECTIBLE_SECRET_DIARY = Isaac.GetItemIdByName("Secret Diary")
+CollectibleType.COLLECTIBLE_D16 = Isaac.GetItemIdByName("D16")
 
 -- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
@@ -119,6 +120,7 @@ TrinketType.TRINKET_ESCAPE_PLAN = Isaac.GetTrinketIdByName("Escape Plan")
 TrinketType.TRINKET_EPITAPH = Isaac.GetTrinketIdByName("Epitaph")
 TrinketType.TRINKET_LEVIATHANS_TENDRIL = Isaac.GetTrinketIdByName("Leviathan's Tendril")
 TrinketType.TRINKET_ALTRUISM = Isaac.GetTrinketIdByName("Altruism")
+TrinketType.TRINKET_NIL_NUM = Isaac.GetTrinketIdByName("Nil Num")
 
 -- Cards/Runes/Pills/etc
 RUNE_SOUL_OF_LEAH = Isaac.GetCardIdByName("Soul of Leah")
@@ -144,7 +146,17 @@ HeartSubType.HEART_ROCK = 226
 SackSubType.SACK_GOLDEN = 3
 CoinSubType.COIN_UNLUCKYPENNY = 117
 
+include("lua/customcallbacks.lua")
+
 -------- Game Saving Callbacks --------
+local function serialToVector(serial)
+	return serial and Vector(serial.X, serial.Y)
+end
+
+local function vectorToSerial(vector)
+	return vector and { X = vector.X, Y = vector.Y }
+end
+
 function mod:OnSave(isSaving)
 	local save = {}
 	if isSaving then
@@ -170,6 +182,9 @@ function mod:OnSave(isSaving)
 				MannaCount = data.MannaCount,
 				MannaBuffs = data.MannaBuffs,
 				EpitaphStage = data.EpitaphStage,
+				EpitaphRoom = data.EpitaphRoom,
+				EpitaphTombstonePosition = vectorToSerial(data.EpitaphTombstonePosition),
+				EpitaphTombstoneDestroyed = data.EpitaphTombstoneDestroyed,
 				NewEpitaphFirstPassiveItem = data.NewEpitaphFirstPassiveItem,
 				NewEpitaphLastPassiveItem = data.NewEpitaphLastPassiveItem,
 				UnluckyPennyStat = data.UnluckyPennyStat,
@@ -199,8 +214,11 @@ function mod:OnSave(isSaving)
 			local data = mod:GetData(player)
 			local playerData = {
 				EpitaphStage = data.EpitaphStage,
+				EpitaphRoom = data.EpitaphRoom,
 				EpitaphFirstPassiveItem = data.NewEpitaphFirstPassiveItem,
 				EpitaphLastPassiveItem = data.NewEpitaphLastPassiveItem,
+				EpitaphTombstonePosition = vectorToSerial(data.EpitaphTombstonePosition),
+				EpitaphTombstoneDestroyed = data.EpitaphTombstoneDestroyed
 			}
 
 			saveData["player_" .. tostring(i + 1)] = playerData
@@ -246,6 +264,9 @@ function mod:OnLoad(isLoading)
 			data.MannaCount = playerData.MannaCount
 			data.MannaBuffs = playerData.MannaBuffs
 			data.EpitaphStage = playerData.EpitaphStage
+			data.EpitaphRoom = playerData.EpitaphRoom
+			data.EpitaphTombstonePosition = serialToVector(playerData.EpitaphTombstonePosition)
+			data.EpitaphTombstoneDestroyed = playerData.EpitaphTombstoneDestroyed
 			data.EpitaphFirstPassiveItem = playerData.EpitaphFirstPassiveItem
 			data.EpitaphLastPassiveItem = playerData.EpitaphLastPassiveItem
 			data.UnluckyPennyStat = playerData.UnluckyPennyStat
@@ -283,12 +304,15 @@ function mod:OnLoad(isLoading)
 			local playerData = loadData[string.format("player_%d", i + 1)]
 
 			data.EpitaphStage = playerData.EpitaphStage
+			data.EpitaphRoom = playerData.EpitaphRoom
+			data.EpitaphTombstonePosition = serialToVector(playerData.EpitaphTombstonePosition)
+			data.EpitaphTombstoneDestroyed = playerData.EpitaphTombstoneDestroyed
 			data.EpitaphFirstPassiveItem = playerData.EpitaphFirstPassiveItem
 			data.EpitaphLastPassiveItem = playerData.EpitaphLastPassiveItem
 		end
 	end
 end
-mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnLoad)
+mod:AddCustomCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnLoad)
 
 ---- Lua Files ----
 
@@ -377,6 +401,7 @@ include("lua/items/collectibles/Servitude.lua")
 include("lua/items/collectibles/Cardiomyopathy.lua")
 include("lua/items/collectibles/Sunscreen.lua")
 include("lua/items/collectibles/SecretDiary.lua")
+include("lua/items/collectibles/D16.lua")
 
 -- Trinkets
 include("lua/items/trinkets/HolyHeart.lua")
@@ -389,9 +414,11 @@ include("lua/items/trinkets/SalineSpray.lua")
 include("lua/items/trinkets/AlmagestScrap.lua")
 include("lua/items/trinkets/WormwoodLeaf.lua")
 include("lua/items/trinkets/EscapePlan.lua")
-include("lua/items/trinkets/Epitaph.lua")
+include("lua/items/trinkets/Epitaph/Epitaph.lua")
 include("lua/items/trinkets/LeviathansTendril.lua")
 include("lua/items/trinkets/Altruism.lua")
+include("lua/items/trinkets/NilNum.lua")
+--include("lua/items/trinkets/EpicExperimentingForSky.lua")
 
 -- Enemies
 include("lua/enemies/Hostikai.lua")
@@ -422,7 +449,7 @@ include("lua/pickups/UnluckyPenny.lua")
 
 -- Floor Generation
 --include("lua/rooms/NoahsArk.lua")
---include("lua/rooms/HomeExit.lua")
+include("lua/rooms/HomeExit.lua")
 
 -- Custom Challenges
 include("lua/challenges/WhereAmI.lua")
@@ -705,10 +732,11 @@ function mod:GetScreenCenterPosition()
 	if shape == RoomShape.ROOMSHAPE_LTR or shape == RoomShape.ROOMSHAPE_LTL then
 		pos.Y = pos.Y - 140
 	end
-	return Isaac.WorldToRenderPosition(pos, false)
+	return Isaac.WorldToRenderPosition(pos)
 end
 
 function mod:GetScreenSize()
+	local room = game:GetRoom()
 	local pos = room:WorldToScreenPosition(Vector(0, 0)) - room:GetRenderScrollOffset() - game.ScreenShakeOffset
 	local rx = pos.X + 60 * 26 / 40
 	local ry = pos.Y + 140 * (26 / 40)

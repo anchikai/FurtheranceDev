@@ -167,7 +167,10 @@ function mod:NewFloor()
 end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.NewFloor)
 
+local pauseTime = 0
+local pausedFixed = false
 function mod:AnimateFlip()
+	local speed = 0.05
 	if Furtherance.FlipSpeed == 1 then
 		speed = 0.0172413793
 	elseif Furtherance.FlipSpeed == 2 then
@@ -175,12 +178,25 @@ function mod:AnimateFlip()
 	elseif Furtherance.FlipSpeed == 3 then
 		speed = 0.1
 	end
-	if mod.Flipped == true then
+
+	local renderFlipped = mod.Flipped and not pausedFixed
+	if renderFlipped == true then
 		flipFactor = flipFactor + speed
-	elseif mod.Flipped == false then
+	elseif renderFlipped == false then
 		flipFactor = flipFactor - speed
 	end
 	flipFactor = clamp(flipFactor, 0, 1)
+
+	if game:IsPaused() then
+		pauseTime = math.min(pauseTime + 1, 26)
+	else
+		pauseTime = 0
+	end
+	if mod.Flipped and pauseTime == 26 then
+		pausedFixed = true
+	elseif pausedFixed and not game:IsPaused() then
+		pausedFixed = false
+	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.AnimateFlip)
 
@@ -192,27 +208,9 @@ function mod:PeterFlip(name)
 end
 mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, mod.PeterFlip)
 
-local pauseTime = 0
-local pausedFixed = false
-function mod:FixMenu()
-	if game:IsPaused() then
-		pauseTime = math.min(pauseTime + 1, 26)
-	else
-		pauseTime = 0
-	end
-	if mod.Flipped and pauseTime == 26 then
-		mod.Flipped = pauseTime < 25
-		pausedFixed = true
-	elseif pausedFixed and game:IsPaused() == false then
-		pausedFixed = false
-		mod.Flipped = true
-	end
-end
-mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.FixMenu)
-
 function mod:ResetFlipped(continued)
 	pausedFixed = false
-	if continued == false and mod.Flipped == true then
+	if not continued and mod.Flipped then
 		switchBackground(false)
 		flipFactor = 0
 		mod.Flipped = false

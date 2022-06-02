@@ -36,18 +36,13 @@ function mod:MakeExit(entity, collider)
 end
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.MakeExit, PickupVariant.PICKUP_BED)
 
-function mod:BedData(continued)
-    for i = 0, game:GetNumPlayers() - 1 do
-		local player = Isaac.GetPlayer(i)
-        local data = mod:GetData(player)
-        if continued == false then
-            data.SleptInMomsBed = false
-        end
-    end
+function mod:BedData(player)
+    local data = mod:GetData(player)
+    data.SleptInMomsBed = false
 end
-mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.BedData)
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.BedData)
 
-function mod:Finale()
+--[[function mod:Finale()
     for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
         local data = mod:GetData(player)
@@ -69,7 +64,7 @@ function mod:Finale()
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.Finale)
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.Finale)]]
 
 function mod:ExitRoom(player)
     local level = game:GetLevel()
@@ -77,12 +72,6 @@ function mod:ExitRoom(player)
     local data = mod:GetData(player)
     if data.SleptInMomsBed == true then
         if (level:GetCurrentRoomIndex() == 109 or level:GetCurrentRoomIndex() == 122) then
-            if room:GetDoor(DoorSlot.DOWN0):IsOpen() then
-                room:GetDoor(DoorSlot.DOWN0):Close()
-            end
-            if player.Position.Y > 689.526 then
-                player.Velocity = Vector(player.Velocity.X, -0.29)
-            end
             if player.Position.Y > 712 then
                 Isaac.ExecuteCommand("goto d.0")
                 game:StartRoomTransition(-3, Direction.DOWN, RoomTransitionAnim.WALK, player, -1)
@@ -94,3 +83,5 @@ function mod:ExitRoom(player)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.ExitRoom)
+
+-- Stop snooping around ;)

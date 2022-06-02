@@ -161,10 +161,10 @@ mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
 end)
 
 --ripairs stuff from revel
-function ripairs_it(t, i)
+local function ripairs_it(t, i)
 	i = i - 1
 	local v = t[i]
-	if v == nil then return v end
+	if v == nil then return nil end
 	return i, v
 end
 

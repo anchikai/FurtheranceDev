@@ -1013,6 +1013,16 @@ local Wiki = {
 			{str = "The tears fired from the Cyst deal 3.5 damage."},
 		},
 	},
+	D9 = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, replaces every trinket in the current room with other random trinkets."},
+		},
+		{ -- Interactions
+			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
+			{str = "Car Battery: Re-rolls twice instantly without any benefits."},
+		},
+	},
 	LeahsHairTie = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -1151,6 +1161,24 @@ local Wiki = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = ""},
+		},
+	},
+	NilNum = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Taking damage has a 2% chance to destroy the trinket and spawn a duplicate of one of your items."},
+		},
+	},
+	D16 = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "On use, reroll Isaac's current health."},
+			{str = "- Red heart containers, bone hearts, soul hearts, black hearts, and eternal hearts all get rerolled into a random assortment of the same value."},
+		},
+		{ -- Interactions
+			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
+			{str = "When used with Keeper, drains up to 2 coin heart containers and spawns that many number of random pick ups."},
+			{str = "- Keeper's health containers won't be removed."},
 		},
 	},
 
@@ -2284,6 +2312,18 @@ Encyclopedia.AddItem({
 Encyclopedia.AddItem({
 	ModName = "Furtherance",
 	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_D9,
+	WikiDesc = Wiki.D9,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
 	ID = CollectibleType.COLLECTIBLE_LEAHS_HAIR_TIE,
 	WikiDesc = Wiki.LeahsHairTie,
 	Pools = {
@@ -2412,6 +2452,25 @@ Encyclopedia.AddItem({
 	WikiDesc = Wiki.SecretDiary,
 	Pools = {
 		
+	},
+})
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_NIL_NUM,
+	WikiDesc = Wiki.NilNum,
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_D16,
+	WikiDesc = Wiki.D16,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 	},
 })
 

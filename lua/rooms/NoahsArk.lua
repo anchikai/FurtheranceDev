@@ -68,6 +68,7 @@ function mod:CreateArk()
             break
         elseif roomDesc.Data.Type == RoomType.ROOM_DEFAULT then
             local door = rng:RandomInt(4)
+            local doorIndex
             if door == 0 then
                 doorIndex = -1
             elseif door == 1 then

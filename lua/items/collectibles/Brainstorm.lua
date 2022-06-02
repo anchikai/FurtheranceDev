@@ -9,7 +9,8 @@ end
 mod:AddCallback(ModCallbacks.MC_FAMILIAR_INIT, mod.WellInit, Braincell)
 
 function mod:CellCollide(Cell, collider)
-    if collider.Variant == Braincell then
+    local player = Cell.SpawnerEntity and Cell.SpawnerEntity:ToPlayer()
+    if player and collider.Variant == Braincell then
         player:RemoveCollectible(CollectibleType.COLLECTIBLE_BRAINSTORM)
         SFXManager():Play(SoundEffect.SOUND_EDEN_GLITCH)
         player:AddCollectible(CollectibleType.COLLECTIBLE_TMTRAINER)

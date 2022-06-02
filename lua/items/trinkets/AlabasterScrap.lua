@@ -1,7 +1,6 @@
 local mod = Furtherance
 local game = Game()
 
----@param player EntityPlayer
 function mod:CollectPlayerItems(player)
 	local data = mod:GetData(player)
 	if player:HasTrinket(TrinketType.TRINKET_ALABASTER_SCRAP, false) then

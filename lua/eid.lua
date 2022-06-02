@@ -317,6 +317,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_LITTLE_RAINCOAT, "You get a Power
 -- Blood Cyst
 EID:addCollectible(CollectibleType.COLLECTIBLE_BLOOD_CYST, "Entering an uncleared room will spawn a Blood Cyst in a random area#Shooting or walking into it will make it burst into 8 tears", "Blood Cyst", "en_us")
 
+-- D9
+EID:addCollectible(CollectibleType.COLLECTIBLE_D9, "Rerolls trinkets in current room", "D9", "en_us")
+
 -- Leah's Hair Tie
 EID:addCollectible(CollectibleType.COLLECTIBLE_LEAHS_HAIR_TIE, "{{BrokenHeart}} +1 Broken Heart#Killing enemies has less of a chance to grant a broken heart based on how many you have#↑ Removes 1 broken heart every 3 rooms#↑ Grants 2 temporary decaying stat ups every 3 rooms", "Leah's Hair Tie", "en_us")
 
@@ -356,6 +359,12 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_SUNSCREEN, "↑ 25% chance to blo
 
 -- Secret Diary
 EID:addCollectible(CollectibleType.COLLECTIBLE_SECRET_DIARY, "", "Secret Diary", "en_us")
+
+-- Nil Num
+EID:addTrinket(TrinketType.TRINKET_NIL_NUM, "2% chance to spawn a duplicate of one of your items when hit#Gets destroyed afterwards", "Nil Num", "en_us")
+
+-- D16
+EID:addCollectible(CollectibleType.COLLECTIBLE_D16, "Reroll your health#{{Player14}} Keeper or {{Player33}} Tainted Keeper will drain up to 2 coin hearts and spawn that many number of random pickups", "D16", "en_us")
 
 
 -- Soul of Leah
