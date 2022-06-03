@@ -57,6 +57,18 @@ for _, obj in ipairs(MannaStatObjs) do
 	ALL_MANNA_FLAGS = ALL_MANNA_FLAGS | obj.Flag
 end
 
+do
+	local defaultBuffs = {}
+	for i = 1, #MannaStatObjs do
+		defaultBuffs[i] = 0
+	end
+
+	mod:SavePlayerData({
+		MannaCount = 0,
+		MannaBuffs = defaultBuffs,
+	})
+end
+
 local function getStatValue(player, statObj)
 	local statValue = player[statObj.Name]
 	if statObj.Flag == CacheFlag.CACHE_FIREDELAY then

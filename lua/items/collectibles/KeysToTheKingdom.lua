@@ -20,6 +20,17 @@ for _, obj in ipairs(statObjs) do
 	ALL_BUFFED_FLAGS = ALL_BUFFED_FLAGS | obj.Flag
 end
 
+do
+	local defaultBuffs = {}
+	for i = 1, #statObjs do
+		defaultBuffs[i] = 0
+	end
+
+	mod:SavePlayerData({
+		KTTKBuffs = defaultBuffs,
+		KTTKTempBuffs = defaultBuffs, -- I'm Pretty Sure (tm) this won't affect anything
+	})
+end
 
 -- Blacklisted enemies --
 local function KTTKignores(enemy)

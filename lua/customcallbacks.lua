@@ -1,7 +1,7 @@
 local mod = Furtherance
 local game = Game()
 
-Furtherance.CustomModCallbacks = {
+Furtherance.CustomCallbacks = {
     MC_POST_GAME_STARTED = ModCallbacks.MC_POST_GAME_STARTED,
     MC_POST_NEW_LEVEL = ModCallbacks.MC_POST_NEW_LEVEL,
     MC_POST_NEW_ROOM = ModCallbacks.MC_POST_NEW_ROOM,
@@ -68,10 +68,10 @@ mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UsedGlowingHourGlass, CollectibleT
 function mod:PostGameStarted(isContinued)
     if not hasSubscriptions() then return end
 
-    runCallback(mod.CustomModCallbacks.MC_POST_GAME_STARTED, isContinued)
+    runCallback(mod.CustomCallbacks.MC_POST_GAME_STARTED, isContinued)
     recordCurrentStage()
-    runCallback(mod.CustomModCallbacks.MC_POST_NEW_LEVEL)
-    runCallback(mod.CustomModCallbacks.MC_POST_NEW_ROOM)
+    runCallback(mod.CustomCallbacks.MC_POST_NEW_LEVEL)
+    runCallback(mod.CustomCallbacks.MC_POST_NEW_ROOM)
 end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.PostGameStarted)
 
@@ -80,8 +80,8 @@ function mod:PostNewLevel()
     if game:GetFrameCount() == 0 then return end
 
     recordCurrentStage()
-    runCallback(mod.CustomModCallbacks.MC_POST_NEW_LEVEL)
-    runCallback(mod.CustomModCallbacks.MC_POST_NEW_ROOM)
+    runCallback(mod.CustomCallbacks.MC_POST_NEW_LEVEL)
+    runCallback(mod.CustomCallbacks.MC_POST_NEW_ROOM)
 end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.PostNewLevel)
 
@@ -90,7 +90,6 @@ function mod:PostNewRoom()
         return
     end
 
-    local gameFrameCount = game:GetFrameCount()
     local level = game:GetLevel()
     local stage = level:GetStage()
     local stageType = level:GetStageType()
@@ -102,20 +101,20 @@ function mod:PostNewRoom()
             -- The player has used the Glowing Hour Glass to take them to the previous floor (which does
             -- not trigger the PostNewLevel callback). Emulate what happens in the PostNewLevel callback.
             recordCurrentStage()
-            runCallback(mod.CustomModCallbacks.MC_POST_NEW_LEVEL)
-            runCallback(mod.CustomModCallbacks.MC_POST_NEW_ROOM)
+            runCallback(mod.CustomCallbacks.MC_POST_NEW_LEVEL)
+            runCallback(mod.CustomCallbacks.MC_POST_NEW_ROOM)
             return
         end
     end
 
-    if gameFrameCount == 0 or
+    if game:GetFrameCount() == 0 or
         currentStage ~= stage or
         currentStageType ~= stageType
     then
         return
     end
 
-    runCallback(mod.CustomModCallbacks.MC_POST_NEW_ROOM)
+    runCallback(mod.CustomCallbacks.MC_POST_NEW_ROOM)
 end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.PostNewRoom)
 

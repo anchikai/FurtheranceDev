@@ -2,9 +2,13 @@ local mod = Furtherance
 local game = Game()
 local rng = RNG()
 
+mod:SavePlayerData({
+	CameraSaved = false,
+	CurRoomID = mod.SaveNil
+})
+
 function mod:RespawnEnemies(player)
 	local data = mod:GetData(player)
-	local level = game:GetLevel()
 	local room = game:GetRoom()
 	if data.UsedOldCamera and game:IsPaused() == false then
 		room:RespawnEnemies()

@@ -1,6 +1,10 @@
 local mod = Furtherance
 local game = Game()
 
+mod:SavePlayerData({
+	NumAngelItems = 0
+})
+
 function mod:CollectPlayerItems(player)
 	local data = mod:GetData(player)
 	if player:HasTrinket(TrinketType.TRINKET_ALABASTER_SCRAP, false) then
@@ -31,10 +35,10 @@ mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.CollectPlayerItems)
 
 function mod:AlabasterDmg(player, flag)
 	local data = mod:GetData(player)
-	local goldenbox = player:GetTrinketMultiplier(TrinketType.TRINKET_ALABASTER_SCRAP)
+	local multiplier = player:GetTrinketMultiplier(TrinketType.TRINKET_ALABASTER_SCRAP)
 	if player:HasTrinket(TrinketType.TRINKET_ALABASTER_SCRAP, false) then
 		if flag == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage + (data.NumAngelItems or 0) * goldenbox
+			player.Damage = player.Damage + data.NumAngelItems * multiplier
 		end
 	end
 end

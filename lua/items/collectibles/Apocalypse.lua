@@ -15,6 +15,17 @@ for _, obj in ipairs(statObjs) do
     ALL_BUFFED_FLAGS = ALL_BUFFED_FLAGS | obj.Flag
 end
 
+mod:SavePlayerData({
+    ApocalypseBuffs = function()
+        local default = {}
+        for i = 1, #statObjs do
+            default[i] = 0
+        end
+
+        return default
+    end
+})
+
 function mod:UseApocalypse(_, _, player)
     local data = mod:GetData(player)
     if player:GetActiveItem(ActiveSlot.SLOT_POCKET) ~= nil then
@@ -38,13 +49,6 @@ function mod:UseApocalypse(_, _, player)
     local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_APOCALYPSE)
 
     local buffs = data.ApocalypseBuffs
-    if buffs == nil then
-        buffs = {}
-        for i = 1, #statObjs do
-            buffs[i] = 0
-        end
-        data.ApocalypseBuffs = buffs
-    end
 
     for _ = 1, itemCount do
         local choice1 = rng:RandomInt(#statObjs) + 1

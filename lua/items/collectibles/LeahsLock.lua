@@ -2,9 +2,13 @@ local mod = Furtherance
 local game = Game()
 local bhb = Isaac.GetSoundIdByName("BrokenHeartbeat")
 
+mod:SavePlayerData({
+	LeahsLockTears = 0
+})
+
 function mod:LeahsLock()
 	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
+		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
 		local llRNG = player:GetTrinketRNG(TrinketType.TRINKET_LEAHS_LOCK):RandomInt(2)
 		local room = game:GetRoom()
@@ -39,9 +43,6 @@ mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.LeahsLock)
 
 function mod:llStats(player, flag)
 	local data = mod:GetData(player)
-	if data.LeahsLockTears == nil then
-		data.LeahsLockTears = 0
-	end
 	if player:HasTrinket(TrinketType.TRINKET_LEAHS_LOCK) then
 		if flag == CacheFlag.CACHE_FIREDELAY then
 			player.MaxFireDelay = player.MaxFireDelay - (data.LeahsLockTears * 0.9)

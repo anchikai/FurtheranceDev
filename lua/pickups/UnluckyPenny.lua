@@ -1,6 +1,10 @@
 local mod = Furtherance
 local game = Game()
 
+mod:SavePlayerData({
+	UnluckyPennyStat = 0
+})
+
 function mod:ResetCounter(player)
 	local data = mod:GetData(player)
 	data.UnluckyPennyStat = data.UnluckyPennyStat or 0

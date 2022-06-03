@@ -1,6 +1,10 @@
 local mod = Furtherance
 local game = Game()
 
+mod:SavePlayerData({
+	ShiftMultiplier = mod.SaveNil
+})
+
 function mod:UseShift(_, _, player)
 	mod:GetData(player).ShiftMultiplier = 15
 	return true

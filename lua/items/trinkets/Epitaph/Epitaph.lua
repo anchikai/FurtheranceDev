@@ -1,6 +1,18 @@
 local mod = Furtherance
 local game = Game()
 
+mod:ShelvePlayerData({
+    EpitaphStage = mod.SaveNil,
+    EpitaphFirstPassiveItem = mod.SaveNil,
+    EpitaphLastPassiveItem = mod.SaveNil
+})
+
+mod:SavePlayerData({
+    EpitaphRoom = mod.SaveNil,
+    EpitaphTombstonePosition = mod:Serialize(Vector, mod.SaveNil),
+    EpitaphTombstoneDestroyed = mod.SaveNil,
+})
+
 local TombstoneVariant = Isaac.GetEntityVariantByName("Epitaph Tombstone")
 
 local Tombstone = include("lua/items/trinkets/Epitaph/Tombstone.lua")

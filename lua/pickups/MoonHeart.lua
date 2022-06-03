@@ -5,10 +5,13 @@ local MoonSFX = Isaac.GetSoundIdByName("MoonHeartPickup")
 local screenHelper = require("lua.screenhelper")
 local rng = RNG()
 
+mod:SavePlayerData({
+	MoonHeart = 0
+})
+
 -- API functions --
 
-function Furtherance.AddMoonHearts(player, amount, data) -- data is optional
-	local index = mod:GetEntityIndex(player)
+function Furtherance.AddMoonHearts(player, amount)
 	if amount % 2 == 0 then
 		if player:GetSoulHearts() % 2 ~= 0 then
 			amount = amount - 1 -- if you already have a half heart, a new full moon heart always replaces it instead of adding another heart
@@ -18,11 +21,12 @@ function Furtherance.AddMoonHearts(player, amount, data) -- data is optional
 	if player:CanPickBlackHearts() or amount < 0 then
 		player:AddBlackHearts(amount)
 	end
-	mod.DataTable[index].FurtheranceMoonHeart = mod.DataTable[index].FurtheranceMoonHeart + amount
+	local data = mod:GetData(player)
+	data.MoonHeart = data.MoonHeart + amount
 end
 
 function Furtherance.GetMoonHearts(player)
-	return mod.DataTable[mod:GetEntityIndex(player)].FurtheranceMoonHeart
+	return mod:GetData(player).MoonHeart
 end
 
 local function CanOnlyHaveSoulHearts(player)
@@ -36,26 +40,25 @@ local function CanOnlyHaveSoulHearts(player)
 end
 
 function mod:MoonHeartCollision(entity, collider)
-	if collider.Type == EntityType.ENTITY_PLAYER then
-		local player = collider:ToPlayer()
+	local player = collider and collider:ToPlayer()
+	if entity.SubType == HeartSubType.HEART_MOON and player then
 		if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
 			player = player:GetMainTwin()
 		end
-		local data = mod.DataTable[mod:GetEntityIndex(player)]
-		if data.FurtheranceMoonHeart < (player:GetHeartLimit() - player:GetEffectiveMaxHearts()) and data.FurtheranceMoonHeart < 2 then
-			if entity.SubType == HeartSubType.HEART_MOON then
-				if player:GetPlayerType() == PlayerType.PLAYER_BETHANY or player:GetName() == "PeterB" then
-					return false
-				elseif player:GetPlayerType() ~= PlayerType.PLAYER_THELOST and player:GetPlayerType() ~= PlayerType.PLAYER_THELOST_B then
-					Furtherance.AddMoonHearts(player, 2)
-				end
-				entity.Velocity = Vector.Zero
-				entity.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
-				entity:GetSprite():Play("Collect", true)
-				entity:Die()
-				sfx:Play(MoonSFX, 1, 0)
-				return true
+
+		local data = mod:GetData(player)
+		if data.MoonHeart < (player:GetHeartLimit() - player:GetEffectiveMaxHearts()) and data.MoonHeart < 2 then
+			if player:GetPlayerType() == PlayerType.PLAYER_BETHANY or player:GetName() == "PeterB" then
+				return false
+			elseif player:GetPlayerType() ~= PlayerType.PLAYER_THELOST and player:GetPlayerType() ~= PlayerType.PLAYER_THELOST_B then
+				Furtherance.AddMoonHearts(player, 2)
 			end
+			entity.Velocity = Vector.Zero
+			entity.EntityCollisionClass = EntityCollisionClass.ENTCOLL_NONE
+			entity:GetSprite():Play("Collect", true)
+			entity:Die()
+			sfx:Play(MoonSFX, 1, 0)
+			return true
 		end
 	end
 end
@@ -72,19 +75,19 @@ function mod:shouldDeHook()
 end
 
 local function renderingHearts(player, playeroffset)
-	local index = mod:GetEntityIndex(player)
+	local data = mod:GetData(player)
 	local pType = player:GetPlayerType()
 	local isForgotten = pType == PlayerType.PLAYER_THEFORGOTTEN and 1 or 0
 	local transperancy = 1
-	local isTotalEven = mod.DataTable[index].FurtheranceMoonHeart % 2 == 0
-	local level = game:GetLevel()
+	-- if data.MoonHeart == nil then return end
+	local isTotalEven = data.MoonHeart % 2 == 0
 	if pType == PlayerType.PLAYER_JACOB2_B or player:GetEffects():HasNullEffect(NullItemID.ID_LOST_CURSE) or isForgotten == 1 then
 		transperancy = 0.3
 	end
 	if isForgotten == 1 then
 		player = player:GetSubPlayer()
 	end
-	local heartIndex = math.ceil(mod.DataTable[index].FurtheranceMoonHeart / 2) - 1
+	local heartIndex = math.ceil(data.MoonHeart / 2) - 1
 	local goldHearts = player:GetGoldenHearts()
 	local getMaxHearts = player:GetEffectiveMaxHearts() + (player:GetSoulHearts() + player:GetSoulHearts() % 2)
 	local eternalHeart = player:GetEternalHearts()
@@ -148,25 +151,29 @@ function mod:onRender(shadername)
 	local isJacobFirst = false
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		local index = mod:GetEntityIndex(player)
+		local data = mod:GetData(player)
 		if i == 0 and player:GetPlayerType() == PlayerType.PLAYER_JACOB then
 			isJacobFirst = true
 		end
 
-		if (player:GetPlayerType() == PlayerType.PLAYER_LAZARUS_B or player:GetPlayerType() == PlayerType.PLAYER_LAZARUS2_B) then
-			if player:GetOtherTwin() then
-				if mod.DataTable[index].i and mod.DataTable[index].i == i then
-					mod.DataTable[index].i = nil
+		if player:GetPlayerType() == PlayerType.PLAYER_LAZARUS_B or player:GetPlayerType() == PlayerType.PLAYER_LAZARUS2_B then
+			-- what does this do????
+			local otherTwin = player:GetOtherTwin()
+			if otherTwin then
+				if data.MoonHeart_i and data.MoonHeart_i == i then
+					data.MoonHeart_i = nil
 				end
-				if not mod.DataTable[index].i then
-					local otherIndex = mod:GetEntityIndex(player:GetOtherTwin())
-					mod.DataTable[otherIndex].i = i
+
+				if data.MoonHeart_i == nil then
+					local otherData = mod:GetData(otherTwin)
+					otherData.MoonHeart_i = i
 				end
-			elseif mod.DataTable[index].i then
-				mod.DataTable[index].i = nil
+			elseif data.MoonHeart_i then
+				data.MoonHeart_i = nil
 			end
 		end
-		if player:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B and not player.Parent and not mod.DataTable[index].i then
+
+		if player:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B and not player.Parent and data.MoonHeart_i == nil then
 			if player:GetPlayerType() == PlayerType.PLAYER_ESAU and isJacobFirst then
 				renderingHearts(player, 5)
 			elseif player:GetPlayerType() ~= PlayerType.PLAYER_ESAU then
@@ -174,7 +181,6 @@ function mod:onRender(shadername)
 			end
 		end
 	end
-
 end
 
 mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, mod.onRender)
@@ -182,25 +188,25 @@ mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, mod.onRender)
 function mod:MoonDamage(entity, damage, flag, source, cooldown)
 	local player = entity:ToPlayer()
 	if player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN then return nil end
-	local index = mod:GetEntityIndex(player)
+	local data = mod:GetData(player)
 	player = player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN_B and player:GetOtherTwin() or player
-	if mod.DataTable[index].FurtheranceMoonHeart > 0 and damage > 0 then
-		if not mod.DataTable[index].MoonTakeDmg and source.Type ~= EntityType.ENTITY_DARK_ESAU then
+	if data.MoonHeart > 0 and damage > 0 then
+		if not data.MoonTakeDmg and source.Type ~= EntityType.ENTITY_DARK_ESAU then
 			if flag & DamageFlag.DAMAGE_FAKE == 0 then
 				if not ((flag & DamageFlag.DAMAGE_RED_HEARTS == DamageFlag.DAMAGE_RED_HEARTS or player:HasTrinket(TrinketType.TRINKET_CROW_HEART)) and player:GetHearts() > 0) then
-					local isLastMoon = mod.DataTable[index].FurtheranceMoonHeart == 1 and player:GetSoulHearts() == 1 and player:GetEffectiveMaxHearts() == 0 and player:GetEternalHearts() > 0
+					local isLastMoon = data.MoonHeart == 1 and player:GetSoulHearts() == 1 and player:GetEffectiveMaxHearts() == 0 and player:GetEternalHearts() > 0
 					local NumSoulHearts = player:GetSoulHearts() - (1 - player:GetSoulHearts() % 2)
-					if (mod.DataTable[index].FurtheranceMoonHeart % 2 ~= 0) and not isLastMoon then
+					if (data.MoonHeart % 2 ~= 0) and not isLastMoon then
 						player:UseCard(Card.CARD_MOON, 257)
 						player:RemoveBlackHeart(NumSoulHearts)
 					end
 					--Checking for Half Moon and Eternal heart
 					if not isLastMoon then
-						mod.DataTable[index].FurtheranceMoonHeart = mod.DataTable[index].FurtheranceMoonHeart - 1
+						data.MoonHeart = data.MoonHeart - 1
 					end
-					mod.DataTable[index].MoonTakeDmg = true
+					data.MoonTakeDmg = true
 					player:TakeDamage(1, flag | DamageFlag.DAMAGE_NO_MODIFIERS, source, cooldown)
-					if mod.DataTable[index].FurtheranceMoonHeart > 0 then
+					if data.MoonHeart > 0 then
 						local cd = isLastMoon and cooldown or 60
 						player:ResetDamageCooldown()
 						player:SetMinDamageCooldown(cd)
@@ -214,23 +220,25 @@ function mod:MoonDamage(entity, damage, flag, source, cooldown)
 				end
 			end
 		else
-			mod.DataTable[index].MoonTakeDmg = nil
+			data.MoonTakeDmg = nil
 		end
 	else
-		mod.DataTable[index].MoonTakeDmg = nil
+		data.MoonTakeDmg = nil
 	end
 end
 
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.MoonDamage, EntityType.ENTITY_PLAYER)
 
 function mod:HeartHandling(player)
+	if player.FrameCount == 0 then return end
 	if player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN then
 		player = player:GetSubPlayer()
 	end
-	local index = mod:GetEntityIndex(player)
-	if mod.DataTable[index].FurtheranceMoonHeart > 0 then
-		mod.DataTable[index].FurtheranceMoonHeart = mod.DataTable[index].FurtheranceMoonHeart > player:GetSoulHearts() and player:GetSoulHearts() or mod.DataTable[index].FurtheranceMoonHeart
-		local heartIndex = math.ceil(mod.DataTable[index].FurtheranceMoonHeart / 2) - 1
+
+	local data = mod:GetData(player)
+	if data.MoonHeart > 0 then
+		data.MoonHeart = data.MoonHeart > player:GetSoulHearts() and player:GetSoulHearts() or data.MoonHeart
+		local heartIndex = math.ceil(data.MoonHeart / 2) - 1
 		for i = 0, heartIndex do
 			local ExtraHearts = math.ceil(player:GetSoulHearts() / 2) + player:GetBoneHearts() - i
 			local imHeartLastIndex = player:GetSoulHearts() - (1 - player:GetSoulHearts() % 2) - i * 2
@@ -238,16 +246,16 @@ function mod:HeartHandling(player)
 				for j = imHeartLastIndex, imHeartLastIndex - (heartIndex + 1) * 2, -2 do
 					player:RemoveBlackHeart(j)
 				end
-				player:AddSoulHearts(-mod.DataTable[index].FurtheranceMoonHeart)
-				player:AddBlackHearts(mod.DataTable[index].FurtheranceMoonHeart)
+				player:AddSoulHearts(-data.MoonHeart)
+				player:AddBlackHearts(data.MoonHeart)
 			end
-			if player:GetEffectiveMaxHearts() + player:GetSoulHearts() == player:GetHeartLimit() and mod.DataTable[index].FurtheranceMoonHeart == 1 then
+			if player:GetEffectiveMaxHearts() + player:GetSoulHearts() == player:GetHeartLimit() and data.MoonHeart == 1 then
 				player:AddSoulHearts(-1)
 			end
 		end
 		if player:GetSoulHearts() % 2 == 0 then
 			if Furtherance.GetMoonHearts(player) % 2 ~= 0 then
-				mod.DataTable[index].FurtheranceMoonHeart = mod.DataTable[index].FurtheranceMoonHeart + 1
+				data.MoonHeart = data.MoonHeart + 1
 			end
 		end
 		if player:GetSoulHearts() % 2 ~= 0 then
@@ -257,7 +265,6 @@ function mod:HeartHandling(player)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.HeartHandling)
 
 local processedHearts = {}

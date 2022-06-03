@@ -1,6 +1,11 @@
 local mod = Furtherance
 local game = Game()
 
+mod:SavePlayerData({
+	CurrentServitudeItem = 0,
+	ServitudeCounter = 0,
+})
+
 local function getNearestCollectible(player)
     local nearestCollectible = nil
     local nearestDistance = math.huge

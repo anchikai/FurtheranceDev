@@ -5,8 +5,6 @@ local json = require("json")
 local loading = {}
 local loadTimer
 
-mod.DataTable = {}
-
 Furtherance.FailSound = SoundEffect.SOUND_EDEN_GLITCH
 Furtherance.FlipSpeed = 1
 
@@ -146,175 +144,9 @@ HeartSubType.HEART_ROCK = 226
 SackSubType.SACK_GOLDEN = 3
 CoinSubType.COIN_UNLUCKYPENNY = 117
 
-include("lua/customcallbacks.lua")
-
--------- Game Saving Callbacks --------
-local function serialToVector(serial)
-	return serial and Vector(serial.X, serial.Y)
-end
-
-local function vectorToSerial(vector)
-	return vector and { X = vector.X, Y = vector.Y }
-end
-
-function mod:OnSave(isSaving)
-	local save = {}
-	if isSaving then
-		local saveData = {}
-		for i = 0, game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
-			local data = mod:GetData(player)
-			local playerData = {
-				numAngelItems = data.numAngelItems,
-				LeahsLockTears = data.LeahsLockTears,
-				MoonHeart = data.MoonHeart,
-				RenovatorDamage = data.RenovatorDamage,
-				HeartCount = data.HeartCount,
-				CameraSaved = data.CameraSaved,
-				CurRoomID = data.CurRoomID,
-				ShiftKeyPressed = data.ShiftKeyPressed,
-				ShiftMultiplier = data.ShiftMultiplier,
-				SleptInMomsBed = data.SleptInMomsBed,
-				ApocalypseBuffs = data.ApocalypseBuffs,
-				SpareCount = data.SpareCount,
-				KTTKBuffs = data.KTTKBuffs,
-				KTTKTempBuffs = data.KTTKTempBuffs,
-				MannaCount = data.MannaCount,
-				MannaBuffs = data.MannaBuffs,
-				EpitaphStage = data.EpitaphStage,
-				EpitaphRoom = data.EpitaphRoom,
-				EpitaphTombstonePosition = vectorToSerial(data.EpitaphTombstonePosition),
-				EpitaphTombstoneDestroyed = data.EpitaphTombstoneDestroyed,
-				NewEpitaphFirstPassiveItem = data.NewEpitaphFirstPassiveItem,
-				NewEpitaphLastPassiveItem = data.NewEpitaphLastPassiveItem,
-				UnluckyPennyStat = data.UnluckyPennyStat,
-				CurrentServitudeItem = data.CurrentServitudeItem,
-				ServitudeCounter = data.ServitudeCounter
-			}
-			if player:GetPlayerType() == LeahA then
-				playerData.LeahKills = data.LeahKills
-			end
-			if player:GetPlayerType() == PeterA then
-				playerData.DevilCount = data.DevilCount
-				playerData.AngelCount = data.AngelCount
-			end
-			if player:GetPlayerType() == MiriamA then
-				playerData.MiriamTearCount = data.MiriamTearCount
-				playerData.MiriamRiftTimeout = data.MiriamRiftTimeout
-			end
-
-			saveData["player_" .. tostring(i + 1)] = playerData
-		end
-		saveData.Flipped = mod.Flipped
-		save.PlayerData = saveData
-	else
-		local saveData = {}
-		for i = 0, game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
-			local data = mod:GetData(player)
-			local playerData = {
-				EpitaphStage = data.EpitaphStage,
-				EpitaphRoom = data.EpitaphRoom,
-				EpitaphFirstPassiveItem = data.NewEpitaphFirstPassiveItem,
-				EpitaphLastPassiveItem = data.NewEpitaphLastPassiveItem,
-				EpitaphTombstonePosition = vectorToSerial(data.EpitaphTombstonePosition),
-				EpitaphTombstoneDestroyed = data.EpitaphTombstoneDestroyed
-			}
-
-			saveData["player_" .. tostring(i + 1)] = playerData
-		end
-		save.PlayerData = saveData
-	end
-	save.Unlocks = mod.Unlocks
-	mod:SaveData(json.encode(save))
-end
-mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.OnSave)
-
-Furtherance.isLoadingData = false
-function mod:OnLoad(isLoading)
-	if not mod:HasData() then return end
-	if isLoading then
-		mod.isLoadingData = true
-		local load = json.decode(mod:LoadData())
-		local loadData = load.PlayerData
-		for i = 0, game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
-			local data = mod:GetData(player)
-			local playerData = loadData[string.format("player_%d", i + 1)]
-
-			-- local index = mod:GetEntityIndex(player)
-			-- if isLoading == false or mod.DataTable[index].FurtheranceMoonHeart == nil then
-			-- 	mod.DataTable[index].FurtheranceMoonHeart = 0
-			-- end
-
-			data.numAngelItems = playerData.numAngelItems
-			data.LeahsLockTears = playerData.LeahsLockTears
-			data.MoonHeart = playerData.MoonHeart
-			data.RenovatorDamage = playerData.RenovatorDamage
-			data.HeartCount = playerData.HeartCount
-			data.CameraSaved = playerData.CameraSaved
-			data.CurRoomID = playerData.CurRoomID
-			data.ShiftKeyPressed = playerData.ShiftKeyPressed
-			data.ShiftMultiplier = playerData.ShiftMultiplier
-			data.SleptInMomsBed = playerData.SleptInMomsBed
-			data.ApocalypseBuffs = playerData.ApocalypseBuffs
-			data.SpareCount = playerData.SpareCount
-			data.KTTKBuffs = playerData.KTTKBuffs
-			data.KTTKTempBuffs = playerData.KTTKTempBuffs
-			data.MannaCount = playerData.MannaCount
-			data.MannaBuffs = playerData.MannaBuffs
-			data.EpitaphStage = playerData.EpitaphStage
-			data.EpitaphRoom = playerData.EpitaphRoom
-			data.EpitaphTombstonePosition = serialToVector(playerData.EpitaphTombstonePosition)
-			data.EpitaphTombstoneDestroyed = playerData.EpitaphTombstoneDestroyed
-			data.EpitaphFirstPassiveItem = playerData.EpitaphFirstPassiveItem
-			data.EpitaphLastPassiveItem = playerData.EpitaphLastPassiveItem
-			data.UnluckyPennyStat = playerData.UnluckyPennyStat
-			data.CurrentServitudeItem = playerData.CurrentServitudeItem
-			data.ServitudeCounter = playerData.ServitudeCounter
-
-			if player:GetPlayerType() == LeahA then -- Leah's Data
-				data.LeahKills = playerData.LeahKills
-			end
-			if player:GetPlayerType() == PeterA then -- Peter's Data
-				data.DevilCount = playerData.DevilCount
-				data.AngelCount = playerData.AngelCount
-			end
-			if player:GetPlayerType() == MiriamA then -- Miriam's Data
-				data.MiriamTearCount = playerData.MiriamTearCount
-				data.MiriamRiftTimeout = playerData.MiriamRiftTimeout
-			end
-		end
-		if loadData.Flipped then
-			mod.Flipped = loadData.Flipped
-		end
-		if loadData.Unlocks then
-			for key in ipairs(mod.Unlocks) do
-				if loadData.Unlocks[key] then
-					mod.Unlocks[key] = loadData.Unlocks[key]
-				end
-			end
-		end
-	else
-		local load = json.decode(mod:LoadData())
-		local loadData = load.PlayerData
-		for i = 0, game:GetNumPlayers() - 1 do
-			local player = Isaac.GetPlayer(i)
-			local data = mod:GetData(player)
-			local playerData = loadData[string.format("player_%d", i + 1)]
-
-			data.EpitaphStage = playerData.EpitaphStage
-			data.EpitaphRoom = playerData.EpitaphRoom
-			data.EpitaphTombstonePosition = serialToVector(playerData.EpitaphTombstonePosition)
-			data.EpitaphTombstoneDestroyed = playerData.EpitaphTombstoneDestroyed
-			data.EpitaphFirstPassiveItem = playerData.EpitaphFirstPassiveItem
-			data.EpitaphLastPassiveItem = playerData.EpitaphLastPassiveItem
-		end
-	end
-end
-mod:AddCustomCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnLoad)
-
 ---- Lua Files ----
+include("lua/customcallbacks.lua")
+include("lua/saveapi.lua")
 
 -- Players
 include("lua/players/Leah.lua")
@@ -418,6 +250,7 @@ include("lua/items/trinkets/Epitaph/Epitaph.lua")
 include("lua/items/trinkets/LeviathansTendril.lua")
 include("lua/items/trinkets/Altruism.lua")
 include("lua/items/trinkets/NilNum.lua")
+--include("lua/items/trinkets/EpicExperimentingForSky.lua")
 
 -- Enemies
 include("lua/enemies/Hostikai.lua")
@@ -515,27 +348,10 @@ function Furtherance:GetEntityIndex(entity)
 			if player:GetPlayerType() == PlayerType.PLAYER_LAZARUS2_B then
 				id = 2
 			end
-			local index = player:GetCollectibleRNG(id):GetSeed()
-			if not mod.DataTable[index] then
-				mod.DataTable[index] = {}
-			end
-			if not mod.DataTable[index].FurtheranceMoonHeart then
-				mod.DataTable[index].FurtheranceMoonHeart = 0
-			end
-			if not mod.DataTable[index].FurtheranceRockHeart then
-				mod.DataTable[index].FurtheranceRockHeart = 0
-			end
-			if not mod.DataTable[index].lastEternalHearts or not mod.DataTable[index].lastMaxHearts then
-				mod.DataTable[index].lastEternalHearts = 0
-				mod.DataTable[index].lastMaxHearts = 0
-			end
-			return index
+
+			return player:GetCollectibleRNG(id):GetSeed()
 		elseif entity.Type == EntityType.ENTITY_FAMILIAR then
-			local index = entity:ToFamiliar().InitSeed
-			if not mod.DataTable[index] then
-				mod.DataTable[index] = {}
-			end
-			return index
+			return entity:ToFamiliar().InitSeed
 		end
 	end
 	return nil

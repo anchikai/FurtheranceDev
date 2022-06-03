@@ -5,18 +5,23 @@ local RockSFX = Isaac.GetSoundIdByName("MoonHeartPickup")
 local screenHelper = require("lua.screenhelper")
 local rng = RNG()
 
+mod:SavePlayerData({
+	RockHeart = 0,
+})
+
 -- API functions --
 
-function Furtherance.AddRockHearts(player, amount, data) -- data is optional
-	local index = mod:GetEntityIndex(player)
+function Furtherance.AddRockHearts(player, amount)
 	if player:CanPickBlackHearts() or amount < 0 then
 		player:AddBlackHearts(amount)
 	end
-	mod.DataTable[index].FurtheranceRockHeart = mod.DataTable[index].FurtheranceRockHeart + amount
+	local data = mod:GetData(player)
+
+	data.RockHeart = data.RockHeart + amount
 end
 
 function Furtherance.GetRockHearts(player)
-	return mod.DataTable[mod:GetEntityIndex(player)].FurtheranceRockHeart
+	return mod:GetData(player).RockHeart
 end
 
 local function CanOnlyHaveSoulHearts(player)
@@ -35,8 +40,8 @@ function mod:RockHeartCollision(entity, collider)
 		if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
 			player = player:GetMainTwin()
 		end
-		local data = mod.DataTable[mod:GetEntityIndex(player)]
-		if data.FurtheranceRockHeart < (player:GetHeartLimit() - player:GetEffectiveMaxHearts()) and data.FurtheranceRockHeart < 24 then
+		local data = mod:GetData(player)
+		if data.RockHeart < (player:GetHeartLimit() - player:GetEffectiveMaxHearts()) and data.RockHeart < 24 then
 			if entity.SubType == HeartSubType.HEART_ROCK then
 				if player:GetPlayerType() == PlayerType.PLAYER_BETHANY or player:GetName() == "PeterB" then
 					return false
@@ -66,19 +71,18 @@ function mod:shouldDeHook()
 end
 
 local function renderingHearts(player, playeroffset)
-	local index = mod:GetEntityIndex(player)
+	local data = mod:GetData(player)
 	local pType = player:GetPlayerType()
 	local isForgotten = pType == PlayerType.PLAYER_THEFORGOTTEN and 1 or 0
 	local transperancy = 1
-	local isTotalEven = mod.DataTable[index].FurtheranceRockHeart % 2 == 0
-	local level = game:GetLevel()
+	local isTotalEven = data.RockHeart % 2 == 0
 	if pType == PlayerType.PLAYER_JACOB2_B or player:GetEffects():HasNullEffect(NullItemID.ID_LOST_CURSE) or isForgotten == 1 then
 		transperancy = 0.3
 	end
 	if isForgotten == 1 then
 		player = player:GetSubPlayer()
 	end
-	local heartIndex = math.ceil(mod.DataTable[index].FurtheranceRockHeart / 2) - 1
+	local heartIndex = math.ceil(data.RockHeart / 2) - 1
 	local goldHearts = player:GetGoldenHearts()
 	local getMaxHearts = player:GetEffectiveMaxHearts() + (player:GetSoulHearts() + player:GetSoulHearts() % 2)
 	local eternalHeart = player:GetEternalHearts()
@@ -142,25 +146,26 @@ function mod:onRender(shadername)
 	local isJacobFirst = false
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		local index = mod:GetEntityIndex(player)
+		local data = mod:GetData(player)
 		if i == 0 and player:GetPlayerType() == PlayerType.PLAYER_JACOB then
 			isJacobFirst = true
 		end
 
 		if (player:GetPlayerType() == PlayerType.PLAYER_LAZARUS_B or player:GetPlayerType() == PlayerType.PLAYER_LAZARUS2_B) then
-			if player:GetOtherTwin() then
-				if mod.DataTable[index].i and mod.DataTable[index].i == i then
-					mod.DataTable[index].i = nil
+			local otherTwin = player:GetOtherTwin()
+			if otherTwin then
+				if data.MoonHeart_i and data.MoonHeart_i == i then
+					data.MoonHeart_i = nil
 				end
-				if not mod.DataTable[index].i then
-					local otherIndex = mod:GetEntityIndex(player:GetOtherTwin())
-					mod.DataTable[otherIndex].i = i
+				if not data.MoonHeart_i then
+					local otherData = mod:GetData(otherTwin)
+					otherData.MoonHeart_i = i
 				end
-			elseif mod.DataTable[index].i then
-				mod.DataTable[index].i = nil
+			elseif data.MoonHeart_i then
+				data.MoonHeart_i = nil
 			end
 		end
-		if player:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B and not player.Parent and not mod.DataTable[index].i then
+		if player:GetPlayerType() ~= PlayerType.PLAYER_THESOUL_B and not player.Parent and not data.MoonHeart_i then
 			if player:GetPlayerType() == PlayerType.PLAYER_ESAU and isJacobFirst then
 				renderingHearts(player, 5)
 			elseif player:GetPlayerType() ~= PlayerType.PLAYER_ESAU then
@@ -176,26 +181,26 @@ mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, mod.onRender)
 function mod:RockDamage(entity, damage, flag, source, cooldown)
 	local player = entity:ToPlayer()
 	if player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN then return nil end
-	local index = mod:GetEntityIndex(player)
+	local data = mod:GetData(player)
 	player = player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN_B and player:GetOtherTwin() or player
-	if mod.DataTable[index].FurtheranceRockHeart > 0 and damage > 0 then
-		if not mod.DataTable[index].RockTakeDmg and source.Type ~= EntityType.ENTITY_DARK_ESAU then
+	if data.RockHeart > 0 and damage > 0 then
+		if not data.RockTakeDmg and source.Type ~= EntityType.ENTITY_DARK_ESAU then
 			if flag & DamageFlag.DAMAGE_FAKE == 0 then
 				if not ((flag & DamageFlag.DAMAGE_RED_HEARTS == DamageFlag.DAMAGE_RED_HEARTS or player:HasTrinket(TrinketType.TRINKET_CROW_HEART)) and player:GetHearts() > 0) then
-					local isLastRock = mod.DataTable[index].FurtheranceRockHeart == 1 and player:GetSoulHearts() == 1 and player:GetEffectiveMaxHearts() == 0 and player:GetEternalHearts() > 0
+					local isLastRock = data.RockHeart == 1 and player:GetSoulHearts() == 1 and player:GetEffectiveMaxHearts() == 0 and player:GetEternalHearts() > 0
 					local NumSoulHearts = player:GetSoulHearts() - (1 - player:GetSoulHearts() % 2)
-					if (mod.DataTable[index].FurtheranceRockHeart % 2 ~= 0) and not isLastRock then
+					if (data.RockHeart % 2 ~= 0) and not isLastRock then
 						player:RemoveBlackHeart(NumSoulHearts)
 					end
 					--Checking for Half Rock and Eternal heart
 					if not isLastRock then
-						mod.DataTable[index].FurtheranceRockHeart = mod.DataTable[index].FurtheranceRockHeart - 1
+						data.RockHeart = data.RockHeart - 1
 						player:UseActiveItem(CollectibleType.COLLECTIBLE_WAIT_WHAT, false, false, true, false, -1)
 						SFXManager():Stop(SoundEffect.SOUND_FART)
 					end
-					mod.DataTable[index].RockTakeDmg = true
+					data.RockTakeDmg = true
 					player:TakeDamage(1, flag | DamageFlag.DAMAGE_NO_MODIFIERS, source, cooldown)
-					if mod.DataTable[index].FurtheranceRockHeart > 0 then
+					if data.RockHeart > 0 then
 						local cd = isLastRock and cooldown or 60
 						player:ResetDamageCooldown()
 						player:SetMinDamageCooldown(cd)
@@ -212,23 +217,25 @@ function mod:RockDamage(entity, damage, flag, source, cooldown)
 				end
 			end
 		else
-			mod.DataTable[index].RockTakeDmg = nil
+			data.RockTakeDmg = nil
 		end
 	else
-		mod.DataTable[index].RockTakeDmg = nil
+		data.RockTakeDmg = nil
 	end
 end
 
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.RockDamage, EntityType.ENTITY_PLAYER)
 
 function mod:HeartHandling(player)
+	if player.FrameCount == 0 then return end
 	if player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN then
 		player = player:GetSubPlayer()
 	end
-	local index = mod:GetEntityIndex(player)
-	if mod.DataTable[index].FurtheranceRockHeart > 0 then
-		mod.DataTable[index].FurtheranceRockHeart = mod.DataTable[index].FurtheranceRockHeart > player:GetSoulHearts() and player:GetSoulHearts() or mod.DataTable[index].FurtheranceRockHeart
-		local heartIndex = math.ceil(mod.DataTable[index].FurtheranceRockHeart / 2) - 1
+
+	local data = mod:GetData(player)
+	if data.RockHeart > 0 then
+		data.RockHeart = data.RockHeart > player:GetSoulHearts() and player:GetSoulHearts() or data.RockHeart
+		local heartIndex = math.ceil(data.RockHeart / 2) - 1
 		for i = 0, heartIndex do
 			local ExtraHearts = math.ceil(player:GetSoulHearts() / 2) + player:GetBoneHearts() - i
 			local imHeartLastIndex = player:GetSoulHearts() - (1 - player:GetSoulHearts() % 2) - i * 2
@@ -236,16 +243,16 @@ function mod:HeartHandling(player)
 				for j = imHeartLastIndex, imHeartLastIndex - (heartIndex + 1) * 2, -2 do
 					player:RemoveBlackHeart(j)
 				end
-				player:AddSoulHearts(-mod.DataTable[index].FurtheranceRockHeart)
-				player:AddBlackHearts(mod.DataTable[index].FurtheranceRockHeart)
+				player:AddSoulHearts(-data.RockHeart)
+				player:AddBlackHearts(data.RockHeart)
 			end
-			if player:GetEffectiveMaxHearts() + player:GetSoulHearts() == player:GetHeartLimit() and mod.DataTable[index].FurtheranceRockHeart == 1 then
+			if player:GetEffectiveMaxHearts() + player:GetSoulHearts() == player:GetHeartLimit() and data.RockHeart == 1 then
 				player:AddSoulHearts(-1)
 			end
 		end
 		if player:GetSoulHearts() % 2 == 0 then
 			if Furtherance.GetRockHearts(player) % 2 ~= 0 then
-				mod.DataTable[index].FurtheranceRockHeart = mod.DataTable[index].FurtheranceRockHeart + 1
+				data.RockHeart = data.RockHeart + 1
 			end
 		end
 		if player:GetSoulHearts() % 2 ~= 0 then

@@ -1,6 +1,11 @@
 local mod = Furtherance
 local game = Game()
 local rng = RNG()
+
+mod:SavePlayerData({
+	LeahKills = 0,
+})
+
 local bhb = Isaac.GetSoundIdByName("BrokenHeartbeat")
 
 COSTUME_LEAH_A_HAIR = Isaac.GetCostumeIdByPath("gfx/characters/Character_001_Leah_Hair.anm2")

@@ -1,18 +1,16 @@
 local mod = Furtherance
 local game = Game()
-local bhb = Isaac.GetSoundIdByName("BrokenHeartbeat")
+
+mod:SavePlayerData({
+	HeartCount = 2,
+	RenovatorDamage = 0
+})
+
+local BrokenHeartbeatSound = Isaac.GetSoundIdByName("BrokenHeartbeat")
 
 local ChargeBar = Sprite()
 ChargeBar:Load("gfx/chargebar.anm2",true)
 ChargeBar:LoadGraphics()
-
-function mod:OnInit(player)
-	local data = mod:GetData(player)
-	if data.HeartCount == nil then
-		data.HeartCount = 2
-	end
-end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
 
 function mod:UseRenovator(_, _, player)
 	if player:GetBrokenHearts() > 0 then
@@ -85,9 +83,6 @@ mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.Hearts, PickupVariant.
 
 function mod:RenovatorDmg(player, flag)
 	local data = mod:GetData(player)
-	if data.RenovatorDamage == nil then
-		data.RenovatorDamage = 0
-	end
 	if flag == CacheFlag.CACHE_DAMAGE then
 		if player:GetPlayerType() == LeahA and player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 			player.Damage = player.Damage + data.RenovatorDamage * 0.2
@@ -100,7 +95,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.RenovatorDmg)
 
 function mod:RenovatorOnKill(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
+		local player = Isaac.GetPlayer(i)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) then
 			local hrRNG = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_HEART_RENOVATOR)
 			if entity:IsActiveEnemy(false) then
@@ -160,7 +155,7 @@ function mod:OnUpdate(player)
 		if brokenHeart and data.HeartCount >= 2 and player:GetBrokenHearts() < 11 then -- press drop button to remove 2 hearts and add a broken heart
 			data.HeartCount = data.HeartCount - 2
 			player:AddBrokenHearts(1)
-			SFXManager():Play(bhb)
+			SFXManager():Play(BrokenHeartbeatSound)
 			player:AddCacheFlags(CacheFlag.CACHE_RANGE)
 			player:EvaluateItems()
 			data.dropcooldown = 0
