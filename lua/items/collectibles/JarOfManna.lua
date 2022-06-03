@@ -57,17 +57,17 @@ for _, obj in ipairs(MannaStatObjs) do
 	ALL_MANNA_FLAGS = ALL_MANNA_FLAGS | obj.Flag
 end
 
-do
-	local defaultBuffs = {}
-	for i = 1, #MannaStatObjs do
-		defaultBuffs[i] = 0
-	end
+mod:SavePlayerData({
+	MannaCount = 0,
+	MannaBuffs = function()
+		local default = {}
+		for i = 1, #MannaStatObjs do
+			default[i] = 0
+		end
 
-	mod:SavePlayerData({
-		MannaCount = 0,
-		MannaBuffs = defaultBuffs,
-	})
-end
+		return default
+	end
+})
 
 local function getStatValue(player, statObj)
 	local statValue = player[statObj.Name]
@@ -173,13 +173,10 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.MannaBuffs)
 -- Spawn manna --
 function mod:SpawnMana(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
+		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
 
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_JAR_OF_MANNA) then
-			if not data.MannaCount then
-				data.MannaCount = 0
-			end
 			if data.MannaCount < 20 then
 				Isaac.Spawn(EntityType.ENTITY_EFFECT, 7888, 0, entity.Position, Vector.Zero, player):ToEffect():SetTimeout(75)
 			end
@@ -210,7 +207,7 @@ function mod:MannaPickup(effect)
 
 
 	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
+		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
 
 		-- Collect soul

@@ -5,6 +5,10 @@ mod:SavePlayerData({
 	NumAngelItems = 0
 })
 
+mod:AddCustomCallback(mod.CustomCallbacks.MC_POST_LOADED, function()
+	print("data loaded")
+end)
+
 function mod:CollectPlayerItems(player)
 	local data = mod:GetData(player)
 	if player:HasTrinket(TrinketType.TRINKET_ALABASTER_SCRAP, false) then
@@ -38,7 +42,7 @@ function mod:AlabasterDmg(player, flag)
 	local multiplier = player:GetTrinketMultiplier(TrinketType.TRINKET_ALABASTER_SCRAP)
 	if player:HasTrinket(TrinketType.TRINKET_ALABASTER_SCRAP, false) then
 		if flag == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage + data.NumAngelItems * multiplier
+			player.Damage = player.Damage + (data.NumAngelItems or 0) * multiplier
 		end
 	end
 end

@@ -1,8 +1,6 @@
 local mod = Furtherance
 local game = Game()
 
-local KTTKinCleared = false
-local KTTKslot = ActiveSlot.SLOT_PRIMARY
 local spareTime = 30 * 30
 local finalBossIDs = { 6, 8, 24, 25, 39, 40, 54, 55, 63, 70, 88, 99, 100 }
 
@@ -20,17 +18,21 @@ for _, obj in ipairs(statObjs) do
 	ALL_BUFFED_FLAGS = ALL_BUFFED_FLAGS | obj.Flag
 end
 
-do
-	local defaultBuffs = {}
+local function defaultBuffs()
+	local default = {}
 	for i = 1, #statObjs do
-		defaultBuffs[i] = 0
+		default[i] = 0
 	end
 
-	mod:SavePlayerData({
-		KTTKBuffs = defaultBuffs,
-		KTTKTempBuffs = defaultBuffs, -- I'm Pretty Sure (tm) this won't affect anything
-	})
+	return default
 end
+
+local maxCharges = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM).MaxCharges
+
+mod:SavePlayerData({
+	KTTKBuffs = defaultBuffs,
+	KTTKTempBuffs = defaultBuffs
+})
 
 -- Blacklisted enemies --
 local function KTTKignores(enemy)
@@ -65,8 +67,7 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 		-- TODO: only make one item takeable
 		player:UseCard(Card.CARD_CREDIT, 257)
 
-
-		-- Get key piece / random item in Angel room
+	-- Get key piece / random item in Angel room
 	elseif roomType == RoomType.ROOM_ANGEL then
 		if not player:HasCollectible(CollectibleType.COLLECTIBLE_KEY_PIECE_1) then
 			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, CollectibleType.COLLECTIBLE_KEY_PIECE_1, Isaac.GetFreeNearPosition(room:GetCenterPos(), 0), Vector.Zero, player)
@@ -76,16 +77,13 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 			Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, 0, Isaac.GetFreeNearPosition(room:GetCenterPos(), 0), Vector.Zero, player)
 		end
 
-
-		-- Give the charge back if the room is cleared
+	-- Give the charge back if the room is cleared
 	elseif room:GetAliveEnemiesCount() == 0 then
-		KTTKinCleared = true
-		KTTKslot = slot
-		return false
+		return { Discharge = false, ShowAnim = false, Remove = false }
 
-
+	-- Give Holy Mantle effect in final boss rooms and don't do anything else
 	else
-		-- Give Holy Mantle effect in final boss rooms and don't do anything else
+
 		for i, ID in pairs(finalBossIDs) do
 			if room:GetBossID() == ID then
 				player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER)
@@ -94,13 +92,6 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 		end
 
 		local buffs = data.KTTKTempBuffs
-		if buffs == nil then
-			buffs = {}
-			for i = 1, #statObjs do
-				buffs[i] = 0
-			end
-			data.KTTKTempBuffs = buffs
-		end
 
 		for _, enemy in pairs(Isaac.GetRoomEntities()) do
 			if enemy:IsActiveEnemy(false) and not enemy:IsInvincible() then -- This makes stonies and other fuckers not get spared so don't change it :)
@@ -163,17 +154,6 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 end
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseKTTK, CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM)
 
--- Give the charge back if the room is cleared --
-function mod:KTTKrecharge(player, flag)
-	if KTTKinCleared then
-		KTTKinCleared = false
-		player:FullCharge(KTTKslot, true)
-		SFXManager():Stop(SoundEffect.SOUND_BATTERYCHARGE)
-		SFXManager():Stop(SoundEffect.SOUND_ITEMRECHARGE)
-	end
-end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.KTTKrecharge)
-
 -- Stats --
 function mod:KTTKbuffs(player, flag)
     local data = mod:GetData(player)
@@ -208,7 +188,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.KTTKTempbuffs)
 
 function mod:removeKTTKTbuffs()
 	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
+		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
 
 		data.KTTKTempBuffs = nil
@@ -222,7 +202,7 @@ mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.removeKTTKTbuffs)
 -- Spawn souls --
 function mod:kttkKills(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
+		local player = Isaac.GetPlayer(i)
 
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM) then
 			if entity:IsBoss() then -- Bosses always give a soul with 3 charges
@@ -260,7 +240,7 @@ function mod:EnemySouls(effect)
 
 
 		for i = 0, game:GetNumPlayers() - 1 do
-			local player = game:GetPlayer(i)
+			local player = Isaac.GetPlayer(i)
 			local data = mod:GetData(player)
 
 			effect.Velocity = (effect.Velocity + (((player.Position - effect.Position):Normalized() * 20) - effect.Velocity) * 0.4)
@@ -285,13 +265,14 @@ function mod:EnemySouls(effect)
 				end
 
 				if slot ~= nil then
-					if player:GetActiveCharge(slot) < 12 then
-						player:SetActiveCharge(player:GetActiveCharge(slot) + charges, slot)
+					if player:GetActiveCharge(slot) < maxCharges then
+						local newCharges = math.min(player:GetActiveCharge(slot) + charges, maxCharges)
+						player:SetActiveCharge(newCharges, slot)
 						game:GetHUD():FlashChargeBar(player, slot)
 						SFXManager():Play(SoundEffect.SOUND_BEEP)
 
 						-- Play charged sound if soul charges it to max
-						if player:GetActiveCharge(slot) >= 12 then
+						if player:GetActiveCharge(slot) >= maxCharges then
 							SFXManager():Play(SoundEffect.SOUND_BATTERYCHARGE)
 						end
 					else
@@ -409,18 +390,11 @@ function mod:spareTimer(entity)
 
 			-- Give stats
 			for i = 0, game:GetNumPlayers() - 1 do
-				local player = game:GetPlayer(i)
+				local player = Isaac.GetPlayer(i)
 
 				if player:HasCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM) then
 					local pdata = mod:GetData(player)
 					local buffs = pdata.KTTKBuffs
-					if buffs == nil then
-						buffs = {}
-						for i = 1, #statObjs do
-							buffs[i] = 0
-						end
-						pdata.KTTKBuffs = buffs
-					end
 
 					local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM)
 					local choice1 = rng:RandomInt(#statObjs) + 1

@@ -4,7 +4,7 @@ local rng = RNG()
 
 function mod:JunoTears(tear, collider)
 	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
+		local player = Isaac.GetPlayer(i)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_JUNO) then
 			if (collider:IsEnemy() and collider:IsVulnerableEnemy() and collider:IsActiveEnemy()) then
 				local rollJuno = rng:RandomInt(100)
@@ -28,7 +28,7 @@ mod:AddCallback(ModCallbacks.MC_PRE_KNIFE_COLLISION, mod.JunoTears) -- Mom's Kni
 
 function mod:JunoLasers() -- Brimstone and other lasers
 	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
+		local player = Isaac.GetPlayer(i)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_JUNO) then
 			local rollJuno = rng:RandomInt(100)
 			local data = mod:GetData(player)

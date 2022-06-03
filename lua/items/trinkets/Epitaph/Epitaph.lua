@@ -152,7 +152,7 @@ mod:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, mod.DetectExplosion)
 
 --[[mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
 	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
+		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
         local f = Font()
         local bruh

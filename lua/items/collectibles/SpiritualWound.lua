@@ -349,7 +349,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.EnemyTethering)
 
 function mod:ResetSpiritualWoundTarget()
 	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
+		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
 		local itemData = data.SpiritualWound
 		if hasItem(player) and itemData then
@@ -375,7 +375,7 @@ function mod:SpiritualKill(entity)
 	if enemyData.spiritualWound == nil then return end
 
 	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
+		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
 
 		local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)

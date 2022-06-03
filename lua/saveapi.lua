@@ -101,17 +101,19 @@ function mod:OnSaveData(canContinue)
         PlayerData = {}
     }
 
+    for i = 1, game:GetNumPlayers() do
+        savedData.PlayerData[string.format("player_%d", i)] = {}
+    end
+
     if canContinue then
         for i = 0, game:GetNumPlayers() - 1 do
             local player = Isaac.GetPlayer(i)
             local data = mod:GetData(player)
-            local playerData = {}
+            local playerData = savedData.PlayerData[string.format("player_%d", i + 1)]
 
             for key, default in pairs(playerKeys) do
                 playerData[key] = saveEncode(data[key], default)
             end
-
-            savedData.PlayerData[string.format("player_%d", i + 1)] = playerData
         end
 
         for key, default in pairs(modKeys) do
@@ -134,6 +136,8 @@ function mod:OnSaveData(canContinue)
     end
 
     mod:SaveData(json.encode(savedData))
+    mod.isLoadingData = false
+    mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_SAVED, canContinue)
 end
 mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.OnSaveData)
 
@@ -183,5 +187,7 @@ function mod:OnLoadData(isContinued)
     for key, default in pairs(shelvedModKeys) do
         mod[key] = loadDecodeOrDefault(loadedData[key], default)
     end
+
+    mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_LOADED, isContinued)
 end
 mod:AddCustomCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnLoadData)

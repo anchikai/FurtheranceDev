@@ -52,7 +52,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.OnUpdate)
 
 function mod:PuddleRift(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
+		local player = Isaac.GetPlayer(i)
 		if player:GetPlayerType() == MiriamA then
 			if entity.Type == EntityType.ENTITY_TEAR then
 				local data = mod:GetData(player)
