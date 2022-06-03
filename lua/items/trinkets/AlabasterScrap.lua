@@ -31,10 +31,11 @@ mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.CollectPlayerItems)
 
 function mod:AlabasterDmg(player, flag)
 	local data = mod:GetData(player)
+	if data.NumAngelItems == nil then return end
 	local goldenbox = player:GetTrinketMultiplier(TrinketType.TRINKET_ALABASTER_SCRAP)
 	if player:HasTrinket(TrinketType.TRINKET_ALABASTER_SCRAP, false) then
 		if flag == CacheFlag.CACHE_DAMAGE then
-			player.Damage = player.Damage + (data.NumAngelItems or 0) * goldenbox
+			player.Damage = player.Damage + data.NumAngelItems * goldenbox
 		end
 	end
 end
