@@ -1,6 +1,9 @@
 local mod = Furtherance
 local game = Game()
 
+Furtherance.isLoadingData = false
+Furtherance.LoadedData = false
+
 local json = require("json")
 
 local playerKeys = {}
@@ -96,55 +99,11 @@ function Furtherance:Serialize(datatype, default)
     return serializer
 end
 
-function mod:OnSaveData(canContinue)
-    local savedData = {
-        PlayerData = {}
-    }
-
-    for i = 1, game:GetNumPlayers() do
-        savedData.PlayerData[string.format("player_%d", i)] = {}
-    end
-
-    if canContinue then
-        for i = 0, game:GetNumPlayers() - 1 do
-            local player = Isaac.GetPlayer(i)
-            local data = mod:GetData(player)
-            local playerData = savedData.PlayerData[string.format("player_%d", i + 1)]
-
-            for key, default in pairs(playerKeys) do
-                playerData[key] = saveEncode(data[key], default)
-            end
-        end
-
-        for key, default in pairs(modKeys) do
-            savedData[key] = saveEncode(mod[key], default)
-        end
-    end
-
-    for i = 0, game:GetNumPlayers() - 1 do
-        local player = Isaac.GetPlayer(i)
-        local data = mod:GetData(player)
-        local playerData = savedData.PlayerData[string.format("player_%d", i + 1)]
-
-        for key, default in pairs(shelvedPlayerKeys) do
-            playerData[key] = saveEncode(data[key], default)
-        end
-    end
-
-    for key, default in pairs(shelvedModKeys) do
-        savedData[key] = saveEncode(mod[key], default)
-    end
-
-    mod:SaveData(json.encode(savedData))
-    mod.isLoadingData = false
-    mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_SAVED, canContinue)
-end
-mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.OnSaveData)
-
 function mod:OnLoadData(isContinued)
+    mod.isLoadingData = isContinued
+
     local loadedData = json.decode(mod:LoadData())
 
-    mod.isLoadingData = isContinued
     if isContinued then
         for i = 0, game:GetNumPlayers() - 1 do
             local player = Isaac.GetPlayer(i)
@@ -188,6 +147,71 @@ function mod:OnLoadData(isContinued)
         mod[key] = loadDecodeOrDefault(loadedData[key], default)
     end
 
+    mod.LoadedData = true
     mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_LOADED, isContinued)
 end
 mod:AddCustomCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnLoadData)
+
+function mod:OnSaveData(canContinue)
+    local savedData = {
+        PlayerData = {}
+    }
+
+    for i = 1, game:GetNumPlayers() do
+        savedData.PlayerData[string.format("player_%d", i)] = {}
+    end
+
+    if canContinue then
+        for i = 0, game:GetNumPlayers() - 1 do
+            local player = Isaac.GetPlayer(i)
+            local data = mod:GetData(player)
+            local playerData = savedData.PlayerData[string.format("player_%d", i + 1)]
+
+            for key, default in pairs(playerKeys) do
+                playerData[key] = saveEncode(data[key], default)
+            end
+        end
+
+        for key, default in pairs(modKeys) do
+            savedData[key] = saveEncode(mod[key], default)
+        end
+    end
+
+    for i = 0, game:GetNumPlayers() - 1 do
+        local player = Isaac.GetPlayer(i)
+        local data = mod:GetData(player)
+        local playerData = savedData.PlayerData[string.format("player_%d", i + 1)]
+
+        for key, default in pairs(shelvedPlayerKeys) do
+            playerData[key] = saveEncode(data[key], default)
+        end
+    end
+
+    for key, default in pairs(shelvedModKeys) do
+        savedData[key] = saveEncode(mod[key], default)
+    end
+
+    mod:SaveData(json.encode(savedData))
+    mod.isLoadingData = false
+    mod.LoadedData = false
+    mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_SAVED, canContinue)
+end
+mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.OnSaveData)
+
+local queuedCallbacks = {}
+function Furtherance:QueueLoadedCallback(callbackEnum, ...)
+    table.insert(queuedCallbacks, {
+        callbackEnum = callbackEnum,
+        args = table.pack(...)
+    })
+end
+
+function mod:RunQueuedCallbacks()
+    for _, callbackInfo in ipairs(queuedCallbacks) do
+        local callbackEnum = callbackInfo.callbackEnum
+        local args = callbackInfo.args
+        mod:RunCustomCallback(callbackEnum, table.unpack(args, 1, args.n))
+    end
+    queuedCallbacks = {}
+end
+mod:AddCustomCallback(mod.CustomCallbacks.MC_POST_LOADED, mod.RunQueuedCallbacks)

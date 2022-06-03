@@ -5,8 +5,17 @@ Furtherance.CustomCallbacks = {
     MC_POST_GAME_STARTED = ModCallbacks.MC_POST_GAME_STARTED,
     MC_POST_NEW_LEVEL = ModCallbacks.MC_POST_NEW_LEVEL,
     MC_POST_NEW_ROOM = ModCallbacks.MC_POST_NEW_ROOM,
+    MC_POST_PLAYER_INIT = ModCallbacks.MC_POST_PLAYER_INIT,
+    MC_POST_PLAYER_UPDATE = ModCallbacks.MC_POST_PLAYER_UPDATE,
+    MC_POST_PEFFECT_UPDATE = ModCallbacks.MC_POST_PEFFECT_UPDATE,
     MC_POST_LOADED = 20001,
-    MC_POST_SAVED = 20002
+    MC_POST_SAVED = 20002,
+}
+
+Furtherance.QueueLoadedCallbacks = {
+    mod.CustomCallbacks.MC_POST_PLAYER_INIT,
+    mod.CustomCallbacks.MC_POST_PLAYER_UPDATE,
+    mod.CustomCallbacks.MC_POST_PEFFECT_UPDATE,
 }
 
 local allCallbacks = {}
@@ -121,3 +130,18 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.PostNewRoom)
 
 --]]
+
+-- queues player callbacks until data is loaded
+local function createQueueCallbackHandler(callbackEnum)
+    return function(self, ...)
+        if self.LoadedData then
+            self:RunCustomCallback(callbackEnum, ...)
+        else
+            self:QueueLoadedCallback(callbackEnum, ...)
+        end
+    end
+end
+
+for _, callbackEnum in ipairs(mod.QueueLoadedCallbacks) do
+    mod:AddCallback(callbackEnum, createQueueCallbackHandler(callbackEnum))
+end
