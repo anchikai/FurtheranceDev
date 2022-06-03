@@ -2,11 +2,11 @@ local mod = Furtherance
 local game = Game()
 
 local ChallengeDirection = Direction.NO_DIRECTION
-function mod:Update(player)
+function mod:FuckYouStupidAssDoor(player)
     local level = game:GetLevel()
     local room = game:GetRoom()
     for i = 1, 8 do
-        if room:IsClear() and room:GetDoor(i) ~= nil then
+        if player:HasTrinket(TrinketType.TRINKET_KEY_TO_THE_PIT) and room:IsClear() and room:GetDoor(i) ~= nil then
             if room:GetDoor(i):GetSprite():GetFilename() == "gfx/grid/Door_03_AmbushRoomDoor.anm2"
             or room:GetDoor(i):GetSprite():GetFilename() == "gfx/grid/Door_09_BossAmbushRoomDoor.anm2" then
                 local ChallengeDoor = room:GetDoorSlotPosition(i)
@@ -27,4 +27,4 @@ function mod:Update(player)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.Update)
+mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.FuckYouStupidAssDoor)
