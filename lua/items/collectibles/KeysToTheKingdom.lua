@@ -68,10 +68,7 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 
 		-- Give the charge back if the room is cleared
 	elseif room:GetAliveEnemiesCount() == 0 then
-		KTTKinCleared = true
-		KTTKslot = slot
-		return false
-
+		return { Discharge = false, ShowAnim = false, Remove = false}
 
 	else
 		-- Give Holy Mantle effect in final boss rooms and don't do anything else
@@ -151,17 +148,6 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 	return true
 end
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseKTTK, CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM)
-
--- Give the charge back if the room is cleared --
-function mod:KTTKrecharge(player, flag)
-	if KTTKinCleared then
-		KTTKinCleared = false
-		player:FullCharge(KTTKslot, true)
-		SFXManager():Stop(SoundEffect.SOUND_BATTERYCHARGE)
-		SFXManager():Stop(SoundEffect.SOUND_ITEMRECHARGE)
-	end
-end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.KTTKrecharge)
 
 -- Stats --
 function mod:KTTKbuffs(player, flag)
