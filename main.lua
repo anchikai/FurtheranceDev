@@ -787,3 +787,4 @@ end
 function Furtherance:GetTearsFromFireDelay(fireDelay)
 	return 30 / (fireDelay + 1)
 end
+print("Type \"furtherancehelp\" for Furtherance commands.")
