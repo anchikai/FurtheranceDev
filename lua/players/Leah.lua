@@ -72,31 +72,32 @@ function mod:OnUpdate(player)
 			player:AddCacheFlags(CacheFlag.CACHE_SPEED)
 			player:EvaluateItems()
 		end
-		if not IsEnemyNear(player) and player:GetBrokenHearts() ~= 11 and not player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-			if game:GetFrameCount() % 120 == 0 then
+	end
+	if IsEnemyNear(player) ~= true and ((player:GetPlayerType() == LeahB and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) ~= true)
+	or player:HasCollectible(CollectibleType.COLLECTIBLE_SHATTERED_HEART)) and player:GetBrokenHearts() ~= 11 and room:GetAliveEnemiesCount() > 0 then
+		if game:GetFrameCount() % 120 == 0 then
+			SFXManager():Play(bhb)
+			player:AddBrokenHearts(1)
+		end
+	elseif player:GetPlayerType() == LeahB and IsEnemyNear(player) ~= true and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and room:GetAliveEnemiesCount() > 0 then
+		if game:GetFrameCount() % 120 == 0 then
+			if player:GetBrokenHearts() < 6 then
 				SFXManager():Play(bhb)
 				player:AddBrokenHearts(1)
-			end
-		elseif not IsEnemyNear(player) and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-			if game:GetFrameCount() % 120 == 0 then
-				if player:GetBrokenHearts() < 6 then
-					SFXManager():Play(bhb)
-					player:AddBrokenHearts(1)
-				elseif player:GetBrokenHearts() > 6 then
-					SFXManager():Play(SoundEffect.SOUND_HEARTBEAT)
-					player:AddBrokenHearts(-1)
-				end
-			end
-		elseif IsEnemyNear(player) then
-			if player.MaxFireDelay <= 40 then
-				data.LeahbPower = data.LeahbPower + 1
-				player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
-				player:EvaluateItems()
-			end
-			if game:GetFrameCount() % 30 == 0 then
+			elseif player:GetBrokenHearts() > 6 then
 				SFXManager():Play(SoundEffect.SOUND_HEARTBEAT)
 				player:AddBrokenHearts(-1)
 			end
+		end
+	elseif IsEnemyNear(player) then
+		if player:GetPlayerType() == LeahB and player.MaxFireDelay <= 40 then
+			data.LeahbPower = data.LeahbPower + 1
+			player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
+			player:EvaluateItems()
+		end
+		if game:GetFrameCount() % 30 == 0 and (player:GetPlayerType() == LeahB or player:HasCollectible(CollectibleType.COLLECTIBLE_SHATTERED_HEART)) then
+			SFXManager():Play(SoundEffect.SOUND_HEARTBEAT)
+			player:AddBrokenHearts(-1)
 		end
 	end
 end
@@ -312,6 +313,23 @@ function mod:ResetTaintedUnlock(cmd)
 		mod.Unlocks.Leah.Tainted = false
 		mod.Unlocks.Leah.FullCompletion = false
 		print("Leah has been reset.")
+	end
+	if string.lower(cmd) == "unlockallleah" then
+		mod.Unlocks.Leah.MomsHeart = true
+		mod.Unlocks.Leah.Isaac = true
+		mod.Unlocks.Leah.Satan = true
+		mod.Unlocks.Leah.BlueBaby = true
+		mod.Unlocks.Leah.Lamb = true
+		mod.Unlocks.Leah.BossRush = true
+		mod.Unlocks.Leah.Hush = true
+		mod.Unlocks.Leah.MegaSatan = true
+		mod.Unlocks.Leah.Delirium = true
+		mod.Unlocks.Leah.Mother = true
+		mod.Unlocks.Leah.Beast = true
+		mod.Unlocks.Leah.GreedMode = true
+		mod.Unlocks.Leah.Tainted = true
+		mod.Unlocks.Leah.FullCompletion = true
+		print("All Leah marks have been unlocked.")
 	end
 end
 mod:AddCallback(ModCallbacks.MC_EXECUTE_CMD, mod.ResetTaintedUnlock)
