@@ -88,7 +88,7 @@
 	<trinket id="1" name="Cringe" description="You're posting it" gfx="cringe.png" /> <!-- Concept by Freg! -->
 	<trinket id="2" name="Slick Worm" description="Sliiiick" gfx="slick_worm.png" /> <!-- Concept by Freg! -->
 	<trinket id="3" name="Grass" description="Go touch some" gfx="grass.png" /> <!-- Concept by Aeronaut! -->
-	<trinket id="4" name="Alabaster Scrap" description="FT" gfx="alabaster_scrap.png" />
+	<trinket id="4" cache="damage" name="Alabaster Scrap" description="FT" gfx="alabaster_scrap.png" />
 	<trinket id="5" name="Leah's Lock" description="No pain? no gain" gfx="leahs_lock.png" />
 	<trinket id="6" name="Abyssal Penny" description="Wealth of H2O" gfx="abyssal_penny.png" />
 	<trinket id="7" name="Saline Spray" description="Salty shots" gfx="saline_spray.png" />
@@ -98,7 +98,8 @@
 	<trinket id="11" name="Epitaph" description="You will remember this name." gfx="epitaph.png" />
 	<trinket id="12" name="Leviathan's Tendril" description="An instrument to control the waves" gfx="leviathans_tendril.png" tags="devil" />
 	<trinket id="13" name="Altruism" description="Blessing of charity" gfx="altruism.png" />
-	<trinket id="13" name="Nil Num" description="Q" gfx="nil_num.png" />
+	<trinket id="14" name="Nil Num" description="Q" gfx="nil_num.png" />
+	<trinket id="15" name="Key to the Pit" description="Unleash the great fire" gfx="key_to_the_pit.png" />
 
 	<!-- Familiars -->
 	<familiar id="35" name="Binds of Devotion" description="Bound by love" gfx="binds_of_devotion.png" quality="2" persistent="true" />
