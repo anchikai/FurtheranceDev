@@ -203,9 +203,7 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_TAB_KEY, "Полное отобр
 EID:addCollectible(CollectibleType.COLLECTIBLE_TAB_KEY, "Recibes todos los efectos de mapa al usarlo#Te teletransporta a la {{UltraSecretRoom}}Sala Últra Secreta#El camino de regreso consistirá en habitaciones rojas", "Tecla Tab", "spa")
 
 -- Heart Renovator
-EID:addCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, "{{BrokenHeart}} Removes 1 broken heart on use#↑ Grants +0.1 Damage up when removing a broken heart#Grants a counter that can be filled with red hearts#Holding the drop button will subtract 2 from the counter and give a broken heart", "Heart Renovator", "en_us")
-EID:addCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, "{{BrokenHeart}} Удаляет 1 сломанное сердце#↑ Даёт либо +0.25 к урону, либо +0.23 к скорострельности в текущей комнате#!!! Пассивно даёт 1 сломанное сердце за комнату", "Сердечный восстановитель", "ru")
-EID:addCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, "{{BrokenHeart}} Remueve un corazón roto#↑ Puede dar Daño +0.25 o Lágrimas +0.23 durante la habitación#!!! Otorga un corazón roto de forma pasiva por sala", "Renovador cardiaco", "spa")
+EID:addCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, "{{BrokenHeart}} Removes 1 broken heart on use#↑ Grants +0.1 Damage up when removing a broken heart#Grants a counter that can be filled with red hearts#double tapping the drop button will subtract 2 from the counter and give a broken heart", "Heart Renovator", "en_us")
 
 -- Grass
 EID:addTrinket(TrinketType.TRINKET_GRASS, "Starts a 1 hour timer#The trinket will be removed when timer ends and {{Collectible210}} Gnawed Leaf will spawn#!!! The timer will reset if the trinket is dropped", "Grass", "en_us")
