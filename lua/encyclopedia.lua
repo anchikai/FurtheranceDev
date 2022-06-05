@@ -536,14 +536,15 @@ local Wiki = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Upon use, a broken heart will be removed."},
+			{str = "Causes Isaac to slowly generate up to 11 broken hearts while held in rooms with enemies."},
+			{str = "Getting near enemies will cause you to rapidly lose broken hearts."},
 			{str = "Shots have a chance to charm enemies and make the player produce black slowing creep based off how many broken hearts you have."},
-			{str = "- Default chance is 25% with 0 broken hearts and goes up by 5% for each broken heart, with a maximum of 80% [11 broken hearts]."},
+			{str = "- Default chance is 25% with 0 broken hearts and goes up by 5% for each broken heart, with a maximum of 80% (11 broken hearts)."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
 			{str = "If the player has no broken hearts to remove, it will do nothing."},
-			{str = "This item will not appear in any item pools and can only be accessed by playing as Leah, using Spindown Dice, or finding it in Death Certificate."},
-			{str = "Shattered Heart can only be used infinitely by Tainted Leah. If other players attempt to use it, 1 broken heart will be removed and the item will vanish."},
+			{str = "This item will not appear in any item pools and can only be accessed by playing as Tainted Leah, using Spindown Dice, or finding it in Death Certificate."},
 		},
 	},
 	Grass = {
@@ -1373,6 +1374,7 @@ local Wiki = {
 			{str = "Her shots have a chance to charm enemies and make her produce black slowing creep based off how many broken hearts she has."},
 			{str = "- Default chance is 25% with 0 broken hearts and goes up by 5% for each broken heart, with a maximum of 80% [11 broken hearts]."},
 			{str = "When she is near an enemy, her tear rate will lower drastically and her broken hearts will steadily decrease to none. Once she is no longer near an enemy, her tear rate will go back up to where it was and her broken hearts will slowly increase back to 11."},
+			{str = "- You will only regenerate broken hearts if there are enemies present in the room."},
 			{str = "Tainted Leah's movement speed is dependent on how many broken hearts she has. Each broken heart is worth -0.05 speed."},
 			{str = "Tainted Leah cannot permanently remove broken hearts, with the exception of Birthright."},
 		},

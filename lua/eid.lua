@@ -185,9 +185,7 @@ EID:addTrinket(TrinketType.TRINKET_SLICK_WORM, "Слезы отскакиваю�
 EID:addTrinket(TrinketType.TRINKET_SLICK_WORM, "Las lágrimas rebotarán en las paredes hacia los enemigos", "Gusano resbaloso", "spa")
 
 -- Shattered Heart
-EID:addCollectible(CollectibleType.COLLECTIBLE_SHATTERED_HEART, "{{BrokenHeart}} Removes 1 broken heart", "Shattered Heart", "en_us")
-EID:addCollectible(CollectibleType.COLLECTIBLE_SHATTERED_HEART, "{{BrokenHeart}} Удаляет 1 сломанное сердце", "Разбитое сердце", "ru")
-EID:addCollectible(CollectibleType.COLLECTIBLE_SHATTERED_HEART, "{{BrokenHeart}} Remueve un corazón roto", "Corazón Destrozado", "spa")
+EID:addCollectible(CollectibleType.COLLECTIBLE_SHATTERED_HEART, "{{BrokenHeart}} Removes 1 broken heart#Slowly generate up to 11 {{BrokenHeart}} broken hearts while in a room with enemies#{{BrokenHeart}} will be rapidly removed while near enemies#Occasionally shoot charming shots and produce black slowing creep", "Shattered Heart", "en_us")
 
 -- Pharoh Cat
 EID:addCollectible(CollectibleType.COLLECTIBLE_PHARAOH_CAT, "↓ {{Tears}} -1.76 Tears down#Isaac shoots a pyramid formation of tears", "Pharaoh Cat", "en_us")
