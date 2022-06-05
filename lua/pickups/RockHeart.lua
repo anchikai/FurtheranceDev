@@ -265,7 +265,7 @@ function mod:MorphHeart(entityType, variant, subType, position, velocity, spawne
 		if subType == HeartSubType.HEART_ETERNAL or subType == HeartSubType.HEART_GOLDEN then
 			processedHearts[seed] = true
 			rng:SetSeed(seed, 1)
-			if rng:RandomFloat() <= 0.5 then
+			if rng:RandomFloat() <= 0.293 then
 				return { entityType, variant, HeartSubType.HEART_ROCK, seed }
 			end
 		end
