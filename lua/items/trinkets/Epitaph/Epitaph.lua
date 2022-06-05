@@ -4,7 +4,8 @@ local game = Game()
 mod:ShelvePlayerData({
     EpitaphStage = mod.SaveNil,
     EpitaphFirstPassiveItem = mod.SaveNil,
-    EpitaphLastPassiveItem = mod.SaveNil
+    EpitaphLastPassiveItem = mod.SaveNil,
+    RunCount = mod.SaveNil
 })
 
 mod:SavePlayerData({
@@ -82,6 +83,9 @@ function mod:PickupItem(player)
     if newItem then
         data.NewEpitaphLastPassiveItem = newItem
     end
+    if data.RunCount == nil then
+        data.RunCount = 0
+    end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.PickupItem)
 
@@ -126,6 +130,7 @@ function mod:EpitaphDied(entity)
         if player:HasTrinket(TrinketType.TRINKET_EPITAPH) then
             local level = game:GetLevel()
             data.EpitaphStage = level:GetStage()
+            data.RunCount = 0
         else
             data.EpitaphStage = nil
             data.EpitaphFirstPassiveItem = nil
@@ -153,22 +158,32 @@ function mod:DetectExplosion(bomb)
 end
 mod:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, mod.DetectExplosion)
 
---[[mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
+function mod:ResetEpitaph(continued)
+    for i = 0, game:GetNumPlayers() - 1 do
+        local player = Isaac.GetPlayer(i)
+        local data = mod:GetData(player)
+        if continued == false then
+            if data.RunCount == nil then
+                data.RunCount = 0
+            elseif data.EpitaphStage ~= nil then
+                data.RunCount = data.RunCount + 1
+            end
+            if data.RunCount >= 2 and data.EpitaphStage ~= nil then
+                data.RunCount = 0
+                data.EpitaphStage = nil
+            end
+        end
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.ResetEpitaph)
+
+mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
         local f = Font()
-        local bruh
-        if data.EpitaphStage ~= -1 then
-            bruh = "Yes"
-        else
-            bruh = "No"
-        end
         f:Load("font/pftempestasevencondensed.fnt")
-        f:DrawString("Stage you died on: ", 75, 250, KColor(1, 1, 1, 1), 0, true)
-        f:DrawString(data.EpitaphStage, 146+25, 250, KColor(1, 1, 1, 1), 0, true)
-        f:DrawString("Died with Epitaph? ", 75, 240, KColor(1, 1, 1, 1), 0, true)
-        f:DrawString(bruh, 148+25, 240, KColor(1, 1, 1, 1), 0, true)
+        f:DrawString("Run Count: ", 75, 250, KColor(1, 1, 1, 1), 0, true)
+        f:DrawString(data.RunCount, 146+25, 250, KColor(1, 1, 1, 1), 0, true)
 	end
 end)
-]]
