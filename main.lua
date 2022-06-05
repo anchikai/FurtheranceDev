@@ -11,12 +11,12 @@ Furtherance.FlipSpeed = 1
 mod.isLoadingData = false
 
 -- Characters
-LeahA = Isaac.GetPlayerTypeByName("Leah", false)
-LeahB = Isaac.GetPlayerTypeByName("Leah", true)
-PeterA = Isaac.GetPlayerTypeByName("Peter", false)
-PeterB = Isaac.GetPlayerTypeByName("Peter", true)
-MiriamA = Isaac.GetPlayerTypeByName("Miriam", false)
-MiriamB = Isaac.GetPlayerTypeByName("Miriam", true)
+PlayerType.PLAYER_LEAH = Isaac.GetPlayerTypeByName("Leah", false)
+PlayerType.PLAYER_LEAH_B = Isaac.GetPlayerTypeByName("Leah", true)
+PlayerType.PLAYER_PETER = Isaac.GetPlayerTypeByName("Peter", false)
+PlayerType.PLAYER_PETER_B = Isaac.GetPlayerTypeByName("Peter", true)
+PlayerType.PLAYER_MIRIAM = Isaac.GetPlayerTypeByName("Miriam", false)
+PlayerType.PLAYER_MIRIAM_B = Isaac.GetPlayerTypeByName("Miriam", true)
 
 -- Collectibles
 CollectibleType.COLLECTIBLE_TECH_IX = Isaac.GetItemIdByName("Tech IX")
@@ -302,16 +302,16 @@ end
 if Poglite then
 	-- Leah
 	local LeahCostumeA = Isaac.GetCostumeIdByPath("gfx/characters/Character_001_Leah_Pog.anm2")
-	Poglite:AddPogCostume("LeahPog", LeahA, LeahCostumeA)
+	Poglite:AddPogCostume("LeahPog", PlayerType.PLAYER_LEAH, LeahCostumeA)
 	-- Tainted Leah
 	local LeahCostumeB = Isaac.GetCostumeIdByPath("gfx/characters/Character_001b_Leah_Pog.anm2")
-	Poglite:AddPogCostume("LeahBPog", LeahB, LeahCostumeB)
+	Poglite:AddPogCostume("LeahBPog", PlayerType.PLAYER_LEAH_B, LeahCostumeB)
 	-- Tainted Peter
-	local PeterCostumeA = Isaac.GetCostumeIdByPath("gfx/characters/Character_002b_Peter_Pog.anm2")
-	Poglite:AddPogCostume("PeterBPog", PeterB, PeterCostumeA)
+	local PeterCostumeB = Isaac.GetCostumeIdByPath("gfx/characters/Character_002b_Peter_Pog.anm2")
+	Poglite:AddPogCostume("PeterBPog", PlayerType.PLAYER_PETER_B, PeterCostumeB)
 	-- Miriam
 	local MiriamCostumeA = Isaac.GetCostumeIdByPath("gfx/characters/Character_003_Miriam_Pog.anm2")
-	Poglite:AddPogCostume("MiriamPog", MiriamA, MiriamCostumeA)
+	Poglite:AddPogCostume("MiriamPog", PlayerType.PLAYER_MIRIAM, MiriamCostumeA)
 end
 
 if MiniMapiItemsAPI then

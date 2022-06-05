@@ -23,10 +23,10 @@ end
 function mod:OnInit(player)
 	if mod.IsContinued then return end
 
-	if player:GetPlayerType() == LeahA then -- If the player is Leah it will apply her hair
+	if player:GetPlayerType() == PlayerType.PLAYER_LEAH then -- If the player is Leah it will apply her hair
 		player:AddNullCostume(COSTUME_LEAH_A_HAIR)
 		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, ActiveSlot.SLOT_POCKET, false)
-	elseif player:GetPlayerType() == LeahB then -- Apply different hair for her tainted variant
+	elseif player:GetPlayerType() == PlayerType.PLAYER_LEAH_B then -- Apply different hair for her tainted variant
 		player:AddNullCostume(COSTUME_LEAH_B_HAIR)
 		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_SHATTERED_HEART, ActiveSlot.SLOT_POCKET, false)
 	end
@@ -36,7 +36,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
 function mod:OnUpdate(player)
 	local room = game:GetRoom()
 	local data = mod:GetData(player)
-	if player:GetPlayerType() == LeahB then
+	if player:GetPlayerType() == PlayerType.PLAYER_LEAH_B then
 		if data.LeahbPower < 0 then
 			data.LeahbPower = 0
 		end
@@ -61,13 +61,13 @@ function mod:OnUpdate(player)
 			player:EvaluateItems()
 		end
 	end
-	if IsEnemyNear(player) ~= true and ((player:GetPlayerType() == LeahB and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) ~= true)
+	if IsEnemyNear(player) ~= true and ((player:GetPlayerType() == PlayerType.PLAYER_LEAH_B and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) ~= true)
 	or player:HasCollectible(CollectibleType.COLLECTIBLE_SHATTERED_HEART)) and player:GetBrokenHearts() ~= 11 and room:GetAliveEnemiesCount() > 0 then
 		if game:GetFrameCount() % 120 == 0 then
 			SFXManager():Play(bhb)
 			player:AddBrokenHearts(1)
 		end
-	elseif player:GetPlayerType() == LeahB and IsEnemyNear(player) ~= true and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and room:GetAliveEnemiesCount() > 0 then
+	elseif player:GetPlayerType() == PlayerType.PLAYER_LEAH_B and IsEnemyNear(player) ~= true and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and room:GetAliveEnemiesCount() > 0 then
 		if game:GetFrameCount() % 120 == 0 then
 			if player:GetBrokenHearts() < 6 then
 				SFXManager():Play(bhb)
@@ -78,12 +78,12 @@ function mod:OnUpdate(player)
 			end
 		end
 	elseif IsEnemyNear(player) then
-		if player:GetPlayerType() == LeahB and player.MaxFireDelay <= 40 then
+		if player:GetPlayerType() == PlayerType.PLAYER_LEAH_B and player.MaxFireDelay <= 40 then
 			data.LeahbPower = data.LeahbPower + 1
 			player:AddCacheFlags(CacheFlag.CACHE_FIREDELAY)
 			player:EvaluateItems()
 		end
-		if game:GetFrameCount() % 30 == 0 and (player:GetPlayerType() == LeahB or player:HasCollectible(CollectibleType.COLLECTIBLE_SHATTERED_HEART)) then
+		if game:GetFrameCount() % 30 == 0 and (player:GetPlayerType() == PlayerType.PLAYER_LEAH_B or player:HasCollectible(CollectibleType.COLLECTIBLE_SHATTERED_HEART)) then
 			SFXManager():Play(SoundEffect.SOUND_HEARTBEAT)
 			player:AddBrokenHearts(-1)
 		end
@@ -94,7 +94,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.OnUpdate)
 function mod:Hearts(entity, collider)
 	if collider.Type == EntityType.ENTITY_PLAYER then
 		local player = collider:ToPlayer()
-		if player:GetPlayerType() == LeahB then -- Prevent Tainted Leah from obtaining Red Health
+		if player:GetPlayerType() == PlayerType.PLAYER_LEAH_B then -- Prevent Tainted Leah from obtaining Red Health
 			if entity.SubType == HeartSubType.HEART_DOUBLEPACK or entity.SubType == HeartSubType.HEART_FULL or entity.SubType == HeartSubType.HEART_HALF
 				or entity.SubType == HeartSubType.HEART_ROTTEN or entity.SubType == HeartSubType.HEART_SCARED then
 				return false
@@ -114,7 +114,7 @@ mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.Hearts, PickupVariant.
 
 function mod:leahStats(player, flag)
 	local data = mod:GetData(player)
-	if player:GetPlayerType() == LeahA then -- If the player is Leah it will apply her stats
+	if player:GetPlayerType() == PlayerType.PLAYER_LEAH then -- If the player is Leah it will apply her stats
 		if flag == CacheFlag.CACHE_FIREDELAY then
 			player.MaxFireDelay = player.MaxFireDelay + 1
 		end
@@ -128,7 +128,7 @@ function mod:leahStats(player, flag)
 				player.TearRange = 640
 			end
 		end
-	elseif player:GetPlayerType() == LeahB then -- If the player is Tainted Leah it will apply her stats
+	elseif player:GetPlayerType() == PlayerType.PLAYER_LEAH_B then -- If the player is Tainted Leah it will apply her stats
 		if flag == CacheFlag.CACHE_FIREDELAY then
 			player.MaxFireDelay = player.MaxFireDelay / 2.5
 			if data.LeahbPower == nil then
@@ -176,7 +176,7 @@ function mod:LeahKill(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
-		if player:GetPlayerType() == LeahA then
+		if player:GetPlayerType() == PlayerType.PLAYER_LEAH then
 			if rng:RandomFloat() <= 0.0625 then
 				Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_SCARED, entity.Position, Vector.Zero, player)
 			end
@@ -215,7 +215,7 @@ function mod:LeahbBrokenTears(tear)
 		else
 			data.brokentears = false
 		end
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and player:GetName() == "LeahB" then -- +20% Chance if you have Birthright
+		if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and player:GetName() == "PlayerType.PLAYER_LEAH_B" then -- +20% Chance if you have Birthright
 			if brokenRoll <= (player:GetBrokenHearts() * 5 + 45) then
 				data.brokentears = true
 				tear.Color = Color(1, 0.588, 0.686, 1, 0, 0, 0)
@@ -232,9 +232,9 @@ mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.LeahbBrokenTears)
 function mod:ClickerFix(_, _, player)
 	player:TryRemoveNullCostume(COSTUME_LEAH_A_HAIR)
 	player:TryRemoveNullCostume(COSTUME_LEAH_B_HAIR)
-	if player:GetPlayerType() == LeahA then
+	if player:GetPlayerType() == PlayerType.PLAYER_LEAH then
 		player:AddNullCostume(COSTUME_LEAH_A_HAIR)
-	elseif player:GetPlayerType() == LeahB then
+	elseif player:GetPlayerType() == PlayerType.PLAYER_LEAH_B then
 		player:AddNullCostume(COSTUME_LEAH_B_HAIR)
 	end
 end
@@ -247,16 +247,16 @@ function mod:TaintedLeahHome()
 	local room = game:GetRoom()
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		if player:GetPlayerType() == LeahA and level:GetCurrentRoomIndex() == 94 and level:GetStage() == LevelStage.STAGE8 and mod.Unlocks.Leah.Tainted ~= true  then
+		if player:GetPlayerType() == PlayerType.PLAYER_LEAH and level:GetCurrentRoomIndex() == 94 and level:GetStage() == LevelStage.STAGE8 and mod.Unlocks.Leah.Tainted ~= true  then
 			local RememberPocket = player:GetActiveCharge(ActiveSlot.SLOT_POCKET)
 			for _, entity in ipairs(Isaac.GetRoomEntities()) do
 				if (((entity.Type == EntityType.ENTITY_PICKUP and entity.Variant == PickupVariant.PICKUP_COLLECTIBLE)
 				or (entity.Type == EntityType.ENTITY_SHOPKEEPER)) and room:IsFirstVisit())
 				or (entity.Type == EntityType.ENTITY_SLOT and entity.Variant == 14) then
 					entity:Remove()
-					player:ChangePlayerType(LeahB)
+					player:ChangePlayerType(PlayerType.PLAYER_LEAH_B)
 					Isaac.Spawn(EntityType.ENTITY_SLOT, 14, 0, entity.Position, Vector.Zero, nil)
-					player:ChangePlayerType(LeahA)
+					player:ChangePlayerType(PlayerType.PLAYER_LEAH)
 					player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, ActiveSlot.SLOT_POCKET, false)
 					player:SetActiveCharge(RememberPocket, ActiveSlot.SLOT_POCKET)
 				end
@@ -267,7 +267,7 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.TaintedLeahHome)
 
 function mod:UnlockTaintedLeah(player)
-	if player:GetPlayerType() ~= LeahA or mod.Unlocks.Leah.Tainted then return end
+	if player:GetPlayerType() ~= PlayerType.PLAYER_LEAH or mod.Unlocks.Leah.Tainted then return end
 
 	for _, entity in ipairs(Isaac.FindByType(EntityType.ENTITY_SLOT, 14)) do
 		local sprite = entity:GetSprite()

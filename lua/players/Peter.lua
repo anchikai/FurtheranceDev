@@ -8,7 +8,7 @@ COSTUME_PETER_B_DRIP = Isaac.GetCostumeIdByPath("gfx/characters/Character_002b_P
 function mod:OnInit(player)
 	if mod.IsContinued then return end
 
-	if player:GetPlayerType() == PeterA then -- If the player is Peter it will apply his drip
+	if player:GetPlayerType() == PlayerType.PLAYER_PETER then -- If the player is Peter it will apply his drip
 		player:AddNullCostume(COSTUME_PETER_A_DRIP)
 		player:AddTrinket(TrinketType.TRINKET_ALABASTER_SCRAP, true)
 		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, ActiveSlot.SLOT_POCKET, false)
@@ -29,7 +29,7 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.PeterUpdate)
 
 function mod:PeterStats(player, flag)
-	if player:GetPlayerType() == PeterA then
+	if player:GetPlayerType() == PlayerType.PLAYER_PETER then
 		if flag == CacheFlag.CACHE_SPEED then
 			player.MoveSpeed = player.MoveSpeed - 0.25
 		end
@@ -106,7 +106,7 @@ mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.BloodyTears)
 function mod:ClickerFix(_, _, player)
 	player:TryRemoveNullCostume(COSTUME_PETER_A_DRIP)
 	player:TryRemoveNullCostume(COSTUME_PETER_B_DRIP)
-	if player:GetPlayerType() == PeterA then
+	if player:GetPlayerType() == PlayerType.PLAYER_PETER then
 		player:AddNullCostume(COSTUME_PETER_A_DRIP)
 	elseif player:GetPlayerType() == PeterB then
 		player:AddNullCostume(COSTUME_PETER_B_DRIP)
@@ -120,7 +120,7 @@ function mod:TaintedPeterHome()
 	local room = game:GetRoom()
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		if player:GetPlayerType() == PeterA and level:GetCurrentRoomIndex() == 94 and level:GetStage() == LevelStage.STAGE8 and mod.Unlocks.Peter.Tainted ~= true then
+		if player:GetPlayerType() == PlayerType.PLAYER_PETER and level:GetCurrentRoomIndex() == 94 and level:GetStage() == LevelStage.STAGE8 and mod.Unlocks.Peter.Tainted ~= true then
 			local RememberPocket = player:GetActiveCharge(ActiveSlot.SLOT_POCKET)
 			for _, entity in ipairs(Isaac.GetRoomEntities()) do
 				if (((entity.Type == EntityType.ENTITY_PICKUP and entity.Variant == PickupVariant.PICKUP_COLLECTIBLE)
@@ -129,7 +129,7 @@ function mod:TaintedPeterHome()
 					entity:Remove()
 					player:ChangePlayerType(PeterB)
 					Isaac.Spawn(EntityType.ENTITY_SLOT, 14, 0, entity.Position, Vector.Zero, nil)
-					player:ChangePlayerType(PeterA)
+					player:ChangePlayerType(PlayerType.PLAYER_PETER)
 					player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, ActiveSlot.SLOT_POCKET, false)
 					player:SetActiveCharge(RememberPocket, ActiveSlot.SLOT_POCKET)
 				end
@@ -140,7 +140,7 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.TaintedPeterHome)
 
 function mod:UnlockTaintedPeter(player)
-	if player:GetPlayerType() ~= PeterA or mod.Unlocks.Peter.Tainted then return end
+	if player:GetPlayerType() ~= PlayerType.PLAYER_PETER or mod.Unlocks.Peter.Tainted then return end
 
 	for _, entity in ipairs(Isaac.FindByType(EntityType.ENTITY_SLOT, 14)) do
 		local sprite = entity:GetSprite()

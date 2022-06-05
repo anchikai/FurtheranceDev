@@ -13,18 +13,18 @@ COSTUME_MIRIAM_B_HAIR = Isaac.GetCostumeIdByPath("gfx/characters/Character_003b_
 
 function mod:OnInit(player)
 	local data = mod:GetData(player)
-	if player:GetPlayerType() == MiriamA then
+	if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then
 		data.MiriamRiftTimeout = 0
 		data.MiriamAOE = 1
 	end
 
 	if mod.IsContinued then return end
 
-	if player:GetPlayerType() == MiriamA then -- If the player is Miriam it will apply her hair
+	if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then -- If the player is Miriam it will apply her hair
 		data.MiriamTearCount = 0
 		player:AddNullCostume(COSTUME_MIRIAM_A_HAIR)
 		player:AddCollectible(CollectibleType.COLLECTIBLE_TAMBOURINE, 0, true, ActiveSlot.SLOT_PRIMARY, 0)
-	elseif player:GetPlayerType() == MiriamB then -- Apply different hair for her tainted variant
+	elseif player:GetPlayerType() == PlayerType.PLAYER_MIRIAM_B then -- Apply different hair for her tainted variant
 		player:AddBoneHearts(2)
 		player:AddHearts(4)
 		player:AddNullCostume(COSTUME_MIRIAM_B_HAIR)
@@ -35,7 +35,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
 
 function mod:OnUpdate(player)
 	local data = mod:GetData(player)
-	if player:GetPlayerType() == MiriamA then
+	if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then
 		if data.MiriamRiftTimeout == nil then return end
 		if data.MiriamRiftTimeout > -1 then
 			data.MiriamRiftTimeout = data.MiriamRiftTimeout - 1
@@ -54,7 +54,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.OnUpdate)
 function mod:PuddleRift(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		if player:GetPlayerType() == MiriamA then
+		if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then
 			if entity.Type == EntityType.ENTITY_TEAR then
 				local data = mod:GetData(player)
 				if data.MiriamTearCount == 12 then
@@ -72,7 +72,7 @@ mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, mod.PuddleRift)
 function mod:tearCounter(tear)
 	local player = tear.Parent:ToPlayer()
 	local data = mod:GetData(player)
-	if player:GetPlayerType() == MiriamA then
+	if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then
 		if data.MiriamTearCount > 11 then
 			data.MiriamTearCount = 0
 		end
@@ -83,7 +83,7 @@ mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.tearCounter)
 
 function mod:miriamStats(player, flag)
 	local data = mod:GetData(player)
-	if player:GetPlayerType() == MiriamA then -- If the player is Miriam it will apply her stats
+	if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then -- If the player is Miriam it will apply her stats
 		if flag == CacheFlag.CACHE_SPEED then
 			player.MoveSpeed = player.MoveSpeed + 0.25
 		end
@@ -106,7 +106,7 @@ function mod:miriamStats(player, flag)
 				player.TearRange = 200
 			end
 		end
-	elseif player:GetPlayerType() == MiriamB then -- If the player is Tainted Miriam it will apply her stats
+	elseif player:GetPlayerType() == PlayerType.PLAYER_MIRIAM_B then -- If the player is Tainted Miriam it will apply her stats
 		if flag == CacheFlag.CACHE_DAMAGE then
 			player.Damage = player.Damage + 0.5
 		end
@@ -120,9 +120,9 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.miriamStats)
 function mod:ClickerFix(_, _, player)
 	player:TryRemoveNullCostume(COSTUME_MIRIAM_A_HAIR)
 	player:TryRemoveNullCostume(COSTUME_MIRIAM_B_HAIR)
-	if player:GetPlayerType() == MiriamA then
+	if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then
 		player:AddNullCostume(COSTUME_MIRIAM_A_HAIR)
-	elseif player:GetPlayerType() == MiriamB then
+	elseif player:GetPlayerType() == PlayerType.PLAYER_MIRIAM_B then
 		player:AddNullCostume(COSTUME_MIRIAM_B_HAIR)
 	end
 end
@@ -135,15 +135,15 @@ function mod:TaintedMiriamHome()
 	local room = game:GetRoom()
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		if player:GetPlayerType() == MiriamA and level:GetCurrentRoomIndex() == 94 and level:GetStage() == LevelStage.STAGE8 and mod.Unlocks.Miriam.Tainted ~= true  then
+		if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM and level:GetCurrentRoomIndex() == 94 and level:GetStage() == LevelStage.STAGE8 and mod.Unlocks.Miriam.Tainted ~= true  then
 			for _, entity in ipairs(Isaac.GetRoomEntities()) do
 				if (((entity.Type == EntityType.ENTITY_PICKUP and entity.Variant == PickupVariant.PICKUP_COLLECTIBLE)
 				or (entity.Type == EntityType.ENTITY_SHOPKEEPER)) and room:IsFirstVisit())
 				or (entity.Type == EntityType.ENTITY_SLOT and entity.Variant == 14) then
 					entity:Remove()
-					player:ChangePlayerType(MiriamB)
+					player:ChangePlayerType(PlayerType.PLAYER_MIRIAM_B)
 					Isaac.Spawn(EntityType.ENTITY_SLOT, 14, 0, entity.Position, Vector.Zero, nil)
-					player:ChangePlayerType(MiriamA)
+					player:ChangePlayerType(PlayerType.PLAYER_MIRIAM)
 				end
 			end
 		end
@@ -152,7 +152,7 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.TaintedMiriamHome)
 
 function mod:UnlockTaintedMiriam(player)
-	if player:GetPlayerType() ~= MiriamA or mod.Unlocks.Miriam.Tainted then return end
+	if player:GetPlayerType() ~= PlayerType.PLAYER_MIRIAM or mod.Unlocks.Miriam.Tainted then return end
 
 	for _, entity in ipairs(Isaac.FindByType(EntityType.ENTITY_SLOT, 14)) do
 		local sprite = entity:GetSprite()

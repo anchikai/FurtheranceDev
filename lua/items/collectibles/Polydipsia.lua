@@ -3,13 +3,13 @@ local game = Game()
 local rng = RNG()
 
 function mod:GetPolydipsia(player, cacheFlag)
-	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA)) or player:GetPlayerType() == MiriamA then
+	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA)) or player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then
 		if cacheFlag == CacheFlag.CACHE_RANGE then
 			player.TearFallingSpeed = player.TearFallingSpeed + 20
             player.TearFallingAcceleration = player.TearFallingAcceleration + 1
 		end
 		if cacheFlag == CacheFlag.CACHE_FIREDELAY then
-			if player:GetPlayerType() ~= MiriamA then
+			if player:GetPlayerType() ~= PlayerType.PLAYER_MIRIAM then
 				player.MaxFireDelay = (player.MaxFireDelay * 2) + 10
 			end
 		end
@@ -19,19 +19,19 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetPolydipsia)
 
 function mod:PuddleMagik(player)
 	local data = mod:GetData(player)
-	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA)) or player:GetPlayerType() == MiriamA then
+	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA)) or player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then
 		for i, entity in ipairs(Isaac.GetRoomEntities()) do
 			if entity.Type == EntityType.ENTITY_TEAR then
 				if entity:IsDead() then
 					local puddle = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PLAYER_CREEP_HOLYWATER_TRAIL, 1, entity.Position, Vector.Zero, player):ToEffect()
-					if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA)) and player:GetPlayerType() == MiriamA then
+					if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA)) and player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then
 						if entity.SubType == 0 then
 							PolyMiriam = player:FireTear(entity.Position, entity.Velocity, true, true, false, entity, 1)
 							PolyMiriam.SubType = 1
 						end
 					end
 					puddle.CollisionDamage = player.Damage * 0.33
-					if player:GetPlayerType() == MiriamA then
+					if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then
 						if data.MiriamTearCount > 11 then
 							puddle.Scale = 1.75
 						else
@@ -47,7 +47,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.PuddleMagik)
 
 function mod:polydipsiaTear(tear)
     local player = tear.Parent:ToPlayer()
-	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA)) or player:GetPlayerType() == MiriamA then
+	if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA)) or player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then
 		tear.Scale = tear.Scale * 1.4
 		tear:AddTearFlags(TearFlags.TEAR_KNOCKBACK)
 		tear:SetKnockbackMultiplier(tear.KnockbackMultiplier*2)

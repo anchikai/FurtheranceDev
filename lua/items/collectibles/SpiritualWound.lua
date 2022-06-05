@@ -13,7 +13,7 @@ local function pureLerp(vector1, vector2, alpha)
 end
 
 local function hasItem(player)
-	return player ~= nil and (player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND) or player:GetPlayerType() == MiriamB)
+	return player ~= nil and (player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND) or player:GetPlayerType() == PlayerType.PLAYER_MIRIAM_B)
 end
 
 local function setCanShoot(player, canShoot) -- Funciton Credit: im_tem

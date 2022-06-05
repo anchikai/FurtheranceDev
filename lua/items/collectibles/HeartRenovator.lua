@@ -10,7 +10,7 @@ function mod:LeahHeartCount(isContinued)
 	if isContinued then return end
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		if player:GetPlayerType() == LeahA then
+		if player:GetPlayerType() == PlayerType.PLAYER_LEAH then
 			mod:GetData(player).HeartCount = 2
 		end
 	end
@@ -97,7 +97,7 @@ mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.Hearts, PickupVariant.
 function mod:RenovatorDmg(player, flag)
 	local data = mod:GetData(player)
 	if flag == CacheFlag.CACHE_DAMAGE then
-		if player:GetPlayerType() == LeahA and player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+		if player:GetPlayerType() == PlayerType.PLAYER_LEAH and player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 			player.Damage = player.Damage + data.RenovatorDamage * 0.2
 		elseif player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) then
 			player.Damage = player.Damage + data.RenovatorDamage * 0.1

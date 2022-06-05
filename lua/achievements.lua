@@ -205,9 +205,9 @@ local function GetPlayerAchievements(player)
 	local ptype = player:GetPlayerType()
 	local name = player:GetName()
 	local isTainted = nil
-	if ptype == LeahA or ptype == PeterA or ptype == MiriamA then
+	if ptype == PlayerType.PLAYER_LEAH or ptype == PlayerType.PLAYER_PETER or ptype == PlayerType.PLAYER_MIRIAM then
 		isTainted = false
-	elseif ptype == LeahB or ptype == PeterB or ptype == MiriamB then
+	elseif ptype == PlayerType.PLAYER_LEAH_B or ptype == PlayerType.PLAYER_PETER_B or ptype == PlayerType.PLAYER_MIRIAM_B then
 		isTainted = true
 	end
 	if isTainted ~= nil then
@@ -224,9 +224,9 @@ end
 function mod:NoMovement(entity, hook, button)
 	if entity ~= nil and entity.Type == EntityType.ENTITY_PLAYER and not entity:IsDead() and hook == InputHook.GET_ACTION_VALUE then
 		local player = entity:ToPlayer()
-		if ((mod.Unlocks.Leah.Tainted == false and player:GetPlayerType() == LeahB)
-		or (mod.Unlocks.Peter.Tainted == false and player:GetPlayerType() == PeterB)
-		or (mod.Unlocks.Miriam.Tainted == false and player:GetPlayerType() == MiriamB))
+		if ((mod.Unlocks.Leah.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_LEAH_B)
+		or (mod.Unlocks.Peter.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_PETER_B)
+		or (mod.Unlocks.Miriam.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_MIRIAM_B))
 		and mod:CantMove(player) then
 			if button == ButtonAction.ACTION_LEFT then
 				return 0
@@ -247,9 +247,9 @@ end
 mod:AddCallback(ModCallbacks.MC_INPUT_ACTION, mod.NoMovement, 2)
 
 function mod:FuckYou(player, flag)
-	if (mod.Unlocks.Leah.Tainted == false and player:GetPlayerType() == LeahB)
-	or (mod.Unlocks.Peter.Tainted == false and player:GetPlayerType() == PeterB)
-	or (mod.Unlocks.Miriam.Tainted == false and player:GetPlayerType() == MiriamB) then
+	if (mod.Unlocks.Leah.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_LEAH_B)
+	or (mod.Unlocks.Peter.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_PETER_B)
+	or (mod.Unlocks.Miriam.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_MIRIAM_B) then
 		player.SpriteScale = Vector.Zero
 	end
 end
@@ -261,9 +261,9 @@ function mod:StartUnlocks()
 	for p = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(p)
 		-- Tainted Stuff
-		if (mod.Unlocks.Leah.Tainted == false and player:GetPlayerType() == LeahB)
-		or (mod.Unlocks.Peter.Tainted == false and player:GetPlayerType() == PeterB)
-		or (mod.Unlocks.Miriam.Tainted == false and player:GetPlayerType() == MiriamB) then
+		if (mod.Unlocks.Leah.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_LEAH_B)
+		or (mod.Unlocks.Peter.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_PETER_B)
+		or (mod.Unlocks.Miriam.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_MIRIAM_B) then
 			Isaac.ExecuteCommand("stage 13")
 			level:MakeRedRoomDoor(95, DoorSlot.LEFT0)
 			level:ChangeRoom(94)

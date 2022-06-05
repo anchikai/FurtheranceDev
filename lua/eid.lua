@@ -11,24 +11,24 @@ EID:setModIndicatorIcon("Furtherance Icon")
 -- Birthright Icons
 PlayerIconSprite = Sprite()
 PlayerIconSprite:Load("gfx/ui/eid_players_icon.anm2", true)
-EID:addIcon("Player"..LeahA, "Leah", 0, 12, 12, -1, 1, PlayerIconSprite)
-EID:addIcon("Player"..LeahB, "LeahB", 0, 12, 12, -1, 1, PlayerIconSprite)
-EID:addIcon("Player"..PeterA, "Peter", 0, 12, 12, -1, 1, PlayerIconSprite)
-EID:addIcon("Player"..PeterB, "PeterB", 0, 12, 12, -1, 1, PlayerIconSprite)
+EID:addIcon("Player"..PlayerType.PLAYER_LEAH, "Leah", 0, 12, 12, -1, 1, PlayerIconSprite)
+EID:addIcon("Player"..PlayerType.PLAYER_LEAH_B, "LeahB", 0, 12, 12, -1, 1, PlayerIconSprite)
+EID:addIcon("Player"..PlayerType.PLAYER_PETER, "Peter", 0, 12, 12, -1, 1, PlayerIconSprite)
+EID:addIcon("Player"..PlayerType.PLAYER_PETER_B, "PeterB", 0, 12, 12, -1, 1, PlayerIconSprite)
 
 -- Leah
-EID:addBirthright(LeahA, "↑ Heart counter now caps at 999#{{BrokenHeart}} A broken heart will be removed every 20 kills#It will grant damage half as effective as Heart Renovator", "Leah", "en_us")
+EID:addBirthright(PlayerType.PLAYER_LEAH, "↑ Heart counter now caps at 999#{{BrokenHeart}} A broken heart will be removed every 20 kills#It will grant damage half as effective as Heart Renovator", "Leah", "en_us")
 
 -- Tainted Leah
-EID:addBirthright(LeahB, "Tainted Leah will no longer constantly refill back to {{BrokenHeart}} 11 broken hearts#She will instead refill to only 6#She will gain 0.05 speed for every broken heart instead of lose#↑ +20% chance to charm enemies", "Tainted Leah", "en_us")
-EID:addBirthright(LeahB, "{{BrokenHeart}} Сломанные серда Порченой Лии больше не будет постоянно пополняться до 11, вместо этого они будет пополняться только до 6#↑ {{Speed}} +0.05 к скорости за каждое разбитое сердце вместо потери#↑ +20% шанс очаровать врагов", "Порченая Лия", "ru")
-EID:addBirthright(LeahB, "Leah contaminada ya no recibirá {{BrokenHeart}} 11 corazones rotos, en cambio sólo tendrá 6#↑ {{Speed}} Velocidad +0.05 por cada corazón roto que posea#20% de posibilidad de encantar enemigos", "Leah Contaminada", "spa")
+EID:addBirthright(PlayerType.PLAYER_LEAH_B, "Tainted Leah will no longer constantly refill back to {{BrokenHeart}} 11 broken hearts#She will instead refill to only 6#She will gain 0.05 speed for every broken heart instead of lose#↑ +20% chance to charm enemies", "Tainted Leah", "en_us")
+EID:addBirthright(PlayerType.PLAYER_LEAH_B, "{{BrokenHeart}} Сломанные серда Порченой Лии больше не будет постоянно пополняться до 11, вместо этого они будет пополняться только до 6#↑ {{Speed}} +0.05 к скорости за каждое разбитое сердце вместо потери#↑ +20% шанс очаровать врагов", "Порченая Лия", "ru")
+EID:addBirthright(PlayerType.PLAYER_LEAH_B, "Leah contaminada ya no recibirá {{BrokenHeart}} 11 corazones rotos, en cambio sólo tendrá 6#↑ {{Speed}} Velocidad +0.05 por cada corazón roto que posea#20% de posibilidad de encantar enemigos", "Leah Contaminada", "spa")
 
 -- Peter
-EID:addBirthright(PeterA, "↑ Peter's spare timer is now 15 seconds instead of 30#↑ Sparing bosses now grants 3 permanent stats instead of 2", "Peter", "en_us")
+EID:addBirthright(PlayerType.PLAYER_PETER, "↑ Peter's spare timer is now 15 seconds instead of 30#↑ Sparing bosses now grants 3 permanent stats instead of 2", "Peter", "en_us")
 
 -- Tainted Peter
-EID:addBirthright(PeterB, "↑ Bleeding while flipped takes 14 seconds instead of 7", "Tainted Peter", "en_us")
+EID:addBirthright(PlayerType.PLAYER_PETER_B, "↑ Bleeding while flipped takes 14 seconds instead of 7", "Tainted Peter", "en_us")
 
 --Esc Key
 EID:addCollectible(CollectibleType.COLLECTIBLE_ESC_KEY, "If player has fewer than 6 hearts, heals them with combination of red and soul hearts#Teleports you out of the room", "Esc Key")

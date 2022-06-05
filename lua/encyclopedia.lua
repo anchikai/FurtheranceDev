@@ -2625,7 +2625,7 @@ Encyclopedia.AddPill({
 Encyclopedia.AddCharacter({
     ModName = "Furtherance",
     Name = "Leah",
-    ID = Isaac.GetPlayerTypeByName("Leah", false),
+    ID = PlayerType.PLAYER_LEAH,
 	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraits.anm2", "Leah", 0),
 	WikiDesc = Wiki.Leah,
 })
@@ -2634,7 +2634,7 @@ Encyclopedia.AddCharacterTainted({
     ModName = "Furtherance",
     Name = "Leah",
     Description = "The Unloved",
-    ID = Isaac.GetPlayerTypeByName("LeahB", true),
+    ID = PlayerType.PLAYER_LEAH_B,
 	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "Leah", 0, mod.path .. "content-dlc3/gfx/charactermenu_leahb.png"),
 	WikiDesc = Wiki.TaintedLeah,
 })
@@ -2642,7 +2642,7 @@ Encyclopedia.AddCharacterTainted({
 Encyclopedia.AddCharacter({
     ModName = "Furtherance",
     Name = "Peter",
-    ID = Isaac.GetPlayerTypeByName("Peter", false),
+    ID = PlayerType.PLAYER_PETER,
 	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraits.anm2", "Peter", 0),
 	WikiDesc = Wiki.Peter,
 })
@@ -2651,7 +2651,7 @@ Encyclopedia.AddCharacterTainted({
     ModName = "Furtherance",
     Name = "Peter",
     Description = "The Martyr",
-    ID = Isaac.GetPlayerTypeByName("PeterB", true),
+    ID = PlayerType.PLAYER_PETER_B,
 	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "Peter", 0, mod.path .. "content-dlc3/gfx/charactermenu_peterb.png"),
 	WikiDesc = Wiki.TaintedPeter,
 })
@@ -2659,7 +2659,7 @@ Encyclopedia.AddCharacterTainted({
 Encyclopedia.AddCharacter({
     ModName = "Furtherance",
     Name = "Miriam",
-    ID = Isaac.GetPlayerTypeByName("Miriam", false),
+    ID = PlayerType.PLAYER_MIRIAM,
 	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraits.anm2", "Miriam", 0),
 	WikiDesc = Wiki.Miriam,
 })
@@ -2668,7 +2668,7 @@ Encyclopedia.AddCharacterTainted({
     ModName = "Furtherance",
     Name = "Miriam",
     Description = "The Condemned",
-    ID = Isaac.GetPlayerTypeByName("MiriamB", true),
+    ID = PlayerType.PLAYER_MIRIAM_B,
 	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "Miriam", 0, mod.path .. "content-dlc3/gfx/charactermenu_miriamb.png"),
 	WikiDesc = Wiki.TaintedMiriam,
 })
