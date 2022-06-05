@@ -13,16 +13,18 @@ COSTUME_MIRIAM_A_HAIR = Isaac.GetCostumeIdByPath("gfx/characters/Character_003_M
 COSTUME_MIRIAM_B_HAIR = Isaac.GetCostumeIdByPath("gfx/characters/Character_003b_Miriam_Hair.anm2")
 
 function mod:OnInit(player)
+	if mod.IsContinued then return end
 	local data = mod:GetData(player)
-	data.Init = true
+
 	if player:GetPlayerType() == MiriamA then -- If the player is Miriam it will apply her hair
-		player:AddNullCostume(COSTUME_MIRIAM_A_HAIR)
 		data.MiriamTearCount = 0
 		data.MiriamRiftTimeout = 0
 		data.MiriamAOE = 1
+		player:AddNullCostume(COSTUME_MIRIAM_A_HAIR)
 		player:AddCollectible(CollectibleType.COLLECTIBLE_TAMBOURINE, 0, true, ActiveSlot.SLOT_PRIMARY, 0)
 	elseif player:GetPlayerType() == MiriamB then -- Apply different hair for her tainted variant
 		player:AddNullCostume(COSTUME_MIRIAM_B_HAIR)
+		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_POLARITY_SHIFT, ActiveSlot.SLOT_POCKET, false)
 		player:AddBoneHearts(2)
 		player:AddHearts(4)
 	end
@@ -41,10 +43,6 @@ function mod:OnUpdate(player)
 					entity:Die()
 				end
 			end
-		end
-	elseif player:GetPlayerType() == MiriamB then
-		if player.FrameCount == 1 and data.Init and not mod.isLoadingData then
-			player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_POLARITY_SHIFT, ActiveSlot.SLOT_POCKET, false)
 		end
 	end
 end
@@ -126,7 +124,6 @@ function mod:ClickerFix(_, _, player)
 	end
 end
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.ClickerFix, CollectibleType.COLLECTIBLE_CLICKER)
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.ClickerFix, CollectibleType.COLLECTIBLE_SHIFT_KEY)
 
 
 

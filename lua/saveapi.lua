@@ -1,7 +1,7 @@
 local mod = Furtherance
 local game = Game()
 
-Furtherance.isLoadingData = false
+Furtherance.IsContinued = false
 Furtherance.LoadedData = false
 
 local json = require("json")
@@ -120,7 +120,7 @@ function Furtherance:Serialize(datatype, default)
 end
 
 function mod:OnLoadData(isContinued)
-    mod.isLoadingData = isContinued
+    mod.IsContinued = isContinued
 
     local loadedData = json.decode(mod:LoadData())
 
@@ -211,7 +211,7 @@ function mod:OnSaveData(canContinue)
     end
 
     mod:SaveData(json.encode(savedData))
-    mod.isLoadingData = false
+    mod.IsContinued = false
     mod.LoadedData = false
     mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_SAVED, nil, canContinue)
 end

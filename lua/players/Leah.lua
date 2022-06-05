@@ -21,17 +21,14 @@ local function IsEnemyNear(player) -- Enemy detection
 end
 
 function mod:OnInit(player)
-	local data = mod:GetData(player)
-	data.Init = true
+	if mod.IsContinued then return end
+
 	if player:GetPlayerType() == LeahA then -- If the player is Leah it will apply her hair
 		player:AddNullCostume(COSTUME_LEAH_A_HAIR)
-		if data.LeahKills == nil then
-			data.LeahKills = 0
-		end
-		--player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, ActiveSlot.SLOT_POCKET, false)
+		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, ActiveSlot.SLOT_POCKET, false)
 	elseif player:GetPlayerType() == LeahB then -- Apply different hair for her tainted variant
-		--player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_SHATTERED_HEART, ActiveSlot.SLOT_POCKET, false)
 		player:AddNullCostume(COSTUME_LEAH_B_HAIR)
+		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_SHATTERED_HEART, ActiveSlot.SLOT_POCKET, false)
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
@@ -39,20 +36,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
 function mod:OnUpdate(player)
 	local room = game:GetRoom()
 	local data = mod:GetData(player)
-	if player:GetPlayerType() == LeahA then
-		if player.FrameCount == 1 and data.Init then
-			if not mod.LoadedData then
-				player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, ActiveSlot.SLOT_POCKET, false)
-			end
-		elseif player.FrameCount > 1 and data.Init then
-			data.Init = nil
-		end
-	elseif player:GetPlayerType() == LeahB then
-		if player.FrameCount < 10 and (not mod.LoadedData and data.Init) then
-			player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_SHATTERED_HEART, ActiveSlot.SLOT_POCKET, false)
-		elseif player.FrameCount >= 10 and data.Init then
-			data.Init = nil
-		end
+	if player:GetPlayerType() == LeahB then
 		if data.LeahbPower < 0 then
 			data.LeahbPower = 0
 		end

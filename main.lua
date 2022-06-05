@@ -168,9 +168,9 @@ Files affected by Save API:
 - [x] Rock Heart
 - [x] Unlucky Penny
 
-- [ ] Leah
-- [ ] Miriam
-- [ ] Peter
+- [x] Leah
+- [x] Miriam
+- [x] Peter
 
 - [ ] Home Exit
 
