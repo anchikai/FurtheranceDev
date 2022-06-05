@@ -35,11 +35,22 @@ function mod:UseCamera(_, _, player)
 end
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseCamera, CollectibleType.COLLECTIBLE_OLD_CAMERA)
 
-function mod:Forgor()
+local newGame = false
+function mod:NewGame()
+	newGame = true
+end
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.NewGame)
+
+function mod:ForgetOnNewLevel()
+	if newGame then
+		newGame = false
+		return
+	end
+
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
 		data.CameraSaved = false
 	end
 end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.Forgor)
+mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.ForgetOnNewLevel)

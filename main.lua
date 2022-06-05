@@ -157,7 +157,7 @@ Files affected by Save API:
 - [x] Keys to the Kingdom
 - [x] Leah's Lock
 - [x] Muddled Cross
-- [ ] Old Camera
+- [x] Old Camera
 - [ ] Servitude
 - [ ] Shift Key
 
