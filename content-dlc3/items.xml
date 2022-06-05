@@ -64,8 +64,8 @@
 	<active id="29" name="Heart Renovator" description="Eternal triumph" gfx="heart_renovator.png" maxcharges="3" initcharge="3" quality="3" tags="angel nokeeper nolostbr" />
 	<active id="31" name="F4 Key" description="Be careful..." gfx="f4.png" shopprice="30" devilprice="2" maxcharges="6" quality="4" />
 	<active id="32" name="Tab Key" description="Pretty useful!" gfx="tab.png" maxcharges="12" quality="4" />
-	<active id="33" name="Shattered Heart" description="Eternal sorrow" gfx="shattered_heart.png" chargetype="timed" maxcharges="90" initcharge="0" quality="2" tags="nokeeper nolostbr" />
-	<active name="Shattered Heart No Puddle" description="Eternal sorrow" gfx="shattered_heart_no_puddle.png" chargetype="timed" maxcharges="90" quality="2" tags="nokeeper nolostbr" hidden="true" />
+	<active id="33" name="Shattered Heart" description="Eternal sorrow" gfx="shattered_heart.png" chargetype="normal" maxcharges="1" quality="2" tags="nokeeper nolostbr" />
+	<active name="Shattered Heart No Puddle" description="Eternal sorrow" gfx="shattered_heart_no_puddle.png" chargetype="normal" maxcharges="1" quality="2" tags="nokeeper nolostbr" hidden="true" />
 	<active id="34" name="Keys to the Kingdom" description="Divine control + strength in salvation" gfx="keys_to_the_kingdom.png" maxcharges="6" chargetype="special" quality="4" tags="angel" />
 	<active id="36" name="Muddled Cross" description="Flipped reality" gfx="muddled_cross.png" maxcharges="6" initcharge="6" devilprice="2" quality="4" />
 	<active id="48" name="Book of Guidance" description="The exodus ends" gfx="book_of_guidance.png" maxcharges="12" quality="1" tags="book" />
@@ -98,7 +98,8 @@
 	<trinket id="11" name="Epitaph" description="You will remember this name." gfx="epitaph.png" />
 	<trinket id="12" name="Leviathan's Tendril" description="An instrument to control the waves" gfx="leviathans_tendril.png" tags="devil" />
 	<trinket id="13" name="Altruism" description="Blessing of charity" gfx="altruism.png" />
-	<trinket id="13" name="Nil Num" description="Q" gfx="nil_num.png" />
+	<trinket id="14" name="Nil Num" description="Q" gfx="nil_num.png" />
+	<trinket id="15" name="Key to the Pit" description="Unleash the great fire" gfx="key_to_the_pit.png" />
 
 	<!-- Familiars -->
 	<familiar id="35" name="Binds of Devotion" description="Bound by love" gfx="binds_of_devotion.png" quality="2" persistent="true" />

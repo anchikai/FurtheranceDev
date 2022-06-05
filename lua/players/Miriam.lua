@@ -167,24 +167,3 @@ function mod:UnlockTaintedMiriam(player)
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.UnlockTaintedMiriam)
-
-function mod:ResetTaintedUnlock(cmd)
-	if string.lower(cmd) == "resetmiriam" then
-		mod.Unlocks.Miriam.MomsHeart = false
-		mod.Unlocks.Miriam.Isaac = false
-		mod.Unlocks.Miriam.Satan = false
-		mod.Unlocks.Miriam.BlueBaby = false
-		mod.Unlocks.Miriam.Lamb = false
-		mod.Unlocks.Miriam.BossRush = false
-		mod.Unlocks.Miriam.Hush = false
-		mod.Unlocks.Miriam.MegaSatan = false
-		mod.Unlocks.Miriam.Delirium = false
-		mod.Unlocks.Miriam.Mother = false
-		mod.Unlocks.Miriam.Beast = false
-		mod.Unlocks.Miriam.GreedMode = false
-		mod.Unlocks.Miriam.Tainted = false
-		mod.Unlocks.Miriam.FullCompletion = false
-		print("Miriam has been reset.")
-	end
-end
-mod:AddCallback(ModCallbacks.MC_EXECUTE_CMD, mod.ResetTaintedUnlock)

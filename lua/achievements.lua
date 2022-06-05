@@ -764,3 +764,210 @@ function mod:postUpdateAchievements()
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.postUpdateAchievements)
+
+function mod:ResetUnlocks(cmd)
+	if string.lower(cmd) == "furtherancehelp" then
+		print("Reset a character's unlocks: reset[name]\nExamples: resetleahb, resetpeter\n\nUnlock all of a character's unlocks: unlock[name]\nExamples: unlockleah, unlockmiriamb")
+	end
+	if string.lower(cmd) == "resetleah" then
+		mod.Unlocks.Leah.MomsHeart = false
+		mod.Unlocks.Leah.Isaac = false
+		mod.Unlocks.Leah.Satan = false
+		mod.Unlocks.Leah.BlueBaby = false
+		mod.Unlocks.Leah.Lamb = false
+		mod.Unlocks.Leah.BossRush = false
+		mod.Unlocks.Leah.Hush = false
+		mod.Unlocks.Leah.MegaSatan = false
+		mod.Unlocks.Leah.Delirium = false
+		mod.Unlocks.Leah.Mother = false
+		mod.Unlocks.Leah.Beast = false
+		mod.Unlocks.Leah.GreedMode = false
+		mod.Unlocks.Leah.Tainted = false
+		mod.Unlocks.Leah.FullCompletion = false
+		print("Leah has been reset.")
+	end
+	if string.lower(cmd) == "unlockleah" then
+		mod.Unlocks.Leah.MomsHeart = true
+		mod.Unlocks.Leah.Isaac = true
+		mod.Unlocks.Leah.Satan = true
+		mod.Unlocks.Leah.BlueBaby = true
+		mod.Unlocks.Leah.Lamb = true
+		mod.Unlocks.Leah.BossRush = true
+		mod.Unlocks.Leah.Hush = true
+		mod.Unlocks.Leah.MegaSatan = true
+		mod.Unlocks.Leah.Delirium = true
+		mod.Unlocks.Leah.Mother = true
+		mod.Unlocks.Leah.Beast = true
+		mod.Unlocks.Leah.GreedMode = true
+		mod.Unlocks.Leah.Tainted = true
+		mod.Unlocks.Leah.FullCompletion = true
+		print("All Leah marks have been unlocked.")
+	end
+	if string.lower(cmd) == "resetpeter" then
+		mod.Unlocks.Peter.MomsHeart = false
+		mod.Unlocks.Peter.Isaac = false
+		mod.Unlocks.Peter.Satan = false
+		mod.Unlocks.Peter.BlueBaby = false
+		mod.Unlocks.Peter.Lamb = false
+		mod.Unlocks.Peter.BossRush = false
+		mod.Unlocks.Peter.Hush = false
+		mod.Unlocks.Peter.MegaSatan = false
+		mod.Unlocks.Peter.Delirium = false
+		mod.Unlocks.Peter.Mother = false
+		mod.Unlocks.Peter.Beast = false
+		mod.Unlocks.Peter.GreedMode = false
+		mod.Unlocks.Peter.Tainted = false
+		mod.Unlocks.Peter.FullCompletion = false
+		print("Peter has been reset.")
+	end
+	if string.lower(cmd) == "unlockpeter" then
+		mod.Unlocks.Peter.MomsHeart = true
+		mod.Unlocks.Peter.Isaac = true
+		mod.Unlocks.Peter.Satan = true
+		mod.Unlocks.Peter.BlueBaby = true
+		mod.Unlocks.Peter.Lamb = true
+		mod.Unlocks.Peter.BossRush = true
+		mod.Unlocks.Peter.Hush = true
+		mod.Unlocks.Peter.MegaSatan = true
+		mod.Unlocks.Peter.Delirium = true
+		mod.Unlocks.Peter.Mother = true
+		mod.Unlocks.Peter.Beast = true
+		mod.Unlocks.Peter.GreedMode = true
+		mod.Unlocks.Peter.Tainted = true
+		mod.Unlocks.Peter.FullCompletion = true
+		print("All Peter marks have been unlocked.")
+	end
+	if string.lower(cmd) == "resetmiriam" then
+		mod.Unlocks.Miriam.MomsHeart = false
+		mod.Unlocks.Miriam.Isaac = false
+		mod.Unlocks.Miriam.Satan = false
+		mod.Unlocks.Miriam.BlueBaby = false
+		mod.Unlocks.Miriam.Lamb = false
+		mod.Unlocks.Miriam.BossRush = false
+		mod.Unlocks.Miriam.Hush = false
+		mod.Unlocks.Miriam.MegaSatan = false
+		mod.Unlocks.Miriam.Delirium = false
+		mod.Unlocks.Miriam.Mother = false
+		mod.Unlocks.Miriam.Beast = false
+		mod.Unlocks.Miriam.GreedMode = false
+		mod.Unlocks.Miriam.Tainted = false
+		mod.Unlocks.Miriam.FullCompletion = false
+		print("Miriam has been reset.")
+	end
+	if string.lower(cmd) == "unlockmiriam" then
+		mod.Unlocks.Miriam.MomsHeart = true
+		mod.Unlocks.Miriam.Isaac = true
+		mod.Unlocks.Miriam.Satan = true
+		mod.Unlocks.Miriam.BlueBaby = true
+		mod.Unlocks.Miriam.Lamb = true
+		mod.Unlocks.Miriam.BossRush = true
+		mod.Unlocks.Miriam.Hush = true
+		mod.Unlocks.Miriam.MegaSatan = true
+		mod.Unlocks.Miriam.Delirium = true
+		mod.Unlocks.Miriam.Mother = true
+		mod.Unlocks.Miriam.Beast = true
+		mod.Unlocks.Miriam.GreedMode = true
+		mod.Unlocks.Miriam.Tainted = true
+		mod.Unlocks.Miriam.FullCompletion = true
+		print("All Miriam marks have been unlocked.")
+	end
+
+	-- Tainteds
+	if string.lower(cmd) == "resetleahb" then
+		mod.Unlocks.LeahB.MomsHeart = false
+		mod.Unlocks.LeahB.Isaac = false
+		mod.Unlocks.LeahB.Satan = false
+		mod.Unlocks.LeahB.BlueBaby = false
+		mod.Unlocks.LeahB.Lamb = false
+		mod.Unlocks.LeahB.BossRush = false
+		mod.Unlocks.LeahB.Hush = false
+		mod.Unlocks.LeahB.MegaSatan = false
+		mod.Unlocks.LeahB.Delirium = false
+		mod.Unlocks.LeahB.Mother = false
+		mod.Unlocks.LeahB.Beast = false
+		mod.Unlocks.LeahB.GreedMode = false
+		mod.Unlocks.LeahB.FullCompletion = false
+		print("Tainted Leah has been reset.")
+	end
+	if string.lower(cmd) == "unlockleahb" then
+		mod.Unlocks.LeahB.MomsHeart = true
+		mod.Unlocks.LeahB.Isaac = true
+		mod.Unlocks.LeahB.Satan = true
+		mod.Unlocks.LeahB.BlueBaby = true
+		mod.Unlocks.LeahB.Lamb = true
+		mod.Unlocks.LeahB.BossRush = true
+		mod.Unlocks.LeahB.Hush = true
+		mod.Unlocks.LeahB.MegaSatan = true
+		mod.Unlocks.LeahB.Delirium = true
+		mod.Unlocks.LeahB.Mother = true
+		mod.Unlocks.LeahB.Beast = true
+		mod.Unlocks.LeahB.GreedMode = true
+		mod.Unlocks.LeahB.FullCompletion = true
+		print("All Tainted Leah marks have been unlocked.")
+	end
+	if string.lower(cmd) == "resetpeterb" then
+		mod.Unlocks.PeterB.MomsHeart = false
+		mod.Unlocks.PeterB.Isaac = false
+		mod.Unlocks.PeterB.Satan = false
+		mod.Unlocks.PeterB.BlueBaby = false
+		mod.Unlocks.PeterB.Lamb = false
+		mod.Unlocks.PeterB.BossRush = false
+		mod.Unlocks.PeterB.Hush = false
+		mod.Unlocks.PeterB.MegaSatan = false
+		mod.Unlocks.PeterB.Delirium = false
+		mod.Unlocks.PeterB.Mother = false
+		mod.Unlocks.PeterB.Beast = false
+		mod.Unlocks.PeterB.GreedMode = false
+		mod.Unlocks.PeterB.FullCompletion = false
+		print("Tainted Peter has been reset.")
+	end
+	if string.lower(cmd) == "unlockpeterb" then
+		mod.Unlocks.PeterB.MomsHeart = true
+		mod.Unlocks.PeterB.Isaac = true
+		mod.Unlocks.PeterB.Satan = true
+		mod.Unlocks.PeterB.BlueBaby = true
+		mod.Unlocks.PeterB.Lamb = true
+		mod.Unlocks.PeterB.BossRush = true
+		mod.Unlocks.PeterB.Hush = true
+		mod.Unlocks.PeterB.MegaSatan = true
+		mod.Unlocks.PeterB.Delirium = true
+		mod.Unlocks.PeterB.Mother = true
+		mod.Unlocks.PeterB.Beast = true
+		mod.Unlocks.PeterB.GreedMode = true
+		mod.Unlocks.PeterB.FullCompletion = true
+		print("All Tainted Peter marks have been unlocked.")
+	end
+	if string.lower(cmd) == "resetmiriamb" then
+		mod.Unlocks.MiriamB.MomsHeart = false
+		mod.Unlocks.MiriamB.Isaac = false
+		mod.Unlocks.MiriamB.Satan = false
+		mod.Unlocks.MiriamB.BlueBaby = false
+		mod.Unlocks.MiriamB.Lamb = false
+		mod.Unlocks.MiriamB.BossRush = false
+		mod.Unlocks.MiriamB.Hush = false
+		mod.Unlocks.MiriamB.MegaSatan = false
+		mod.Unlocks.MiriamB.Delirium = false
+		mod.Unlocks.MiriamB.Mother = false
+		mod.Unlocks.MiriamB.Beast = false
+		mod.Unlocks.MiriamB.GreedMode = false
+		mod.Unlocks.MiriamB.FullCompletion = false
+		print("Tainted Miriam has been reset.")
+	end
+	if string.lower(cmd) == "unlockmiriamb" then
+		mod.Unlocks.MiriamB.MomsHeart = true
+		mod.Unlocks.MiriamB.Isaac = true
+		mod.Unlocks.MiriamB.Satan = true
+		mod.Unlocks.MiriamB.BlueBaby = true
+		mod.Unlocks.MiriamB.Lamb = true
+		mod.Unlocks.MiriamB.BossRush = true
+		mod.Unlocks.MiriamB.Hush = true
+		mod.Unlocks.MiriamB.MegaSatan = true
+		mod.Unlocks.MiriamB.Delirium = true
+		mod.Unlocks.MiriamB.Mother = true
+		mod.Unlocks.MiriamB.Beast = true
+		mod.Unlocks.MiriamB.GreedMode = true
+		mod.Unlocks.MiriamB.FullCompletion = true
+		print("All Tainted Miriam marks have been unlocked.")
+	end
+end
+mod:AddCallback(ModCallbacks.MC_EXECUTE_CMD, mod.ResetUnlocks)

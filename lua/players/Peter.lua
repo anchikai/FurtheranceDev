@@ -145,24 +145,3 @@ function mod:UnlockTaintedPeter(player)
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.UnlockTaintedPeter)
-
-function mod:ResetTaintedUnlock(cmd)
-	if string.lower(cmd) == "resetpeter" then
-		mod.Unlocks.Peter.MomsHeart = false
-		mod.Unlocks.Peter.Isaac = false
-		mod.Unlocks.Peter.Satan = false
-		mod.Unlocks.Peter.BlueBaby = false
-		mod.Unlocks.Peter.Lamb = false
-		mod.Unlocks.Peter.BossRush = false
-		mod.Unlocks.Peter.Hush = false
-		mod.Unlocks.Peter.MegaSatan = false
-		mod.Unlocks.Peter.Delirium = false
-		mod.Unlocks.Peter.Mother = false
-		mod.Unlocks.Peter.Beast = false
-		mod.Unlocks.Peter.GreedMode = false
-		mod.Unlocks.Peter.Tainted = false
-		mod.Unlocks.Peter.FullCompletion = false
-		print("Peter has been reset.")
-	end
-end
-mod:AddCallback(ModCallbacks.MC_EXECUTE_CMD, mod.ResetTaintedUnlock)
