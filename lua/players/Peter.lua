@@ -6,35 +6,25 @@ COSTUME_PETER_A_DRIP = Isaac.GetCostumeIdByPath("gfx/characters/Character_002_Pe
 COSTUME_PETER_B_DRIP = Isaac.GetCostumeIdByPath("gfx/characters/Character_002b_Peter_Drip.anm2")
 
 function mod:OnInit(player)
-	local data = mod:GetData(player)
+	if mod.IsContinued then return end
+
 	if player:GetPlayerType() == PeterA then -- If the player is Peter it will apply his drip
 		player:AddNullCostume(COSTUME_PETER_A_DRIP)
 		player:AddTrinket(TrinketType.TRINKET_ALABASTER_SCRAP, true)
+		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, ActiveSlot.SLOT_POCKET, false)
 	elseif player:GetPlayerType() == PeterB then -- Apply different drip for his tainted variant
 		player:AddNullCostume(COSTUME_PETER_B_DRIP)
+		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_MUDDLED_CROSS, ActiveSlot.SLOT_POCKET, false)
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
 
 function mod:PeterUpdate(player)
-	local data = mod:GetData(player)
-	if player:GetPlayerType() == PeterA then
-		if player.FrameCount == 1 and data.Init then
-			if not mod.isLoadingData then
-				player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, ActiveSlot.SLOT_POCKET, false)
-			end
-		end
-	elseif player:GetPlayerType() == PeterB then
+	if player:GetPlayerType() == PeterB then
 		if player:GetSoulHearts() > 0 then
 			player:AddSoulHearts(-player:GetSoulHearts())
 		end
-		if player.FrameCount < 10 and (not mod.isLoadingData and data.Init) then
-			player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_MUDDLED_CROSS, ActiveSlot.SLOT_POCKET, false)
-		elseif player.FrameCount >= 10 and data.Init then
-			data.Init = nil
-		end
 	end
-	-- print(data.SpareCount)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.PeterUpdate)
 

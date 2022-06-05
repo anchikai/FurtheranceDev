@@ -1,18 +1,27 @@
 local mod = Furtherance
 local game = Game()
-local bhb = Isaac.GetSoundIdByName("BrokenHeartbeat")
+
+mod:SavePlayerData({
+	HeartCount = 0,
+	RenovatorDamage = 0
+})
+
+function mod:LeahHeartCount(isContinued)
+	if isContinued then return end
+	for i = 0, game:GetNumPlayers() - 1 do
+		local player = Isaac.GetPlayer(i)
+		if player:GetPlayerType() == LeahA then
+			mod:GetData(player).HeartCount = 2
+		end
+	end
+end
+mod:AddCallback(mod.CustomCallbacks.MC_POST_LOADED, mod.LeahHeartCount)
+
+local BrokenHeartbeatSound = Isaac.GetSoundIdByName("BrokenHeartbeat")
 
 local ChargeBar = Sprite()
 ChargeBar:Load("gfx/chargebar.anm2",true)
 ChargeBar:LoadGraphics()
-
-function mod:OnInit(player)
-	local data = mod:GetData(player)
-	if data.HeartCount == nil then
-		data.HeartCount = 2
-	end
-end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
 
 function mod:UseRenovator(_, _, player)
 	if player:GetBrokenHearts() > 0 then
@@ -39,42 +48,44 @@ function mod:Hearts(entity, collider)
 	if RepentancePlusMod then
 		heartCounter[CustomPickups.TaintedHearts.HEART_HOARDED] = 8
 	end
-	if collider.Type == EntityType.ENTITY_PLAYER then
-		local player = collider:ToPlayer()
-		local data = mod:GetData(player)
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) then -- Leah's Heart Counter Gimmick
-			local MaximumCount = 99
-			if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-				MaximumCount = 999
-			end
-			if data.HeartCount < MaximumCount and entity:IsShopItem() == false then
-				for subtype, amount in pairs (heartCounter) do
-					if entity.SubType == subtype then
-						local emptyHearts = player:GetEffectiveMaxHearts() - player:GetHearts()
-						local fullHearts = player:GetHearts() + player:GetSoulHearts() + player:GetBrokenHearts() * 2
-						if emptyHearts <= amount then
-							if subtype ~= HeartSubType.HEART_BLENDED then
-								data.HeartCount = data.HeartCount + amount - emptyHearts
-							else
-								if fullHearts == 24 then
-									data.HeartCount = data.HeartCount + 2
-								elseif fullHearts == 23 then
-									data.HeartCount = data.HeartCount + 1
-								end
-							end
-							if not player:CanPickRedHearts() then
-								entity:GetSprite():Play("Collect",true)
-								entity:Die()
-								SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
-							elseif player:CanPickRedHearts() and RepentancePlusMod then
-								if entity.SubType == CustomPickups.TaintedHearts.HEART_HOARDED then
-									entity:GetSprite():Play("Collect",true)
-									entity:Die()
-									SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
-									player:AddHearts(emptyHearts)
-								end
-							end
-						end
+
+	local player = collider:ToPlayer()
+	if player == nil then return end
+	local data = mod:GetData(player)
+
+	-- Leah's Heart Counter Gimmick
+	if not player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) then return end
+
+	local MaximumCount = 99
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+		MaximumCount = 999
+	end
+
+	if data.HeartCount >= MaximumCount or entity:IsShopItem() then return end
+
+	for subtype, amount in pairs(heartCounter) do
+		if entity.SubType == subtype then
+			local emptyHearts = player:GetEffectiveMaxHearts() - player:GetHearts()
+			local fullHearts = player:GetHearts() + player:GetSoulHearts() + player:GetBrokenHearts() * 2
+			if emptyHearts <= amount then
+				if subtype ~= HeartSubType.HEART_BLENDED then
+					data.HeartCount = data.HeartCount + amount - emptyHearts
+				elseif fullHearts == 24 then
+					data.HeartCount = data.HeartCount + 2
+				elseif fullHearts == 23 then
+					data.HeartCount = data.HeartCount + 1
+				end
+
+				if not player:CanPickRedHearts() then
+					entity:GetSprite():Play("Collect",true)
+					entity:Die()
+					SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
+				elseif player:CanPickRedHearts() and RepentancePlusMod then
+					if entity.SubType == CustomPickups.TaintedHearts.HEART_HOARDED then
+						entity:GetSprite():Play("Collect",true)
+						entity:Die()
+						SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
+						player:AddHearts(emptyHearts)
 					end
 				end
 			end
@@ -85,9 +96,6 @@ mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.Hearts, PickupVariant.
 
 function mod:RenovatorDmg(player, flag)
 	local data = mod:GetData(player)
-	if data.RenovatorDamage == nil then
-		data.RenovatorDamage = 0
-	end
 	if flag == CacheFlag.CACHE_DAMAGE then
 		if player:GetPlayerType() == LeahA and player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 			player.Damage = player.Damage + data.RenovatorDamage * 0.2
@@ -100,7 +108,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.RenovatorDmg)
 
 function mod:RenovatorOnKill(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
+		local player = Isaac.GetPlayer(i)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) then
 			local hrRNG = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_HEART_RENOVATOR)
 			if entity:IsActiveEnemy(false) then
@@ -160,7 +168,7 @@ function mod:OnUpdate(player)
 		if brokenHeart and data.HeartCount >= 2 and player:GetBrokenHearts() < 11 then -- press drop button to remove 2 hearts and add a broken heart
 			data.HeartCount = data.HeartCount - 2
 			player:AddBrokenHearts(1)
-			SFXManager():Play(bhb)
+			SFXManager():Play(BrokenHeartbeatSound)
 			player:AddCacheFlags(CacheFlag.CACHE_RANGE)
 			player:EvaluateItems()
 			data.dropcooldown = 0
@@ -189,39 +197,41 @@ function mod:shouldDeHook()
 end
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, function() -- The actual heart counter for Leah
 	if mod:shouldDeHook() then return end
-	local charoffset = 0
-	local transperancy = 1
+	local transparency = 1
 	if EID and EID.lastDescriptionEntity then
-		transperancy = 0.25
+		transparency = 0.25
 	end
+
 	local offset = Options.HUDOffset * Vector(20, 12)
 	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
+		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) then
 			if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
-				if data.HeartCount > 999 then -- Cap hearts at 999 with Birthright
-					data.HeartCount = 999
-				end
+				-- Cap hearts at 999 with Birthright
+				data.HeartCount = math.min(data.HeartCount, 999)
 			else
-				if data.HeartCount > 99 then -- Cap hearts at 99
-					data.HeartCount = 99
-				end
+				-- Cap hearts at 99
+				data.HeartCount = math.min(data.HeartCount, 99)
 			end
+
+			local kcolour = KColor(1, 1, 1, transparency)
+			if data.HeartCount > 1 and player:GetBrokenHearts() < 11 then
+				kcolour = KColor(0, 1, 0, transparency)
+			end
+
+			local charoffset = 12 * i
+
 			local f = Font()
 			f:Load("font/pftempestasevencondensed.fnt")
-			f:DrawString("P"..player.ControllerIndex-(player.ControllerIndex-1)+i..":",37 + offset.X,33 + offset.Y + charoffset, KColor(1, 1, 1, transperancy), 0, true)
-			local kcolour = KColor(1, 1, 1, transperancy)
-			if data.HeartCount > 1 and player:GetBrokenHearts() < 11 then
-				kcolour = KColor(0, 1, 0, transperancy)
-			end
+			f:DrawString("P" .. (i + 1) .. ":", 37 + offset.X,33 + offset.Y + charoffset, KColor(1, 1, 1, transparency), 0, true)
 			f:DrawString(data.HeartCount, 63 + offset.X, 33 + offset.Y + charoffset, kcolour, 0, true)
+
 			local counter = Sprite()
 			counter:Load("gfx/heartcounter.anm2", true)
 			counter:Play("Idle", true)
-			counter.Color = Color(1,1,1,transperancy)
+			counter.Color = Color(1, 1, 1, transparency)
 			counter:Render(Vector(48 + offset.X, 32.5 + offset.Y + charoffset), Vector.Zero, Vector.Zero)
-			charoffset = charoffset + 12
 		end
 	end
 end)

@@ -15,7 +15,7 @@ mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseC, CollectibleType.COLLECTIBLE_
 function mod:CKeyTeleported(boi, rng, player, slot, data)
 	local room = game:GetRoom()
 	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
+		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
 		if data.Teleported == true then
 			--spawn item pedestals

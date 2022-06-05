@@ -1,6 +1,10 @@
 local mod = Furtherance
 local game = Game()
 
+mod:SavePlayerData({
+    SleptInMomsBed = false
+})
+
 function mod.RoomGenerator(index, slot, newroom)
     local level = game:GetLevel()
     local OldStage, OldStageType, OldChallenge = level:GetStage(), level:GetStageType(), game.Challenge
@@ -37,6 +41,7 @@ end
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.MakeExit, PickupVariant.PICKUP_BED)
 
 function mod:BedData(player)
+    if mod.IsContinued then return end
     local data = mod:GetData(player)
     data.SleptInMomsBed = false
 end

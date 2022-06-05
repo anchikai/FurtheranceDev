@@ -45,7 +45,7 @@ mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseAlt, CollectibleType.COLLECTIBL
 
 function mod:ChargeAlt()
 	for i = 0, game:GetNumPlayers() - 1 do
-        local player = game:GetPlayer(i)
+        local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
 		local AltSlot
 		if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == CollectibleType.COLLECTIBLE_ALT_KEY then

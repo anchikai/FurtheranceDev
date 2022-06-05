@@ -85,107 +85,115 @@ local AchievementGraphics = {
 	},
 }
 
-Furtherance.Unlocks = {
-	Leah = {
-		MomsHeart = {Unlock = false, Hard = false},
-		Isaac = {Unlock = false, Hard = false},
-		Satan = {Unlock = false, Hard = false},
-		BlueBaby = {Unlock = false, Hard = false},
-		Lamb = {Unlock = false, Hard = false},
-		BossRush = {Unlock = false, Hard = false},
-		Hush = {Unlock = false, Hard = false},
-		MegaSatan = {Unlock = false, Hard = false},
-		Delirium = {Unlock = false, Hard = false},
-		Mother = {Unlock = false, Hard = false},
-		Beast = {Unlock = false, Hard = false},
-		GreedMode = {Unlock = false, Hard = false},
-		Tainted = false,
-		FullCompletion = {Unlock = false, Hard = false},
-	},
-	LeahB = {
-		MomsHeart = {Unlock = false, Hard = false},
-		Isaac = {Unlock = false, Hard = false},
-		Satan = {Unlock = false, Hard = false},
-		BlueBaby = {Unlock = false, Hard = false},
-		Lamb = {Unlock = false, Hard = false},
-		BossRush = {Unlock = false, Hard = false},
-		Hush = {Unlock = false, Hard = false},
-		MegaSatan = {Unlock = false, Hard = false},
-		Delirium = {Unlock = false, Hard = false},
-		Mother = {Unlock = false, Hard = false},
-		Beast = {Unlock = false, Hard = false},
-		GreedMode = {Unlock = false, Hard = false},
-		PolNegPath = false,
-		SoulPath = false,
-		FullCompletion = {Unlock = false, Hard = false},
-	},
-	Peter = {
-		MomsHeart = {Unlock = false, Hard = false},
-		Isaac = {Unlock = false, Hard = false},
-		Satan = {Unlock = false, Hard = false},
-		BlueBaby = {Unlock = false, Hard = false},
-		Lamb = {Unlock = false, Hard = false},
-		BossRush = {Unlock = false, Hard = false},
-		Hush = {Unlock = false, Hard = false},
-		MegaSatan = {Unlock = false, Hard = false},
-		Delirium = {Unlock = false, Hard = false},
-		Mother = {Unlock = false, Hard = false},
-		Beast = {Unlock = false, Hard = false},
-		GreedMode = {Unlock = false, Hard = false},
-		Tainted = false,
-		FullCompletion = {Unlock = false, Hard = false},
-	},
-	PeterB = {
-		MomsHeart = {Unlock = false, Hard = false},
-		Isaac = {Unlock = false, Hard = false},
-		Satan = {Unlock = false, Hard = false},
-		BlueBaby = {Unlock = false, Hard = false},
-		Lamb = {Unlock = false, Hard = false},
-		BossRush = {Unlock = false, Hard = false},
-		Hush = {Unlock = false, Hard = false},
-		MegaSatan = {Unlock = false, Hard = false},
-		Delirium = {Unlock = false, Hard = false},
-		Mother = {Unlock = false, Hard = false},
-		Beast = {Unlock = false, Hard = false},
-		GreedMode = {Unlock = false, Hard = false},
-		PolNegPath = false,
-		SoulPath = false,
-		FullCompletion = {Unlock = false, Hard = false},
-	},
-	Miriam = {
-		MomsHeart = {Unlock = false, Hard = false},
-		Isaac = {Unlock = false, Hard = false},
-		Satan = {Unlock = false, Hard = false},
-		BlueBaby = {Unlock = false, Hard = false},
-		Lamb = {Unlock = false, Hard = false},
-		BossRush = {Unlock = false, Hard = false},
-		Hush = {Unlock = false, Hard = false},
-		MegaSatan = {Unlock = false, Hard = false},
-		Delirium = {Unlock = false, Hard = false},
-		Mother = {Unlock = false, Hard = false},
-		Beast = {Unlock = false, Hard = false},
-		GreedMode = {Unlock = false, Hard = false},
-		Tainted = false,
-		FullCompletion = {Unlock = false, Hard = false},
-	},
-	MiriamB = {
-		MomsHeart = {Unlock = false, Hard = false},
-		Isaac = {Unlock = false, Hard = false},
-		Satan = {Unlock = false, Hard = false},
-		BlueBaby = {Unlock = false, Hard = false},
-		Lamb = {Unlock = false, Hard = false},
-		BossRush = {Unlock = false, Hard = false},
-		Hush = {Unlock = false, Hard = false},
-		MegaSatan = {Unlock = false, Hard = false},
-		Delirium = {Unlock = false, Hard = false},
-		Mother = {Unlock = false, Hard = false},
-		Beast = {Unlock = false, Hard = false},
-		GreedMode = {Unlock = false, Hard = false},
-		PolNegPath = false,
-		SoulPath = false,
-		FullCompletion = {Unlock = false, Hard = false},
-	},
-}
+local function createUnlocksTable()
+	return {
+		Leah = {
+			MomsHeart = {Unlock = false, Hard = false},
+			Isaac = {Unlock = false, Hard = false},
+			Satan = {Unlock = false, Hard = false},
+			BlueBaby = {Unlock = false, Hard = false},
+			Lamb = {Unlock = false, Hard = false},
+			BossRush = {Unlock = false, Hard = false},
+			Hush = {Unlock = false, Hard = false},
+			MegaSatan = {Unlock = false, Hard = false},
+			Delirium = {Unlock = false, Hard = false},
+			Mother = {Unlock = false, Hard = false},
+			Beast = {Unlock = false, Hard = false},
+			GreedMode = {Unlock = false, Hard = false},
+			Tainted = false,
+			FullCompletion = {Unlock = false, Hard = false},
+		},
+		LeahB = {
+			MomsHeart = {Unlock = false, Hard = false},
+			Isaac = {Unlock = false, Hard = false},
+			Satan = {Unlock = false, Hard = false},
+			BlueBaby = {Unlock = false, Hard = false},
+			Lamb = {Unlock = false, Hard = false},
+			BossRush = {Unlock = false, Hard = false},
+			Hush = {Unlock = false, Hard = false},
+			MegaSatan = {Unlock = false, Hard = false},
+			Delirium = {Unlock = false, Hard = false},
+			Mother = {Unlock = false, Hard = false},
+			Beast = {Unlock = false, Hard = false},
+			GreedMode = {Unlock = false, Hard = false},
+			PolNegPath = false,
+			SoulPath = false,
+			FullCompletion = {Unlock = false, Hard = false},
+		},
+		Peter = {
+			MomsHeart = {Unlock = false, Hard = false},
+			Isaac = {Unlock = false, Hard = false},
+			Satan = {Unlock = false, Hard = false},
+			BlueBaby = {Unlock = false, Hard = false},
+			Lamb = {Unlock = false, Hard = false},
+			BossRush = {Unlock = false, Hard = false},
+			Hush = {Unlock = false, Hard = false},
+			MegaSatan = {Unlock = false, Hard = false},
+			Delirium = {Unlock = false, Hard = false},
+			Mother = {Unlock = false, Hard = false},
+			Beast = {Unlock = false, Hard = false},
+			GreedMode = {Unlock = false, Hard = false},
+			Tainted = false,
+			FullCompletion = {Unlock = false, Hard = false},
+		},
+		PeterB = {
+			MomsHeart = {Unlock = false, Hard = false},
+			Isaac = {Unlock = false, Hard = false},
+			Satan = {Unlock = false, Hard = false},
+			BlueBaby = {Unlock = false, Hard = false},
+			Lamb = {Unlock = false, Hard = false},
+			BossRush = {Unlock = false, Hard = false},
+			Hush = {Unlock = false, Hard = false},
+			MegaSatan = {Unlock = false, Hard = false},
+			Delirium = {Unlock = false, Hard = false},
+			Mother = {Unlock = false, Hard = false},
+			Beast = {Unlock = false, Hard = false},
+			GreedMode = {Unlock = false, Hard = false},
+			PolNegPath = false,
+			SoulPath = false,
+			FullCompletion = {Unlock = false, Hard = false},
+		},
+		Miriam = {
+			MomsHeart = {Unlock = false, Hard = false},
+			Isaac = {Unlock = false, Hard = false},
+			Satan = {Unlock = false, Hard = false},
+			BlueBaby = {Unlock = false, Hard = false},
+			Lamb = {Unlock = false, Hard = false},
+			BossRush = {Unlock = false, Hard = false},
+			Hush = {Unlock = false, Hard = false},
+			MegaSatan = {Unlock = false, Hard = false},
+			Delirium = {Unlock = false, Hard = false},
+			Mother = {Unlock = false, Hard = false},
+			Beast = {Unlock = false, Hard = false},
+			GreedMode = {Unlock = false, Hard = false},
+			Tainted = false,
+			FullCompletion = {Unlock = false, Hard = false},
+		},
+		MiriamB = {
+			MomsHeart = {Unlock = false, Hard = false},
+			Isaac = {Unlock = false, Hard = false},
+			Satan = {Unlock = false, Hard = false},
+			BlueBaby = {Unlock = false, Hard = false},
+			Lamb = {Unlock = false, Hard = false},
+			BossRush = {Unlock = false, Hard = false},
+			Hush = {Unlock = false, Hard = false},
+			MegaSatan = {Unlock = false, Hard = false},
+			Delirium = {Unlock = false, Hard = false},
+			Mother = {Unlock = false, Hard = false},
+			Beast = {Unlock = false, Hard = false},
+			GreedMode = {Unlock = false, Hard = false},
+			PolNegPath = false,
+			SoulPath = false,
+			FullCompletion = {Unlock = false, Hard = false},
+		},
+	}
+end
+
+Furtherance.Unlocks = createUnlocksTable()
+
+mod:ShelveModData({
+	Unlocks = createUnlocksTable()
+})
 
 local function PlayAchievement(achievement)
 	if GiantBookAPI then
@@ -737,13 +745,13 @@ function mod:postUpdateAchievements()
 		
 		if roomType == RoomType.ROOM_BOSS and UnlockFunctions[levelStage] then
 			UnlockFunctions[levelStage](room, stageType, difficulty, desc)
-			mod:OnSave(false)
+			mod:OnSaveData(false)
 		elseif roomType == RoomType.ROOM_BOSSRUSH then
 			UnlockFunctions.BossRush(room, stageType, difficulty, desc)
-			mod:OnSave(false)
+			mod:OnSaveData(false)
 		elseif levelStage == LevelStage.STAGE8 and roomType == RoomType.ROOM_DUNGEON then
 			UnlockFunctions.Beast(room, stageType, difficulty, desc)
-			mod:OnSave(false)
+			mod:OnSaveData(false)
 		end
 	else
 		if levelStage == LevelStage.STAGE7_GREED
@@ -751,7 +759,7 @@ function mod:postUpdateAchievements()
 		and desc.SafeGridIndex == 45
 		then
 			UnlockFunctions.Greed(room, nil, difficulty, desc)
-			mod:OnSave(false)
+			mod:OnSaveData(false)
 		end
 	end
 end

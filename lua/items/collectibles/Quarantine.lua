@@ -3,7 +3,7 @@ local game = Game()
 
 function mod:Covid()
     for i = 0, game:GetNumPlayers() - 1 do
-        local player = game:GetPlayer(i)
+        local player = Isaac.GetPlayer(i)
         local data = mod:GetData(player)
         if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_QUARANTINE)) then
             local entities = Isaac.GetRoomEntities()

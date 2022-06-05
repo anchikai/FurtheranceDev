@@ -4,7 +4,7 @@ local game = Game()
 local function someoneHasAlmagest()
     local result = false
     for i = 0, game:GetNumPlayers() - 1 do
-        local player = game:GetPlayer(i)
+        local player = Isaac.GetPlayer(i)
         if player and player:HasTrinket(TrinketType.TRINKET_ALMAGEST_SCRAP, false) then
             result = true
             break

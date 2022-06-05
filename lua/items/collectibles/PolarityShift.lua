@@ -91,7 +91,7 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.PolarityShiftBuffs)
 
 function mod:ResetPolarityShiftBuffs()
   for i = 0, game:GetNumPlayers() - 1 do
-    local player = game:GetPlayer(i)
+    local player = Isaac.GetPlayer(i)
     local data = mod:GetData(player)
 
     data.UsedPolarityShift = nil

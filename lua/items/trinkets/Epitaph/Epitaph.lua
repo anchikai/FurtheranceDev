@@ -1,6 +1,19 @@
 local mod = Furtherance
 local game = Game()
 
+mod:ShelvePlayerData({
+    EpitaphStage = mod.SaveNil,
+    EpitaphFirstPassiveItem = mod.SaveNil,
+    EpitaphLastPassiveItem = mod.SaveNil
+})
+
+mod:SavePlayerData({
+    EpitaphRoom = mod.SaveNil,
+    EpitaphTombstonePosition = mod:Serialize(Vector, mod.SaveNil),
+    EpitaphTombstoneDestroyed = mod.SaveNil,
+    OldCollectibles = function() return {} end
+})
+
 local TombstoneVariant = Isaac.GetEntityVariantByName("Epitaph Tombstone")
 
 local Tombstone = include("lua/items/trinkets/Epitaph/Tombstone.lua")
@@ -32,11 +45,12 @@ function mod:PickupItem(player)
         local oldItem
         local itemConfig = Isaac.GetItemConfig()
         for i = 1, Isaac.GetItemConfig():GetCollectibles().Size do
+            local key = tostring(i) -- so data.OldCollectibles it can be saved
             local itemConfigItem = itemConfig:GetCollectible(i)
             if itemConfigItem and itemConfigItem.Type == ItemType.ITEM_PASSIVE then
-                local oldNum = data.OldCollectibles[i] or 0
-                local num = player:GetCollectibleNum(i, false)
-                if num > oldNum then
+                local oldItemCount = data.OldCollectibles[key] or 0
+                local itemCount = player:GetCollectibleNum(i, false)
+                if itemCount > oldItemCount then
                     oldItem = i
                     break
                 end
@@ -53,14 +67,15 @@ function mod:PickupItem(player)
 
     local newItem
     for i = 1, Isaac.GetItemConfig():GetCollectibles().Size do
+        local key = tostring(i) -- so data.OldCollectibles it can be saved
         local itemConfig = Isaac.GetItemConfig():GetCollectible(i)
         if itemConfig and itemConfig.Type == ItemType.ITEM_PASSIVE then
-            local oldNum = data.OldCollectibles[i] or 0
-            local num = player:GetCollectibleNum(i, false)
-            if num > oldNum then
+            local oldItemCount = data.OldCollectibles[key] or 0
+            local itemCount = player:GetCollectibleNum(i, false)
+            if itemCount > oldItemCount then
                 newItem = i
             end
-            data.OldCollectibles[i] = num
+            data.OldCollectibles[key] = itemCount
         end
     end
 
@@ -81,7 +96,7 @@ function mod:EpitaphLevel()
         end
     end
 end
-mod:AddCustomCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.EpitaphLevel)
+mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.EpitaphLevel)
 
 function mod:EpitaphRoom()
     local level = game:GetLevel()
@@ -90,11 +105,11 @@ function mod:EpitaphRoom()
         local player = Isaac.GetPlayer(i)
         local data = mod:GetData(player)
         if level:GetStage() == data.EpitaphStage and level:GetCurrentRoomDesc().GridIndex == data.EpitaphRoom then
-            if data.EpitaphPosition == nil then
-                data.EpitaphPosition = room:FindFreeTilePosition(Isaac.GetRandomPosition(), 0)
+            if data.EpitaphTombstonePosition == nil then
+                data.EpitaphTombstonePosition = room:FindFreeTilePosition(Isaac.GetRandomPosition(), 0)
             end
 
-            local tombstone = Tombstone.new(player, data.EpitaphPosition)
+            local tombstone = Tombstone.new(player, data.EpitaphTombstonePosition)
             if data.EpitaphTombstoneDestroyed then
                 tombstone.Health = 0
                 tombstone.Instance:GetSprite():Play("Destroyed", true)
@@ -102,7 +117,7 @@ function mod:EpitaphRoom()
         end
     end
 end
-mod:AddCustomCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.EpitaphRoom)
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.EpitaphRoom)
 
 function mod:EpitaphDied(entity)
     local player = entity:ToPlayer()
@@ -140,7 +155,7 @@ mod:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, mod.DetectExplosion)
 
 --[[mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
 	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
+		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
         local f = Font()
         local bruh

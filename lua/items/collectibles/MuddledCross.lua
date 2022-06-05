@@ -1,6 +1,10 @@
 local mod = Furtherance
 local game = Game()
-Furtherance.Flipped = false
+
+mod:SaveModData({
+	Flipped = false,
+	MuddledCrossBackdropType = mod.SaveNil
+})
 
 local FlipSFX = Isaac.GetSoundIdByName("PeterFlip")
 local UnflipSFX = Isaac.GetSoundIdByName("PeterUnflip")
@@ -9,32 +13,30 @@ local function clamp(value, min, max)
 	return math.min(math.max(value, min), max)
 end
 
-local backdrop
-
 local function switchBackground(isFlipped)
 	local level = game:GetLevel()
 	local room = game:GetRoom()
 	if isFlipped == true then
-		backdrop = room:GetBackdropType()
+		mod.MuddledCrossBackdropType = room:GetBackdropType()
 		if room:GetType() == RoomType.ROOM_DEFAULT or room:GetType() == RoomType.ROOM_TREASURE then
 			if level:GetStageType() <= StageType.STAGETYPE_AFTERBIRTH then
 				if level:GetStage() < LevelStage.STAGE4_3 then
-					game:ShowHallucination(0, backdrop + 3)
+					game:ShowHallucination(0, mod.MuddledCrossBackdropType + 3)
 				elseif level:GetStage() ~= LevelStage.STAGE4_3 and level:GetStage() < LevelStage.STAGE6 then
-					game:ShowHallucination(0, backdrop + 2)
+					game:ShowHallucination(0, mod.MuddledCrossBackdropType + 2)
 				end
 			elseif level:GetStageType() >= StageType.STAGETYPE_REPENTANCE then
 				if level:GetStage() < LevelStage.STAGE4_1 then
-					if backdrop == clamp(backdrop, BackdropType.MAUSOLEUM2, BackdropType.MAUSOLEUM4) or backdrop == BackdropType.MAUSOLEUM then
+					if (mod.MuddledCrossBackdropType >= BackdropType.MAUSOLEUM2 and mod.MuddledCrossBackdropType <= BackdropType.MAUSOLEUM4) or mod.MuddledCrossBackdropType == BackdropType.MAUSOLEUM then
 						game:ShowHallucination(0, BackdropType.CORPSE)
 					else
-						game:ShowHallucination(0, backdrop + 1)
+						game:ShowHallucination(0, mod.MuddledCrossBackdropType + 1)
 					end
 				end
 			end
 		end
 	elseif isFlipped == false then
-		game:ShowHallucination(0, backdrop)
+		game:ShowHallucination(0, mod.MuddledCrossBackdropType)
 	end
 	SFXManager():Stop(SoundEffect.SOUND_DEATH_CARD)
 end
@@ -153,17 +155,19 @@ function mod:FixInputs(entity, hook, button)
 end
 mod:AddCallback(ModCallbacks.MC_INPUT_ACTION, mod.FixInputs, InputHook.GET_ACTION_VALUE)
 
+local newGame = false
+function mod:NewGame()
+	newGame = true
+end
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.NewGame)
+
 local flipFactor = 0
-local NewFloor = false
 function mod:NewFloor()
-	if game:GetFrameCount() > 0 then
-		NewFloor = true
-	end
-	if mod.Flipped and NewFloor then
+	if mod.Flipped and not newGame then
 		mod.Flipped = false
-		NewFloor = false
 		flipFactor = 0
 	end
+	newGame = false
 end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.NewFloor)
 

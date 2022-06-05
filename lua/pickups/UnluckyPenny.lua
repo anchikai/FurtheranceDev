@@ -1,11 +1,9 @@
 local mod = Furtherance
 local game = Game()
 
-function mod:ResetCounter(player)
-	local data = mod:GetData(player)
-	data.UnluckyPennyStat = data.UnluckyPennyStat or 0
-end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.ResetCounter)
+mod:SavePlayerData({
+	UnluckyPennyStat = 0
+})
 
 function mod:UnluckyPenny(pickup, collider)
 	if collider.Type == EntityType.ENTITY_PLAYER then

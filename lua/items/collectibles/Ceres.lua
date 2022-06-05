@@ -38,7 +38,7 @@ function mod:CeresTearEffect(tear, collider)
 		local data = mod:GetData(tear)
 		if data.ceres and (collider:IsEnemy() and collider:IsVulnerableEnemy() and collider:IsActiveEnemy()) then
 			for i = 0, game:GetNumPlayers() - 1 do
-				local player = game:GetPlayer(i)
+				local player = Isaac.GetPlayer(i)
 				local pdata = mod:GetData(player)
 
 				if pdata.CeresCreep == nil or 0 then
@@ -73,7 +73,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.CeresCreep)
 
 function mod:TouchCreep(entity, collider) -- If an enemy walks over the creep
 	for i = 0, game:GetNumPlayers() - 1 do
-		local player = game:GetPlayer(i)
+		local player = Isaac.GetPlayer(i)
 		local pdata = mod:GetData(player)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_CERES) then
 			if (pdata.CeresCreep ~= nil and pdata.CeresCreep < 90) and entity.Variant == EffectVariant.PLAYER_CREEP_GREEN then
