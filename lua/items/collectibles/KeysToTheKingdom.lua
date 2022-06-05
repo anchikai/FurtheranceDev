@@ -32,6 +32,8 @@ for _, obj in ipairs(statObjs) do
 	ALL_BUFFED_FLAGS = ALL_BUFFED_FLAGS | obj.Flag
 end
 
+local maxCharges = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM).MaxCharges
+
 local function defaultBuffs()
 	local default = {}
 	for i = 1, #statObjs do
@@ -41,7 +43,6 @@ local function defaultBuffs()
 	return default
 end
 
-local maxCharges = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM).MaxCharges
 
 mod:SavePlayerData({
 	KTTKBuffs = defaultBuffs,
@@ -202,7 +203,18 @@ function mod:KTTKTempbuffs(player, flag)
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.KTTKTempbuffs)
 
+local ignoreRemoveTBuffs = false
+function mod:IgnoreRemoveTBuffsOnGameStart()
+	ignoreRemoveTBuffs = true
+end
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.IgnoreRemoveTBuffsOnGameStart)
+
 function mod:removeKTTKTbuffs()
+	if ignoreRemoveTBuffs then
+		ignoreRemoveTBuffs = false
+		return
+	end
+
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)

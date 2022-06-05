@@ -154,7 +154,7 @@ Files affected by Save API:
 - [x] Apocalypse
 - [x] Heart Renovator
 - [x] Jar of Manna
-- [ ] Keys to the Kingdom
+- [x] Keys to the Kingdom
 - [ ] Leah's Lock
 - [ ] Muddled Cross
 - [ ] Old Camera
