@@ -159,7 +159,7 @@ Files affected by Save API:
 - [x] Muddled Cross
 - [x] Old Camera
 - [x] Servitude
-- [ ] Shift Key
+- [x] Shift Key
 
 - [x] Alabaster Scrap
 - [ ] Epitaph
