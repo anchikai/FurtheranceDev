@@ -39,11 +39,21 @@ end
 local serializers = {
     [Vector] = {
         Encode = function(vector)
-            return { X = vector.X, Y = vector.Y }
+            return { vector.X, vector.Y }
         end,
 
         Decode = function(data)
-            return Vector(data.X, data.Y)
+            return Vector(data[1], data[2])
+        end
+    },
+
+    [Color] = {
+        Encode = function(color)
+            return { color.R, color.G, color.B, color.A, color.RO, color.GO, color.BO }
+        end,
+
+        Decode = function(data)
+            return Color(data[1], data[2], data[3], data[4], data[5], data[6], data[7])
         end
     }
 }
