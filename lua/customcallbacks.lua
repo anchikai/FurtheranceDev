@@ -42,6 +42,13 @@ function Furtherance:AddCallback(callbackEnum, callback, specifier)
     end
 end
 
+local function runCallbackSafely(callback, self, ...)
+    local success, message = pcall(callback, self, ...)
+    if not success then
+        print("ERROR:\n", message)
+    end
+end
+
 function Furtherance:RunCustomCallback(callbackEnum, specifier, ...)
     local callbacks = allCallbacks[callbackEnum]
     if not callbacks then
@@ -52,7 +59,7 @@ function Furtherance:RunCustomCallback(callbackEnum, specifier, ...)
         -- run all callbacks for the enum
         for _, specifierCallbacks in pairs(callbacks) do
             for _, callback in ipairs(specifierCallbacks) do
-                callback(self, ...)
+                runCallbackSafely(callback, self, ...)
             end
         end
     else
@@ -60,14 +67,14 @@ function Furtherance:RunCustomCallback(callbackEnum, specifier, ...)
         local specifierCallbacks = callbacks[specifier]
         if specifierCallbacks ~= nil then
             for _, callback in ipairs(specifierCallbacks) do
-                callback(self, ...)
+                runCallbackSafely(callback, self, ...)
             end
         end
 
         -- as well as general callbacks
         local generalCallbacks = callbacks[GeneralCallbacks]
         for _, callback in ipairs(generalCallbacks) do
-            callback(self, ...)
+            runCallbackSafely(callback, self, ...)
         end
     end
 end
@@ -176,6 +183,7 @@ function Furtherance:QueueLoadedCallback(callbackEnum, specifier, ...)
 end
 
 function mod:RunQueuedCallbacks()
+    print("ran queued callbacks")
     for _, callbackInfo in ipairs(queuedCallbacks) do
         local callbackArgs = callbackInfo.args
         mod:RunCustomCallback(callbackInfo.callbackEnum, callbackInfo.specifier, table.unpack(callbackArgs, 1, callbackArgs.n))
