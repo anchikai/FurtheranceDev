@@ -161,11 +161,11 @@ Files affected by Save API:
 - [ ] Servitude
 - [ ] Shift Key
 
-- [ ] Alabaster Scrap
+- [x] Alabaster Scrap
 - [ ] Epitaph
 
-- [ ] Moon Heart
-- [ ] Rock Heart
+- [x] Moon Heart
+- [x] Rock Heart
 - [ ] Unlucky Penny
 
 - [ ] Leah

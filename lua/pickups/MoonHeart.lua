@@ -79,7 +79,7 @@ local function renderingHearts(player, playeroffset)
 	local pType = player:GetPlayerType()
 	local isForgotten = pType == PlayerType.PLAYER_THEFORGOTTEN and 1 or 0
 	local transperancy = 1
-	-- if data.MoonHeart == nil then return end
+	if data.MoonHeart == nil then return end
 	local isTotalEven = data.MoonHeart % 2 == 0
 	if pType == PlayerType.PLAYER_JACOB2_B or player:GetEffects():HasNullEffect(NullItemID.ID_LOST_CURSE) or isForgotten == 1 then
 		transperancy = 0.3

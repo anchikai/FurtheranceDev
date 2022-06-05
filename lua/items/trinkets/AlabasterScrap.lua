@@ -5,10 +5,6 @@ mod:SavePlayerData({
 	NumAngelItems = 0
 })
 
-mod:AddCustomCallback(mod.CustomCallbacks.MC_POST_LOADED, function()
-	print("data loaded")
-end)
-
 function mod:CollectPlayerItems(player)
 	local data = mod:GetData(player)
 	if player:HasTrinket(TrinketType.TRINKET_ALABASTER_SCRAP, false) then

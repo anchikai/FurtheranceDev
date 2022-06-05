@@ -2,7 +2,21 @@ local mod = Furtherance
 local game = Game()
 
 local spareTime = 30 * 30
-local finalBossIDs = { 6, 8, 24, 25, 39, 40, 54, 55, 63, 70, 88, 99, 100 }
+local finalBossIDs = {
+	[6] = true,
+	[8] = true,
+	[24] = true,
+	[25] = true,
+	[39] = true,
+	[40] = true,
+	[54] = true,
+	[55] = true,
+	[63] = true,
+	[70] = true,
+	[88] = true,
+	[99] = true,
+	[100] = true
+}
 
 local statObjs = {
 	{ Name = "Damage", Flag = CacheFlag.CACHE_DAMAGE, Buff = 0.5, TempBuff = 0.1 },
@@ -31,7 +45,7 @@ local maxCharges = Isaac.GetItemConfig():GetCollectible(CollectibleType.COLLECTI
 
 mod:SavePlayerData({
 	KTTKBuffs = defaultBuffs,
-	KTTKTempBuffs = defaultBuffs
+	KTTKTempBuffs = mod.SaveNil,
 })
 
 -- Blacklisted enemies --
@@ -81,17 +95,19 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 	elseif room:GetAliveEnemiesCount() == 0 then
 		return { Discharge = false, ShowAnim = false, Remove = false }
 
-	-- Give Holy Mantle effect in final boss rooms and don't do anything else
 	else
 
-		for i, ID in pairs(finalBossIDs) do
-			if room:GetBossID() == ID then
-				player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER)
-				return true
-			end
+		-- Give Holy Mantle effect in final boss rooms and don't do anything else
+		if finalBossIDs[room:GetBossID()] then
+			player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER)
+			return true
 		end
 
 		local buffs = data.KTTKTempBuffs
+		if buffs == nil then
+			buffs = defaultBuffs()
+			data.KTTKTempBuffs = buffs
+		end
 
 		for _, enemy in pairs(Isaac.GetRoomEntities()) do
 			if enemy:IsActiveEnemy(false) and not enemy:IsInvincible() then -- This makes stonies and other fuckers not get spared so don't change it :)

@@ -148,15 +148,14 @@ function mod:OnLoadData(isContinued)
     end
 
     mod.LoadedData = true
-    mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_LOADED, isContinued)
+    mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_LOADED, nil, isContinued)
 end
-mod:AddCustomCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnLoadData)
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnLoadData)
 
 function mod:OnSaveData(canContinue)
     local savedData = {
         PlayerData = {}
     }
-
     for i = 1, game:GetNumPlayers() do
         savedData.PlayerData[string.format("player_%d", i)] = {}
     end
@@ -194,24 +193,6 @@ function mod:OnSaveData(canContinue)
     mod:SaveData(json.encode(savedData))
     mod.isLoadingData = false
     mod.LoadedData = false
-    mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_SAVED, canContinue)
+    mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_SAVED, nil, canContinue)
 end
 mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.OnSaveData)
-
-local queuedCallbacks = {}
-function Furtherance:QueueLoadedCallback(callbackEnum, ...)
-    table.insert(queuedCallbacks, {
-        callbackEnum = callbackEnum,
-        args = table.pack(...)
-    })
-end
-
-function mod:RunQueuedCallbacks()
-    for _, callbackInfo in ipairs(queuedCallbacks) do
-        local callbackEnum = callbackInfo.callbackEnum
-        local args = callbackInfo.args
-        mod:RunCustomCallback(callbackEnum, table.unpack(args, 1, args.n))
-    end
-    queuedCallbacks = {}
-end
-mod:AddCustomCallback(mod.CustomCallbacks.MC_POST_LOADED, mod.RunQueuedCallbacks)

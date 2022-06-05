@@ -41,15 +41,14 @@ function mod:OnUpdate(player)
 	local data = mod:GetData(player)
 	if player:GetPlayerType() == LeahA then
 		if player.FrameCount == 1 and data.Init then
-			if not mod.isLoadingData then
+			if not mod.LoadedData then
 				player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, ActiveSlot.SLOT_POCKET, false)
 			end
 		elseif player.FrameCount > 1 and data.Init then
-			mod.isLoadingData = false
 			data.Init = nil
 		end
 	elseif player:GetPlayerType() == LeahB then
-		if player.FrameCount < 10 and (not mod.isLoadingData and data.Init) then
+		if player.FrameCount < 10 and (not mod.LoadedData and data.Init) then
 			player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_SHATTERED_HEART, ActiveSlot.SLOT_POCKET, false)
 		elseif player.FrameCount >= 10 and data.Init then
 			data.Init = nil

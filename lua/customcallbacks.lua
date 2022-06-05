@@ -12,30 +12,63 @@ Furtherance.CustomCallbacks = {
     MC_POST_SAVED = 20002,
 }
 
-Furtherance.QueueLoadedCallbacks = {
-    mod.CustomCallbacks.MC_POST_PLAYER_INIT,
-    mod.CustomCallbacks.MC_POST_PLAYER_UPDATE,
-    mod.CustomCallbacks.MC_POST_PEFFECT_UPDATE,
-}
+local GeneralCallbacks = {}
 
 local allCallbacks = {}
-
-function Furtherance:AddCustomCallback(callbackEnum, callback)
-    local callbacks = allCallbacks[callbackEnum]
-    if callbacks == nil then
-        callbacks = {}
-        allCallbacks[callbackEnum] = callbacks
-    end
-
-    table.insert(callbacks, callback)
+for _, callbackEnum in pairs(mod.CustomCallbacks) do
+    allCallbacks[callbackEnum] = {
+        [GeneralCallbacks] = {}
+    }
 end
 
-function Furtherance:RunCustomCallback(callbackEnum, ...)
-    local callbacks = allCallbacks[callbackEnum]
-    if callbacks == nil then return end
 
-    for _, callback in ipairs(callbacks) do
-        callback(self, ...)
+Furtherance.AddVanillaCallback = mod.AddCallback
+
+function Furtherance:AddCallback(callbackEnum, callback, specifier)
+    local callbacks = allCallbacks[callbackEnum]
+    if callbacks == nil then
+        mod:AddVanillaCallback(callbackEnum, callback, specifier)
+    else
+        if specifier == nil then
+            specifier = GeneralCallbacks
+        end
+
+        local specifierCallbacks = callbacks[specifier]
+        if specifierCallbacks == nil then
+            specifierCallbacks = {}
+            callbacks[specifier] = specifierCallbacks
+        end
+        table.insert(specifierCallbacks, callback)
+    end
+end
+
+function Furtherance:RunCustomCallback(callbackEnum, specifier, ...)
+    local callbacks = allCallbacks[callbackEnum]
+    if not callbacks then
+        error(string.format("Unsupported custom callback %d", callbackEnum), 2)
+    end
+
+    if specifier == nil then
+        -- run all callbacks for the enum
+        for _, specifierCallbacks in pairs(callbacks) do
+            for _, callback in ipairs(specifierCallbacks) do
+                callback(self, ...)
+            end
+        end
+    else
+        -- run callbacks for this specifier (if it exists)
+        local specifierCallbacks = callbacks[specifier]
+        if specifierCallbacks ~= nil then
+            for _, callback in ipairs(specifierCallbacks) do
+                callback(self, ...)
+            end
+        end
+
+        -- as well as general callbacks
+        local generalCallbacks = callbacks[GeneralCallbacks]
+        for _, callback in ipairs(generalCallbacks) do
+            callback(self, ...)
+        end
     end
 end
 
@@ -54,8 +87,10 @@ end
 
 local function hasSubscriptions()
     for _, callbacks in pairs(allCallbacks) do
-        if #callbacks > 0 then
-            return true
+        for _, specifierCallbacks in pairs(callbacks) do
+            if #specifierCallbacks > 0 then
+                return true
+            end
         end
     end
 
@@ -74,17 +109,17 @@ end
 function mod:UsedGlowingHourGlass()
     usedGlowingHourGlass = true
 end
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UsedGlowingHourGlass, CollectibleType.GLOWING_HOUR_GLASS)
+mod:AddVanillaCallback(ModCallbacks.MC_USE_ITEM, mod.UsedGlowingHourGlass, CollectibleType.GLOWING_HOUR_GLASS)
 
 function mod:PostGameStarted(isContinued)
     if not hasSubscriptions() then return end
 
-    mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_GAME_STARTED, isContinued)
+    mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_GAME_STARTED, nil, isContinued)
     recordCurrentStage()
     mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_NEW_LEVEL)
     mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_NEW_ROOM)
 end
-mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.PostGameStarted)
+mod:AddVanillaCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.PostGameStarted)
 
 function mod:PostNewLevel()
     if not hasSubscriptions() then return end
@@ -94,7 +129,7 @@ function mod:PostNewLevel()
     mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_NEW_LEVEL)
     mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_NEW_ROOM)
 end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.PostNewLevel)
+mod:AddVanillaCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.PostNewLevel)
 
 function mod:PostNewRoom()
     if not hasSubscriptions() then
@@ -127,21 +162,55 @@ function mod:PostNewRoom()
 
     mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_NEW_ROOM)
 end
-mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.PostNewRoom)
+mod:AddVanillaCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.PostNewRoom)
 
 --]]
 
--- queues player callbacks until data is loaded
-local function createQueueCallbackHandler(callbackEnum)
-    return function(self, ...)
-        if self.LoadedData then
-            self:RunCustomCallback(callbackEnum, ...)
-        else
-            self:QueueLoadedCallback(callbackEnum, ...)
-        end
+local queuedCallbacks = {}
+function Furtherance:QueueLoadedCallback(callbackEnum, specifier, ...)
+    table.insert(queuedCallbacks, {
+        callbackEnum = callbackEnum,
+        specifier = specifier,
+        args = table.pack(...)
+    })
+end
+
+function mod:RunQueuedCallbacks()
+    for _, callbackInfo in ipairs(queuedCallbacks) do
+        local callbackArgs = callbackInfo.args
+        mod:RunCustomCallback(callbackInfo.callbackEnum, callbackInfo.specifier, table.unpack(callbackArgs, 1, callbackArgs.n))
+    end
+    queuedCallbacks = {}
+end
+mod:AddCallback(mod.CustomCallbacks.MC_POST_LOADED, mod.RunQueuedCallbacks)
+
+
+---queues player callbacks until data is loaded
+---@param callbackEnum integer
+---@param specifier any
+---@param ... any
+local function runQueueCallbackHandler(callbackEnum, specifier, ...)
+    if mod.LoadedData then
+        mod:RunCustomCallback(callbackEnum, specifier, ...)
+    else
+        mod:QueueLoadedCallback(callbackEnum, specifier, ...)
     end
 end
 
-for _, callbackEnum in ipairs(mod.QueueLoadedCallbacks) do
-    mod:AddCallback(callbackEnum, createQueueCallbackHandler(callbackEnum))
+---@param player EntityPlayer
+function mod:QueuePlayerInitArgs(player)
+    runQueueCallbackHandler(mod.CustomCallbacks.MC_POST_PLAYER_INIT, player.Variant, player)
 end
+mod:AddVanillaCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.QueuePlayerInitArgs)
+
+---@param player EntityPlayer
+function mod:QueuePlayerUpdateArgs(player)
+    runQueueCallbackHandler(mod.CustomCallbacks.MC_POST_PLAYER_UPDATE, player.Variant, player)
+end
+mod:AddVanillaCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.QueuePlayerUpdateArgs)
+
+---@param player EntityPlayer
+function mod:QueuePEffectUpdateArgs(player)
+    runQueueCallbackHandler(mod.CustomCallbacks.MC_POST_PEFFECT_UPDATE, player.Variant, player)
+end
+mod:AddVanillaCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.QueuePEffectUpdateArgs)

@@ -15,7 +15,7 @@ function mod:LeahHeartCount(isContinued)
 		end
 	end
 end
-mod:AddCustomCallback(mod.CustomCallbacks.MC_POST_LOADED, mod.LeahHeartCount)
+mod:AddCallback(mod.CustomCallbacks.MC_POST_LOADED, mod.LeahHeartCount)
 
 local BrokenHeartbeatSound = Isaac.GetSoundIdByName("BrokenHeartbeat")
 

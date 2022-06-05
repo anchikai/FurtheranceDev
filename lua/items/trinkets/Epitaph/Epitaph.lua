@@ -93,7 +93,7 @@ function mod:EpitaphLevel()
         end
     end
 end
-mod:AddCustomCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.EpitaphLevel)
+mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.EpitaphLevel)
 
 function mod:EpitaphRoom()
     local level = game:GetLevel()
@@ -114,7 +114,7 @@ function mod:EpitaphRoom()
         end
     end
 end
-mod:AddCustomCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.EpitaphRoom)
+mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.EpitaphRoom)
 
 function mod:EpitaphDied(entity)
     local player = entity:ToPlayer()
