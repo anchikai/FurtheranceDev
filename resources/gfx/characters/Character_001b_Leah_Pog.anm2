@@ -1,8 +1,8 @@
 <AnimatedActor>
-	<Info CreatedBy="anchikai." CreatedOn="4/25/2022 11:35:12 PM" Version="113" Fps="30"/>
+	<Info CreatedBy="anchikai." CreatedOn="6/5/2022 1:47:36 PM" Version="114" Fps="30"/>
 	<Content>
 		<Spritesheets>
-			<Spritesheet Path="costumes\costume_taintedleahpog.png" Id="0"/>
+			<Spritesheet Path="costumes\pog_mod\costume_taintedleahpog.png" Id="0"/>
 		</Spritesheets>
 		<Layers>
 			<Layer Name="head" Id="0" SpritesheetId="0"/>
