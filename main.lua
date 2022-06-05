@@ -158,7 +158,7 @@ Files affected by Save API:
 - [x] Leah's Lock
 - [x] Muddled Cross
 - [x] Old Camera
-- [ ] Servitude
+- [x] Servitude
 - [ ] Shift Key
 
 - [x] Alabaster Scrap
