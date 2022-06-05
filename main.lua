@@ -162,7 +162,7 @@ Files affected by Save API:
 - [x] Shift Key
 
 - [x] Alabaster Scrap
-- [ ] Epitaph
+- [x] Epitaph
 
 - [x] Moon Heart
 - [x] Rock Heart

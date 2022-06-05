@@ -51,16 +51,10 @@ local serializers = {
 local serializedData = {}
 
 Furtherance.SaveNil = {}
-local function saveEncode(value, default)
-    if serializedData[default] then
-        return default.Serializer.Encode(value)
-    else
-        return value
-    end
-end
-
 local function loadDefault(default)
-    if default == mod.SaveNil then
+    if serializedData[default] then
+        return loadDefault(default.Default)
+    elseif default == mod.SaveNil then
         return nil
     elseif type(default) == "function" then
         return default()
@@ -69,9 +63,25 @@ local function loadDefault(default)
     end
 end
 
+local function saveEncode(value, default)
+    if serializedData[default] then
+        if value ~= nil then
+            return default.Serializer.Encode(value)
+        else
+            return loadDefault(default.Default)
+        end
+    else
+        return value
+    end
+end
+
 local function loadDecodeOrDefault(value, default)
     if serializedData[default] then
-        return loadDecodeOrDefault(default.Serializer.Decode(value), default.Default)
+        if value ~= nil then
+            return loadDecodeOrDefault(default.Serializer.Decode(value), default.Default)
+        else
+            return loadDefault(default.Default)
+        end
     elseif value ~= nil then
         return value
     else
@@ -96,7 +106,7 @@ function Furtherance:Serialize(datatype, default)
 
     serializedData[serialObject] = true
 
-    return serializer
+    return serialObject
 end
 
 function mod:OnLoadData(isContinued)
