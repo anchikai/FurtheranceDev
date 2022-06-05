@@ -5,6 +5,9 @@ local RockSFX = Isaac.GetSoundIdByName("MoonHeartPickup")
 local screenHelper = require("lua.screenhelper")
 local rng = RNG()
 
+local RockHeart = Sprite()
+RockHeart:Load("gfx/ui/ui_rockheart.anm2", true)
+
 mod:SavePlayerData({
 	RockHeart = 0,
 })
@@ -70,6 +73,15 @@ function mod:shouldDeHook()
 	return reqs[1] or reqs[2] or reqs[3]
 end
 
+local function playersHeartPos(i,hearts,hpOffset,isForgotten)
+	if i== 1 then return Options.HUDOffset * Vector(20, 12) + Vector(hearts * 6 + 36 + hpOffset, 12) + Vector(0, 10) * isForgotten end
+	if i== 2 then return screenHelper.GetScreenTopRight(0) + Vector(hearts * 6 + hpOffset - 123, 12) + Options.HUDOffset * Vector(-20 * 1.2, 12) + Vector(0, 20) * isForgotten end
+	if i== 3 then return screenHelper.GetScreenBottomLeft(0) + Vector(hearts * 6 + hpOffset + 46, -27) + Options.HUDOffset * Vector(20 * 1.1, -12 * 0.5) + Vector(0, 20) * isForgotten end
+	if i== 4 then return screenHelper.GetScreenBottomRight(0) + Vector(hearts * 6 + hpOffset - 131, -27) + Options.HUDOffset * Vector(-20 * 0.8, -12 * 0.5) + Vector(0, 20) * isForgotten end
+	if i== 5 then return screenHelper.GetScreenBottomRight(0) + Vector((-hearts) * 6 + hpOffset - 36, -27) + Options.HUDOffset * Vector(-20 * 0.8, -12 * 0.5) end
+	return nil
+end
+
 local function renderingHearts(player, playeroffset)
 	local data = mod:GetData(player)
 	local pType = player:GetPlayerType()
@@ -88,19 +100,10 @@ local function renderingHearts(player, playeroffset)
 	local getMaxHearts = player:GetEffectiveMaxHearts() + (player:GetSoulHearts() + player:GetSoulHearts() % 2)
 	local eternalHeart = player:GetEternalHearts()
 	for i = 0, heartIndex do
-		local RockHeart = Sprite()
-		RockHeart:Load("gfx/ui/ui_rockheart.anm2", true)
-
 		local hearts = ((CanOnlyHaveSoulHearts(player) and player:GetBoneHearts() * 2 or player:GetEffectiveMaxHearts()) + player:GetSoulHearts()) - (i * 2)
 		local hpOffset = hearts % 2 ~= 0 and (playeroffset == 5 and -6 or 6) or 0
-		local playersHeartPos = {
-			[1] = Options.HUDOffset * Vector(20, 12) + Vector(hearts * 6 + 36 + hpOffset, 12) + Vector(0, 10) * isForgotten,
-			[2] = screenHelper.GetScreenTopRight(0) + Vector(hearts * 6 + hpOffset - 123, 12) + Options.HUDOffset * Vector(-20 * 1.2, 12) + Vector(0, 20) * isForgotten,
-			[3] = screenHelper.GetScreenBottomLeft(0) + Vector(hearts * 6 + hpOffset + 46, -27) + Options.HUDOffset * Vector(20 * 1.1, -12 * 0.5) + Vector(0, 20) * isForgotten,
-			[4] = screenHelper.GetScreenBottomRight(0) + Vector(hearts * 6 + hpOffset - 131, -27) + Options.HUDOffset * Vector(-20 * 0.8, -12 * 0.5) + Vector(0, 20) * isForgotten,
-			[5] = screenHelper.GetScreenBottomRight(0) + Vector((-hearts) * 6 + hpOffset - 36, -27) + Options.HUDOffset * Vector(-20 * 0.8, -12 * 0.5)
-		}
-		local offset = playersHeartPos[playeroffset]
+		local offset = playersHeartPos(playeroffset,hearts,hpOffset,isForgotten)
+		if offset == nil then return end
 		local offsetCol = (playeroffset == 1 or playeroffset == 5) and 13 or 7
 		offset.X = offset.X - math.floor(hearts / offsetCol) * (playeroffset == 5 and (-72) or (playeroffset == 1 and 72 or 36))
 		offset.Y = offset.Y + math.floor(hearts / offsetCol) * 10
