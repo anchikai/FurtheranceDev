@@ -41,6 +41,7 @@ end
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.MakeExit, PickupVariant.PICKUP_BED)
 
 function mod:BedData(player)
+    if mod.IsContinued then return end
     local data = mod:GetData(player)
     data.SleptInMomsBed = false
 end

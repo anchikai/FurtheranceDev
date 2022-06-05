@@ -172,10 +172,9 @@ Files affected by Save API:
 - [x] Miriam
 - [x] Peter
 
-- [ ] Home Exit
+- [x] Home Exit
 
 - [ ] achievements
-- [ ] main (this file)
 
 ]]
 
