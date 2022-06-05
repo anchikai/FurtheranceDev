@@ -155,17 +155,19 @@ function mod:FixInputs(entity, hook, button)
 end
 mod:AddCallback(ModCallbacks.MC_INPUT_ACTION, mod.FixInputs, InputHook.GET_ACTION_VALUE)
 
+local newGame = false
+function mod:NewGame()
+	newGame = true
+end
+mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.NewGame)
+
 local flipFactor = 0
-local NewFloor = false
 function mod:NewFloor()
-	if game:GetFrameCount() > 0 then
-		NewFloor = true
-	end
-	if mod.Flipped and NewFloor then
+	if mod.Flipped and not newGame then
 		mod.Flipped = false
-		NewFloor = false
 		flipFactor = 0
 	end
+	newGame = false
 end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, mod.NewFloor)
 
