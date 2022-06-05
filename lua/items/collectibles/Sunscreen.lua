@@ -6,7 +6,6 @@ function mod:SunscreenDamage(entity, amount, flag)
     if rng:RandomFloat() <= 0.25 and player:HasCollectible(CollectibleType.COLLECTIBLE_SUNSCREEN) and flag & DamageFlag.DAMAGE_FIRE == DamageFlag.DAMAGE_FIRE then
         player:ResetDamageCooldown()
         player:SetMinDamageCooldown(60)
-        print("epic!")
         return false
     end
 end

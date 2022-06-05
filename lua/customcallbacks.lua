@@ -183,7 +183,6 @@ function Furtherance:QueueLoadedCallback(callbackEnum, specifier, ...)
 end
 
 function mod:RunQueuedCallbacks()
-    print("ran queued callbacks")
     for _, callbackInfo in ipairs(queuedCallbacks) do
         local callbackArgs = callbackInfo.args
         mod:RunCustomCallback(callbackInfo.callbackEnum, callbackInfo.specifier, table.unpack(callbackArgs, 1, callbackArgs.n))
