@@ -5,12 +5,6 @@ mod:SavePlayerData({
 	UnluckyPennyStat = 0
 })
 
-function mod:ResetCounter(player)
-	local data = mod:GetData(player)
-	data.UnluckyPennyStat = data.UnluckyPennyStat or 0
-end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.ResetCounter)
-
 function mod:UnluckyPenny(pickup, collider)
 	if collider.Type == EntityType.ENTITY_PLAYER then
 		local player = collider:ToPlayer()

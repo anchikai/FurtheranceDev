@@ -166,7 +166,7 @@ Files affected by Save API:
 
 - [x] Moon Heart
 - [x] Rock Heart
-- [ ] Unlucky Penny
+- [x] Unlucky Penny
 
 - [ ] Leah
 - [ ] Miriam
