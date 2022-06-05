@@ -15,6 +15,7 @@
 	<costume anm2path="Character_002_Peter_Drip.anm2" type="none" priority="99" />
 	<!-- Tainted Peter -->
 	<costume anm2path="Character_002b_Peter_Drip.anm2" type="none" priority="99" />
+	<costume anm2path="Character_002b_Peter_Pog.anm2" type="none" priority="99" />
 	<!-- Miriam -->
 	<costume anm2path="Character_003_Miriam_Hair.anm2" type="none" priority="99" />
 	<costume anm2path="Character_003_Miriam_Pog.anm2" type="none" priority="99" />
