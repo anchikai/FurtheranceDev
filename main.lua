@@ -156,7 +156,7 @@ Files affected by Save API:
 - [x] Jar of Manna
 - [x] Keys to the Kingdom
 - [x] Leah's Lock
-- [ ] Muddled Cross
+- [x] Muddled Cross
 - [ ] Old Camera
 - [ ] Servitude
 - [ ] Shift Key
