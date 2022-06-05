@@ -76,12 +76,31 @@ function mod:shouldDeHook()
 	return reqs[1] or reqs[2] or reqs[3]
 end
 
-local function playersHeartPos(i,hearts,hpOffset,isForgotten)
-	if i== 1 then return Options.HUDOffset * Vector(20, 12) + Vector(hearts * 6 + 36 + hpOffset, 12) + Vector(0, 10) * isForgotten end
-	if i== 2 then return screenHelper.GetScreenTopRight(0) + Vector(hearts * 6 + hpOffset - 123, 12) + Options.HUDOffset * Vector(-20 * 1.2, 12) + Vector(0, 20) * isForgotten end
-	if i== 3 then return screenHelper.GetScreenBottomLeft(0) + Vector(hearts * 6 + hpOffset + 46, -27) + Options.HUDOffset * Vector(20 * 1.1, -12 * 0.5) + Vector(0, 20) * isForgotten end
-	if i== 4 then return screenHelper.GetScreenBottomRight(0) + Vector(hearts * 6 + hpOffset - 131, -27) + Options.HUDOffset * Vector(-20 * 0.8, -12 * 0.5) + Vector(0, 20) * isForgotten end
-	if i== 5 then return screenHelper.GetScreenBottomRight(0) + Vector((-hearts) * 6 + hpOffset - 36, -27) + Options.HUDOffset * Vector(-20 * 0.8, -12 * 0.5) end
+local function playersHeartPos(playerIndex, hearts, hpOffset, isForgotten)
+	if playerIndex == 1 then -- player 1
+		return Options.HUDOffset * Vector(20, 12)
+			+ Vector(hearts * 6 + 36 + hpOffset, 12)
+			+ Vector(0, 10) * isForgotten
+	elseif playerIndex == 2 then -- player 2
+		return screenHelper.GetScreenTopRight(0)
+			+ Vector(hearts * 6 + hpOffset - 123, 12)
+			+ Options.HUDOffset * Vector(-20 * 1.2, 12)
+			+ Vector(0, 20) * isForgotten
+	elseif playerIndex == 3 then -- player 3
+		return screenHelper.GetScreenBottomLeft(0)
+			+ Vector(hearts * 6 + hpOffset + 46, -27)
+			+ Options.HUDOffset * Vector(20 * 1.1, -12 * 0.5)
+			+ Vector(0, 20) * isForgotten
+	elseif playerIndex == 4 then -- player 4
+		return screenHelper.GetScreenBottomRight(0) 
+			+ Vector(hearts * 6 + hpOffset - 131, -27) 
+			+ Options.HUDOffset * Vector(-20 * 0.8, -12 * 0.5)
+			+ Vector(0, 20) * isForgotten
+	elseif playerIndex == 5 then -- esau
+		return screenHelper.GetScreenBottomRight(0) 
+			+ Vector((-hearts) * 6 + hpOffset - 36, -27) 
+			+ Options.HUDOffset * Vector(-20 * 0.8, -12 * 0.5)
+	end
 	return nil
 end
 
@@ -105,7 +124,7 @@ local function renderingHearts(player, playeroffset)
 	for i = 0, heartIndex do
 		local hearts = ((CanOnlyHaveSoulHearts(player) and player:GetBoneHearts() * 2 or player:GetEffectiveMaxHearts()) + player:GetSoulHearts()) - (i * 2)
 		local hpOffset = hearts % 2 ~= 0 and (playeroffset == 5 and -6 or 6) or 0
-		local offset = playersHeartPos(playeroffset,hearts,hpOffset,isForgotten)
+		local offset = playersHeartPos(playeroffset, hearts, hpOffset, isForgotten)
 		if offset == nil then return end
 		local offsetCol = (playeroffset == 1 or playeroffset == 5) and 13 or 7
 		offset.X = offset.X - math.floor(hearts / offsetCol) * (playeroffset == 5 and (-72) or (playeroffset == 1 and 72 or 36))
@@ -238,7 +257,7 @@ function mod:HeartHandling(player)
 	end
 
 	local data = mod:GetData(player)
-	if data.MoonHeart > 0 then
+	if data.MoonHeart and data.MoonHeart > 0 then
 		data.MoonHeart = data.MoonHeart > player:GetSoulHearts() and player:GetSoulHearts() or data.MoonHeart
 		local heartIndex = math.ceil(data.MoonHeart / 2) - 1
 		for i = 0, heartIndex do
