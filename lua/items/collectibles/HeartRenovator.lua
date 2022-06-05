@@ -121,59 +121,31 @@ function mod:RenovatorOnKill(entity)
 end
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.RenovatorOnKill)
 
-local dropCooldownSpeed = 150
-
+local wasPressed = false
+local numPresses = 0
+local pressCd = 0
 function mod:OnUpdate(player)
-	local room = game:GetRoom()
 	local data = mod:GetData(player)
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) then
-		local drop = Input.IsActionPressed(ButtonAction.ACTION_DROP, player.ControllerIndex)
-		local brokenHeart = false
-		if data.dropcooldown == nil then
-			data.dropcooldown = 0
-		elseif not Game():IsPaused() then
-			if not ChargeBar:IsPlaying("Disappear") then
-				if drop and data.HeartCount >= 2 and data.dropcooldown < dropCooldownSpeed and player:GetBrokenHearts() < 11 then
-					if not ChargeBar:IsPlaying("Charging") then
-						ChargeBar:Play("Charging")
-					else
-						data.dropcooldown = data.dropcooldown + 1
-						ChargeBar:SetFrame(100 - math.floor(data.dropcooldown*100/dropCooldownSpeed))
-					end
-					ChargeBar:SetLayerFrame(2,1)
-					ChargeBar.Offset = Vector(0,-35)
-					ChargeBar:Render(Game():GetRoom():WorldToScreenPosition(player.Position), Vector.Zero, Vector.Zero)
-				elseif ChargeBar:IsPlaying("Charging") then
-					if (not drop or data.dropcooldown >=dropCooldownSpeed) then
-						ChargeBar:Play("Disappear")
-					end
-					if data.dropcooldown >= dropCooldownSpeed then
-						brokenHeart = true
-					end
-				end
-			else
-				data.dropcooldown = 0
-				if ChargeBar:IsPlaying("Disappear") then
-					ChargeBar.PlaybackSpeed = 0.7
-					if not ChargeBar:IsFinished("Disappear") then
-						ChargeBar:Update()
-						ChargeBar.Offset = Vector(0,-35)
-						ChargeBar:Render(Game():GetRoom():WorldToScreenPosition(player.Position), Vector.Zero, Vector.Zero)
-					end
-				else ChargeBar:IsFinished("Disappear")
-					ChargeBar:Play("Charging")
-				end
+		local isPressed = Input.IsActionPressed(ButtonAction.ACTION_DROP, player.ControllerIndex)
+		if isPressed then
+			if not wasPressed then
+				numPresses = numPresses + 1
 			end
+			pressCd = 3
+		elseif pressCd > 0 then
+			pressCd = pressCd - 1
+		elseif pressCd == 0 then
+			numPresses = 0
 		end
-		if brokenHeart and data.HeartCount >= 2 and player:GetBrokenHearts() < 11 then -- press drop button to remove 2 hearts and add a broken heart
+		if not wasPressed and isPressed and numPresses >= 2 then
 			data.HeartCount = data.HeartCount - 2
 			player:AddBrokenHearts(1)
 			SFXManager():Play(BrokenHeartbeatSound)
 			player:AddCacheFlags(CacheFlag.CACHE_RANGE)
 			player:EvaluateItems()
-			data.dropcooldown = 0
-			brokenHeart = false
 		end
+		wasPressed = isPressed
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_RENDER, mod.OnUpdate)
