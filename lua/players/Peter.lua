@@ -12,7 +12,7 @@ function mod:OnInit(player)
 		player:AddNullCostume(COSTUME_PETER_A_DRIP)
 		player:AddTrinket(TrinketType.TRINKET_ALABASTER_SCRAP, true)
 		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, ActiveSlot.SLOT_POCKET, false)
-	elseif player:GetPlayerType() == PeterB then -- Apply different drip for his tainted variant
+	elseif player:GetPlayerType() == PlayerType.PLAYER_PETER_B then -- Apply different drip for his tainted variant
 		player:AddNullCostume(COSTUME_PETER_B_DRIP)
 		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_MUDDLED_CROSS, ActiveSlot.SLOT_POCKET, false)
 	end
@@ -20,7 +20,7 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
 
 function mod:PeterUpdate(player)
-	if player:GetPlayerType() == PeterB then
+	if player:GetPlayerType() == PlayerType.PLAYER_PETER_B then
 		if player:GetSoulHearts() > 0 then
 			player:AddSoulHearts(-player:GetSoulHearts())
 		end
@@ -42,7 +42,7 @@ function mod:PeterStats(player, flag)
 		if flag == CacheFlag.CACHE_RANGE then
 			player.TearRange = player.TearRange + 20
 		end
-	elseif player:GetPlayerType() == PeterB then
+	elseif player:GetPlayerType() == PlayerType.PLAYER_PETER_B then
 		if flag == CacheFlag.CACHE_LUCK then
 			player.Luck = player.Luck - 1
 		end
@@ -54,7 +54,7 @@ function mod:Hearts(entity, collider)
 	if collider.Type == EntityType.ENTITY_PLAYER then
 		local player = collider:ToPlayer()
 		local data = mod:GetData(player)
-		if player:GetPlayerType() == PeterB then -- Prevent Tainted Peter from obtaining Non-Red Health
+		if player:GetPlayerType() == PlayerType.PLAYER_PETER_B then -- Prevent Tainted Peter from obtaining Non-Red Health
 			if entity.SubType == HeartSubType.HEART_SOUL or entity.SubType == HeartSubType.HEART_HALF_SOUL or entity.SubType == HeartSubType.HEART_BLACK then
 				return false
 			elseif entity.SubType == HeartSubType.HEART_BLENDED then
@@ -76,7 +76,7 @@ mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.Hearts, PickupVariant.
 function mod:PeterQual(entity)
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
-		if player:GetPlayerType() == PeterB then
+		if player:GetPlayerType() == PlayerType.PLAYER_PETER_B then
 			local itemConfig = Isaac.GetItemConfig()
 			if mod.Flipped == false then
 				if itemConfig:GetCollectible(entity.SubType).Quality > 2 and entity.SubType ~= CollectibleType.COLLECTIBLE_BIRTHRIGHT then
@@ -93,7 +93,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PICKUP_INIT, mod.PeterQual, PickupVariant.P
 
 function mod:BloodyTears(tear)
 	local player = tear.Parent:ToPlayer()
-	if player:GetPlayerType() == PeterB then
+	if player:GetPlayerType() == PlayerType.PLAYER_PETER_B then
 		if tear.Variant == TearVariant.BLUE then
 			tear:ChangeVariant(TearVariant.BLOOD)
 		elseif tear.Variant == TearVariant.CUPID_BLUE then
@@ -108,7 +108,7 @@ function mod:ClickerFix(_, _, player)
 	player:TryRemoveNullCostume(COSTUME_PETER_B_DRIP)
 	if player:GetPlayerType() == PlayerType.PLAYER_PETER then
 		player:AddNullCostume(COSTUME_PETER_A_DRIP)
-	elseif player:GetPlayerType() == PeterB then
+	elseif player:GetPlayerType() == PlayerType.PLAYER_PETER_B then
 		player:AddNullCostume(COSTUME_PETER_B_DRIP)
 	end
 end
@@ -127,7 +127,7 @@ function mod:TaintedPeterHome()
 				or (entity.Type == EntityType.ENTITY_SHOPKEEPER)) and room:IsFirstVisit())
 				or (entity.Type == EntityType.ENTITY_SLOT and entity.Variant == 14) then
 					entity:Remove()
-					player:ChangePlayerType(PeterB)
+					player:ChangePlayerType(PlayerType.PLAYER_PETER_B)
 					Isaac.Spawn(EntityType.ENTITY_SLOT, 14, 0, entity.Position, Vector.Zero, nil)
 					player:ChangePlayerType(PlayerType.PLAYER_PETER)
 					player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM, ActiveSlot.SLOT_POCKET, false)
