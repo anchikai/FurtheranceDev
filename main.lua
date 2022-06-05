@@ -148,36 +148,6 @@ CoinSubType.COIN_UNLUCKYPENNY = 117
 include("lua/customcallbacks.lua")
 include("lua/saveapi.lua")
 
---[[
-
-Files affected by Save API:
-- [x] Apocalypse
-- [x] Heart Renovator
-- [x] Jar of Manna
-- [x] Keys to the Kingdom
-- [x] Leah's Lock
-- [x] Muddled Cross
-- [x] Old Camera
-- [x] Servitude
-- [x] Shift Key
-
-- [x] Alabaster Scrap
-- [x] Epitaph
-
-- [x] Moon Heart
-- [x] Rock Heart
-- [x] Unlucky Penny
-
-- [x] Leah
-- [x] Miriam
-- [x] Peter
-
-- [x] Home Exit
-
-- [ ] achievements
-
-]]
-
 -- Players
 include("lua/players/Leah.lua")
 include("lua/players/Peter.lua")
