@@ -4,7 +4,6 @@ local rng = RNG()
 
 mod:SavePlayerData({
 	MiriamTearCount = 0,
-	MiriamRiftTimeout = 0,
 })
 
 local bhb = Isaac.GetSoundIdByName("BrokenHeartbeat")
@@ -13,20 +12,23 @@ COSTUME_MIRIAM_A_HAIR = Isaac.GetCostumeIdByPath("gfx/characters/Character_003_M
 COSTUME_MIRIAM_B_HAIR = Isaac.GetCostumeIdByPath("gfx/characters/Character_003b_Miriam_Hair.anm2")
 
 function mod:OnInit(player)
-	if mod.IsContinued then return end
 	local data = mod:GetData(player)
+	if player:GetPlayerType() == MiriamA then
+		data.MiriamRiftTimeout = 0
+		data.MiriamAOE = 1
+	end
+
+	if mod.IsContinued then return end
 
 	if player:GetPlayerType() == MiriamA then -- If the player is Miriam it will apply her hair
 		data.MiriamTearCount = 0
-		data.MiriamRiftTimeout = 0
-		data.MiriamAOE = 1
 		player:AddNullCostume(COSTUME_MIRIAM_A_HAIR)
 		player:AddCollectible(CollectibleType.COLLECTIBLE_TAMBOURINE, 0, true, ActiveSlot.SLOT_PRIMARY, 0)
 	elseif player:GetPlayerType() == MiriamB then -- Apply different hair for her tainted variant
-		player:AddNullCostume(COSTUME_MIRIAM_B_HAIR)
-		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_POLARITY_SHIFT, ActiveSlot.SLOT_POCKET, false)
 		player:AddBoneHearts(2)
 		player:AddHearts(4)
+		player:AddNullCostume(COSTUME_MIRIAM_B_HAIR)
+		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_POLARITY_SHIFT, ActiveSlot.SLOT_POCKET, false)
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
@@ -34,6 +36,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
 function mod:OnUpdate(player)
 	local data = mod:GetData(player)
 	if player:GetPlayerType() == MiriamA then
+		if data.MiriamRiftTimeout == nil then return end
 		if data.MiriamRiftTimeout > -1 then
 			data.MiriamRiftTimeout = data.MiriamRiftTimeout - 1
 		end
