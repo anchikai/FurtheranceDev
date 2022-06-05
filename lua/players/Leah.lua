@@ -230,16 +230,15 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.LeahbBrokenTears)
 
 function mod:ClickerFix(_, _, player)
+	player:TryRemoveNullCostume(COSTUME_LEAH_A_HAIR)
+	player:TryRemoveNullCostume(COSTUME_LEAH_B_HAIR)
 	if player:GetPlayerType() == LeahA then
-		player:TryRemoveNullCostume(COSTUME_LEAH_A_HAIR)
 		player:AddNullCostume(COSTUME_LEAH_A_HAIR)
 	elseif player:GetPlayerType() == LeahB then
-		player:TryRemoveNullCostume(COSTUME_LEAH_B_HAIR)
 		player:AddNullCostume(COSTUME_LEAH_B_HAIR)
 	end
 end
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.ClickerFix, CollectibleType.COLLECTIBLE_CLICKER)
-mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.ClickerFix, CollectibleType.COLLECTIBLE_SHIFT_KEY)
 
 
 

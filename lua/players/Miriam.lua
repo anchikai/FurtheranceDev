@@ -118,11 +118,11 @@ end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.miriamStats)
 
 function mod:ClickerFix(_, _, player)
+	player:TryRemoveNullCostume(COSTUME_MIRIAM_A_HAIR)
+	player:TryRemoveNullCostume(COSTUME_MIRIAM_B_HAIR)
 	if player:GetPlayerType() == MiriamA then
-		player:TryRemoveNullCostume(COSTUME_MIRIAM_A_HAIR)
 		player:AddNullCostume(COSTUME_MIRIAM_A_HAIR)
 	elseif player:GetPlayerType() == MiriamB then
-		player:TryRemoveNullCostume(COSTUME_MIRIAM_B_HAIR)
 		player:AddNullCostume(COSTUME_MIRIAM_B_HAIR)
 	end
 end

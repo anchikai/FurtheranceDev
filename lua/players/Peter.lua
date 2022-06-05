@@ -103,6 +103,16 @@ function mod:BloodyTears(tear)
 end
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.BloodyTears)
 
+function mod:ClickerFix(_, _, player)
+	player:TryRemoveNullCostume(COSTUME_PETER_A_DRIP)
+	player:TryRemoveNullCostume(COSTUME_PETER_B_DRIP)
+	if player:GetPlayerType() == PeterA then
+		player:AddNullCostume(COSTUME_PETER_A_DRIP)
+	elseif player:GetPlayerType() == PeterB then
+		player:AddNullCostume(COSTUME_PETER_B_DRIP)
+	end
+end
+mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.ClickerFix, CollectibleType.COLLECTIBLE_CLICKER)
 
 
 function mod:TaintedPeterHome()
