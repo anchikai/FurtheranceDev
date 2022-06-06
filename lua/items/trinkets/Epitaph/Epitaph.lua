@@ -176,14 +176,3 @@ function mod:ResetEpitaph(continued)
     end
 end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.ResetEpitaph)
-
-mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
-	for i = 0, game:GetNumPlayers() - 1 do
-		local player = Isaac.GetPlayer(i)
-		local data = mod:GetData(player)
-        local f = Font()
-        f:Load("font/pftempestasevencondensed.fnt")
-        f:DrawString("Run Count: ", 75, 250, KColor(1, 1, 1, 1), 0, true)
-        f:DrawString(data.RunCount, 146+25, 250, KColor(1, 1, 1, 1), 0, true)
-	end
-end)
