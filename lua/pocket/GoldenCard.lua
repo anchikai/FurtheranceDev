@@ -20,7 +20,9 @@ end
 local processedCards = {}
 
 function mod:SpawnGoldenCard(entityType, variant, subtype, _, _, spawner, seed)
-    if isCard(subtype) and entityType == EntityType.ENTITY_PICKUP and variant == PickupVariant.PICKUP_TAROTCARD and (spawner == nil or spawner.Type ~= EntityType.ENTITY_PLAYER) and processedCards[seed] == nil then
+    local room = game:GetRoom()
+    if isCard(subtype) and entityType == EntityType.ENTITY_PICKUP and variant == PickupVariant.PICKUP_TAROTCARD
+    and (spawner == nil or spawner.Type ~= EntityType.ENTITY_PLAYER) and processedCards[seed] == nil and room:IsFirstVisit() then
         processedCards[seed] = true
         if rng:RandomFloat() <= 0.025 then
             return { entityType, variant, CARD_GOLDEN, seed }
