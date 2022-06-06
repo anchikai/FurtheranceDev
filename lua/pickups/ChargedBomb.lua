@@ -30,6 +30,9 @@ function mod:ChargedBomb(pickup, collider)
 			SFXManager():Play(SoundEffect.SOUND_FETUS_FEET, 1, 0, false)
 			player:AddBombs(1)
 			player:FullCharge(ActiveSlot.SLOT_PRIMARY, false)
+			if rng:RandomFloat() <= 0.01 then
+				Isaac.Explode(pickup.Position, pickup, 100)
+			end
 		end
 	end
 end
