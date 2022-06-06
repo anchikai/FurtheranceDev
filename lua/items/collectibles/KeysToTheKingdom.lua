@@ -22,7 +22,7 @@ local statObjs = {
 	{ Name = "Damage", Flag = CacheFlag.CACHE_DAMAGE, Buff = 0.5, TempBuff = 0.1 },
 	{ Name = "MaxFireDelay", Flag = CacheFlag.CACHE_FIREDELAY, Buff = -0.5*5, TempBuff = -0.1*5 }, -- MaxFireDelay buffs should be negative!
 	{ Name = "TearRange", Flag = CacheFlag.CACHE_RANGE, Buff = 0.5*40, TempBuff = 0.1*40 },
-	{ Name = "ShotSpeed", Flag = CacheFlag.CACHE_SHOTSPEED, Buff = 0.5, TempBuff = 0.1 },
+	{ Name = "ShotSpeed", Flag = CacheFlag.CACHE_SHOTSPEED, Buff = 0.125, TempBuff = 0.025 },
 	{ Name = "MoveSpeed", Flag = CacheFlag.CACHE_SPEED, Buff = 0.5, TempBuff = 0.1 },
 	{ Name = "Luck", Flag = CacheFlag.CACHE_LUCK, Buff = 0.5, TempBuff = 0.1 }
 }
