@@ -144,6 +144,7 @@ HeartSubType.HEART_MOON = 225
 HeartSubType.HEART_ROCK = 226
 SackSubType.SACK_GOLDEN = 3
 CoinSubType.COIN_UNLUCKYPENNY = 117
+BombSubType.BOMB_CHARGED = 118
 
 ---- Lua Files ----
 include("lua/customcallbacks.lua")
@@ -279,6 +280,7 @@ include("lua/pickups/MoonHeart.lua")
 include("lua/pickups/RockHeart.lua")
 include("lua/pickups/GoldenSack.lua")
 include("lua/pickups/UnluckyPenny.lua")
+include("lua/pickups/ChargedBomb.lua")
 
 -- Floor Generation
 --include("lua/rooms/NoahsArk.lua")
