@@ -2,7 +2,7 @@ local mod = Furtherance
 local game = Game()
 local rng = RNG()
 
-function mod.RoomGenerator(index, slot, newroom)
+local function RoomGenerator(index, slot, newroom)
     local level = game:GetLevel()
     local OldStage, OldStageType, OldChallenge = level:GetStage(), level:GetStageType(), game.Challenge
     -- Set to Basement 1
@@ -26,13 +26,10 @@ local function pickRandomRoom(roomsList, level, room)
     local RandomRooms = {}
     for i = 0, #roomsList - 1 do
         local roomDesc = roomsList:Get(i)
-        for d = 0, 3 do
-            if (room:IsDoorSlotAllowed(d) and room:GetDoor(d) == nil) and roomDesc.Data.GridIndex ~= level:GetCurrentRoomIndex() then
-                table.insert(RandomRooms, roomDesc)
-            end
+        if roomDesc.Data.Type ~= RoomType.ROOM_ULTRASECRET and roomDesc.Data.GridIndex ~= level:GetCurrentRoomIndex() then
+            table.insert(RandomRooms, roomDesc)
         end
     end
-
     if #RandomRooms > 0 then
         local choice = rng:RandomInt(#RandomRooms) + 1
         return RandomRooms[choice].GridIndex
@@ -54,13 +51,19 @@ function mod:UseSoulOfPeter(card, player, flag)
     elseif door == 3 then
         doorIndex = 13
     end
-    for _ = 1, 5 do
-        local RandRoom = pickRandomRoom(roomsList, level, room)
-        mod.RoomGenerator(RandRoom, door, RandRoom+doorIndex)
-        print("Made room! "..RandRoom)
-        local NewRoomIdx = level:GetRoomByIdx(RandRoom+doorIndex)
-        NewRoomIdx.DisplayFlags = 101
-        level:UpdateVisibility()
+    local RoomCount = 0
+    for _ = 0, 168 do
+        if RoomCount >= 5 then break end
+        local RandRoomIdx = pickRandomRoom(roomsList, level, room)
+        if RandRoomIdx ~= level:GetCurrentRoomIndex() then
+            RoomGenerator(RandRoomIdx, door, RandRoomIdx+doorIndex)
+            print("Made room! "..RandRoomIdx)
+            local NewRoomIdx = level:GetRoomByIdx(RandRoomIdx+doorIndex)
+            NewRoomIdx.DisplayFlags = 101
+            level:UpdateVisibility()
+        end
+        RoomCount = RoomCount + 1
+        print(RoomCount)
     end
 end
 mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseSoulOfPeter, RUNE_SOUL_OF_PETER)
