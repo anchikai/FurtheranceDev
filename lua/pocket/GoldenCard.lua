@@ -5,10 +5,14 @@ local rng = RNG()
 local function isCard(num)
     return (num < 32 or num > 41) and num ~= 55 and num ~= 78 and num ~= 80
         and num ~= RUNE_SOUL_OF_MIRIAM and num ~= RUNE_SOUL_OF_LEAH and num ~= RUNE_SOUL_OF_PETER
+        and num ~= OBJ_ESSENCE_OF_LOVE and num ~= OBJ_ESSENCE_OF_HATE
+        and num ~= OBJ_ESSENCE_OF_LIFE and num ~= OBJ_ESSENCE_OF_DEATH
+        and num ~= OBJ_ESSENCE_OF_PROSPERITY and num ~= OBJ_ESSENCE_OF_DROUGHT
+
 end
 
 local allCards = {}
-for i = 1, 80 do
+for i = 1, Isaac.GetItemConfig():GetCards().Size do
     if isCard(i) then
         table.insert(allCards, i)
     end
