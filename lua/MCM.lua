@@ -7,6 +7,36 @@ if ModConfigMenu then
 		Info = {"Configuration for Furtherance.",}
 	})
 
+    ModConfigMenu.AddSetting(FurtheranceMCM, "Controls",
+    {
+        Type = ModConfigMenu.OptionType.NUMBER,
+        CurrentSetting = function()
+            return Furtherance.LeahDoubleTapSpeed
+        end,
+        Default = 1,
+        Minimum = 1,
+        Maximum = 5,
+        Display = function()
+            local sstr
+            if Furtherance.LeahDoubleTapSpeed == 1 then
+                sstr = "Speedy (Default)"
+            elseif Furtherance.LeahDoubleTapSpeed == 2 then
+                sstr = "Fast"
+            elseif Furtherance.LeahDoubleTapSpeed == 3 then
+                sstr = "Medium"
+            elseif Furtherance.LeahDoubleTapSpeed == 4 then
+                sstr = "Slow"
+            elseif Furtherance.LeahDoubleTapSpeed == 5 then
+                sstr = "Snail"
+            end
+            return 'Renovator Double Tap Speed: '..sstr
+        end,
+        OnChange = function(currentNum)
+            Furtherance.LeahDoubleTapSpeed = currentNum
+        end,
+        Info = "Change how quickly you have to double tap the drop button to use Heart Renovator's counter."
+    })
+
     ModConfigMenu.AddSetting(FurtheranceMCM, "Visuals",
     {
         Type = ModConfigMenu.OptionType.NUMBER,
@@ -18,12 +48,12 @@ if ModConfigMenu then
         Maximum = 3,
         Display = function()
             local sstr
-            if Furtherance.FlipSpeed == 1 then 
+            if Furtherance.FlipSpeed == 1 then
                 sstr = "Slow (Default)"
-            elseif Furtherance.FlipSpeed == 2 then 
+            elseif Furtherance.FlipSpeed == 2 then
                 sstr = "Medium"
-            elseif Furtherance.FlipSpeed == 3 then 
-                sstr = "Fast" 
+            elseif Furtherance.FlipSpeed == 3 then
+                sstr = "Fast"
             end
             return 'Tainted Peter Flip Speed: '..sstr
         end,

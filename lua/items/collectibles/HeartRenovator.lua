@@ -124,15 +124,21 @@ mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.RenovatorOnKill)
 local wasPressed = false
 local numPresses = 0
 local pressCd = 0
+local SnailSpeed = 0
 function mod:OnUpdate(player)
 	local data = mod:GetData(player)
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) and data.HeartCount >= 2 then
 		local isPressed = Input.IsActionPressed(ButtonAction.ACTION_DROP, player.ControllerIndex)
+		if Furtherance.LeahDoubleTapSpeed == 5 then
+			SnailSpeed = 15
+		else
+			SnailSpeed =  0
+		end
 		if isPressed then
 			if not wasPressed then
 				numPresses = numPresses + 1
 			end
-			pressCd = 3
+			pressCd = 3 * (Furtherance.LeahDoubleTapSpeed + SnailSpeed)
 		elseif pressCd > 0 then
 			pressCd = pressCd - 1
 		elseif pressCd == 0 then
