@@ -127,7 +127,7 @@ local pressCd = 0
 local SnailSpeed = 0
 function mod:OnUpdate(player)
 	local data = mod:GetData(player)
-	if player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) and data.HeartCount >= 2 then
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) and data.HeartCount >= 2 and player:GetBrokenHearts() < 11 then
 		local isPressed = Input.IsActionPressed(ButtonAction.ACTION_DROP, player.ControllerIndex)
 		if Furtherance.LeahDoubleTapSpeed == 5 then
 			SnailSpeed = 15
