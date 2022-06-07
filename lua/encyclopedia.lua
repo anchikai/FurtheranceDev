@@ -1193,7 +1193,6 @@ local Wiki = {
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
 			{str = "If there are 12 or more uncleared rooms, it will kill you."},
-			{str = "The tears cap is entirely ignored, and in some rare instances can set you to 120 tears."},
 		},
 		{ -- Interactions
 			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
