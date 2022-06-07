@@ -257,7 +257,7 @@ function mod:HeartHandling(player)
 	end
 
 	local data = mod:GetData(player)
-	if data.MoonHeart and data.MoonHeart > 0 then
+	if data.MoonHeart ~= nil and data.MoonHeart > 0 then
 		data.MoonHeart = data.MoonHeart > player:GetSoulHearts() and player:GetSoulHearts() or data.MoonHeart
 		local heartIndex = math.ceil(data.MoonHeart / 2) - 1
 		for i = 0, heartIndex do

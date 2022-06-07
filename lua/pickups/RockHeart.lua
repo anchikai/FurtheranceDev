@@ -256,7 +256,7 @@ function mod:HeartHandling(player)
 	end
 
 	local data = mod:GetData(player)
-	if data.RockHeart and data.RockHeart > 0 then
+	if data.RockHeart ~= nil and data.RockHeart > 0 then
 		data.RockHeart = data.RockHeart > player:GetSoulHearts() and player:GetSoulHearts() or data.RockHeart
 		local heartIndex = math.ceil(data.RockHeart / 2) - 1
 		for i = 0, heartIndex do
