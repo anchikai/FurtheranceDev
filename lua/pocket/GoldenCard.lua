@@ -3,7 +3,8 @@ local game = Game()
 local rng = RNG()
 
 local function isCard(num)
-    return num < 32 or (num > 41 and num ~= 55 and num ~= 78 and num ~= 80)
+    return (num < 32 or (num > 41 and num ~= 55 and num ~= 78 and num ~= 80) or num == CARD_ACE_OF_SHIELDS)
+        and num ~= RUNE_SOUL_OF_MIRIAM and num ~= RUNE_SOUL_OF_LEAH and num ~= RUNE_SOUL_OF_PETER
 end
 
 local allCards = {}
