@@ -5,7 +5,7 @@
     <card type="special" pickup="8" description="High level access" hud="Key Card" name="Key Card" mimiccharge="6" />
     <card type="special" pickup="99" description="???" hud="Golden Card" name="Golden Card" mimiccharge="12" />
     <card type="rune" pickup="104" description="Heartache" hud="Soul of Leah" name="Soul of Leah" mimiccharge="6" />
-    <card type="rune" pickup="105" description="Hey Lois" hud="Soul of Peter" name="Soul of Peter" mimiccharge="6" />
+    <card type="rune" pickup="105" description="Your world, born again" hud="Soul of Peter" name="Soul of Peter" mimiccharge="6" />
     <card type="rune" pickup="106" description="Drown" hud="Soul of Miriam" name="Soul of Miriam" mimiccharge="12" />
     <card type="object" pickup="111" description="Deep affection" hud="Essence of Love" name="Essence of Love" />
     <card type="object" pickup="112" description="Regret" hud="Essence of Hate" name="Essence of Hate" />

@@ -80,7 +80,6 @@ function mod:UseSoulOfPeter(card, player, flag)
         if randRoomInfo then
             local roomIdx, idxOffset = randRoomInfo[1], randRoomInfo[2]
             RoomGenerator(roomIdx, doorMap[idxOffset], roomIdx + idxOffset)
-            print("Made room! "..(roomIdx + idxOffset))
             local NewRoom = level:GetRoomByIdx(roomIdx + idxOffset)
             NewRoom.DisplayFlags = 101
             level:UpdateVisibility()
