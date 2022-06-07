@@ -6,11 +6,44 @@ Furtherance.LoadedData = false
 
 local json = require("json")
 
+local allPlayers = {}
+
 local playerKeys = {}
 local modKeys = {}
 
 local shelvedPlayerKeys = {}
 local shelvedModKeys = {}
+
+local function isPureLivingLazarus(player)
+    return player ~= nil and player:GetPlayerType() == PlayerType.PLAYER_LAZARUS
+end
+
+local function isPureDeadLazarus(player)
+    return player ~= nil and player:GetPlayerType() == PlayerType.PLAYER_LAZARUS2
+end
+
+local function isTaintedLivingLazarus(player)
+    return player ~= nil and player:GetPlayerType() == PlayerType.PLAYER_LAZARUS_B
+end
+
+local function isTaintedDeadLazarus(player)
+    return player ~= nil and player:GetPlayerType() == PlayerType.PLAYER_LAZARUS2_B
+end
+
+local function getPlayerIndex(player)
+    if player == nil then
+        error("player is nil", 2)
+    end
+
+    for index = 0, game:GetNumPlayers() - 1 do
+        local indexedPlayer = Isaac.GetPlayer(index)
+        if GetPtrHash(player) == GetPtrHash(indexedPlayer) then
+            return index
+        end
+    end
+
+    error("player index not found", 2)
+end
 
 function Furtherance:SavePlayerData(keys)
     for key, default in pairs(keys) do
@@ -125,41 +158,12 @@ function mod:OnLoadData(isContinued)
     local loadedData = json.decode(mod:LoadData())
 
     if isContinued then
-        for i = 0, game:GetNumPlayers() - 1 do
-            local player = Isaac.GetPlayer(i)
-            local data = mod:GetData(player)
-            local playerData = loadedData.PlayerData[string.format("player_%d", i + 1)]
-
-            for key, default in pairs(playerKeys) do
-                data[key] = loadDecodeOrDefault(playerData[key], default)
-            end
-        end
-
         for key, default in pairs(modKeys) do
             mod[key] = loadDecodeOrDefault(loadedData[key], default)
         end
     else
-        for i = 0, game:GetNumPlayers() - 1 do
-            local player = Isaac.GetPlayer(i)
-            local data = mod:GetData(player)
-
-            for key, default in pairs(playerKeys) do
-                data[key] = loadDefault(default)
-            end
-        end
-
         for key, default in pairs(modKeys) do
             mod[key] = loadDefault(default)
-        end
-    end
-
-    for i = 0, game:GetNumPlayers() - 1 do
-        local player = Isaac.GetPlayer(i)
-        local data = mod:GetData(player)
-        local playerData = loadedData.PlayerData[string.format("player_%d", i + 1)]
-
-        for key, default in pairs(shelvedPlayerKeys) do
-            data[key] = loadDecodeOrDefault(playerData[key], default)
         end
     end
 
@@ -167,28 +171,31 @@ function mod:OnLoadData(isContinued)
         mod[key] = loadDecodeOrDefault(loadedData[key], default)
     end
 
-    mod.LoadedData = true
+    mod.LoadedData = loadedData
     mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_LOADED, nil, isContinued)
 end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnLoadData)
+
+local function savePlayerData(player, i, savedData, keys)
+    local data = mod:GetData(player)
+    local playerData = savedData.PlayerData[string.format("player_%.1f", i)]
+
+    for key, default in pairs(keys) do
+        playerData[key] = saveEncode(data[key], default)
+    end
+end
 
 function mod:OnSaveData(canContinue)
     local savedData = {
         PlayerData = {}
     }
-    for i = 1, game:GetNumPlayers() do
-        savedData.PlayerData[string.format("player_%d", i)] = {}
+    for i in pairs(allPlayers) do
+        savedData.PlayerData[string.format("player_%.1f", i)] = {}
     end
 
     if canContinue then
-        for i = 0, game:GetNumPlayers() - 1 do
-            local player = Isaac.GetPlayer(i)
-            local data = mod:GetData(player)
-            local playerData = savedData.PlayerData[string.format("player_%d", i + 1)]
-
-            for key, default in pairs(playerKeys) do
-                playerData[key] = saveEncode(data[key], default)
-            end
+        for i, player in pairs(allPlayers) do
+            savePlayerData(player, i, savedData, playerKeys)
         end
 
         for key, default in pairs(modKeys) do
@@ -196,14 +203,8 @@ function mod:OnSaveData(canContinue)
         end
     end
 
-    for i = 0, game:GetNumPlayers() - 1 do
-        local player = Isaac.GetPlayer(i)
-        local data = mod:GetData(player)
-        local playerData = savedData.PlayerData[string.format("player_%d", i + 1)]
-
-        for key, default in pairs(shelvedPlayerKeys) do
-            playerData[key] = saveEncode(data[key], default)
-        end
+    for i, player in pairs(allPlayers) do
+        savePlayerData(player, i, savedData, shelvedPlayerKeys)
     end
 
     for key, default in pairs(shelvedModKeys) do
@@ -212,7 +213,101 @@ function mod:OnSaveData(canContinue)
 
     mod:SaveData(json.encode(savedData))
     mod.IsContinued = false
-    mod.LoadedData = false
+    mod.LoadedData = nil
     mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_SAVED, nil, canContinue)
 end
 mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.OnSaveData)
+
+local lazarusTwins = {}
+function Furtherance:GetLazarusOtherTwin(player)
+    if player == nil then
+        return nil
+    end
+
+    local index = mod:GetEntityIndex(player)
+    return lazarusTwins[index]
+end
+
+local lastLazarus
+function mod:ConnectLazarus(lazarus)
+    if isPureLivingLazarus(lazarus) or isPureDeadLazarus(lazarus) or isTaintedLivingLazarus(lazarus) or isTaintedDeadLazarus(lazarus) then
+        if lastLazarus then
+            local index = mod:GetEntityIndex(lazarus)
+            local lastIndex = mod:GetEntityIndex(lastLazarus)
+
+            lazarusTwins[index] = lastLazarus
+            lazarusTwins[lastIndex] = lazarus
+            lastLazarus = nil
+        else
+            lastLazarus = lazarus
+        end
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.ConnectLazarus)
+
+local function loadPlayerData(player, index)
+    local data = mod:GetData(player)
+    local playerData = mod.LoadedData.PlayerData[string.format("player_%.1f", index)]
+    if mod.IsContinued and index ~= nil and playerData ~= nil then
+        for key, default in pairs(playerKeys) do
+            data[key] = loadDecodeOrDefault(playerData[key], default)
+        end
+    else
+        for key, default in pairs(playerKeys) do
+            data[key] = loadDefault(default)
+        end
+    end
+end
+
+local function loadShelvedPlayerData(player, index)
+    local data = mod:GetData(player)
+    local playerData = mod.LoadedData.PlayerData[string.format("player_%.1f", index)]
+    if index ~= nil and playerData ~= nil then
+        for key, default in pairs(shelvedPlayerKeys) do
+            data[key] = loadDecodeOrDefault(playerData[key], default)
+        end
+    else
+        for key, default in pairs(shelvedPlayerKeys) do
+            data[key] = loadDefault(default)
+        end
+    end
+end
+
+local function loadAllPlayerData(player, index)
+    loadPlayerData(player, index)
+    loadShelvedPlayerData(player, index)
+    local data = mod:GetData(player)
+    data.LoadedData = true
+    mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_PLAYER_LOADED, player.Variant, player)
+end
+
+-- pure living lazarus, EXISTS
+-- pure dead lazarus,
+
+-- tainted dead lazarus
+-- taitned living lazarus, EXISTS
+
+
+function mod:OnLoadPlayerData(player)
+    if isTaintedDeadLazarus(player) then return end
+
+    local indexedPlayer = player
+    local indexOffset = 0
+    if isPureDeadLazarus(player) then
+        indexedPlayer = mod:GetLazarusOtherTwin(player)
+        indexOffset = 0.5
+    end
+
+    local index = getPlayerIndex(indexedPlayer) + indexOffset
+
+    if isTaintedLivingLazarus(player) then
+        -- load tainted dead lazarus too now that tainted living lazarus is here
+        local deadLazarus = mod:GetLazarusOtherTwin(player)
+        allPlayers[index + 0.5] = deadLazarus
+        loadAllPlayerData(deadLazarus, index + 0.5)
+    end
+
+    allPlayers[index] = player
+    loadAllPlayerData(player, index)
+end
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnLoadPlayerData)

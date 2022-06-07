@@ -148,6 +148,7 @@ CoinSubType.COIN_UNLUCKYPENNY = 117
 BombSubType.BOMB_CHARGED = 118
 
 ---- Lua Files ----
+include("lua/piber.lua")
 include("lua/customcallbacks.lua")
 include("lua/saveapi.lua")
 
@@ -333,7 +334,7 @@ if ModConfigMenu then
 end
 
 -- Other
-include("lua/piber.lua")
+
 
 -------- Lua Files End --------
 
@@ -348,6 +349,7 @@ function Furtherance:GetEntityIndex(entity)
 			if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
 				player = player:GetOtherTwin()
 			end
+
 			local id = 1
 			if player:GetPlayerType() == PlayerType.PLAYER_LAZARUS2_B then
 				id = 2

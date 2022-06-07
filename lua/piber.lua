@@ -83,7 +83,7 @@ function Furtherance:GetPtrHashEntity(entity)
 end
 
 function Furtherance:GetData(entity)
-	if entity == nil or not entity.GetData then
+	if type(entity) ~= "userdata" or not entity.GetData then
 		error("Invalid argument, expected an Entity", 2)
 	end
 

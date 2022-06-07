@@ -9,7 +9,8 @@ Furtherance.CustomCallbacks = {
     MC_POST_PLAYER_UPDATE = ModCallbacks.MC_POST_PLAYER_UPDATE,
     MC_POST_PEFFECT_UPDATE = ModCallbacks.MC_POST_PEFFECT_UPDATE,
     MC_POST_LOADED = 20001,
-    MC_POST_SAVED = 20002,
+    MC_POST_PLAYER_LOADED = 20002,
+    MC_POST_SAVED = 20003,
 }
 
 local GeneralCallbacks = {}
@@ -173,9 +174,9 @@ mod:AddVanillaCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.PostNewRoom)
 
 --]]
 
-local queuedCallbacks = {}
-function Furtherance:QueueLoadedCallback(callbackEnum, specifier, ...)
-    table.insert(queuedCallbacks, {
+local gameQueuedCallbacks = {}
+local function queueLoadedCallback(callbackEnum, specifier, ...)
+    table.insert(gameQueuedCallbacks, {
         callbackEnum = callbackEnum,
         specifier = specifier,
         args = table.pack(...)
@@ -183,24 +184,62 @@ function Furtherance:QueueLoadedCallback(callbackEnum, specifier, ...)
 end
 
 function mod:RunQueuedCallbacks()
-    for _, callbackInfo in ipairs(queuedCallbacks) do
+    for _, callbackInfo in ipairs(gameQueuedCallbacks) do
         local callbackArgs = callbackInfo.args
         mod:RunCustomCallback(callbackInfo.callbackEnum, callbackInfo.specifier, table.unpack(callbackArgs, 1, callbackArgs.n))
     end
-    queuedCallbacks = {}
+    gameQueuedCallbacks = {}
 end
 mod:AddCallback(mod.CustomCallbacks.MC_POST_LOADED, mod.RunQueuedCallbacks)
-
 
 ---queues player callbacks until data is loaded
 ---@param callbackEnum integer
 ---@param specifier any
----@param ... any
+---@param player EntityPlayer
 local function runQueueCallbackHandler(callbackEnum, specifier, ...)
     if mod.LoadedData then
         mod:RunCustomCallback(callbackEnum, specifier, ...)
     else
-        mod:QueueLoadedCallback(callbackEnum, specifier, ...)
+        queueLoadedCallback(callbackEnum, specifier, ...)
+    end
+end
+
+local playerQueuedCallbacks = {}
+local function queuePlayerLoadedCallback(callbackEnum, specifier, player, ...)
+    local index = mod:GetEntityIndex(player)
+    local queuedCallbacks = playerQueuedCallbacks[index]
+    if queuedCallbacks == nil then
+        queuedCallbacks = {}
+        playerQueuedCallbacks[index] = queuedCallbacks
+    end
+
+    table.insert(queuedCallbacks, {
+        callbackEnum = callbackEnum,
+        specifier = specifier,
+        args = table.pack(player, ...)
+    })
+end
+
+function mod:RunPlayerQueuedCallback(player)
+    local index = mod:GetEntityIndex(player)
+    local queuedCallbacks = playerQueuedCallbacks[index]
+    if queuedCallbacks == nil then return end
+
+    for _, callbackInfo in ipairs(queuedCallbacks) do
+        local callbackArgs = callbackInfo.args
+        mod:RunCustomCallback(callbackInfo.callbackEnum, callbackInfo.specifier, table.unpack(callbackArgs, 1, callbackArgs.n))
+    end
+    
+    playerQueuedCallbacks[index] = nil
+end
+mod:AddCallback(mod.CustomCallbacks.MC_POST_PLAYER_LOADED, mod.RunPlayerQueuedCallback)
+
+local function runPlayerQueueCallbackHandler(callbackEnum, specifier, player, ...)
+    local data = mod:GetData(player)
+    if data.LoadedData then
+        mod:RunCustomCallback(callbackEnum, specifier, player, ...)
+    else
+        queuePlayerLoadedCallback(callbackEnum, specifier, player, ...)
     end
 end
 
@@ -212,12 +251,12 @@ mod:AddVanillaCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.QueuePlayerInitArgs
 
 ---@param player EntityPlayer
 function mod:QueuePlayerUpdateArgs(player)
-    runQueueCallbackHandler(mod.CustomCallbacks.MC_POST_PLAYER_UPDATE, player.Variant, player)
+    runPlayerQueueCallbackHandler(mod.CustomCallbacks.MC_POST_PLAYER_UPDATE, player.Variant, player)
 end
 mod:AddVanillaCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.QueuePlayerUpdateArgs)
 
 ---@param player EntityPlayer
 function mod:QueuePEffectUpdateArgs(player)
-    runQueueCallbackHandler(mod.CustomCallbacks.MC_POST_PEFFECT_UPDATE, player.Variant, player)
+    runPlayerQueueCallbackHandler(mod.CustomCallbacks.MC_POST_PEFFECT_UPDATE, player.Variant, player)
 end
 mod:AddVanillaCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.QueuePEffectUpdateArgs)
