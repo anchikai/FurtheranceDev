@@ -126,7 +126,7 @@ local numPresses = 0
 local pressCd = 0
 function mod:OnUpdate(player)
 	local data = mod:GetData(player)
-	if player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) then
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) and data.HeartCount > 0 then
 		local isPressed = Input.IsActionPressed(ButtonAction.ACTION_DROP, player.ControllerIndex)
 		if isPressed then
 			if not wasPressed then
