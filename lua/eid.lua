@@ -367,7 +367,7 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_D16, "Reroll your health#{{Player
 EID:addCard(RUNE_SOUL_OF_LEAH, "{{BrokenHeart}} Grants a broken heart for every uncleared room on the floor#↑ Each broken heart will give a +0.75 damage up#!!! If there are 12 or more uncleared rooms, it will kill you", "Soul of Leah", "en_us")
 
 -- Soul of Peter
-EID:addCard(RUNE_SOUL_OF_PETER, "", "Soul of Peter", "en_us")
+EID:addCard(RUNE_SOUL_OF_PETER, "↑ Generates up to 5 new random rooms connected to other random rooms#The rooms will be revealed on the map", "Soul of Peter", "en_us")
 
 -- Soul of Miriam
 EID:addCard(RUNE_SOUL_OF_MIRIAM, "It will rain in uncleared rooms, building up water until it covers the whole room#Water deals 0.33x your damage every 0.5 seconds#Effect persists for 40 seconds", "Soul of Miriam", "en_us")

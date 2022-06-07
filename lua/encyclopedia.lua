@@ -1203,11 +1203,15 @@ local Wiki = {
 	SoulOfPeter = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "Upon use, 5 random rooms will be generated next to other random rooms."},
+			{str = "- The rooms generated will be revealed on the map."},
+			{str = "- The rooms generated can be any room type."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "If for any reason 5 rooms can't be generated, the next highest amount will attempt to generate."},
+			{str = "- Nothing will happen if no rooms can be generated at all."},
+			{str = "The newly generated rooms can generate off of any room type except for Secret, Super Secret, and Ultra Secret rooms."},
 		},
 	},
 	SoulOfMiriam = {
