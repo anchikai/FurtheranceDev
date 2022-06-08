@@ -37,7 +37,9 @@ function mod:UseRenovator(_, _, player)
 end
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseRenovator, CollectibleType.COLLECTIBLE_HEART_RENOVATOR)
 
-function mod:Hearts(entity, collider)
+---@param heart EntityPickup
+---@param collider Entity
+function mod:Hearts(heart, collider)
 	local heartCounter = {
 		[HeartSubType.HEART_FULL] = 2,
 		[HeartSubType.HEART_SCARED] = 2,
@@ -57,38 +59,44 @@ function mod:Hearts(entity, collider)
 	if not player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) then return end
 
 	local MaximumCount = 99
-	if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+	if player:GetPlayerType() == PlayerType.PLAYER_LEAH and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 		MaximumCount = 999
 	end
 
-	if data.HeartCount >= MaximumCount or entity:IsShopItem() then return end
+	if data.HeartCount >= MaximumCount then return end
 
-	for subtype, amount in pairs(heartCounter) do
-		if entity.SubType == subtype then
-			local emptyHearts = player:GetEffectiveMaxHearts() - player:GetHearts()
-			local fullHearts = player:GetHearts() + player:GetSoulHearts() + player:GetBrokenHearts() * 2
-			if emptyHearts <= amount then
-				if subtype ~= HeartSubType.HEART_BLENDED then
-					data.HeartCount = data.HeartCount + amount - emptyHearts
-				elseif fullHearts == 24 then
-					data.HeartCount = data.HeartCount + 2
-				elseif fullHearts == 23 then
-					data.HeartCount = data.HeartCount + 1
-				end
+	local amount = heartCounter[heart.SubType]
+	local emptyHearts = player:GetEffectiveMaxHearts() - player:GetHearts()
+	local fullHearts = player:GetHearts() + player:GetSoulHearts() + player:GetBrokenHearts() * 2
+	if amount == nil or emptyHearts > amount then return end
 
-				if not player:CanPickRedHearts() then
-					entity:GetSprite():Play("Collect",true)
-					entity:Die()
-					SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
-				elseif player:CanPickRedHearts() and RepentancePlusMod then
-					if entity.SubType == CustomPickups.TaintedHearts.HEART_HOARDED then
-						entity:GetSprite():Play("Collect",true)
-						entity:Die()
-						SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
-						player:AddHearts(emptyHearts)
-					end
-				end
-			end
+	if heart:IsShopItem() then
+		if player:GetNumCoins() < heart.Price then
+			return
+		else
+			player:AddCoins(-heart.Price)
+		end
+	end
+
+	if heart.SubType ~= HeartSubType.HEART_BLENDED then
+		data.HeartCount = data.HeartCount + amount - emptyHearts
+	elseif fullHearts == 24 then
+		data.HeartCount = data.HeartCount + 2
+	elseif fullHearts == 23 then
+		data.HeartCount = data.HeartCount + 1
+	end
+
+	if not player:CanPickRedHearts() then
+		heart:GetSprite():Play("Collect",true)
+		heart:Die()
+		SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
+
+	elseif player:CanPickRedHearts() and RepentancePlusMod then
+		if heart.SubType == CustomPickups.TaintedHearts.HEART_HOARDED then
+			heart:GetSprite():Play("Collect",true)
+			heart:Die()
+			SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
+			player:AddHearts(emptyHearts)
 		end
 	end
 end
