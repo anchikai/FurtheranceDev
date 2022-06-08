@@ -259,6 +259,7 @@ include("lua/items/trinkets/KeyToThePit.lua")
 -- Enemies
 include("lua/enemies/Hostikai.lua")
 include("lua/enemies/Illusioner.lua")
+include("lua/enemies/Goon.lua")
 
 -- Pockets
 include("lua/pocket/SoulOfLeah.lua")
