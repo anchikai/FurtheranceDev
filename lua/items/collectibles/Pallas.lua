@@ -16,10 +16,12 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetPallas)
 
 function mod:TearSize(tear)
     local player = tear.Parent:ToPlayer()
-    if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_PALLAS) and player:HasCollectible(CollectibleType.COLLECTIBLE_FLAT_STONE)) then -- Flat stone synergy
-		tear.Scale = tear.Scale * 2
-    elseif (player and player:HasCollectible(CollectibleType.COLLECTIBLE_PALLAS)) then
-		tear.Scale = tear.Scale * 1.2
+	if player and player:HasCollectible(CollectibleType.COLLECTIBLE_PALLAS) then
+		if player:HasCollectible(CollectibleType.COLLECTIBLE_FLAT_STONE) then
+			tear.Scale = tear.Scale * 2
+		else
+			tear.Scale = tear.Scale * 1.2
+		end
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.TearSize, CollectibleType.COLLECTIBLE_PALLAS)

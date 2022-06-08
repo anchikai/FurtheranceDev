@@ -12,13 +12,23 @@ function mod:KeratoconusBuffs(player, flag)
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.KeratoconusBuffs)
 
+local function clamp(value, min, max)
+    return math.min(math.max(value, min), max)
+end
+
 function mod:KeratoconusTear(tear)
     local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
     if player == nil then return end
     if not player:HasCollectible(CollectibleType.COLLECTIBLE_KERATOCONUS) then return end
 
     local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_KERATOCONUS)
-    if rng:RandomFloat() < 0.25 then
+
+    local chance = clamp(player.Luck, 0, 14) * 0.25 / 14 + 0.25
+    if player:HasTrinket(TrinketType.TRINKET_TEARDROP_CHARM) then
+        chance = 1 - (1 - chance) ^ 2
+    end
+
+    if rng:RandomFloat() < chance then
         local data = mod:GetData(tear)
         data.IsKeratoconusTear = true
 

@@ -12,18 +12,23 @@ end
 
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetCeres)
 
+local function clamp(value, min, max)
+	return math.min(math.max(value, min), max)
+end
+
 function mod:InitCeresTear(tear) -- Replaces default tear to the "Seed" tear
 	if tear.SpawnerType == EntityType.ENTITY_PLAYER and tear.Parent then
 		local player = tear.Parent:ToPlayer()
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_CERES) then
-			local rollCeres = rng:RandomInt(100)
-			local data = mod:GetData(tear)
-			if player.Luck > 9 then
-				if rng:RandomInt(2) == 1 then
-					data.ceres = true
-					tear.Color = Color(0, 0.75, 0, 1, 0, 0, 0)
-				end
-			elseif rollCeres <= (player.Luck * 5 + 5) then
+
+			-- min is 5%, max is 50%
+			local chance = clamp(player.Luck, 0, 9) * 0.05 + 0.05
+			if player:HasTrinket(TrinketType.TRINKET_TEARDROP_CHARM) then
+				chance = 1 - (1 - chance) ^ 2
+			end
+
+			if rng:RandomFloat() <= chance then
+				local data = mod:GetData(tear)
 				data.ceres = true
 				tear.Color = Color(0, 0.75, 0, 1, 0, 0, 0)
 			end

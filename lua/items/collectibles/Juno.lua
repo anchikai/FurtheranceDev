@@ -2,22 +2,24 @@ local mod = Furtherance
 local game = Game()
 local rng = RNG()
 
+local function clamp(value, min, max)
+	return math.min(math.max(value, min), max)
+end
+
+---@param tear EntityTear
 function mod:JunoTears(tear, collider)
-	for i = 0, game:GetNumPlayers() - 1 do
-		local player = Isaac.GetPlayer(i)
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_JUNO) then
-			if (collider:IsEnemy() and collider:IsVulnerableEnemy() and collider:IsActiveEnemy()) then
-				local rollJuno = rng:RandomInt(100)
-				local data = mod:GetData(player)
-				if player.Luck > 11 then
-					if rng:RandomInt(4) == 1 and data.JunoTimer == 0 then
-						player:UseActiveItem(CollectibleType.COLLECTIBLE_ANIMA_SOLA, UseFlag.USE_NOANIM, -1)
-						data.JunoTimer = 300
-					end
-				elseif rollJuno <= (player.Luck * 2 + 2) and data.JunoTimer == 0 then
-					player:UseActiveItem(CollectibleType.COLLECTIBLE_ANIMA_SOLA, UseFlag.USE_NOANIM, -1)
-					data.JunoTimer = 300
-				end
+	local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
+	if player and player:HasCollectible(CollectibleType.COLLECTIBLE_JUNO) then
+		if (collider:IsEnemy() and collider:IsVulnerableEnemy() and collider:IsActiveEnemy()) then
+			local chance = clamp(player.Luck, 0, 11) * 0.02 + 0.03
+			if tear.Type == EntityType.ENTITY_TEAR and player:HasTrinket(TrinketType.TRINKET_TEARDROP_CHARM) then
+				chance = 1 - (1 - chance) ^ 2
+			end
+
+			local data = mod:GetData(player)
+			if rng:RandomFloat() <= chance and data.JunoTimer == 0 then
+				player:UseActiveItem(CollectibleType.COLLECTIBLE_ANIMA_SOLA, UseFlag.USE_NOANIM, -1)
+				data.JunoTimer = 300
 			end
 		end
 	end
