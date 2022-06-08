@@ -1,18 +1,27 @@
 local mod = Furtherance
 
 function mod:OwlFlags(player, flag)
-	if player:HasCollectible(CollectibleType.COLLECTIBLE_OWLS_EYE) and RollOwl <= (player.Luck * 8 + 8) then
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_OWLS_EYE) and rollOwl <= (player.Luck * 8 + 8) then
 		player.TearFlags = player.TearFlags | TearFlags.TEAR_PIERCING | TearFlags.TEAR_HOMING
 	end
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.OwlFlags, CacheFlag.CACHE_TEARFLAG)
 
+local function clamp(value, min, max)
+	return math.min(math.max(value, min), max)
+end
+
 function mod:OwlTear(tear)
-	if tear.SpawnerType == EntityType.ENTITY_PLAYER and tear.Parent then
-        local player = tear.Parent:ToPlayer()
+	local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
+	if player and player:HasCollectible(CollectibleType.COLLECTIBLE_OWLS_EYE) then
 		local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_OWLS_EYE)
-		RollOwl = rng:RandomInt(100)+1
-		if player:HasCollectible(CollectibleType.COLLECTIBLE_OWLS_EYE) and RollOwl <= (player.Luck * 8 + 8) then
+
+		local chance = clamp(player.Luck, 0, 12) * 0.08 + 0.08
+		if player:HasTrinket(TrinketType.TRINKET_TEARDROP_CHARM) then
+			chance = 1 - (1 - chance) ^ 2
+		end
+
+		if rng:RandomFloat() <= chance then
 			tear:ChangeVariant(TearVariant.CUPID_BLUE)
 			tear.CollisionDamage = tear.CollisionDamage * 2
 

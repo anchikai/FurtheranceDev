@@ -20,14 +20,16 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetVesta)
 
 function mod:tearSize(tear)
     local player = tear.Parent:ToPlayer()
-	if (player and player:HasTrinket(TrinketType.TRINKET_PULSE_WORM) and player:HasCollectible(CollectibleType.COLLECTIBLE_VESTA)) then
-		tear.Scale = tear.Scale * 0.22
-    elseif (player and player:HasCollectible(CollectibleType.COLLECTIBLE_VESTA)) then
-		local sprite = tear:GetSprite()
-		tear.Scale = tear.Scale * 0
-		sprite:Load("gfx/vesta_tears.anm2", true)
-		sprite:ReplaceSpritesheet(0, "gfx/vesta_tears.png")
-		sprite:Play("Rotate0", true) -- thanks @Connor#2143!
-    end
+	if player and player:HasCollectible(CollectibleType.COLLECTIBLE_VESTA) then
+		if player:HasTrinket(TrinketType.TRINKET_PULSE_WORM) then
+			tear.Scale = tear.Scale * 0.22
+		else
+			local sprite = tear:GetSprite()
+			tear.Scale = tear.Scale * 0
+			sprite:Load("gfx/vesta_tears.anm2", true)
+			sprite:ReplaceSpritesheet(0, "gfx/vesta_tears.png")
+			sprite:Play("Rotate0", true) -- thanks @Connor#2143!
+		end
+	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.tearSize)
