@@ -354,7 +354,7 @@ EID:addTrinket(TrinketType.TRINKET_ALTRUISM, "↑ Donating to any beggar has a c
 EID:addCollectible(CollectibleType.COLLECTIBLE_SUNSCREEN, "↑ 25% chance to block/ignore fire damage", "Sunscreen", "en_us")
 
 -- Secret Diary
-EID:addCollectible(CollectibleType.COLLECTIBLE_SECRET_DIARY, "", "Secret Diary", "en_us")
+EID:addCollectible(CollectibleType.COLLECTIBLE_SECRET_DIARY, "Gain {{Collectible619}} Birthright for the room", "Secret Diary", "en_us")
 
 -- Nil Num
 EID:addTrinket(TrinketType.TRINKET_NIL_NUM, "2% chance to spawn a duplicate of one of your items when hit#Gets destroyed afterwards", "Nil Num", "en_us")

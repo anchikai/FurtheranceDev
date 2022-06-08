@@ -1161,7 +1161,7 @@ local Wiki = {
 	SecretDiary = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "Upon use, you will gain your current character's Birthright effect for the room."},
 		},
 	},
 	NilNum = {
