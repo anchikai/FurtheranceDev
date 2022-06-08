@@ -206,7 +206,14 @@ end
 
 local playerQueuedCallbacks = {}
 local function queuePlayerLoadedCallback(callbackEnum, specifier, player, ...)
-    local index = mod:GetEntityIndex(player)
+    local index
+    if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
+        -- in this case, the tainted forgotten's characters are separate.
+        index = player:GetCollectibleRNG(1):GetSeed()
+    else
+        index = mod:GetEntityIndex(player)
+    end
+
     local queuedCallbacks = playerQueuedCallbacks[index]
     if queuedCallbacks == nil then
         queuedCallbacks = {}
