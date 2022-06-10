@@ -1206,6 +1206,12 @@ local Wiki = {
 			{str = "+2 Damage."},
 		},
 	},
+	GlitchedPenny = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon picking up a coin, there is a 25% chance to activate the effect of a random active item."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -2533,6 +2539,13 @@ Encyclopedia.AddTrinket({
 	Class = "Furtherance",
 	ID = TrinketType.TRINKET_BI_84,
 	WikiDesc = Wiki.BI84,
+})
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_GLITCHED_PENNY,
+	WikiDesc = Wiki.GlitchedPenny,
 })
 
 -- Pocket Items

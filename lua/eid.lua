@@ -371,6 +371,8 @@ EID:addTrinket(TrinketType.TRINKET_BI_84, "25% chance for a random Technology it
 -- Rotten Apple
 EID:addCollectible(CollectibleType.COLLECTIBLE_ROTTEN_APPLE, "Gain a random permanent worm trinket on pickup#↑ {{Damage}} +2 Damge up", "Rotten Apple", "en_us")
 
+-- Glitched Penny
+EID:addTrinket(TrinketType.TRINKET_GLITCHED_PENNY, "25% chance to activate a random effect of an active item when picking up a coin", "Glitched Penny", "en_us")
 
 -- Soul of Leah
 EID:addCard(RUNE_SOUL_OF_LEAH, "{{BrokenHeart}} Grants a broken heart for every uncleared room on the floor#↑ Each broken heart will give a +0.75 damage up#!!! If there are 12 or more uncleared rooms, it will kill you", "Soul of Leah", "en_us")
