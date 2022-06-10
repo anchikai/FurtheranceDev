@@ -368,6 +368,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_IRON, "↑ An orbital that double
 -- BI-84
 EID:addTrinket(TrinketType.TRINKET_BI_84, "25% chance for a random Technology item effect per room", "BI-84", "en_us")
 
+-- Rotten Apple
+EID:addCollectible(CollectibleType.COLLECTIBLE_ROTTEN_APPLE, "Gain a random permanent worm trinket on pickup#↑ {{Damage}} +2 Damge up", "Rotten Apple", "en_us")
+
 
 -- Soul of Leah
 EID:addCard(RUNE_SOUL_OF_LEAH, "{{BrokenHeart}} Grants a broken heart for every uncleared room on the floor#↑ Each broken heart will give a +0.75 damage up#!!! If there are 12 or more uncleared rooms, it will kill you", "Soul of Leah", "en_us")

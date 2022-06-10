@@ -83,6 +83,7 @@ CollectibleType.COLLECTIBLE_SUNSCREEN = Isaac.GetItemIdByName("Sunscreen")
 CollectibleType.COLLECTIBLE_SECRET_DIARY = Isaac.GetItemIdByName("Secret Diary")
 CollectibleType.COLLECTIBLE_D16 = Isaac.GetItemIdByName("D16")
 CollectibleType.COLLECTIBLE_IRON = Isaac.GetItemIdByName("Iron")
+CollectibleType.COLLECTIBLE_ROTTEN_APPLE = Isaac.GetItemIdByName("Rotten Apple")
 
 -- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
@@ -241,6 +242,7 @@ include("lua/items/collectibles/Sunscreen.lua")
 include("lua/items/collectibles/SecretDiary.lua")
 include("lua/items/collectibles/D16.lua")
 include("lua/items/collectibles/Iron.lua")
+include("lua/items/collectibles/RottenApple.lua")
 
 -- Trinkets
 include("lua/items/trinkets/HolyHeart.lua")

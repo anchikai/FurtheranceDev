@@ -1199,6 +1199,13 @@ local Wiki = {
 			{str = "Mom's Box: Increases the chance of the effect occuring."},
 		},
 	},
+	RottenApple = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon pickup, grants a random worm trinket."},
+			{str = "+2 Damage."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -2506,6 +2513,18 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_SHOP,
 		Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
 		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_ROTTEN_APPLE,
+	WikiDesc = Wiki.RottenApple,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_BOSS,
+		Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
+		Encyclopedia.ItemPools.POOL_GREED_BOSS,
 	},
 })
 
