@@ -58,7 +58,6 @@ for _, obj in ipairs(MannaStatObjs) do
 end
 
 mod:SavePlayerData({
-	MannaCount = 0,
 	MannaBuffs = function()
 		local default = {}
 		for i = 1, #MannaStatObjs do
@@ -78,10 +77,21 @@ local function getStatValue(player, statObj)
 	return statValue
 end
 
+local function getActiveSlot(player)
+	local slot = nil
+	if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == CollectibleType.COLLECTIBLE_JAR_OF_MANNA then
+		slot = ActiveSlot.SLOT_PRIMARY
+	elseif player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == CollectibleType.COLLECTIBLE_JAR_OF_MANNA then
+		slot = ActiveSlot.SLOT_SECONDARY
+	elseif player:GetActiveItem(ActiveSlot.SLOT_POCKET) == CollectibleType.COLLECTIBLE_JAR_OF_MANNA then
+		slot = ActiveSlot.SLOT_POCKET
+	end
+	return slot
+end
+
 -- Get effect to give
 function mod:UseMannaJar(_, _, player)
 	local data = mod:GetData(player)
-	data.MannaCount = 0
 
 	if not player:HasFullHearts() then
 		player:AddHearts(2)
@@ -177,7 +187,7 @@ function mod:SpawnMana(entity)
 		local data = mod:GetData(player)
 
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_JAR_OF_MANNA) then
-			if data.MannaCount < 20 then
+			if player:GetActiveCharge(getActiveSlot(player)) < 20 then
 				Isaac.Spawn(EntityType.ENTITY_EFFECT, 7888, 0, entity.Position, Vector.Zero, player):ToEffect():SetTimeout(75)
 			end
 		end
@@ -218,28 +228,9 @@ function mod:MannaPickup(effect)
 
 		-- Get charge from manna
 		if data.manna == true then
-			local slot = nil
-			if player:GetActiveItem(ActiveSlot.SLOT_PRIMARY) == CollectibleType.COLLECTIBLE_JAR_OF_MANNA then
-				slot = ActiveSlot.SLOT_PRIMARY
-			elseif player:GetActiveItem(ActiveSlot.SLOT_SECONDARY) == CollectibleType.COLLECTIBLE_JAR_OF_MANNA then
-				slot = ActiveSlot.SLOT_SECONDARY
-			elseif player:GetActiveItem(ActiveSlot.SLOT_POCKET) == CollectibleType.COLLECTIBLE_JAR_OF_MANNA then
-				slot = ActiveSlot.SLOT_POCKET
-			end
-
-			if slot ~= nil then
-				if data.MannaCount < 20 then
-					data.MannaCount = data.MannaCount + 1
-
-					if data.MannaCount == 20 then
-						player:SetActiveCharge(1, slot)
-						game:GetHUD():FlashChargeBar(player, slot)
-						SFXManager():Play(SoundEffect.SOUND_BEEP)
-						SFXManager():Play(SoundEffect.SOUND_BATTERYCHARGE)
-					end
-				else
-					game:GetHUD():FlashChargeBar(player, slot)
-					SFXManager():Play(SoundEffect.SOUND_BATTERYCHARGE)
+			if getActiveSlot(player) ~= nil then
+				if player:GetActiveCharge(getActiveSlot(player)) < 20 then
+					player:SetActiveCharge(player:GetActiveCharge(getActiveSlot(player)) + 1, slot)
 				end
 
 				player:SetColor(Color(1, 1, 1, 1, 0.25, 0.25, 0.25), 5, 1, true, false)
