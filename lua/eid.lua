@@ -366,7 +366,7 @@ EID:addTrinket(TrinketType.TRINKET_NIL_NUM, "2% chance to spawn a duplicate of o
 EID:addCollectible(CollectibleType.COLLECTIBLE_D16, "Reroll your health#{{Player14}} Keeper or {{Player33}} Tainted Keeper will drain up to 2 coin hearts and spawn that many number of random pickups", "D16", "en_us")
 
 -- Iron
-EID:addCollectible(CollectibleType.COLLECTIBLE_IRON, "↑ An orbital that doubles tear size and and damage when shooting it#The tear will gain the effect of {{Collectible257}} Fire Mind", "Iron", "en_us")
+EID:addCollectible(CollectibleType.COLLECTIBLE_IRON, "↑ An orbital that doubles tear size and damage when shooting it#The tear will gain the effect of {{Collectible257}} Fire Mind", "Iron", "en_us")
 
 -- BI-84
 EID:addTrinket(TrinketType.TRINKET_BI_84, "25% chance for a random Technology item effect per room", "BI-84", "en_us")

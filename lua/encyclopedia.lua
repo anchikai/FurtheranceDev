@@ -1442,10 +1442,6 @@ local Wiki = {
 			{str = "Tainted Leah starts with a much higher tear stat than most characters, making her more effective at the start. However, she has much lower damage than average, which means she has to land more shots."},
 			{str = "Her HP is incredibly difficult to manage. The best ways to sustain higher than one heart is to frequently use her pocket active item and to get close to enemies."},
 		},
-		{ -- Interactions
-			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
-			{str = "Shattered Heart can only be used infinitely by Tainted Leah. If other players attempt to use it, 1 broken heart will be removed and the item will vanish."},
-		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
 			{str = "The achievement for unlocking Tainted Leah is ''The Unloved''. This is a reference to Leah being the unloved wife of the Biblical patriarch Jacob."},
