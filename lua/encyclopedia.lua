@@ -2473,7 +2473,8 @@ Encyclopedia.AddItem({
 	ID = CollectibleType.COLLECTIBLE_SECRET_DIARY,
 	WikiDesc = Wiki.SecretDiary,
 	Pools = {
-		
+		Encyclopedia.ItemPools.POOL_LIBRARY,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
 	},
 })
 
@@ -2494,6 +2495,25 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_IRON,
+	WikiDesc = Wiki.Iron,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+	},
+})
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_BI_84,
+	WikiDesc = Wiki.BI84,
 })
 
 -- Pocket Items
