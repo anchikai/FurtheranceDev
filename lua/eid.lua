@@ -374,6 +374,10 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_ROTTEN_APPLE, "Gain a random perm
 -- Glitched Penny
 EID:addTrinket(TrinketType.TRINKET_GLITCHED_PENNY, "25% chance to activate a random effect of an active item when picking up a coin", "Glitched Penny", "en_us")
 
+-- Beginner's Luck
+EID:addCollectible(CollectibleType.COLLECTIBLE_ROTTEN_APPLE, "↑ {{Luck}} +10 Luck up every floor#↓ Lose {{Luck}} -1 Luck every room until you go back to default luck", "Beginner's Luck", "en_us")
+
+
 -- Soul of Leah
 EID:addCard(RUNE_SOUL_OF_LEAH, "{{BrokenHeart}} Grants a broken heart for every uncleared room on the floor#↑ Each broken heart will give a +0.75 damage up#!!! If there are 12 or more uncleared rooms, it will kill you", "Soul of Leah", "en_us")
 

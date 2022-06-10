@@ -76,6 +76,7 @@
 		<Item Name="Muddled Cross" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Alternate Reality" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Flux" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Beginner's Luck" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
     </Pool>
 	<Pool Name="library">
 		<Item Name="Book of Swiftness" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -198,6 +199,7 @@
 		<Item Name="Muddled Cross" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Alternate Reality" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Flux" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Beginner's Luck" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="craneGame">
 		<Item Name="Polydipsia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>

@@ -1212,6 +1212,14 @@ local Wiki = {
 			{str = "Upon picking up a coin, there is a 25% chance to activate the effect of a random active item."},
 		},
 	},
+	BeginnersLuck = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants an additonal +10 Luck every floor."},
+			{str = "Lose 1 luck for every unexplored room you enter."},
+			{str = "- It will only remove luck from the bonus."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -1499,7 +1507,6 @@ local Wiki = {
 		{ -- Birthright
 			{str = "Birthright", fsize = 2, clr = 3, halign = 0},
 			{str = "While flipped, Tainted Peter loses half a heart every 14 seconds instead of every 7."},
-		
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
@@ -2546,6 +2553,17 @@ Encyclopedia.AddTrinket({
 	Class = "Furtherance",
 	ID = TrinketType.TRINKET_GLITCHED_PENNY,
 	WikiDesc = Wiki.GlitchedPenny,
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_BEGINNERS_LUCK,
+	WikiDesc = Wiki.BeginnersLuck,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_SECRET,
+		Encyclopedia.ItemPools.POOL_GREED_SECRET,
+	},
 })
 
 -- Pocket Items

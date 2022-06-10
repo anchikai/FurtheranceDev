@@ -57,6 +57,7 @@
 	<passive id="76" name="Cardiomyopathy" description="My chest hurts" gfx="cardiomyopathy.png" quality="2" />
 	<passive id="77" name="Sunscreen" description="A way to beat the heat!" gfx="sunscreen.png" quality="2" />
 	<passive id="81" cache="damage" name="Rotten Apple" description="Random worm + Damage up" gfx="rotten_apple.png" quality="3" />
+	<passive id="82" cache="luck" name="Beginner's Luck" description="Fading Fortune" gfx="beginners_luck.png" quality="2" />
 
 	<!-- Active Items -->
 	<active id="21" cache="speed" name="Book of Swiftness" description="Temporary speed up" gfx="book_of_swiftness.png" maxcharges="3" quality="3" tags="book offensive lazarussharedglobal" />
