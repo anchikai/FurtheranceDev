@@ -122,6 +122,7 @@ TrinketType.TRINKET_LEVIATHANS_TENDRIL = Isaac.GetTrinketIdByName("Leviathan's T
 TrinketType.TRINKET_ALTRUISM = Isaac.GetTrinketIdByName("Altruism")
 TrinketType.TRINKET_NIL_NUM = Isaac.GetTrinketIdByName("Nil Num")
 TrinketType.TRINKET_KEY_TO_THE_PIT = Isaac.GetTrinketIdByName("Key to the Pit")
+TrinketType.TRINKET_BI_84 = Isaac.GetTrinketIdByName("BI-84")
 
 -- Cards/Runes/Pills/etc
 RUNE_SOUL_OF_LEAH = Isaac.GetCardIdByName("Soul of Leah")
@@ -257,6 +258,7 @@ include("lua/items/trinkets/LeviathansTendril.lua")
 include("lua/items/trinkets/Altruism.lua")
 include("lua/items/trinkets/NilNum.lua")
 include("lua/items/trinkets/KeyToThePit.lua")
+include("lua/items/trinkets/BI-84.lua")
 
 -- Enemies
 include("lua/enemies/Hostikai.lua")

@@ -1189,6 +1189,16 @@ local Wiki = {
 			{str = "Firing a tear through it will cause it to double in size, double its damage, and have Fire Mind."},
 		},
 	},
+	BI84 = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Has a 25% chance to grant the effects of a random Technology item each room."},
+		},
+		{ -- Synergies
+			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
+			{str = "Mom's Box: Increases the chance of the effect occuring."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {

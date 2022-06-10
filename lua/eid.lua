@@ -365,6 +365,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_D16, "Reroll your health#{{Player
 -- Iron
 EID:addCollectible(CollectibleType.COLLECTIBLE_IRON, "↑ An orbital that doubles tear size and and damage when shooting it#The tear will gain the effect of {{Collectible257}} Fire Mind", "Iron", "en_us")
 
+-- BI-84
+EID:addTrinket(TrinketType.TRINKET_BI_84, "25% chance for a random Technology item effect per room", "BI-84", "en_us")
+
 
 -- Soul of Leah
 EID:addCard(RUNE_SOUL_OF_LEAH, "{{BrokenHeart}} Grants a broken heart for every uncleared room on the floor#↑ Each broken heart will give a +0.75 damage up#!!! If there are 12 or more uncleared rooms, it will kill you", "Soul of Leah", "en_us")

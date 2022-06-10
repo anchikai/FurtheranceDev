@@ -1,7 +1,7 @@
 local mod = Furtherance
 
 function mod:UseSecretDiary(_, _, player)
-    local BirthrightWisp = Isaac.Spawn(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ITEM_WISP, CollectibleType.COLLECTIBLE_BIRTHRIGHT, Vector(999999, 999999), Vector.Zero, nil)
+    local BirthrightWisp = player:AddItemWisp(CollectibleType.COLLECTIBLE_BIRTHRIGHT, Vector(999999, 999999), false)
     BirthrightWisp.Target = player
     return true
 end

@@ -26,7 +26,7 @@ function mod:Mandrake()
 				repeat
 					ID = player:GetDropRNG():RandomInt(Isaac.GetItemConfig():GetCollectibles().Size - 1) + 1
 				until (Isaac.GetItemConfig():GetCollectible(ID).Tags & ItemConfig.TAG_QUEST ~= ItemConfig.TAG_QUEST
-					and Isaac.GetItemConfig():GetCollectible(ID).Type == 4)
+				and Isaac.GetItemConfig():GetCollectible(ID).Type == 4)
 
 				local babee = Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_COLLECTIBLE, ID, room:GetGridPosition(pos), Vector.Zero, player):ToPickup()
 				babee.OptionsPickupIndex = option
