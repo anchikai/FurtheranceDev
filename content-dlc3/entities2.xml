@@ -15,6 +15,9 @@
 	<entity anm2path="polaris.anm2" tags="cansacrifice" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="3" name="Polaris" numGridCollisionPoints="12" shadowSize="11" stageHP="0" variant="325332439">
 		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
 	</entity>
+	<entity anm2path="iron.anm2" tags="cansacrifice" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionInterval="7" collisionMass="3" collisionRadius="8" friction="1" id="3" name="Iron" numGridCollisionPoints="12" shadowSize="14" stageHP="0" variant="325332440">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+	</entity>
 
 	<!-- Pickups -->
 	<entity anm2path="lightbeam.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="3" collisionRadius="8" friction="1" id="5" variant="2868" subtype="100" name="Light Beam" numGridCollisionPoints="24" shadowSize="0" stageHP="0" /> <!-- is this even used? -->
