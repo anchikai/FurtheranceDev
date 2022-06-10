@@ -313,6 +313,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_LITTLE_RAINCOAT, "You get a Power
 -- Blood Cyst
 EID:addCollectible(CollectibleType.COLLECTIBLE_BLOOD_CYST, "Entering an uncleared room will spawn a Blood Cyst in a random area#Shooting or walking into it will make it burst into 8 tears", "Blood Cyst", "en_us")
 
+-- Polaris
+EID:addCollectible(CollectibleType.COLLECTIBLE_POLARIS, "Familiar that will change between 5 random colors every uncleared room#Depending on the color chosen, it will increase or decrease {{Damage}} Damage, {{Shotspeed}} Shot Speed, {{Tearsize}} Tear Size, {{Heart}} Health, and additional tear effects.", "Polaris", "en_us")
+
 -- D9
 EID:addCollectible(CollectibleType.COLLECTIBLE_D9, "Rerolls trinkets in current room", "D9", "en_us")
 

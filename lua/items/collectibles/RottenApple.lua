@@ -36,8 +36,8 @@ local allWorms = {
     TrinketType.TRINKET_WHIP_WORM,
     TrinketType.TRINKET_TAPE_WORM,
     TrinketType.TRINKET_LAZY_WORM,
-    TrinketType.TRINKET_RAINBOW_WORM,
-    TrinketType.TRINKET_OUROBOROS_WORM,
+    -- TrinketType.TRINKET_RAINBOW_WORM,
+    -- TrinketType.TRINKET_OUROBOROS_WORM,
     TrinketType.TRINKET_BRAIN_WORM,
 
     -- Modded Worms
