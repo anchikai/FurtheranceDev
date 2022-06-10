@@ -1182,6 +1182,13 @@ local Wiki = {
 			{str = "- Keeper's health containers won't be removed."},
 		},
 	},
+	Iron = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants an Iron familiar that orbits around Isaac."},
+			{str = "Firing a tear through it will cause it to double in size, double its damage, and have Fire Mind."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {

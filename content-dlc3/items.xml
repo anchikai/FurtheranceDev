@@ -108,4 +108,5 @@
 	<familiar id="60" name="Brainstorm" description="Problem solving" gfx="brainstorm.png" quality="2" />
 	<familiar id="63" name="Blood Cyst" description="It's about to pop" gfx="blood_cyst.png" quality="2" persistent="true" />
 	<familiar id="64" name="Polaris" description="May the star shine bright" gfx="polaris.png" quality="4" />
+	<familiar id="80" name="Iron" description="Hot to the touch" gfx="iron.png" quality="3" />
 </items>
