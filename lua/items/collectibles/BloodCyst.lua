@@ -23,13 +23,14 @@ function mod:RespawnCyst()
                 local data = mod:GetData(bloodCyst)
                 data.SavedPosition = position
                 
-                local hitbox = Isaac.Spawn(EntityType.ENTITY_BOIL, CystHitbox, 0, bloodCyst.Position, Vector.Zero, player):ToNPC()
+                local hitbox = Isaac.Spawn(EntityType.ENTITY_BOIL, 0, 0, bloodCyst.Position, Vector.Zero, player):ToNPC()
                 hitbox.HitPoints = 0
                 hitbox.CanShutDoors = false
                 hitbox.EntityCollisionClass = EntityCollisionClass.ENTCOLL_PLAYEROBJECTS
                 hitbox:SetColor(Color(1, 1, 1, 0), 0, 1)
 
                 local hitboxData = mod:GetData(hitbox)
+                hitboxData.IsBloodCystHitbox = true
                 hitboxData.BloodCyst = bloodCyst
                 hitboxData.SavedPosition = position
             end
@@ -48,10 +49,12 @@ end
 mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, mod.FreezePosition)
 
 function mod:StopHitboxAI(boil)
-    if boil.Variant ~= CystHitbox then return end
-    
     local data = mod:GetData(boil)
-    boil.Position = data.SavedPosition
+    if not data.IsBloodCystHitbox then return false end
+
+    if data.SavedPosition ~= nil then
+        boil.Position = data.SavedPosition
+    end
     boil.Velocity = Vector.Zero
 
     return true
@@ -59,16 +62,17 @@ end
 mod:AddCallback(ModCallbacks.MC_PRE_NPC_UPDATE, mod.StopHitboxAI, EntityType.ENTITY_BOIL)
 
 function mod:IgnorePlayerCollisions(boil, collider)
-    if boil.Variant == CystHitbox and collider.Type == EntityType.ENTITY_PLAYER then
+    local data = mod:GetData(boil)
+    if data.IsBloodCystHitbox and collider and collider.Type == EntityType.ENTITY_PLAYER then
         return true
     end
 end
 mod:AddCallback(ModCallbacks.MC_PRE_NPC_COLLISION, mod.IgnorePlayerCollisions, EntityType.ENTITY_BOIL)
 
 function mod:HitboxDied(boil)
-    if boil.Variant ~= CystHitbox then return end
-
     local data = mod:GetData(boil)
+    if not data.IsBloodCystHitbox then return end
+
     local bloodCyst = data.BloodCyst
     local player = bloodCyst.SpawnerEntity:ToPlayer()
 
