@@ -13,7 +13,6 @@ function mod:RandomTechItem()
 		if player:HasTrinket(TrinketType.TRINKET_BI_84) then
 			local rng = player:GetTrinketRNG(TrinketType.TRINKET_BI_84)
 			local goldenbox = player:GetTrinketMultiplier(TrinketType.TRINKET_BI_84)
-			print(goldenbox * 0.25)
 			if rng:RandomFloat() <= goldenbox * 0.25 then
 				local ID
 				repeat
