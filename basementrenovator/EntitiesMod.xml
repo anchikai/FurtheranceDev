@@ -6,9 +6,11 @@
 			<entity BaseHP="30" Boss="0" Champion="1" ID="200" Image="resources/Entities/Illusioner (Real).png" Name="Illusioner (Real)" Subtype="0" Variant="3070"/>
 			<entity BaseHP="30" Boss="0" Champion="1" ID="200" Image="resources/Entities/Illusioner (Unmasked).png" Name="Illusioner (Unmasked)" Subtype="1" Variant="3070"/>
 			<entity BaseHP="30" Boss="0" Champion="1" ID="200" Image="resources/Entities/Illusioner (Clone).png" Name="Illusioner (Clone)" Subtype="2" Variant="3070"/>
-			
 			<entity BaseHP="30" Boss="0" Champion="1" ID="200" Image="resources/Entities/Illusioner (Multiple).png" Name="Illusioner (Spawn extra clones)" Subtype="16" Variant="3070">
 				<bitfield Key="Subtype"> <spinner Name="Extra Clone Count" Length="4" ValueOffset="1"/> </bitfield> </entity>
+			
+			<entity BaseHP="15" Boss="0" Champion="1" ID="200" Image="resources/Entities/Goon.png" Name="Goon" Subtype="0" Variant="3071">
+				<bitfield Key="Subtype"> <spinner Name="Extra Spawn Count" Length="5"/> </bitfield> </entity>
 		</group>
 	</group>
 </data>
