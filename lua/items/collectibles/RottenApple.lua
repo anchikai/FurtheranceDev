@@ -44,13 +44,13 @@ local allWorms = {
     TrinketType.TRINKET_SLICK_WORM,
 }
 
-function mod:SetPlayerData(player)
+function mod:SetRottenAppleData(player)
     local data = mod:GetData(player)
     data.OldRottenAppleCount = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_ROTTEN_APPLE)
 end
-mod:AddVanillaCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.SetPlayerData)
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.SetRottenAppleData)
 
-function mod:GiveWormOnPickup(player)
+function mod:GiveWormOnPickUp(player)
     local data = mod:GetData(player)
     local newRottenAppleCount = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_ROTTEN_APPLE)
     if data.OldRottenAppleCount == newRottenAppleCount then return end
@@ -65,13 +65,13 @@ function mod:GiveWormOnPickup(player)
         mod:AddSmeltedTrinket(player, chosenWorm, true)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.GiveWormOnPickup)
+mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.GiveWormOnPickUp)
 
-function mod:GetApple(player, flag)
+function mod:RottenAppleBuffs(player, flag)
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_ROTTEN_APPLE) then
 		if flag == CacheFlag.CACHE_DAMAGE then
 			player.Damage = player.Damage + (2 * player:GetCollectibleNum(CollectibleType.COLLECTIBLE_ROTTEN_APPLE, false))
 		end
 	end
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetApple)
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.RottenAppleBuffs)
