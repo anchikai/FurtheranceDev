@@ -7,7 +7,7 @@ local CystHitbox = Isaac.GetEntityVariantByName("Blood Cyst Hitbox")
 function mod:RespawnCyst()
     local room = game:GetRoom()
 
-    -- the cyst hitbox get automatically removed
+    -- the cyst hitbox gets automatically removed
     for _, entity in ipairs(Isaac.GetRoomEntities()) do
         if entity.Type == EntityType.ENTITY_FAMILIAR and entity.Variant == Cyst then
             entity:Remove()
@@ -46,7 +46,7 @@ function mod:FreezePosition(bloodCyst)
     bloodCyst.Position = data.SavedPosition
     bloodCyst.Velocity = Vector.Zero
 end
-mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, mod.FreezePosition)
+mod:AddCallback(ModCallbacks.MC_FAMILIAR_UPDATE, mod.FreezePosition, Cyst)
 
 function mod:StopHitboxAI(boil)
     local data = mod:GetData(boil)

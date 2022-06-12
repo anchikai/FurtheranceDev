@@ -313,6 +313,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_LITTLE_RAINCOAT, "You get a Power
 -- Blood Cyst
 EID:addCollectible(CollectibleType.COLLECTIBLE_BLOOD_CYST, "Entering an uncleared room will spawn a Blood Cyst in a random area#Shooting or walking into it will make it burst into 8 tears", "Blood Cyst", "en_us")
 
+-- Polaris
+EID:addCollectible(CollectibleType.COLLECTIBLE_POLARIS, "Familiar that will change between 5 random colors every uncleared room#Depending on the color chosen, it will increase or decrease {{Damage}} Damage, {{Shotspeed}} Shot Speed, {{Tearsize}} Tear Size, {{Heart}} Health, and additional tear effects.", "Polaris", "en_us")
+
 -- D9
 EID:addCollectible(CollectibleType.COLLECTIBLE_D9, "Rerolls trinkets in current room", "D9", "en_us")
 
@@ -363,7 +366,7 @@ EID:addTrinket(TrinketType.TRINKET_NIL_NUM, "2% chance to spawn a duplicate of o
 EID:addCollectible(CollectibleType.COLLECTIBLE_D16, "Reroll your health#{{Player14}} Keeper or {{Player33}} Tainted Keeper will drain up to 2 coin hearts and spawn that many number of random pickups", "D16", "en_us")
 
 -- Iron
-EID:addCollectible(CollectibleType.COLLECTIBLE_IRON, "↑ An orbital that doubles tear size and and damage when shooting it#The tear will gain the effect of {{Collectible257}} Fire Mind", "Iron", "en_us")
+EID:addCollectible(CollectibleType.COLLECTIBLE_IRON, "↑ An orbital that doubles tear size and damage when shooting it#The tear will gain the effect of {{Collectible257}} Fire Mind", "Iron", "en_us")
 
 -- BI-84
 EID:addTrinket(TrinketType.TRINKET_BI_84, "25% chance for a random Technology item effect per room", "BI-84", "en_us")
@@ -375,7 +378,19 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_ROTTEN_APPLE, "Gain a random perm
 EID:addTrinket(TrinketType.TRINKET_GLITCHED_PENNY, "25% chance to activate a random effect of an active item when picking up a coin", "Glitched Penny", "en_us")
 
 -- Beginner's Luck
-EID:addCollectible(CollectibleType.COLLECTIBLE_ROTTEN_APPLE, "↑ {{Luck}} +10 Luck up every floor#↓ Lose {{Luck}} -1 Luck every room until you go back to default luck", "Beginner's Luck", "en_us")
+EID:addCollectible(CollectibleType.COLLECTIBLE_BEGINNERS_LUCK, "↑ {{Luck}} +10 Luck up every floor#↓ Lose {{Luck}} -1 Luck every room until you go back to default luck", "Beginner's Luck", "en_us")
+
+-- Escape Plan
+EID:addTrinket(TrinketType.TRINKET_ESCAPE_PLAN, "10% chance to teleport to the starting room when hit", "Escape Plan", "en_us")
+
+-- Epitaph
+EID:addTrinket(TrinketType.TRINKET_EPITAPH, "Dying with this trinket will cause a tombstone to spawn on the floor you died on in the next run#Bombing it 3 times will spawn 3-5 coins, 2-3 keys, and a copy of your first and last passive item from the previous run", "Epitaph", "en_us")
+
+-- Leviathan's Tendril
+EID:addTrinket(TrinketType.TRINKET_LEVIATHANS_TENDRIL, "↑ 25% chance to deflect tears away from you#10% to fear nearby enemies#{{Blank}}#↑ +5% chance to both if you have {{Leviathan}} Leviathan transformation", "Leviathan's Tendril", "en_us")
+
+-- Key to the Pit
+EID:addTrinket(TrinketType.TRINKET_KEY_TO_THE_PIT, "↑ Allows you to walk into challenge rooms regardless of your health", "Key to the Pit", "en_us")
 
 
 -- Soul of Leah

@@ -56,12 +56,15 @@ local function updatePolarisBuffForPlayer(player)
 end
 
 function mod:UpdatePolarisBuffs()
-    for i = 0, game:GetNumPlayers() - 1 do
-        local player = Isaac.GetPlayer(i)
-        if player:HasCollectible(CollectibleType.COLLECTIBLE_POLARIS) then
-            updatePolarisBuffForPlayer(player)
-            player:AddCacheFlags(CacheFlag.CACHE_ALL)
-            player:EvaluateItems()
+    local room = game:GetRoom()
+    if room:IsFirstVisit() then
+        for i = 0, game:GetNumPlayers() - 1 do
+            local player = Isaac.GetPlayer(i)
+            if player:HasCollectible(CollectibleType.COLLECTIBLE_POLARIS) then
+                updatePolarisBuffForPlayer(player)
+                player:AddCacheFlags(CacheFlag.CACHE_ALL)
+                player:EvaluateItems()
+            end
         end
     end
 end

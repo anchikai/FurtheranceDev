@@ -221,6 +221,14 @@ function mod:CantMove(player)
 	return not (player:GetEffects():HasCollectibleEffect(CollectibleType.COLLECTIBLE_MEGA_MUSH) or player:IsCoopGhost() or player:HasCurseMistEffect())
 end
 
+local function setCanShoot(player, canShoot) -- Funciton Credit: im_tem
+	local oldchallenge = game.Challenge
+
+	game.Challenge = canShoot and Challenge.CHALLENGE_NULL or Challenge.CHALLENGE_SOLAR_SYSTEM
+	player:UpdateCanShoot()
+	game.Challenge = oldchallenge
+end
+
 function mod:NoMovement(entity, hook, button)
 	if entity ~= nil and entity.Type == EntityType.ENTITY_PLAYER and not entity:IsDead() and hook == InputHook.GET_ACTION_VALUE then
 		local player = entity:ToPlayer()
@@ -228,16 +236,8 @@ function mod:NoMovement(entity, hook, button)
 		or (mod.Unlocks.Peter.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_PETER_B)
 		or (mod.Unlocks.Miriam.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_MIRIAM_B))
 		and mod:CantMove(player) then
-			if button == ButtonAction.ACTION_LEFT then
-				return 0
-			end
-			if button == ButtonAction.ACTION_RIGHT then
-				return 0
-			end
-			if button == ButtonAction.ACTION_UP then
-				return 0
-			end
-			if button == ButtonAction.ACTION_DOWN then
+			setCanShoot(player, false)
+			if button == ButtonAction.ACTION_LEFT or button == ButtonAction.ACTION_RIGHT or button == ButtonAction.ACTION_UP or button == ButtonAction.ACTION_DOWN then
 				return 0
 			end
 		end

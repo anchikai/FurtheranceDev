@@ -47,12 +47,8 @@
 		<bestiary anim="WalkVert" overlay="Head" transform="0,0,1" />
 		<gibs amount="6" blood="1" bone="1" eye="1" gut="1" large="0" />
 	</entity>
-	<entity anm2path="monsters/goon.anm2" baseHP="15" boss="0" champion="1" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="199" name="Goon" numGridCollisionPoints="12" portrait="0" reroll="true" shadowSize="10" stageHP="0" variant="3070" subtype="0">
-		<bestiary anim="WalkDown" overlay="HeadDownBlue" transform="0,0,1" />
-		<gibs amount="3" blood="1" bone="1" eye="1" gut="1" large="0" />
-	</entity>
-	<entity anm2path="monsters/devil_goon.anm2" baseHP="20" boss="0" champion="1" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="199" name="Devil Goon" numGridCollisionPoints="12" portrait="0" reroll="true" shadowSize="10" stageHP="0" variant="3070" subtype="1">
-		<bestiary anim="WalkDown" overlay="HeadDownBlue" transform="0,0,1" />
+	<entity anm2path="monsters/goons/goon.anm2" baseHP="12" boss="0" champion="1" collisionDamage="0" collisionMass="3" collisionRadius="13" friction="1" id="200" name="Goon" numGridCollisionPoints="12" portrait="2" reroll="true" shadowSize="10" stageHP="0" variant="3071" subtype="0">
+		<bestiary anim="Idle" transform="0,0,1" />
 		<gibs amount="3" blood="1" bone="1" eye="1" gut="1" large="0" />
 	</entity>
 

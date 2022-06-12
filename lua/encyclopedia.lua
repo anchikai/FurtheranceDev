@@ -1014,6 +1014,18 @@ local Wiki = {
 			{str = "The tears fired from the Cyst deal 3.5 damage."},
 		},
 	},
+	Polaris = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Grants a star familiar that closely follows Isaac."},
+			{str = "It will change color each time Isaac enters a new room with a total of 5 possible colors of varying rarity:"},
+			{str = "- Red: 31.4% chance. +2 Shot Speed, 0.5x tear size."},
+			{str = "- Orange: 20.8% chance. +1.5 Shot Speed, +0.5 Damage."},
+			{str = "- Yellow: 28.3% chance. +1 Shot Speed, +1 Damage, increases chance of room clear award being a heart, gain an extra heart container."},
+			{str = "- White: 16.4% chance. +0.5 Shot Speed, +1.5 Damage, 20% chance to fire Holy Shots."},
+			{str = "- Blue: 3.1% chance. +2.0 Damage, 2x tear size, tears inflict burning."},
+		},
+	},
 	D9 = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -1429,10 +1441,6 @@ local Wiki = {
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
 			{str = "Tainted Leah starts with a much higher tear stat than most characters, making her more effective at the start. However, she has much lower damage than average, which means she has to land more shots."},
 			{str = "Her HP is incredibly difficult to manage. The best ways to sustain higher than one heart is to frequently use her pocket active item and to get close to enemies."},
-		},
-		{ -- Interactions
-			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
-			{str = "Shattered Heart can only be used infinitely by Tainted Leah. If other players attempt to use it, 1 broken heart will be removed and the item will vanish."},
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
@@ -2348,6 +2356,19 @@ Encyclopedia.AddItem({
 	Pools = {
 		Encyclopedia.ItemPools.POOL_BOSS,
 		Encyclopedia.ItemPools.POOL_GREED_BOSS,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_POLARIS,
+	WikiDesc = Wiki.Polaris,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_ANGEL,
+		Encyclopedia.ItemPools.POOL_SECRET,
+		Encyclopedia.ItemPools.POOL_GREED_ANGEL,
+		Encyclopedia.ItemPools.POOL_GREED_SECRET,
 	},
 })
 
