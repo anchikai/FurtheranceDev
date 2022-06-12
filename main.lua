@@ -85,6 +85,7 @@ CollectibleType.COLLECTIBLE_D16 = Isaac.GetItemIdByName("D16")
 CollectibleType.COLLECTIBLE_IRON = Isaac.GetItemIdByName("Iron")
 CollectibleType.COLLECTIBLE_ROTTEN_APPLE = Isaac.GetItemIdByName("Rotten Apple")
 CollectibleType.COLLECTIBLE_BEGINNERS_LUCK = Isaac.GetItemIdByName("Beginner's Luck")
+CollectibleType.COLLECTIBLE_DADS_WALLET = Isaac.GetItemIdByName("Dad's Wallet")
 
 -- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
@@ -246,6 +247,7 @@ include("lua/items/collectibles/D16.lua")
 include("lua/items/collectibles/Iron.lua")
 include("lua/items/collectibles/RottenApple.lua")
 include("lua/items/collectibles/BeginnersLuck.lua")
+include("lua/items/collectibles/DadsWallet.lua")
 
 -- Trinkets
 include("lua/items/trinkets/HolyHeart.lua")
