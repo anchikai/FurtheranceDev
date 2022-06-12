@@ -127,6 +127,7 @@ TrinketType.TRINKET_NIL_NUM = Isaac.GetTrinketIdByName("Nil Num")
 TrinketType.TRINKET_KEY_TO_THE_PIT = Isaac.GetTrinketIdByName("Key to the Pit")
 TrinketType.TRINKET_BI_84 = Isaac.GetTrinketIdByName("BI-84")
 TrinketType.TRINKET_GLITCHED_PENNY = Isaac.GetTrinketIdByName("Glitched Penny")
+TrinketType.TRINKET_HAMMERHEAD_WORM = Isaac.GetTrinketIdByName("Hammerhead Worm")
 
 -- Cards/Runes/Pills/etc
 RUNE_SOUL_OF_LEAH = Isaac.GetCardIdByName("Soul of Leah")
@@ -267,6 +268,7 @@ include("lua/items/trinkets/NilNum.lua")
 include("lua/items/trinkets/KeyToThePit.lua")
 include("lua/items/trinkets/BI-84.lua")
 include("lua/items/trinkets/GlitchedPenny.lua")
+include("lua/items/trinkets/HammerheadWorm.lua")
 
 -- Enemies
 include("lua/enemies/Hostikai.lua")
