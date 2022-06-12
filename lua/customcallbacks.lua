@@ -9,7 +9,6 @@ Furtherance.CustomCallbacks = {
     MC_POST_PLAYER_UPDATE = ModCallbacks.MC_POST_PLAYER_UPDATE,
     MC_POST_PEFFECT_UPDATE = ModCallbacks.MC_POST_PEFFECT_UPDATE,
     MC_POST_LOADED = 20001,
-    MC_POST_PLAYER_LOADED = 20002,
     MC_POST_SAVED = 20003,
 }
 
@@ -25,10 +24,10 @@ end
 
 Furtherance.AddVanillaCallback = mod.AddCallback
 
-function Furtherance:AddCallback(callbackEnum, callback, specifier)
-    local callbacks = allCallbacks[callbackEnum]
+function Furtherance:AddCallback(modCallback, callback, specifier)
+    local callbacks = allCallbacks[modCallback]
     if callbacks == nil then
-        mod:AddVanillaCallback(callbackEnum, callback, specifier)
+        mod:AddVanillaCallback(modCallback, callback, specifier)
     else
         if specifier == nil then
             specifier = GeneralCallbacks
@@ -174,29 +173,45 @@ mod:AddVanillaCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.PostNewRoom)
 
 --]]
 
-local gameQueuedCallbacks = {}
+local gameQueuedCallbacks = {
+    Init = {},
+    Update = {},
+}
 local function queueLoadedCallback(callbackEnum, specifier, ...)
-    table.insert(gameQueuedCallbacks, {
-        callbackEnum = callbackEnum,
-        specifier = specifier,
-        args = table.pack(...)
-    })
+    if callbackEnum == ModCallbacks.MC_POST_PLAYER_INIT then
+        table.insert(gameQueuedCallbacks.Init, {
+            callbackEnum = callbackEnum,
+            specifier = specifier,
+            args = table.pack(...)
+        })
+    else
+        table.insert(gameQueuedCallbacks.Update, {
+            callbackEnum = callbackEnum,
+            specifier = specifier,
+            args = table.pack(...)
+        })
+    end
 end
 
-function mod:RunQueuedCallbacks()
-    for _, callbackInfo in ipairs(gameQueuedCallbacks) do
+function mod:RunLoadedCallbackQueue()
+    for _, callbackInfo in ipairs(gameQueuedCallbacks.Init) do
         local callbackArgs = callbackInfo.args
         mod:RunCustomCallback(callbackInfo.callbackEnum, callbackInfo.specifier, table.unpack(callbackArgs, 1, callbackArgs.n))
     end
-    gameQueuedCallbacks = {}
+    gameQueuedCallbacks.Init = {}
+
+    for _, callbackInfo in ipairs(gameQueuedCallbacks.Update) do
+        local callbackArgs = callbackInfo.args
+        mod:RunCustomCallback(callbackInfo.callbackEnum, callbackInfo.specifier, table.unpack(callbackArgs, 1, callbackArgs.n))
+    end
+    gameQueuedCallbacks.Update = {}
 end
-mod:AddCallback(mod.CustomCallbacks.MC_POST_LOADED, mod.RunQueuedCallbacks)
+mod:AddCallback(mod.CustomCallbacks.MC_POST_LOADED, mod.RunLoadedCallbackQueue)
 
 ---queues player callbacks until data is loaded
 ---@param callbackEnum integer
 ---@param specifier any
----@param player EntityPlayer
-local function runQueueCallbackHandler(callbackEnum, specifier, ...)
+local function runLoadedCallbackHandler(callbackEnum, specifier, ...)
     if mod.LoadedData then
         mod:RunCustomCallback(callbackEnum, specifier, ...)
     else
@@ -204,66 +219,20 @@ local function runQueueCallbackHandler(callbackEnum, specifier, ...)
     end
 end
 
-local playerQueuedCallbacks = {}
-local function queuePlayerLoadedCallback(callbackEnum, specifier, player, ...)
-    local index
-    if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
-        -- in this case, the tainted forgotten's characters are separate.
-        index = player:GetCollectibleRNG(1):GetSeed()
-    else
-        index = mod:GetEntityIndex(player)
-    end
-
-    local queuedCallbacks = playerQueuedCallbacks[index]
-    if queuedCallbacks == nil then
-        queuedCallbacks = {}
-        playerQueuedCallbacks[index] = queuedCallbacks
-    end
-
-    table.insert(queuedCallbacks, {
-        callbackEnum = callbackEnum,
-        specifier = specifier,
-        args = table.pack(player, ...)
-    })
+---@param player EntityPlayer
+function mod:QueuePlayerInitCallback(player)
+    runLoadedCallbackHandler(mod.CustomCallbacks.MC_POST_PLAYER_INIT, player.Variant, player)
 end
-
-function mod:RunPlayerQueuedCallback(player)
-    local index = mod:GetEntityIndex(player)
-    local queuedCallbacks = playerQueuedCallbacks[index]
-    if queuedCallbacks == nil then return end
-
-    for _, callbackInfo in ipairs(queuedCallbacks) do
-        local callbackArgs = callbackInfo.args
-        mod:RunCustomCallback(callbackInfo.callbackEnum, callbackInfo.specifier, table.unpack(callbackArgs, 1, callbackArgs.n))
-    end
-    
-    playerQueuedCallbacks[index] = nil
-end
-mod:AddCallback(mod.CustomCallbacks.MC_POST_PLAYER_LOADED, mod.RunPlayerQueuedCallback)
-
-local function runPlayerQueueCallbackHandler(callbackEnum, specifier, player, ...)
-    local data = mod:GetData(player)
-    if data.LoadedData then
-        mod:RunCustomCallback(callbackEnum, specifier, player, ...)
-    else
-        queuePlayerLoadedCallback(callbackEnum, specifier, player, ...)
-    end
-end
+mod:AddVanillaCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.QueuePlayerInitCallback)
 
 ---@param player EntityPlayer
-function mod:QueuePlayerInitArgs(player)
-    runQueueCallbackHandler(mod.CustomCallbacks.MC_POST_PLAYER_INIT, player.Variant, player)
+function mod:QueuePlayerUpdateCallback(player)
+    runLoadedCallbackHandler(mod.CustomCallbacks.MC_POST_PLAYER_UPDATE, player.Variant, player)
 end
-mod:AddVanillaCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.QueuePlayerInitArgs)
+mod:AddVanillaCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.QueuePlayerUpdateCallback)
 
 ---@param player EntityPlayer
-function mod:QueuePlayerUpdateArgs(player)
-    runPlayerQueueCallbackHandler(mod.CustomCallbacks.MC_POST_PLAYER_UPDATE, player.Variant, player)
+function mod:QueuePEffectUpdateCallback(player)
+    runLoadedCallbackHandler(mod.CustomCallbacks.MC_POST_PEFFECT_UPDATE, player.Variant, player)
 end
-mod:AddVanillaCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.QueuePlayerUpdateArgs)
-
----@param player EntityPlayer
-function mod:QueuePEffectUpdateArgs(player)
-    runPlayerQueueCallbackHandler(mod.CustomCallbacks.MC_POST_PEFFECT_UPDATE, player.Variant, player)
-end
-mod:AddVanillaCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.QueuePEffectUpdateArgs)
+mod:AddVanillaCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.QueuePEffectUpdateCallback)

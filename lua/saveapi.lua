@@ -8,8 +8,8 @@ local json = require("json")
 
 local allPlayers = {}
 
-local playerKeys = {}
-local modKeys = {}
+local savedPlayerKeys = {}
+local savedModKeys = {}
 
 local shelvedPlayerKeys = {}
 local shelvedModKeys = {}
@@ -47,19 +47,19 @@ end
 
 function Furtherance:SavePlayerData(keys)
     for key, default in pairs(keys) do
-        playerKeys[key] = default
-    end
-end
-
-function Furtherance:SaveModData(keys)
-    for key, default in pairs(keys) do
-        modKeys[key] = default
+        savedPlayerKeys[key] = default
     end
 end
 
 function Furtherance:ShelvePlayerData(keys)
     for key, default in pairs(keys) do
         shelvedPlayerKeys[key] = default
+    end
+end
+
+function Furtherance:SaveModData(keys)
+    for key, default in pairs(keys) do
+        savedModKeys[key] = default
     end
 end
 
@@ -158,11 +158,11 @@ function mod:OnLoadData(isContinued)
     local loadedData = json.decode(mod:LoadData())
 
     if isContinued then
-        for key, default in pairs(modKeys) do
+        for key, default in pairs(savedModKeys) do
             mod[key] = loadDecodeOrDefault(loadedData[key], default)
         end
     else
-        for key, default in pairs(modKeys) do
+        for key, default in pairs(savedModKeys) do
             mod[key] = loadDefault(default)
         end
     end
@@ -195,10 +195,10 @@ function mod:OnSaveData(canContinue)
 
     if canContinue then
         for i, player in pairs(allPlayers) do
-            savePlayerData(player, i, savedData, playerKeys)
+            savePlayerData(player, i, savedData, savedPlayerKeys)
         end
 
-        for key, default in pairs(modKeys) do
+        for key, default in pairs(savedModKeys) do
             savedData[key] = saveEncode(mod[key], default)
         end
     end
@@ -245,15 +245,15 @@ function mod:ConnectLazarus(lazarus)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.ConnectLazarus)
 
-local function loadPlayerData(player, index)
+local function loadSavedPlayerData(player, index)
     local data = mod:GetData(player)
     local playerData = mod.LoadedData.PlayerData[string.format("player_%.1f", index)]
     if mod.IsContinued and index ~= nil and playerData ~= nil then
-        for key, default in pairs(playerKeys) do
+        for key, default in pairs(savedPlayerKeys) do
             data[key] = loadDecodeOrDefault(playerData[key], default)
         end
     else
-        for key, default in pairs(playerKeys) do
+        for key, default in pairs(savedPlayerKeys) do
             data[key] = loadDefault(default)
         end
     end
@@ -274,19 +274,11 @@ local function loadShelvedPlayerData(player, index)
 end
 
 local function loadAllPlayerData(player, index)
-    loadPlayerData(player, index)
+    loadSavedPlayerData(player, index)
     loadShelvedPlayerData(player, index)
     local data = mod:GetData(player)
     data.LoadedData = true
-    mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_PLAYER_LOADED, player.Variant, player)
 end
-
--- pure living lazarus, EXISTS
--- pure dead lazarus,
-
--- tainted dead lazarus
--- taitned living lazarus, EXISTS
-
 
 function mod:OnLoadPlayerData(player)
     if isTaintedDeadLazarus(player) then return end
