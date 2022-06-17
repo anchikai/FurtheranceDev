@@ -303,3 +303,8 @@ function mod:OnLoadPlayerData(player)
     loadAllPlayerData(player, index)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnLoadPlayerData)
+
+-- if a player exists at this time, the mod was just hot-reloaded with luamod
+if Isaac.GetPlayer() ~= nil then
+    mod:OnLoadData(true)
+end
