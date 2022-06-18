@@ -46,7 +46,7 @@ function mod:tearCounter(tear)
 	local player = tear.Parent:ToPlayer()
 	if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then
 		local playerData = mod:GetData(player)
-		playerData.MiriamTearCount = (playerData.MiriamTearCount + 1) % 3
+		playerData.MiriamTearCount = (playerData.MiriamTearCount + 1) % 12
 
 		if playerData.MiriamTearCount == 0 then
 			local data = mod:GetData(tear)
