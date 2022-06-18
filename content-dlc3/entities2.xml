@@ -59,4 +59,7 @@
 	<entity anm2path="manna_orb.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="12" friction="1" id="1000" name="Manna Orb" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="7888" />
 	<entity anm2path="spiritual_wound_impact.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="13" friction="1" id="1000" name="Spiritual Wound Impact" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="7889" />
 	<entity anm2path="epitaph_tombstone.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="20" friction="1" id="1000" name="Epitaph Tombstone" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="7890" />
+	<entity anm2path="miriam_whirlpool.anm2" baseHP="0" boss="0" champion="0" collisionDamage="0" collisionMass="0" collisionRadius="0" friction="1" id="1000" name="Miriam Whirlpool" numGridCollisionPoints="0" shadowSize="0" stageHP="0" variant="7891">
+		<gibs amount="0" blood="0" bone="0" eye="0" gut="0" large="0" />
+	</entity>
 </entities>

@@ -14,7 +14,6 @@ COSTUME_MIRIAM_B_HAIR = Isaac.GetCostumeIdByPath("gfx/characters/Character_003b_
 function mod:OnInit(player)
 	local data = mod:GetData(player)
 	if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then
-		data.MiriamRiftTimeout = 0
 		data.MiriamAOE = 1
 	end
 
@@ -33,50 +32,26 @@ function mod:OnInit(player)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
 
-function mod:OnUpdate(player)
-	local data = mod:GetData(player)
-	if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then
-		if data.MiriamRiftTimeout == nil then return end
-		if data.MiriamRiftTimeout > -1 then
-			data.MiriamRiftTimeout = data.MiriamRiftTimeout - 1
-		end
-		if data.MiriamRiftTimeout == 0 then
-			for i, entity in ipairs(Isaac.GetRoomEntities()) do
-				if entity.Type == EntityType.ENTITY_EFFECT and entity.Variant == EffectVariant.RIFT then
-					entity:Die()
-				end
-			end
-		end
+function mod:PuddleRift(tear)
+	local data = mod:GetData(tear)
+	if data.MiriamPullEnemies then
+		local rift = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.RIFT, 1, tear.Position, Vector.Zero, player):ToEffect()
+		rift.SpriteScale = Vector.Zero
+		mod:DelayFunction(rift.Die, 60, {rift}, true)
 	end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.OnUpdate)
-
-function mod:PuddleRift(entity)
-	for i = 0, game:GetNumPlayers() - 1 do
-		local player = Isaac.GetPlayer(i)
-		if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then
-			if entity.Type == EntityType.ENTITY_TEAR then
-				local data = mod:GetData(player)
-				if data.MiriamTearCount == 12 then
-					local rift = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.RIFT, 0, entity.Position, Vector.Zero, player):ToEffect()
-					local sprite = rift:GetSprite()
-					sprite.Scale = Vector.Zero
-					data.MiriamRiftTimeout = 90
-				end
-			end
-		end
-	end
-end
-mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, mod.PuddleRift)
+mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, mod.PuddleRift, EntityType.ENTITY_TEAR)
 
 function mod:tearCounter(tear)
 	local player = tear.Parent:ToPlayer()
-	local data = mod:GetData(player)
 	if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then
-		if data.MiriamTearCount > 11 then
-			data.MiriamTearCount = 0
+		local playerData = mod:GetData(player)
+		playerData.MiriamTearCount = (playerData.MiriamTearCount + 1) % 3
+
+		if playerData.MiriamTearCount == 0 then
+			local data = mod:GetData(tear)
+			data.MiriamPullEnemies = true
 		end
-		data.MiriamTearCount = data.MiriamTearCount + 1
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.tearCounter)
