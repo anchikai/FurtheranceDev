@@ -275,6 +275,9 @@ include("lua/enemies/Hostikai.lua")
 include("lua/enemies/Illusioner.lua")
 include("lua/enemies/Goon.lua")
 
+-- Effects
+include("lua/effects/MiriamWhirlpool.lua")
+
 -- Pockets
 include("lua/pocket/SoulOfLeah.lua")
 include("lua/pocket/TwoOfShields.lua")
