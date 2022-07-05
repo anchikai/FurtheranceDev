@@ -163,8 +163,11 @@ end)
 --ripairs stuff from revel
 local function ripairs_it(t, i)
 	i = i - 1
+	if i <= 0 then return nil end
+
 	local v = t[i]
 	if v == nil then return nil end
+
 	return i, v
 end
 
@@ -173,71 +176,88 @@ function ripairs(t)
 end
 
 --delayed functions
-DelayedFunctions = {}
+mod.UpdateDelayedFunctions = {}
+mod.RenderDelayedFunctions = {}
 
 function Furtherance:DelayFunction(func, delay, args, removeOnNewRoom, useRender)
 	local delayFunctionData = {
 		Function = func,
 		Delay = delay,
 		Args = args,
-		RemoveOnNewRoom = removeOnNewRoom,
-		OnRender = useRender
+		RemoveOnNewRoom = removeOnNewRoom
 	}
-	table.insert(DelayedFunctions, delayFunctionData)
+
+	if useRender then
+		table.insert(mod.RenderDelayedFunctions, delayFunctionData)
+	else
+		table.insert(mod.UpdateDelayedFunctions, delayFunctionData)
+	end
 end
 
+-- clear delayed functions that have .RemoveOnNewRoom = true
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, function()
-	for i, delayFunctionData in ripairs(DelayedFunctions) do
+	for i, delayFunctionData in ripairs(mod.RenderDelayedFunctions) do
 		if delayFunctionData.RemoveOnNewRoom then
-			table.remove(DelayedFunctions, i)
+			table.remove(mod.RenderDelayedFunctions, i)
+		end
+	end
+
+	for i, delayFunctionData in ripairs(mod.UpdateDelayedFunctions) do
+		if delayFunctionData.RemoveOnNewRoom then
+			table.remove(mod.UpdateDelayedFunctions, i)
 		end
 	end
 end)
 
-local function delayFunctionHandling(onRender)
-	if #DelayedFunctions ~= 0 then
-		for i, delayFunctionData in ripairs(DelayedFunctions) do
-			if (delayFunctionData.OnRender and onRender) or (not delayFunctionData.OnRender and not onRender) then
-				if delayFunctionData.Delay <= 0 then
-					if delayFunctionData.Function then
-						if delayFunctionData.Args then
-							delayFunctionData.Function(table.unpack(delayFunctionData.Args))
-						else
-							delayFunctionData.Function()
-						end
-					end
-					table.remove(DelayedFunctions, i)
-				else
-					delayFunctionData.Delay = delayFunctionData.Delay - 1
-				end
+local function handleDelayedFunction(delayFunctionData)
+	local shouldInvoke = delayFunctionData.Delay <= 0
+
+	if shouldInvoke then
+		if delayFunctionData.Function then
+			if delayFunctionData.Args then
+				delayFunctionData.Function(table.unpack(delayFunctionData.Args))
+			else
+				delayFunctionData.Function()
 			end
+		end
+	else
+		delayFunctionData.Delay = delayFunctionData.Delay - 1
+	end
+
+	return shouldInvoke
+end
+
+local function handleDelayedFunctions(delayedFunctions)
+	for i, delayFunctionData in ripairs(delayedFunctions) do
+		local shouldRemove = handleDelayedFunction(delayFunctionData)
+		if shouldRemove then
+			table.remove(delayedFunctions, i)
 		end
 	end
 end
 
 mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
-	delayFunctionHandling(false)
+	handleDelayedFunctions(mod.UpdateDelayedFunctions)
 end)
 
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
-	delayFunctionHandling(true)
+	handleDelayedFunctions(mod.RenderDelayedFunctions)
 end)
 
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
-	DelayedFunctions = {}
+	mod.UpdateDelayedFunctions = {}
+	mod.RenderDelayedFunctions = {}
 end)
 
 function Furtherance:EsauCheck(player)
-	if not player or (player and not player.GetData) then
+	if not player or not player.GetData then
 		return nil
 	end
-	local currentPlayer = 1
-	for i = 1, Game():GetNumPlayers() do
-		local otherPlayer = Isaac.GetPlayer(i - 1)
-		local searchPlayer = i
-		--added GetPlayerType() to get Jacob and Easu seperatly
+	local currentPlayer = nil
+	for i = 0, game:GetNumPlayers() - 1 do
+		local otherPlayer = Isaac.GetPlayer(i)
 		if otherPlayer.ControllerIndex == player.ControllerIndex and otherPlayer:GetPlayerType() == player:GetPlayerType() then
-			currentPlayer = searchPlayer
+			currentPlayer = i + 1
 		end
 	end
 	return currentPlayer
