@@ -644,7 +644,7 @@ local Wiki = {
 		{ -- Synergies
 			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
 			{str = "Extension Cord: Beams of electricity will flow between Jacob and the player's original character."},
-			{str = "Binds of Devotion: Picking up multiple copies of the item will spawn additional Jacobs that each have their own inventory."},
+			{str = "Binds of Devotion: Only one Jacob can be out at a time. When one dies, a new one will spawn."},
 		},
 		{ -- Interactions
 			{str = "Interactions", fsize = 2, clr = 3, halign = 0},

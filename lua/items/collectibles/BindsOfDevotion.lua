@@ -26,14 +26,7 @@ function mod:addJacob(player, isJacob)
 		
 		jacobData.FromBinds = true
 
-		Isaac.Spawn(
-			EntityType.ENTITY_EFFECT,
-			EffectVariant.POOF01,
-			-1,
-			jacob.Position,
-			jacob.Velocity,
-			jacob
-		)
+		Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.POOF01, -1, jacob.Position, jacob.Velocity, jacob)
 		game:GetHUD():AssignPlayerHUDs()
 	end
 
@@ -42,7 +35,7 @@ end
 
 function mod:FakeJacobStats(player, flag)
 	local data = mod:GetData(player)
-	if player:GetPlayerType() == PLAYERTYPE_FAKE_JACOB then -- If the player is Peter it will apply his stats
+	if player:GetPlayerType() == PLAYERTYPE_FAKE_JACOB then -- If the player is Fake Jacob it will apply his stats
 		if flag == CacheFlag.CACHE_FIREDELAY then
 			player.MaxFireDelay = player.MaxFireDelay - 1
 		end
@@ -72,7 +65,7 @@ function mod:addNewJacob(player, flag)
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.addNewJacob)
 
-function mod:preUseItem(_, _, player) 
+function mod:preUseItem(_, _, player)
 	local data = mod:GetData(player)
 	if data.FromBinds then -- for some reason Jacob/Esau can use items so (not me) has to do this
 		-- don't let him use the item
@@ -80,3 +73,18 @@ function mod:preUseItem(_, _, player)
 	end
 end
 mod:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, mod.preUseItem)
+
+function mod:FakobDied(entity)
+    local player = entity:ToPlayer()
+    if player then
+        if player:GetPlayerType() == PLAYERTYPE_FAKE_JACOB then
+            for i = 0, game:GetNumPlayers() - 1 do
+				local Isaac = Isaac.GetPlayer(i)
+				local data = mod:GetData(Isaac)
+				Isaac:RemoveCollectible(CollectibleType.COLLECTIBLE_BINDS_OF_DEVOTION)
+				data.HasBinds = false
+			end
+        end
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.FakobDied, EntityType.ENTITY_PLAYER)
