@@ -86,6 +86,7 @@ CollectibleType.COLLECTIBLE_IRON = Isaac.GetItemIdByName("Iron")
 CollectibleType.COLLECTIBLE_ROTTEN_APPLE = Isaac.GetItemIdByName("Rotten Apple")
 CollectibleType.COLLECTIBLE_BEGINNERS_LUCK = Isaac.GetItemIdByName("Beginner's Luck")
 CollectibleType.COLLECTIBLE_DADS_WALLET = Isaac.GetItemIdByName("Dad's Wallet")
+CollectibleType.COLLECTIBLE_PHI_RHO = Isaac.GetItemIdByName("Phi Rho")
 
 -- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
@@ -249,6 +250,7 @@ include("lua/items/collectibles/Iron.lua")
 include("lua/items/collectibles/RottenApple.lua")
 include("lua/items/collectibles/BeginnersLuck.lua")
 include("lua/items/collectibles/DadsWallet.lua")
+include("lua/items/collectibles/PhiRho.lua")
 
 -- Trinkets
 include("lua/items/trinkets/HolyHeart.lua")
@@ -361,24 +363,23 @@ function Furtherance:playFailSound()
 end
 
 function Furtherance:GetEntityIndex(entity)
-	if entity then
-		if entity.Type == EntityType.ENTITY_PLAYER then
-			local player = entity:ToPlayer()
-			if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
-				player = player:GetOtherTwin()
-			end
-
-			local id = 1
-			if player:GetPlayerType() == PlayerType.PLAYER_LAZARUS2_B then
-				id = 2
-			end
-
-			return player:GetCollectibleRNG(id):GetSeed()
-		elseif entity.Type == EntityType.ENTITY_FAMILIAR then
-			return entity:ToFamiliar().InitSeed
+	if entity == nil then
+		return nil
+	elseif entity.Type == EntityType.ENTITY_PLAYER then
+		local player = entity:ToPlayer()
+		if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
+			player = player:GetOtherTwin()
 		end
+
+		local id = 1
+		if player:GetPlayerType() == PlayerType.PLAYER_LAZARUS2_B then
+			id = 2
+		end
+
+		return player:GetCollectibleRNG(id):GetSeed()
+	else
+		return entity.InitSeed
 	end
-	return nil
 end
 
 function mod:LoadDataCacheEval(player)
