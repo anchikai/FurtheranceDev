@@ -1,28 +1,3 @@
---[[
-local LaserHomingType = {
-    NORMAL = 0,
-    FREEZE = 1,
-    FREEZE_HEAD = 2
-}
-
-local LaserVariant = {
-    BRIMSTONE = 1,
-    TECHNOLOGY = 2,
-    SHOOP_DA_WHOOP = 3,
-    PRIDE = 4,
-    LIGHT_BEAM = 5,
-    MEGA_BLAST = 6,
-    TRACTOR_BEAM = 7,
-    LIGHT_RING = 8, -- crashes if you run this with homing
-    BRIMTECH = 9,
-    [1] = 10,
-    [2] = 11,
-    [3] = 12,
-    [4] = 13,
-    [5] = 14,
-    [6] = 15
-}
---]]
 local mod = Furtherance
 local game = Game()
 local level = game:GetLevel()
