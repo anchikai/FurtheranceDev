@@ -365,6 +365,9 @@ EID:addTrinket(TrinketType.TRINKET_NIL_NUM, "2% chance to spawn a duplicate of o
 -- D16
 EID:addCollectible(CollectibleType.COLLECTIBLE_D16, "Reroll your health#{{Player14}} Keeper or {{Player33}} Tainted Keeper will drain up to 2 coin hearts and spawn that many number of random pickups", "D16", "en_us")
 
+-- Binds of Devotion
+EID:addCollectible(CollectibleType.COLLECTIBLE_BINDS_OF_DEVOTION, "{{Player19}} Spawns Jacob as a second character#When he dies, this item is completely removed#!!! He can pick up items, including Story items, removing them permanently on death", "Binds of Devotion", "en_us")
+
 -- Iron
 EID:addCollectible(CollectibleType.COLLECTIBLE_IRON, "↑ An orbital that doubles tear size and damage when shooting it#The tear will gain the effect of {{Collectible257}} Fire Mind", "Iron", "en_us")
 
