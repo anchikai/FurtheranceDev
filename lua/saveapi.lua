@@ -6,6 +6,9 @@ Furtherance.LoadedData = false
 
 local json = require("json")
 
+---This is not a simple array. It's a mapping from player IDs (used by
+---Isaac.GetPlayer) to EntityPlayers.
+---@type table<integer, EntityPlayer>
 local allPlayers = {}
 
 local savedPlayerKeys = {}
@@ -185,7 +188,7 @@ local function savePlayerData(player, i, savedData, keys)
     end
 end
 
-function mod:OnSaveData(canContinue)
+function Furtherance:OnSaveData(canContinue)
     local savedData = {
         PlayerData = {}
     }
