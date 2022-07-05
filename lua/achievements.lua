@@ -356,7 +356,7 @@ function mod:StartUnlocks()
 			
 		end
 		if mod.Unlocks.Peter.BlueBaby == false then
-			--game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PHI_RHO)
+			--game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_CHI_RHO)
 		end
 		if mod.Unlocks.Peter.Lamb == false then
 			

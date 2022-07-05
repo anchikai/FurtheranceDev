@@ -30,7 +30,7 @@ local LaserVariant = {
 ---@param laser EntityLaser
 function mod:PostLaserInit(laser)
     local player = laser.SpawnerEntity and laser.SpawnerEntity:ToPlayer()
-    if player == nil or not player:HasCollectible(CollectibleType.COLLECTIBLE_PHI_RHO) then return end
+    if player == nil or not player:HasCollectible(CollectibleType.COLLECTIBLE_CHI_RHO) then return end
 
     local room = game:GetRoom()
     if room:IsClear() then return end
@@ -50,7 +50,7 @@ mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, mod.PostLaserInit)
 ---@param laser EntityLaser
 function mod:PostLaserUpdate(laser)
     local player = laser.SpawnerEntity and laser.SpawnerEntity:ToPlayer()
-    if player == nil or not player:HasCollectible(CollectibleType.COLLECTIBLE_PHI_RHO) or laser.FrameCount ~= 1 then return end
+    if player == nil or not player:HasCollectible(CollectibleType.COLLECTIBLE_CHI_RHO) or laser.FrameCount ~= 1 then return end
     if not player:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY_2) then
         laser:SetOneHit(true)
     end
