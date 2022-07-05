@@ -1232,6 +1232,20 @@ local Wiki = {
 			{str = "- It will only remove luck from the bonus."},
 		},
 	},
+	DadsWallet = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon pickup, grants 2 random cards of the following type:"},
+			{str = "- Credit Card"},
+			{str = "- A Card Against Humanity"},
+			{str = "- Get Out Of Jail Free Card"},
+			{str = "- Holy Card"},
+			{str = "- Wild Card"},
+			{str = "- Emergency Contact"},
+			{str = "- Dice Shard"},
+			{str = "- Cracked Key"},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {

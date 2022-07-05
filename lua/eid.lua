@@ -380,6 +380,9 @@ EID:addTrinket(TrinketType.TRINKET_GLITCHED_PENNY, "25% chance to activate a ran
 -- Beginner's Luck
 EID:addCollectible(CollectibleType.COLLECTIBLE_BEGINNERS_LUCK, "↑ {{Luck}} +10 Luck up every floor#↓ Lose {{Luck}} -1 Luck every room until you go back to default luck", "Beginner's Luck", "en_us")
 
+-- Dad's Wallet
+EID:addCollectible(CollectibleType.COLLECTIBLE_DADS_WALLET, "Spawns 2 random special cards on pickup", "Dad's Wallet", "en_us")
+
 -- Escape Plan
 EID:addTrinket(TrinketType.TRINKET_ESCAPE_PLAN, "10% chance to teleport to the starting room when hit", "Escape Plan", "en_us")
 

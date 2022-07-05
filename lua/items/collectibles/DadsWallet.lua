@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 local possibleCards = {
     Card.CARD_CREDIT,
