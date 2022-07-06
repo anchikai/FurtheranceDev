@@ -88,6 +88,7 @@ CollectibleType.COLLECTIBLE_BEGINNERS_LUCK = Isaac.GetItemIdByName("Beginner's L
 CollectibleType.COLLECTIBLE_DADS_WALLET = Isaac.GetItemIdByName("Dad's Wallet")
 CollectibleType.COLLECTIBLE_CHI_RHO = Isaac.GetItemIdByName("Chi Rho")
 CollectibleType.COLLECTIBLE_LEAHS_HEART = Isaac.GetItemIdByName("Leah's Heart")
+CollectibleType.COLLECTIBLE_PALLIUM = Isaac.GetItemIdByName("Pallium")
 
 -- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
@@ -253,6 +254,7 @@ include("lua/items/collectibles/BeginnersLuck.lua")
 include("lua/items/collectibles/DadsWallet.lua")
 include("lua/items/collectibles/PhiRho.lua")
 include("lua/items/collectibles/LeahsHeart.lua")
+include("lua/items/collectibles/Pallium.lua")
 
 -- Trinkets
 include("lua/items/trinkets/HolyHeart.lua")
