@@ -1246,6 +1246,19 @@ local Wiki = {
 			{str = "- Cracked Key"},
 		},
 	},
+	LeahsHeart = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "1.2x damage multiplier until you use an active item."},
+			{str = "- A soul heart and Holy Mantle shield will be granted."},
+			{str = "The damage multiplier will return when going to a new floor."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "Damage multipliers won't stack."},
+			{str = "A soul heart and Holy Mantle shield are only granted when using an active item for the first time per floor."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -2597,6 +2610,33 @@ Encyclopedia.AddItem({
 	WikiDesc = Wiki.BeginnersLuck,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_SECRET,
+		Encyclopedia.ItemPools.POOL_GREED_SECRET,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_DADS_WALLET,
+	WikiDesc = Wiki.DadsWallet,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_BOSS,
+		Encyclopedia.ItemPools.POOL_GREED_BOSS,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_LEAHS_HEART,
+	WikiDesc = Wiki.LeahsHeart,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_DEVIL,
+		Encyclopedia.ItemPools.POOL_SECRET,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_DEVIL,
 		Encyclopedia.ItemPools.POOL_GREED_SECRET,
 	},
 })
