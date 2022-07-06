@@ -1259,6 +1259,12 @@ local Wiki = {
 			{str = "A soul heart and Holy Mantle shield are only granted when using an active item for the first time per floor."},
 		},
 	},
+	Pallium = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "20% chance for an enemy to be permanenty charmed when entering a new room."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -2638,6 +2644,17 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 		Encyclopedia.ItemPools.POOL_GREED_DEVIL,
 		Encyclopedia.ItemPools.POOL_GREED_SECRET,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_PALLIUM,
+	WikiDesc = Wiki.Pallium,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_ANGEL,
+		Encyclopedia.ItemPools.POOL_GREED_ANGEL,
 	},
 })
 
