@@ -24,6 +24,7 @@
 		<Item Name="Sunscreen" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="D9" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="D16" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Leah's Heart" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="shop">
 		<Item Name="Tambourine" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -40,6 +41,7 @@
 		<Item Name="Little Raincoat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Blood Cyst" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rotten Apple" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Dad's Wallet" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="devil">
 		<Item Name="Owl's Eye" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -48,6 +50,7 @@
 		<Item Name="Apocalypse" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Muddled Cross" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Alternate Reality" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Leah's Heart" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="angel">
 		<Item Name="Keys to the Kingdom" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -57,6 +60,7 @@
 		<Item Name="Butterfly" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Alternate Reality" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Polaris" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Pallium" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="secret">
 		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -79,6 +83,7 @@
 		<Item Name="Flux" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Beginner's Luck" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Polaris" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Leah's Heart" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
     </Pool>
 	<Pool Name="library">
 		<Item Name="Book of Swiftness" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -143,6 +148,7 @@
 		<Item Name="Sunscreen" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="D9" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="D16" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Leah's Heart" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
 		<Item Name="Brunch" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -150,6 +156,7 @@
 		<Item Name="Little Raincoat" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Blood Cyst" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rotten Apple" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Dad's Wallet" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedShop">
 		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -171,18 +178,21 @@
 		<Item Name="Sunscreen" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Iron" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Secret Diary" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Dad's Wallet" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedDevil">
 		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Owl's Eye" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="F4 Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Muddled Cross" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Leah's Heart" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedAngel">
 		<Item Name="Keys to the Kingdom" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Caduceus Staff" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Butterfly" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Polaris" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Pallium" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedCurse">
 		<Item Name="Owl's Eye" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -204,6 +214,7 @@
 		<Item Name="Flux" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Beginner's Luck" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Polaris" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Leah's Heart" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="craneGame">
 		<Item Name="Polydipsia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>

@@ -398,6 +398,9 @@ EID:addTrinket(TrinketType.TRINKET_LEVIATHANS_TENDRIL, "↑ 25% chance to deflec
 -- Key to the Pit
 EID:addTrinket(TrinketType.TRINKET_KEY_TO_THE_PIT, "↑ Allows you to walk into challenge rooms regardless of your health", "Key to the Pit", "en_us")
 
+-- Leah's Heart
+EID:addCollectible(CollectibleType.COLLECTIBLE_LEAHS_HEART, "↑ {{Damage}} +1.2x damage up#You will lose the damage up when using an active item and gain a soul heart and mantle#Going to the next floor will give the damage up back", "Leah's Heart", "en_us")
+
 
 -- Soul of Leah
 EID:addCard(RUNE_SOUL_OF_LEAH, "{{BrokenHeart}} Grants a broken heart for every uncleared room on the floor#↑ Each broken heart will give a +0.75 damage up#!!! If there are 12 or more uncleared rooms, it will kill you", "Soul of Leah", "en_us")

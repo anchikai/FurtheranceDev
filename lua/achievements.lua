@@ -321,7 +321,7 @@ function mod:StartUnlocks()
 
 		-- Tainted Leah
 		if mod.Unlocks.LeahB.PolNegPath == false then
-			--game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_LEAHS_HEART)
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_LEAHS_HEART)
 		end
 		if mod.Unlocks.LeahB.SoulPath == false then
 			
@@ -350,13 +350,13 @@ function mod:StartUnlocks()
 			--game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PRAYER_JOURNAL)
 		end
 		if mod.Unlocks.Peter.Isaac == false then
-			--game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PALLIUM)
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PALLIUM)
 		end
 		if mod.Unlocks.Peter.Satan == false then
 			
 		end
 		if mod.Unlocks.Peter.BlueBaby == false then
-			--game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_CHI_RHO)
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_CHI_RHO)
 		end
 		if mod.Unlocks.Peter.Lamb == false then
 			
