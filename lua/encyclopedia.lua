@@ -1262,7 +1262,8 @@ local Wiki = {
 	Pallium = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "20% chance for an enemy to be permanenty charmed when entering a new room."},
+			{str = "Upon clearing a room, 1-3 Minisaacs are spawned."},
+			{str = "All Minisaacs spawned from Pallium will be removed when going to the next floor."},
 		},
 	},
 
