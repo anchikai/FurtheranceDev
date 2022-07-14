@@ -36,11 +36,11 @@ function mod:PostLaserInit(laser)
     if room:IsClear() then return end
 
     if player:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY_2) then
-        laser:SetHomingType(LaserHomingType.FREEZE)
+        laser:SetHomingType(LaserHomingType.NORMAL)
     else
-        laser:SetHomingType(LaserHomingType.FREEZE_HEAD)
+        laser:SetHomingType(LaserHomingType.FREEZE)
     end
-    if laser.Variant ~= LaserVariant.LIGHT_RING then
+    if not laser:IsCircleLaser() then
         laser:AddTearFlags(TearFlags.TEAR_HOMING)
     end
     laser.DisableFollowParent = true
