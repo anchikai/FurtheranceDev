@@ -26,7 +26,7 @@
 		nameimage="playername_Miriam.png"
 		portrait="playerportrait_Miriam_A.png"
 		birthright="Crashing waves" />
-	<player name="Miriam" bSkinParent="Miriam" skinColor="-1" broken="4" card="55" costumeSuffix="miriamb"
+	<player name="Miriam" bSkinParent="Miriam" skinColor="-1" hp="1" broken="4" card="55" costumeSuffix="miriamb"
 		skin="Character_003_Miriam_B.png"
 		nameimage="playername_Miriam.png"
 		portrait="playerportrait_Miriam_B.png"

@@ -11,6 +11,7 @@ local bhb = Isaac.GetSoundIdByName("BrokenHeartbeat")
 COSTUME_MIRIAM_A_HAIR = Isaac.GetCostumeIdByPath("gfx/characters/Character_003_Miriam_Hair.anm2")
 COSTUME_MIRIAM_B_HAIR = Isaac.GetCostumeIdByPath("gfx/characters/Character_003b_Miriam_Hair.anm2")
 
+---@param player EntityPlayer
 function mod:OnInit(player)
 	local data = mod:GetData(player)
 	if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then
@@ -25,6 +26,7 @@ function mod:OnInit(player)
 		player:AddCollectible(CollectibleType.COLLECTIBLE_TAMBOURINE, 0, true, ActiveSlot.SLOT_PRIMARY, 0)
 	elseif player:GetPlayerType() == PlayerType.PLAYER_MIRIAM_B then -- Apply different hair for her tainted variant
 		player:AddBoneHearts(2)
+		player:AddMaxHearts(-2, true)
 		player:AddHearts(4)
 		player:AddNullCostume(COSTUME_MIRIAM_B_HAIR)
 		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_POLARITY_SHIFT, ActiveSlot.SLOT_POCKET, false)
