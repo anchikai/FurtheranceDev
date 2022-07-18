@@ -2,10 +2,16 @@ local mod = Furtherance
 
 function mod:OnMove(player)
 	local data = mod:GetData(player)
+	local inputPlayer = player
+	if player:GetPlayerType() == PlayerType.PLAYER_THEFORGOTTEN_B then
+		inputPlayer = player:GetOtherTwin()
+	end
+
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_CRAB_LEGS) then
-		if data.CrabSpeed == false and (player:GetMovementDirection() == Direction.LEFT or player:GetMovementDirection() == Direction.RIGHT) then
+		local movementDirection = inputPlayer:GetMovementDirection()
+		if data.CrabSpeed == false and (movementDirection == Direction.LEFT or movementDirection == Direction.RIGHT) then
 			data.CrabSpeed = true
-		elseif data.CrabSpeed == true and not (player:GetMovementDirection() == Direction.LEFT or player:GetMovementDirection() == Direction.RIGHT) then
+		elseif data.CrabSpeed == true and not (movementDirection == Direction.LEFT or movementDirection == Direction.RIGHT) then
 			data.CrabSpeed = false
 		end
 	elseif data.CrabSpeed == true then
