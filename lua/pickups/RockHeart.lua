@@ -167,13 +167,13 @@ function mod:onRender(shadername)
 	if shadername ~= "Rock Hearts" then return end
 	if mod:shouldDeHook() then return end
 	local isJacobFirst = false
+	local pNum = 1
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)
 		if i == 0 and player:GetPlayerType() == PlayerType.PLAYER_JACOB then
 			isJacobFirst = true
 		end
-
 		if (player:GetPlayerType() == PlayerType.PLAYER_LAZARUS_B or player:GetPlayerType() == PlayerType.PLAYER_LAZARUS2_B) then
 			local otherTwin = player:GetOtherTwin()
 			if otherTwin then
@@ -192,11 +192,12 @@ function mod:onRender(shadername)
 			if player:GetPlayerType() == PlayerType.PLAYER_ESAU and isJacobFirst then
 				renderingHearts(player, 5)
 			elseif player:GetPlayerType() ~= PlayerType.PLAYER_ESAU then
-				renderingHearts(player, i + 1)
+				renderingHearts(player,pNum)
+				pNum = pNum + 1
 			end
 		end
+		if pNum > 4 then break end
 	end
-
 end
 
 mod:AddCallback(ModCallbacks.MC_GET_SHADER_PARAMS, mod.onRender)
