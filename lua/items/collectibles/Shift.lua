@@ -13,6 +13,10 @@ mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseShift, CollectibleType.COLLECTI
 
 function mod:ShiftUpdate(player)
 	local data = mod:GetData(player)
+	if data.ShiftDamageBonus == nil then
+		data.ShiftDamageBonus = 0
+		return
+	end
 	if data.ShiftDamageBonus <= 0 then return end
 
 	-- every 0.5 seconds
