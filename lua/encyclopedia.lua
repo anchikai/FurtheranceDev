@@ -4,14 +4,14 @@ local Wiki = {
 	EscKey = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "If the player has fewer than 6 hearts, it will heal them with a combination of red and soul hearts."},
-			{str = "Teleports you out of the room."},
+			{str = "Teleports the player out of the room."},
+			{str = "If the player has fewer than 6 hearts, heals them with a combination of red and soul hearts."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
 			{str = "The item will vanish once used."},
-			{str = "If used during The Beast fight, it will do the same effects, but you will be teleported to a random position on screen."},
-			{str = "If used during The Dogma fight, it will do the same effects and teleport you to Isaac's bedroom."},
+			{str = "If used during The Beast fight, it will have the same effects, but the player will be teleported to a random position on screen."},
+			{str = "If used during The Dogma fight, it will have the same effects and teleport the player to Isaac's bedroom."},
 		}
 	},
 	TildeKey = {
@@ -50,29 +50,29 @@ local Wiki = {
 	SpacebarKey = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Upon use, it will teleport you to the I AM ERROR room."},
+			{str = "Upon use, teleports you to the I AM ERROR room."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
 			{str = "Once used, you will be stuck in the I AM ERROR room if you have no other means of leaving."},
-			{str = "The item will have a 8% chance of deleting itself upon being used."},
+			{str = "The item will have a 8% chance of deleting itself on use."},
 		}
 	},
 	BackspaceKey = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Upon use, it will open the door you last came from."},
+			{str = "Upon use, opens the door you last came from."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "Using the item will do nothing if the previous door is already open."},
+			{str = "Does nothing if the previous door is already open."},
 		},
 	},
 	QKey = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "When used, it will copy whatever is in your pocket slot."},
-			{str = "This means it functions identically to Placebo, Blank Card, and Clear Rune."}
+			{str = "When used, copies whatever is in your pocket slot."},
+			{str = "Functions identically to Placebo, Blank Card, and Clear Rune combined."}
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
@@ -98,7 +98,7 @@ local Wiki = {
 	CKey = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Upon use, it will teleport you to a Library room with 5 different books."},
+			{str = "Upon use, teleports you to a Library room with 5 different books."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
@@ -158,7 +158,7 @@ local Wiki = {
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
 			{str = "All synergies from wiggle worm apply to this item."},
-			{str = "This item will not do anything with wiggle worm."},
+			{str = "This item will not do anything when paired with wiggle worm."},
 		},
 		{ -- Credits
 			{str = "Credits", fsize = 2, clr = 3, halign = 0},
@@ -170,7 +170,7 @@ local Wiki = {
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Gives the player +0.2 Speed up."},
 			{str = "Entering a new floor will give a random mapping effect."},
-			{str = "Entering a boss room will select a random book effect from a list."},
+			{str = "Entering a boss room will activate a random book effect."},
 			{str = "The books that can be triggered from that list are: The Book of Belial, Book of Revelations, Book of Shadows, Telepathy For Dummies, or Monster Manual."},
 		},
 		{ -- Notes
@@ -189,7 +189,7 @@ local Wiki = {
 			{str = "Tears that hit an enemy have a chance to cause the player to produce a special green creep."},
 			{str = "Chance increases by 5% for each luck up you have. 5% at 0 luck, 30% at 5 luck, etc."},
 			{str = "Enemies that walk over the special green creep will be slowed and a tentacle will attack them."},
-			{str = "Enemies will be slowed while being attacked by the tentacle."},
+			{str = "Enemies will be additionally slowed while being attacked by the tentacle."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
@@ -225,7 +225,7 @@ local Wiki = {
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Tears that hit an enemy have a chance to chain down the nearest enemy for 5 seconds, which prevents the chained enemy from acting."},
 			{str = "Chance increases by 2% for each luck up you have. 2% at 0 luck, 12% at 5 luck, etc."},
-			{str = "Once an enemy is chained, the effect will not proc again for 10 seconds Once the 10 seconds have passed, the item can chain an enemy again."},
+			{str = "Once an enemy is chained, the effect will not proc again for 10 seconds."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
@@ -284,7 +284,7 @@ local Wiki = {
 		{ -- Synergies
 			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
 			{str = "20/20: Fires two Tech IX rings instead of one."},
-			{str = "The Inner Eye: Fires three Tech IX rings instead of one, and so on."},
+			{str = "The Inner Eye: Fires three Tech IX rings instead of one."},
 			{str = "Eye Sore: Has a chance to fire 1-3 additional Tech IX rings in random directions."},
 			{str = "Jacob's Ladder: Tech IX rings gain a light blue tint and generate sparks."},
 			{str = "Tammy's Head: Isaac will fire Tech IX rings in all directions."},
@@ -384,7 +384,7 @@ local Wiki = {
 	ZZZZoptionsZZZZ = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "When entering a new treasure room, a ''gitched'' item will spawn in a random area of the room along side the normal item."},
+			{str = "When entering a new treasure room, a ''gitched'' item will spawn in a random area of the room alongside the normal item."},
 			{str = "- Similarly to TMTRAINER, the currently playing music will fade out when walking into the treasure room. The silence will remain until another music track plays."},
 		},
 		{ -- Notes
@@ -448,18 +448,18 @@ local Wiki = {
 			{str = "While held, Heart Renovator will grant a Heart Counter."},
 			{str = "- It can be filled by picking up red hearts. When you double tap the drop button, two will be subtracted from the counter and a broken heart will be added."},
 			{str = "Using Heart Renovator will remove a broken heart and grant a small Damage up."},
-			{str = "Enemies have a 6.25% chance to drop a scared heart when Isaac kills them."},
+			{str = "Enemies have a 6.25% chance to drop a scared heart when the player kills them."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "If the player has no broken hearts to remove, it will not grant a Damage up and do nothing."},
+			{str = "If the player has no broken hearts to remove, it will not grant a damage up"},
 		},
 	},
 	PharaohCat = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Gives the player a -1.76 Tears down."},
-			{str = "When Isaac shoots, a pyramid formation of tears will be fired."},
+			{str = "When the player shoots, a pyramid formation of tears will be fired."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
@@ -511,7 +511,7 @@ local Wiki = {
 		},
 		{ -- Synergies
 			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
-			{str = "Alt Key: The floor Isaac is currently on will be ''closed''. All enemies, obstacles, walls, doors, etc. and both the Alt Key and F4 Key will be removed. This will allow the player to walk through walls as well."},
+			{str = "Schoolbag & Alt Key: The floor Isaac is currently on will be ''closed''. All enemies, obstacles, walls, doors, etc. and both the Alt Key and F4 Key will be removed. This will allow the player to walk through walls as well."},
 			{str = "- When the player gets to the boss room, it will be instantly killed and everything will return to normal, bringing back all the obstacles, walls, doors, etc."},
 			{str = "-- Any entities that got removed will NOT be brought back. This includes enemies, items, consumables, decoration, etc."},
 			{str = "- The currently playing music will fade out when used. The silence will remain until another music track plays."},
@@ -524,12 +524,11 @@ local Wiki = {
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "If the player has the full map already, it will do nothing other than take them to the Ultra Secret Room."},
 			{str = "If the player has been to the Ultra Secret Room already, they will be teleported back to it and no new item will be generated."},
 		},
 		{ -- Synergies
 			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
-			{str = "Alt Key: Sends you to the title screen."},
+			{str = "Schoolbag & Alt Key: Sends you to the title screen."},
 		},
 	},
 	ShatteredHeart = {
@@ -1210,7 +1209,11 @@ local Wiki = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Grants an Iron familiar that orbits around Isaac."},
-			{str = "Firing a tear through it will cause it to double in size, double its damage, and have Fire Mind."},
+			{str = "Firing a tear through it will cause the tear to double in size, double its damage, and have the effects of Fire Mind."},
+		},
+		{ -- Credits
+			{str = "Credits", fsize = 2, clr = 3, halign = 0},
+			{str = "Concept by Oddvio!"},
 		},
 	},
 	BI84 = {
@@ -1222,6 +1225,10 @@ local Wiki = {
 			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
 			{str = "Mom's Box: Increases the chance of the effect occuring."},
 		},
+		{ -- Credits
+			{str = "Credits", fsize = 2, clr = 3, halign = 0},
+			{str = "Concept by Oddvio!"},
+		},
 	},
 	RottenApple = {
 		{ -- Effect
@@ -1229,11 +1236,19 @@ local Wiki = {
 			{str = "Upon pickup, grants a random worm trinket."},
 			{str = "+2 Damage."},
 		},
+		{ -- Credits
+			{str = "Credits", fsize = 2, clr = 3, halign = 0},
+			{str = "Concept by Oddvio!"},
+		},
 	},
 	GlitchedPenny = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Upon picking up a coin, there is a 25% chance to activate the effect of a random active item."},
+			{str = "Upon picking up a coin, there is a 25% chance to activate a random active item."},
+		},
+		{ -- Credits
+			{str = "Credits", fsize = 2, clr = 3, halign = 0},
+			{str = "Concept by Oddvio!"},
 		},
 	},
 	BeginnersLuck = {
@@ -1243,11 +1258,15 @@ local Wiki = {
 			{str = "Lose 1 luck for every unexplored room you enter."},
 			{str = "- It will only remove luck from the bonus."},
 		},
+		{ -- Credits
+			{str = "Credits", fsize = 2, clr = 3, halign = 0},
+			{str = "Concept by Oddvio!"},
+		},
 	},
 	DadsWallet = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Upon pickup, grants 2 random cards of the following type:"},
+			{str = "Upon pickup, grants 2 random consumables of the following type:"},
 			{str = "- Credit Card"},
 			{str = "- A Card Against Humanity"},
 			{str = "- Get Out Of Jail Free Card"},
@@ -1257,25 +1276,21 @@ local Wiki = {
 			{str = "- Dice Shard"},
 			{str = "- Cracked Key"},
 		},
-	},
-	ChiRho = {
-		{ -- Effect
-			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Lasers now home on enemies."},
-			{str = "They will stay put where they where fired, similarly to Anti-Gravity."},
-			{str = "They will only deal damage for 1 frame."},
-		},
-		{ -- Notes
-			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "Does not effect Technology 2."},
+		{ -- Credits
+			{str = "Credits", fsize = 2, clr = 3, halign = 0},
+			{str = "Concept by Oddvio!"},
 		},
 	},
 	LeahsHeart = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "1.2x damage multiplier until you use an active item."},
-			{str = "- A soul heart and Holy Mantle shield will be granted."},
+			{str = "- A soul heart and Holy Mantle shield will be granted when using an active."},
 			{str = "The damage multiplier will return when going to a new floor."},
+		},
+		{ -- Credits
+			{str = "Credits", fsize = 2, clr = 3, halign = 0},
+			{str = "Concept by Oddvio!"},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
@@ -1312,7 +1327,7 @@ local Wiki = {
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "25% chance for enemy shots to deflect away from Isaac."},
 			{str = "10% chance to fear nearby enemies."},
-			{str = "+5% chance to both if you have the Leviathan transformation."},
+			{str = "+5% chance to do both if you have the Leviathan transformation."},
 		},
 	},
 	KeyToThePit = {
@@ -1325,6 +1340,10 @@ local Wiki = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Each tear's damage, range, and shot speed is slightly randomized."},
+		},
+		{ -- Credits
+			{str = "Credits", fsize = 2, clr = 3, halign = 0},
+			{str = "Concept by Oddvio!"},
 		},
 	},
 
@@ -1407,7 +1426,7 @@ local Wiki = {
 	EssenceOfLife = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Upon use, Isaac will summon micro-Isaac familiars, known as Minisaacs, on top of each enemy in the room."},
+			{str = "Upon use, summons minisaacs on top of each enemy in the room."},
 		},
 	},
 	EssenceOfDeath = {
@@ -1558,14 +1577,15 @@ local Wiki = {
 		},
 		{ -- Traits
 			{str = "Traits", fsize = 2, clr = 3, halign = 0},
-			{str = "Peter starts with a pocket active item called ''Keys to the Kingdom.'' When used, it has a variety of effects given the current circumstances:"},
+			{str = "Peter starts with a pocket active item called ''Keys to the Kingdom.'' When used, it has a variety of effects given based onthe current circumstances:"},
 			{str = "- If used in a active room, all enemies will be ''spared'' and removed from the room, granting temporary stats for the floor."},
-			{str = "- If used on a boss, a 30 second spare timer will begin, similarly to Baby Plum. A beam of light will shine on the boss, slowly shrinking and getting brighter as the timer decreases. Once the timer reaches 0, the boss will be spared and Isaac will gain two permanent stat increases."},
+			{str = "- If used on a boss, a 30 second spare timer will begin. A beam of light will shine on the boss, slowly shrinking and getting brighter as the timer decreases. Once the timer reaches 0, the boss will be spared and Isaac will gain two permanent stat increases."},
 			{str = "- When used in a devil room, all deals will become free."},
-			{str = "- When used in a angel room, a random key piece is spawned."},
+			{str = "- When used in a angel room, a key piece is spawned."},
 			{str = "-- If Peter already has a key piece, the other respective key piece will spawn."},
 			{str = "-- If Peter already has both key pieces, a random angel item will spawn instead."},
-			{str = "When Peter kills an enemy, they have a chance to give a soul based on their Max HP which is what charges his pocket active item."},
+			{str = "When Peter kills an enemy, they have a chance to give a soul based on their Max HP."},
+			{str = "Charged with soul hearts."},
 		},
 		{ -- Birthright
 			{str = "Birthright", fsize = 2, clr = 3, halign = 0},
@@ -1639,7 +1659,7 @@ local Wiki = {
 		},
 		{ -- Birthright
 			{str = "Birthright", fsize = 2, clr = 3, halign = 0},
-			{str = "Enemies hit by Miriam within 2 tiles get knocked back significantly."},
+			{str = "Enemies hit by Miriam within 2 tiles of the puddle get knocked back significantly."},
 			{str = "Miriam's Puddles become 1.25x larger."},
 		},
 		{ -- Trivia
