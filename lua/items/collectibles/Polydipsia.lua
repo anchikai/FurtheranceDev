@@ -112,7 +112,7 @@ mod:AddCallback(ModCallbacks.MC_POST_BOMB_UPDATE, mod.PolyBombUpdate)
 -- Brimstone & Tech "Synergy"
 function mod:PolyLasers(laser)
 	local player = laser.SpawnerEntity and laser.SpawnerEntity:ToPlayer()
-	if (player:HasCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA) or isMiriam(player)) and laser.FrameCount == 1 then
+	if player ~= nil and (player:HasCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA) or isMiriam(player)) and laser.FrameCount == 1 then
 		makeMiriamPuddle(player, laser)
 	end
 end
