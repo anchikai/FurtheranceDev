@@ -606,14 +606,11 @@ local Wiki = {
 	LeahsLock = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "While held, a broken heart will either be granted or removed when exploring a new room."},
-			{str = "If the player gains a broken heart, a tears up will be granted. If the player loses a broken heart, a tears down will be granted."},
+			{str = "25% chance to fire either charm or fear tears."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "The tear rate gained through this trinket is capped at 10."},
-			{str = "- If the tear rate cap is reached, the next proc will always remove a broken heart and a tears up."},
-			{str = "This trinket can kill you by setting you to 12 broken hearts."},
+			{str = "The chance to proc is capped at 50% with 10 luck."},
 		},
 	},
 	BindsOfDevotion = {

@@ -220,7 +220,7 @@ EID:addTrinket(TrinketType.TRINKET_GRASS, "Empezará un contador de una hora#El 
 EID:addTrinket(TrinketType.TRINKET_ALABASTER_SCRAP, "↑ +0.5 Damage up for each angelic item held", "Alabaster Scrap", "en_us")
 
 -- Leah's Lock
-EID:addTrinket(TrinketType.TRINKET_LEAHS_LOCK, "Either grants or removes a broken heart when entering a new room#A tears up will be granted if a broken heart is gained and vice versa#Tear rate gained caps at 10", "Leah's Lock", "en_us")
+EID:addTrinket(TrinketType.TRINKET_LEAHS_LOCK, "25% chance to fire either charm or fear tears", "Leah's Lock", "en_us")
 
 -- Parasitic Poofer
 EID:addCollectible(CollectibleType.COLLECTIBLE_PARASITIC_POOFER, "20% chance to duplicate your red hearts and gain a broken heart when taking damage#Only has a healing effect", "Parasitic Poofer", "en_us")
