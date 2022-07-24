@@ -1258,6 +1258,18 @@ local Wiki = {
 			{str = "- Cracked Key"},
 		},
 	},
+	ChiRho = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Lasers now home on enemies."},
+			{str = "They will stay put where they where fired, similarly to Anti-Gravity."},
+			{str = "They will only deal damage for 1 frame."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "Does not effect Technology 2."},
+		},
+	},
 	LeahsHeart = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},

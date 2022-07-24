@@ -252,7 +252,7 @@ include("lua/items/collectibles/Iron.lua")
 include("lua/items/collectibles/RottenApple.lua")
 include("lua/items/collectibles/BeginnersLuck.lua")
 include("lua/items/collectibles/DadsWallet.lua")
-include("lua/items/collectibles/PhiRho.lua")
+include("lua/items/collectibles/ChiRho.lua")
 include("lua/items/collectibles/LeahsHeart.lua")
 include("lua/items/collectibles/Pallium.lua")
 

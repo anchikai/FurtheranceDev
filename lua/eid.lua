@@ -392,6 +392,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_BEGINNERS_LUCK, "↑ {{Luck}} +10
 -- Dad's Wallet
 EID:addCollectible(CollectibleType.COLLECTIBLE_DADS_WALLET, "Spawns 2 random special cards on pickup", "Dad's Wallet", "en_us")
 
+-- Chi Rho
+EID:addCollectible(CollectibleType.COLLECTIBLE_DADS_WALLET, "Lasers now home on enemies#They will stay put where they where fired, similarly to {{Collectible222}}Anti-Gravity#↓ They will only deal damage for 1 frame", "Chi Rho", "en_us")
+
 -- Escape Plan
 EID:addTrinket(TrinketType.TRINKET_ESCAPE_PLAN, "10% chance to teleport to the starting room when hit", "Escape Plan", "en_us")
 
