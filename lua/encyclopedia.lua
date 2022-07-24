@@ -1041,6 +1041,18 @@ local Wiki = {
 			{str = "Car Battery: Re-rolls twice instantly without any benefits."},
 		},
 	},
+	PolarityShift = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Polarity Shift charges up with kills that would normally heal Tainted Miriam if she was not at full health."},
+			{str = "- Takes 6 charges to fully charge, the equivalent of 6 healing procs (or 3 full red hearts)"},
+			{str = "- It does not charge with clearing rooms or taking batteries."},
+			{str = "On use, Tainted Miriam's ''Spiritual Wound'' attack is converted into Lightning bolts for the current room. Additionally, her Fire Rate is increased by 1 and her movement speed is increased by 0.4."},
+			{str = "Lightning bolts deal 2x Tainted Miriam's damage on the first frame and continue to do 0.15x damage per frame over time while tethered."},
+			{str = "- Lightning bolts do not heal."},
+			{str = "Using Polarity Shift again while its effect is active will deactivate the effect, returning her to Spiritual Wound and resetting her Fire Rate and movement speed boosts."},
+		},
+	},
 	LeahsHairTie = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -1589,7 +1601,7 @@ local Wiki = {
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
 			{str = "The Torah refers to her as ''Miriam the Prophetess'' and the Talmud names her as one of the seven major female prophets of Israel."},
-			{str = "Miriam was first proposed for Team Compliance for the new content phase of the mod, but anchikai once again takes an idea he likes for his own mod instead. Thanks Soaring__Sky!"},
+			{str = "Miriam was first proposed for Team Compliance for the new content phase of the mod, but anchikai once again takes an idea she likes for her own mod instead. Thanks Soaring__Sky!"},
 		},
 	},
 	TaintedMiriam = {
@@ -1614,7 +1626,13 @@ local Wiki = {
 			{str = "- The cursor will automatically move to the next nearest enemy."},
 			{str = "Deals 0.33x Tainted Miriam's damage per tick."},
 			{str = "Enemies killed have a 5% chance to heal 1/2 red heart."},
-			
+			{str = "Polarity Shift charges up with kills that would normally heal Tainted Miriam if she was not at full health."},
+			{str = "- Takes 6 charges to fully charge, the equivalent of 6 healing procs (or 3 full red hearts)"},
+			{str = "- It does not charge with clearing rooms or taking batteries."},
+			{str = "On use, Tainted Miriam's ''Spiritual Wound'' attack is converted into Lightning bolts for the current room. Additionally, her Fire Rate is increased by 1 and her movement speed is increased by 0.4."},
+			{str = "Lightning bolts deal 2x Tainted Miriam's damage on the first frame and continue to do 0.15x damage per frame over time while tethered."},
+			{str = "- Lightning bolts do not heal."},
+			{str = "Using Polarity Shift again while its effect is active will deactivate the effect, returning her to Spiritual Wound and resetting her Fire Rate and movement speed boosts."},
 		},
 		{ -- Birthright
 			{str = "Birthright", fsize = 2, clr = 3, halign = 0},
@@ -1624,10 +1642,6 @@ local Wiki = {
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			
-		},
-		{ -- Interactions
-			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
 			
 		},
 		{ -- Trivia
@@ -2430,6 +2444,14 @@ Encyclopedia.AddItem({
 Encyclopedia.AddItem({
 	ModName = "Furtherance",
 	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_POLARITY_SHIFT,
+	WikiDesc = Wiki.PolarityShift,
+})
+
+--[[
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
 	ID = CollectibleType.COLLECTIBLE_LEAHS_HAIR_TIE,
 	WikiDesc = Wiki.LeahsHairTie,
 	Pools = {
@@ -2486,6 +2508,7 @@ Encyclopedia.AddItem({
 		
 	},
 })
+]]
 
 Encyclopedia.AddItem({
 	ModName = "Furtherance",
