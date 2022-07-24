@@ -1581,10 +1581,6 @@ local Wiki = {
 			{str = "Enemies hit by Miriam within 2 tiles get knocked back significantly."},
 			{str = "Miriam's Puddles become 1.25x larger."},
 		},
-		{ -- Notes
-			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "We don't know yet! :)"},
-		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
 			{str = "The Torah refers to her as ''Miriam the Prophetess'' and the Talmud names her as one of the seven major female prophets of Israel."},
