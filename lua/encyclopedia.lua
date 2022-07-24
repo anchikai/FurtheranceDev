@@ -770,11 +770,11 @@ local Wiki = {
 	FirstbornSon = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "Attacks the enemy with the highest enemy in the room with a powerful shot."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "Will only fire one shot per room."},
 		},
 	},
 	MiriamsWell = {
@@ -818,21 +818,19 @@ local Wiki = {
 	JarOfManna = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "Killing an enemy spawns a Manna Orb, which will quickly vanish."},
+			{str = "Manna Orbs can be collected by walking over them, which will charge this item."},
+			{str = "Upon use, the pickup Isaac needs the most (ie a heart or key) will be granted to him."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "Whatever Isaac has the least of is what will counted as being ''needed the most.''"},
 		},
 	},
 	Tambourine = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
-		},
-		{ -- Notes
-			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "Upon use, creates a whirlpool at the player's position that has a rift-like effect on enemies, pulling them in and damaging them."},
 		},
 	},
 	TheDreidel = {
@@ -1281,6 +1279,43 @@ local Wiki = {
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Upon clearing a room, 1-3 Minisaacs are spawned."},
 			{str = "All Minisaacs spawned from Pallium will be removed when going to the next floor."},
+		},
+	},
+	EscapePlan = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "10% chance to teleport to the starting room when hit."},
+		},
+	},
+	Epitaph = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Dying with this trinket will cause a tombstone to spawn on the floor you died on in the next run."},
+			{str = "Bombing it 3 times will spawn 3-5 coins, 2-3 keys, and a copy of your first and last passive item from the previous run."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "The tombstone only shows up in the run immediately after the one you died in."},
+		},
+	},
+	LeviathansTendril = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "25% chance for enemy shots to deflect away from Isaac."},
+			{str = "10% chance to fear nearby enemies."},
+			{str = "+5% chance to both if you have the Leviathan transformation."},
+		},
+	},
+	KeyToThePit = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Allows you to walk into challenge rooms regardless of your current health."},
+		},
+	},
+	HammerheadWorm = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Each tear's damage, range, and shot speed is slightly randomized."},
 		},
 	},
 
@@ -2689,6 +2724,41 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_ANGEL,
 		Encyclopedia.ItemPools.POOL_GREED_ANGEL,
 	},
+})
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_ESCAPE_PLAN,
+	WikiDesc = Wiki.EscapePlan,
+})
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_EPITAPH,
+	WikiDesc = Wiki.Epitaph,
+})
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_LEVIATHANS_TENDRIL,
+	WikiDesc = Wiki.LeviathansTendril,
+})
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_KEY_TO_THE_PIT,
+	WikiDesc = Wiki.KeyToThePit,
+})
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_HAMMERHEAD_WORM,
+	WikiDesc = Wiki.HammerheadWorm,
 })
 
 -- Pocket Items

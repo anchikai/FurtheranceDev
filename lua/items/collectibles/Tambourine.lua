@@ -5,7 +5,7 @@ local TambourineMedium = Isaac.GetSoundIdByName("TambourineMedium")
 local WhirlpoolVariant = Isaac.GetEntityVariantByName("Miriam Whirlpool")
 
 function mod:UseTambourine(_, _, player)
-	-- create a puddle at the player's feet
+	-- create a whirlpool at the player's feet
 	local whirlpool = Isaac.Spawn(EntityType.ENTITY_EFFECT, WhirlpoolVariant, 1, player.Position, Vector.Zero, player):ToEffect()
 	whirlpool.LifeSpan = 60
 	whirlpool.CollisionDamage = player.Damage * 0.33
