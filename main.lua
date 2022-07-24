@@ -149,6 +149,12 @@ OBJ_ESSENCE_OF_DROUGHT = Isaac.GetCardIdByName("Essence of Drought")
 PILLEFFECT_HEARTACHE_UP = Isaac.GetPillEffectByName("Heartache Up")
 PILLEFFECT_HEARTACHE_DOWN = Isaac.GetPillEffectByName("Heartache Down")
 CARD_GOLDEN = Isaac.GetCardIdByName("Golden Card")
+CARD_HOPE = Isaac.GetCardIdByName("XXIII - Hope")
+CARD_REVERSE_HOPE = Isaac.GetCardIdByName("XXIII - Hope?")
+CARD_FAITH = Isaac.GetCardIdByName("XXV - Faith")
+CARD_REVERSE_FAITH = Isaac.GetCardIdByName("XXV - Faith?")
+CARD_CHARITY = Isaac.GetCardIdByName("XXIV - Charity")
+CARD_REVERSE_CHARITY = Isaac.GetCardIdByName("XXIV - Charity?")
 
 -- Pickups
 HeartSubType.HEART_MOON = 225
@@ -300,6 +306,12 @@ include("lua/pocket/EssenceOfProsperity.lua")
 include("lua/pocket/EssenceOfDrought.lua")
 include("lua/pocket/Heartache.lua")
 include("lua/pocket/GoldenCard.lua")
+include("lua/pocket/Hope.lua")
+include("lua/pocket/ReverseHope.lua")
+include("lua/pocket/Faith.lua")
+include("lua/pocket/ReverseFaith.lua")
+include("lua/pocket/Charity.lua")
+include("lua/pocket/ReverseCharity.lua")
 
 -- Pickups
 include("lua/pickups/MoonHeart.lua")

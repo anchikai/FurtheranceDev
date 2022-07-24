@@ -1477,6 +1477,20 @@ local Wiki = {
 			{str = "- There is a 50% chance for the card to destroy itself."},
 		},
 	},
+	CharityCard = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "On use, apply Jar of Manna effect 3 times, giving Isaac the pickups he needs the most."},
+			{str = "If no pick ups are needed, permanently increases the stats he needs the most by 0.5."},
+		},
+	},
+	ReverseCharityCard = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "On use, mimics the effect of Diplopia."},
+			{str = "- All items spawned cost money."},
+		},
+	},
 
 	-- Characters
 	Leah = {

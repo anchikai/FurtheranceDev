@@ -13,6 +13,12 @@
     <card type="object" pickup="114" description="Permanence" hud="Essence of Death" name="Essence of Death" />
     <card type="object" pickup="115" description="Buoyant" hud="Essence of Prosperity" name="Essence of Prosperity" />
     <card type="object" pickup="116" description="Shortage" hud="Essence of Drought" name="Essence of Drought" />
+    <card type="tarot" pickup="1" description="May your future be bright and successful" hud="Hope" name="XXIII - Hope" mimiccharge="2" />
+    <card type="tarot_reverse" pickup="14" description="I have a bad feeling about this" hud="ReverseHope" name="XXIII - Hope?" mimiccharge="2" />
+    <card type="tarot" pickup="1" description="May your soul find salvation" hud="Faith" name="XXV - Faith" mimiccharge="2" />
+    <card type="tarot_reverse" pickup="14" description="Give up your spirit" hud="ReverseFaith" name="XXV - Faith?" mimiccharge="2" />
+    <card type="tarot" pickup="1" description="To each according to his needs" hud="Charity" name="XXIV - Charity" mimiccharge="2" />
+    <card type="tarot_reverse" pickup="14" description="Everything comes at a price" hud="ReverseCharity" name="XXIV - Charity?" mimiccharge="2" />
 
     <pilleffect name="Heartache Up" class="3-" mimiccharge="4" />
 	<pilleffect name="Heartache Down" class="3+" mimiccharge="6" />
