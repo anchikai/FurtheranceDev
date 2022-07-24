@@ -1574,11 +1574,12 @@ local Wiki = {
 			{str = "Miriam's tears are fired in an arc. Upon hitting the floor, an obstacle, or an enemy they burst into a puddle of water."},
 			{str = "- The puddle of water deals 33% of Miriam's damage."},
 			{str = "- The puddle of water lasts for 3 seconds."},
-			{str = "Every 5 shots, the size of the puddle becomes 34% larger and begins to pull in enemies, pickups, and tears/shots from all sources for 3 seconds."},
+			{str = "Every 12 shots, the size of the puddle becomes 34% larger and begins to pull in enemies, pickups, and tears/shots from all sources for 3 seconds."},
 		},
 		{ -- Birthright
 			{str = "Birthright", fsize = 2, clr = 3, halign = 0},
-			{str = "I haven't gotten to it yet, go on now :)"},
+			{str = "Enemies hit by Miriam within 2 tiles get knocked back significantly."},
+			{str = "Miriam's Puddles become 1.25x larger."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},

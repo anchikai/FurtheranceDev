@@ -11,11 +11,11 @@ local bhb = Isaac.GetSoundIdByName("BrokenHeartbeat")
 COSTUME_MIRIAM_A_HAIR = Isaac.GetCostumeIdByPath("gfx/characters/Character_003_Miriam_Hair.anm2")
 COSTUME_MIRIAM_B_HAIR = Isaac.GetCostumeIdByPath("gfx/characters/Character_003b_Miriam_Hair.anm2")
 
----@param player EntityPlayer
 function mod:OnInit(player)
 	local data = mod:GetData(player)
 	if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then
 		data.MiriamAOE = 1
+		data.oldNumBirthrights = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
 	end
 
 	if mod.IsContinued then return end
@@ -58,6 +58,18 @@ function mod:tearCounter(tear)
 end
 mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.tearCounter)
 
+function mod:Birthright(tear, collider)
+	local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
+	if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+		local entities = Isaac.FindInRadius(player.Position, 40, EntityPartition.ENEMY)
+		if #entities > 0 then
+			tear:AddTearFlags(TearFlags.TEAR_KNOCKBACK)
+			tear:SetKnockbackMultiplier(tear.KnockbackMultiplier*5)
+		end
+	end
+end
+mod:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, mod.Birthright)
+
 function mod:miriamStats(player, flag)
 	local data = mod:GetData(player)
 	if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then -- If the player is Miriam it will apply her stats
@@ -72,6 +84,7 @@ function mod:miriamStats(player, flag)
 		end
 		if flag == CacheFlag.CACHE_RANGE then
 			player.TearRange = player.TearRange - 60
+
 			if player.TearRange ~= 200 then
 				if player.TearRange <= 160 then
 					data.MiriamAOE = 0.75
@@ -79,6 +92,9 @@ function mod:miriamStats(player, flag)
 					data.MiriamAOE = 1
 				elseif player.TearRange > 640 then
 					data.MiriamAOE = 1.5
+				end
+				if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+					data.MiriamAOE = data.MiriamAOE * 1.25 ^ data.oldNumBirthrights
 				end
 				player.TearRange = 200
 			end
@@ -93,6 +109,17 @@ function mod:miriamStats(player, flag)
 	end
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.miriamStats)
+
+function mod:UpdateBirthrightStatus(player)
+	if player:GetPlayerType() ~= PlayerType.PLAYER_MIRIAM then return end
+
+	local data = mod:GetData(player)
+	local numBirthrights = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
+	if numBirthrights == data.oldNumBirthrights then return end
+	data.MiriamAOE = data.MiriamAOE * 1.25 ^ (numBirthrights - data.oldNumBirthrights)
+	data.oldNumBirthrights = numBirthrights
+end
+mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.UpdateBirthrightStatus)
 
 function mod:ClickerFix(_, _, player)
 	player:TryRemoveNullCostume(COSTUME_MIRIAM_A_HAIR)
