@@ -58,7 +58,7 @@
 	<passive id="77" name="Sunscreen" description="A way to beat the heat!" gfx="sunscreen.png" quality="2" />
 	<passive id="81" cache="damage" name="Rotten Apple" description="Random worm + Damage up" gfx="rotten_apple.png" quality="3" />
 	<passive id="82" cache="luck" name="Beginner's Luck" description="Fading Fortune" gfx="beginners_luck.png" quality="2" />
-	<passive id="83" name="Dad's Wallet" description="idk lol" gfx="dads_wallet.png" quality="2" />
+	<passive id="83" name="Dad's Wallet" description="Father's wealth" gfx="dads_wallet.png" quality="2" />
 	<passive id="84" name="Chi Rho" description="technological!" gfx="chi_rho.png" quality="3" />
 	<passive id="85" cache="damage" name="Leah's Heart" description="Her heart beats" gfx="leahs_heart.png" devilprice="2" quality="3" />
 	<passive id="86" name="Pallium" description="Authority" gfx="pallium.png" quality="3" tags="angel" />

@@ -30,6 +30,12 @@ EID:addBirthright(PlayerType.PLAYER_PETER, "↑ Peter's spare timer is now 15 se
 -- Tainted Peter
 EID:addBirthright(PlayerType.PLAYER_PETER_B, "↑ Bleeding while flipped takes 14 seconds instead of 7", "Tainted Peter", "en_us")
 
+-- Miriam
+EID:addBirthright(PlayerType.PLAYER_MIRIAM, "↑ Miriam's pools become 25% larger#Nearby enemies hit by Miriam will be knocked back significantly", "Miriam", "en_us")
+
+-- Tainted Miriam
+EID:addBirthright(PlayerType.PLAYER_MIRIAM_B, "↑ Your lasers now target all enemies at once#{{Blank}}Your damage is evenly spread#{{Blank}}Targeting an enemy will focus most of the damage on it", "Tainted Miriam", "en_us")
+
 --Esc Key
 EID:addCollectible(CollectibleType.COLLECTIBLE_ESC_KEY, "If player has fewer than 6 hearts, heals them with combination of red and soul hearts#Teleports you out of the room", "Esc Key")
 EID:addCollectible(CollectibleType.COLLECTIBLE_ESC_KEY, "Если у персонажа меньше 6 сердец, то лечит их в комбинации {{Heart}} красных и {{SoulHeart}} синих сердец#Телепортирует из комнаты", "Клавиша Esc", "ru")
@@ -223,7 +229,7 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_PARASITIC_POOFER, "20% chance to 
 EID:addCollectible(CollectibleType.COLLECTIBLE_BUTTERFLY, "Taking damage will cause Isaac to fire tears in random directions for two seconds#The tears deal 50% of Isaac's damage", "Butterfly", "en_us")
 
 -- Spiritual Wound
-EID:addCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND, "Replaces tears with a single enemy tether attack#A red cursor will appear below enemies, and its controlled with the shoot buttons#The tether damages the nearest enemy until the enemy is dead#The tether will automatically move to the next nearest enemy#Deals 0.33x Isaac's damage per tick#Enemies killed have a 5% chance to heal 1/2 red heart", "Spiritual Wound", "en_us")
+EID:addCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND, "Replaces tears with multiple thin lasers#A cursor will appear below enemies, and its controlled with the shoot buttons#The lasers will be aimed at the cursor which home on the nearest enemy until its dead#The cursor will automatically move to the next nearest enemy#Deals 0.33x Isaac's damage per tick#Enemies killed have a 5% chance to heal 1/2 red heart", "Spiritual Wound", "en_us")
 
 -- Caduceus Staff
 EID:addCollectible(CollectibleType.COLLECTIBLE_CADUCEUS_STAFF, "{{SoulHeart}} +2 Soul Hearts#Chance to negate damage and grant a shield#The chance begins at 1% and doubles for each hit", "Caduceus Staff", "en_us")

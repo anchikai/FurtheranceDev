@@ -690,11 +690,16 @@ local Wiki = {
 	SpiritualWound = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "A cursor will appear below enemies which is controlled by firing."},
+			{str = "Replaces tears with multiple thin lasers."},
+			{str = "The lasers will be aimed at the cursor which home on the nearest enemy until the enemy is dead."},
+			{str = "- The cursor will automatically move to the next nearest enemy."},
+			{str = "Deals 0.33x Isaac's damage per tick."},
+			{str = "Enemies killed have a 5% chance to heal 1/2 red heart."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "Taking Spiritual Wound as Tainted Miriam does nothing."},
 		},
 	},
 	CaduceusStaff = {
@@ -1603,12 +1608,19 @@ local Wiki = {
 		},
 		{ -- Traits
 			{str = "Traits", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "A cursor will appear below enemies which is controlled by firing."},
+			{str = "Replaces tears with multiple thin lasers."},
+			{str = "The lasers will be aimed at the cursor which home on the nearest enemy until the enemy is dead."},
+			{str = "- The cursor will automatically move to the next nearest enemy."},
+			{str = "Deals 0.33x Tainted Miriam's damage per tick."},
+			{str = "Enemies killed have a 5% chance to heal 1/2 red heart."},
 			
 		},
 		{ -- Birthright
 			{str = "Birthright", fsize = 2, clr = 3, halign = 0},
-		
+			{str = "Your lasers now target all enemies at once."},
+			{str = "- Your damage is evenly spread across all the enemies."},
+			{str = "- Targeting an enemy will focus most of the damage on it."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
