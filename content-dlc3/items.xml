@@ -47,7 +47,7 @@
 	<passive id="58" name="Wine Bottle" description="Pop!" gfx="wine_bottle.png" quality="2" />
 	<passive id="59" cache="tearflag range" name="Flux" description="Continuity" gfx="flux.png" quality="3" />
 	<passive id="62" cache="size" name="Little Raincoat" description="Become the nightmare" gfx="little_raincoat.png" quality="2" />
-	<passive id="66" name="Leah's Hair Tie" description="Fasten your hair" gfx="leahs_hair_tie.png" quality="2" />
+	<!-- <passive id="66" name="Leah's Hair Tie" description="Fasten your hair" gfx="leahs_hair_tie.png" quality="2" /> -->
 	<!-- <passive id="67" name="Leah's Torn Heart" description="" gfx="leahs_torn_heart.png" quality="2" /> -->
 	<!-- <passive id="68" name="Peter's Headband" description="" gfx="peters_headband.png" quality="4" keys="1" /> -->
 	<!-- <passive id="69" name="Peter's Bloody Fracture" description="" gfx="peters_bloody_fracture.png" quality="3" /> -->
@@ -119,7 +119,7 @@
 	<familiar id="35" name="Binds of Devotion" description="Bound by love" gfx="binds_of_devotion.png" quality="2" persistent="true" />
 	<familiar id="45" name="Firstborn Son" description="Fleeting friend" gfx="firstborn_son.png" quality="1" tags="baby" />
 	<familiar id="46" name="Miriam's Well" description="Spew forth" gfx="miriams_well.png" quality="1" />
-	<familiar id="60" name="Brainstorm" description="Problem solving" gfx="brainstorm.png" quality="2" />
+	<!-- <familiar id="60" name="Brainstorm" description="Problem solving" gfx="brainstorm.png" quality="2" /> -->
 	<familiar id="63" name="Blood Cyst" description="It's about to pop" gfx="blood_cyst.png" quality="2" persistent="true" />
 	<familiar id="64" name="Polaris" description="May the star shine bright" gfx="polaris.png" quality="4" />
 	<familiar id="80" name="Iron" description="Hot to the touch" gfx="iron.png" quality="3" />

@@ -1281,6 +1281,19 @@ local Wiki = {
 			{str = "Concept by Oddvio!"},
 		},
 	},
+	ChiRho = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "All of Isaac's lasers now home on enemies."},
+			{str = "- Technology 2 is not affected."},
+			{str = "They will stay put where they were fired, similarly to Anti-Gravity."},
+			{str = "They can only deal damage for the first frame."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "Chi Rho will not do anything by itself."},
+		},
+	},
 	LeahsHeart = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -2819,6 +2832,17 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_BOSS,
 		Encyclopedia.ItemPools.POOL_GREED_BOSS,
 		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_CHI_RHO,
+	WikiDesc = Wiki.ChiRho,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_ANGEL,
+		Encyclopedia.ItemPools.POOL_GREED_ANGEL,
 	},
 })
 
