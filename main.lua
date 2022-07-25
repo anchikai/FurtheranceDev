@@ -91,6 +91,7 @@ CollectibleType.COLLECTIBLE_LEAHS_HEART = Isaac.GetItemIdByName("Leah's Heart")
 CollectibleType.COLLECTIBLE_PALLIUM = Isaac.GetItemIdByName("Pallium")
 CollectibleType.COLLECTIBLE_COLD_HEARTED = Isaac.GetItemIdByName("Cold Hearted")
 CollectibleType.COLLECTIBLE_ROTTEN_LOVE = Isaac.GetItemIdByName("Rotten Love")
+CollectibleType.COLLECTIBLE_HIGH_BLOOD_PRESSURE = Isaac.GetItemIdByName("High Blood Pressure")
 
 -- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
@@ -265,6 +266,7 @@ include("lua/items/collectibles/LeahsHeart.lua")
 include("lua/items/collectibles/Pallium.lua")
 include("lua/items/collectibles/ColdHearted.lua")
 include("lua/items/collectibles/RottenLove.lua")
+include("lua/items/collectibles/HighBloodPressure.lua")
 
 -- Trinkets
 include("lua/items/trinkets/HolyHeart.lua")
