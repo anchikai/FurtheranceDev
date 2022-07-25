@@ -5,8 +5,8 @@ mod:SavePlayerData({
 })
 
 function mod:SetExsanguinationData(player)
-    local data = mod:GetData(player)
-    data.ExsanguinationDamage = 0
+    player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
+    player:EvaluateItems()
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.SetExsanguinationData)
 
@@ -28,6 +28,9 @@ mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.PickupHeart, PickupVar
 
 function mod:HeartDamage(player, flag)
     local data = mod:GetData(player)
+    if data.ExsanguinationDamage == nil then
+        data.ExsanguinationDamage = 0
+    end
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_EXSANGUINATION) then
 		player.Damage = player.Damage + data.ExsanguinationDamage
 	end
