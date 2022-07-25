@@ -419,6 +419,12 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_COLD_HEARTED, "{{Freezing}} Freez
 -- Rotten Love
 EID:addCollectible(CollectibleType.COLLECTIBLE_ROTTEN_LOVE, "Spawns 2-3 {{RottenHeart}} Rotten Hearts and 2-3 {{BoneHeart}} Bone Hearts", "Rotten Love", "en_us")
 
+-- Rue
+EID:addCollectible(CollectibleType.COLLECTIBLE_RUE, "Fire a brimstone laser at the nearest enemy when hit#Fires in a random direction when there are no enemies", "Rue", "en_us")
+
+-- Exsanguination
+EID:addCollectible(CollectibleType.COLLECTIBLE_EXSANGUINATION, "{{Heart}} All hearts have a 50% smaller chance to spawn#↑ Any heart when picked up gives a permanent {{Damage}} +0.1 damage up", "Exsanguination", "en_us")
+
 
 -- Soul of Leah
 EID:addCard(RUNE_SOUL_OF_LEAH, "{{BrokenHeart}} Grants a broken heart for every uncleared room on the floor#↑ Each broken heart will give a +0.75 damage up#!!! If there are 12 or more uncleared rooms, it will kill you", "Soul of Leah", "en_us")

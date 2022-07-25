@@ -1371,6 +1371,28 @@ local Wiki = {
 			{str = "Concept by Oddvio!"},
 		},
 	},
+	Rue = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Fires a brimstone laser towards the nearest enemy upon taking a hit."},
+			{str = "- Fires in a random direction instead if there are no enemies."},
+		},
+		{ -- Credits
+			{str = "Credits", fsize = 2, clr = 3, halign = 0},
+			{str = "Concept by Oddvio!"},
+		},
+	},
+	Exsanguination = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "All hearts have a 50% smaller chance to spawn."},
+			{str = "Any heart when picked up gives a permanent +0.1 damage up."},
+		},
+		{ -- Credits
+			{str = "Credits", fsize = 2, clr = 3, halign = 0},
+			{str = "Concept by Oddvio!"},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -2127,6 +2149,7 @@ Encyclopedia.AddItem({
 	ID = CollectibleType.COLLECTIBLE_OWLS_EYE,
 	WikiDesc = Wiki.OwlsEye,
 	Pools = {
+		Encyclopedia.ItemPools.POOL_RED_CHEST,
 		Encyclopedia.ItemPools.POOL_CURSE,
 		Encyclopedia.ItemPools.POOL_DEVIL,
 		Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
@@ -2875,6 +2898,34 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_BOSS,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 		Encyclopedia.ItemPools.POOL_GREED_BOSS,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_RUE,
+	WikiDesc = Wiki.Rue,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_DEVIL,
+		Encyclopedia.ItemPools.POOL_RED_CHEST,
+		Encyclopedia.ItemPools.POOL_CURSE,
+		Encyclopedia.ItemPools.POOL_GREED_DEVIL,
+		Encyclopedia.ItemPools.POOL_GREED_CURSE,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_EXSANGUINATION,
+	WikiDesc = Wiki.Exsanguination,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_DEVIL,
+		Encyclopedia.ItemPools.POOL_RED_CHEST,
+		Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		Encyclopedia.ItemPools.POOL_GREED_DEVIL,
 	},
 })
 

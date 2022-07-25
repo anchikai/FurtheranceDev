@@ -48,11 +48,11 @@
 	<passive id="59" cache="tearflag range" name="Flux" description="Continuity" gfx="flux.png" quality="3" />
 	<passive id="62" cache="size" name="Little Raincoat" description="Become the nightmare" gfx="little_raincoat.png" quality="2" />
 	<passive id="66" name="Leah's Hair Tie" description="Fasten your hair" gfx="leahs_hair_tie.png" quality="2" />
-	<passive id="67" name="Leah's Torn Heart" description="" gfx="leahs_torn_heart.png" quality="2" />
-	<passive id="68" name="Peter's Headband" description="" gfx="peters_headband.png" quality="4" keys="1" />
-	<passive id="69" name="Peter's Bloody Fracture" description="" gfx="peters_bloody_fracture.png" quality="3" />
-	<passive id="70" name="Miriam's Headband" description="" gfx="miriams_headband.png" quality="3" />
-	<passive id="71" name="Miriam's Putrid Veil" description="" gfx="miriams_putrid_veil.png" quality="3" />
+	<!-- <passive id="67" name="Leah's Torn Heart" description="" gfx="leahs_torn_heart.png" quality="2" /> -->
+	<!-- <passive id="68" name="Peter's Headband" description="" gfx="peters_headband.png" quality="4" keys="1" /> -->
+	<!-- <passive id="69" name="Peter's Bloody Fracture" description="" gfx="peters_bloody_fracture.png" quality="3" /> -->
+	<!-- <passive id="70" name="Miriam's Headband" description="" gfx="miriams_headband.png" quality="3" /> -->
+	<!-- <passive id="71" name="Miriam's Putrid Veil" description="" gfx="miriams_putrid_veil.png" quality="3" /> -->
 	<passive id="74" cache="shotspeed range" name="Keratoconus" description="Soft gazing eyes" gfx="keratoconus.png" quality="2" />
 	<passive id="76" name="Cardiomyopathy" description="My chest hurts" gfx="cardiomyopathy.png" quality="2" />
 	<passive id="77" name="Sunscreen" description="A way to beat the heat!" gfx="sunscreen.png" quality="2" />
@@ -65,6 +65,7 @@
 	<passive id="87" name="Cold Hearted" description="Icy touch" gfx="cold_hearted.png" quality="3" />
 	<passive id="88" name="Rotten Love" description="HP up?" gfx="rotten_love.png" quality="2" />
 	<passive id="89" name="Rue" description="Love's undoing" gfx="rue.png" quality="3" />
+	<passive id="90" cache="damage" name="Exsanguination" description="Rarer hearts" gfx="exsanguination.png" quality="2" />
 
 	<!-- Active Items -->
 	<active id="21" cache="speed" name="Book of Swiftness" description="Temporary speed up" gfx="book_of_swiftness.png" maxcharges="3" quality="3" tags="book offensive lazarussharedglobal" />

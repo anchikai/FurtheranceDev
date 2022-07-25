@@ -92,6 +92,7 @@ CollectibleType.COLLECTIBLE_PALLIUM = Isaac.GetItemIdByName("Pallium")
 CollectibleType.COLLECTIBLE_COLD_HEARTED = Isaac.GetItemIdByName("Cold Hearted")
 CollectibleType.COLLECTIBLE_ROTTEN_LOVE = Isaac.GetItemIdByName("Rotten Love")
 CollectibleType.COLLECTIBLE_RUE = Isaac.GetItemIdByName("Rue")
+CollectibleType.COLLECTIBLE_EXSANGUINATION = Isaac.GetItemIdByName("Exsanguination")
 
 -- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
@@ -267,6 +268,7 @@ include("lua/items/collectibles/Pallium.lua")
 include("lua/items/collectibles/ColdHearted.lua")
 include("lua/items/collectibles/RottenLove.lua")
 include("lua/items/collectibles/Rue.lua")
+include("lua/items/collectibles/Exsanguination.lua")
 
 -- Trinkets
 include("lua/items/trinkets/HolyHeart.lua")
