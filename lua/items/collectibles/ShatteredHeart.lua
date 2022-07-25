@@ -1,7 +1,6 @@
 local mod = Furtherance
 
 function mod:UseHeartRen(_, _, player)
-	player:AnimateCollectible(Isaac.GetItemIdByName("Shattered Heart No Puddle"), "UseItem", "PlayerPickup")
 	if player:GetBrokenHearts() > 0 then
 		SFXManager():Play(SoundEffect.SOUND_HEARTBEAT)
 		if player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY) then
@@ -10,5 +9,6 @@ function mod:UseHeartRen(_, _, player)
 			player:AddBrokenHearts(-1)
 		end
 	end
+	return true
 end
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseHeartRen, CollectibleType.COLLECTIBLE_SHATTERED_HEART)

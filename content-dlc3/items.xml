@@ -77,7 +77,6 @@
 	<active id="31" name="F4 Key" description="Be careful..." gfx="f4.png" shopprice="30" devilprice="2" maxcharges="6" quality="4" />
 	<active id="32" name="Tab Key" description="Pretty useful!" gfx="tab.png" maxcharges="12" quality="4" />
 	<active id="33" name="Shattered Heart" description="Eternal sorrow" gfx="shattered_heart.png" chargetype="normal" maxcharges="1" quality="2" tags="nokeeper nolostbr" />
-	<active name="Shattered Heart No Puddle" description="Eternal sorrow" gfx="shattered_heart_no_puddle.png" chargetype="normal" maxcharges="1" quality="2" tags="nokeeper nolostbr" hidden="true" />
 	<active id="34" name="Keys to the Kingdom" description="Divine control + strength in salvation" gfx="keys_to_the_kingdom.png" maxcharges="7" chargetype="special" quality="4" tags="angel" />
 	<active id="36" name="Muddled Cross" description="Flipped reality" gfx="muddled_cross.png" maxcharges="6" initcharge="6" devilprice="2" quality="4" />
 	<active id="48" name="Book of Guidance" description="The exodus ends" gfx="book_of_guidance.png" maxcharges="12" quality="1" tags="book" />

@@ -264,7 +264,7 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_GUIDANCE, "Opens all door
 EID:addCollectible(CollectibleType.COLLECTIBLE_JAR_OF_MANNA, "Killing an enemy spawns a Manna orb, which quickly disappears#Manna orbs can be collected by walking over them, which will charge this item#Using will give Isaac the pick up he needs the most", "Jar of Manna", "en_us")
 
 -- Tambourine
-EID:addCollectible(CollectibleType.COLLECTIBLE_TAMBOURINE, "", "Tambourine", "en_us")
+EID:addCollectible(CollectibleType.COLLECTIBLE_TAMBOURINE, "Creates a whirlpool at your position#It has a rift-like effect that pulls in pickups and enemies and damages them", "Tambourine", "en_us")
 
 -- The Dreidel
 EID:addCollectible(CollectibleType.COLLECTIBLE_THE_DREIDEL, "Reduces 1-4 random stats and spawns 1 random item from the current rooms item pool#Its quality will depend on the amount of stats lowered", "The Dreidel", "en_us")
@@ -442,7 +442,7 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_MOLTEN_GOLD, "Taking damage has a
 EID:addCollectible(CollectibleType.COLLECTIBLE_TREPANATION, "A {{Collectible531}} Haemolacria tear is fired every 15 shots#↑ The Haemolacria tear has a 2x damage multiplier", "Trepanation", "en_us")
 
 -- Astragali
-EID:addCollectible(CollectibleType.COLLECTIBLE_ASTRAGALI, "Rerolls chests in the current room", "Astragali", "en_us")
+EID:addCollectible(CollectibleType.COLLECTIBLE_ASTRAGALI, "Rerolls chests in the current", "Astragali", "en_us")
 
 
 
