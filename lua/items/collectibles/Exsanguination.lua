@@ -15,7 +15,7 @@ function mod:PickupHeart(pickup, collider)
         local player = collider:ToPlayer()
         local data = mod:GetData(player)
         if player:HasCollectible(CollectibleType.COLLECTIBLE_EXSANGUINATION) then
-            if pickup.SubType == HeartSubType.HEART_FULL or pickup.SubType == HeartSubType.HEART_HALF or pickup.SubType == HeartSubType.HEART_DOUBLEPACK
+            if (pickup.SubType == HeartSubType.HEART_FULL or pickup.SubType == HeartSubType.HEART_HALF or pickup.SubType == HeartSubType.HEART_DOUBLEPACK)
             and player:CanPickRedHearts() then
                 data.ExsanguinationDamage = data.ExsanguinationDamage + 0.1
                 player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
