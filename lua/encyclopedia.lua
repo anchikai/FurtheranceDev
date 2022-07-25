@@ -1360,6 +1360,17 @@ local Wiki = {
 			{str = "Concept by Oddvio!"},
 		},
 	},
+	RottenLove = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Spawns 2-3 Rotten Hearts."},
+			{str = "Spawns 2-3 Bone Hearts."},
+		},
+		{ -- Credits
+			{str = "Credits", fsize = 2, clr = 3, halign = 0},
+			{str = "Concept by Oddvio!"},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -2851,6 +2862,19 @@ Encyclopedia.AddItem({
 	Pools = {
 		Encyclopedia.ItemPools.POOL_TREASURE,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_ROTTEN_LOVE,
+	WikiDesc = Wiki.RottenLove,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_BOSS,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_BOSS,
 	},
 })
 

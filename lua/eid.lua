@@ -416,6 +416,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_PALLIUM, "Clearing a room grants 
 -- Cold Hearted
 EID:addCollectible(CollectibleType.COLLECTIBLE_COLD_HEARTED, "{{Freezing}} Freezes enemies on touch#Touching frozen enemies slide away and explode into 6 ice shards", "Cold Hearted", "en_us")
 
+-- Rotten Love
+EID:addCollectible(CollectibleType.COLLECTIBLE_ROTTEN_LOVE, "Spawns 2-3 {{RottenHeart}} Rotten Hearts and 2-3 {{BoneHeart}} Bone Hearts", "Rotten Love", "en_us")
+
 
 -- Soul of Leah
 EID:addCard(RUNE_SOUL_OF_LEAH, "{{BrokenHeart}} Grants a broken heart for every uncleared room on the floor#↑ Each broken heart will give a +0.75 damage up#!!! If there are 12 or more uncleared rooms, it will kill you", "Soul of Leah", "en_us")
