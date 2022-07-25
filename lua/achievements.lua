@@ -368,7 +368,7 @@ function mod:StartUnlocks()
 			
 		end
 		if mod.Unlocks.Peter.MegaSatan == false then
-			
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_ASTRAGALI)
 		end
 		if mod.Unlocks.Peter.Delirium == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM)
@@ -394,13 +394,13 @@ function mod:StartUnlocks()
 			
 		end
 		if mod.Unlocks.PeterB.MegaSatan == false then
-			
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_TREPANATION)
 		end
 		if mod.Unlocks.PeterB.Delirium == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_MUDDLED_CROSS)
 		end
 		if mod.Unlocks.PeterB.Mother == false then
-			
+			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_KEY_TO_THE_PIT)
 		end
 		if mod.Unlocks.PeterB.Beast == false then
 			

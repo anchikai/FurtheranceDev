@@ -38,6 +38,7 @@
 		<Item Name="Servitude" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Sunscreen" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Iron" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Astragali" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="boss">
 		<Item Name="Brunch" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -71,6 +72,7 @@
 		<Item Name="Pallium" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Prayer Journal" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Leviticus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Astragali" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="secret">
 		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -95,6 +97,7 @@
 		<Item Name="Polaris" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Leah's Heart" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Molten Gold" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Astragali" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
     </Pool>
 	<Pool Name="library">
 		<Item Name="Book of Swiftness" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -204,6 +207,7 @@
 		<Item Name="Dad's Wallet" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Exsanguination" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Molten Gold" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Astragali" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedDevil">
 		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -223,6 +227,7 @@
 		<Item Name="Prayer Journal" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Chi Rho" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Leviticus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Astragali" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedCurse">
 		<Item Name="Owl's Eye" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -247,6 +252,7 @@
 		<Item Name="Polaris" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Leah's Heart" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Molten Gold" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Astragali" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="craneGame">
 		<Item Name="Polydipsia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>

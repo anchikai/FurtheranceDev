@@ -42,6 +42,7 @@ local allWorms = {
 
     -- Modded Worms
     TrinketType.TRINKET_SLICK_WORM,
+    TrinketType.TRINKET_HAMMERHEAD_WORM,
 }
 
 function mod:SetRottenAppleData(player)

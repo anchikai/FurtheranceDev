@@ -1196,7 +1196,7 @@ local Wiki = {
 	D16 = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "On use, reroll Isaac's current health."},
+			{str = "Upon use, reroll Isaac's current health."},
 			{str = "- Red heart containers, bone hearts, soul hearts, black hearts, and eternal hearts all get rerolled into a random assortment of the same value."},
 		},
 		{ -- Interactions
@@ -1427,7 +1427,7 @@ local Wiki = {
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			{str = "The only runes that can be actived are:"},
+			{str = "The only runes that can be activated are:"},
 			{str = "- Hagalaz"},
 			{str = "- Jera"},
 			{str = "- Ehwaz"},
@@ -1443,6 +1443,16 @@ local Wiki = {
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Every 15 shots, Isaac will fire a Haemolacria tear."},
 			{str = "- The Haemolacria tear has a 2x damage multiplier."},
+		},
+	},
+	Astragali = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, replaces every chest in the current room with other random chests."},
+		},
+		{ -- Interactions
+			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
+			{str = "Car Battery: Re-rolls twice instantly without any benefits."},
 		},
 	},
 
@@ -3043,6 +3053,21 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_TREASURE,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_ASTRAGALI,
+	WikiDesc = Wiki.Astragali,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_ANGEL,
+		Encyclopedia.ItemPools.POOL_SECRET,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		Encyclopedia.ItemPools.POOL_GREED_ANGEL,
+		Encyclopedia.ItemPools.POOL_GREED_SECRET,
 	},
 })
 

@@ -97,6 +97,7 @@ CollectibleType.COLLECTIBLE_PRAYER_JOURNAL = Isaac.GetItemIdByName("Prayer Journ
 CollectibleType.COLLECTIBLE_BOOK_OF_LEVITICUS = Isaac.GetItemIdByName("Book of Leviticus")
 CollectibleType.COLLECTIBLE_MOLTEN_GOLD = Isaac.GetItemIdByName("Molten Gold")
 CollectibleType.COLLECTIBLE_TREPANATION = Isaac.GetItemIdByName("Trepanation")
+CollectibleType.COLLECTIBLE_ASTRAGALI = Isaac.GetItemIdByName("Astragali")
 
 -- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
@@ -277,6 +278,7 @@ include("lua/items/collectibles/PrayerJournal.lua")
 include("lua/items/collectibles/BookOfLeviticus.lua")
 include("lua/items/collectibles/MoltenGold.lua")
 include("lua/items/collectibles/Trepanation.lua")
+include("lua/items/collectibles/Astragali.lua")
 
 -- Trinkets
 include("lua/items/trinkets/HolyHeart.lua")

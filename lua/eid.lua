@@ -441,6 +441,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_MOLTEN_GOLD, "Taking damage has a
 -- Trepanation
 EID:addCollectible(CollectibleType.COLLECTIBLE_TREPANATION, "A {{Collectible531}} Haemolacria tear is fired every 15 shots#↑ The Haemolacria tear has a 2x damage multiplier", "Trepanation", "en_us")
 
+-- Astragali
+EID:addCollectible(CollectibleType.COLLECTIBLE_ASTRAGALI, "Rerolls chests in the current room", "Astragali", "en_us")
+
 
 
 -- Soul of Leah
