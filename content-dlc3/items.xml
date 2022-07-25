@@ -66,7 +66,8 @@
 	<passive id="88" name="Rotten Love" description="HP up?" gfx="rotten_love.png" quality="2" />
 	<passive id="89" name="Rue" description="Love's undoing" gfx="rue.png" quality="3" />
 	<passive id="90" cache="damage" name="Exsanguination" description="Rarer hearts" gfx="exsanguination.png" quality="2" />
-	<passive id="93" name="Molten Gold" description="It’s more valuable this way…" gfx="molten_gold.png" quality="2" />
+	<passive id="93" name="Molten Gold" description="It's more valuable this way..." gfx="molten_gold.png" quality="2" />
+	<passive id="94" name="Trepanation" description="Blood mortar" gfx="trepanation.png" quality="3" />
 
 	<!-- Active Items -->
 	<active id="21" cache="speed" name="Book of Swiftness" description="Temporary speed up" gfx="book_of_swiftness.png" maxcharges="3" quality="3" tags="book offensive lazarussharedglobal" />

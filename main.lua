@@ -96,6 +96,7 @@ CollectibleType.COLLECTIBLE_EXSANGUINATION = Isaac.GetItemIdByName("Exsanguinati
 CollectibleType.COLLECTIBLE_PRAYER_JOURNAL = Isaac.GetItemIdByName("Prayer Journal")
 CollectibleType.COLLECTIBLE_BOOK_OF_LEVITICUS = Isaac.GetItemIdByName("Book of Leviticus")
 CollectibleType.COLLECTIBLE_MOLTEN_GOLD = Isaac.GetItemIdByName("Molten Gold")
+CollectibleType.COLLECTIBLE_TREPANATION = Isaac.GetItemIdByName("Trepanation")
 
 -- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
