@@ -1,7 +1,7 @@
 local mod = Furtherance
 local game = Game()
 
-function mod:UseEsc(boi, rng, player, slot, data)
+function mod:UseEsc(_, _, player, slot, data)
 	--if the stage is Home
 	local stage = game:GetLevel():GetStage()
 	local stageType = game:GetLevel():GetStageType()

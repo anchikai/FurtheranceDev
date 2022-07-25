@@ -135,7 +135,7 @@ function mod:leahStats(player, flag)
 				data.LeahbPower = 0
 			end
 			if data.LeahbPower > 0 then
-				for power = 1, data.LeahbPower do
+				for _ = 1, data.LeahbPower do
 					if player.MaxFireDelay <= 40 then
 						player.MaxFireDelay = player.MaxFireDelay * 1.01
 					end

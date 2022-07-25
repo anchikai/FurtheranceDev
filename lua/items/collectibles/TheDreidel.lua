@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 local DreidelStatObjs = {
 	{ Name = "Damage", Flag = CacheFlag.CACHE_DAMAGE, Buff = 0.25 },

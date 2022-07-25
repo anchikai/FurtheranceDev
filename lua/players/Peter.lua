@@ -1,6 +1,5 @@
 local mod = Furtherance
 local game = Game()
-local rng = RNG()
 
 COSTUME_PETER_A_DRIP = Isaac.GetCostumeIdByPath("gfx/characters/Character_002_Peter_Drip.anm2")
 COSTUME_PETER_B_DRIP = Isaac.GetCostumeIdByPath("gfx/characters/Character_002b_Peter_Drip.anm2")

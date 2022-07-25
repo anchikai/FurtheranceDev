@@ -1,7 +1,5 @@
 local mod = Furtherance
-local game = Game()
-
-function mod:SpawnFire(entity, damage, flag, source, frames)
+function mod:SpawnFire(entity)
     local player = entity:ToPlayer()
     if (player and player:HasCollectible(CollectibleType.COLLECTIBLE_PILLAR_OF_FIRE)) then
         local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_PILLAR_OF_FIRE)
@@ -27,7 +25,6 @@ function mod:SpawnFire(entity, damage, flag, source, frames)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.SpawnFire, EntityType.ENTITY_PLAYER)
 
 local function getNearestEnemy(player)
@@ -64,5 +61,4 @@ function mod:FireTears(entity)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.FireTears, EffectVariant.HOT_BOMB_FIRE)

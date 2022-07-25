@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 function mod:LeafDamage(player)
 	player = player:ToPlayer()

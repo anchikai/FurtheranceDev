@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 function Shuffle(list)
 	local size, shuffled  = #list, list

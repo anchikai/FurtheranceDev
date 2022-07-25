@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 local StaffActivate = Isaac.GetSoundIdByName("CaduceusActivate")
 
 local Multiplier = 0.01

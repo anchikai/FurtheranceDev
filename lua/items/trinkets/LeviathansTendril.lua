@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 local MaxTearDistance = 80 ^ 2
 local MaxEnemyDistance = 80 ^ 2

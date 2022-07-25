@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 function mod:Invulnerability(entity)
     local player = entity:ToPlayer()

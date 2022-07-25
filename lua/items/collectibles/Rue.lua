@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 local function getNearestEnemy(position)
     local nearestEnemy

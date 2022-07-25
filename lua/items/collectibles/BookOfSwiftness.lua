@@ -1,7 +1,6 @@
 local mod = Furtherance
 
-function mod:UseBookOfSwiftness(_Type, RNG, player)
-	local data = mod:GetData(player)
+function mod:UseBookOfSwiftness(_, _, player)
 	mod:DoBigbook("gfx/ui/giantbook/Swiftness.png", SoundEffect.SOUND_BOOK_PAGE_TURN_12, nil, nil, true)
 	player:UseCard(Card.CARD_ERA_WALK, 263)
     return true

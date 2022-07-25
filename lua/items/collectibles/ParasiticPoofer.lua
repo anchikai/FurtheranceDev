@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 function mod:Parasite(entity)
 	local player = entity:ToPlayer()

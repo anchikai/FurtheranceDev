@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 function mod:KeratoconusBuffs(player, flag)
     if not player:HasCollectible(CollectibleType.COLLECTIBLE_KERATOCONUS) then return end

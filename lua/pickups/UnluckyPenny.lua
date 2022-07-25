@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 mod:SavePlayerData({
 	UnluckyPennyStat = 0

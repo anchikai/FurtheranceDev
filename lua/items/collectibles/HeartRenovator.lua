@@ -37,8 +37,6 @@ function mod:UseRenovator(_, _, player)
 end
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseRenovator, CollectibleType.COLLECTIBLE_HEART_RENOVATOR)
 
----@param heart EntityPickup
----@param collider Entity
 function mod:Hearts(heart, collider)
 	local heartCounter = {
 		[HeartSubType.HEART_FULL] = 2,

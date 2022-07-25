@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 function mod:UseD9(_, _, player)
 	for _, entity in ipairs(Isaac.GetRoomEntities()) do

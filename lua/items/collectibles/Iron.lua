@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 local IronOrbital = Isaac.GetEntityVariantByName("Iron")
 

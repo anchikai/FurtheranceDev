@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 function mod:UseEssenceOfLove(card, player, flag)
     for i, entity in ipairs(Isaac.GetRoomEntities()) do

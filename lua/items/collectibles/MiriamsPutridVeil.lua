@@ -6,7 +6,6 @@ function mod:GetVeil(player, flag)
         player.TearHeight = player.TearHeight + 2
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetVeil, CacheFlag.CACHE_RANGE)
 
 function mod:HealChance(entity)
@@ -20,7 +19,6 @@ function mod:HealChance(entity)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.HealChance)
 
 function mod:SetLinger(tear, collider)
@@ -32,7 +30,6 @@ function mod:SetLinger(tear, collider)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, mod.SetLinger)
 mod:AddCallback(ModCallbacks.MC_PRE_KNIFE_COLLISION, mod.SetLinger)
 
@@ -52,5 +49,4 @@ function mod:LingeringDamage(entity)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_NPC_UPDATE, mod.LingeringDamage)

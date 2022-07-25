@@ -19,7 +19,6 @@ function mod:Rapturing()
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.Rapturing)
 
 function mod:ResetCounter(continued)
@@ -27,5 +26,4 @@ function mod:ResetCounter(continued)
         HeadbandRoomCount = 0
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.ResetCounter)

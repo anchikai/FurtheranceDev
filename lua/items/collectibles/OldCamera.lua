@@ -1,6 +1,5 @@
 local mod = Furtherance
 local game = Game()
-local rng = RNG()
 
 mod:SavePlayerData({
 	CameraSaved = false,

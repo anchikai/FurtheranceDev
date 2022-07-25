@@ -1,7 +1,7 @@
 local mod = Furtherance
 local game = Game()
 
-function mod:UseTab(boi, rng, player)
+function mod:UseTab(_, _, player)
 	local level = game:GetLevel()
 	if not player:HasCollectible(CollectibleType.COLLECTIBLE_ALT_KEY) then
 		level:ApplyCompassEffect(false)

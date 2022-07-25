@@ -13,6 +13,5 @@ function mod:Minus1Shots(tear)
 		tear.Color = Color(0.75, 0, 0, 1, 0.25, 0, 0)
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_TEAR_UPDATE, mod.Minus1Shots)
 mod:AddCallback(ModCallbacks.MC_POST_KNIFE_UPDATE, mod.Minus1Shots)

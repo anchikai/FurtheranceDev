@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 local statObjs = {
     { Name = "Damage", Flag = CacheFlag.CACHE_DAMAGE, Buff = 1 },
@@ -67,7 +66,6 @@ function mod:UseApocalypse(_, _, player)
 
     return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseApocalypse, CollectibleType.COLLECTIBLE_APOCALYPSE)
 
 function mod:ApocalypseBuffs(player, flag)
@@ -83,5 +81,4 @@ function mod:ApocalypseBuffs(player, flag)
         end
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.ApocalypseBuffs)

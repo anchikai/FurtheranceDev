@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 local rng = RNG()
 
 function mod:CollectHeart(pickup, collider)

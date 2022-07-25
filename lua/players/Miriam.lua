@@ -1,12 +1,9 @@
 local mod = Furtherance
 local game = Game()
-local rng = RNG()
 
 mod:SavePlayerData({
 	MiriamTearCount = 0,
 })
-
-local bhb = Isaac.GetSoundIdByName("BrokenHeartbeat")
 
 COSTUME_MIRIAM_A_HAIR = Isaac.GetCostumeIdByPath("gfx/characters/Character_003_Miriam_Hair.anm2")
 COSTUME_MIRIAM_B_HAIR = Isaac.GetCostumeIdByPath("gfx/characters/Character_003b_Miriam_Hair.anm2")

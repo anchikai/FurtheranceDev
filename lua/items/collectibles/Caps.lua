@@ -1,6 +1,6 @@
 local mod = Furtherance
 
-function mod:UseCaps(boi, rng, player, slot, data)
+function mod:UseCaps(_, _, player, slot, data)
 	player:UseCard(Card.CARD_HUGE_GROWTH, 0)
 	SFXManager():Stop(SoundEffect.SOUND_HUGE_GROWTH)
 	return true

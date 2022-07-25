@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 function mod:CollectCoin(pickup, collider)
 	if collider.Type == EntityType.ENTITY_PLAYER then

@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 function mod:UseEssenceOfLife(card, player, flag)
 	for _, entity in ipairs(Isaac.GetRoomEntities()) do

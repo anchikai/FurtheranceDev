@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 local TambourineMedium = Isaac.GetSoundIdByName("TambourineMedium")
 local WhirlpoolVariant = Isaac.GetEntityVariantByName("Miriam Whirlpool")

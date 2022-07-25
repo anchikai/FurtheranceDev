@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 -- positional offset from original tear when shot to the right
 local TearPositions = {

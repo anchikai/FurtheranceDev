@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 local WhirlpoolVariant = Isaac.GetEntityVariantByName("Miriam Whirlpool")
 

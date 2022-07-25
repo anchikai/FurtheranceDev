@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 function mod:HeartacheUp(pill, player, flags)
     player:AddBrokenHearts(1)

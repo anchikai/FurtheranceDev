@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 function mod:FrozenTouch(player, collider)
     if player:HasCollectible(CollectibleType.COLLECTIBLE_COLD_HEARTED) then

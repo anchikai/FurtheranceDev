@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 function mod:Donate(player, collider)
 	local rng = player:GetTrinketRNG(TrinketType.TRINKET_ALTRUISM)

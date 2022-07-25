@@ -6,7 +6,6 @@ local function clamp(value, min, max)
 	return math.min(math.max(value, min), max)
 end
 
----@param tear EntityTear
 function mod:JunoTears(tear, collider)
 	local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
 	if player and player:HasCollectible(CollectibleType.COLLECTIBLE_JUNO) then
@@ -24,7 +23,6 @@ function mod:JunoTears(tear, collider)
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_PRE_TEAR_COLLISION, mod.JunoTears) -- Tears
 mod:AddCallback(ModCallbacks.MC_PRE_KNIFE_COLLISION, mod.JunoTears) -- Mom's Knife
 
@@ -46,7 +44,6 @@ function mod:JunoLasers() -- Brimstone and other lasers
 		end
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, mod.JunoLasers)
 
 function mod:JunoUpdate(player)
@@ -60,5 +57,4 @@ function mod:JunoUpdate(player)
 		data.JunoTimer = 0
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.JunoUpdate)

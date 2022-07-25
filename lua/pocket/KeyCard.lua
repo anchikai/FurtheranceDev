@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 function mod:UseKeyCard(card, player, useflags)
 	Isaac.GridSpawn(GridEntityType.GRID_STAIRS, 2, player.Position, true)

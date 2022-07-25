@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 local CorkPop = Isaac.GetSoundIdByName("Cork")
 local tearCount = 0
 

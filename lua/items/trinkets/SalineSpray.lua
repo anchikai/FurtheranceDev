@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 function mod:FireSalineSprayTear(tear)
     local player = tear.Parent:ToPlayer()

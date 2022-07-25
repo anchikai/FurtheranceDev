@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 local laugh = Isaac.GetSoundIdByName("Sitcom_Laugh_Track")
 
 function mod:Grass(player)

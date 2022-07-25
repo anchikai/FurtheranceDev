@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 function mod:UseEssenceOfHate(card, player, flag)
     local BrokenHearts = 11 - player:GetBrokenHearts()

@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 --removes the player's current trinkets, gives the player the one you provided, uses the smelter, then gives the player back the original trinkets. (kittenchilly's code!)
 function mod:AddSmeltedTrinket(player, trinket, firstTimePickingUp)

@@ -215,7 +215,6 @@ function mod:MannaPickup(effect)
 		end
 	end
 
-
 	for i = 0, game:GetNumPlayers() - 1 do
 		local player = Isaac.GetPlayer(i)
 		local data = mod:GetData(player)

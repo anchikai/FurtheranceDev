@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 local MiriamWell = Isaac.GetEntityVariantByName("Miriam's Well")
 

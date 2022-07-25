@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 function mod:UseEssenceOfDeath(card, player, flag)
     local Killed = 0

@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 function mod:GetRaincoat(player, flag)
     local numRaincoats = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_LITTLE_RAINCOAT)
@@ -7,7 +6,6 @@ function mod:GetRaincoat(player, flag)
         player.SpriteScale = player.SpriteScale * 0.8 ^ numRaincoats
     end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetRaincoat, CacheFlag.CACHE_SIZE)
 
 function mod:RerollFood(pickup)
