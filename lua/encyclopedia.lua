@@ -2877,7 +2877,7 @@ Encyclopedia.AddCard({
 	Name = "Golden Card",
 })
 
-Encyclopedia.AddCard({
+Encyclopedia.AddRune({
 	ModName = "Furtherance",
     Class = "Furtherance",
 	ID = Isaac.GetCardIdByName("Essence of Love"),
@@ -2886,7 +2886,7 @@ Encyclopedia.AddCard({
 	Name = "Essence of Love",
 })
 
-Encyclopedia.AddCard({
+Encyclopedia.AddRune({
 	ModName = "Furtherance",
     Class = "Furtherance",
 	ID = Isaac.GetCardIdByName("Essence of Hate"),
@@ -2895,7 +2895,7 @@ Encyclopedia.AddCard({
 	Name = "Essence of Hate",
 })
 
-Encyclopedia.AddCard({
+Encyclopedia.AddRune({
 	ModName = "Furtherance",
     Class = "Furtherance",
 	ID = Isaac.GetCardIdByName("Essence of Life"),
@@ -2904,7 +2904,7 @@ Encyclopedia.AddCard({
 	Name = "Essence of Life",
 })
 
-Encyclopedia.AddCard({
+Encyclopedia.AddRune({
 	ModName = "Furtherance",
     Class = "Furtherance",
 	ID = Isaac.GetCardIdByName("Essence of Death"),
@@ -2913,7 +2913,7 @@ Encyclopedia.AddCard({
 	Name = "Essence of Death",
 })
 
-Encyclopedia.AddCard({
+Encyclopedia.AddRune({
 	ModName = "Furtherance",
     Class = "Furtherance",
 	ID = Isaac.GetCardIdByName("Essence of Prosperity"),
@@ -2922,7 +2922,7 @@ Encyclopedia.AddCard({
 	Name = "Essence of Prosperity",
 })
 
-Encyclopedia.AddCard({
+Encyclopedia.AddRune({
 	ModName = "Furtherance",
     Class = "Furtherance",
 	ID = Isaac.GetCardIdByName("Essence of Drought"),
@@ -2947,6 +2947,60 @@ Encyclopedia.AddPill({
     WikiDesc = Wiki.HeartacheDown,
 	Color = 9,
 	Description = "Positive",
+})
+
+Encyclopedia.AddCard({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("Hope"),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Hope", 0),
+    WikiDesc = Wiki.HopeCard,
+	Name = "XXIII - Hope",
+})
+
+Encyclopedia.AddCard({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("ReverseHope"),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "ReverseHope", 0),
+    WikiDesc = Wiki.ReverseHopeCard,
+	Name = "XXIII - Hope?",
+})
+
+Encyclopedia.AddCard({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("Faith"),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Faith", 0),
+    WikiDesc = Wiki.FaithCard,
+	Name = "XXV - Faith",
+})
+
+Encyclopedia.AddCard({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("ReverseFaith"),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "ReverseFaith", 0),
+    WikiDesc = Wiki.ReverseFaithCard,
+	Name = "XXV - Faith?",
+})
+
+Encyclopedia.AddCard({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("Charity"),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Charity", 0),
+    WikiDesc = Wiki.CharityCard,
+	Name = "XXIV - Charity",
+})
+
+Encyclopedia.AddCard({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("ReverseCharity"),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "ReverseCharity", 0),
+    WikiDesc = Wiki.ReverseCharityCard,
+	Name = "XXIV - Charity?",
 })
 
 -- Characters
