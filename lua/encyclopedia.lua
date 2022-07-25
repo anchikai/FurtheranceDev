@@ -511,7 +511,7 @@ local Wiki = {
 		},
 		{ -- Synergies
 			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
-			{str = "Schoolbag & Alt Key: The floor Isaac is currently on will be ''closed''. All enemies, obstacles, walls, doors, etc. and both the Alt Key and F4 Key will be removed. This will allow the player to walk through walls as well."},
+			{str = "Schoolbag + Alt Key: The floor Isaac is currently on will be ''closed''. All enemies, obstacles, walls, doors, etc. and both the Alt Key and F4 Key will be removed. This will allow the player to walk through walls as well."},
 			{str = "- When the player gets to the boss room, it will be instantly killed and everything will return to normal, bringing back all the obstacles, walls, doors, etc."},
 			{str = "-- Any entities that got removed will NOT be brought back. This includes enemies, items, consumables, decoration, etc."},
 			{str = "- The currently playing music will fade out when used. The silence will remain until another music track plays."},
@@ -528,7 +528,7 @@ local Wiki = {
 		},
 		{ -- Synergies
 			{str = "Synergies", fsize = 2, clr = 3, halign = 0},
-			{str = "Schoolbag & Alt Key: Sends you to the title screen."},
+			{str = "Schoolbag + Alt Key: Sends you to the title screen."},
 		},
 	},
 	ShatteredHeart = {
