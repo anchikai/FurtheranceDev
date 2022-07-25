@@ -93,6 +93,7 @@
 	<active id="78" name="Secret Diary" description="No one can know" gfx="secret_diary.png" maxcharges="6" quality="3" tags="book" />
 	<active id="79" name="D16" description="Reroll your health" gfx="d16.png" maxcharges="4" quality="1" />
 	<active id="91" name="Prayer Journal" description="Scripture" gfx="prayer_journal.png" maxcharges="4" quality="2" tags="book" />
+	<active id="92" name="Book of Leviticus" description="Set in stone" gfx="book_of_leviticus.png" maxcharges="6" quality="3" tags="book" />
 
 	<!-- Trinkets -->
 	<trinket id="0" name="Holy Heart" description="Protective hearts" gfx="holy_heart.png" /> <!-- Concept by PootisTweet! -->

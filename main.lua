@@ -94,6 +94,7 @@ CollectibleType.COLLECTIBLE_ROTTEN_LOVE = Isaac.GetItemIdByName("Rotten Love")
 CollectibleType.COLLECTIBLE_RUE = Isaac.GetItemIdByName("Rue")
 CollectibleType.COLLECTIBLE_EXSANGUINATION = Isaac.GetItemIdByName("Exsanguination")
 CollectibleType.COLLECTIBLE_PRAYER_JOURNAL = Isaac.GetItemIdByName("Prayer Journal")
+CollectibleType.COLLECTIBLE_BOOK_OF_LEVITICUS = Isaac.GetItemIdByName("Book of Leviticus")
 
 -- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
@@ -271,6 +272,7 @@ include("lua/items/collectibles/RottenLove.lua")
 include("lua/items/collectibles/Rue.lua")
 include("lua/items/collectibles/Exsanguination.lua")
 include("lua/items/collectibles/PrayerJournal.lua")
+include("lua/items/collectibles/BookOfLeviticus.lua")
 
 -- Trinkets
 include("lua/items/trinkets/HolyHeart.lua")

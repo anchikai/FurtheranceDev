@@ -1412,6 +1412,14 @@ local Wiki = {
 			{str = "Upon use, either a 45% chance to grant a soul heart, 45% chance to grant a black heart, or a 10% chance to grant a broken heart."},
 		},
 	},
+	BookOfLeviticus = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Spawns 6 clusters pf random rocks and other obstacles."},
+			{str = "Spawned clusters will often contain tinted rocks."},
+			{str = "The pathways between exits can't be blocked."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -2928,6 +2936,7 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_BOSS,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 		Encyclopedia.ItemPools.POOL_GREED_BOSS,
+		Encyclopedia.ItemPools.POOL_ROTTEN_BEGGAR,
 	},
 })
 
@@ -2965,6 +2974,20 @@ Encyclopedia.AddItem({
 	ID = CollectibleType.COLLECTIBLE_PRAYER_JOURNAL,
 	WikiDesc = Wiki.PrayerJournal,
 	Pools = {
+		Encyclopedia.ItemPools.POOL_ANGEL,
+		Encyclopedia.ItemPools.POOL_LIBRARY,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_ANGEL,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_BOOK_OF_LEVITICUS,
+	WikiDesc = Wiki.BookOfLeviticus,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
 		Encyclopedia.ItemPools.POOL_ANGEL,
 		Encyclopedia.ItemPools.POOL_LIBRARY,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,

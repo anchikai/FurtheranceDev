@@ -359,7 +359,7 @@ function mod:StartUnlocks()
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_CHI_RHO)
 		end
 		if mod.Unlocks.Peter.Lamb == false then
-			
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_LEVITICUS)
 		end
 		if mod.Unlocks.Peter.BossRush == false then
 			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_ALTRUISM)

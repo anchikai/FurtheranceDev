@@ -429,6 +429,12 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_EXSANGUINATION, "{{Heart}} All he
 
 -- Prayer Journal
 EID:addCollectible(CollectibleType.COLLECTIBLE_PRAYER_JOURNAL, "90% chance to grant either a {{SoulHeart}} Soul Heart or {{BlackHeart}} Black Heart or 10% chance to grant a {{BrokenHeart}} Broken Heart", "Prayer Journal", "en_us")
+EID:assignTransformation("collectible", CollectibleType.COLLECTIBLE_PRAYER_JOURNAL, "12") -- Bookworm
+
+-- Book of Leviticus
+EID:addCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_LEVITICUS, "Spawns 6 clusters of random rocks and obstacles#Clusters will often contain Tinted Rocks", "Book of Leviticus", "en_us")
+EID:assignTransformation("collectible", CollectibleType.COLLECTIBLE_BOOK_OF_LEVITICUS, "12") -- Bookworm
+
 
 
 -- Soul of Leah
