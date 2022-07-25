@@ -438,6 +438,9 @@ EID:assignTransformation("collectible", CollectibleType.COLLECTIBLE_BOOK_OF_LEVI
 -- Molten Gold
 EID:addCollectible(CollectibleType.COLLECTIBLE_MOLTEN_GOLD, "Taking damage has a 25% chance to activate a random rune's effect", "Molten Gold", "en_us")
 
+-- Trepanation
+EID:addCollectible(CollectibleType.COLLECTIBLE_TREPANATION, "A {{Collectible531}} Haemolacria tear is fired every 15 shots#↑ The Haemolacria tear has a 2x damage multiplier", "Trepanation", "en_us")
+
 
 
 -- Soul of Leah

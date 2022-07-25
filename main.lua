@@ -276,6 +276,7 @@ include("lua/items/collectibles/Exsanguination.lua")
 include("lua/items/collectibles/PrayerJournal.lua")
 include("lua/items/collectibles/BookOfLeviticus.lua")
 include("lua/items/collectibles/MoltenGold.lua")
+include("lua/items/collectibles/Trepanation.lua")
 
 -- Trinkets
 include("lua/items/trinkets/HolyHeart.lua")

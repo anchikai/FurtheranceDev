@@ -1438,6 +1438,13 @@ local Wiki = {
 			{str = "- Algiz"},
 		},
 	},
+	Trepanation = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Every 15 shots, Isaac will fire a Haemolacria tear."},
+			{str = "- The Haemolacria tear has a 2x damage multiplier."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
