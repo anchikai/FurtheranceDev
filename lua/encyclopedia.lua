@@ -1477,6 +1477,31 @@ local Wiki = {
 			{str = "- There is a 50% chance for the card to destroy itself."},
 		},
 	},
+	HopeCard = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "For the duration of the current room, killing enemies has a chance to spawn pickups."},
+		},
+	},
+	ReverseHopeCard = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Teleports Isaac into an extra challenge room."},
+			{str = "The room has an exit door, which leads Isaac back to where he used XXIII - Hope?."},
+		},
+	},
+	FaithCard = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Spawns a Confessional."},
+		},
+	},
+	ReverseFaithCard = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Spawns two Moon Hearts."},
+		},
+	},
 	CharityCard = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},

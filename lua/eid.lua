@@ -464,3 +464,21 @@ EID:addPill(PILLEFFECT_HEARTACHE_DOWN, "↑ Removes one {{BrokenHeart}} Broken H
 
 -- Moon Heart
 EID:addEntity(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, 225, "Moon Heart", "Worth 2 HP#Teleports you to the Secret Room when depleted#↓ Only 1 can be held at a time", "en_us")
+
+-- 
+EID:addCard(CARD_HOPE, "Killing enemies has a chance to spawn pickups for the room", "XXIII - Hope", "en_us")
+
+-- 
+EID:addCard(CARD_REVERSE_HOPE, "Teleports Isaac into an extra challenge room", "XXIII - Hope?", "en_us")
+
+-- 
+EID:addCard(CARD_FAITH, "Spawns a Confessional", "XXV - Faith", "en_us")
+
+-- 
+EID:addCard(CARD_REVERSE_FAITH, "Spawns two Moon Hearts", "XXV - Faith?", "en_us")
+
+-- 
+EID:addCard(CARD_CHARITY, "↑ Uses Jar of Manna 3 times, giving you the pickups you need the most#↑ If no pickups are needed, stat ups will be granted instead", "XXIV - Charity", "en_us")
+
+-- 
+EID:addCard(CARD_REVERSE_CHARITY, "Doubles all pickups in the room#The doubled pickups will cost money", "XXIV - Charity?", "en_us")
