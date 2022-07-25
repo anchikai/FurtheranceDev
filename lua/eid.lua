@@ -435,6 +435,9 @@ EID:assignTransformation("collectible", CollectibleType.COLLECTIBLE_PRAYER_JOURN
 EID:addCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_LEVITICUS, "Spawns 6 clusters of random rocks and obstacles#Clusters will often contain Tinted Rocks", "Book of Leviticus", "en_us")
 EID:assignTransformation("collectible", CollectibleType.COLLECTIBLE_BOOK_OF_LEVITICUS, "12") -- Bookworm
 
+-- Molten Gold
+EID:addCollectible(CollectibleType.COLLECTIBLE_MOLTEN_GOLD, "Taking damage has a 25% chance to activate a random rune's effect", "Molten Gold", "en_us")
+
 
 
 -- Soul of Leah

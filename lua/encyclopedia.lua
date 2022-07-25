@@ -1420,6 +1420,24 @@ local Wiki = {
 			{str = "The pathways between exits can't be blocked."},
 		},
 	},
+	MoltenGold = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon taking damage, there is a 25% chance to activate the effect of a random rune."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "The only runes that can be actived are:"},
+			{str = "- Hagalaz"},
+			{str = "- Jera"},
+			{str = "- Ehwaz"},
+			{str = "- Dagaz"},
+			{str = "- Ansuz"},
+			{str = "- Perthro"},
+			{str = "- Berkano"},
+			{str = "- Algiz"},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -2992,6 +3010,32 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_LIBRARY,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 		Encyclopedia.ItemPools.POOL_GREED_ANGEL,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_MOLTEN_GOLD,
+	WikiDesc = Wiki.MoltenGold,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_SECRET,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		Encyclopedia.ItemPools.POOL_GREED_SECRET,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_TREPANATION,
+	WikiDesc = Wiki.Trepanation,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
 	},
 })
 

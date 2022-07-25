@@ -28,6 +28,7 @@
 		<Item Name="Cold Hearted" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rotten Love" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Leviticus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Molten Gold" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="shop">
 		<Item Name="Tambourine" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -93,6 +94,7 @@
 		<Item Name="Beginner's Luck" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Polaris" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Leah's Heart" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Molten Gold" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
     </Pool>
 	<Pool Name="library">
 		<Item Name="Book of Swiftness" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -168,6 +170,7 @@
 		<Item Name="Rotten Love" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Prayer Journal" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Leviticus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Molten Gold" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
 		<Item Name="Brunch" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -200,6 +203,7 @@
 		<Item Name="Secret Diary" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Dad's Wallet" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Exsanguination" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Molten Gold" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedDevil">
 		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -242,6 +246,7 @@
 		<Item Name="Beginner's Luck" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Polaris" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Leah's Heart" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Molten Gold" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="craneGame">
 		<Item Name="Polydipsia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
