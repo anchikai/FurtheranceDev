@@ -64,7 +64,7 @@
 	<passive id="86" name="Pallium" description="Authority" gfx="pallium.png" quality="3" tags="angel" />
 	<passive id="87" name="Cold Hearted" description="Icy touch" gfx="cold_hearted.png" quality="3" />
 	<passive id="88" name="Rotten Love" description="HP up?" gfx="rotten_love.png" quality="2" />
-	<passive id="89" name="High Blood Pressure" description="Dangerously bloody" gfx="high_blood_pressure.png" quality="3" />
+	<passive id="89" name="Rue" description="Love's undoing" gfx="rue.png" quality="3" />
 
 	<!-- Active Items -->
 	<active id="21" cache="speed" name="Book of Swiftness" description="Temporary speed up" gfx="book_of_swiftness.png" maxcharges="3" quality="3" tags="book offensive lazarussharedglobal" />
