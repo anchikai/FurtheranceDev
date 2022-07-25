@@ -149,12 +149,12 @@ OBJ_ESSENCE_OF_DROUGHT = Isaac.GetCardIdByName("Essence of Drought")
 PILLEFFECT_HEARTACHE_UP = Isaac.GetPillEffectByName("Heartache Up")
 PILLEFFECT_HEARTACHE_DOWN = Isaac.GetPillEffectByName("Heartache Down")
 CARD_GOLDEN = Isaac.GetCardIdByName("Golden Card")
-CARD_HOPE = Isaac.GetCardIdByName("XXIII - Hope")
-CARD_REVERSE_HOPE = Isaac.GetCardIdByName("XXIII - Hope?")
-CARD_FAITH = Isaac.GetCardIdByName("XXV - Faith")
-CARD_REVERSE_FAITH = Isaac.GetCardIdByName("XXV - Faith?")
-CARD_CHARITY = Isaac.GetCardIdByName("XXIV - Charity")
-CARD_REVERSE_CHARITY = Isaac.GetCardIdByName("XXIV - Charity?")
+CARD_HOPE = Isaac.GetCardIdByName("Hope")
+CARD_REVERSE_HOPE = Isaac.GetCardIdByName("ReverseHope")
+CARD_FAITH = Isaac.GetCardIdByName("Faith")
+CARD_REVERSE_FAITH = Isaac.GetCardIdByName("ReverseFaith")
+CARD_CHARITY = Isaac.GetCardIdByName("Charity")
+CARD_REVERSE_CHARITY = Isaac.GetCardIdByName("ReverseCharity")
 
 -- Pickups
 HeartSubType.HEART_MOON = 225
