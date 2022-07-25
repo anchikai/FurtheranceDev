@@ -1346,6 +1346,20 @@ local Wiki = {
 			{str = "Concept by Oddvio!"},
 		},
 	},
+	ColdHearted = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Freezes enemies upon contact with Isaac."},
+			{str = "- Bosses and Mini-Bosses cannot be frozen."},
+			{str = "Frozen enemies can be kicked, sliding across the floor and then shattering, releasing 10 icicle tears outward. They will also shatter immediately if hit by an explosion."},
+			{str = "- These icicles can either slow enemies for 4 seconds or turn them into ice statues as well if they deal the lethal hit."},
+			{str = "Killing an enemy by freezing them will prevent any on-death effects to occur (such as explosions or some champions), even after shattering."},
+		},
+		{ -- Credits
+			{str = "Credits", fsize = 2, clr = 3, halign = 0},
+			{str = "Concept by Oddvio!"},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {

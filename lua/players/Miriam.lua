@@ -60,7 +60,7 @@ mod:AddCallback(ModCallbacks.MC_POST_FIRE_TEAR, mod.tearCounter)
 
 function mod:Birthright(tear, collider)
 	local player = tear.SpawnerEntity and tear.SpawnerEntity:ToPlayer()
-	if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+	if player and player:GetPlayerType() == PlayerType.PLAYER_MIRIAM and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 		local entities = Isaac.FindInRadius(player.Position, 40, EntityPartition.ENEMY)
 		if #entities > 0 then
 			tear:AddTearFlags(TearFlags.TEAR_KNOCKBACK)

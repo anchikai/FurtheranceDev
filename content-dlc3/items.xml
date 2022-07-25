@@ -42,7 +42,7 @@
 	<passive id="44" name="Pillar of Clouds" description="The path is clouded" gfx="pillar_of_clouds.png" quality="3" />
 	<passive id="47" name="Quarantine" description="Social distancing" gfx="quarantine.png" quality="0" />
 	<passive id="53" name="Mandrake" description="Tropane alkaloids" gfx="mandrake.png" quality="2" />
-	<passive id="54" name="Little Sister" description="Rachel..." gfx="little_sister.png" quality="2" />
+	<passive id="54" name="Little Sister" description="Fiercely competitive" gfx="little_sister.png" quality="2" />
 	<passive id="56" name="Butterfly" description="Loss of a loved one" gfx="butterfly.png" quality="4" />
 	<passive id="58" name="Wine Bottle" description="Pop!" gfx="wine_bottle.png" quality="2" />
 	<passive id="59" cache="tearflag range" name="Flux" description="Continuity" gfx="flux.png" quality="3" />
@@ -62,6 +62,7 @@
 	<passive id="84" name="Chi Rho" description="technological!" gfx="chi_rho.png" quality="3" />
 	<passive id="85" cache="damage" name="Leah's Heart" description="Her heart beats" gfx="leahs_heart.png" devilprice="2" quality="3" />
 	<passive id="86" name="Pallium" description="Authority" gfx="pallium.png" quality="3" tags="angel" />
+	<passive id="87" name="Cold Hearted" description="Icy touch" gfx="cold_hearted.png" quality="3" />
 
 	<!-- Active Items -->
 	<active id="21" cache="speed" name="Book of Swiftness" description="Temporary speed up" gfx="book_of_swiftness.png" maxcharges="3" quality="3" tags="book offensive lazarussharedglobal" />

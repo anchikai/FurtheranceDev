@@ -413,6 +413,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_LEAHS_HEART, "↑ {{Damage}} +1.2
 -- Pallium
 EID:addCollectible(CollectibleType.COLLECTIBLE_PALLIUM, "Clearing a room grants 1-3 Minisaacs#Minisaacs from Pallium are removed each floor", "Pallium", "en_us")
 
+-- Cold Hearted
+EID:addCollectible(CollectibleType.COLLECTIBLE_COLD_HEARTED, "{{Freezing}} Freezes enemies on touch#Touching frozen enemies slide away and explode into 6 ice shards", "Cold Hearted", "en_us")
+
 
 -- Soul of Leah
 EID:addCard(RUNE_SOUL_OF_LEAH, "{{BrokenHeart}} Grants a broken heart for every uncleared room on the floor#↑ Each broken heart will give a +0.75 damage up#!!! If there are 12 or more uncleared rooms, it will kill you", "Soul of Leah", "en_us")
