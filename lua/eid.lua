@@ -15,6 +15,8 @@ EID:addIcon("Player"..PlayerType.PLAYER_LEAH, "Leah", 0, 12, 12, -1, 1, PlayerIc
 EID:addIcon("Player"..PlayerType.PLAYER_LEAH_B, "LeahB", 0, 12, 12, -1, 1, PlayerIconSprite)
 EID:addIcon("Player"..PlayerType.PLAYER_PETER, "Peter", 0, 12, 12, -1, 1, PlayerIconSprite)
 EID:addIcon("Player"..PlayerType.PLAYER_PETER_B, "PeterB", 0, 12, 12, -1, 1, PlayerIconSprite)
+EID:addIcon("Player"..PlayerType.PLAYER_MIRIAM, "Peter", 0, 12, 12, -1, 1, PlayerIconSprite)
+EID:addIcon("Player"..PlayerType.PLAYER_MIRIAM_B, "PeterB", 0, 12, 12, -1, 1, PlayerIconSprite)
 
 -- Leah
 EID:addBirthright(PlayerType.PLAYER_LEAH, "↑ Heart counter now caps at 999#{{BrokenHeart}} A broken heart will be removed every 20 kills#It will grant damage half as effective as Heart Renovator", "Leah", "en_us")
