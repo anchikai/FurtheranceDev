@@ -27,6 +27,11 @@ function Furtherance.GetRockHearts(player)
 	return mod:GetData(player).RockHeart
 end
 
+---@param player EntityPlayer
+function Furtherance.CanPickRockHearts(player)
+	return player:CanPickBlackHearts()
+end
+
 local function CanOnlyHaveSoulHearts(player)
 	if player:GetPlayerType() == PlayerType.PLAYER_BLUEBABY
 		or player:GetPlayerType() == PlayerType.PLAYER_BLUEBABY_B or player:GetPlayerType() == PlayerType.PLAYER_BLACKJUDAS

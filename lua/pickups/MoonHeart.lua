@@ -31,6 +31,11 @@ function Furtherance.GetMoonHearts(player)
 	return mod:GetData(player).MoonHeart
 end
 
+---@param player EntityPlayer
+function Furtherance.CanPickMoonHearts(player)
+	return mod.GetMoonHearts(player) < 2 and player:CanPickBlackHearts()
+end
+
 local function CanOnlyHaveSoulHearts(player)
 	if player:GetPlayerType() == PlayerType.PLAYER_BLUEBABY
 		or player:GetPlayerType() == PlayerType.PLAYER_BLUEBABY_B or player:GetPlayerType() == PlayerType.PLAYER_BLACKJUDAS
