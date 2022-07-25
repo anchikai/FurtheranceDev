@@ -25,6 +25,7 @@
 		<Item Name="D9" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="D16" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Leah's Heart" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Cold Hearted" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="shop">
 		<Item Name="Tambourine" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -149,6 +150,7 @@
 		<Item Name="D9" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="D16" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Leah's Heart" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Cold Hearted" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
 		<Item Name="Brunch" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>

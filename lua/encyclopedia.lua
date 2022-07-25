@@ -2843,6 +2843,17 @@ Encyclopedia.AddTrinket({
 	WikiDesc = Wiki.HammerheadWorm,
 })
 
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_COLD_HEARTED,
+	WikiDesc = Wiki.ColdHearted,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+	},
+})
+
 -- Pocket Items
 Encyclopedia.AddSoul({
 	ModName = "Furtherance",
