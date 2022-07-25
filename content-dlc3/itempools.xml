@@ -66,6 +66,7 @@
 		<Item Name="Alternate Reality" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Polaris" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Pallium" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Prayer Journal" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="secret">
 		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -96,6 +97,7 @@
 		<Item Name="Book of Guidance" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Cosmic Omnibus" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Secret Diary" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Prayer Journal" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
     <Pool Name="shellGame">
 		
@@ -160,6 +162,7 @@
 		<Item Name="Leah's Heart" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Cold Hearted" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Rotten Love" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Prayer Journal" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
 		<Item Name="Brunch" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -208,6 +211,7 @@
 		<Item Name="Butterfly" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Polaris" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Pallium" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Prayer Journal" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedCurse">
 		<Item Name="Owl's Eye" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>

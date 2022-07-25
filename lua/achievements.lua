@@ -286,7 +286,7 @@ function mod:StartUnlocks()
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_BINDS_OF_DEVOTION)
 		end
 		if mod.Unlocks.Leah.Satan == false then
-
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_RUE)
 		end
 		if mod.Unlocks.Leah.BlueBaby == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_MANDRAKE)
@@ -301,7 +301,7 @@ function mod:StartUnlocks()
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_KERATOCONUS)
 		end
 		if mod.Unlocks.Leah.MegaSatan == false then
-			
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_D16)
 		end
 		if mod.Unlocks.Leah.Delirium == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR)
@@ -316,7 +316,7 @@ function mod:StartUnlocks()
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_HEART_EMBEDDED_COIN)
 		end
 		if mod.Unlocks.Leah.FullCompletion == false then
-			
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_EXSANGUINATION)
 		end
 
 		-- Tainted Leah
@@ -327,13 +327,13 @@ function mod:StartUnlocks()
 			
 		end
 		if mod.Unlocks.LeahB.MegaSatan == false then
-			
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_ROTTEN_LOVE)
 		end
 		if mod.Unlocks.LeahB.Delirium == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_SHATTERED_HEART)
 		end
 		if mod.Unlocks.LeahB.Mother == false then
-			
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_COLD_HEARTED)
 		end
 		if mod.Unlocks.LeahB.Beast == false then
 			
@@ -347,7 +347,7 @@ function mod:StartUnlocks()
 
 		-- Peter
 		if mod.Unlocks.Peter.MomsHeart == false then
-			--game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PRAYER_JOURNAL)
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PRAYER_JOURNAL)
 		end
 		if mod.Unlocks.Peter.Isaac == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PALLIUM)
@@ -388,7 +388,7 @@ function mod:StartUnlocks()
 
 		-- Tainted Peter
 		if mod.Unlocks.PeterB.PolNegPath == false then
-			
+			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_LEVIATHANS_TENDRIL)
 		end
 		if mod.Unlocks.PeterB.SoulPath == false then
 			

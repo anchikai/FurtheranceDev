@@ -425,6 +425,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_RUE, "Fire a brimstone laser at t
 -- Exsanguination
 EID:addCollectible(CollectibleType.COLLECTIBLE_EXSANGUINATION, "{{Heart}} All hearts have a 50% smaller chance to spawn#↑ Any heart when picked up gives a permanent {{Damage}} +0.1 damage up", "Exsanguination", "en_us")
 
+-- Prayer Journal
+EID:addCollectible(CollectibleType.COLLECTIBLE_PRAYER_JOURNAL, "90% chance to grant either a {{SoulHeart}} Soul Heart or {{BlackHeart}} Black Heart or 10% chance to grant a {{BrokenHeart}} Broken Heart", "Prayer Journal", "en_us")
+
 
 -- Soul of Leah
 EID:addCard(RUNE_SOUL_OF_LEAH, "{{BrokenHeart}} Grants a broken heart for every uncleared room on the floor#↑ Each broken heart will give a +0.75 damage up#!!! If there are 12 or more uncleared rooms, it will kill you", "Soul of Leah", "en_us")

@@ -1393,6 +1393,12 @@ local Wiki = {
 			{str = "Concept by Oddvio!"},
 		},
 	},
+	PrayerJournal = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, either a 45% chance to grant a soul heart, 45% chance to grant a black heart, or a 10% chance to grant a broken heart."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -2926,6 +2932,19 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_DEMON_BEGGAR,
 		Encyclopedia.ItemPools.POOL_GREED_SHOP,
 		Encyclopedia.ItemPools.POOL_GREED_DEVIL,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_PRAYER_JOURNAL,
+	WikiDesc = Wiki.PrayerJournal,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_ANGEL,
+		Encyclopedia.ItemPools.POOL_LIBRARY,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_ANGEL,
 	},
 })
 
