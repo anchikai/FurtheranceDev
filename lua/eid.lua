@@ -442,7 +442,10 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_MOLTEN_GOLD, "Taking damage has a
 EID:addCollectible(CollectibleType.COLLECTIBLE_TREPANATION, "A {{Collectible531}} Haemolacria tear is fired every 15 shots#↑ The Haemolacria tear has a 2x damage multiplier", "Trepanation", "en_us")
 
 -- Astragali
-EID:addCollectible(CollectibleType.COLLECTIBLE_ASTRAGALI, "Rerolls chests in the current", "Astragali", "en_us")
+EID:addCollectible(CollectibleType.COLLECTIBLE_ASTRAGALI, "Rerolls chests in the current room", "Astragali", "en_us")
+
+-- Liberation
+EID:addCollectible(CollectibleType.COLLECTIBLE_LIBERATION, "Kills have a 5% chance to grant flight and open all doors in the current room", "Liberation", "en_us")
 
 
 

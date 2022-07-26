@@ -1455,6 +1455,16 @@ local Wiki = {
 			{str = "Car Battery: Re-rolls twice instantly without any benefits."},
 		},
 	},
+	Liberation = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Killing enemies has a 5% chance to grant flight and open all doors for the room."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "Leaving the room if its uncleared won't keep the door open."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
