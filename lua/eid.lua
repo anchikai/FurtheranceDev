@@ -452,6 +452,12 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_LIBERATION, "Kills have a 5% chan
 -- Severed Ear
 EID:addCollectible(CollectibleType.COLLECTIBLE_SEVERED_EAR, "↑ {{Damage}} 1.2x Damage multiplier#↓ {{Tears}} 0.8x Tears multiplier#↑ {{Range}} +1.2 Range up#↓ {{Shotspeed}} -0.6 Shot Speed down", "Severed Ear", "en_us")
 
+-- Golden Port
+EID:addCollectible(CollectibleType.COLLECTIBLE_GOLDEN_PORT, "If your active item charge isn't full, you can use it to buy a charge and add 6 pips to it for 5 cents", "Golden Port", "en_us")
+
+-- Itching Powder
+EID:addCollectible(CollectibleType.COLLECTIBLE_ITCHING_POWDER, "You will take a second fake hit of damage 1 second after getting hit", "Itching Powder", "en_us")
+
 
 
 -- Soul of Leah

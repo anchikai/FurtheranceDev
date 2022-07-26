@@ -1474,6 +1474,27 @@ local Wiki = {
 			{str = "-0.6 shot speed."},
 		},
 	},
+	GoldenPort = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "If Isaac's Active Item charge is not full, he can use it to buy a charge and add 6 pips to it for 5 cents."},
+		},
+		{ -- Notes
+			{str = "Notes", fsize = 2, clr = 3, halign = 0},
+			{str = "The additional pips will overcharge Isaac's Active item if his current charge + the additional 6 is greater than full."},
+		},
+		{ -- Interactions
+			{str = "Interactions", fsize = 2, clr = 3, halign = 0},
+			{str = "Car Battery: If Isaac has 10 cents or more, it will add 12 pips."},
+		},
+	},
+	ItchingPowder = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon taking damage, Isaac will take a second ''fake'' hit after 1 second."},
+			{str = "- The fake hit works similarly to Dull Razor, which will not hurt you."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -3112,6 +3133,35 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_RED_CHEST,
 		Encyclopedia.ItemPools.POOL_CURSE,
 		Encyclopedia.ItemPools.POOL_GREED_DEVIL,
+		Encyclopedia.ItemPools.POOL_GREED_CURSE,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_GOLDEN_PORT,
+	WikiDesc = Wiki.GoldenPort,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_SECRET,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		Encyclopedia.ItemPools.POOL_GREED_SECRET,
+		Encyclopedia.ItemPools.POOL_CRANE_GAME,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_ITCHING_POWDER,
+	WikiDesc = Wiki.ItchingPowder,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
+		Encyclopedia.ItemPools.POOL_RED_CHEST,
+		Encyclopedia.ItemPools.POOL_CURSE,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
 		Encyclopedia.ItemPools.POOL_GREED_CURSE,
 	},
 })
