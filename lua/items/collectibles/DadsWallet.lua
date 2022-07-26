@@ -20,6 +20,10 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.SetDadsWalletData)
 function mod:GiveCardsOnPickUp(player)
     local data = mod:GetData(player)
     local newDadsWalletCount = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_DADS_WALLET)
+    if data.OldDadsWalletCount == nil then
+        data.OldDadsWalletCount = newDadsWalletCount
+        return
+    end
     if data.OldDadsWalletCount == newDadsWalletCount then return end
 
     local delta = newDadsWalletCount - data.OldDadsWalletCount

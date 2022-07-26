@@ -312,6 +312,6 @@ if Isaac.GetPlayer() ~= nil then
     mod:OnLoadData(true)
     for i = 0, game:GetNumPlayers() - 1 do
         local player = Isaac.GetPlayer(i)
-        allPlayers[i] = player
+        mod:OnLoadPlayerData(player)
     end
 end

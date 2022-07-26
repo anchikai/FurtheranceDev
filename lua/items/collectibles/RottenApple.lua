@@ -53,6 +53,10 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.SetRottenAppleData)
 function mod:GiveWormOnPickUp(player)
     local data = mod:GetData(player)
     local newRottenAppleCount = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_ROTTEN_APPLE)
+    if data.OldRottenAppleCount == nil then
+        data.OldRottenAppleCount = newRottenAppleCount
+        return
+    end
     if data.OldRottenAppleCount == newRottenAppleCount then return end
 
     local delta = newRottenAppleCount - data.OldRottenAppleCount

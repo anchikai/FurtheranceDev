@@ -82,17 +82,48 @@ function Furtherance:GetPtrHashEntity(entity)
 	return nil
 end
 
+local dataTable = {}
+
+function mod:ClearDataTableOnExit()
+	for k in pairs(dataTable) do
+		dataTable[k] = nil
+	end
+end
+mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.ClearDataTableOnExit)
+
+function Furtherance:GetEntityIndex(entity)
+	if entity == nil then
+		return nil
+	elseif entity.Type == EntityType.ENTITY_PLAYER then
+		local player = entity:ToPlayer()
+		if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
+			player = player:GetOtherTwin()
+		end
+
+		local id = 1
+		if player:GetPlayerType() == PlayerType.PLAYER_LAZARUS2_B then
+			id = 2
+		end
+
+		return player:GetCollectibleRNG(id):GetSeed()
+	else
+		return entity.InitSeed
+	end
+end
+
 function Furtherance:GetData(entity)
-	if type(entity) ~= "userdata" or not entity.GetData then
+	if type(entity) ~= "userdata" then
 		error("Invalid argument, expected an Entity", 2)
 	end
 
-	local data = entity:GetData()
-	if not data.Furtherance then
-		data.Furtherance = {}
+	local entityIndex = mod:GetEntityIndex(entity)
+	local data = dataTable[entityIndex]
+	if data == nil then
+		data = {}
+		dataTable[entityIndex] = data
 	end
 
-	return data.Furtherance
+	return data
 end
 
 --[[mod.entitySpawnData = {}

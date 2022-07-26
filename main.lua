@@ -406,26 +406,6 @@ function Furtherance:playFailSound()
 	SFXManager():Play(Furtherance.FailSound)
 end
 
-function Furtherance:GetEntityIndex(entity)
-	if entity == nil then
-		return nil
-	elseif entity.Type == EntityType.ENTITY_PLAYER then
-		local player = entity:ToPlayer()
-		if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
-			player = player:GetOtherTwin()
-		end
-
-		local id = 1
-		if player:GetPlayerType() == PlayerType.PLAYER_LAZARUS2_B then
-			id = 2
-		end
-
-		return player:GetCollectibleRNG(id):GetSeed()
-	else
-		return entity.InitSeed
-	end
-end
-
 function mod:LoadDataCacheEval(player)
 	if player.FrameCount == 1 then
 		player:AddCacheFlags(CacheFlag.CACHE_ALL)

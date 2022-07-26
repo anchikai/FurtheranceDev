@@ -19,6 +19,10 @@ mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.DoubleHit, EntityType.ENTIT
 
 function mod:ItchTimer(player)
     local data = mod:GetData(player)
+    if data.ItchCountdown == nil then
+        data.ItchCountdown = -1
+    end
+
     if data.ItchCountdown > -1 then
         data.ItchCountdown = data.ItchCountdown - 1
     end
