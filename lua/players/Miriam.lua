@@ -16,20 +16,39 @@ function mod:OnInit(player)
 	end
 
 	if mod.IsContinued then return end
+	data.Init = true
 
 	if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then -- If the player is Miriam it will apply her hair
 		data.MiriamTearCount = 0
 		player:AddNullCostume(COSTUME_MIRIAM_A_HAIR)
-		player:AddCollectible(CollectibleType.COLLECTIBLE_TAMBOURINE, 0, true, ActiveSlot.SLOT_PRIMARY, 0)
 	elseif player:GetPlayerType() == PlayerType.PLAYER_MIRIAM_B then -- Apply different hair for her tainted variant
 		player:AddBoneHearts(2)
 		player:AddMaxHearts(-2, true)
 		player:AddHearts(4)
 		player:AddNullCostume(COSTUME_MIRIAM_B_HAIR)
-		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_POLARITY_SHIFT, ActiveSlot.SLOT_POCKET, false)
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
+
+function mod:GiveMiriamItems(player)
+	local data = mod:GetData(player)
+	if not data.Init then return end
+
+	if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then
+		if player.FrameCount == 1 and not mod.IsContinued then
+			player:AddCollectible(CollectibleType.COLLECTIBLE_TAMBOURINE, 0, true, ActiveSlot.SLOT_PRIMARY, 0)
+		elseif player.FrameCount > 1 then
+			data.Init = nil
+		end
+	elseif player:GetPlayerType() == PlayerType.PLAYER_MIRIAM_B then
+		if player.FrameCount == 1 and not mod.IsContinued then
+			player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_POLARITY_SHIFT, ActiveSlot.SLOT_POCKET, false)
+		elseif player.FrameCount > 1 then
+			data.Init = nil
+		end
+	end
+end
+mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.GiveMiriamItems)
 
 function mod:PuddleRift(tear)
 	local data = mod:GetData(tear)

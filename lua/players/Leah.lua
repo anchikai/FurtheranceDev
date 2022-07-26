@@ -23,19 +23,41 @@ end
 function mod:OnInit(player)
 	if mod.IsContinued then return end
 
+	local data = mod:GetData(player)
+	data.Init = true
+
 	if player:GetPlayerType() == PlayerType.PLAYER_LEAH then -- If the player is Leah it will apply her hair
 		player:AddNullCostume(COSTUME_LEAH_A_HAIR)
-		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, ActiveSlot.SLOT_POCKET, false)
 	elseif player:GetPlayerType() == PlayerType.PLAYER_LEAH_B then -- Apply different hair for her tainted variant
 		player:AddNullCostume(COSTUME_LEAH_B_HAIR)
-		player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_SHATTERED_HEART, ActiveSlot.SLOT_POCKET, false)
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnInit)
 
+function mod:GiveLeahItems(player)
+	local data = mod:GetData(player)
+	if not data.Init then return end
+
+	if player:GetPlayerType() == PlayerType.PLAYER_LEAH then
+		if player.FrameCount == 1 and not mod.IsContinued then
+			player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_HEART_RENOVATOR, ActiveSlot.SLOT_POCKET, false)
+		elseif player.FrameCount > 1 then
+			data.Init = nil
+		end
+	elseif player:GetPlayerType() == PlayerType.PLAYER_LEAH_B then
+		if player.FrameCount == 1 and not mod.IsContinued then
+			player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_SHATTERED_HEART, ActiveSlot.SLOT_POCKET, false)
+		elseif player.FrameCount > 1 then
+			data.Init = nil
+		end
+	end
+end
+mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.GiveLeahItems)
+
 function mod:OnUpdate(player)
 	local room = game:GetRoom()
 	local data = mod:GetData(player)
+
 	if player:GetPlayerType() == PlayerType.PLAYER_LEAH_B then
 		if data.LeahbPower < 0 then
 			data.LeahbPower = 0
@@ -61,7 +83,7 @@ function mod:OnUpdate(player)
 			player:EvaluateItems()
 		end
 	end
-	if IsEnemyNear(player) ~= true and ((player:GetPlayerType() == PlayerType.PLAYER_LEAH_B and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) ~= true)
+	if player.FrameCount < 1 and IsEnemyNear(player) ~= true and ((player:GetPlayerType() == PlayerType.PLAYER_LEAH_B and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) ~= true)
 	or player:HasCollectible(CollectibleType.COLLECTIBLE_SHATTERED_HEART)) and player:GetBrokenHearts() ~= 11 and room:GetAliveEnemiesCount() > 0 then
 		if game:GetFrameCount() % 120 == 0 then
 			SFXManager():Play(bhb)
