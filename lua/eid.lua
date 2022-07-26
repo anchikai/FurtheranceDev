@@ -327,6 +327,7 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_POLARIS, "Familiar that will chan
 -- D9
 EID:addCollectible(CollectibleType.COLLECTIBLE_D9, "Rerolls trinkets in current room", "D9", "en_us")
 
+--[[
 -- Leah's Hair Tie
 EID:addCollectible(CollectibleType.COLLECTIBLE_LEAHS_HAIR_TIE, "{{BrokenHeart}} +1 Broken Heart#Killing enemies has less of a chance to grant a broken heart based on how many you have#↑ Removes 1 broken heart every 3 rooms#↑ Grants 2 temporary decaying stat ups every 3 rooms", "Leah's Hair Tie", "en_us")
 
@@ -344,6 +345,7 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_MIRIAMS_HEADBAND, "{{Tears}} +1 T
 
 -- Miriam's Putrid Veil
 EID:addCollectible(CollectibleType.COLLECTIBLE_MIRIAMS_PUTRID_VEIL, "{{Range}} -2 Tear Height#5% chance to regenerate a half red heart on enemy kills#Enemies will keep taking 20% of your damage for 3 seconds after being hit", "Miriam's Putrid Veil", "en_us")
+--]]
 
 -- Book of Books
 EID:addCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_BOOKS, "Activates every book item at once#Works with modded books", "Book of Books", "en_us")
