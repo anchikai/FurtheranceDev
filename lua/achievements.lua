@@ -209,6 +209,7 @@ local function GetPlayerAchievements(player)
 		isTainted = false
 	elseif ptype == PlayerType.PLAYER_LEAH_B or ptype == PlayerType.PLAYER_PETER_B or ptype == PlayerType.PLAYER_MIRIAM_B then
 		isTainted = true
+		name = name.."B"
 	end
 	if isTainted ~= nil then
 		return {name, isTainted}
