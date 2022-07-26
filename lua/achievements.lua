@@ -5,7 +5,7 @@ local AchievementGraphics = {
 	Leah = {
 		MomsHeart = "achievement_secretdiary",
 		Isaac = "achievement_bindsofdevotion",
-		Satan = "achievement_",
+		Satan = "achievement_rue",
 		BlueBaby = "achievement_mandrake",
 		Lamb = "achievement_littlesister",
 		BossRush = "achievement_leahslock",
@@ -13,7 +13,7 @@ local AchievementGraphics = {
 		MegaSatan = "achievement_d16",
 		Delirium = "achievement_heartrenovator",
 		Mother = "achievement_owlseye",
-		Beast = "achievement_",
+		Beast = "achievement_essenceoflove",
 		GreedMode = "achievement_holyheart",
 		Greedier = "achievement_heartembeddedcoin",
 		Tainted = "achievement_taintedleah",
@@ -22,37 +22,37 @@ local AchievementGraphics = {
 	LeahB = {
 		PolNegPath = "achievement_leahsheart",
 		SoulPath = "achievement_soulofleah",
-		MegaSatan = "achievement_loveteller",
+		MegaSatan = "achievement_rottenlove",
 		Delirium = "achievement_shatteredheart",
-		Mother = "achievement_",
-		Beast = "achievement_",
+		Mother = "achievement_coldhearted",
+		Beast = "achievement_essenceofhate",
 		Greedier = "achievement_reversehope",
 		FullCompletion = "achievement.full_completion_b",
 	},
 	Peter = {
 		MomsHeart = "achievement_prayerjournal",
 		Isaac = "achievement_pallium",
-		Satan = "achievement_",
-		BlueBaby = "achievement_phirho",
-		Lamb = "achievement_",
+		Satan = "achievement_severedear",
+		BlueBaby = "achievement_chirho",
+		Lamb = "achievement_bookofleviticus",
 		BossRush = "achievement_altruism",
-		Hush = "achievement_",
-		MegaSatan = "achievement_",
+		Hush = "achievement_liberation",
+		MegaSatan = "achievement_astragali",
 		Delirium = "achievement_keystothekingdom",
-		Mother = "achievement_",
-		Beast = "achievement_",
+		Mother = "achievement_itchingpowder",
+		Beast = "achievement_essenceoflife",
 		GreedMode = "achievement_alabasterscrap",
 		Greedier = "achievement_unluckypenny",
 		Tainted = "achievement_taintedpeter",
 		FullCompletion = "achievement.full_completion",
 	},
 	PeterB = {
-		PolNegPath = "achievement_",
+		PolNegPath = "achievement_leviathanstendril",
 		SoulPath = "achievement_soulofpeter",
-		MegaSatan = "achievement_",
+		MegaSatan = "achievement_trepanation",
 		Delirium = "achievement_muddledcross",
-		Mother = "achievement_",
-		Beast = "achievement_",
+		Mother = "achievement_keytothepit",
+		Beast = "achievement_essenceofdeath",
 		Greedier = "achievement_reversefaith",
 		FullCompletion = "achievement.full_completion_b",
 	},
@@ -67,7 +67,7 @@ local AchievementGraphics = {
 		MegaSatan = "achievement_thedreidel",
 		Delirium = "achievement_tambourine",
 		Mother = "achievement_firstbornson",
-		Beast = "achievement_polydipsia",
+		Beast = "achievement_essenceofprosperity",
 		GreedMode = "achievement_salinespray",
 		Greedier = "achievement_miriamswell",
 		Tainted = "achievement_taintedmiriam",
@@ -279,43 +279,43 @@ function mod:StartUnlocks()
 		end
 
 		-- Leah
-		if mod.Unlocks.Leah.MomsHeart == false then
+		if mod.Unlocks.Leah.MomsHeart.Hard == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_SECRET_DIARY)
 		end
-		if mod.Unlocks.Leah.Isaac == false then
+		if mod.Unlocks.Leah.Isaac.Unlock == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_BINDS_OF_DEVOTION)
 		end
-		if mod.Unlocks.Leah.Satan == false then
+		if mod.Unlocks.Leah.Satan.Unlock == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_RUE)
 		end
-		if mod.Unlocks.Leah.BlueBaby == false then
+		if mod.Unlocks.Leah.BlueBaby.Unlock == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_MANDRAKE)
 		end
-		if mod.Unlocks.Leah.Lamb == false then
+		if mod.Unlocks.Leah.Lamb.Unlock == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_LITTLE_SISTER)
 		end
-		if mod.Unlocks.Leah.BossRush == false then
+		if mod.Unlocks.Leah.BossRush.Unlock == false then
 			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_LEAHS_LOCK)
 		end
-		if mod.Unlocks.Leah.Hush == false then
+		if mod.Unlocks.Leah.Hush.Unlock == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_KERATOCONUS)
 		end
-		if mod.Unlocks.Leah.MegaSatan == false then
+		if mod.Unlocks.Leah.MegaSatan.Unlock == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_D16)
 		end
-		if mod.Unlocks.Leah.Delirium == false then
+		if mod.Unlocks.Leah.Delirium.Unlock == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR)
 		end
-		if mod.Unlocks.Leah.Mother == false then
+		if mod.Unlocks.Leah.Mother.Unlock == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_OWLS_EYE)
 		end
-		if mod.Unlocks.Leah.Beast == false then
-			
+		if mod.Unlocks.Leah.GreedMode.Unlock == false then
+			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_HOLY_HEART)
 		end
-		if mod.Unlocks.Leah.GreedMode == false then
+		if mod.Unlocks.Leah.GreedMode.Hard == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_HEART_EMBEDDED_COIN)
 		end
-		if mod.Unlocks.Leah.FullCompletion == false then
+		if mod.Unlocks.Leah.FullCompletion.Hard == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_EXSANGUINATION)
 		end
 
@@ -323,165 +323,197 @@ function mod:StartUnlocks()
 		if mod.Unlocks.LeahB.PolNegPath == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_LEAHS_HEART)
 		end
-		if mod.Unlocks.LeahB.SoulPath == false then
-			
-		end
-		if mod.Unlocks.LeahB.MegaSatan == false then
+		if mod.Unlocks.LeahB.MegaSatan.Hard == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_ROTTEN_LOVE)
 		end
-		if mod.Unlocks.LeahB.Delirium == false then
+		if mod.Unlocks.LeahB.Delirium.Hard == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_SHATTERED_HEART)
 		end
-		if mod.Unlocks.LeahB.Mother == false then
+		if mod.Unlocks.LeahB.Mother.Hard == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_COLD_HEARTED)
-		end
-		if mod.Unlocks.LeahB.Beast == false then
-			
-		end
-		if mod.Unlocks.LeahB.GreedMode == false then
-			
-		end
-		if mod.Unlocks.LeahB.FullCompletion == false then
-			
 		end
 
 		-- Peter
-		if mod.Unlocks.Peter.MomsHeart == false then
+		if mod.Unlocks.Peter.MomsHeart.Hard == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PRAYER_JOURNAL)
 		end
-		if mod.Unlocks.Peter.Isaac == false then
+		if mod.Unlocks.Peter.Isaac.Unlock == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PALLIUM)
 		end
-		if mod.Unlocks.Peter.Satan == false then
-			
+		if mod.Unlocks.Peter.Satan.Unlock == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_SEVERED_EAR)
 		end
-		if mod.Unlocks.Peter.BlueBaby == false then
+		if mod.Unlocks.Peter.BlueBaby.Unlock == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_CHI_RHO)
 		end
-		if mod.Unlocks.Peter.Lamb == false then
+		if mod.Unlocks.Peter.Lamb.Unlock == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_LEVITICUS)
 		end
-		if mod.Unlocks.Peter.BossRush == false then
+		if mod.Unlocks.Peter.BossRush.Unlock == false then
 			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_ALTRUISM)
 		end
-		if mod.Unlocks.Peter.Hush == false then
-			
+		if mod.Unlocks.Peter.Hush.Unlock == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_LIBERATION)
 		end
-		if mod.Unlocks.Peter.MegaSatan == false then
+		if mod.Unlocks.Peter.MegaSatan.Unlock == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_ASTRAGALI)
 		end
-		if mod.Unlocks.Peter.Delirium == false then
+		if mod.Unlocks.Peter.Delirium.Unlock == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_KEYS_TO_THE_KINGDOM)
 		end
-		if mod.Unlocks.Peter.Mother == false then
-			
+		if mod.Unlocks.Peter.Mother.Unlock == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_ITCHING_POWDER)
 		end
-		if mod.Unlocks.Peter.Beast == false then
-			
-		end
-		if mod.Unlocks.Peter.GreedMode == false then
+		if mod.Unlocks.Peter.GreedMode.Unlock == false then
 			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_ALABASTER_SCRAP)
 		end
-		if mod.Unlocks.Peter.FullCompletion == false then
-			
+		if mod.Unlocks.Peter.GreedMode.Hard == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_MOLTEN_GOLD)
+		end
+		if mod.Unlocks.Peter.FullCompletion.Hard == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_GOLDEN_PORT)
 		end
 
 		-- Tainted Peter
 		if mod.Unlocks.PeterB.PolNegPath == false then
 			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_LEVIATHANS_TENDRIL)
 		end
-		if mod.Unlocks.PeterB.SoulPath == false then
-			
-		end
-		if mod.Unlocks.PeterB.MegaSatan == false then
+		if mod.Unlocks.PeterB.MegaSatan.Hard == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_TREPANATION)
 		end
-		if mod.Unlocks.PeterB.Delirium == false then
+		if mod.Unlocks.PeterB.Delirium.Hard == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_MUDDLED_CROSS)
 		end
-		if mod.Unlocks.PeterB.Mother == false then
+		if mod.Unlocks.PeterB.Mother.Hard == false then
 			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_KEY_TO_THE_PIT)
-		end
-		if mod.Unlocks.PeterB.Beast == false then
-			
-		end
-		if mod.Unlocks.PeterB.GreedMode == false then
-			
-		end
-		if mod.Unlocks.PeterB.FullCompletion == false then
-			
 		end
 
 		-- Miriam
-		if mod.Unlocks.Miriam.MomsHeart == false then
+		if mod.Unlocks.Miriam.MomsHeart.Hard == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_GUIDANCE)
 		end
-		if mod.Unlocks.Miriam.Isaac == false then
+		if mod.Unlocks.Miriam.Isaac.Unlock == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_APOCALYPSE)
 		end
-		if mod.Unlocks.Miriam.Satan == false then
+		if mod.Unlocks.Miriam.Satan.Unlock == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_KARETH)
 		end
-		if mod.Unlocks.Miriam.BlueBaby == false then
+		if mod.Unlocks.Miriam.BlueBaby.Unlock == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PILLAR_OF_CLOUDS)
 		end
-		if mod.Unlocks.Miriam.Lamb == false then
+		if mod.Unlocks.Miriam.Lamb.Unlock == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PILLAR_OF_FIRE)
 		end
-		if mod.Unlocks.Miriam.BossRush == false then
+		if mod.Unlocks.Miriam.BossRush.Unlock == false then
 			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_WORMWOOD_LEAF)
 		end
-		if mod.Unlocks.Miriam.Hush == false then
+		if mod.Unlocks.Miriam.Hush.Unlock == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_CADUCEUS_STAFF)
 		end
-		if mod.Unlocks.Miriam.MegaSatan == false then
-			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_MIRIAMS_WELL)
+		if mod.Unlocks.Miriam.MegaSatan.Unlock == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_THE_DREIDEL)
 		end
-		if mod.Unlocks.Miriam.Delirium == false then
+		if mod.Unlocks.Miriam.Delirium.Unlock == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_TAMBOURINE)
 		end
-		if mod.Unlocks.Miriam.Mother == false then
+		if mod.Unlocks.Miriam.Mother.Unlock == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_FIRSTBORN_SON)
 		end
-		if mod.Unlocks.Miriam.Beast == false then
-			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA)
-		end
-		if mod.Unlocks.Miriam.GreedMode == false then
+		if mod.Unlocks.Miriam.GreedMode.Unlock == false then
 			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_SALINE_SPRAY)
 		end
-		if mod.Unlocks.Miriam.FullCompletion == false then
-			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_QUARANTINE)
+		if mod.Unlocks.Miriam.GreedMode.Hard == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_MIRIAMS_WELL)
+		end
+		if mod.Unlocks.Miriam.FullCompletion.Hard == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA)
 		end
 
 		-- Tainted Miriam
 		if mod.Unlocks.MiriamB.PolNegPath == false then
 			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_ALMAGEST_SCRAP)
 		end
-		if mod.Unlocks.MiriamB.SoulPath == false then
-			
-		end
-		if mod.Unlocks.MiriamB.MegaSatan == false then
-			
-		end
-		if mod.Unlocks.MiriamB.Delirium == false then
+		if mod.Unlocks.MiriamB.Delirium.Hard == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)
 		end
-		if mod.Unlocks.MiriamB.Mother == false then
+		if mod.Unlocks.MiriamB.Mother.Hard == false then
 			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_ABYSSAL_PENNY)
 		end
-		if mod.Unlocks.MiriamB.Beast == false then
+		if mod.Unlocks.MiriamB.Beast.Hard == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_JAR_OF_MANNA)
-		end
-		if mod.Unlocks.MiriamB.GreedMode == false then
-			
-		end
-		if mod.Unlocks.MiriamB.FullCompletion == false then
-			
 		end
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.StartUnlocks)
 
+function mod:StartUnlocksPickups(entity)
+	-- Leah
+	if mod.Unlocks.Leah.Beast.Unlock == false then
+		if entity.SubType == OBJ_ESSENCE_OF_LOVE then
+			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+		end
+	end
+	if mod.Unlocks.LeahB.SoulPath == false then
+		if entity.SubType == RUNE_SOUL_OF_LEAH then
+			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+		end
+	end
+	if mod.Unlocks.LeahB.Beast.Hard == false then
+		if entity.SubType == OBJ_ESSENCE_OF_HATE then
+			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+		end
+	end
+	if mod.Unlocks.LeahB.GreedMode.Hard == false then
+		if entity.SubType == CARD_REVERSE_HOPE then
+			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+		end
+	end
+
+	-- Peter
+	if mod.Unlocks.Peter.Beast.Unlock == false then
+		if entity.SubType == OBJ_ESSENCE_OF_LIFE then
+			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+		end
+	end
+	if mod.Unlocks.PeterB.SoulPath == false then
+		if entity.SubType == RUNE_SOUL_OF_PETER then
+			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+		end
+	end
+	if mod.Unlocks.PeterB.Beast.Hard == false then
+		if entity.SubType == OBJ_ESSENCE_OF_DEATH then
+			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+		end
+	end
+	if mod.Unlocks.PeterB.GreedMode.Hard == false then
+		if entity.SubType == CARD_REVERSE_FAITH then
+			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+		end
+	end
+
+	-- Miriam
+	if mod.Unlocks.Miriam.Beast.Unlock == false then
+		if entity.SubType == OBJ_ESSENCE_OF_PROSPERITY then
+			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+		end
+	end
+	if mod.Unlocks.MiriamB.SoulPath == false then
+		if entity.SubType == RUNE_SOUL_OF_MIRIAM then
+			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+		end
+	end
+	if mod.Unlocks.MiriamB.GreedMode.Hard == false then
+		if entity.SubType == CARD_REVERSE_CHARITY then
+			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+		end
+	end
+	if mod.Unlocks.MiriamB.MegaSatan.Hard == false then
+		if entity.SubType == SackSubType.SACK_GOLDEN then
+			entity:Morph(entity.Type, entity.Variant, SackSubType.SACK_NORMAL)
+		end
+	end
+end
+mod:AddCallback(ModCallbacks.MC_POST_PICKUP_UPDATE, mod.StartUnlocksPickups)
 
 function mod:UpdateCompletion(name, difficulty)
 	for p = 0, game:GetNumPlayers() - 1 do
@@ -770,203 +802,377 @@ function mod:ResetUnlocks(cmd)
 		print("Reset a character's unlocks: reset[name]\nExamples: resetleahb, resetpeter\n\nUnlock all of a character's unlocks: unlock[name]\nExamples: unlockleah, unlockmiriamb")
 	end
 	if string.lower(cmd) == "resetleah" then
-		mod.Unlocks.Leah.MomsHeart = false
-		mod.Unlocks.Leah.Isaac = false
-		mod.Unlocks.Leah.Satan = false
-		mod.Unlocks.Leah.BlueBaby = false
-		mod.Unlocks.Leah.Lamb = false
-		mod.Unlocks.Leah.BossRush = false
-		mod.Unlocks.Leah.Hush = false
-		mod.Unlocks.Leah.MegaSatan = false
-		mod.Unlocks.Leah.Delirium = false
-		mod.Unlocks.Leah.Mother = false
-		mod.Unlocks.Leah.Beast = false
-		mod.Unlocks.Leah.GreedMode = false
+		mod.Unlocks.Leah.MomsHeart.Unlock = false
+		mod.Unlocks.Leah.Isaac.Unlock = false
+		mod.Unlocks.Leah.Satan.Unlock = false
+		mod.Unlocks.Leah.BlueBaby.Unlock = false
+		mod.Unlocks.Leah.Lamb.Unlock = false
+		mod.Unlocks.Leah.BossRush.Unlock = false
+		mod.Unlocks.Leah.Hush.Unlock = false
+		mod.Unlocks.Leah.MegaSatan.Unlock = false
+		mod.Unlocks.Leah.Delirium.Unlock = false
+		mod.Unlocks.Leah.Mother.Unlock = false
+		mod.Unlocks.Leah.Beast.Unlock = false
+		mod.Unlocks.Leah.GreedMode.Unlock = false
+		mod.Unlocks.Leah.FullCompletion.Unlock = false
+
+		mod.Unlocks.Leah.MomsHeart.Hard = false
+		mod.Unlocks.Leah.Isaac.Hard = false
+		mod.Unlocks.Leah.Satan.Hard = false
+		mod.Unlocks.Leah.BlueBaby.Hard = false
+		mod.Unlocks.Leah.Lamb.Hard = false
+		mod.Unlocks.Leah.BossRush.Hard = false
+		mod.Unlocks.Leah.Hush.Hard = false
+		mod.Unlocks.Leah.MegaSatan.Hard = false
+		mod.Unlocks.Leah.Delirium.Hard = false
+		mod.Unlocks.Leah.Mother.Hard = false
+		mod.Unlocks.Leah.Beast.Hard = false
+		mod.Unlocks.Leah.GreedMode.Hard = false
+		mod.Unlocks.Leah.FullCompletion.Hard = false
+
 		mod.Unlocks.Leah.Tainted = false
-		mod.Unlocks.Leah.FullCompletion = false
 		print("Leah has been reset.")
 	end
 	if string.lower(cmd) == "unlockleah" then
-		mod.Unlocks.Leah.MomsHeart = true
-		mod.Unlocks.Leah.Isaac = true
-		mod.Unlocks.Leah.Satan = true
-		mod.Unlocks.Leah.BlueBaby = true
-		mod.Unlocks.Leah.Lamb = true
-		mod.Unlocks.Leah.BossRush = true
-		mod.Unlocks.Leah.Hush = true
-		mod.Unlocks.Leah.MegaSatan = true
-		mod.Unlocks.Leah.Delirium = true
-		mod.Unlocks.Leah.Mother = true
-		mod.Unlocks.Leah.Beast = true
-		mod.Unlocks.Leah.GreedMode = true
+		mod.Unlocks.Leah.MomsHeart.Unlock = true
+		mod.Unlocks.Leah.Isaac.Unlock = true
+		mod.Unlocks.Leah.Satan.Unlock = true
+		mod.Unlocks.Leah.BlueBaby.Unlock = true
+		mod.Unlocks.Leah.Lamb.Unlock = true
+		mod.Unlocks.Leah.BossRush.Unlock = true
+		mod.Unlocks.Leah.Hush.Unlock = true
+		mod.Unlocks.Leah.MegaSatan.Unlock = true
+		mod.Unlocks.Leah.Delirium.Unlock = true
+		mod.Unlocks.Leah.Mother.Unlock = true
+		mod.Unlocks.Leah.Beast.Unlock = true
+		mod.Unlocks.Leah.GreedMode.Unlock = true
+		mod.Unlocks.Leah.FullCompletion.Unlock = true
+
+		mod.Unlocks.Leah.MomsHeart.Hard = true
+		mod.Unlocks.Leah.Isaac.Hard = true
+		mod.Unlocks.Leah.Satan.Hard = true
+		mod.Unlocks.Leah.BlueBaby.Hard = true
+		mod.Unlocks.Leah.Lamb.Hard = true
+		mod.Unlocks.Leah.BossRush.Hard = true
+		mod.Unlocks.Leah.Hush.Hard = true
+		mod.Unlocks.Leah.MegaSatan.Hard = true
+		mod.Unlocks.Leah.Delirium.Hard = true
+		mod.Unlocks.Leah.Mother.Hard = true
+		mod.Unlocks.Leah.Beast.Hard = true
+		mod.Unlocks.Leah.GreedMode.Hard = true
+		mod.Unlocks.Leah.FullCompletion.Hard = true
+
 		mod.Unlocks.Leah.Tainted = true
-		mod.Unlocks.Leah.FullCompletion = true
 		print("All Leah marks have been unlocked.")
 	end
 	if string.lower(cmd) == "resetpeter" then
-		mod.Unlocks.Peter.MomsHeart = false
-		mod.Unlocks.Peter.Isaac = false
-		mod.Unlocks.Peter.Satan = false
-		mod.Unlocks.Peter.BlueBaby = false
-		mod.Unlocks.Peter.Lamb = false
-		mod.Unlocks.Peter.BossRush = false
-		mod.Unlocks.Peter.Hush = false
-		mod.Unlocks.Peter.MegaSatan = false
-		mod.Unlocks.Peter.Delirium = false
-		mod.Unlocks.Peter.Mother = false
-		mod.Unlocks.Peter.Beast = false
-		mod.Unlocks.Peter.GreedMode = false
+		mod.Unlocks.Peter.MomsHeart.Unlock = false
+		mod.Unlocks.Peter.Isaac.Unlock = false
+		mod.Unlocks.Peter.Satan.Unlock = false
+		mod.Unlocks.Peter.BlueBaby.Unlock = false
+		mod.Unlocks.Peter.Lamb.Unlock = false
+		mod.Unlocks.Peter.BossRush.Unlock = false
+		mod.Unlocks.Peter.Hush.Unlock = false
+		mod.Unlocks.Peter.MegaSatan.Unlock = false
+		mod.Unlocks.Peter.Delirium.Unlock = false
+		mod.Unlocks.Peter.Mother.Unlock = false
+		mod.Unlocks.Peter.Beast.Unlock = false
+		mod.Unlocks.Peter.GreedMode.Unlock = false
+		mod.Unlocks.Peter.FullCompletion.Unlock = false
+		
+		mod.Unlocks.Peter.MomsHeart.Hard = false
+		mod.Unlocks.Peter.Isaac.Hard = false
+		mod.Unlocks.Peter.Satan.Hard = false
+		mod.Unlocks.Peter.BlueBaby.Hard = false
+		mod.Unlocks.Peter.Lamb.Hard = false
+		mod.Unlocks.Peter.BossRush.Hard = false
+		mod.Unlocks.Peter.Hush.Hard = false
+		mod.Unlocks.Peter.MegaSatan.Hard = false
+		mod.Unlocks.Peter.Delirium.Hard = false
+		mod.Unlocks.Peter.Mother.Hard = false
+		mod.Unlocks.Peter.Beast.Hard = false
+		mod.Unlocks.Peter.GreedMode.Hard = false
+		mod.Unlocks.Peter.FullCompletion.Hard = false
+		
 		mod.Unlocks.Peter.Tainted = false
-		mod.Unlocks.Peter.FullCompletion = false
 		print("Peter has been reset.")
 	end
 	if string.lower(cmd) == "unlockpeter" then
-		mod.Unlocks.Peter.MomsHeart = true
-		mod.Unlocks.Peter.Isaac = true
-		mod.Unlocks.Peter.Satan = true
-		mod.Unlocks.Peter.BlueBaby = true
-		mod.Unlocks.Peter.Lamb = true
-		mod.Unlocks.Peter.BossRush = true
-		mod.Unlocks.Peter.Hush = true
-		mod.Unlocks.Peter.MegaSatan = true
-		mod.Unlocks.Peter.Delirium = true
-		mod.Unlocks.Peter.Mother = true
-		mod.Unlocks.Peter.Beast = true
-		mod.Unlocks.Peter.GreedMode = true
+		mod.Unlocks.Peter.MomsHeart.Unlock = true
+		mod.Unlocks.Peter.Isaac.Unlock = true
+		mod.Unlocks.Peter.Satan.Unlock = true
+		mod.Unlocks.Peter.BlueBaby.Unlock = true
+		mod.Unlocks.Peter.Lamb.Unlock = true
+		mod.Unlocks.Peter.BossRush.Unlock = true
+		mod.Unlocks.Peter.Hush.Unlock = true
+		mod.Unlocks.Peter.MegaSatan.Unlock = true
+		mod.Unlocks.Peter.Delirium.Unlock = true
+		mod.Unlocks.Peter.Mother.Unlock = true
+		mod.Unlocks.Peter.Beast.Unlock = true
+		mod.Unlocks.Peter.GreedMode.Unlock = true
+		mod.Unlocks.Peter.FullCompletion.Unlock = true
+		
+		mod.Unlocks.Peter.MomsHeart.Hard = true
+		mod.Unlocks.Peter.Isaac.Hard = true
+		mod.Unlocks.Peter.Satan.Hard = true
+		mod.Unlocks.Peter.BlueBaby.Hard = true
+		mod.Unlocks.Peter.Lamb.Hard = true
+		mod.Unlocks.Peter.BossRush.Hard = true
+		mod.Unlocks.Peter.Hush.Hard = true
+		mod.Unlocks.Peter.MegaSatan.Hard = true
+		mod.Unlocks.Peter.Delirium.Hard = true
+		mod.Unlocks.Peter.Mother.Hard = true
+		mod.Unlocks.Peter.Beast.Hard = true
+		mod.Unlocks.Peter.GreedMode.Hard = true
+		mod.Unlocks.Peter.FullCompletion.Hard = true
+		
 		mod.Unlocks.Peter.Tainted = true
-		mod.Unlocks.Peter.FullCompletion = true
 		print("All Peter marks have been unlocked.")
 	end
 	if string.lower(cmd) == "resetmiriam" then
-		mod.Unlocks.Miriam.MomsHeart = false
-		mod.Unlocks.Miriam.Isaac = false
-		mod.Unlocks.Miriam.Satan = false
-		mod.Unlocks.Miriam.BlueBaby = false
-		mod.Unlocks.Miriam.Lamb = false
-		mod.Unlocks.Miriam.BossRush = false
-		mod.Unlocks.Miriam.Hush = false
-		mod.Unlocks.Miriam.MegaSatan = false
-		mod.Unlocks.Miriam.Delirium = false
-		mod.Unlocks.Miriam.Mother = false
-		mod.Unlocks.Miriam.Beast = false
-		mod.Unlocks.Miriam.GreedMode = false
+		mod.Unlocks.Miriam.MomsHeart.Unlock = false
+		mod.Unlocks.Miriam.Isaac.Unlock = false
+		mod.Unlocks.Miriam.Satan.Unlock = false
+		mod.Unlocks.Miriam.BlueBaby.Unlock = false
+		mod.Unlocks.Miriam.Lamb.Unlock = false
+		mod.Unlocks.Miriam.BossRush.Unlock = false
+		mod.Unlocks.Miriam.Hush.Unlock = false
+		mod.Unlocks.Miriam.MegaSatan.Unlock = false
+		mod.Unlocks.Miriam.Delirium.Unlock = false
+		mod.Unlocks.Miriam.Mother.Unlock = false
+		mod.Unlocks.Miriam.Beast.Unlock = false
+		mod.Unlocks.Miriam.GreedMode.Unlock = false
+		mod.Unlocks.Miriam.FullCompletion.Unlock = false
+		
+		mod.Unlocks.Miriam.MomsHeart.Hard = false
+		mod.Unlocks.Miriam.Isaac.Hard = false
+		mod.Unlocks.Miriam.Satan.Hard = false
+		mod.Unlocks.Miriam.BlueBaby.Hard = false
+		mod.Unlocks.Miriam.Lamb.Hard = false
+		mod.Unlocks.Miriam.BossRush.Hard = false
+		mod.Unlocks.Miriam.Hush.Hard = false
+		mod.Unlocks.Miriam.MegaSatan.Hard = false
+		mod.Unlocks.Miriam.Delirium.Hard = false
+		mod.Unlocks.Miriam.Mother.Hard = false
+		mod.Unlocks.Miriam.Beast.Hard = false
+		mod.Unlocks.Miriam.GreedMode.Hard = false
+		mod.Unlocks.Miriam.FullCompletion.Hard = false
+		
 		mod.Unlocks.Miriam.Tainted = false
-		mod.Unlocks.Miriam.FullCompletion = false
 		print("Miriam has been reset.")
 	end
 	if string.lower(cmd) == "unlockmiriam" then
-		mod.Unlocks.Miriam.MomsHeart = true
-		mod.Unlocks.Miriam.Isaac = true
-		mod.Unlocks.Miriam.Satan = true
-		mod.Unlocks.Miriam.BlueBaby = true
-		mod.Unlocks.Miriam.Lamb = true
-		mod.Unlocks.Miriam.BossRush = true
-		mod.Unlocks.Miriam.Hush = true
-		mod.Unlocks.Miriam.MegaSatan = true
-		mod.Unlocks.Miriam.Delirium = true
-		mod.Unlocks.Miriam.Mother = true
-		mod.Unlocks.Miriam.Beast = true
-		mod.Unlocks.Miriam.GreedMode = true
+		mod.Unlocks.Miriam.MomsHeart.Unlock = true
+		mod.Unlocks.Miriam.Isaac.Unlock = true
+		mod.Unlocks.Miriam.Satan.Unlock = true
+		mod.Unlocks.Miriam.BlueBaby.Unlock = true
+		mod.Unlocks.Miriam.Lamb.Unlock = true
+		mod.Unlocks.Miriam.BossRush.Unlock = true
+		mod.Unlocks.Miriam.Hush.Unlock = true
+		mod.Unlocks.Miriam.MegaSatan.Unlock = true
+		mod.Unlocks.Miriam.Delirium.Unlock = true
+		mod.Unlocks.Miriam.Mother.Unlock = true
+		mod.Unlocks.Miriam.Beast.Unlock = true
+		mod.Unlocks.Miriam.GreedMode.Unlock = true
+		mod.Unlocks.Miriam.FullCompletion.Unlock = true
+		
+		mod.Unlocks.Miriam.MomsHeart.Hard = true
+		mod.Unlocks.Miriam.Isaac.Hard = true
+		mod.Unlocks.Miriam.Satan.Hard = true
+		mod.Unlocks.Miriam.BlueBaby.Hard = true
+		mod.Unlocks.Miriam.Lamb.Hard = true
+		mod.Unlocks.Miriam.BossRush.Hard = true
+		mod.Unlocks.Miriam.Hush.Hard = true
+		mod.Unlocks.Miriam.MegaSatan.Hard = true
+		mod.Unlocks.Miriam.Delirium.Hard = true
+		mod.Unlocks.Miriam.Mother.Hard = true
+		mod.Unlocks.Miriam.Beast.Hard = true
+		mod.Unlocks.Miriam.GreedMode.Hard = true
+		mod.Unlocks.Miriam.FullCompletion.Hard = true
+		
 		mod.Unlocks.Miriam.Tainted = true
-		mod.Unlocks.Miriam.FullCompletion = true
 		print("All Miriam marks have been unlocked.")
 	end
 
 	-- Tainteds
 	if string.lower(cmd) == "resetleahb" then
-		mod.Unlocks.LeahB.MomsHeart = false
-		mod.Unlocks.LeahB.Isaac = false
-		mod.Unlocks.LeahB.Satan = false
-		mod.Unlocks.LeahB.BlueBaby = false
-		mod.Unlocks.LeahB.Lamb = false
-		mod.Unlocks.LeahB.BossRush = false
-		mod.Unlocks.LeahB.Hush = false
-		mod.Unlocks.LeahB.MegaSatan = false
-		mod.Unlocks.LeahB.Delirium = false
-		mod.Unlocks.LeahB.Mother = false
-		mod.Unlocks.LeahB.Beast = false
-		mod.Unlocks.LeahB.GreedMode = false
-		mod.Unlocks.LeahB.FullCompletion = false
+		mod.Unlocks.LeahB.MomsHeart.Unlock = false
+		mod.Unlocks.LeahB.Isaac.Unlock = false
+		mod.Unlocks.LeahB.Satan.Unlock = false
+		mod.Unlocks.LeahB.BlueBaby.Unlock = false
+		mod.Unlocks.LeahB.Lamb.Unlock = false
+		mod.Unlocks.LeahB.BossRush.Unlock = false
+		mod.Unlocks.LeahB.Hush.Unlock = false
+		mod.Unlocks.LeahB.MegaSatan.Unlock = false
+		mod.Unlocks.LeahB.Delirium.Unlock = false
+		mod.Unlocks.LeahB.Mother.Unlock = false
+		mod.Unlocks.LeahB.Beast.Unlock = false
+		mod.Unlocks.LeahB.GreedMode.Unlock = false
+		mod.Unlocks.LeahB.FullCompletion.Unlock = false
+		
+		mod.Unlocks.LeahB.MomsHeart.Hard = false
+		mod.Unlocks.LeahB.Isaac.Hard = false
+		mod.Unlocks.LeahB.Satan.Hard = false
+		mod.Unlocks.LeahB.BlueBaby.Hard = false
+		mod.Unlocks.LeahB.Lamb.Hard = false
+		mod.Unlocks.LeahB.BossRush.Hard = false
+		mod.Unlocks.LeahB.Hush.Hard = false
+		mod.Unlocks.LeahB.MegaSatan.Hard = false
+		mod.Unlocks.LeahB.Delirium.Hard = false
+		mod.Unlocks.LeahB.Mother.Hard = false
+		mod.Unlocks.LeahB.Beast.Hard = false
+		mod.Unlocks.LeahB.GreedMode.Hard = false
+		mod.Unlocks.LeahB.FullCompletion.Hard = false
 		print("Tainted Leah has been reset.")
 	end
 	if string.lower(cmd) == "unlockleahb" then
-		mod.Unlocks.LeahB.MomsHeart = true
-		mod.Unlocks.LeahB.Isaac = true
-		mod.Unlocks.LeahB.Satan = true
-		mod.Unlocks.LeahB.BlueBaby = true
-		mod.Unlocks.LeahB.Lamb = true
-		mod.Unlocks.LeahB.BossRush = true
-		mod.Unlocks.LeahB.Hush = true
-		mod.Unlocks.LeahB.MegaSatan = true
-		mod.Unlocks.LeahB.Delirium = true
-		mod.Unlocks.LeahB.Mother = true
-		mod.Unlocks.LeahB.Beast = true
-		mod.Unlocks.LeahB.GreedMode = true
-		mod.Unlocks.LeahB.FullCompletion = true
+		mod.Unlocks.LeahB.MomsHeart.Unlock = true
+		mod.Unlocks.LeahB.Isaac.Unlock = true
+		mod.Unlocks.LeahB.Satan.Unlock = true
+		mod.Unlocks.LeahB.BlueBaby.Unlock = true
+		mod.Unlocks.LeahB.Lamb.Unlock = true
+		mod.Unlocks.LeahB.BossRush.Unlock = true
+		mod.Unlocks.LeahB.Hush.Unlock = true
+		mod.Unlocks.LeahB.MegaSatan.Unlock = true
+		mod.Unlocks.LeahB.Delirium.Unlock = true
+		mod.Unlocks.LeahB.Mother.Unlock = true
+		mod.Unlocks.LeahB.Beast.Unlock = true
+		mod.Unlocks.LeahB.GreedMode.Unlock = true
+		mod.Unlocks.LeahB.FullCompletion.Unlock = true
+		
+		mod.Unlocks.LeahB.MomsHeart.Hard = true
+		mod.Unlocks.LeahB.Isaac.Hard = true
+		mod.Unlocks.LeahB.Satan.Hard = true
+		mod.Unlocks.LeahB.BlueBaby.Hard = true
+		mod.Unlocks.LeahB.Lamb.Hard = true
+		mod.Unlocks.LeahB.BossRush.Hard = true
+		mod.Unlocks.LeahB.Hush.Hard = true
+		mod.Unlocks.LeahB.MegaSatan.Hard = true
+		mod.Unlocks.LeahB.Delirium.Hard = true
+		mod.Unlocks.LeahB.Mother.Hard = true
+		mod.Unlocks.LeahB.Beast.Hard = true
+		mod.Unlocks.LeahB.GreedMode.Hard = true
+		mod.Unlocks.LeahB.FullCompletion.Hard = true
 		print("All Tainted Leah marks have been unlocked.")
 	end
 	if string.lower(cmd) == "resetpeterb" then
-		mod.Unlocks.PeterB.MomsHeart = false
-		mod.Unlocks.PeterB.Isaac = false
-		mod.Unlocks.PeterB.Satan = false
-		mod.Unlocks.PeterB.BlueBaby = false
-		mod.Unlocks.PeterB.Lamb = false
-		mod.Unlocks.PeterB.BossRush = false
-		mod.Unlocks.PeterB.Hush = false
-		mod.Unlocks.PeterB.MegaSatan = false
-		mod.Unlocks.PeterB.Delirium = false
-		mod.Unlocks.PeterB.Mother = false
-		mod.Unlocks.PeterB.Beast = false
-		mod.Unlocks.PeterB.GreedMode = false
-		mod.Unlocks.PeterB.FullCompletion = false
+		mod.Unlocks.PeterB.MomsHeart.Unlock = false
+		mod.Unlocks.PeterB.Isaac.Unlock = false
+		mod.Unlocks.PeterB.Satan.Unlock = false
+		mod.Unlocks.PeterB.BlueBaby.Unlock = false
+		mod.Unlocks.PeterB.Lamb.Unlock = false
+		mod.Unlocks.PeterB.BossRush.Unlock = false
+		mod.Unlocks.PeterB.Hush.Unlock = false
+		mod.Unlocks.PeterB.MegaSatan.Unlock = false
+		mod.Unlocks.PeterB.Delirium.Unlock = false
+		mod.Unlocks.PeterB.Mother.Unlock = false
+		mod.Unlocks.PeterB.Beast.Unlock = false
+		mod.Unlocks.PeterB.GreedMode.Unlock = false
+		mod.Unlocks.PeterB.FullCompletion.Unlock = false
+		
+		mod.Unlocks.PeterB.MomsHeart.Hard = false
+		mod.Unlocks.PeterB.Isaac.Hard = false
+		mod.Unlocks.PeterB.Satan.Hard = false
+		mod.Unlocks.PeterB.BlueBaby.Hard = false
+		mod.Unlocks.PeterB.Lamb.Hard = false
+		mod.Unlocks.PeterB.BossRush.Hard = false
+		mod.Unlocks.PeterB.Hush.Hard = false
+		mod.Unlocks.PeterB.MegaSatan.Hard = false
+		mod.Unlocks.PeterB.Delirium.Hard = false
+		mod.Unlocks.PeterB.Mother.Hard = false
+		mod.Unlocks.PeterB.Beast.Hard = false
+		mod.Unlocks.PeterB.GreedMode.Hard = false
+		mod.Unlocks.PeterB.FullCompletion.Hard = false
 		print("Tainted Peter has been reset.")
 	end
 	if string.lower(cmd) == "unlockpeterb" then
-		mod.Unlocks.PeterB.MomsHeart = true
-		mod.Unlocks.PeterB.Isaac = true
-		mod.Unlocks.PeterB.Satan = true
-		mod.Unlocks.PeterB.BlueBaby = true
-		mod.Unlocks.PeterB.Lamb = true
-		mod.Unlocks.PeterB.BossRush = true
-		mod.Unlocks.PeterB.Hush = true
-		mod.Unlocks.PeterB.MegaSatan = true
-		mod.Unlocks.PeterB.Delirium = true
-		mod.Unlocks.PeterB.Mother = true
-		mod.Unlocks.PeterB.Beast = true
-		mod.Unlocks.PeterB.GreedMode = true
-		mod.Unlocks.PeterB.FullCompletion = true
+		mod.Unlocks.PeterB.MomsHeart.Unlock = true
+		mod.Unlocks.PeterB.Isaac.Unlock = true
+		mod.Unlocks.PeterB.Satan.Unlock = true
+		mod.Unlocks.PeterB.BlueBaby.Unlock = true
+		mod.Unlocks.PeterB.Lamb.Unlock = true
+		mod.Unlocks.PeterB.BossRush.Unlock = true
+		mod.Unlocks.PeterB.Hush.Unlock = true
+		mod.Unlocks.PeterB.MegaSatan.Unlock = true
+		mod.Unlocks.PeterB.Delirium.Unlock = true
+		mod.Unlocks.PeterB.Mother.Unlock = true
+		mod.Unlocks.PeterB.Beast.Unlock = true
+		mod.Unlocks.PeterB.GreedMode.Unlock = true
+		mod.Unlocks.PeterB.FullCompletion.Unlock = true
+		
+		mod.Unlocks.PeterB.MomsHeart.Hard = true
+		mod.Unlocks.PeterB.Isaac.Hard = true
+		mod.Unlocks.PeterB.Satan.Hard = true
+		mod.Unlocks.PeterB.BlueBaby.Hard = true
+		mod.Unlocks.PeterB.Lamb.Hard = true
+		mod.Unlocks.PeterB.BossRush.Hard = true
+		mod.Unlocks.PeterB.Hush.Hard = true
+		mod.Unlocks.PeterB.MegaSatan.Hard = true
+		mod.Unlocks.PeterB.Delirium.Hard = true
+		mod.Unlocks.PeterB.Mother.Hard = true
+		mod.Unlocks.PeterB.Beast.Hard = true
+		mod.Unlocks.PeterB.GreedMode.Hard = true
+		mod.Unlocks.PeterB.FullCompletion.Hard = true
 		print("All Tainted Peter marks have been unlocked.")
 	end
 	if string.lower(cmd) == "resetmiriamb" then
-		mod.Unlocks.MiriamB.MomsHeart = false
-		mod.Unlocks.MiriamB.Isaac = false
-		mod.Unlocks.MiriamB.Satan = false
-		mod.Unlocks.MiriamB.BlueBaby = false
-		mod.Unlocks.MiriamB.Lamb = false
-		mod.Unlocks.MiriamB.BossRush = false
-		mod.Unlocks.MiriamB.Hush = false
-		mod.Unlocks.MiriamB.MegaSatan = false
-		mod.Unlocks.MiriamB.Delirium = false
-		mod.Unlocks.MiriamB.Mother = false
-		mod.Unlocks.MiriamB.Beast = false
-		mod.Unlocks.MiriamB.GreedMode = false
-		mod.Unlocks.MiriamB.FullCompletion = false
+		mod.Unlocks.MiriamB.MomsHeart.Unlock = false
+		mod.Unlocks.MiriamB.Isaac.Unlock = false
+		mod.Unlocks.MiriamB.Satan.Unlock = false
+		mod.Unlocks.MiriamB.BlueBaby.Unlock = false
+		mod.Unlocks.MiriamB.Lamb.Unlock = false
+		mod.Unlocks.MiriamB.BossRush.Unlock = false
+		mod.Unlocks.MiriamB.Hush.Unlock = false
+		mod.Unlocks.MiriamB.MegaSatan.Unlock = false
+		mod.Unlocks.MiriamB.Delirium.Unlock = false
+		mod.Unlocks.MiriamB.Mother.Unlock = false
+		mod.Unlocks.MiriamB.Beast.Unlock = false
+		mod.Unlocks.MiriamB.GreedMode.Unlock = false
+		mod.Unlocks.MiriamB.FullCompletion.Unlock = false
+		
+		mod.Unlocks.MiriamB.MomsHeart.Hard = false
+		mod.Unlocks.MiriamB.Isaac.Hard = false
+		mod.Unlocks.MiriamB.Satan.Hard = false
+		mod.Unlocks.MiriamB.BlueBaby.Hard = false
+		mod.Unlocks.MiriamB.Lamb.Hard = false
+		mod.Unlocks.MiriamB.BossRush.Hard = false
+		mod.Unlocks.MiriamB.Hush.Hard = false
+		mod.Unlocks.MiriamB.MegaSatan.Hard = false
+		mod.Unlocks.MiriamB.Delirium.Hard = false
+		mod.Unlocks.MiriamB.Mother.Hard = false
+		mod.Unlocks.MiriamB.Beast.Hard = false
+		mod.Unlocks.MiriamB.GreedMode.Hard = false
+		mod.Unlocks.MiriamB.FullCompletion.Hard = false
 		print("Tainted Miriam has been reset.")
 	end
 	if string.lower(cmd) == "unlockmiriamb" then
-		mod.Unlocks.MiriamB.MomsHeart = true
-		mod.Unlocks.MiriamB.Isaac = true
-		mod.Unlocks.MiriamB.Satan = true
-		mod.Unlocks.MiriamB.BlueBaby = true
-		mod.Unlocks.MiriamB.Lamb = true
-		mod.Unlocks.MiriamB.BossRush = true
-		mod.Unlocks.MiriamB.Hush = true
-		mod.Unlocks.MiriamB.MegaSatan = true
-		mod.Unlocks.MiriamB.Delirium = true
-		mod.Unlocks.MiriamB.Mother = true
-		mod.Unlocks.MiriamB.Beast = true
-		mod.Unlocks.MiriamB.GreedMode = true
-		mod.Unlocks.MiriamB.FullCompletion = true
+		mod.Unlocks.MiriamB.MomsHeart.Unlock = true
+		mod.Unlocks.MiriamB.Isaac.Unlock = true
+		mod.Unlocks.MiriamB.Satan.Unlock = true
+		mod.Unlocks.MiriamB.BlueBaby.Unlock = true
+		mod.Unlocks.MiriamB.Lamb.Unlock = true
+		mod.Unlocks.MiriamB.BossRush.Unlock = true
+		mod.Unlocks.MiriamB.Hush.Unlock = true
+		mod.Unlocks.MiriamB.MegaSatan.Unlock = true
+		mod.Unlocks.MiriamB.Delirium.Unlock = true
+		mod.Unlocks.MiriamB.Mother.Unlock = true
+		mod.Unlocks.MiriamB.Beast.Unlock = true
+		mod.Unlocks.MiriamB.GreedMode.Unlock = true
+		mod.Unlocks.MiriamB.FullCompletion.Unlock = true
+		
+		mod.Unlocks.MiriamB.MomsHeart.Hard = true
+		mod.Unlocks.MiriamB.Isaac.Hard = true
+		mod.Unlocks.MiriamB.Satan.Hard = true
+		mod.Unlocks.MiriamB.BlueBaby.Hard = true
+		mod.Unlocks.MiriamB.Lamb.Hard = true
+		mod.Unlocks.MiriamB.BossRush.Hard = true
+		mod.Unlocks.MiriamB.Hush.Hard = true
+		mod.Unlocks.MiriamB.MegaSatan.Hard = true
+		mod.Unlocks.MiriamB.Delirium.Hard = true
+		mod.Unlocks.MiriamB.Mother.Hard = true
+		mod.Unlocks.MiriamB.Beast.Hard = true
+		mod.Unlocks.MiriamB.GreedMode.Hard = true
+		mod.Unlocks.MiriamB.FullCompletion.Hard = true
 		print("All Tainted Miriam marks have been unlocked.")
 	end
 end

@@ -340,7 +340,7 @@ include("lua/pocket/Charity.lua")
 include("lua/pocket/ReverseCharity.lua")
 
 -- Pickups
-include("lua/pickups/Hearts.lua")
+--include("lua/pickups/Hearts.lua")
 include("lua/pickups/GoldenSack.lua")
 include("lua/pickups/UnluckyPenny.lua")
 include("lua/pickups/ChargedBomb.lua")

@@ -509,7 +509,7 @@ EID:addPill(PILLEFFECT_HEARTACHE_UP, "↓ Adds one {{BrokenHeart}} Broken Heart"
 EID:addPill(PILLEFFECT_HEARTACHE_DOWN, "↑ Removes one {{BrokenHeart}} Broken Heart", "Heartache Down", "en_us")
 
 -- Moon Heart
-EID:addEntity(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, 225, "Moon Heart", "Worth 2 HP#Teleports you to the Secret Room when depleted#↓ Only 1 can be held at a time", "en_us")
+-- EID:addEntity(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, 225, "Moon Heart", "Worth 1 HP#Teleports you to the Secret Room when depleted#↓ Only 1 can be held at a time", "en_us")
 
 -- 
 EID:addCard(CARD_HOPE, "Killing enemies has a chance to spawn pickups for the room", "XXIII - Hope", "en_us")
