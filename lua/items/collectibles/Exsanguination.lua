@@ -39,8 +39,8 @@ local function canPickUpHeart(player, heartSubType)
         or heartSubType == HeartSubType.HEART_ROTTEN and player:CanPickRottenHearts()
         or heartSubType == HeartSubType.HEART_GOLDEN and player:CanPickGoldenHearts()
         or heartSubType == HeartSubType.HEART_ETERNAL
-        or heartSubType == HeartSubType.HEART_ROCK and mod.CanPickRockHearts(player)
-        or heartSubType == HeartSubType.HEART_MOON and mod.CanPickMoonHearts(player)
+        or heartSubType == HeartSubType.HEART_ROCK and mod.CanPickHearts(player, "RockHeart")
+        or heartSubType == HeartSubType.HEART_MOON and mod.CanPickHearts(player, "MoonHeart")
         or false -- make it false in case it's nil
 end
 
