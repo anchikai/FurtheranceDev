@@ -374,6 +374,9 @@ if Poglite then
 	-- Miriam
 	local MiriamCostumeA = Isaac.GetCostumeIdByPath("gfx/characters/Character_003_Miriam_Pog.anm2")
 	Poglite:AddPogCostume("MiriamPog", PlayerType.PLAYER_MIRIAM, MiriamCostumeA)
+	-- Tainted Miriam
+	local MiriamCostumeB = Isaac.GetCostumeIdByPath("gfx/characters/Character_003b_Miriam_Pog.anm2")
+	Poglite:AddPogCostume("MiriamBPog", PlayerType.PLAYER_MIRIAM_B, MiriamCostumeB)
 end
 
 if MiniMapiItemsAPI then
