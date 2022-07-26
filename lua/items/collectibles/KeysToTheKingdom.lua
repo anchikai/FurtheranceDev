@@ -99,7 +99,10 @@ function mod:UseKTTK(_, _, player, _, slot, _)
 	else
 
 		-- Give Holy Mantle effect in final boss rooms and don't do anything else
-		if finalBossIDs[room:GetBossID()] then
+		if finalBossIDs[room:GetBossID()] 
+			or #Isaac.FindByType(EntityType.ENTITY_DOGMA) > 0
+			or #Isaac.FindByType(EntityType.ENTITY_BEAST) > 0
+		then
 			player:UseCard(Card.CARD_HOLY, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER)
 			return true
 		end
