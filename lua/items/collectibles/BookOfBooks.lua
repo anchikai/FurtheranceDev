@@ -8,7 +8,7 @@ function mod:UseBookOfBooks(_, _, player)
 			end
 		end
 	end
-	mod:DoBigbook("gfx/ui/giantbook/books.png", SoundEffect.SOUND_BOOK_PAGE_TURN_12, nil, nil, true)
+	GiantBookAPI.playGiantBook("Appear", "books.png", Color(1, 1, 1, 1, 0, 0, 0), Color(1, 1, 1, 1, 0, 0, 0), Color(1, 1, 1, 1, 0, 0, 0), SoundEffect.SOUND_BOOK_PAGE_TURN_12, false)
     return true
 end
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseBookOfBooks, CollectibleType.COLLECTIBLE_BOOK_OF_BOOKS)
