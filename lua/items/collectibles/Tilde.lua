@@ -36,7 +36,6 @@ function mod:UseTilde(_, _, player)
 	player:EvaluateItems()
 	return true
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseTilde, CollectibleType.COLLECTIBLE_TILDE_KEY)
 
 function mod:InfiniteHealth(entity, amount, flag)
@@ -46,7 +45,6 @@ function mod:InfiniteHealth(entity, amount, flag)
 		return false
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.InfiniteHealth, EntityType.ENTITY_PLAYER)
 
 function mod:InfiniteCharge(_, _, player)
@@ -54,7 +52,6 @@ function mod:InfiniteCharge(_, _, player)
 		ItemUsed = true
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.InfiniteCharge)
 
 function mod:DebugStats(player, flag)
@@ -73,7 +70,6 @@ function mod:DebugStats(player, flag)
 		SFXManager():Stop(SoundEffect.SOUND_ITEMRECHARGE)
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.DebugStats)
 
 function mod:ResetDebug()
@@ -89,5 +85,4 @@ function mod:ResetDebug()
 		player:EvaluateItems()
 	end
 end
-
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.ResetDebug)

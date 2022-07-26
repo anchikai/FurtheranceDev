@@ -449,6 +449,15 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_ASTRAGALI, "Rerolls chests in the
 -- Liberation
 EID:addCollectible(CollectibleType.COLLECTIBLE_LIBERATION, "Kills have a 5% chance to grant flight and open all doors in the current room", "Liberation", "en_us")
 
+-- Severed Ear
+EID:addCollectible(CollectibleType.COLLECTIBLE_SEVERED_EAR, "↑ {{Damage}} 1.2x Damage multiplier#↓ {{Tears}} 0.8x Tears multiplier#↑ {{Range}} +1.2 Range up#↓ {{Shotspeed}} -0.6 Shot Speed down", "Severed Ear", "en_us")
+
+-- Golden Port
+EID:addCollectible(CollectibleType.COLLECTIBLE_GOLDEN_PORT, "If your active item charge isn't full, you can use it to buy a charge and add 6 pips to it for 5 cents", "Golden Port", "en_us")
+
+-- Itching Powder
+EID:addCollectible(CollectibleType.COLLECTIBLE_ITCHING_POWDER, "You will take a second fake hit of damage 1 second after getting hit", "Itching Powder", "en_us")
+
 
 
 -- Soul of Leah
@@ -500,7 +509,7 @@ EID:addPill(PILLEFFECT_HEARTACHE_UP, "↓ Adds one {{BrokenHeart}} Broken Heart"
 EID:addPill(PILLEFFECT_HEARTACHE_DOWN, "↑ Removes one {{BrokenHeart}} Broken Heart", "Heartache Down", "en_us")
 
 -- Moon Heart
-EID:addEntity(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, 225, "Moon Heart", "Worth 2 HP#Teleports you to the Secret Room when depleted#↓ Only 1 can be held at a time", "en_us")
+-- EID:addEntity(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, 225, "Moon Heart", "Worth 1 HP#Teleports you to the Secret Room when depleted#↓ Only 1 can be held at a time", "en_us")
 
 -- 
 EID:addCard(CARD_HOPE, "Killing enemies has a chance to spawn pickups for the room", "XXIII - Hope", "en_us")

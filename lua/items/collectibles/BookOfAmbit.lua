@@ -1,7 +1,9 @@
 local mod = Furtherance
 
 function mod:UseBookOfAmbit(_Type, RNG, player)
-	mod:DoBigbook("gfx/ui/giantbook/Ambit.png", SoundEffect.SOUND_BOOK_PAGE_TURN_12, nil, nil, true)
+	if GiantBookAPI then
+		GiantBookAPI.playGiantBook("Appear", "ambit.png", Color(1, 1, 1, 1, 0, 0, 0), Color(1, 1, 1, 1, 0, 0, 0), Color(1, 1, 1, 1, 0, 0, 0), SoundEffect.SOUND_BOOK_PAGE_TURN_12, false)
+	end
     return true
 end
 mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseBookOfAmbit, CollectibleType.COLLECTIBLE_BOOK_OF_AMBIT)

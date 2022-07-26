@@ -99,6 +99,9 @@ CollectibleType.COLLECTIBLE_MOLTEN_GOLD = Isaac.GetItemIdByName("Molten Gold")
 CollectibleType.COLLECTIBLE_TREPANATION = Isaac.GetItemIdByName("Trepanation")
 CollectibleType.COLLECTIBLE_ASTRAGALI = Isaac.GetItemIdByName("Astragali")
 CollectibleType.COLLECTIBLE_LIBERATION = Isaac.GetItemIdByName("Liberation")
+CollectibleType.COLLECTIBLE_SEVERED_EAR = Isaac.GetItemIdByName("Severed Ear")
+CollectibleType.COLLECTIBLE_GOLDEN_PORT = Isaac.GetItemIdByName("Golden Port")
+CollectibleType.COLLECTIBLE_ITCHING_POWDER = Isaac.GetItemIdByName("Itching Powder")
 
 -- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
@@ -281,6 +284,9 @@ include("lua/items/collectibles/MoltenGold.lua")
 include("lua/items/collectibles/Trepanation.lua")
 include("lua/items/collectibles/Astragali.lua")
 include("lua/items/collectibles/Liberation.lua")
+include("lua/items/collectibles/SeveredEar.lua")
+include("lua/items/collectibles/GoldenPort.lua")
+include("lua/items/collectibles/ItchingPowder.lua")
 
 -- Trinkets
 include("lua/items/trinkets/HolyHeart.lua")
@@ -334,8 +340,7 @@ include("lua/pocket/Charity.lua")
 include("lua/pocket/ReverseCharity.lua")
 
 -- Pickups
-include("lua/pickups/MoonHeart.lua")
-include("lua/pickups/RockHeart.lua")
+--include("lua/pickups/Hearts.lua")
 include("lua/pickups/GoldenSack.lua")
 include("lua/pickups/UnluckyPenny.lua")
 include("lua/pickups/ChargedBomb.lua")
@@ -372,6 +377,9 @@ if Poglite then
 	-- Miriam
 	local MiriamCostumeA = Isaac.GetCostumeIdByPath("gfx/characters/Character_003_Miriam_Pog.anm2")
 	Poglite:AddPogCostume("MiriamPog", PlayerType.PLAYER_MIRIAM, MiriamCostumeA)
+	-- Tainted Miriam
+	local MiriamCostumeB = Isaac.GetCostumeIdByPath("gfx/characters/Character_003b_Miriam_Pog.anm2")
+	Poglite:AddPogCostume("MiriamBPog", PlayerType.PLAYER_MIRIAM_B, MiriamCostumeB)
 end
 
 if MiniMapiItemsAPI then
@@ -441,145 +449,6 @@ mod:AddCallback(ModCallbacks.MC_POST_TEAR_INIT, function(self, tear)
 	if data.AppliedTearFlags == nil then
 		data.AppliedTearFlags = {}
 	end
-end)
-
--- Big Book Stuff (Thanks kittenchilly!)
-
---bigbook pausing
-local hideBerkano = false
-function mod:DoBigbookPause()
-	local player = Isaac.GetPlayer(0)
-	local sfx = SFXManager()
-	hideBerkano = true
-	player:UseCard(Card.RUNE_BERKANO, UseFlag.USE_NOANIM | UseFlag.USE_NOANNOUNCER) --we undo berkano's effects later, this is done purely for the bigbook which our housing mod should have made blank if we got here
-	--remove the blue flies and spiders that just spawned
-	for _, bluefly in pairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_FLY, -1, false, false)) do
-		if bluefly:Exists() and bluefly.FrameCount <= 0 then
-			bluefly:Remove()
-		end
-	end
-	for _, bluespider in pairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_SPIDER, -1, false, false)) do
-		if bluespider:Exists() and bluespider.FrameCount <= 0 then
-			bluespider:Remove()
-		end
-	end
-end
-
-local isPausingGame = false
-local isPausingGameTimer = 0
-function mod:KeepPaused()
-	isPausingGame = true
-	isPausingGameTimer = 0
-end
-
-function mod:StopPausing()
-	isPausingGame = false
-	isPausingGameTimer = 0
-end
-
-mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
-	if isPausingGame then
-		isPausingGameTimer = isPausingGameTimer - 1
-		if isPausingGameTimer <= 0 then
-			isPausingGameTimer = 30
-			mod:DoBigbookPause()
-		end
-	end
-end)
-
-mod:AddCallback(ModCallbacks.MC_USE_CARD, function()
-	if not hideBerkano then
-		mod:DelayFunction(function()
-			local stuffWasSpawned = false
-			for _, bluefly in pairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_FLY, -1, false, false)) do
-				if bluefly:Exists() and bluefly.FrameCount <= 1 then
-					stuffWasSpawned = true
-					break
-				end
-			end
-			for _, bluespider in pairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.BLUE_SPIDER, -1, false, false)) do
-				if bluespider:Exists() and bluespider.FrameCount <= 1 then
-					stuffWasSpawned = true
-					break
-				end
-			end
-			if stuffWasSpawned then
-				mod:DoBigbook("gfx/ui/giantbook/rune_07_berkano.png", nil, nil, nil, false)
-			end
-		end, 1, nil, false, true)
-	end
-	hideBerkano = false
-end, Card.RUNE_BERKANO)
-
---giantbook overlays
-local shouldRenderGiantbook = false
-local giantbookUI = Sprite()
-giantbookUI:Load("gfx/ui/giantbook/giantbook.anm2", true)
-local giantbookAnimation = "Appear"
-function mod:DoBigbook(spritesheet, sound, animationToPlay, animationFile, doPause)
-	if doPause == nil then
-		doPause = true
-	end
-	if doPause then
-		mod:DoBigbookPause()
-	end
-	if not animationToPlay then
-		animationToPlay = "Appear"
-	end
-	if not animationFile then
-		animationFile = "gfx/ui/giantbook/giantbook.anm2"
-		if animationToPlay == "Appear" or animationToPlay == "Shake" then
-			animationFile = "gfx/ui/giantbook/giantbook.anm2"
-		elseif animationToPlay == "Static" then
-			animationToPlay = "Effect"
-			animationFile = "gfx/ui/giantbook/giantbook_clicker.anm2"
-		elseif animationToPlay == "Flash" then
-			animationToPlay = "Idle"
-			animationFile = "gfx/ui/giantbook/giantbook_mama_mega.anm2"
-		elseif animationToPlay == "Sleep" then
-			animationToPlay = "Idle"
-			animationFile = "gfx/ui/giantbook/giantbook_sleep.anm2"
-		elseif animationToPlay == "AppearBig" or animationToPlay == "ShakeBig" then
-			if animationToPlay == "AppearBig" then
-				animationToPlay = "Appear"
-			elseif animationToPlay == "ShakeBig" then
-				animationToPlay = "Shake"
-			end
-			animationFile = "gfx/ui/giantbook/giantbookbig.anm2"
-		end
-	end
-	giantbookAnimation = animationToPlay
-	giantbookUI:Load(animationFile, true)
-	if spritesheet then
-		giantbookUI:ReplaceSpritesheet(0, spritesheet)
-		giantbookUI:LoadGraphics()
-	end
-	giantbookUI:Play(animationToPlay, true)
-	shouldRenderGiantbook = true
-	if sound then
-		local sfx = SFXManager()
-		sfx:Play(sound, 1, 0, false, 1)
-	end
-end
-
-mod:AddCallback(ModCallbacks.MC_POST_RENDER, function()
-	if mod:ShouldRender() then
-		local centerPos = mod:GetScreenCenterPosition()
-
-		if IsEvenRender then
-			giantbookUI:Update()
-			if giantbookUI:IsFinished(giantbookAnimation) then
-				shouldRenderGiantbook = false
-			end
-		end
-
-		if shouldRenderGiantbook then
-			giantbookUI:Render(centerPos, Vector.Zero, Vector.Zero)
-		end
-	end
-end)
-mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
-	shouldRenderGiantbook = false
 end)
 
 function mod:ShouldRender()

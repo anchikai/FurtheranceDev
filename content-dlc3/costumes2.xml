@@ -21,4 +21,5 @@
 	<costume anm2path="Character_003_Miriam_Pog.anm2" type="none" priority="99" />
 	<!-- Tainted Miriam -->
 	<costume anm2path="Character_003b_Miriam_Hair.anm2" type="none" priority="99" />
+	<costume anm2path="Character_003b_Miriam_Pog.anm2" type="none" priority="99" />
 </costumes>
