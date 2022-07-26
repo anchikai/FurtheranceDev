@@ -5,7 +5,7 @@ function mod:SetLiberationData(player)
     local data = mod:GetData(player)
     data.LiberationCanFly = false
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.SetRottenLoveData)
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.SetLiberationData)
 
 function mod:LibKill(entity)
     for p = 0, game:GetNumPlayers() - 1 do
