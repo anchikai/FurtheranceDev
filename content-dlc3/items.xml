@@ -68,7 +68,8 @@
 	<passive id="90" cache="damage" name="Exsanguination" description="Rarer hearts" gfx="exsanguination.png" quality="2" />
 	<passive id="93" name="Molten Gold" description="It's more valuable this way..." gfx="molten_gold.png" quality="2" />
 	<passive id="94" name="Trepanation" description="Blood mortar" gfx="trepanation.png" quality="3" />
-	<passive id="96" cache="flying" name="Liberation" description="Let go your earthly tether" gfx="liberation.png" quality="1" />
+	<passive id="96" name="Liberation" description="Let go your earthly tether" gfx="liberation.png" quality="1" />
+	<passive id="97" cache="damage firedelay range shotspeed" name="Severed Ear" description="Battle trophy" gfx="severed_ear.png" quality="2" />
 
 	<!-- Active Items -->
 	<active id="21" cache="speed" name="Book of Swiftness" description="Temporary speed up" gfx="book_of_swiftness.png" maxcharges="3" quality="3" tags="book offensive lazarussharedglobal" />

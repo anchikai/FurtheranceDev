@@ -1465,6 +1465,15 @@ local Wiki = {
 			{str = "Leaving the room if its uncleared won't keep the door open."},
 		},
 	},
+	SeveredEar = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "X1.2 damage multiplier."},
+			{str = "X0.8 tears multiplier."},
+			{str = "+1.2 range."},
+			{str = "-0.6 shot speed."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -3078,6 +3087,32 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_GREED_SHOP,
 		Encyclopedia.ItemPools.POOL_GREED_ANGEL,
 		Encyclopedia.ItemPools.POOL_GREED_SECRET,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_LIBERATION,
+	WikiDesc = Wiki.Liberation,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GOLDEN_CHEST,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_SEVERED_EAR,
+	WikiDesc = Wiki.SeveredEar,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_DEVIL,
+		Encyclopedia.ItemPools.POOL_RED_CHEST,
+		Encyclopedia.ItemPools.POOL_CURSE,
+		Encyclopedia.ItemPools.POOL_GREED_DEVIL,
+		Encyclopedia.ItemPools.POOL_GREED_CURSE,
 	},
 })
 
