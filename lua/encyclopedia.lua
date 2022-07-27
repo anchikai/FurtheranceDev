@@ -2284,6 +2284,10 @@ Encyclopedia.AddItem({
 	Class = "Furtherance",
 	ID = CollectibleType.COLLECTIBLE_SHATTERED_HEART,
 	WikiDesc = Wiki.ShatteredHeart,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_ULTRA_SECRET,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+	},
 })
 
 Encyclopedia.AddItem({
@@ -2431,6 +2435,7 @@ Encyclopedia.AddItem({
 	WikiDesc = Wiki.PillarOfFire,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 		Encyclopedia.ItemPools.POOL_ULTRA_SECRET,
 	},
 })
@@ -2442,6 +2447,7 @@ Encyclopedia.AddItem({
 	WikiDesc = Wiki.PillarOfClouds,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 	},
 })
 
@@ -2452,6 +2458,7 @@ Encyclopedia.AddItem({
 	WikiDesc = Wiki.FirstbornSon,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 		Encyclopedia.ItemPools.POOL_ULTRA_SECRET,
 	},
 })
@@ -2463,6 +2470,7 @@ Encyclopedia.AddItem({
 	WikiDesc = Wiki.MiriamsWell,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_ANGEL,
+		Encyclopedia.ItemPools.POOL_GREED_ANGEL,
 	},
 })
 
@@ -2473,6 +2481,7 @@ Encyclopedia.AddItem({
 	WikiDesc = Wiki.Quarantine,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 	},
 })
 
@@ -2483,6 +2492,7 @@ Encyclopedia.AddItem({
 	WikiDesc = Wiki.BookOfGuidance,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_LIBRARY,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 	},
 })
 
@@ -2493,6 +2503,7 @@ Encyclopedia.AddItem({
 	WikiDesc = Wiki.JarOfManna,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_ANGEL,
+		Encyclopedia.ItemPools.POOL_GREED_ANGEL,
 	},
 })
 
@@ -2503,6 +2514,7 @@ Encyclopedia.AddItem({
 	WikiDesc = Wiki.Tambourine,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_SHOP,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
 		Encyclopedia.ItemPools.POOL_CRANE_GAME,
 	},
 })
@@ -2514,6 +2526,7 @@ Encyclopedia.AddItem({
 	WikiDesc = Wiki.TheDreidel,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 	},
 })
 
@@ -2524,6 +2537,7 @@ Encyclopedia.AddItem({
 	WikiDesc = Wiki.Apocalypse,
 	Pools = {
 		Encyclopedia.ItemPools.POOL_DEVIL,
+		Encyclopedia.ItemPools.POOL_GREED_DEVIL,
 		Encyclopedia.ItemPools.POOL_ULTRA_SECRET,
 	},
 })
