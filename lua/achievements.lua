@@ -450,66 +450,66 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.StartUnlocks)
 function mod:StartUnlocksPickups(entity)
 	-- Leah
 	if mod.Unlocks.Leah.Beast.Unlock == false then
-		if entity.SubType == OBJ_ESSENCE_OF_LOVE then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == OBJ_ESSENCE_OF_LOVE then
 			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
 		end
 	end
 	if mod.Unlocks.LeahB.SoulPath == false then
-		if entity.SubType == RUNE_SOUL_OF_LEAH then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_SOUL_OF_LEAH then
 			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
 		end
 	end
 	if mod.Unlocks.LeahB.Beast.Hard == false then
-		if entity.SubType == OBJ_ESSENCE_OF_HATE then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == OBJ_ESSENCE_OF_HATE then
 			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
 		end
 	end
 	if mod.Unlocks.LeahB.GreedMode.Hard == false then
-		if entity.SubType == CARD_REVERSE_HOPE then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == CARD_REVERSE_HOPE then
 			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
 		end
 	end
 
 	-- Peter
 	if mod.Unlocks.Peter.Beast.Unlock == false then
-		if entity.SubType == OBJ_ESSENCE_OF_LIFE then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == OBJ_ESSENCE_OF_LIFE then
 			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
 		end
 	end
 	if mod.Unlocks.PeterB.SoulPath == false then
-		if entity.SubType == RUNE_SOUL_OF_PETER then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_SOUL_OF_PETER then
 			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
 		end
 	end
 	if mod.Unlocks.PeterB.Beast.Hard == false then
-		if entity.SubType == OBJ_ESSENCE_OF_DEATH then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == OBJ_ESSENCE_OF_DEATH then
 			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
 		end
 	end
 	if mod.Unlocks.PeterB.GreedMode.Hard == false then
-		if entity.SubType == CARD_REVERSE_FAITH then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == CARD_REVERSE_FAITH then
 			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
 		end
 	end
 
 	-- Miriam
 	if mod.Unlocks.Miriam.Beast.Unlock == false then
-		if entity.SubType == OBJ_ESSENCE_OF_PROSPERITY then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == OBJ_ESSENCE_OF_PROSPERITY then
 			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
 		end
 	end
 	if mod.Unlocks.MiriamB.SoulPath == false then
-		if entity.SubType == RUNE_SOUL_OF_MIRIAM then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_SOUL_OF_MIRIAM then
 			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
 		end
 	end
 	if mod.Unlocks.MiriamB.GreedMode.Hard == false then
-		if entity.SubType == CARD_REVERSE_CHARITY then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == CARD_REVERSE_CHARITY then
 			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
 		end
 	end
 	if mod.Unlocks.MiriamB.MegaSatan.Hard == false then
-		if entity.SubType == SackSubType.SACK_GOLDEN then
+		if entity.Variant == PickupVariant.PICKUP_GRAB_BAG and entity.SubType == SackSubType.SACK_GOLDEN then
 			entity:Morph(entity.Type, entity.Variant, SackSubType.SACK_NORMAL)
 		end
 	end
