@@ -1495,6 +1495,12 @@ local Wiki = {
 			{str = "- The fake hit works similarly to Dull Razor, which will not hurt you."},
 		},
 	},
+	Parasol = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "All of Isaac's familiars will block enemy shots."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -2630,15 +2636,17 @@ Encyclopedia.AddItem({
 	},
 })
 
-Encyclopedia.AddItem({
-	ModName = "Furtherance",
-	Class = "Furtherance",
-	ID = CollectibleType.COLLECTIBLE_LITTLE_SISTER,
-	WikiDesc = Wiki.LittleSister,
-	Pools = {
-
-	},
-})
+--[[
+	Encyclopedia.AddItem({
+		ModName = "Furtherance",
+		Class = "Furtherance",
+		ID = CollectibleType.COLLECTIBLE_LITTLE_SISTER,
+		WikiDesc = Wiki.LittleSister,
+		Pools = {
+	
+		},
+	})
+]]
 
 Encyclopedia.AddItem({
 	ModName = "Furtherance",
@@ -3183,6 +3191,13 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_GREED_SHOP,
 		Encyclopedia.ItemPools.POOL_GREED_CURSE,
 	},
+})
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_PARASOL,
+	WikiDesc = Wiki.Parasol,
 })
 
 -- Pocket Items

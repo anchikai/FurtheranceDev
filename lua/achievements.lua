@@ -7,7 +7,7 @@ local AchievementGraphics = {
 		Isaac = "achievement_bindsofdevotion",
 		Satan = "achievement_rue",
 		BlueBaby = "achievement_mandrake",
-		Lamb = "achievement_littlesister",
+		Lamb = "achievement_parasol",
 		BossRush = "achievement_leahslock",
 		Hush = "achievement_keratoconus",
 		MegaSatan = "achievement_d16",
@@ -293,7 +293,7 @@ function mod:StartUnlocks()
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_MANDRAKE)
 		end
 		if mod.Unlocks.Leah.Lamb.Unlock == false then
-			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_LITTLE_SISTER)
+			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_PARASOL)
 		end
 		if mod.Unlocks.Leah.BossRush.Unlock == false then
 			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_LEAHS_LOCK)

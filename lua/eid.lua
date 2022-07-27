@@ -306,7 +306,7 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_HEART_EMBEDDED_COIN, "If you norm
 EID:addCollectible(CollectibleType.COLLECTIBLE_MANDRAKE, "{{TreasureRoom}} Two items now spawn in all Treasure Rooms#You can only choose one#The second item will always be a familiar", "Mandrake", "en_us")
 
 -- Little Sister
-EID:addCollectible(CollectibleType.COLLECTIBLE_LITTLE_SISTER, "", "Little Sister", "en_us")
+--EID:addCollectible(CollectibleType.COLLECTIBLE_LITTLE_SISTER, "", "Little Sister", "en_us")
 
 -- Flux
 EID:addCollectible(CollectibleType.COLLECTIBLE_FLUX, "↑ {{Range}} +9.75 Range up#Spectral tears#A tear is fired from the back of your head#Tears only move when you're moving#The tear fired from the back has opposite movement", "Flux", "en_us")
@@ -457,6 +457,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_GOLDEN_PORT, "If your active item
 
 -- Itching Powder
 EID:addCollectible(CollectibleType.COLLECTIBLE_ITCHING_POWDER, "You will take a second fake hit of damage 1 second after getting hit", "Itching Powder", "en_us")
+
+-- Parasol
+EID:addTrinket(TrinketType.TRINKET_PARASOL, "↑ All familiars now block enemy shots", "Parasol", "en_us")
 
 
 
