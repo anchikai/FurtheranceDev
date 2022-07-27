@@ -2350,7 +2350,9 @@ Encyclopedia.AddItem({
 	ID = CollectibleType.COLLECTIBLE_BINDS_OF_DEVOTION,
 	WikiDesc = Wiki.BindsOfDevotion,
 	Pools = {
-		
+		Encyclopedia.ItemPools.POOL_ANGEL,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		Encyclopedia.ItemPools.POOL_GREED_ANGEL,
 	},
 })
 
