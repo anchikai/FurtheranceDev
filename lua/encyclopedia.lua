@@ -2613,7 +2613,9 @@ Encyclopedia.AddItem({
 	ID = CollectibleType.COLLECTIBLE_HEART_EMBEDDED_COIN,
 	WikiDesc = Wiki.HeartEmbeddedCoin,
 	Pools = {
-		
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
 	},
 })
 
@@ -2623,7 +2625,8 @@ Encyclopedia.AddItem({
 	ID = CollectibleType.COLLECTIBLE_MANDRAKE,
 	WikiDesc = Wiki.Mandrake,
 	Pools = {
-
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
 	},
 })
 
