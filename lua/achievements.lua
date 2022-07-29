@@ -247,15 +247,6 @@ function mod:NoMovement(entity, hook, button)
 end
 mod:AddCallback(ModCallbacks.MC_INPUT_ACTION, mod.NoMovement, 2)
 
-function mod:FuckYou(player, flag)
-	if (mod.Unlocks.Leah.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_LEAH_B)
-	or (mod.Unlocks.Peter.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_PETER_B)
-	or (mod.Unlocks.Miriam.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_MIRIAM_B) then
-		player.SpriteScale = Vector.Zero
-	end
-end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.FuckYou, CacheFlag.CACHE_SIZE)
-
 function mod:StartUnlocks()
 	local level = game:GetLevel()
 	local room = game:GetRoom()
@@ -277,6 +268,7 @@ function mod:StartUnlocks()
 				end
 			end
 			game:GetHUD():SetVisible(false)
+			player.Visible = false
 		end
 
 		-- Leah
