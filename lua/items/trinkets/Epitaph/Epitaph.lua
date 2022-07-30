@@ -17,7 +17,7 @@ mod:SavePlayerData({
 
 local TombstoneVariant = Isaac.GetEntityVariantByName("Epitaph Tombstone")
 
-local Tombstone = include("lua/items/trinkets/Epitaph/Tombstone.lua")
+local Tombstone = include("lua.items.trinkets.Epitaph.Tombstone")
 
 local function pickTombstoneRoom(player, roomsList)
     local rng = player:GetTrinketRNG(TrinketType.TRINKET_EPITAPH)
