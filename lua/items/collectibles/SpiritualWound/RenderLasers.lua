@@ -252,10 +252,12 @@ function RenderLasers:__call(itemData, targetQuery)
         removeLasers(targetedLasers)
     end
 
-    if lasersSpawned and not lasersExisted then -- and lasers don't already exist
-        playLaserSounds()
-    elseif not lasersSpawned and not lasersExisted then
-        stopLaserSounds()
+    if not lasersExisted then
+        if lasersSpawned then
+            playLaserSounds()
+        else
+            stopLaserSounds()
+        end
     end
 end
 
