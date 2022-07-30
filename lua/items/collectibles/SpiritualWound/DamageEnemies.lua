@@ -1,7 +1,7 @@
 local mod = Furtherance
 local game = Game()
 
-local FindTargets = include("lua/items/collectibles/SpiritualWound/FindTargets.lua")
+local FindTargets = include("lua.items.collectibles.SpiritualWound.FindTargets")
 local TargetType = FindTargets.TargetType
 
 local HURT_COLOR = Color(1, 0, 0, 0.8)
@@ -78,7 +78,7 @@ function DamageEnemies:__call(itemData, targetQuery)
 
         if target:HasMortalDamage() then
             itemData.HitCount = 0
-            mod:GetData(target).spiritualWoundDied = true
+            mod:GetData(target).SpiritualWoundDied = true
         end
     elseif targetQuery.Type == TargetType.GRID_ENTITY then
         ---@cast targetQuery GridEntityTargetQuery
@@ -94,7 +94,7 @@ end
 
 function mod:SpiritualWoundKill(entity)
     local enemyData = mod:GetData(entity)
-    if enemyData.spiritualWoundDied == nil then return end
+    if enemyData.SpiritualWoundDied == nil then return end
 
     for i = 0, game:GetNumPlayers() - 1 do
         local player = Isaac.GetPlayer(i)

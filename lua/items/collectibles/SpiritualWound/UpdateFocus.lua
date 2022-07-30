@@ -3,7 +3,7 @@ local game = Game()
 
 local EffectVariantFocus = Isaac.GetEntityVariantByName("Spiritual Wound Target")
 
-local FindTargets = include("lua/items/collectibles/SpiritualWound/FindTargets.lua")
+local FindTargets = include("lua.items.collectibles.SpiritualWound.FindTargets")
 
 local TargetType = FindTargets.TargetType
 

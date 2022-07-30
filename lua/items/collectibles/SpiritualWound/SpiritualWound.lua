@@ -1,10 +1,10 @@
 local mod = Furtherance
 local game = Game()
 
-local FindTargets = include("lua/items/collectibles/SpiritualWound/FindTargets.lua")
-local UpdateFocus = include("lua/items/collectibles/SpiritualWound/UpdateFocus.lua")
-local RenderLasers = include("lua/items/collectibles/SpiritualWound/RenderLasers.lua")
-local DamageEnemies = include("lua/items/collectibles/SpiritualWound/DamageEnemies.lua")
+local FindTargets = include("lua.items.collectibles.SpiritualWound.FindTargets")
+local UpdateFocus = include("lua.items.collectibles.SpiritualWound.UpdateFocus")
+local RenderLasers = include("lua.items.collectibles.SpiritualWound.RenderLasers")
+local DamageEnemies = include("lua.items.collectibles.SpiritualWound.DamageEnemies")
 
 local ItemLaserVariant = RenderLasers.ItemLaserVariant
 

@@ -1,4 +1,3 @@
-local mod = Furtherance
 local game = Game()
 
 local TargetType = {

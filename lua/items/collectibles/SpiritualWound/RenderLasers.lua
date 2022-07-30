@@ -1,7 +1,7 @@
 local mod = Furtherance
 local game = Game()
 
-local FindTargets = include("lua/items/collectibles/SpiritualWound/FindTargets.lua")
+local FindTargets = include("lua.items.collectibles.SpiritualWound.FindTargets")
 local TargetType = FindTargets.TargetType
 
 local SpiritualWoundSoundStart = Isaac.GetSoundIdByName("SpiritualWoundStart")
