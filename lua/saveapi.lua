@@ -307,6 +307,14 @@ function mod:OnLoadPlayerData(player)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnLoadPlayerData)
 
+function mod:SaveCommand(cmd)
+    if string.lower(cmd) == "savefurtherance" then
+        mod:OnSaveData(true)
+        print("saved Furtherance data")
+    end
+end
+mod:AddCallback(ModCallbacks.MC_EXECUTE_CMD, mod.SaveCommand)
+
 -- if a player exists at this time, the mod was just hot-reloaded with luamod
 if Isaac.GetPlayer() ~= nil then
     mod:OnLoadData(true)
