@@ -47,7 +47,7 @@ local SpiritualWoundVariant = {
 }
 
 local function getDamageMultiplier(self)
-  return self.HitCount == 1 and 2 or 0.15
+  return self.HitCount == 0 and 2 or 0.15
 end
 
 function mod:UsePolarityShift(_, _, player)
@@ -95,6 +95,15 @@ function mod:ResetPolarityShiftBuffs()
     local data = mod:GetData(player)
 
     data.UsedPolarityShift = nil
+    local spiritualWoundData = data.SpiritualWound
+    if spiritualWoundData then
+      if spiritualWoundData.GetDamageMultiplier == getDamageMultiplier then
+        spiritualWoundData.GetDamageMultiplier = nil
+      end
+      if spiritualWoundData.LaserVariant == SpiritualWoundVariant.POLARITY_SHIFT then
+        spiritualWoundData.LaserVariant = SpiritualWoundVariant.NORMAL
+      end
+    end
   end
 end
 mod:AddCallback(ModCallbacks.MC_POST_NEW_ROOM, mod.ResetPolarityShiftBuffs)
