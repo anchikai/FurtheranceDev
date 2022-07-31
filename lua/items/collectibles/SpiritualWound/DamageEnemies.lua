@@ -78,6 +78,7 @@ function DamageEnemies:__call(itemData, targetQuery)
 
         if target:HasMortalDamage() then
             itemData.HitCount = 0
+            itemData.SnapCooldown = 7
             mod:GetData(target).SpiritualWoundDied = true
         end
     elseif targetQuery.Type == TargetType.GRID_ENTITY then
@@ -131,6 +132,8 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.SpiritualWoundKill)
 
 function mod:IgnoreEntityLaserDamage(victim, _, flags, source)
+    if source == nil then return nil end
+
     local player = source.Entity:ToPlayer()
     if player == nil
         or victim.Type == EntityType.ENTITY_PLAYER
