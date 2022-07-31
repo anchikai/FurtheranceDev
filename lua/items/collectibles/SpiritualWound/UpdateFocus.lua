@@ -61,7 +61,7 @@ local function updateFocusMovement(itemData, targetQuery, inputs)
     if not inputs.IsAttacking and snapCooldown <= 0 and targetQuery ~= nil and targetQuery.Type == TargetType.ENTITY then
         ---@cast targetQuery EntityTargetQuery
         local target = targetQuery.Result[1]
-        if focus.Position:DistanceSquared(target.Position) > 100 then
+        if focus.Position:DistanceSquared(target.Position) > 400 then
             -- chase the target
             local intent = target.Position - focus.Position
             focus.Velocity = focus.Velocity * 0.75 + intent:Resized(player.ShotSpeed * 50) * 0.25
