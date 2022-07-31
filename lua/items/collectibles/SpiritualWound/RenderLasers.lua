@@ -210,11 +210,16 @@ function RenderLasers:__call(itemData, targetQuery)
 
     if itemData.OldLaserVariant ~= itemData.LaserVariant then
         -- remove all lasers
-        for _, laser in pairs(itemData.UntargetedLasers) do
+        local untargetedLasers = itemData.UntargetedLasers
+        for k, laser in pairs(untargetedLasers) do
             laser:Die()
+            untargetedLasers[k] = nil
         end
-        for _, laser in ipairs(itemData.TargetedLasers) do
+
+        local targetedLasers = itemData.TargetedLasers
+        for i, laser in ipairs(targetedLasers) do
             laser:Die()
+            targetedLasers[i] = nil
         end
         itemData.OldLaserVariant = itemData.LaserVariant
         lasersExisted = true
