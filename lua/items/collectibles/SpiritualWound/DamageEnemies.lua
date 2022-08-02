@@ -7,10 +7,15 @@ local TargetType = FindTargets.TargetType
 local HURT_COLOR = Color(1, 0, 0, 0.8)
 local WOUND_DAMAGE_FLAGS = 0 -- no flags
 
+local FIRE_DELAY_MULTIPLIER = 0.2
 local HEAL_CHANCE = 0.05
 
 local function hasItem(player)
     return player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND) or player:GetPlayerType() == PlayerType.PLAYER_MIRIAM_B
+end
+
+local function clamp(value, min, max)
+    return math.min(math.max(value, min), max)
 end
 
 local function addActiveCharge(player, amount, activeSlot)
@@ -51,10 +56,10 @@ function DamageEnemies:__call(itemData, targetQuery)
 
     local player = itemData.Owner
 
-    local roundedFireDelay = math.floor(player.MaxFireDelay + 0.5)
-    if game:GetFrameCount() % roundedFireDelay ~= 0 then return end
+    local delay = clamp(player.MaxFireDelay * FIRE_DELAY_MULTIPLIER, 1, 30)
+    if math.floor(game:GetFrameCount() % delay) ~= 0 then return end
 
-    local damageMultiplier = 0.7
+    local damageMultiplier = 0.14
     if itemData.GetDamageMultiplier then
         damageMultiplier = itemData:GetDamageMultiplier()
     end
