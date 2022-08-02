@@ -3,11 +3,13 @@ local game = Game()
 local TargetType = {
     ENTITY = 0,
     GRID_ENTITY = 1,
-    FIREPLACE = 2,
+    PSEUDO_GRID_ENTITY = 2,
     NO_TARGET = 3,
 }
 
 local TARGET_RANGE_MODIFIER = 0.5
+
+local PSEUDO_GRID_MAX_DISTANCE = 800 -- (20 * sqrt(2)) ^ 2
 
 ---@class EntityTargetQuery
 ---@field Result Entity[]
@@ -19,7 +21,7 @@ local TARGET_RANGE_MODIFIER = 0.5
 ---@field AllEnemies Entity[]
 ---@field Type 1
 
----@class FireplaceTargetQuery
+---@class PseudoGridEntityTargetQuery
 ---@field Result Entity
 ---@field AllEnemies Entity[]
 ---@field Type 2
@@ -28,7 +30,7 @@ local TARGET_RANGE_MODIFIER = 0.5
 ---@field AllEnemies Entity[]
 ---@field Type 3
 
----@alias TargetQuery EntityTargetQuery|GridEntityTargetQuery|FireplaceTargetQuery|NoTargetQuery
+---@alias TargetQuery EntityTargetQuery|GridEntityTargetQuery|PseudoGridEntityTargetQuery|NoTargetQuery
 
 ---@param focusPosition Vector
 ---@return Entity[]|nil
@@ -77,8 +79,6 @@ local function findGridEntityTarget(focusPosition)
     return nil
 end
 
-local FIREPLACE_MAX_DISTANCE = 800 -- (20 * sqrt(2)) ^ 2
-
 local FireplaceVariant = {
     NORMAL = 0,
     RED = 1,
@@ -99,18 +99,26 @@ local vulnerableFireplaceVariants = {
 
 ---@param focusPosition Vector
 ---@return Entity|nil
-local function findFireplaceTarget(focusPosition)
-    local minDistance = FIREPLACE_MAX_DISTANCE
-    local nearestFireplace
+local function findPseudoGridEntityTarget(focusPosition)
+    local minDistance = PSEUDO_GRID_MAX_DISTANCE
+    local nearestEntity
     for _, fireplace in ipairs(Isaac.FindByType(EntityType.ENTITY_FIREPLACE)) do
         local distance = fireplace.Position:DistanceSquared(focusPosition)
         if vulnerableFireplaceVariants[fireplace.Variant] and fireplace.HitPoints > 1 and distance < minDistance then
             minDistance = distance
-            nearestFireplace = fireplace
+            nearestEntity = fireplace
+        end
+    end
+    
+    for _, poop in ipairs(Isaac.FindByType(EntityType.ENTITY_POOP)) do
+        local distance = poop.Position:DistanceSquared(focusPosition)
+        if poop.HitPoints > 1 and distance < minDistance then
+            minDistance = distance
+            nearestEntity = poop
         end
     end
 
-    return nearestFireplace
+    return nearestEntity
 end
 
 ---@param entities Entity[]|nil -- this table should be sorted by distance
@@ -167,10 +175,10 @@ function FindTargets:__call(itemData)
         return result
     end
     
-    local fireplaceTarget = findFireplaceTarget(focusPosition)
-    if fireplaceTarget then
-        result.Result = fireplaceTarget
-        result.Type = TargetType.FIREPLACE
+    local psuedoGridEntityTarget = findPseudoGridEntityTarget(focusPosition)
+    if psuedoGridEntityTarget then
+        result.Result = psuedoGridEntityTarget
+        result.Type = TargetType.PSEUDO_GRID_ENTITY
         return result
     end
 

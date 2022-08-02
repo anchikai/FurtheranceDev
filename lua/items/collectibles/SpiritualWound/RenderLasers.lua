@@ -238,7 +238,7 @@ function RenderLasers:__call(itemData, targetQuery)
             targetPosition = targetQuery.Result[1].Position
         elseif targetQuery.Type == TargetType.GRID_ENTITY then
             targetPosition = targetQuery.Result.Position
-        elseif targetQuery.Type == TargetType.FIREPLACE then
+        elseif targetQuery.Type == TargetType.PSEUDO_GRID_ENTITY then
             targetPosition = targetQuery.Result.Position
         end
     end

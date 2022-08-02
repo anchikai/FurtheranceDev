@@ -88,8 +88,8 @@ function DamageEnemies:__call(itemData, targetQuery)
         local target = targetQuery.Result
         local roundedTargetDamage = math.floor(targetDamage + 0.5)
         target:Hurt(roundedTargetDamage)
-    elseif targetQuery.Type == TargetType.FIREPLACE then
-        ---@cast targetQuery FireplaceTargetQuery
+    elseif targetQuery.Type == TargetType.PSEUDO_GRID_ENTITY then
+        ---@cast targetQuery PseudoGridEntityTargetQuery
         local target = targetQuery.Result
         target:TakeDamage(targetDamage, WOUND_DAMAGE_FLAGS, EntityRef(player), 1)
     end
