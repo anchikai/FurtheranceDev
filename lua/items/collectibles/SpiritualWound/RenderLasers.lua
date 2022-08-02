@@ -7,8 +7,6 @@ local TargetType = FindTargets.TargetType
 local SpiritualWoundSoundStart = Isaac.GetSoundIdByName("SpiritualWoundStart")
 local SpiritualWoundSoundLoop = Isaac.GetSoundIdByName("SpiritualWoundLoop")
 
-local EffectVariantImpact = Isaac.GetEntityVariantByName("Spiritual Wound Impact")
-
 ---@param vector1 Vector
 ---@param vector2 Vector
 ---@param alpha number
@@ -288,16 +286,19 @@ function mod:SpiritualWoundUpdate(laser)
 end
 mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, mod.SpiritualWoundUpdate)
 
-function mod:ReplaceBrimstoneSplash(entityType, variant, _, _, _, spawner)
-    if spawner == nil then return end
-    local laserSpawner = spawner.SpawnerEntity and spawner.SpawnerEntity:ToPlayer()
+function mod:ReplaceBrimstoneSplash(effect)
+    if effect.FrameCount ~= 0 then return end
 
-    if entityType == EntityType.ENTITY_EFFECT and variant == EffectVariant.LASER_IMPACT
-        and laserSpawner ~= nil and hasItem(laserSpawner)
-    then
-        return { EntityType.ENTITY_EFFECT, EffectVariantImpact }
-    end
+    local laser = effect.Parent
+    if laser == nil then return end
+
+    local data = mod:GetData(laser)
+    if not data.IsSpiritualWound then return end
+
+    local sprite = effect:GetSprite()
+    sprite:ReplaceSpritesheet(0, "gfx/effects/spiritual_wound_impact.png")
+    sprite:LoadGraphics()
 end
-mod:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, mod.ReplaceBrimstoneSplash)
+mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.ReplaceBrimstoneSplash, EffectVariant.LASER_IMPACT)
 
 return RenderLasers
