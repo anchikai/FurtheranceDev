@@ -120,7 +120,7 @@ local function findPseudoGridEntityTarget(focusPosition)
 
     for _, tnt in ipairs(Isaac.FindByType(EntityType.ENTITY_MOVABLE_TNT)) do
         local distance = tnt.Position:DistanceSquared(focusPosition)
-        if tnt.HitPoints > 1 and distance < minDistance then
+        if tnt.HitPoints > 0.5 and distance < minDistance then
             minDistance = distance
             nearestEntity = tnt
         end
