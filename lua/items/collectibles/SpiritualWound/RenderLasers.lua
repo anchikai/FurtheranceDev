@@ -7,6 +7,10 @@ local TargetType = FindTargets.TargetType
 local SpiritualWoundSoundStart = Isaac.GetSoundIdByName("SpiritualWoundStart")
 local SpiritualWoundSoundLoop = Isaac.GetSoundIdByName("SpiritualWoundLoop")
 
+local LASER_COLOR = Color(1, 1, 1, 1, 0, 0, 0)
+LASER_COLOR:SetColorize(1, 1, 1, 1)
+LASER_COLOR:SetOffset(1, 0.8, 0.5)
+
 ---@param vector1 Vector
 ---@param vector2 Vector
 ---@param alpha number
@@ -70,16 +74,13 @@ local function spawnLaser(itemData, targetPosition)
 	laser:SetMaxDistance(sourcePos:Distance(targetPosition) + 50)
 
 	if woundVariant == SpiritualWoundVariant.NORMAL then
-		local color = Color(1, 1, 1, 1, 0, 0, 0)
-		color:SetColorize(1, 1, 1, 1)
-		color:SetOffset(0.5, 0.8, 1)
-		laser:SetColor(color, 0, 1)
+        laser:SetColor(LASER_COLOR, 0, 1)
 		laser.SpriteScale = Vector.One * 0.3
 	elseif woundVariant == SpiritualWoundVariant.POLARITY_SHIFT then
 		laser.SpriteScale = Vector.One * 2
 	end
 
-	laser.Mass = 0
+	laser.Mass = 0 -- removes knockback
 	laser:AddTearFlags(TearFlags.TEAR_HOMING)
 	laser.CollisionDamage = 0 -- they still do 0.1 damage...
 	mod:GetData(laser).IsSpiritualWound = true
@@ -277,28 +278,52 @@ function mod:SpiritualWoundRender(laser)
 end
 mod:AddCallback(ModCallbacks.MC_POST_LASER_RENDER, mod.SpiritualWoundRender)
 
-function mod:SpiritualWoundUpdate(laser)
+local wasPaused = false
+function mod:ResumeSoundLoop()
+    local isPaused = game:IsPaused()
+    if isPaused == wasPaused then return end
+    wasPaused = isPaused
+
+    if isPaused then return end
+
+    local spiritualWoundPresent = false
+    for _, laser in ipairs(Isaac.FindByType(EntityType.ENTITY_LASER)) do
+        local data = mod:GetData(laser)
+        if data.IsSpiritualWound then
+            spiritualWoundPresent = true
+            break
+        end
+    end
+
+    if not spiritualWoundPresent then return end
+
+    SFXManager():Play(SpiritualWoundSoundLoop, nil, nil, true)
+end
+mod:AddCallback(ModCallbacks.MC_POST_RENDER, mod.ResumeSoundLoop)
+
+function mod:StopBrimtechSounds(laser)
     local data = mod:GetData(laser)
     if data.IsSpiritualWound then
         SFXManager():Stop(SoundEffect.SOUND_BLOOD_LASER)
         SFXManager():Stop(SoundEffect.SOUND_BLOOD_LASER_LOOP)
     end
 end
-mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, mod.SpiritualWoundUpdate)
+mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, mod.StopBrimtechSounds)
 
-function mod:ReplaceBrimstoneSplash(effect)
+---@param effect EntityEffect
+function mod:ReplaceBrimtechImpact(effect)
     if effect.FrameCount ~= 0 then return end
 
     local laser = effect.Parent
     if laser == nil then return end
 
-    local data = mod:GetData(laser)
-    if not data.IsSpiritualWound then return end
+    local laserData = mod:GetData(laser)
+    if not laserData.IsSpiritualWound then return end
 
     local sprite = effect:GetSprite()
     sprite:ReplaceSpritesheet(0, "gfx/effects/spiritual_wound_impact.png")
     sprite:LoadGraphics()
 end
-mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.ReplaceBrimstoneSplash, EffectVariant.LASER_IMPACT)
+mod:AddCallback(ModCallbacks.MC_POST_EFFECT_UPDATE, mod.ReplaceBrimtechImpact, EffectVariant.LASER_IMPACT)
 
 return RenderLasers
