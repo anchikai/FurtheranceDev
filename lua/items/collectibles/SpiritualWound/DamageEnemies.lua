@@ -7,6 +7,8 @@ local TargetType = FindTargets.TargetType
 local HURT_COLOR = Color(1, 0, 0, 0.8)
 local WOUND_DAMAGE_FLAGS = 0 -- no flags
 
+local HEAL_CHANCE = 0.05
+
 local function hasItem(player)
     return player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND) or player:GetPlayerType() == PlayerType.PLAYER_MIRIAM_B
 end
@@ -52,7 +54,7 @@ function DamageEnemies:__call(itemData, targetQuery)
     local roundedFireDelay = math.floor(player.MaxFireDelay + 0.5)
     if game:GetFrameCount() % roundedFireDelay ~= 0 then return end
 
-    local damageMultiplier = 0.33
+    local damageMultiplier = 0.7
     if itemData.GetDamageMultiplier then
         damageMultiplier = itemData:GetDamageMultiplier()
     end
@@ -102,7 +104,7 @@ function mod:SpiritualWoundKill(entity)
         if not player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND) and player:GetPlayerType() ~= PlayerType.PLAYER_MIRIAM_B then goto continueKill end
 
         local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND)
-        if rng:RandomFloat() > 1 then goto continueKill end
+        if rng:RandomFloat() > HEAL_CHANCE then goto continueKill end
 
         local data = mod:GetData(player)
 
@@ -133,6 +135,7 @@ mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.SpiritualWoundKill)
 
 function mod:IgnoreEntityLaserDamage(victim, _, flags, source)
     if source == nil then return nil end
+    if source.Entity == nil then return nil end
 
     local player = source.Entity:ToPlayer()
     if player == nil
