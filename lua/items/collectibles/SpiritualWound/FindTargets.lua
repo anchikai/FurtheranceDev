@@ -109,12 +109,20 @@ local function findPseudoGridEntityTarget(focusPosition)
             nearestEntity = fireplace
         end
     end
-    
+
     for _, poop in ipairs(Isaac.FindByType(EntityType.ENTITY_POOP)) do
         local distance = poop.Position:DistanceSquared(focusPosition)
         if poop.HitPoints > 1 and distance < minDistance then
             minDistance = distance
             nearestEntity = poop
+        end
+    end
+
+    for _, tnt in ipairs(Isaac.FindByType(EntityType.ENTITY_MOVABLE_TNT)) do
+        local distance = tnt.Position:DistanceSquared(focusPosition)
+        if tnt.HitPoints > 1 and distance < minDistance then
+            minDistance = distance
+            nearestEntity = tnt
         end
     end
 
