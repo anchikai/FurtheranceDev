@@ -38,7 +38,7 @@ local function findEntityTargets(focusPosition)
     local result = {}
     local distanceMapping = {}
     for _, enemy in ipairs(Isaac.GetRoomEntities()) do
-        if enemy:IsActiveEnemy() and enemy:IsVulnerableEnemy() or enemy.Type == EntityType.ENTITY_DUMMY then
+        if enemy:IsActiveEnemy() and enemy:IsVulnerableEnemy() and not enemy:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) or enemy.Type == EntityType.ENTITY_DUMMY then
             distanceMapping[enemy] = enemy.Position:DistanceSquared(focusPosition)
             table.insert(result, enemy)
         end
