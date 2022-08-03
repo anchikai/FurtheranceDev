@@ -70,5 +70,25 @@ function mod:SpiritualWoundUpdate(player)
     UpdateFocus(itemData, targetQuery)
     RenderLasers(itemData, targetQuery)
     DamageEnemies(itemData, targetQuery)
+
+    
 end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.SpiritualWoundUpdate)
+
+---@param player EntityPlayer
+function mod:SpiritualWoundCheckDead(player)
+    local data = mod:GetData(player)
+    local itemData = data.SpiritualWound
+    if itemData == nil then return end
+
+    local isDead = player:IsDead()
+    if isDead ~= data.WasDead then
+        data.WasDead = isDead
+        if isDead then
+            RenderLasers.RemoveLasers(itemData)
+            RenderLasers.StopLaserSounds()
+            UpdateFocus.RemoveFocus(itemData)
+        end
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.SpiritualWoundCheckDead)

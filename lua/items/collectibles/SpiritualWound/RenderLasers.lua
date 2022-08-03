@@ -199,6 +199,15 @@ local RenderLasers = {
 }
 setmetatable(RenderLasers, RenderLasers)
 
+function RenderLasers.RemoveLasers(itemData)
+    removeLasers(itemData.UntargetedLasers)
+    removeLasers(itemData.TargetedLasers)
+end
+
+function RenderLasers.StopLaserSounds()
+    stopLaserSounds()
+end
+
 ---@param itemData SpiritualWoundItemData
 ---@param targetQuery TargetQuery|nil
 function RenderLasers:__call(itemData, targetQuery)
@@ -208,18 +217,7 @@ function RenderLasers:__call(itemData, targetQuery)
     local lasersExisted = false
 
     if itemData.OldLaserVariant ~= itemData.LaserVariant then
-        -- remove all lasers
-        local untargetedLasers = itemData.UntargetedLasers
-        for k, laser in pairs(untargetedLasers) do
-            laser:Die()
-            untargetedLasers[k] = nil
-        end
-
-        local targetedLasers = itemData.TargetedLasers
-        for i, laser in ipairs(targetedLasers) do
-            laser:Die()
-            targetedLasers[i] = nil
-        end
+        RenderLasers.RemoveLasers(itemData)
         itemData.OldLaserVariant = itemData.LaserVariant
         lasersExisted = true
     end

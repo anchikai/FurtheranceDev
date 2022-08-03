@@ -82,6 +82,14 @@ end
 local UpdateFocus = {}
 setmetatable(UpdateFocus, UpdateFocus)
 
+function UpdateFocus.RemoveFocus(itemData)
+    local focus = itemData.Focus
+    if focus == nil then return end
+
+    focus:Remove()
+    itemData.Focus = nil
+end
+
 ---@param itemData SpiritualWoundItemData
 ---@param targetQuery TargetQuery
 function UpdateFocus:__call(itemData, targetQuery)
