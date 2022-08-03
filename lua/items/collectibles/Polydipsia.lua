@@ -29,6 +29,9 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.GetPolydipsia)
 local function makeMiriamPuddle(miriam, tear)
 	local data = mod:GetData(tear)
 	local playerData = mod:GetData(miriam)
+	if playerData.MiriamAOE == nil then
+		playerData.MiriamAOE = 1
+	end
 	if data.MiriamPullEnemies then
 		local whirlpool = Isaac.Spawn(EntityType.ENTITY_EFFECT, WhirlpoolVariant, 0, tear.Position, Vector.Zero, miriam):ToEffect()
 		whirlpool.CollisionDamage = miriam.Damage * 0.33

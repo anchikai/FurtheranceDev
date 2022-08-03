@@ -61,9 +61,14 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, mod.PuddleRift, EntityType.ENTITY_TEAR)
 
 function mod:tearCounter(tear)
-	local player = tear.Parent:ToPlayer()
+	local player = tear.Parent and tear.Parent:ToPlayer()
+	if player == nil then return end
+
 	if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then
 		local playerData = mod:GetData(player)
+		if playerData.MiriamTearCount == nil then
+			playerData.MiriamTearCount = 0
+		end
 		playerData.MiriamTearCount = (playerData.MiriamTearCount + 1) % 12
 
 		if playerData.MiriamTearCount == 0 then
@@ -110,6 +115,9 @@ function mod:miriamStats(player, flag)
 					data.MiriamAOE = 1.5
 				end
 				if player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
+					if data.oldNumBirthrights == nil then
+						data.oldNumBirthrights = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
+					end
 					data.MiriamAOE = data.MiriamAOE * 1.25 ^ data.oldNumBirthrights
 				end
 				player.TearRange = 200
@@ -129,8 +137,12 @@ mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.miriamStats)
 function mod:UpdateBirthrightStatus(player)
 	if player:GetPlayerType() ~= PlayerType.PLAYER_MIRIAM then return end
 
+	
 	local data = mod:GetData(player)
 	local numBirthrights = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
+	if data.oldNumBirthrights == nil then
+		data.oldNumBirthrights = numBirthrights
+	end
 	if numBirthrights == data.oldNumBirthrights then return end
 	data.MiriamAOE = data.MiriamAOE * 1.25 ^ (numBirthrights - data.oldNumBirthrights)
 	data.oldNumBirthrights = numBirthrights
