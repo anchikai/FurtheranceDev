@@ -10,6 +10,7 @@ Furtherance.CustomCallbacks = {
     MC_POST_PEFFECT_UPDATE = ModCallbacks.MC_POST_PEFFECT_UPDATE,
     MC_POST_LOADED = 20001,
     MC_POST_SAVED = 20003,
+    MC_POST_PLAYER_DIED = 20005,
 }
 
 local GeneralCallbacks = {}
@@ -236,3 +237,16 @@ function mod:QueuePEffectUpdateCallback(player)
     runLoadedCallbackHandler(mod.CustomCallbacks.MC_POST_PEFFECT_UPDATE, player.Variant, player)
 end
 mod:AddVanillaCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.QueuePEffectUpdateCallback)
+
+---@param player EntityPlayer
+function mod:TrackPlayerDied(player)
+    local data = mod:GetData(player)
+    local isDead = player:IsDead()
+    if data.WasDead ~= isDead then
+        data.WasDead = isDead
+        if isDead then
+            mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_PLAYER_DIED, player.Variant, player)
+        end
+    end
+end
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.TrackPlayerDied)

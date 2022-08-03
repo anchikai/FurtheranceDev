@@ -76,19 +76,13 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.SpiritualWoundUpdate)
 
 ---@param player EntityPlayer
-function mod:SpiritualWoundCheckDead(player)
+function mod:SpiritualWoundPlayerDied(player)
     local data = mod:GetData(player)
     local itemData = data.SpiritualWound
     if itemData == nil then return end
 
-    local isDead = player:IsDead()
-    if isDead ~= itemData.WasDead then
-        itemData.WasDead = isDead
-        if isDead then
-            RenderLasers.RemoveLasers(itemData)
-            RenderLasers.StopLaserSounds()
-            UpdateFocus.RemoveFocus(itemData)
-        end
-    end
+    RenderLasers.RemoveLasers(itemData)
+    RenderLasers.StopLaserSounds()
+    UpdateFocus.RemoveFocus(itemData)
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.SpiritualWoundCheckDead)
+mod:AddCallback(mod.CustomCallbacks.MC_POST_PLAYER_DIED, mod.SpiritualWoundPlayerDied)
