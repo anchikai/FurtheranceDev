@@ -7,9 +7,13 @@ local TargetType = FindTargets.TargetType
 local SpiritualWoundSoundStart = Isaac.GetSoundIdByName("SpiritualWoundStart")
 local SpiritualWoundSoundLoop = Isaac.GetSoundIdByName("SpiritualWoundLoop")
 
-local LASER_COLOR = Color(1, 1, 1, 1, 0, 0, 0)
-LASER_COLOR:SetColorize(1, 1, 1, 1)
-LASER_COLOR:SetOffset(1, 0.8, 0.5)
+local LASER_COLOR = Color(1, 1, 1)
+LASER_COLOR:SetColorize(1, 0.3, 0.3, 1)
+LASER_COLOR:SetOffset(0.6, 0.3, 0.25)
+
+local CHOCOLATE_MILK_LASER_COLOR = Color(1, 1, 1)
+CHOCOLATE_MILK_LASER_COLOR:SetColorize(1, 0.5, 0.3, 1)
+CHOCOLATE_MILK_LASER_COLOR:SetOffset(0.2, 0.2, 0.2)
 
 ---@param vector1 Vector
 ---@param vector2 Vector
@@ -17,10 +21,6 @@ LASER_COLOR:SetOffset(1, 0.8, 0.5)
 ---@return Vector
 local function lerp(vector1, vector2, alpha)
 	return vector1 * (1 - alpha) + vector2 * alpha
-end
-
-local function hasItem(player)
-    return player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND) or player:GetPlayerType() == PlayerType.PLAYER_MIRIAM_B
 end
 
 local LaserVariant = {
@@ -74,7 +74,11 @@ local function spawnLaser(itemData, targetPosition)
 	laser:SetMaxDistance(sourcePos:Distance(targetPosition) + 50)
 
 	if woundVariant == SpiritualWoundVariant.NORMAL then
-        laser:SetColor(LASER_COLOR, 0, 1)
+        if player:HasCollectible(CollectibleType.COLLECTIBLE_CHOCOLATE_MILK) then
+            laser:SetColor(CHOCOLATE_MILK_LASER_COLOR, 0, 1)
+        else
+            laser:SetColor(LASER_COLOR, 0, 1)
+        end
 		laser.SpriteScale = Vector.One * 0.3
 	elseif woundVariant == SpiritualWoundVariant.POLARITY_SHIFT then
 		laser.SpriteScale = Vector.One * 2
@@ -216,7 +220,9 @@ function RenderLasers:__call(itemData, targetQuery)
     local lasersSpawned = false
     local lasersExisted = false
 
-    if itemData.OldLaserVariant ~= itemData.LaserVariant then
+    if itemData.OldLaserVariant ~= itemData.LaserVariant
+        or itemData.TriggeredSynergies[CollectibleType.COLLECTIBLE_CHOCOLATE_MILK]
+    then
         RenderLasers.RemoveLasers(itemData)
         itemData.OldLaserVariant = itemData.LaserVariant
         lasersExisted = true

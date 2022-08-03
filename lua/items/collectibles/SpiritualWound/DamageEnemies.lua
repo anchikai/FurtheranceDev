@@ -56,12 +56,17 @@ function DamageEnemies:__call(itemData, targetQuery)
 
     local player = itemData.Owner
 
-    local delay = clamp(player.MaxFireDelay * FIRE_DELAY_MULTIPLIER, 1, 30)
-    if math.floor(game:GetFrameCount() % delay) ~= 0 then return end
+    if player.FireDelay > 0 then return end
+    player.FireDelay = clamp(player.MaxFireDelay * FIRE_DELAY_MULTIPLIER, 1, 30)
 
     local damageMultiplier = 0.14
     if itemData.GetDamageMultiplier then
         damageMultiplier = itemData:GetDamageMultiplier()
+    end
+
+    -- give player a 1.3x damage buff
+    if player:HasCollectible(CollectibleType.COLLECTIBLE_CHOCOLATE_MILK) then
+        damageMultiplier = damageMultiplier * 1.3
     end
 
     local targetDamage = player.Damage * damageMultiplier
