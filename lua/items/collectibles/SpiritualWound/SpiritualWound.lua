@@ -82,8 +82,8 @@ function mod:SpiritualWoundCheckDead(player)
     if itemData == nil then return end
 
     local isDead = player:IsDead()
-    if isDead ~= data.WasDead then
-        data.WasDead = isDead
+    if isDead ~= itemData.WasDead then
+        itemData.WasDead = isDead
         if isDead then
             RenderLasers.RemoveLasers(itemData)
             RenderLasers.StopLaserSounds()
