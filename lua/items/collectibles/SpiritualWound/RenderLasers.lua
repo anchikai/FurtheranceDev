@@ -271,6 +271,7 @@ end
 
 ---@param laser EntityLaser
 function mod:SpiritualWoundRender(laser)
+    if laser.FrameCount ~= 1 then return end
     local data = mod:GetData(laser)
     if data.IsSpiritualWound and not laser:IsDead() then
         if laser.Variant == SpiritualWoundVariant.NORMAL then

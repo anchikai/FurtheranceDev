@@ -38,7 +38,9 @@ end
 ---@field GetDamageMultiplier (fun(SpiritualWoundItemData): number)|nil
 
 local SYNERGIES = {
-    CollectibleType.COLLECTIBLE_CHOCOLATE_MILK
+    CollectibleType.COLLECTIBLE_CHOCOLATE_MILK,
+    CollectibleType.COLLECTIBLE_HAEMOLACRIA,
+    CollectibleType.COLLECTIBLE_CRICKETS_BODY,
 }
 
 ---@param player EntityPlayer
@@ -87,6 +89,7 @@ function mod:SpiritualWoundUpdate(player)
     end
 
     local triggeredSynergies = itemData.TriggeredSynergies
+    local synergies = itemData.Synergies
     for collectible, oldCount in pairs(itemData.Synergies) do
         local newCount = player:GetCollectibleNum(collectible)
         local delta = newCount - oldCount
@@ -95,7 +98,7 @@ function mod:SpiritualWoundUpdate(player)
         else
             triggeredSynergies[collectible] = nil
         end
-        itemData.Synergies[collectible] = newCount
+        synergies[collectible] = newCount
     end
 
     local targetQuery = FindTargets(itemData)

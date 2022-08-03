@@ -46,6 +46,28 @@ local function handleBirthright(itemData, targetDamage, targetQuery)
     end
 end
 
+---@param itemData SpiritualWoundItemData
+---@param target Entity
+local function fireNoSplitTear(itemData, target)
+    local player = itemData.Owner
+    local chance = 0.10 + 0.05 * player.Luck
+    if player:HasTrinket(TrinketType.TRINKET_TEARDROP_CHARM) then
+        chance = 1 - (1 - chance) ^ 2
+    end
+    if itemData.RNG:RandomFloat() < chance then
+        local angle = itemData.RNG:RandomFloat() * 360
+        local directionVec = Vector.FromAngle(angle)
+        local tearParams = player:GetTearHitParams(WeaponType.WEAPON_TEARS)
+        local tearPosition = target.Position + directionVec * target.Size * 2
+        local tearVelocity = directionVec * 10 * player.ShotSpeed
+        local tear = Isaac.Spawn(EntityType.ENTITY_TEAR, tearParams.TearVariant, 0, tearPosition, tearVelocity, player):ToTear()
+        ---@cast tear EntityTear
+
+        tear:AddTearFlags(player.TearFlags)
+        tear:ClearTearFlags(TearFlags.TEAR_QUADSPLIT | TearFlags.TEAR_BURSTSPLIT)
+    end
+end
+
 local DamageEnemies = {}
 setmetatable(DamageEnemies, DamageEnemies)
 
@@ -87,6 +109,13 @@ function DamageEnemies:__call(itemData, targetQuery)
         local target = targetQuery.Result[1]
         target:TakeDamage(targetDamage, WOUND_DAMAGE_FLAGS, EntityRef(player), 1)
         target:SetColor(HURT_COLOR, 2, 1, false, false)
+
+        if (itemData.Synergies[CollectibleType.COLLECTIBLE_HAEMOLACRIA]
+            or itemData.Synergies[CollectibleType.COLLECTIBLE_CRICKETS_BODY]
+            )
+        then
+            fireNoSplitTear(itemData, target)
+        end
 
         if target:HasMortalDamage() then
             itemData.HitCount = 0
@@ -143,9 +172,12 @@ function mod:SpiritualWoundKill(entity)
 end
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_KILL, mod.SpiritualWoundKill)
 
+---@param victim Entity
+---@param flags DamageFlag
+---@param source EntityRef
+---@return false|nil -- returning true blocks other ENTITY_TAKE_DMG callbacks
 function mod:IgnoreEntityLaserDamage(victim, _, flags, source)
-    if source == nil then return nil end
-    if source.Entity == nil then return nil end
+    if source == nil or source.Entity == nil then return nil end
 
     local player = source.Entity:ToPlayer()
     if player == nil
@@ -154,7 +186,6 @@ function mod:IgnoreEntityLaserDamage(victim, _, flags, source)
         or flags & DamageFlag.DAMAGE_LASER == 0
         or not hasItem(player)
     then
-        -- returning true blocks other ENTITY_TAKE_DMG callbacks
         return nil
     else
         return false
