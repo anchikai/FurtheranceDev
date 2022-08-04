@@ -85,6 +85,90 @@ local AchievementGraphics = {
 	},
 }
 
+local AchievementText = {
+	Leah = {
+		MomsHeart = "Secret Diary",
+		Isaac = "Binds of Devotion",
+		Satan = "Rue",
+		BlueBaby = "Mandrake",
+		Lamb = "Parasol",
+		BossRush = "Leah's Lock",
+		Hush = "Keratoconus",
+		MegaSatan = "D16",
+		Delirium = "Heart Renovator",
+		Mother = "Owl's Eye",
+		Beast = "Essence of Love",
+		GreedMode = "Holy Heart",
+		Greedier = "Heart Embedded Coin",
+		Tainted = "Tainted Leah",
+		FullCompletion = "Exsanguination",
+	},
+	LeahB = {
+		PolNegPath = "Leah's Heart",
+		SoulPath = "Soul of Leah",
+		MegaSatan = "Rotten Love",
+		Delirium = "Shattered Heart",
+		Mother = "Cold Hearted",
+		Beast = "Essence of Hate",
+		Greedier = "Reverse Hope",
+		FullCompletion = "All Tainted Leah marks",
+	},
+	Peter = {
+		MomsHeart = "Prayer Journal",
+		Isaac = "Pallium",
+		Satan = "Severed Ear",
+		BlueBaby = "Chirho",
+		Lamb = "Book ofl Eviticus",
+		BossRush = "Altruism",
+		Hush = "Liberation",
+		MegaSatan = "Astragali",
+		Delirium = "Keys to the Kingdom",
+		Mother = "Itching Powder",
+		Beast = "Essence of Life",
+		GreedMode = "Alabaster Scrap",
+		Greedier = "Molten Gold",
+		Tainted = "Tainted Peter",
+		FullCompletion = "Golden Port",
+	},
+	PeterB = {
+		PolNegPath = "Leviathan's Tendril",
+		SoulPath = "Soul of Peter",
+		MegaSatan = "Trepanation",
+		Delirium = "Muddled Cross",
+		Mother = "Key to the Pit",
+		Beast = "Essence of Death",
+		Greedier = "Reverse Faith",
+		FullCompletion = "All Tainted Peter marks",
+	},
+	Miriam = {
+		MomsHeart = "Book of Guidance",
+		Isaac = "Apocalypse",
+		Satan = "Kareth",
+		BlueBaby = "Pillar of Clouds",
+		Lamb = "Pillar of Fire",
+		BossRush = "Wormwood Leaf",
+		Hush = "Caduceus Staff",
+		MegaSatan = "The Dreidel",
+		Delirium = "Tambourine",
+		Mother = "Firstborn Son",
+		Beast = "Essence of Prosperity",
+		GreedMode = "Saline Spray",
+		Greedier = "Miriam's Well",
+		Tainted = "Tainted Miriam",
+		FullCompletion = "Polydipsia",
+	},
+	MiriamB = {
+		PolNegPath = "Almagest Scrap",
+		SoulPath = "Soul of Miriam",
+		MegaSatan = "Golden Sack",
+		Delirium = "Spiritual Wound",
+		Mother = "Abyssal Penny",
+		Beast = "Jar of Manna",
+		Greedier = "Reverse Charity",
+		FullCompletion = "All Tainted Miriam marks",
+	},
+}
+
 local function createUnlocksTable()
 	return {
 		Leah = {
@@ -189,15 +273,21 @@ local function createUnlocksTable()
 	}
 end
 
+local noAPIachievements = {}
+
 Furtherance.Unlocks = createUnlocksTable()
 
 mod:ShelveModData({
 	Unlocks = createUnlocksTable()
 })
 
-local function PlayAchievement(achievement)
-	if GiantBookAPI then
+local function PlayAchievement(achievement,playerName,name)
+	if GiantBookAPI and Furtherance.PrefferedAPI == 1 then
 		GiantBookAPI.ShowAchievement(achievement .. ".png")
+	elseif ScreenAPI and (Furtherance.PrefferedAPI == 2 or (not GiantBookAPI and Furtherance.PrefferedAPI ~= 3)) then
+		ScreenAPI.PlayAchievement("gfx/ui/achievements/"..achievement..".png", 60)
+	else
+		table.insert(noAPIachievements,AchievementText[playerName][name])
 	end
 end
 
@@ -246,6 +336,19 @@ function mod:NoMovement(entity, hook, button)
 
 end
 mod:AddCallback(ModCallbacks.MC_INPUT_ACTION, mod.NoMovement, 2)
+
+local noAPITextCooldown = 0
+function mod:TextAchievementHandler()
+	if #noAPIachievements > 0 and noAPITextCooldown == 0 then
+		game:GetHUD():ShowItemText("Unlocked "..noAPIachievements[1])
+		noAPITextCooldown = 90
+		table.remove(noAPIachievements,1)
+	end
+	if noAPITextCooldown > 0 then
+		noAPITextCooldown = noAPITextCooldown - 1
+	end
+end
+mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.TextAchievementHandler)
 
 function mod:StartUnlocks()
 	local level = game:GetLevel()
@@ -521,7 +624,7 @@ function mod:UpdateCompletion(name, difficulty)
 				TargetTab[name].Unlock = true
 				
 				if AchievementGraphics[playerName][name] then
-					PlayAchievement(AchievementGraphics[playerName][name])
+					PlayAchievement(AchievementGraphics[playerName][name],playerName,name)
 				end
 			end
 			if difficulty == Difficulty.DIFFICULTY_HARD then
@@ -529,7 +632,7 @@ function mod:UpdateCompletion(name, difficulty)
 			elseif difficulty == Difficulty.DIFFICULTY_GREEDIER then
 				if TargetTab[name].Hard == false then
 					TargetTab[name].Hard = true
-					PlayAchievement(AchievementGraphics[playerName].Greedier)
+					PlayAchievement(AchievementGraphics[playerName].Greedier,playerName,"Greedier")
 				end
 			end
 			
@@ -558,7 +661,7 @@ function mod:UpdateCompletion(name, difficulty)
 			then
 				if not TargetTab.FullCompletion.Unlock then
 					TargetTab.FullCompletion.Unlock = true
-					PlayAchievement(AchievementGraphics[playerName].FullCompletion)
+					PlayAchievement(AchievementGraphics[playerName].FullCompletion,playerName,"FullCompletion")
 				
 					if (not MissingHard)
 					and (not TargetTab.FullCompletion.Hard)
@@ -574,7 +677,7 @@ function mod:UpdateCompletion(name, difficulty)
 				TargetTab[name].Unlock = true
 				
 				if AchievementGraphics[playerName][name] then
-					PlayAchievement(AchievementGraphics[playerName][name])
+					PlayAchievement(AchievementGraphics[playerName][name],playerName,name)
 				end
 			end
 			if difficulty == Difficulty.DIFFICULTY_HARD then
@@ -582,7 +685,7 @@ function mod:UpdateCompletion(name, difficulty)
 			elseif difficulty == Difficulty.DIFFICULTY_GREEDIER then
 				if TargetTab[name].Hard == false then
 					TargetTab[name].Hard = true
-					PlayAchievement(AchievementGraphics[playerName].Greedier)
+					PlayAchievement(AchievementGraphics[playerName].Greedier,playerName,"Greedier")
 				end
 			end
 			
@@ -593,7 +696,7 @@ function mod:UpdateCompletion(name, difficulty)
 			and TargetTab.Lamb.Unlock == true
 			then
 				TargetTab.PolNegPath = true
-				PlayAchievement(AchievementGraphics[playerName].PolNegPath)
+				PlayAchievement(AchievementGraphics[playerName].PolNegPath,playerName,"PolNegPath")
 			end
 			
 			if TargetTab.SoulPath == false
@@ -601,7 +704,7 @@ function mod:UpdateCompletion(name, difficulty)
 			and TargetTab.Hush.Unlock == true
 			then
 				TargetTab.SoulPath = true
-				PlayAchievement(AchievementGraphics[playerName].SoulPath)
+				PlayAchievement(AchievementGraphics[playerName].SoulPath,playerName,"SoulPath")
 			end
 			
 			local MissingUnlock = false
@@ -628,7 +731,7 @@ function mod:UpdateCompletion(name, difficulty)
 			if (not MissingUnlock)	then
 				if not TargetTab.FullCompletion.Unlock then
 					TargetTab.FullCompletion.Unlock = true
-					PlayAchievement(AchievementGraphics[playerName].FullCompletion)
+					PlayAchievement(AchievementGraphics[playerName].FullCompletion,playerName,"FullCompletion")
 					if (not MissingHard)
 					and (not TargetTab.FullCompletion.Hard)
 					then

@@ -8,6 +8,7 @@ local loadTimer
 Furtherance.FailSound = SoundEffect.SOUND_EDEN_GLITCH
 Furtherance.FlipSpeed = 1
 Furtherance.LeahDoubleTapSpeed = 1
+Furtherance.PrefferedAPI = 1
 
 mod.isLoadingData = false
 
