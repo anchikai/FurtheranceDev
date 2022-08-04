@@ -2,6 +2,12 @@ local laugh = Isaac.GetSoundIdByName("Sitcom_Laugh_Track")
 
 if ModConfigMenu then
 
+    Furtherance:ShelveModData({
+        LeahDoubleTapSpeed = 1,
+        FlipSpeed = 1,
+        FailSound = Furtherance.FailSound
+    })
+
     local FurtheranceMCM = "Furtherance"
 	ModConfigMenu.UpdateCategory(FurtheranceMCM, {
 		Info = {"Configuration for Furtherance.",}

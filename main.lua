@@ -514,4 +514,14 @@ end
 function Furtherance:GetTearsFromFireDelay(fireDelay)
 	return 30 / (fireDelay + 1)
 end
+
+-- if a player exists at this time, the mod was just hot-reloaded with luamod
+if Isaac.GetPlayer() ~= nil then
+    Furtherance:OnLoadData(true)
+    for i = 0, game:GetNumPlayers() - 1 do
+        local player = Isaac.GetPlayer(i)
+        Furtherance:OnLoadPlayerData(player)
+    end
+end
+
 print("Type \"furtherancehelp\" for Furtherance commands.")

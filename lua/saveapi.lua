@@ -155,7 +155,7 @@ function Furtherance:Serialize(datatype, default)
     return serialObject
 end
 
-function mod:OnLoadData(isContinued)
+function Furtherance:OnLoadData(isContinued)
     mod.IsContinued = isContinued
 
     local loadedData = json.decode(mod:LoadData())
@@ -283,7 +283,7 @@ local function loadAllPlayerData(player, index)
     data.LoadedData = true
 end
 
-function mod:OnLoadPlayerData(player)
+function Furtherance:OnLoadPlayerData(player)
     if isTaintedDeadLazarus(player) then return end
 
     local indexedPlayer = player
@@ -314,12 +314,3 @@ function mod:SaveCommand(cmd)
     end
 end
 mod:AddCallback(ModCallbacks.MC_EXECUTE_CMD, mod.SaveCommand)
-
--- if a player exists at this time, the mod was just hot-reloaded with luamod
-if Isaac.GetPlayer() ~= nil then
-    mod:OnLoadData(true)
-    for i = 0, game:GetNumPlayers() - 1 do
-        local player = Isaac.GetPlayer(i)
-        mod:OnLoadPlayerData(player)
-    end
-end
