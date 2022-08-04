@@ -179,8 +179,8 @@ CoinSubType.COIN_UNLUCKYPENNY = 117
 BombSubType.BOMB_CHARGED = 118
 
 ---- Lua Files ----
-include("lua/piber.lua")
 include("lua/customcallbacks.lua")
+include("lua/piber.lua")
 include("lua/saveapi.lua")
 
 -- Players

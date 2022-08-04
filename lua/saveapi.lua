@@ -48,6 +48,11 @@ local function getPlayerIndex(player)
     error("player index not found", 2)
 end
 
+---@param playerIndex number
+local function getPlayerKey(playerIndex)
+    return string.format("player_%.1f", playerIndex)
+end
+
 function Furtherance:SavePlayerData(keys)
     for key, default in pairs(keys) do
         savedPlayerKeys[key] = default
@@ -181,22 +186,22 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.OnLoadData)
 
 local function savePlayerData(player, i, savedData, keys)
     local data = mod:GetData(player)
-    local playerData = savedData.PlayerData[string.format("player_%.1f", i)]
+    local playerData = savedData.PlayerData[getPlayerKey(i)]
 
     for key, default in pairs(keys) do
         playerData[key] = saveEncode(data[key], default)
     end
 end
 
-function Furtherance:OnSaveData(canContinue)
+function Furtherance:OnSaveData(shouldSave)
     local savedData = {
         PlayerData = {}
     }
     for i in pairs(allPlayers) do
-        savedData.PlayerData[string.format("player_%.1f", i)] = {}
+        savedData.PlayerData[getPlayerKey(i)] = {}
     end
 
-    if canContinue then
+    if shouldSave then
         for i, player in pairs(allPlayers) do
             savePlayerData(player, i, savedData, savedPlayerKeys)
         end
@@ -217,7 +222,7 @@ function Furtherance:OnSaveData(canContinue)
     mod:SaveData(json.encode(savedData))
     mod.IsContinued = false
     mod.LoadedData = nil
-    mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_SAVED, nil, canContinue)
+    mod:RunCustomCallback(mod.CustomCallbacks.MC_POST_SAVED, nil, shouldSave)
 end
 mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.OnSaveData)
 
@@ -250,7 +255,7 @@ mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.ConnectLazarus)
 
 local function loadSavedPlayerData(player, index)
     local data = mod:GetData(player)
-    local playerData = mod.LoadedData.PlayerData[string.format("player_%.1f", index)]
+    local playerData = mod.LoadedData.PlayerData[getPlayerKey(index)]
     if mod.IsContinued and index ~= nil and playerData ~= nil then
         for key, default in pairs(savedPlayerKeys) do
             data[key] = loadDecodeOrDefault(playerData[key], default)
@@ -264,7 +269,7 @@ end
 
 local function loadShelvedPlayerData(player, index)
     local data = mod:GetData(player)
-    local playerData = mod.LoadedData.PlayerData[string.format("player_%.1f", index)]
+    local playerData = mod.LoadedData.PlayerData[getPlayerKey(index)]
     if index ~= nil and playerData ~= nil then
         for key, default in pairs(shelvedPlayerKeys) do
             data[key] = loadDecodeOrDefault(playerData[key], default)

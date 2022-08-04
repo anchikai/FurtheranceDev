@@ -102,6 +102,8 @@ mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.Hearts, PickupVariant.
 
 function mod:RenovatorDmg(player, flag)
 	local data = mod:GetData(player)
+	if data.RenovatorDamage == nil then return end
+
 	if flag == CacheFlag.CACHE_DAMAGE then
 		if player:GetPlayerType() == PlayerType.PLAYER_LEAH and player:HasCollectible(CollectibleType.COLLECTIBLE_HEART_RENOVATOR) and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) then
 			player.Damage = player.Damage + data.RenovatorDamage * 0.2
