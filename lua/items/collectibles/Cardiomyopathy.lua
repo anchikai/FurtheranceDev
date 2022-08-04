@@ -3,7 +3,7 @@ local mod = Furtherance
 function mod:Invulnerability(entity)
     local player = entity:ToPlayer()
     local data = mod:GetData(player)
-    if data.PickedUpRedHPCardio then
+    if data.PickedUpRedHPCardio == nil then
         data.PickedUpRedHPCardio = 0
     end
 
