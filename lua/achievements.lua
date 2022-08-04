@@ -42,7 +42,7 @@ local AchievementGraphics = {
 		Mother = "achievement_itchingpowder",
 		Beast = "achievement_essenceoflife",
 		GreedMode = "achievement_alabasterscrap",
-		Greedier = "achievement_unluckypenny",
+		Greedier = "achievement_moltengold",
 		Tainted = "achievement_taintedpeter",
 		FullCompletion = "achievement.full_completion",
 	},
