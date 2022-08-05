@@ -5,7 +5,8 @@ if ModConfigMenu then
     Furtherance:ShelveModData({
         LeahDoubleTapSpeed = 1,
         FlipSpeed = 1,
-        FailSound = Furtherance.FailSound
+        FailSound = Furtherance.FailSound,
+        PrefferedAPI = 1
     })
 
     local FurtheranceMCM = "Furtherance"
@@ -67,6 +68,32 @@ if ModConfigMenu then
             Furtherance.FlipSpeed = currentNum
         end,
         Info = "Change the speed of the Flip animation for Muddled Cross."
+    })
+
+    ModConfigMenu.AddSetting(FurtheranceMCM, "Visuals",
+    {
+        Type = ModConfigMenu.OptionType.NUMBER,
+        CurrentSetting = function()
+            return Furtherance.PrefferedAPI
+        end,
+        Default = 1,
+        Minimum = 1,
+        Maximum = 3,
+        Display = function()
+            local sstr
+            if Furtherance.PrefferedAPI == 1 then
+                sstr = "GiantBook API"
+            elseif Furtherance.PrefferedAPI == 2 then
+                sstr = "Screen API"
+            elseif Furtherance.PrefferedAPI == 3 then
+                sstr = "None"
+            end
+            return 'Preffered API for achievements: '..sstr
+        end,
+        OnChange = function(currentNum)
+            Furtherance.PrefferedAPI = currentNum
+        end,
+        Info = "Change API for achievements."
     })
 
     ModConfigMenu.AddSetting(FurtheranceMCM, "SFX",
