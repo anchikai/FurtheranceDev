@@ -74,12 +74,7 @@ end
 ---@param player EntityPlayer
 ---@param target Entity
 local function ipecacExplodeEnemy(player, target)
-    local tear = Isaac.Spawn(EntityType.ENTITY_TEAR, TearVariant.BLUE, 0, target.Position, Vector.Zero, player):ToTear()
-    ---@cast tear EntityTear
-    tear.CollisionDamage = player.Damage
-    tear:AddTearFlags(TearFlags.TEAR_EXPLOSIVE)
-    tear:SetColor(IPECAC_COLOR, 0, 1)
-    tear:Die()
+    game:BombExplosionEffects(target.Position, player.Damage, TearFlags.TEAR_EXPLOSIVE, IPECAC_COLOR, player)
 end
 
 local DamageEnemies = {}
