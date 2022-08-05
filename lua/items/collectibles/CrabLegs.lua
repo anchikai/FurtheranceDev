@@ -9,20 +9,24 @@ function mod:OnMove(player)
 
 	if player:HasCollectible(CollectibleType.COLLECTIBLE_CRAB_LEGS) then
 		local movementDirection = inputPlayer:GetMovementDirection()
-		if data.CrabSpeed == false and (movementDirection == Direction.LEFT or movementDirection == Direction.RIGHT) then
-			data.CrabSpeed = true
-		elseif data.CrabSpeed == true and not (movementDirection == Direction.LEFT or movementDirection == Direction.RIGHT) then
-			data.CrabSpeed = false
+		local isMovingSideways = movementDirection == Direction.LEFT or movementDirection == Direction.RIGHT
+		if data.CrabSpeed ~= isMovingSideways then
+			data.CrabSpeed = isMovingSideways
+		else
+			return
 		end
 	elseif data.CrabSpeed == true then
 		data.CrabSpeed = false
+	else
+		return
 	end
+	
 	player:AddCacheFlags(CacheFlag.CACHE_SPEED)
 	player:EvaluateItems()
 end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.OnMove)
 
-function mod:Crab_CacheEval(player, flag)
+function mod:CrabCacheEval(player)
 	local data = mod:GetData(player)
 	if data.CrabSpeed == nil then
 		data.CrabSpeed = false
@@ -31,4 +35,4 @@ function mod:Crab_CacheEval(player, flag)
 		player.MoveSpeed = player.MoveSpeed + 0.2
 	end
 end
-mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.Crab_CacheEval, CacheFlag.CACHE_SPEED)
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.CrabCacheEval, CacheFlag.CACHE_SPEED)
