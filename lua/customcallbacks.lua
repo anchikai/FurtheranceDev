@@ -7,7 +7,7 @@ Furtherance.CustomCallbacks = {
     MC_POST_NEW_ROOM = ModCallbacks.MC_POST_NEW_ROOM,
     MC_POST_PLAYER_INIT = ModCallbacks.MC_POST_PLAYER_INIT,
     MC_POST_PLAYER_UPDATE = ModCallbacks.MC_POST_PLAYER_UPDATE,
-    MC_POST_PEFFECT_UPDATE = ModCallbacks.MC_POST_PEFFECT_UPDATE,
+    -- MC_POST_PEFFECT_UPDATE = ModCallbacks.MC_POST_PEFFECT_UPDATE,
     MC_POST_LOADED = 20001,
     MC_POST_SAVED = 20003,
     MC_POST_PLAYER_DIED = 20005,
@@ -232,11 +232,11 @@ function mod:QueuePlayerUpdateCallback(player)
 end
 mod:AddVanillaCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.QueuePlayerUpdateCallback)
 
----@param player EntityPlayer
-function mod:QueuePEffectUpdateCallback(player)
-    runLoadedCallbackHandler(mod.CustomCallbacks.MC_POST_PEFFECT_UPDATE, player.Variant, player)
-end
-mod:AddVanillaCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.QueuePEffectUpdateCallback)
+-- ---@param player EntityPlayer
+-- function mod:QueuePEffectUpdateCallback(player)
+--     runLoadedCallbackHandler(mod.CustomCallbacks.MC_POST_PEFFECT_UPDATE, player.Variant, player)
+-- end
+-- mod:AddVanillaCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.QueuePEffectUpdateCallback)
 
 ---@param player EntityPlayer
 function mod:TrackPlayerDied(player)
