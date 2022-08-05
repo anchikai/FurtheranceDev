@@ -41,6 +41,7 @@ local SYNERGIES = {
     CollectibleType.COLLECTIBLE_CHOCOLATE_MILK,
     CollectibleType.COLLECTIBLE_HAEMOLACRIA,
     CollectibleType.COLLECTIBLE_CRICKETS_BODY,
+    CollectibleType.COLLECTIBLE_IPECAC,
 }
 
 ---@param player EntityPlayer

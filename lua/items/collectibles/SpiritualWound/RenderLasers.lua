@@ -15,6 +15,10 @@ local CHOCOLATE_MILK_LASER_COLOR = Color(1, 1, 1)
 CHOCOLATE_MILK_LASER_COLOR:SetColorize(1, 0.5, 0.3, 1)
 CHOCOLATE_MILK_LASER_COLOR:SetOffset(0.2, 0.2, 0.2)
 
+local IPECAC_LASER_COLOR = Color(1, 1, 1, 1, 0, 0, 0)
+IPECAC_LASER_COLOR:SetColorize(0.5, 0.9, 0.4, 1)
+IPECAC_LASER_COLOR:SetOffset(0.2, 0.4, 0.2)
+
 ---@param vector1 Vector
 ---@param vector2 Vector
 ---@param alpha number
@@ -74,7 +78,9 @@ local function spawnLaser(itemData, targetPosition)
 	laser:SetMaxDistance(sourcePos:Distance(targetPosition) + 50)
 
 	if woundVariant == SpiritualWoundVariant.NORMAL then
-        if player:HasCollectible(CollectibleType.COLLECTIBLE_CHOCOLATE_MILK) then
+        if player:HasCollectible(CollectibleType.COLLECTIBLE_IPECAC) then
+            laser:SetColor(IPECAC_LASER_COLOR, 0, 1)
+        elseif player:HasCollectible(CollectibleType.COLLECTIBLE_CHOCOLATE_MILK) then
             laser:SetColor(CHOCOLATE_MILK_LASER_COLOR, 0, 1)
         else
             laser:SetColor(LASER_COLOR, 0, 1)
@@ -222,6 +228,7 @@ function RenderLasers:__call(itemData, targetQuery)
 
     if itemData.OldLaserVariant ~= itemData.LaserVariant
         or itemData.TriggeredSynergies[CollectibleType.COLLECTIBLE_CHOCOLATE_MILK]
+        or itemData.TriggeredSynergies[CollectibleType.IPECAC]
     then
         RenderLasers.RemoveLasers(itemData)
         itemData.OldLaserVariant = itemData.LaserVariant

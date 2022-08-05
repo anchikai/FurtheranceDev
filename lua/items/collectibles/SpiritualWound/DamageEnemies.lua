@@ -10,6 +10,9 @@ local WOUND_DAMAGE_FLAGS = 0 -- no flags
 local FIRE_DELAY_MULTIPLIER = 0.2
 local HEAL_CHANCE = 0.05
 
+local IPECAC_COLOR = Color(1, 1, 1, 1, 0, 0, 0)
+IPECAC_COLOR:SetColorize(0.5, 0.9, 0.4, 1)
+
 local function hasItem(player)
     return player:HasCollectible(CollectibleType.COLLECTIBLE_SPIRITUAL_WOUND) or player:GetPlayerType() == PlayerType.PLAYER_MIRIAM_B
 end
@@ -68,6 +71,17 @@ local function fireNoSplitTear(itemData, target)
     end
 end
 
+---@param player EntityPlayer
+---@param target Entity
+local function ipecacExplodeEnemy(player, target)
+    local tear = Isaac.Spawn(EntityType.ENTITY_TEAR, TearVariant.BLUE, 0, target.Position, Vector.Zero, player):ToTear()
+    ---@cast tear EntityTear
+    tear.CollisionDamage = player.Damage
+    tear:AddTearFlags(TearFlags.TEAR_EXPLOSIVE)
+    tear:SetColor(IPECAC_COLOR, 0, 1)
+    tear:Die()
+end
+
 local DamageEnemies = {}
 setmetatable(DamageEnemies, DamageEnemies)
 
@@ -110,9 +124,8 @@ function DamageEnemies:__call(itemData, targetQuery)
         target:TakeDamage(targetDamage, WOUND_DAMAGE_FLAGS, EntityRef(player), 1)
         target:SetColor(HURT_COLOR, 2, 1, false, false)
 
-        if (itemData.Synergies[CollectibleType.COLLECTIBLE_HAEMOLACRIA]
+        if itemData.Synergies[CollectibleType.COLLECTIBLE_HAEMOLACRIA]
             or itemData.Synergies[CollectibleType.COLLECTIBLE_CRICKETS_BODY]
-            )
         then
             fireNoSplitTear(itemData, target)
         end
@@ -121,6 +134,9 @@ function DamageEnemies:__call(itemData, targetQuery)
             itemData.HitCount = 0
             itemData.SnapCooldown = 7
             mod:GetData(target).SpiritualWoundDied = true
+            if itemData.Synergies[CollectibleType.COLLECTIBLE_IPECAC] then
+                ipecacExplodeEnemy(player, target)
+            end
         end
     elseif targetQuery.Type == TargetType.GRID_ENTITY then
         ---@cast targetQuery GridEntityTargetQuery
