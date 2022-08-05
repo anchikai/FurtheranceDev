@@ -89,7 +89,7 @@ function mod:ClearDataTableOnExit()
 		dataTable[k] = nil
 	end
 end
-mod:AddCallback(mod.CustomCallbacks.MC_POST_SAVED, mod.ClearDataTableOnExit)
+mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, mod.ClearDataTableOnExit)
 
 function Furtherance:GetEntityIndex(entity)
 	if entity == nil then

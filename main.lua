@@ -180,8 +180,8 @@ BombSubType.BOMB_CHARGED = 118
 
 ---- Lua Files ----
 include("lua/customcallbacks.lua")
-include("lua/piber.lua")
 include("lua/saveapi.lua")
+include("lua/piber.lua")
 
 -- Players
 include("lua/players/Leah.lua")
