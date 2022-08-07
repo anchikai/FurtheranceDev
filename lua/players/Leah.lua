@@ -83,7 +83,7 @@ function mod:OnUpdate(player)
 			player:EvaluateItems()
 		end
 	end
-	if player.FrameCount < 1 and IsEnemyNear(player) ~= true and ((player:GetPlayerType() == PlayerType.PLAYER_LEAH_B and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) ~= true)
+	if IsEnemyNear(player) ~= true and ((player:GetPlayerType() == PlayerType.PLAYER_LEAH_B and player:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) ~= true)
 	or player:HasCollectible(CollectibleType.COLLECTIBLE_SHATTERED_HEART)) and player:GetBrokenHearts() ~= 11 and room:GetAliveEnemiesCount() > 0 then
 		if game:GetFrameCount() % 120 == 0 then
 			SFXManager():Play(bhb)
