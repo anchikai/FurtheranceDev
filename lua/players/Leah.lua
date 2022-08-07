@@ -59,7 +59,7 @@ function mod:OnUpdate(player)
 	local data = mod:GetData(player)
 
 	if player:GetPlayerType() == PlayerType.PLAYER_LEAH_B then
-		if data.LeahbPower < 0 then
+		if data.LeahbPower == nil or data.LeahbPower < 0 then
 			data.LeahbPower = 0
 		end
 		if player:GetMaxHearts() > 0 then
