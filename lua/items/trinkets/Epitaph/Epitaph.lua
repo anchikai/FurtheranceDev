@@ -131,6 +131,8 @@ function mod:EpitaphDied(entity)
             local level = game:GetLevel()
             data.EpitaphStage = level:GetStage()
             data.RunCount = 0
+            data.EpitaphFirstPassiveItem = data.NewEpitaphFirstPassiveItem
+            data.EpitaphLastPassiveItem = data.NewEpitaphLastPassiveItem
         else
             data.EpitaphStage = nil
             data.EpitaphFirstPassiveItem = nil
