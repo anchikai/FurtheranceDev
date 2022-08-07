@@ -461,6 +461,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_ITCHING_POWDER, "You will take a 
 -- Parasol
 EID:addTrinket(TrinketType.TRINKET_PARASOL, "↑ All familiars now block enemy shots", "Parasol", "en_us")
 
+-- Hammerhead Worm
+EID:addTrinket(TrinketType.TRINKET_HAMMERHEAD_WORM, "Each tear's {{Damage}} Damage, Range {{Range}}, and {{Shotspeed}} Shot Speed is slightly randomized", "Hammerhead Worm", "en_us")
+
 
 
 -- Soul of Leah
@@ -514,20 +517,20 @@ EID:addPill(PILLEFFECT_HEARTACHE_DOWN, "↑ Removes one {{BrokenHeart}} Broken H
 -- Moon Heart
 -- EID:addEntity(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, 225, "Moon Heart", "Worth 1 HP#Teleports you to the Secret Room when depleted#↓ Only 1 can be held at a time", "en_us")
 
--- 
+-- Hope Card
 EID:addCard(CARD_HOPE, "Killing enemies has a chance to spawn pickups for the room", "XXIII - Hope", "en_us")
 
--- 
+-- Reverse Hope Card
 EID:addCard(CARD_REVERSE_HOPE, "Teleports Isaac into an extra challenge room", "XXIII - Hope?", "en_us")
 
--- 
+-- Faith Card
 EID:addCard(CARD_FAITH, "Spawns a Confessional", "XXV - Faith", "en_us")
 
--- 
+-- Reverse Faith Card
 EID:addCard(CARD_REVERSE_FAITH, "Spawns two Moon Hearts", "XXV - Faith?", "en_us")
 
--- 
+-- Charity Card
 EID:addCard(CARD_CHARITY, "↑ Uses Jar of Manna 3 times, giving you the pickups you need the most#↑ If no pickups are needed, stat ups will be granted instead", "XXIV - Charity", "en_us")
 
--- 
+-- Reverse Charity Card
 EID:addCard(CARD_REVERSE_CHARITY, "Doubles all pickups in the room#The doubled pickups will cost money", "XXIV - Charity?", "en_us")
