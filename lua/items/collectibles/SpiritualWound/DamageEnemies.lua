@@ -129,7 +129,7 @@ function DamageEnemies:__call(itemData, targetQuery)
             itemData.HitCount = 0
             itemData.SnapCooldown = 7
             mod:GetData(target).SpiritualWoundDied = true
-            if itemData.Synergies[CollectibleType.COLLECTIBLE_IPECAC] then
+            if player:HasCollectible(CollectibleType.COLLECTIBLE_IPECAC) then
                 ipecacExplodeEnemy(player, target)
             end
         end
