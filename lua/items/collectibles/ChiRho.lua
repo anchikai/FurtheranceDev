@@ -46,13 +46,3 @@ function mod:PostLaserInit(laser)
     laser.DisableFollowParent = true
 end
 mod:AddCallback(ModCallbacks.MC_POST_LASER_INIT, mod.PostLaserInit)
-
----@param laser EntityLaser
-function mod:PostLaserUpdate(laser)
-    local player = laser.SpawnerEntity and laser.SpawnerEntity:ToPlayer()
-    if player == nil or not player:HasCollectible(CollectibleType.COLLECTIBLE_CHI_RHO) or laser.FrameCount ~= 1 then return end
-    if not player:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY_2) then
-        laser:SetOneHit(true)
-    end
-end
-mod:AddCallback(ModCallbacks.MC_POST_LASER_UPDATE, mod.PostLaserUpdate)

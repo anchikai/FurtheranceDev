@@ -1287,7 +1287,6 @@ local Wiki = {
 			{str = "All of Isaac's lasers now home on enemies."},
 			{str = "- Technology 2 is not affected."},
 			{str = "They will stay put where they were fired, similarly to Anti-Gravity."},
-			{str = "They can only deal damage for the first frame."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
