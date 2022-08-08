@@ -119,8 +119,8 @@ function DamageEnemies:__call(itemData, targetQuery)
         target:TakeDamage(targetDamage, WOUND_DAMAGE_FLAGS, EntityRef(player), 1)
         target:SetColor(HURT_COLOR, 2, 1, false, false)
 
-        if itemData.Synergies[CollectibleType.COLLECTIBLE_HAEMOLACRIA]
-            or itemData.Synergies[CollectibleType.COLLECTIBLE_CRICKETS_BODY]
+        if player:HasCollectible(CollectibleType.COLLECTIBLE_HAEMOLACRIA)
+            or player:HasCollectible(CollectibleType.COLLECTIBLE_CRICKETS_BODY)
         then
             fireNoSplitTear(itemData, target)
         end
