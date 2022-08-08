@@ -53,7 +53,7 @@ end
 ---@param target Entity
 local function fireNoSplitTear(itemData, target)
     local player = itemData.Owner
-    local chance = 0.10 + 0.05 * player.Luck
+    local chance = clamp(0.10 + 0.05 * player.Luck, 0.10, 1)
     if player:HasTrinket(TrinketType.TRINKET_TEARDROP_CHARM) then
         chance = 1 - (1 - chance) ^ 2
     end
