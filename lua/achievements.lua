@@ -17,7 +17,7 @@ local AchievementGraphics = {
 		GreedMode = "achievement_holyheart",
 		Greedier = "achievement_heartembeddedcoin",
 		Tainted = "achievement_taintedleah",
-		FullCompletion = "achievement.full_completion",
+		FullCompletion = "achievement_exsanguination",
 	},
 	LeahB = {
 		PolNegPath = "achievement_leahsheart",
@@ -44,7 +44,7 @@ local AchievementGraphics = {
 		GreedMode = "achievement_alabasterscrap",
 		Greedier = "achievement_moltengold",
 		Tainted = "achievement_taintedpeter",
-		FullCompletion = "achievement.full_completion",
+		FullCompletion = "achievement_goldenport",
 	},
 	PeterB = {
 		PolNegPath = "achievement_leviathanstendril",
@@ -67,11 +67,11 @@ local AchievementGraphics = {
 		MegaSatan = "achievement_thedreidel",
 		Delirium = "achievement_tambourine",
 		Mother = "achievement_firstbornson",
-		Beast = "achievement_essenceofprosperity",
+		Beast = "achievement_essenceofprosperitydrought",
 		GreedMode = "achievement_salinespray",
 		Greedier = "achievement_miriamswell",
 		Tainted = "achievement_taintedmiriam",
-		FullCompletion = "achievement.full_completion",
+		FullCompletion = "achievement_polydipsia",
 	},
 	MiriamB = {
 		PolNegPath = "achievement_almagestscrap",
@@ -151,7 +151,7 @@ local AchievementText = {
 		MegaSatan = "The Dreidel",
 		Delirium = "Tambourine",
 		Mother = "Firstborn Son",
-		Beast = "Essence of Prosperity",
+		Beast = "Essence of Prosperity + Drought",
 		GreedMode = "Saline Spray",
 		Greedier = "Miriam's Well",
 		Tainted = "Tainted Miriam",
@@ -589,7 +589,7 @@ function mod:StartUnlocksPickups(entity)
 
 	-- Miriam
 	if mod.Unlocks.Miriam.Beast.Unlock == false then
-		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == OBJ_ESSENCE_OF_PROSPERITY then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and (entity.SubType == OBJ_ESSENCE_OF_PROSPERITY or entity.SubType == OBJ_ESSENCE_OF_DROUGHT) then
 			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
 		end
 	end
