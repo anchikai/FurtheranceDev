@@ -266,7 +266,7 @@ local Wiki = {
 		},
 		{ -- Credits
 			{str = "Credits", fsize = 2, clr = 3, halign = 0},
-			{str = "Concept by PootisTweet!"},
+			{str = "Concept by HoneyVee!"},
 		},
 	},
 	TechIX = {

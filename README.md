@@ -5,18 +5,21 @@ Here you will get all the most recent updates and changes for upcoming Furtheran
 ## Contributors
 - anchikai.
 - AgentDrako
+- Akad
 - Aladar
 - BrakeDude
-- cat,,
-- Goncholito
 - kittenchilly
 - Kotry
+- lambchop_is_ok
+- oddvio
 - PixelPlz
 - poody_blue
-- Merlin4755
-- Sillst
-- Soaring__Sky
+- Rack_Jet
+- RogueWatermelon
 - Shoop
 - shrkiツ
+- Sillst
+- Soaring__Sky
 - thedemisemihemidemisemiquaver
 - ThePolarPorfim
+- Everyone in the community for their amazing feedback

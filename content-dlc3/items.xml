@@ -102,7 +102,7 @@
 	<active id="95" name="Astragali" description="Reroll your biddings" gfx="astragali.png" maxcharges="4" quality="2" />
 
 	<!-- Trinkets -->
-	<trinket id="0" name="Holy Heart" description="Protective hearts" gfx="holy_heart.png" /> <!-- Concept by PootisTweet! -->
+	<trinket id="0" name="Holy Heart" description="Protective hearts" gfx="holy_heart.png" /> <!-- Concept by HoneyVee! -->
 	<trinket id="1" name="Cringe" description="You're posting it" gfx="cringe.png" /> <!-- Concept by Freg! -->
 	<trinket id="2" name="Slick Worm" description="Sliiiick" gfx="slick_worm.png" /> <!-- Concept by Freg! -->
 	<trinket id="3" name="Grass" description="Go touch some" gfx="grass.png" /> <!-- Concept by Aeronaut! -->
@@ -113,7 +113,7 @@
 	<trinket id="8" name="Almagest Scrap" description="Chart the stars" gfx="almagest_scrap.png" />
 	<trinket id="9" name="Wormwood Leaf" description="Tastes bitter" gfx="wormwood_leaf.png" />
 	<trinket id="10" name="Escape Plan" description="When the going gets tough" gfx="escape_plan.png" />
-	<trinket id="11" name="Epitaph" description="You will remember this name." gfx="epitaph.png" />
+	<trinket id="11" name="Epitaph" description="You will remember this name." gfx="epitaph.png" /> <!-- Concept by DLNT! -->
 	<trinket id="12" name="Leviathan's Tendril" description="An instrument to control the waves" gfx="leviathans_tendril.png" tags="devil" />
 	<trinket id="13" name="Altruism" description="Blessing of charity" gfx="altruism.png" />
 	<trinket id="14" name="Nil Num" description="Q" gfx="nil_num.png" />

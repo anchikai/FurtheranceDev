@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <metadata>
-    <name>Furtherance: Dev Edition</name>
-    <directory>furtherance_dev</directory>
+    <name>Furtherance</name>
+    <directory>furtherance</directory>
+    <id>2737123333</id>
     <description>[h1]The Binding of Isaac: Furtherance is a modded expansion that adds a flavorful amount of new content![/h1]
 
 [h2]Features[/h2]
-- 14 Passive Items
-- 18 Active Items
-- 4 Trinkets
-- 2 Characters
-- 7 Blessings
-- 1 Curse
+- 42 Passive Items
+- 26 Active Items
+- 20 Trinkets
+- 3 Characters w/ Tainted Counterparts: Leah, Peter, &amp; Miriam
+- Unlocks for all Characters
 - Mod Config Menu Support
 - EID Suppport
 - Encyclopedia Support
@@ -27,20 +27,46 @@
 - [b]Russian[/b]
 
 [h2]Configuration[/h2]
-
 Simply install [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787]Mod Config Menu[/url]
 
-[h2]Special Thanks to[/h2]
-- Blind, the Bound Demon for creating item sprites
-- BrakeDude for providing the Russian translations and coding help
-- cat,, for making Leah's stage sprites
-- Goncholito for creating item sprites
-- Kotry for providing the Spanish translations and thumbnail art
-- poody_blue for creating item sprites, UI elements, character sprites, costumes, and more
-- shrkiツ for extensive play testing and feedback, and item sprites
-- Sillst for providing sfx
-- Aeronaut, Freg, Joply, PootisTweet, shrkiツ, SybilScribble, and Tesseract for concepts!</description>
-    <version>1.5</version>
+[h2]The Team[/h2]
+- anchikai.
+- BrakeDude
+- oddvio
+- PixelPlz
+- poody_blue
+- Shoop
+- Soaring__Sky
+- thedemisemihemidemisemiquaver
+
+[h2]Contributors[/h2]
+- AgentDrako
+- Akad
+- Aladar
+- kittenchilly
+- Kotry
+- lambchop_is_ok
+- Rack_Jet
+- RogueWatermelon
+- shrkiツ
+- Sillst
+- ThePolarPorfim
+
+[h2]Contributions from the Community[/h2]
+- Aeronaut
+- DLNT
+- Freg
+- HoneyVee
+- Joply
+- retro100
+- SybilScribble
+- Tesseract
+
+
+[h3]Disclaimer![/h3]
+Furtherance isn't always consisting of brand new content, as we often take content from our past mods &amp; content and apply them to this pack. If any of our concepts appear again but in another mod, we did not copy them- do your homework (eg. Andromeda's astrological signs vs. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2500898099]our own[/url], ours predating Andromeda by almost a year).
+Quite a handful of people on this team are not well-versed in the modding community, anyway. Thus, we will not remove or readily change content that is coincidentally similar to something someone else happened to repeat. As much as we love modding and respect this community, we will not cater to anyone at our own expense- wouldn't you, or maybe even aren't you doing the same?</description>
+    <version>1.8</version>
     <visibility>Public</visibility>
     <tag id="Lua"/>
     <tag id="Items"/>
