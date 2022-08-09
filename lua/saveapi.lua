@@ -163,7 +163,15 @@ end
 function Furtherance:OnLoadData(isContinued)
     mod.IsContinued = isContinued
 
-    local loadedData = json.decode(mod:LoadData())
+    local loadedString = mod:LoadData()
+    local loadedData
+    if loadedString == "" then
+        loadedData = {
+            PlayerData = {}
+        }
+    else
+        loadedData = json.decode(mod:LoadData())
+    end
 
     if isContinued then
         for key, default in pairs(savedModKeys) do
