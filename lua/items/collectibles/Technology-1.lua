@@ -14,7 +14,7 @@ function mod:Minus1Shots(tear)
 				laser.TearFlags = player.TearFlags & ~TearFlags.TEAR_QUADSPLIT
 				laser:SetOneHit(true)
 			end
-			tear:ClearTearFlags(TearFlags.TEAR_QUADSPLIT)
+			tear:ClearTearFlags(TearFlags.TEAR_QUADSPLIT | TearFlags.TEAR_BURSTSPLIT | TearFlags.TEAR_SPLIT)
 			tear:Die()
 		end
 		tear.Color = Color(0.75, 0, 0, 1, 0.25, 0, 0)
