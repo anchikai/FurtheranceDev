@@ -30,10 +30,10 @@ local RandomChests = {
 
 function mod:UseAstragali(_, _, player)
     local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_ASTRAGALI)
-	for _, entity in ipairs(Isaac.GetRoomEntities()) do
+	for _, entity in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP)) do
 		local pickup = entity:ToPickup()
         local choice = rng:RandomInt(#RandomChests) + 1
-		if pickup and RerollableChests[pickup.Variant] then
+		if RerollableChests[pickup.Variant] and pickup.SubType > ChestSubType.CHEST_OPENED then
 			pickup:Morph(EntityType.ENTITY_PICKUP, RandomChests[choice], 0)
 		end
 	end
