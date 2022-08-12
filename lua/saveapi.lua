@@ -162,7 +162,7 @@ function Furtherance:Serialize(datatype, default)
     return serialObject
 end
 
-local function createSaveData()
+local function createEmptySaveData()
     return {
         Version = MOD_VERSION,
         PlayerData = {}
@@ -175,13 +175,13 @@ function Furtherance:OnLoadData(isContinued)
     local loadedString = mod:LoadData()
     local loadedData
     if loadedString == "" then
-        loadedData = createSaveData()
+        loadedData = createEmptySaveData()
     else
-        loadedData = json.decode(mod:LoadData())
+        loadedData = json.decode(loadedString)
     end
 
     if loadedData.Version ~= MOD_VERSION then
-        loadedData = createSaveData()
+        loadedData = createEmptySaveData()
     end
 
     if isContinued then
@@ -213,9 +213,8 @@ local function savePlayerData(player, i, savedData, keys)
 end
 
 function Furtherance:OnSaveData(shouldSave)
-    local savedData = {
-        PlayerData = {}
-    }
+    local savedData = createEmptySaveData()
+
     for i in pairs(allPlayers) do
         savedData.PlayerData[getPlayerKey(i)] = {}
     end
