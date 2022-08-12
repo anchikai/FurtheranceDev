@@ -13,6 +13,7 @@ local whitelistedPickupVariants = {
 
 function mod:UseAceOfShields(_, player)
 	local room = game:GetRoom()
+	mod:PlaySND(CARD_ACE_OF_SHIELDS_SFX)
 	for _, entity in ipairs(Isaac.GetRoomEntities()) do
 		local pickup = entity:ToPickup()
 		if pickup and not whitelistedPickupVariants[pickup.Variant] then

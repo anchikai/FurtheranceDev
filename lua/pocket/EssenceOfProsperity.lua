@@ -3,6 +3,7 @@ local game = Game()
 
 function mod:UseEssenceOfProsperity(card, player, flag)
 	RainDamage = 15
+    mod:PlaySND(OBJ_ESSENCE_OF_PROSPERITY_SFX)
     for i, entity in ipairs(Isaac.GetRoomEntities()) do
         if entity:IsActiveEnemy(false) and entity:IsVulnerableEnemy() then
             Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.RAIN_DROP, 0, entity.Position, Vector.Zero, player)

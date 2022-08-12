@@ -5,6 +5,7 @@ local WaterLoop = Isaac.GetSoundIdByName("FixYourFuckingAPI")
 function mod:UseSoulOfMiriam(card, player, flag)
 	RainTimer = 1200
     SFXManager():SetAmbientSound(WaterLoop, 1, 1)
+    mod:PlaySND(RUNE_SOUL_OF_MIRIAM_SFX)
 end
 mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseSoulOfMiriam, RUNE_SOUL_OF_MIRIAM)
 

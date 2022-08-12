@@ -4,6 +4,7 @@ local game = Game()
 function mod:UseEssenceOfDrought(card, player, flag)
     local room = game:GetRoom()
     room:StopRain()
+    mod:PlaySND(OBJ_ESSENCE_OF_DROUGHT_SFX)
     for i, entity in ipairs(Isaac.GetRoomEntities()) do
         if entity:IsActiveEnemy(false) and entity:IsVulnerableEnemy() and entity:IsBoss() == false then
             entity:AddEntityFlags(EntityFlag.FLAG_BLEED_OUT | EntityFlag.FLAG_ICE)
