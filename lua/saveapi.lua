@@ -1,6 +1,8 @@
 local mod = Furtherance
 local game = Game()
 
+local MOD_VERSION = "1.9"
+
 Furtherance.IsContinued = false
 Furtherance.LoadedData = false
 
@@ -160,17 +162,26 @@ function Furtherance:Serialize(datatype, default)
     return serialObject
 end
 
+local function createSaveData()
+    return {
+        Version = MOD_VERSION,
+        PlayerData = {}
+    }
+end
+
 function Furtherance:OnLoadData(isContinued)
     mod.IsContinued = isContinued
 
     local loadedString = mod:LoadData()
     local loadedData
     if loadedString == "" then
-        loadedData = {
-            PlayerData = {}
-        }
+        loadedData = createSaveData()
     else
         loadedData = json.decode(mod:LoadData())
+    end
+
+    if loadedData.Version ~= MOD_VERSION then
+        loadedData = createSaveData()
     end
 
     if isContinued then

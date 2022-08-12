@@ -278,7 +278,7 @@ local noAPIachievements = {}
 Furtherance.Unlocks = createUnlocksTable()
 
 mod:ShelveModData({
-	Unlocks = createUnlocksTable()
+	Unlocks = createUnlocksTable
 })
 
 local function PlayAchievement(achievement,playerName,name)
