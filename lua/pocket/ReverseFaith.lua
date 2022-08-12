@@ -1,7 +1,6 @@
 local mod = Furtherance
 
 function mod:UseReverseFaith(card, player, flag)
-    mod:PlaySND(CARD_REVERSE_FAITH_SFX)
 	for _ = 1, 2 do
         Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_HEART, HeartSubType.HEART_MOON, Isaac.GetFreeNearPosition(player.Position, 40), Vector.Zero, player)
     end

@@ -34,7 +34,6 @@ mod:AddCallback(ModCallbacks.MC_PRE_ENTITY_SPAWN, mod.SpawnGoldenCard)
 
 function mod:UseGoldCard(card, player, flags)
     local rng = player:GetCardRNG(CARD_GOLDEN)
-    mod:PlaySND(CARD_GOLDEN_SFX)
     if rng:RandomFloat() <= 0.5 then
         if player:HasCollectible(CollectibleType.COLLECTIBLE_BLANK_CARD) == false then
             player:AddCard(CARD_GOLDEN)

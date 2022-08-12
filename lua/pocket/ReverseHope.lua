@@ -3,7 +3,6 @@ local game = Game()
 local rng = RNG()
 
 function mod:UseReverseHope(card, player, flag)
-	mod:PlaySND(CARD_REVERSE_HOPE_SFX)
 	local level = game:GetLevel()
 	Isaac.ExecuteCommand("goto s.challenge."..rng:RandomInt(25))
 	level.LeaveDoor = -1

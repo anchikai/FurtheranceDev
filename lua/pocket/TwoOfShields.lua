@@ -16,6 +16,5 @@ function mod:UseAceOfShields(card, player, flag)
 			SFXManager():Play(SoundEffect.SOUND_ITEMRECHARGE)
 		end
 	end
-	mod:PlaySND(CARD_TWO_OF_SHIELDS_SFX)
 end
 mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseAceOfShields, CARD_TWO_OF_SHIELDS)

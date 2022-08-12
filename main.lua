@@ -20,16 +20,6 @@ PlayerType.PLAYER_PETER_B = Isaac.GetPlayerTypeByName("Peter", true)
 PlayerType.PLAYER_MIRIAM = Isaac.GetPlayerTypeByName("Miriam", false)
 PlayerType.PLAYER_MIRIAM_B = Isaac.GetPlayerTypeByName("Miriam", true)
 
-function mod:PlaySND(sfx, alwaysSfx)
-	local sound = nil
-	if (Options.AnnouncerVoiceMode == 2 or Options.AnnouncerVoiceMode == 0 and RNG():RandomInt(4) == 0 or alwaysSfx) then
-		sound = sfx
-	end
-	if sound then
-		SFXManager():Play(sound,1,0)
-	end
-end
-
 -- Collectibles
 CollectibleType.COLLECTIBLE_TECH_IX = Isaac.GetItemIdByName("Tech IX")
 CollectibleType.COLLECTIBLE_LEAKING_TANK = Isaac.GetItemIdByName("Leaking Tank")
@@ -187,28 +177,6 @@ HeartSubType.HEART_ROCK = 226
 SackSubType.SACK_GOLDEN = 3
 CoinSubType.COIN_UNLUCKYPENNY = 117
 BombSubType.BOMB_CHARGED = 118
-
--- Sound Effects
-RUNE_SOUL_OF_LEAH_SFX = Isaac.GetSoundIdByName("Soul Of Leah")
-CARD_TWO_OF_SHIELDS_SFX = Isaac.GetSoundIdByName("Two Of Shields")
-CARD_ACE_OF_SHIELDS_SFX = Isaac.GetSoundIdByName("Ace Of Shields")
-CARD_TRAP_SFX = Isaac.GetSoundIdByName("Trap Card")
-CARD_KEY_SFX = Isaac.GetSoundIdByName("Key Card")
-RUNE_SOUL_OF_PETER_SFX = Isaac.GetSoundIdByName("Soul Of Peter")
-RUNE_SOUL_OF_MIRIAM_SFX = Isaac.GetSoundIdByName("Soul Of Miriam")
-OBJ_ESSENCE_OF_LOVE_SFX = Isaac.GetSoundIdByName("Essence Of Love")
-OBJ_ESSENCE_OF_HATE_SFX = Isaac.GetSoundIdByName("Essence Of Hate")
-OBJ_ESSENCE_OF_LIFE_SFX = Isaac.GetSoundIdByName("Essence Of Life")
-OBJ_ESSENCE_OF_DEATH_SFX = Isaac.GetSoundIdByName("Essence Of Death")
-OBJ_ESSENCE_OF_PROSPERITY_SFX = Isaac.GetSoundIdByName("Essence Of Prosperity")
-OBJ_ESSENCE_OF_DROUGHT_SFX = Isaac.GetSoundIdByName("Essence Of Drought")
-CARD_GOLDEN_SFX = Isaac.GetSoundIdByName("Golden Card")
-CARD_HOPE_SFX = Isaac.GetSoundIdByName("Hope")
-CARD_REVERSE_HOPE_SFX = Isaac.GetSoundIdByName("ReverseHope")
-CARD_FAITH_SFX = Isaac.GetSoundIdByName("Faith")
-CARD_REVERSE_FAITH_SFX = Isaac.GetSoundIdByName("ReverseFaith")
-CARD_CHARITY_SFX = Isaac.GetSoundIdByName("Charity")
-CARD_REVERSE_CHARITY_SFX = Isaac.GetSoundIdByName("ReverseCharity")
 
 ---- Lua Files ----
 include("lua/customcallbacks.lua")

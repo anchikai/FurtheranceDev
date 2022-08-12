@@ -8,7 +8,6 @@ local whitelistedPickupVariants = {
 }
 
 function mod:UseReverseCharity(card, player, flag)
-    mod:PlaySND(CARD_REVERSE_CHARITY_SFX)
 	for _, entity in ipairs(Isaac.FindByType(EntityType.ENTITY_PICKUP)) do
         if not whitelistedPickupVariants[entity.Variant] then
             local clone = Isaac.Spawn(entity.Type, entity.Variant, entity.SubType, Isaac.GetFreeNearPosition(entity.Position, 40), Vector.Zero, player):ToPickup()

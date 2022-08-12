@@ -3,7 +3,6 @@ local game = Game()
 
 function mod:UseSoulOfLeah(card, player, flag)
 	SFXManager():Play(Isaac.GetSoundIdByName("BrokenHeartbeat"))
-	mod:PlaySND(RUNE_SOUL_OF_LEAH_SFX)
 	local data = mod:GetData(player)
 	local level = game:GetLevel()
 	local roomsList = level:GetRooms()

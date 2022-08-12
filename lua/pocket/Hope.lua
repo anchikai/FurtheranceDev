@@ -4,7 +4,6 @@ local rng = RNG()
 local HopeActive = false
 function mod:UseHope(card, player, flag)
 	HopeActive = true
-    mod:PlaySND(CARD_HOPE_SFX)
 end
 mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseHope, CARD_HOPE)
 

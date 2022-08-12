@@ -1,7 +1,6 @@
 local mod = Furtherance
 
 function mod:UseEssenceOfLife(card, player, flag)
-    mod:PlaySND(OBJ_ESSENCE_OF_LIFE_SFX)
 	for _, entity in ipairs(Isaac.GetRoomEntities()) do
         if entity:IsActiveEnemy(false) and entity:IsVulnerableEnemy() then
     	    player:AddMinisaac(entity.Position, true)

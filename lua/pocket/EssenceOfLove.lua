@@ -1,7 +1,6 @@
 local mod = Furtherance
 
 function mod:UseEssenceOfLove(card, player, flag)
-    mod:PlaySND(OBJ_ESSENCE_OF_LOVE_SFX)
     for i, entity in ipairs(Isaac.GetRoomEntities()) do
         if entity:IsActiveEnemy(false) and entity:IsVulnerableEnemy() and entity:IsBoss() == false then
             entity:AddCharmed(EntityRef(player), -1)

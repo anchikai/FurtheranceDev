@@ -61,7 +61,6 @@ end
 
 function mod:UseSoulOfPeter(card, player, flag)
     local level = game:GetLevel()
-    mod:PlaySND(RUNE_SOUL_OF_PETER_SFX)
     -- local room = game:GetRoom()
     local roomsList = level:GetRooms()
     -- local door = rng:RandomInt(4)
