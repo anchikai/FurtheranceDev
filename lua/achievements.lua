@@ -106,7 +106,7 @@ local AchievementGraphics = {
 		MegaSatan = "achievement_",
 		Delirium = "achievement_",
 		Mother = "achievement_",
-		Beast = "achievement_essenceofmisfortune",
+		Beast = "achievement_essenceofcowardice",
 		Greedier = "achievement_",
 		FullCompletion = "achievement.full_completion_b",
 	},
@@ -207,7 +207,7 @@ local AchievementText = {
 		Mother = "",
 		Beast = "Essence of Bravery",
 		GreedMode = "",
-		Greedier = "Miriam's ",
+		Greedier = "",
 		Tainted = "Tainted Esther",
 		FullCompletion = "",
 	},
@@ -217,7 +217,7 @@ local AchievementText = {
 		MegaSatan = "",
 		Delirium = "",
 		Mother = "",
-		Beast = "Essence of Misfortune",
+		Beast = "Essence of Cowardice",
 		Greedier = "",
 		FullCompletion = "All Tainted Esther marks",
 	},
@@ -704,7 +704,7 @@ function mod:StartUnlocksPickups(entity)
 		end
 	end
 	if mod.Unlocks.EstherB.Beast.Hard == false then
-		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_ESSENCE_OF_MISFORTUNE then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_ESSENCE_OF_COWARDICE then
 			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
 		end
 	end

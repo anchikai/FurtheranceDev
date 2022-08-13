@@ -538,5 +538,5 @@ EID:addCard(CARD_REVERSE_CHARITY, "Doubles all pickups in the room#The doubled p
 -- Essence of Bravery
 EID:addCard(RUNE_ESSENCE_OF_BRAVERY, "", "Essence of Bravery", "en_us")
 
--- Essence of Misfortune
-EID:addCard(RUNE_ESSENCE_OF_MISFORTUNE, "↑ Takes you to a Gehenna-styled {{TreasureRoom}} Treasure Room with a free {{DevilRoom}} Devil Deal item", "Essence of Misfortune", "en_us")
+-- Essence of Cowardice
+EID:addCard(RUNE_ESSENCE_OF_COWARDICE, "↑ Takes you to a Gehenna-styled {{TreasureRoom}} Treasure Room with a free {{DevilRoom}} Devil Deal item", "Essence of Cowardice", "en_us")

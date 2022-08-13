@@ -20,7 +20,7 @@
     <card type="tarot" pickup="1" description="To each according to his needs" hud="Charity" name="XXIV - Charity" mimiccharge="2" />
     <card type="tarot_reverse" pickup="14" description="Everything comes at a price" hud="ReverseCharity" name="XXIV - Charity?" mimiccharge="2" />
     <card type="rune" pickup="117" description="" hud="Essence of Bravery" name="Essence of Bravery" mimiccharge="6" />
-    <card type="rune" pickup="118" description="Your personal hell" hud="Essence of Misfortune" name="Essence of Misfortune" mimiccharge="12" /> <!-- Concept by nightshade! -->
+    <card type="rune" pickup="118" description="Your personal hell" hud="Essence of Cowardice" name="Essence of Cowardice" mimiccharge="12" /> <!-- Concept by nightshade! -->
 
     <pilleffect name="Heartache Up" class="3-" mimiccharge="4" />
 	<pilleffect name="Heartache Down" class="3+" mimiccharge="6" />

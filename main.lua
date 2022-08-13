@@ -173,7 +173,7 @@ CARD_REVERSE_FAITH = Isaac.GetCardIdByName("ReverseFaith")
 CARD_CHARITY = Isaac.GetCardIdByName("Charity")
 CARD_REVERSE_CHARITY = Isaac.GetCardIdByName("ReverseCharity")
 RUNE_ESSENCE_OF_BRAVERY = Isaac.GetCardIdByName("Essence of Bravery")
-RUNE_ESSENCE_OF_MISFORTUNE = Isaac.GetCardIdByName("Essence of Misfortune")
+RUNE_ESSENCE_OF_COWARDICE = Isaac.GetCardIdByName("Essence of Cowardice")
 
 -- Pickups
 HeartSubType.HEART_MOON = 225
@@ -347,7 +347,7 @@ include("lua/pocket/ReverseFaith.lua")
 include("lua/pocket/Charity.lua")
 include("lua/pocket/ReverseCharity.lua")
 include("lua/pocket/EssenceOfBravery.lua")
-include("lua/pocket/EssenceOfMisfortune.lua")
+include("lua/pocket/EssenceOfCowardice.lua")
 
 -- Pickups
 --include("lua/pickups/Hearts.lua")

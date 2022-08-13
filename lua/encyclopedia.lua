@@ -1676,7 +1676,7 @@ local Wiki = {
 			{str = ""},
 		},
 	},
-	EssenceOfMisfortune = {
+	EssenceOfCowardice = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
 			{str = "Takes you to a Gehenna item room with a free devil deal item."},
@@ -3426,10 +3426,10 @@ Encyclopedia.AddRune({
 Encyclopedia.AddRune({
 	ModName = "Furtherance",
     Class = "Furtherance",
-	ID = Isaac.GetCardIdByName("Essence of Misfortune"),
-	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Essence of Misfortune", 0),
-    WikiDesc = Wiki.EssenceOfMisfortune,
-	Name = "Essence of Misfortune",
+	ID = Isaac.GetCardIdByName("Essence of Cowardice"),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Essence of Cowardice", 0),
+    WikiDesc = Wiki.EssenceOfCowardice,
+	Name = "Essence of Cowardice",
 })
 
 -- Characters

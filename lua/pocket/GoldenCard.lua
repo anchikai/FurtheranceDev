@@ -6,7 +6,7 @@ local function isCard(num)
         and num ~= RUNE_ESSENCE_OF_LOVE and num ~= RUNE_ESSENCE_OF_HATE
         and num ~= RUNE_ESSENCE_OF_LIFE and num ~= RUNE_ESSENCE_OF_DEATH
         and num ~= RUNE_ESSENCE_OF_PROSPERITY and num ~= RUNE_ESSENCE_OF_DROUGHT
-        and num ~= RUNE_ESSENCE_OF_BRAVERY and num ~= RUNE_ESSENCE_OF_MISFORTUNE
+        and num ~= RUNE_ESSENCE_OF_BRAVERY and num ~= RUNE_ESSENCE_OF_COWARDICE
 
 end
 
