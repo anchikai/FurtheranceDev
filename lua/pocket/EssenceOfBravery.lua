@@ -29,7 +29,6 @@ function mod:BraverySpeed(player)
             end
         end
     end
-    print(player.MoveSpeed)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.BraverySpeed)
 
