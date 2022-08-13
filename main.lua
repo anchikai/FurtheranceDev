@@ -172,6 +172,7 @@ CARD_FAITH = Isaac.GetCardIdByName("Faith")
 CARD_REVERSE_FAITH = Isaac.GetCardIdByName("ReverseFaith")
 CARD_CHARITY = Isaac.GetCardIdByName("Charity")
 CARD_REVERSE_CHARITY = Isaac.GetCardIdByName("ReverseCharity")
+RUNE_SOUL_OF_ESTHER = Isaac.GetCardIdByName("Soul of Esther")
 RUNE_ESSENCE_OF_BRAVERY = Isaac.GetCardIdByName("Essence of Bravery")
 RUNE_ESSENCE_OF_COWARDICE = Isaac.GetCardIdByName("Essence of Cowardice")
 

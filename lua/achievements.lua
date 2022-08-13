@@ -630,82 +630,211 @@ function mod:StartUnlocks()
 end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.StartUnlocks)
 
+local allCards = {
+	Card.CARD_FOOL,
+	Card.CARD_MAGICIAN,
+	Card.CARD_HIGH_PRIESTESS,
+	Card.CARD_EMPRESS,
+	Card.CARD_EMPEROR,
+	Card.CARD_HIEROPHANT,
+	Card.CARD_LOVERS,
+	Card.CARD_CHARIOT,
+	Card.CARD_JUSTICE,
+	Card.CARD_HERMIT,
+	Card.CARD_WHEEL_OF_FORTUNE,
+	Card.CARD_STRENGTH,
+	Card.CARD_HANGED_MAN,
+	Card.CARD_DEATH,
+	Card.CARD_TEMPERANCE,
+	Card.CARD_DEVIL,
+	Card.CARD_TOWER,
+	Card.CARD_STARS,
+	Card.CARD_MOON,
+	Card.CARD_SUN,
+	Card.CARD_JUDGEMENT,
+	Card.CARD_WORLD,
+	Card.CARD_CLUBS_2,
+	Card.CARD_DIAMONDS_2,
+	Card.CARD_SPADES_2,
+	Card.CARD_HEARTS_2,
+	Card.CARD_ACE_OF_CLUBS,
+	Card.CARD_ACE_OF_DIAMONDS,
+	Card.CARD_ACE_OF_SPADES,
+	Card.CARD_ACE_OF_HEARTS,
+	Card.CARD_JOKER,
+	Card.CARD_CHAOS,
+	Card.CARD_CREDIT,
+	Card.CARD_RULES,
+	Card.CARD_HUMANITY,
+	Card.CARD_SUICIDE_KING,
+	Card.CARD_GET_OUT_OF_JAIL,
+	Card.CARD_QUESTIONMARK,
+	Card.CARD_EMERGENCY_CONTACT,
+	Card.CARD_HOLY,
+	Card.CARD_HUGE_GROWTH,
+	Card.CARD_ANCIENT_RECALL,
+	Card.CARD_ERA_WALK,
+	Card.CARD_REVERSE_FOOL,
+	Card.CARD_REVERSE_MAGICIAN,
+	Card.CARD_REVERSE_HIGH_PRIESTESS,
+	Card.CARD_REVERSE_EMPRESS,
+	Card.CARD_REVERSE_EMPEROR,
+	Card.CARD_REVERSE_HIEROPHANT,
+	Card.CARD_REVERSE_LOVERS,
+	Card.CARD_REVERSE_CHARIOT,
+	Card.CARD_REVERSE_JUSTICE,
+	Card.CARD_REVERSE_HERMIT,
+	Card.CARD_REVERSE_WHEEL_OF_FORTUNE,
+	Card.CARD_REVERSE_STRENGTH,
+	Card.CARD_REVERSE_HANGED_MAN,
+	Card.CARD_REVERSE_DEATH,
+	Card.CARD_REVERSE_TEMPERANCE,
+	Card.CARD_REVERSE_DEVIL,
+	Card.CARD_REVERSE_TOWER,
+	Card.CARD_REVERSE_STARS,
+	Card.CARD_REVERSE_MOON,
+	Card.CARD_REVERSE_SUN,
+	Card.CARD_REVERSE_JUDGEMENT,
+	Card.CARD_REVERSE_WORLD,
+	Card.CARD_QUEEN_OF_HEARTS,
+	Card.CARD_WILD,
+
+	-- Furtherance Cards
+	CARD_TWO_OF_SHIELDS,
+	CARD_ACE_OF_SHIELDS,
+	CARD_TRAP,
+	CARD_KEY,
+	CARD_GOLDEN,
+	CARD_HOPE,
+	CARD_REVERSE_HOPE,
+	CARD_FAITH,
+	CARD_REVERSE_FAITH,
+	CARD_CHARITY,
+	CARD_REVERSE_CHARITY,
+}
+local allRunes = {
+	Card.RUNE_HAGALAZ,
+	Card.RUNE_JERA,
+	Card.RUNE_EHWAZ,
+	Card.RUNE_DAGAZ,
+	Card.RUNE_ANSUZ,
+	Card.RUNE_PERTHRO,
+	Card.RUNE_BERKANO,
+	Card.RUNE_ALGIZ,
+	Card.RUNE_BLANK,
+	Card.RUNE_BLACK,
+	Card.RUNE_SHARD,
+	Card.CARD_SOUL_ISAAC,
+	Card.CARD_SOUL_MAGDALENE,
+	Card.CARD_SOUL_CAIN,
+	Card.CARD_SOUL_JUDAS,
+	Card.CARD_SOUL_BLUEBABY,
+	Card.CARD_SOUL_EVE,
+	Card.CARD_SOUL_SAMSON,
+	Card.CARD_SOUL_AZAZEL,
+	Card.CARD_SOUL_LAZARUS,
+	Card.CARD_SOUL_EDEN,
+	Card.CARD_SOUL_LOST,
+	Card.CARD_SOUL_LILITH,
+	Card.CARD_SOUL_KEEPER,
+	Card.CARD_SOUL_APOLLYON,
+	Card.CARD_SOUL_FORGOTTEN,
+	Card.CARD_SOUL_BETHANY,
+	Card.CARD_SOUL_JACOB,
+
+	-- Furtherance Runes
+	RUNE_SOUL_OF_LEAH,
+	RUNE_SOUL_OF_PETER,
+	RUNE_SOUL_OF_MIRIAM,
+	RUNE_ESSENCE_OF_LOVE,
+	RUNE_ESSENCE_OF_HATE,
+	RUNE_ESSENCE_OF_LIFE,
+	RUNE_ESSENCE_OF_DEATH,
+	RUNE_ESSENCE_OF_PROSPERITY,
+	RUNE_ESSENCE_OF_DROUGHT,
+	RUNE_SOUL_OF_ESTHER,
+	RUNE_ESSENCE_OF_BRAVERY,
+	RUNE_ESSENCE_OF_COWARDICE,
+}
 function mod:StartUnlocksPickups(entity)
+	local rng = RNG()
+	rng:SetSeed(entity.InitSeed, 1)
+
 	-- Leah
 	if mod.Unlocks.Leah.Beast.Unlock == false then
 		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_ESSENCE_OF_LOVE then
-			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+			entity:Morph(entity.Type, entity.Variant, allRunes[rng:RandomInt(#allRunes) + 1], true)
 		end
 	end
 	if mod.Unlocks.LeahB.SoulPath == false then
 		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_SOUL_OF_LEAH then
-			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+			entity:Morph(entity.Type, entity.Variant, allRunes[rng:RandomInt(#allRunes) + 1], true)
 		end
 	end
 	if mod.Unlocks.LeahB.Beast.Hard == false then
 		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_ESSENCE_OF_HATE then
-			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+			entity:Morph(entity.Type, entity.Variant, allRunes[rng:RandomInt(#allRunes) + 1], true)
 		end
 	end
 	if mod.Unlocks.LeahB.GreedMode.Hard == false then
 		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == CARD_REVERSE_HOPE then
-			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+			entity:Morph(entity.Type, entity.Variant, allRunes[rng:RandomInt(#allCards) + 1], true)
 		end
 	end
 
 	-- Peter
 	if mod.Unlocks.Peter.Beast.Unlock == false then
 		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_ESSENCE_OF_LIFE then
-			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+			entity:Morph(entity.Type, entity.Variant, allRunes[rng:RandomInt(#allRunes) + 1], true)
 		end
 	end
 	if mod.Unlocks.PeterB.SoulPath == false then
 		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_SOUL_OF_PETER then
-			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+			entity:Morph(entity.Type, entity.Variant, allRunes[rng:RandomInt(#allRunes) + 1], true)
 		end
 	end
 	if mod.Unlocks.PeterB.Beast.Hard == false then
 		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_ESSENCE_OF_DEATH then
-			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+			entity:Morph(entity.Type, entity.Variant, allRunes[rng:RandomInt(#allRunes) + 1], true)
 		end
 	end
 	if mod.Unlocks.PeterB.GreedMode.Hard == false then
 		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == CARD_REVERSE_FAITH then
-			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+			entity:Morph(entity.Type, entity.Variant, allRunes[rng:RandomInt(#allCards) + 1], true)
 		end
 	end
 
 	-- Miriam
 	if mod.Unlocks.Miriam.Beast.Unlock == false then
 		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and (entity.SubType == RUNE_ESSENCE_OF_PROSPERITY or entity.SubType == RUNE_ESSENCE_OF_DROUGHT) then
-			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+			entity:Morph(entity.Type, entity.Variant, allRunes[rng:RandomInt(#allRunes) + 1], true)
 		end
 	end
 	if mod.Unlocks.MiriamB.SoulPath == false then
 		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_SOUL_OF_MIRIAM then
-			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+			entity:Morph(entity.Type, entity.Variant, allRunes[rng:RandomInt(#allRunes) + 1], true)
 		end
 	end
 	if mod.Unlocks.MiriamB.GreedMode.Hard == false then
 		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == CARD_REVERSE_CHARITY then
-			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+			entity:Morph(entity.Type, entity.Variant, allRunes[rng:RandomInt(#allCards) + 1], true)
 		end
 	end
 	if mod.Unlocks.MiriamB.MegaSatan.Hard == false then
 		if entity.Variant == PickupVariant.PICKUP_GRAB_BAG and entity.SubType == SackSubType.SACK_GOLDEN then
-			entity:Morph(entity.Type, entity.Variant, SackSubType.SACK_NORMAL)
+			entity:Morph(entity.Type, entity.Variant, SackSubType.SACK_NORMAL, true)
 		end
 	end
 
 	-- Esther
 	if mod.Unlocks.Esther.Beast.Unlock == false then
 		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_ESSENCE_OF_BRAVERY then
-			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+			entity:Morph(entity.Type, entity.Variant, allRunes[rng:RandomInt(#allRunes) + 1], true)
 		end
 	end
 	if mod.Unlocks.EstherB.Beast.Hard == false then
 		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_ESSENCE_OF_COWARDICE then
-			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+			entity:Morph(entity.Type, entity.Variant, allRunes[rng:RandomInt(#allRunes) + 1], true)
 		end
 	end
 end
