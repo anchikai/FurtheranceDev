@@ -109,12 +109,12 @@ end
 
 function commands.resetestherb()
     setUnlocks("EstherB", false)
-    return "All Tainted Esther marks have been unlocked."
+    return "Tainted Esther has been reset."
 end
 
 function commands.unlockestherb()
     setUnlocks("EstherB", true)
-    return "Tainted Esther has been reset."
+    return "All Tainted Esther marks have been unlocked."
 end
 
 function mod:RunUnlockCommand(cmd)
