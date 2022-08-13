@@ -13,7 +13,8 @@ mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseEssenceOfCowardice, RUNE_ESSENC
 
 function mod:APIcanLigma(player)
     local room = game:GetRoom()
-    if usedCowardice and room:GetType() == RoomType.ROOM_TREASURE then
+    local sprite = player:GetSprite()
+    if sprite:IsPlaying("TeleportDown") and sprite:GetFrame() == 1 and usedCowardice and room:GetType() == RoomType.ROOM_TREASURE then
         usedCowardice = false
         game:ShowHallucination(0, BackdropType.GEHENNA)
         SFXManager():Stop(SoundEffect.SOUND_DEATH_CARD)
