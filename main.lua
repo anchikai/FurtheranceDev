@@ -360,6 +360,7 @@ include("lua/challenges/WhereAmI.lua")
 
 -- Achievements
 include("lua/achievements.lua")
+include("lua/achievementCommands.lua")
 
 -- Mod Support
 if EID then
