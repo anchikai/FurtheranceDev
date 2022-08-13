@@ -67,12 +67,12 @@ end
 
 function commands.resetesther()
     setUnlocks("Esther", false)
-    return "All Esther marks have been unlocked."
+    return "Esther has been reset."
 end
 
 function commands.unlockesther()
     setUnlocks("Esther", true)
-    return "Esther has been reset."
+    return "All Esther marks have been unlocked."
 end
 
 -- Tainted Players
