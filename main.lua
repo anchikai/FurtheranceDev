@@ -19,6 +19,8 @@ PlayerType.PLAYER_PETER = Isaac.GetPlayerTypeByName("Peter", false)
 PlayerType.PLAYER_PETER_B = Isaac.GetPlayerTypeByName("Peter", true)
 PlayerType.PLAYER_MIRIAM = Isaac.GetPlayerTypeByName("Miriam", false)
 PlayerType.PLAYER_MIRIAM_B = Isaac.GetPlayerTypeByName("Miriam", true)
+PlayerType.PLAYER_ESTHER = Isaac.GetPlayerTypeByName("Esther", false)
+PlayerType.PLAYER_ESTHER_B = Isaac.GetPlayerTypeByName("Esther", true)
 
 -- Collectibles
 CollectibleType.COLLECTIBLE_TECH_IX = Isaac.GetItemIdByName("Tech IX")
@@ -187,6 +189,7 @@ include("lua/piber.lua")
 include("lua/players/Leah.lua")
 include("lua/players/Peter.lua")
 include("lua/players/Miriam.lua")
+include("lua/players/Esther.lua")
 
 -- Collectibles
 include("lua/items/collectibles/Esc.lua")

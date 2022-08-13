@@ -83,6 +83,33 @@ local AchievementGraphics = {
 		Greedier = "achievement_reversecharity",
 		FullCompletion = "achievement.full_completion_b",
 	},
+	Esther = {
+		MomsHeart = "achievement_",
+		Isaac = "achievement_",
+		Satan = "achievement_",
+		BlueBaby = "achievement_",
+		Lamb = "achievement_",
+		BossRush = "achievement_",
+		Hush = "achievement_",
+		MegaSatan = "achievement_",
+		Delirium = "achievement_",
+		Mother = "achievement_",
+		Beast = "achievement_",
+		GreedMode = "achievement_",
+		Greedier = "achievement_",
+		Tainted = "achievement_taintedesther",
+		FullCompletion = "achievement_",
+	},
+	EstherB = {
+		PolNegPath = "achievement_",
+		SoulPath = "achievement_soulofesther",
+		MegaSatan = "achievement_",
+		Delirium = "achievement_",
+		Mother = "achievement_",
+		Beast = "achievement_",
+		Greedier = "achievement_",
+		FullCompletion = "achievement.full_completion_b",
+	},
 }
 
 local AchievementText = {
@@ -166,6 +193,33 @@ local AchievementText = {
 		Beast = "Jar of Manna",
 		Greedier = "Reverse Charity",
 		FullCompletion = "All Tainted Miriam marks",
+	},
+	Esther = {
+		MomsHeart = "",
+		Isaac = "",
+		Satan = "",
+		BlueBaby = "",
+		Lamb = "",
+		BossRush = "",
+		Hush = "",
+		MegaSatan = "",
+		Delirium = "",
+		Mother = "",
+		Beast = "",
+		GreedMode = "",
+		Greedier = "Miriam's ",
+		Tainted = "Tainted Esther",
+		FullCompletion = "",
+	},
+	EstherB = {
+		PolNegPath = "",
+		SoulPath = "Soul of Esther",
+		MegaSatan = "",
+		Delirium = "",
+		Mother = "",
+		Beast = "",
+		Greedier = "",
+		FullCompletion = "All Tainted Esther marks",
 	},
 }
 
@@ -270,6 +324,39 @@ local function createUnlocksTable()
 			SoulPath = false,
 			FullCompletion = {Unlock = false, Hard = false},
 		},
+		Esther = {
+			MomsHeart = {Unlock = false, Hard = false},
+			Isaac = {Unlock = false, Hard = false},
+			Satan = {Unlock = false, Hard = false},
+			BlueBaby = {Unlock = false, Hard = false},
+			Lamb = {Unlock = false, Hard = false},
+			BossRush = {Unlock = false, Hard = false},
+			Hush = {Unlock = false, Hard = false},
+			MegaSatan = {Unlock = false, Hard = false},
+			Delirium = {Unlock = false, Hard = false},
+			Mother = {Unlock = false, Hard = false},
+			Beast = {Unlock = false, Hard = false},
+			GreedMode = {Unlock = false, Hard = false},
+			Tainted = false,
+			FullCompletion = {Unlock = false, Hard = false},
+		},
+		EstherB = {
+			MomsHeart = {Unlock = false, Hard = false},
+			Isaac = {Unlock = false, Hard = false},
+			Satan = {Unlock = false, Hard = false},
+			BlueBaby = {Unlock = false, Hard = false},
+			Lamb = {Unlock = false, Hard = false},
+			BossRush = {Unlock = false, Hard = false},
+			Hush = {Unlock = false, Hard = false},
+			MegaSatan = {Unlock = false, Hard = false},
+			Delirium = {Unlock = false, Hard = false},
+			Mother = {Unlock = false, Hard = false},
+			Beast = {Unlock = false, Hard = false},
+			GreedMode = {Unlock = false, Hard = false},
+			PolNegPath = false,
+			SoulPath = false,
+			FullCompletion = {Unlock = false, Hard = false},
+		},
 	}
 end
 
@@ -325,7 +412,8 @@ function mod:NoMovement(entity, hook, button)
 		local player = entity:ToPlayer()
 		if ((mod.Unlocks.Leah.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_LEAH_B)
 		or (mod.Unlocks.Peter.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_PETER_B)
-		or (mod.Unlocks.Miriam.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_MIRIAM_B))
+		or (mod.Unlocks.Miriam.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_MIRIAM_B)
+		or (mod.Unlocks.Esther.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_ESTHER_B))
 		and mod:CantMove(player) then
 			setCanShoot(player, false)
 			if button == ButtonAction.ACTION_LEFT or button == ButtonAction.ACTION_RIGHT or button == ButtonAction.ACTION_UP or button == ButtonAction.ACTION_DOWN then
@@ -333,7 +421,6 @@ function mod:NoMovement(entity, hook, button)
 			end
 		end
 	end
-
 end
 mod:AddCallback(ModCallbacks.MC_INPUT_ACTION, mod.NoMovement, 2)
 
@@ -358,7 +445,8 @@ function mod:StartUnlocks()
 		-- Tainted Stuff
 		if (mod.Unlocks.Leah.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_LEAH_B)
 		or (mod.Unlocks.Peter.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_PETER_B)
-		or (mod.Unlocks.Miriam.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_MIRIAM_B) then
+		or (mod.Unlocks.Miriam.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_MIRIAM_B)
+		or (mod.Unlocks.Esther.Tainted == false and player:GetPlayerType() == PlayerType.PLAYER_ESTHER_B) then
 			Isaac.ExecuteCommand("stage 13")
 			level:MakeRedRoomDoor(95, DoorSlot.LEFT0)
 			level:ChangeRoom(94)
@@ -1089,6 +1177,70 @@ function mod:ResetUnlocks(cmd)
 		mod.Unlocks.Miriam.Tainted = true
 		print("All Miriam marks have been unlocked.")
 	end
+	if string.lower(cmd) == "resetesther" then
+		mod.Unlocks.Esther.MomsHeart.Unlock = false
+		mod.Unlocks.Esther.Isaac.Unlock = false
+		mod.Unlocks.Esther.Satan.Unlock = false
+		mod.Unlocks.Esther.BlueBaby.Unlock = false
+		mod.Unlocks.Esther.Lamb.Unlock = false
+		mod.Unlocks.Esther.BossRush.Unlock = false
+		mod.Unlocks.Esther.Hush.Unlock = false
+		mod.Unlocks.Esther.MegaSatan.Unlock = false
+		mod.Unlocks.Esther.Delirium.Unlock = false
+		mod.Unlocks.Esther.Mother.Unlock = false
+		mod.Unlocks.Esther.Beast.Unlock = false
+		mod.Unlocks.Esther.GreedMode.Unlock = false
+		mod.Unlocks.Esther.FullCompletion.Unlock = false
+		
+		mod.Unlocks.Esther.MomsHeart.Hard = false
+		mod.Unlocks.Esther.Isaac.Hard = false
+		mod.Unlocks.Esther.Satan.Hard = false
+		mod.Unlocks.Esther.BlueBaby.Hard = false
+		mod.Unlocks.Esther.Lamb.Hard = false
+		mod.Unlocks.Esther.BossRush.Hard = false
+		mod.Unlocks.Esther.Hush.Hard = false
+		mod.Unlocks.Esther.MegaSatan.Hard = false
+		mod.Unlocks.Esther.Delirium.Hard = false
+		mod.Unlocks.Esther.Mother.Hard = false
+		mod.Unlocks.Esther.Beast.Hard = false
+		mod.Unlocks.Esther.GreedMode.Hard = false
+		mod.Unlocks.Esther.FullCompletion.Hard = false
+		
+		mod.Unlocks.Esther.Tainted = false
+		print("Esther has been reset.")
+	end
+	if string.lower(cmd) == "unlockesther" then
+		mod.Unlocks.Esther.MomsHeart.Unlock = true
+		mod.Unlocks.Esther.Isaac.Unlock = true
+		mod.Unlocks.Esther.Satan.Unlock = true
+		mod.Unlocks.Esther.BlueBaby.Unlock = true
+		mod.Unlocks.Esther.Lamb.Unlock = true
+		mod.Unlocks.Esther.BossRush.Unlock = true
+		mod.Unlocks.Esther.Hush.Unlock = true
+		mod.Unlocks.Esther.MegaSatan.Unlock = true
+		mod.Unlocks.Esther.Delirium.Unlock = true
+		mod.Unlocks.Esther.Mother.Unlock = true
+		mod.Unlocks.Esther.Beast.Unlock = true
+		mod.Unlocks.Esther.GreedMode.Unlock = true
+		mod.Unlocks.Esther.FullCompletion.Unlock = true
+		
+		mod.Unlocks.Esther.MomsHeart.Hard = true
+		mod.Unlocks.Esther.Isaac.Hard = true
+		mod.Unlocks.Esther.Satan.Hard = true
+		mod.Unlocks.Esther.BlueBaby.Hard = true
+		mod.Unlocks.Esther.Lamb.Hard = true
+		mod.Unlocks.Esther.BossRush.Hard = true
+		mod.Unlocks.Esther.Hush.Hard = true
+		mod.Unlocks.Esther.MegaSatan.Hard = true
+		mod.Unlocks.Esther.Delirium.Hard = true
+		mod.Unlocks.Esther.Mother.Hard = true
+		mod.Unlocks.Esther.Beast.Hard = true
+		mod.Unlocks.Esther.GreedMode.Hard = true
+		mod.Unlocks.Esther.FullCompletion.Hard = true
+		
+		mod.Unlocks.Esther.Tainted = true
+		print("All Esther marks have been unlocked.")
+	end
 
 	-- Tainteds
 	if string.lower(cmd) == "resetleahb" then
@@ -1270,6 +1422,66 @@ function mod:ResetUnlocks(cmd)
 		mod.Unlocks.MiriamB.GreedMode.Hard = true
 		mod.Unlocks.MiriamB.FullCompletion.Hard = true
 		print("All Tainted Miriam marks have been unlocked.")
+	end
+	if string.lower(cmd) == "resetestherb" then
+		mod.Unlocks.EstherB.MomsHeart.Unlock = false
+		mod.Unlocks.EstherB.Isaac.Unlock = false
+		mod.Unlocks.EstherB.Satan.Unlock = false
+		mod.Unlocks.EstherB.BlueBaby.Unlock = false
+		mod.Unlocks.EstherB.Lamb.Unlock = false
+		mod.Unlocks.EstherB.BossRush.Unlock = false
+		mod.Unlocks.EstherB.Hush.Unlock = false
+		mod.Unlocks.EstherB.MegaSatan.Unlock = false
+		mod.Unlocks.EstherB.Delirium.Unlock = false
+		mod.Unlocks.EstherB.Mother.Unlock = false
+		mod.Unlocks.EstherB.Beast.Unlock = false
+		mod.Unlocks.EstherB.GreedMode.Unlock = false
+		mod.Unlocks.EstherB.FullCompletion.Unlock = false
+		
+		mod.Unlocks.EstherB.MomsHeart.Hard = false
+		mod.Unlocks.EstherB.Isaac.Hard = false
+		mod.Unlocks.EstherB.Satan.Hard = false
+		mod.Unlocks.EstherB.BlueBaby.Hard = false
+		mod.Unlocks.EstherB.Lamb.Hard = false
+		mod.Unlocks.EstherB.BossRush.Hard = false
+		mod.Unlocks.EstherB.Hush.Hard = false
+		mod.Unlocks.EstherB.MegaSatan.Hard = false
+		mod.Unlocks.EstherB.Delirium.Hard = false
+		mod.Unlocks.EstherB.Mother.Hard = false
+		mod.Unlocks.EstherB.Beast.Hard = false
+		mod.Unlocks.EstherB.GreedMode.Hard = false
+		mod.Unlocks.EstherB.FullCompletion.Hard = false
+		print("Tainted Esther has been reset.")
+	end
+	if string.lower(cmd) == "unlockestherb" then
+		mod.Unlocks.EstherB.MomsHeart.Unlock = true
+		mod.Unlocks.EstherB.Isaac.Unlock = true
+		mod.Unlocks.EstherB.Satan.Unlock = true
+		mod.Unlocks.EstherB.BlueBaby.Unlock = true
+		mod.Unlocks.EstherB.Lamb.Unlock = true
+		mod.Unlocks.EstherB.BossRush.Unlock = true
+		mod.Unlocks.EstherB.Hush.Unlock = true
+		mod.Unlocks.EstherB.MegaSatan.Unlock = true
+		mod.Unlocks.EstherB.Delirium.Unlock = true
+		mod.Unlocks.EstherB.Mother.Unlock = true
+		mod.Unlocks.EstherB.Beast.Unlock = true
+		mod.Unlocks.EstherB.GreedMode.Unlock = true
+		mod.Unlocks.EstherB.FullCompletion.Unlock = true
+		
+		mod.Unlocks.EstherB.MomsHeart.Hard = true
+		mod.Unlocks.EstherB.Isaac.Hard = true
+		mod.Unlocks.EstherB.Satan.Hard = true
+		mod.Unlocks.EstherB.BlueBaby.Hard = true
+		mod.Unlocks.EstherB.Lamb.Hard = true
+		mod.Unlocks.EstherB.BossRush.Hard = true
+		mod.Unlocks.EstherB.Hush.Hard = true
+		mod.Unlocks.EstherB.MegaSatan.Hard = true
+		mod.Unlocks.EstherB.Delirium.Hard = true
+		mod.Unlocks.EstherB.Mother.Hard = true
+		mod.Unlocks.EstherB.Beast.Hard = true
+		mod.Unlocks.EstherB.GreedMode.Hard = true
+		mod.Unlocks.EstherB.FullCompletion.Hard = true
+		print("All Tainted Esther marks have been unlocked.")
 	end
 end
 mod:AddCallback(ModCallbacks.MC_EXECUTE_CMD, mod.ResetUnlocks)

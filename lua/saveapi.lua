@@ -1,7 +1,7 @@
 local mod = Furtherance
 local game = Game()
 
-local MOD_VERSION = "1.9"
+local MOD_VERSION = "1.13"
 
 Furtherance.IsContinued = false
 Furtherance.LoadedData = false

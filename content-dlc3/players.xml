@@ -31,6 +31,16 @@
 		nameimage="playername_Miriam.png"
 		portrait="playerportrait_Miriam_B.png"
 		birthright="Death field" />
+	<player name="Esther" skinColor="-1" hp="6" costumeSuffix="esther"
+		skin="Character_004_Esther_A.png"
+		nameimage="playername_Esther.png"
+		portrait="playerportrait_Esther_A.png"
+		birthright="???" />
+	<player name="Esther" bSkinParent="Esther" skinColor="-1" hp="6" costumeSuffix="estherb"
+		skin="Character_004_Esther_B.png"
+		nameimage="playername_Esther.png"
+		portrait="playerportrait_Esther_B.png"
+		birthright="???" />
 	
 	<!-- Fake Jacob for Binds of Devotion, copied from the original players.xml -->
 	<player name="FakeJacob" hp="6" hidden="true"
