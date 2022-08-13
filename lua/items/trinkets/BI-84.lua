@@ -3,7 +3,8 @@ local game = Game()
 
 function mod:RandomTechItem()
     for _, wisp in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ITEM_WISP)) do
-        if wisp.Target ~= nil then
+        local data = mod:GetData(wisp)
+        if data.IsBI_84Wisp then
             wisp:Remove()
             wisp:Kill()
         end
@@ -20,8 +21,9 @@ function mod:RandomTechItem()
                     local itemConfig = Isaac.GetItemConfig():GetCollectible(ID)
                 until (itemConfig ~= nil and itemConfig.Tags & ItemConfig.TAG_QUEST ~= ItemConfig.TAG_QUEST and itemConfig.Tags & ItemConfig.TAG_TECH == ItemConfig.TAG_TECH)
 
-                local BirthrightWisp = player:AddItemWisp(ID, Vector(999999, 999999), false)
-                BirthrightWisp.Target = player
+                local BI_84Wisp = player:AddItemWisp(ID, Vector(999999, 999999), false)
+                local data = mod:GetData(BI_84Wisp)
+                data.IsBI_84Wisp = true
             end
         end
     end
