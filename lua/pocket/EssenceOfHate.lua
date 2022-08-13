@@ -7,4 +7,4 @@ function mod:UseEssenceOfHate(card, player, flag)
         Isaac.Spawn(EntityType.ENTITY_PICKUP, PickupVariant.PICKUP_NULL, 0, Isaac.GetFreeNearPosition(player.Position, 40), Vector.Zero, player) 
     end
 end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseEssenceOfHate, OBJ_ESSENCE_OF_HATE)
+mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseEssenceOfHate, RUNE_ESSENCE_OF_HATE)

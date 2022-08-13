@@ -491,22 +491,22 @@ EID:addCard(CARD_KEY, "{{Shop}} creates a trapdoor that leads to a second shop w
 EID:addCard(CARD_GOLDEN, "Random card effect#Destroys itself after a few uses", "Golden Card", "en_us")
 
 -- Essence of Love
-EID:addCard(OBJ_ESSENCE_OF_LOVE, "Permanently charms all enemies in the room", "Essence of Love", "en_us")
+EID:addCard(RUNE_ESSENCE_OF_LOVE, "Permanently charms all enemies in the room", "Essence of Love", "en_us")
 
 -- Essence of Hate
-EID:addCard(OBJ_ESSENCE_OF_HATE, "Adds {{BrokenHeart}} broken hearts until you have 11#↑ Spawns a random pickup for each broken heart added", "Essence of Hate", "en_us")
+EID:addCard(RUNE_ESSENCE_OF_HATE, "Adds {{BrokenHeart}} broken hearts until you have 11#↑ Spawns a random pickup for each broken heart added", "Essence of Hate", "en_us")
 
 -- Essence of Life
-EID:addCard(OBJ_ESSENCE_OF_LIFE, "Spawns a Minisaac on each enemy in the room", "Essence of Life", "en_us")
+EID:addCard(RUNE_ESSENCE_OF_LIFE, "Spawns a Minisaac on each enemy in the room", "Essence of Life", "en_us")
 
 -- Essence of Death
-EID:addCard(OBJ_ESSENCE_OF_DEATH, "↑ Kills all non-boss enemies in the room#↑ Grants a Swarm Fly orbital for each enemy killed", "Essence of Death", "en_us")
+EID:addCard(RUNE_ESSENCE_OF_DEATH, "↑ Kills all non-boss enemies in the room#↑ Grants a Swarm Fly orbital for each enemy killed", "Essence of Death", "en_us")
 
 -- Essence of Prosperity
-EID:addCard(OBJ_ESSENCE_OF_PROSPERITY, "A rain drop will fall on every enemy#When they hit, they deal 0.66x your damage and slow them for 5 seconds", "Essence of Prosperity", "en_us")
+EID:addCard(RUNE_ESSENCE_OF_PROSPERITY, "A rain drop will fall on every enemy#When they hit, they deal 0.66x your damage and slow them for 5 seconds", "Essence of Prosperity", "en_us")
 
 -- Essence of Drought
-EID:addCard(OBJ_ESSENCE_OF_DROUGHT, "All non-boss enemies will begin to bleed out#When they die, they will be frozen solid", "Essence of Drought", "en_us")
+EID:addCard(RUNE_ESSENCE_OF_DROUGHT, "All non-boss enemies will begin to bleed out#When they die, they will be frozen solid", "Essence of Drought", "en_us")
 
 -- Heartache Up
 EID:addPill(PILLEFFECT_HEARTACHE_UP, "↓ Adds one {{BrokenHeart}} Broken Heart", "Heartache Up", "en_us")
@@ -536,7 +536,7 @@ EID:addCard(CARD_CHARITY, "↑ Uses Jar of Manna 3 times, giving you the pickups
 EID:addCard(CARD_REVERSE_CHARITY, "Doubles all pickups in the room#The doubled pickups will cost money", "XXIV - Charity?", "en_us")
 
 -- Essence of Bravery
-EID:addCard(OBJ_ESSENCE_OF_BRAVERY, "", "Essence of Bravery", "en_us")
+EID:addCard(RUNE_ESSENCE_OF_BRAVERY, "", "Essence of Bravery", "en_us")
 
 -- Essence of Misfortune
-EID:addCard(OBJ_ESSENCE_OF_MISFORTUNE, "↑ Takes you to a Gehenna-styled {{TreasureRoom}} Treasure Room with a free {{DevilRoom}} Devil Deal item", "Essence of Misfortune", "en_us")
+EID:addCard(RUNE_ESSENCE_OF_MISFORTUNE, "↑ Takes you to a Gehenna-styled {{TreasureRoom}} Treasure Room with a free {{DevilRoom}} Devil Deal item", "Essence of Misfortune", "en_us")

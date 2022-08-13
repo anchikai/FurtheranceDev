@@ -94,7 +94,7 @@ local AchievementGraphics = {
 		MegaSatan = "achievement_",
 		Delirium = "achievement_",
 		Mother = "achievement_",
-		Beast = "achievement_",
+		Beast = "achievement_essenceofbravery",
 		GreedMode = "achievement_",
 		Greedier = "achievement_",
 		Tainted = "achievement_taintedesther",
@@ -106,7 +106,7 @@ local AchievementGraphics = {
 		MegaSatan = "achievement_",
 		Delirium = "achievement_",
 		Mother = "achievement_",
-		Beast = "achievement_",
+		Beast = "achievement_essenceofmisfortune",
 		Greedier = "achievement_",
 		FullCompletion = "achievement.full_completion_b",
 	},
@@ -205,7 +205,7 @@ local AchievementText = {
 		MegaSatan = "",
 		Delirium = "",
 		Mother = "",
-		Beast = "",
+		Beast = "Essence of Bravery",
 		GreedMode = "",
 		Greedier = "Miriam's ",
 		Tainted = "Tainted Esther",
@@ -217,7 +217,7 @@ local AchievementText = {
 		MegaSatan = "",
 		Delirium = "",
 		Mother = "",
-		Beast = "",
+		Beast = "Essence of Misfortune",
 		Greedier = "",
 		FullCompletion = "All Tainted Esther marks",
 	},
@@ -633,7 +633,7 @@ mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.StartUnlocks)
 function mod:StartUnlocksPickups(entity)
 	-- Leah
 	if mod.Unlocks.Leah.Beast.Unlock == false then
-		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == OBJ_ESSENCE_OF_LOVE then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_ESSENCE_OF_LOVE then
 			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
 		end
 	end
@@ -643,7 +643,7 @@ function mod:StartUnlocksPickups(entity)
 		end
 	end
 	if mod.Unlocks.LeahB.Beast.Hard == false then
-		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == OBJ_ESSENCE_OF_HATE then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_ESSENCE_OF_HATE then
 			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
 		end
 	end
@@ -655,7 +655,7 @@ function mod:StartUnlocksPickups(entity)
 
 	-- Peter
 	if mod.Unlocks.Peter.Beast.Unlock == false then
-		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == OBJ_ESSENCE_OF_LIFE then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_ESSENCE_OF_LIFE then
 			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
 		end
 	end
@@ -665,7 +665,7 @@ function mod:StartUnlocksPickups(entity)
 		end
 	end
 	if mod.Unlocks.PeterB.Beast.Hard == false then
-		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == OBJ_ESSENCE_OF_DEATH then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_ESSENCE_OF_DEATH then
 			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
 		end
 	end
@@ -677,7 +677,7 @@ function mod:StartUnlocksPickups(entity)
 
 	-- Miriam
 	if mod.Unlocks.Miriam.Beast.Unlock == false then
-		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and (entity.SubType == OBJ_ESSENCE_OF_PROSPERITY or entity.SubType == OBJ_ESSENCE_OF_DROUGHT) then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and (entity.SubType == RUNE_ESSENCE_OF_PROSPERITY or entity.SubType == RUNE_ESSENCE_OF_DROUGHT) then
 			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
 		end
 	end
@@ -694,6 +694,18 @@ function mod:StartUnlocksPickups(entity)
 	if mod.Unlocks.MiriamB.MegaSatan.Hard == false then
 		if entity.Variant == PickupVariant.PICKUP_GRAB_BAG and entity.SubType == SackSubType.SACK_GOLDEN then
 			entity:Morph(entity.Type, entity.Variant, SackSubType.SACK_NORMAL)
+		end
+	end
+
+	-- Esther
+	if mod.Unlocks.Esther.Beast.Unlock == false then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_ESSENCE_OF_BRAVERY then
+			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
+		end
+	end
+	if mod.Unlocks.EstherB.Beast.Hard == false then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_ESSENCE_OF_MISFORTUNE then
+			entity:Morph(entity.Type, entity.Variant, Card.CARD_NULL)
 		end
 	end
 end

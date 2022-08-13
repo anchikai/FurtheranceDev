@@ -10,4 +10,4 @@ function mod:UseEssenceOfDrought(card, player, flag)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseEssenceOfDrought, OBJ_ESSENCE_OF_DROUGHT)
+mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseEssenceOfDrought, RUNE_ESSENCE_OF_DROUGHT)

@@ -12,4 +12,4 @@ function mod:UseEssenceOfDeath(card, player, flag)
         player:AddSwarmFlyOrbital(player.Position)
     end
 end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseEssenceOfDeath, OBJ_ESSENCE_OF_DEATH)
+mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseEssenceOfDeath, RUNE_ESSENCE_OF_DEATH)

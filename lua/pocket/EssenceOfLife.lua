@@ -7,4 +7,4 @@ function mod:UseEssenceOfLife(card, player, flag)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseEssenceOfLife, OBJ_ESSENCE_OF_LIFE)
+mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseEssenceOfLife, RUNE_ESSENCE_OF_LIFE)

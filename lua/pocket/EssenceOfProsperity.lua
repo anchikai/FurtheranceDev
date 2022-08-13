@@ -9,7 +9,7 @@ function mod:UseEssenceOfProsperity(card, player, flag)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseEssenceOfProsperity, OBJ_ESSENCE_OF_PROSPERITY)
+mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseEssenceOfProsperity, RUNE_ESSENCE_OF_PROSPERITY)
 
 function mod:RainDmg(player)
     local level = game:GetLevel()

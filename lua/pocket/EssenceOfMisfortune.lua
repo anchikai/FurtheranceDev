@@ -9,7 +9,7 @@ function mod:UseEssenceOfMisfortune(card, player, flag)
     game:StartRoomTransition(-3, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT, player, -1)
     usedMisfortune = true
 end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseEssenceOfMisfortune, OBJ_ESSENCE_OF_MISFORTUNE)
+mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseEssenceOfMisfortune, RUNE_ESSENCE_OF_MISFORTUNE)
 
 function mod:APIcanLigma(player)
     local room = game:GetRoom()

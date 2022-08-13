@@ -7,4 +7,4 @@ function mod:UseEssenceOfLove(card, player, flag)
         end
     end
 end
-mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseEssenceOfLove, OBJ_ESSENCE_OF_LOVE)
+mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseEssenceOfLove, RUNE_ESSENCE_OF_LOVE)

@@ -3,9 +3,10 @@ local mod = Furtherance
 local function isCard(num)
     return (num < 32 or num > 41) and num ~= 55 and num ~= 78 and num ~= 80
         and num ~= RUNE_SOUL_OF_MIRIAM and num ~= RUNE_SOUL_OF_LEAH and num ~= RUNE_SOUL_OF_PETER
-        and num ~= OBJ_ESSENCE_OF_LOVE and num ~= OBJ_ESSENCE_OF_HATE
-        and num ~= OBJ_ESSENCE_OF_LIFE and num ~= OBJ_ESSENCE_OF_DEATH
-        and num ~= OBJ_ESSENCE_OF_PROSPERITY and num ~= OBJ_ESSENCE_OF_DROUGHT
+        and num ~= RUNE_ESSENCE_OF_LOVE and num ~= RUNE_ESSENCE_OF_HATE
+        and num ~= RUNE_ESSENCE_OF_LIFE and num ~= RUNE_ESSENCE_OF_DEATH
+        and num ~= RUNE_ESSENCE_OF_PROSPERITY and num ~= RUNE_ESSENCE_OF_DROUGHT
+        and num ~= RUNE_ESSENCE_OF_BRAVERY and num ~= RUNE_ESSENCE_OF_MISFORTUNE
 
 end
 
