@@ -9,7 +9,7 @@ mod:AddCallback(ModCallbacks.MC_USE_ITEM, mod.UseSecretDiary, CollectibleType.CO
 
 function mod:RemoveWisp()
     for _, wisp in ipairs(Isaac.FindByType(EntityType.ENTITY_FAMILIAR, FamiliarVariant.ITEM_WISP)) do
-        if wisp.Target ~= nil then
+        if wisp.Target == player then
             wisp:Remove()
             wisp:Kill()
         end
