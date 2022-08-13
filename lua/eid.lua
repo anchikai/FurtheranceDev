@@ -534,3 +534,9 @@ EID:addCard(CARD_CHARITY, "↑ Uses Jar of Manna 3 times, giving you the pickups
 
 -- Reverse Charity Card
 EID:addCard(CARD_REVERSE_CHARITY, "Doubles all pickups in the room#The doubled pickups will cost money", "XXIV - Charity?", "en_us")
+
+-- Essence of Bravery
+EID:addCard(OBJ_ESSENCE_OF_BRAVERY, "", "Essence of Bravery", "en_us")
+
+-- Essence of Misfortune
+EID:addCard(OBJ_ESSENCE_OF_MISFORTUNE, "↑ Takes you to a Gehenna-styled {{TreasureRoom}} Treasure Room with a free {{DevilRoom}} Devil Deal item", "Essence of Misfortune", "en_us")

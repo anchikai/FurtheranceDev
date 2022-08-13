@@ -1670,6 +1670,22 @@ local Wiki = {
 			{str = "- All items spawned cost money."},
 		},
 	},
+	EssenceOfBravery = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
+	EssenceOfMisfortune = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Takes you to a Gehenna item room with a free devil deal item."},
+		},
+		{ -- Credits
+			{str = "Credits", fsize = 2, clr = 3, halign = 0},
+			{str = "Concept by nightshade!"},
+		},
+	},
 
 	-- Characters
 	Leah = {
@@ -3396,6 +3412,24 @@ Encyclopedia.AddCard({
 	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "ReverseCharity", 0),
     WikiDesc = Wiki.ReverseCharityCard,
 	Name = "XXIV - Charity?",
+})
+
+Encyclopedia.AddRune({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("Essence of Bravery"),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Essence of Bravery", 0),
+    WikiDesc = Wiki.EssenceOfBravery,
+	Name = "Essence of Bravery",
+})
+
+Encyclopedia.AddRune({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("Essence of Misfortune"),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/ui_cardfronts.anm2", "Essence of Misfortune", 0),
+    WikiDesc = Wiki.EssenceOfMisfortune,
+	Name = "Essence of Misfortune",
 })
 
 -- Characters

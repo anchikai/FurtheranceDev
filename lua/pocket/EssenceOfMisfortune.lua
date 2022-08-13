@@ -3,7 +3,10 @@ local game = Game()
 
 local usedMisfortune = false
 function mod:UseEssenceOfMisfortune(card, player, flag)
+    local level = game:GetLevel()
     Isaac.ExecuteCommand("goto s.treasure")
+    level.LeaveDoor = -1
+    game:StartRoomTransition(-3, Direction.NO_DIRECTION, RoomTransitionAnim.TELEPORT, player, -1)
     usedMisfortune = true
 end
 mod:AddCallback(ModCallbacks.MC_USE_CARD, mod.UseEssenceOfMisfortune, OBJ_ESSENCE_OF_MISFORTUNE)
