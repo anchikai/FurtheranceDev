@@ -832,6 +832,11 @@ function mod:StartUnlocksPickups(entity)
 			entity:Morph(entity.Type, entity.Variant, allRunes[rng:RandomInt(#allRunes) + 1], true)
 		end
 	end
+	if mod.Unlocks.EstherB.SoulPath == false then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_SOUL_OF_ESTHER then
+			entity:Morph(entity.Type, entity.Variant, allRunes[rng:RandomInt(#allRunes) + 1], true)
+		end
+	end
 	if mod.Unlocks.EstherB.Beast.Hard == false then
 		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_ESSENCE_OF_COWARDICE then
 			entity:Morph(entity.Type, entity.Variant, allRunes[rng:RandomInt(#allRunes) + 1], true)

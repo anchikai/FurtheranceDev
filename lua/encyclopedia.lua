@@ -1670,6 +1670,12 @@ local Wiki = {
 			{str = "- All items spawned cost money."},
 		},
 	},
+	SoulOfEsther = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+	},
 	EssenceOfBravery = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -1881,6 +1887,7 @@ local Wiki = {
 		{ -- Start Data
 			{str = "Start Data", fsize = 2, clr = 3, halign = 0},
 			{str = "Items:"},
+			{str = "- Polarity Shift"},
 			{str = "- Rune Shard"},
 			{str = "Stats:"},
 			{str = "- HP: 2 Bone Hearts, 4 Broken Hearts"},
@@ -1913,13 +1920,55 @@ local Wiki = {
 			{str = "- Your damage is evenly spread across all the enemies."},
 			{str = "- Targeting an enemy will focus most of the damage on it."},
 		},
-		{ -- Notes
-			{str = "Notes", fsize = 2, clr = 3, halign = 0},
-			
+	},
+	Esther = {
+		{ -- Start Data
+			{str = "Start Data", fsize = 2, clr = 3, halign = 0},
+			{str = "Items:"},
+			{str = "- "},
+			{str = "Stats:"},
+			{str = "- HP: "},
+			{str = "- Speed: "},
+			{str = "- Tear rate: "},
+			{str = "- Damage: "},
+			{str = "- Range: "},
+			{str = "- Shot speed: "},
+			{str = "- Luck: "},
+		},
+		{ -- Traits
+			{str = "Traits", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Birthright
+			{str = "Birthright", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
 		},
 		{ -- Trivia
 			{str = "Trivia", fsize = 2, clr = 3, halign = 0},
-			
+			{str = ""},
+		},
+	},
+	TaintedEsther = {
+		{ -- Start Data
+			{str = "Start Data", fsize = 2, clr = 3, halign = 0},
+			{str = "Items:"},
+			{str = "- "},
+			{str = "Stats:"},
+			{str = "- HP: "},
+			{str = "- Speed: "},
+			{str = "- Tear rate: "},
+			{str = "- Damage: "},
+			{str = "- Range: "},
+			{str = "- Shot speed: "},
+			{str = "- Luck: "},
+		},
+		{ -- Traits
+			{str = "Traits", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
+		},
+		{ -- Birthright
+			{str = "Birthright", fsize = 2, clr = 3, halign = 0},
+			{str = ""},
 		},
 	},
 }
@@ -3324,6 +3373,15 @@ Encyclopedia.AddRune({
 	Name = "Essence of Death",
 })
 
+Encyclopedia.AddSoul({
+	ModName = "Furtherance",
+    Class = "Furtherance",
+	ID = Isaac.GetCardIdByName("Soul of Esther"),
+	Spr = Encyclopedia.RegisterSprite(mod.path .. "resources/gfx/soulofesther.anm2", "HUD", 0),
+    WikiDesc = Wiki.SoulOfEsther,
+	Name = "Esther's Soul",
+})
+
 Encyclopedia.AddRune({
 	ModName = "Furtherance",
     Class = "Furtherance",
@@ -3478,8 +3536,25 @@ Encyclopedia.AddCharacter({
 Encyclopedia.AddCharacterTainted({
     ModName = "Furtherance",
     Name = "Miriam",
-    Description = "The Condemned",
+    Description = "The Forlorn",
     ID = PlayerType.PLAYER_MIRIAM_B,
 	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "Miriam", 0, mod.path .. "content-dlc3/gfx/charactermenu_miriamb.png"),
 	WikiDesc = Wiki.TaintedMiriam,
+})
+
+Encyclopedia.AddCharacter({
+    ModName = "Furtherance",
+    Name = "Esther",
+    ID = PlayerType.PLAYER_ESTHER,
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraits.anm2", "Esther", 0),
+	WikiDesc = Wiki.Esther,
+})
+
+Encyclopedia.AddCharacterTainted({
+    ModName = "Furtherance",
+    Name = "Esther",
+    Description = "The Craven",
+    ID = PlayerType.PLAYER_ESTHER_B,
+	Sprite = Encyclopedia.RegisterSprite(mod.path .. "content-dlc3/gfx/characterportraitsalt.anm2", "Esther", 0, mod.path .. "content-dlc3/gfx/charactermenu_estherb.png"),
+	WikiDesc = Wiki.TaintedEsther,
 })

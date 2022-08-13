@@ -535,6 +535,9 @@ EID:addCard(CARD_CHARITY, "↑ Uses Jar of Manna 3 times, giving you the pickups
 -- Reverse Charity Card
 EID:addCard(CARD_REVERSE_CHARITY, "Doubles all pickups in the room#The doubled pickups will cost money", "XXIV - Charity?", "en_us")
 
+-- Soul of Esther
+EID:addCard(RUNE_SOUL_OF_ESTHER, "", "Soul of Esther", "en_us")
+
 -- Essence of Bravery
 EID:addCard(RUNE_ESSENCE_OF_BRAVERY, "", "Essence of Bravery", "en_us")
 

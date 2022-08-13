@@ -347,6 +347,7 @@ include("lua/pocket/Faith.lua")
 include("lua/pocket/ReverseFaith.lua")
 include("lua/pocket/Charity.lua")
 include("lua/pocket/ReverseCharity.lua")
+include("lua/pocket/SoulOfEsther.lua")
 include("lua/pocket/EssenceOfBravery.lua")
 include("lua/pocket/EssenceOfCowardice.lua")
 
