@@ -49,3 +49,10 @@ function mod:TechIXDebuff(player, cacheFlag)
 	end
 end
 mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.TechIXDebuff)
+
+function mod:Synergies(player, flag)
+	if player:HasCollectible(CollectibleType.COLLECTIBLE_TECH_IX) and player:HasCollectible(CollectibleType.COLLECTIBLE_C_SECTION) then
+		player.TearFlags = player.TearFlags | TearFlags.TEAR_HOMING
+	end
+end
+mod:AddCallback(ModCallbacks.MC_EVALUATE_CACHE, mod.Synergies, CacheFlag.CACHE_TEARFLAG)
