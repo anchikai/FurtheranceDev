@@ -7,20 +7,20 @@
     <card type="rune" pickup="104" description="Heartache" hud="Soul of Leah" name="Soul of Leah" mimiccharge="6" />
     <card type="rune" pickup="105" description="Your world, born again" hud="Soul of Peter" name="Soul of Peter" mimiccharge="6" />
     <card type="rune" pickup="106" description="Drown" hud="Soul of Miriam" name="Soul of Miriam" mimiccharge="12" />
-    <card type="object" pickup="111" description="Deep affection" hud="Essence of Love" name="Essence of Love" />
-    <card type="object" pickup="112" description="Regret" hud="Essence of Hate" name="Essence of Hate" />
-    <card type="object" pickup="113" description="Between birth and death" hud="Essence of Life" name="Essence of Life" />
-    <card type="object" pickup="114" description="Permanence" hud="Essence of Death" name="Essence of Death" />
-    <card type="object" pickup="115" description="Buoyant" hud="Essence of Prosperity" name="Essence of Prosperity" />
-    <card type="object" pickup="116" description="Shortage" hud="Essence of Drought" name="Essence of Drought" />
+    <card type="rune" pickup="111" description="Deep affection" hud="Essence of Love" name="Essence of Love" mimiccharge="6" />
+    <card type="rune" pickup="112" description="Regret" hud="Essence of Hate" name="Essence of Hate" mimiccharge="8" />
+    <card type="rune" pickup="113" description="Between birth and death" hud="Essence of Life" name="Essence of Life" mimiccharge="8" />
+    <card type="rune" pickup="114" description="Permanence" hud="Essence of Death" name="Essence of Death" mimiccharge="12" />
+    <card type="rune" pickup="115" description="Buoyant" hud="Essence of Prosperity" name="Essence of Prosperity" mimiccharge="4" />
+    <card type="rune" pickup="116" description="Shortage" hud="Essence of Drought" name="Essence of Drought" mimiccharge="6" />
     <card type="tarot" pickup="1" description="May your future be bright and successful" hud="Hope" name="XXIII - Hope" mimiccharge="2" />
     <card type="tarot_reverse" pickup="14" description="I have a bad feeling about this" hud="ReverseHope" name="XXIII - Hope?" mimiccharge="2" />
     <card type="tarot" pickup="1" description="May your soul find salvation" hud="Faith" name="XXV - Faith" mimiccharge="2" />
     <card type="tarot_reverse" pickup="14" description="Give up your spirit" hud="ReverseFaith" name="XXV - Faith?" mimiccharge="2" />
     <card type="tarot" pickup="1" description="To each according to his needs" hud="Charity" name="XXIV - Charity" mimiccharge="2" />
     <card type="tarot_reverse" pickup="14" description="Everything comes at a price" hud="ReverseCharity" name="XXIV - Charity?" mimiccharge="2" />
-    <card type="object" pickup="117" description="" hud="Essence of Bravery" name="Essence of Bravery" />
-    <card type="object" pickup="118" description="Your personal hell" hud="Essence of Misfortune" name="Essence of Misfortune" /> <!-- Concept by nightshade! -->
+    <card type="rune" pickup="117" description="" hud="Essence of Bravery" name="Essence of Bravery" mimiccharge="6" />
+    <card type="rune" pickup="118" description="Your personal hell" hud="Essence of Misfortune" name="Essence of Misfortune" mimiccharge="12" /> <!-- Concept by nightshade! -->
 
     <pilleffect name="Heartache Up" class="3-" mimiccharge="4" />
 	<pilleffect name="Heartache Down" class="3+" mimiccharge="6" />
