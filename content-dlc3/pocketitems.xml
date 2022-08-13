@@ -19,6 +19,8 @@
     <card type="tarot_reverse" pickup="14" description="Give up your spirit" hud="ReverseFaith" name="XXV - Faith?" mimiccharge="2" />
     <card type="tarot" pickup="1" description="To each according to his needs" hud="Charity" name="XXIV - Charity" mimiccharge="2" />
     <card type="tarot_reverse" pickup="14" description="Everything comes at a price" hud="ReverseCharity" name="XXIV - Charity?" mimiccharge="2" />
+    <card type="object" pickup="117" description="" hud="Essence of Bravery" name="Essence of Bravery" />
+    <card type="object" pickup="118" description="Your personal hell" hud="Essence of Misfortune" name="Essence of Misfortune" />
 
     <pilleffect name="Heartache Up" class="3-" mimiccharge="4" />
 	<pilleffect name="Heartache Down" class="3+" mimiccharge="6" />

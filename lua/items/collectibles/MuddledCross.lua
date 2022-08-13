@@ -72,7 +72,7 @@ function mod:UltraSecretPool(pool, decrease, seed)
 		Rerolled = false
 	end
 end
-mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, mod.UltraSecretPool)
+--mod:AddCallback(ModCallbacks.MC_PRE_GET_COLLECTIBLE, mod.UltraSecretPool)
 
 function mod:DoubleStuff(pickup)
 	local room = game:GetRoom()
