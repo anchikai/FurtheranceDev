@@ -65,7 +65,7 @@ function mod:EstherSpeed(player)
 		if isEstherMoving(player) then
 			data.EstherSpeedGain = data.EstherSpeedGain + 0.01
 		else
-			data.EstherSpeedGain = data.EstherSpeedGain - 0.04
+			data.EstherSpeedGain = data.EstherSpeedGain - 0.03
 		end
 		data.EstherSpeedGain = clamp(data.EstherSpeedGain, MIN_SPEED, MAX_SPEED)
 		player.MoveSpeed = data.EstherSpeedGain
