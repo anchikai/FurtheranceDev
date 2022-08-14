@@ -1712,7 +1712,7 @@ local Wiki = {
 		{ -- Traits
 			{str = "Traits", fsize = 2, clr = 3, halign = 0},
 			{str = "Leah's pocket active item ''Heart Renovator'' grants a Heart Counter."},
-			{str = "- It can be filled by picking up red hearts. When you hold the drop button, two will be subtracted from the counter and a broken heart will be added."},
+			{str = "- It can be filled by picking up red hearts. When you double tap the drop button, two will be subtracted from the counter and a broken heart will be added."},
 			{str = "- Using Heart Renovator will remove a broken heart and grant a small Damage up."},
 			{str = "For each broken heart Leah has, she will gain an extra +1 range."},
 			{str = "Enemies have a 6.25% chance to drop a scared heart when Leah kills them."},
