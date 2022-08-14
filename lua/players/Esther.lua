@@ -13,7 +13,7 @@ local function clamp(value, min, max)
 end
 
 local function isEstherMoving(player)
-	if player.Velocity:DistanceSquared() > 0 and (Input.IsActionPressed(ButtonAction.ACTION_LEFT, player.ControllerIndex) or Input.IsActionPressed(ButtonAction.ACTION_RIGHT, player.ControllerIndex)
+	if player.Velocity:LengthSquared() > 0 and (Input.IsActionPressed(ButtonAction.ACTION_LEFT, player.ControllerIndex) or Input.IsActionPressed(ButtonAction.ACTION_RIGHT, player.ControllerIndex)
 	or Input.IsActionPressed(ButtonAction.ACTION_UP, player.ControllerIndex) or Input.IsActionPressed(ButtonAction.ACTION_DOWN, player.ControllerIndex)) then
 		return true
 	else
