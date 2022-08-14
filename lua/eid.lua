@@ -539,7 +539,7 @@ EID:addCard(CARD_REVERSE_CHARITY, "Doubles all pickups in the room#The doubled p
 EID:addCard(RUNE_SOUL_OF_ESTHER, "", "Soul of Esther", "en_us")
 
 -- Essence of Bravery
-EID:addCard(RUNE_ESSENCE_OF_BRAVERY, "", "Essence of Bravery", "en_us")
+EID:addCard(RUNE_ESSENCE_OF_BRAVERY, "Grants a temporary {{Speed}} +1.5 speed up that lasts for 50 seconds#Can break the speed cap", "Essence of Bravery", "en_us")
 
 -- Essence of Cowardice
 EID:addCard(RUNE_ESSENCE_OF_COWARDICE, "↑ Takes you to a Gehenna-styled {{TreasureRoom}} Treasure Room with a free {{DevilRoom}} Devil Deal item", "Essence of Cowardice", "en_us")

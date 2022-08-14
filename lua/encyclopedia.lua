@@ -1679,7 +1679,8 @@ local Wiki = {
 	EssenceOfBravery = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = ""},
+			{str = "On use, grants a temporary 1.5 speed up that can break the speed cap."},
+			{str = "You lose 0.001 speed every frame, or 0.03 speed per second."},
 		},
 	},
 	EssenceOfCowardice = {
