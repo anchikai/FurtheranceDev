@@ -4,6 +4,19 @@ local game = Game()
 COSTUME_ESTHER_A_HAIR = Isaac.GetCostumeIdByPath("gfx/characters/Character_004_Esther_Hair.anm2")
 COSTUME_ESTHER_B_HAIR = Isaac.GetCostumeIdByPath("gfx/characters/Character_004b_Esther_Hair.anm2")
 
+local function clamp(value, min, max)
+	return math.min(math.max(value, min), max)
+end
+
+local function isEstherMoving(player)
+	if Input.IsActionPressed(ButtonAction.ACTION_LEFT, player.ControllerIndex) or Input.IsActionPressed(ButtonAction.ACTION_RIGHT, player.ControllerIndex)
+	or Input.IsActionPressed(ButtonAction.ACTION_UP, player.ControllerIndex) or Input.IsActionPressed(ButtonAction.ACTION_DOWN, player.ControllerIndex) then
+		return true
+	else
+		return false
+	end
+end
+
 function mod:OnInit(player)
 	if mod.IsContinued then return end
 
@@ -12,6 +25,7 @@ function mod:OnInit(player)
 
 	if player:GetPlayerType() == PlayerType.PLAYER_ESTHER then -- If the player is Esther it will apply her hair
 		player:AddNullCostume(COSTUME_ESTHER_A_HAIR)
+		data.EstherSpeedGain = 1.5
 	elseif player:GetPlayerType() == PlayerType.PLAYER_ESTHER_B then -- Apply different hair for her tainted variant
 		player:AddNullCostume(COSTUME_ESTHER_B_HAIR)
 	end
@@ -36,12 +50,62 @@ function mod:GiveEstherItems(player)
 		end
 	end
 end
-mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.GivePeterItems)
+mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.GiveEstherItems)
+
+function mod:EstherSpeed(player)
+	local data = mod:GetData(player)
+	if data.EstherSpeedGain == nil then return end
+
+	if player:GetPlayerType() == PlayerType.PLAYER_ESTHER then
+		if isEstherMoving(player) then
+			data.EstherSpeedGain = data.EstherSpeedGain + 0.0045
+		else
+			data.EstherSpeedGain = data.EstherSpeedGain - 0.009
+		end
+		player.MoveSpeed = clamp(data.EstherSpeedGain, 1.5, 3)
+		data.EstherSpeedGain = clamp(data.EstherSpeedGain, 1.5, 3)
+	end
+end
+mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.EstherSpeed)
+
+function mod:EstherDamage(entity)
+    local player = entity:ToPlayer()
+    if player and player:GetPlayerType() == PlayerType.PLAYER_ESTHER then
+        if player.MoveSpeed >= 2.5 then
+			return false
+		end
+    end
+end
+mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, mod.EstherDamage, EntityType.ENTITY_PLAYER)
+
+function mod:EstherRamming(player, collider)
+    if player:GetPlayerType() == PlayerType.PLAYER_ESTHER then
+		local data = mod:GetData(player)
+        if player.MoveSpeed >= 2.5 and collider:IsActiveEnemy(false) and collider:IsVulnerableEnemy() then
+			collider:TakeDamage(player.Damage/2, 0, EntityRef(player), 1)
+		end
+		if game:GetFrameCount()%3 == 0 then
+			data.EstherSpeedGain = data.EstherSpeedGain - 0.1
+		end
+    end
+end
+mod:AddCallback(ModCallbacks.MC_PRE_PLAYER_COLLISION, mod.EstherRamming)
 
 function mod:EstherStats(player, flag)
 	if player:GetPlayerType() == PlayerType.PLAYER_ESTHER then
-		
-	elseif player:GetPlayerType() == PlayerType.PLAYER_PETER_B then
+		if flag == CacheFlag.CACHE_SPEED then
+			player.MoveSpeed = player.MoveSpeed + 0.5
+		end
+		if flag == CacheFlag.CACHE_FIREDELAY then
+			player.MaxFireDelay = player.MaxFireDelay + 1
+		end
+		if flag == CacheFlag.CACHE_RANGE then
+			player.TearRange = player.TearRange - 60
+		end
+		if flag == CacheFlag.CACHE_LUCK then
+			player.Luck = player.Luck + 1
+		end
+	elseif player:GetPlayerType() == PlayerType.PLAYER_ESTHER_B then
 		
 	end
 end
