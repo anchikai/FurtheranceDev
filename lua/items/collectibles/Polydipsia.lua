@@ -89,7 +89,7 @@ function mod:OnTearImpact(tear)
 		allPuddles[GetPtrHash(puddle)] = {
 			Entity = puddle,
 			Damage = player.Damage * 0.33,
-			CollisionRadius = 20,
+			CollisionRadius = 25,
 			DamageCooldown = 0,
 			DamageRef = EntityRef(player)
 		}
