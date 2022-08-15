@@ -6,12 +6,25 @@ local unlockEvents = {
     "Beast", "GreedMode", "FullCompletion",
 }
 
+local pureUnlockEvents = { "Tainted" }
+local taintedUnlockEvents = { "PolNegPath", "SoulPath" }
+
 local function setUnlocks(playerName, isUnlocked)
     local playerUnlockInfo = mod.Unlocks[playerName]
     for _, event in ipairs(unlockEvents) do
         local eventUnlockInfo = playerUnlockInfo[event]
         eventUnlockInfo.Unlock = isUnlocked
         eventUnlockInfo.Hard = isUnlocked
+    end
+
+    local extraEvents
+    if playerName:sub(-1, -1) == "B" then
+        extraEvents = taintedUnlockEvents
+    else
+        extraEvents = pureUnlockEvents
+    end
+    for _, event in ipairs(extraEvents) do
+        playerUnlockInfo[event] = isUnlocked
     end
 end
 
