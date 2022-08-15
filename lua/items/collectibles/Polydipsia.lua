@@ -100,14 +100,14 @@ mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, mod.OnTearImpact, EntityType
 function mod:PolydipsiaPuddleUpdate()
 	-- remove puddles that don't exist
 	for k, puddleData in pairs(allPuddles) do
-		if not puddleData.Entity:Exists() then
+		if puddleData.Entity.Timeout <= 0 or not puddleData.Entity:Exists() then
 			allPuddles[k] = nil
 		end
 	end
 
 	-- update puddles
 	for _, puddleData in pairs(allPuddles) do
-		if puddleData.DamageCooldown == 0 then
+		if puddleData.DamageCooldown <= 0 then
 			local puddle = puddleData.Entity
 			for _, enemy in ipairs(Isaac.FindInRadius(puddle.Position, puddleData.CollisionRadius, EntityPartition.ENEMY)) do
 				if not enemy:IsFlying() then
