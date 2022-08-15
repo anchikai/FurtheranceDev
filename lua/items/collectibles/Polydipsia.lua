@@ -2,6 +2,8 @@ local mod = Furtherance
 
 local WhirlpoolVariant = Isaac.GetEntityVariantByName("Miriam Whirlpool")
 
+local allPuddles = {}
+
 local function hasItem(player)
 	return player ~= nil and player:HasCollectible(CollectibleType.COLLECTIBLE_POLYDIPSIA)
 end
@@ -38,7 +40,9 @@ local function makeMiriamPuddle(miriam, tear)
 		whirlpool.LifeSpan = 60
 	else
 		local puddle = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PLAYER_CREEP_HOLYWATER_TRAIL, 1, tear.Position, Vector.Zero, miriam):ToEffect()
-		puddle.CollisionDamage = miriam.Damage * 0.33
+		---@cast puddle EntityEffect
+		local puddleDamage = miriam.Damage * 0.33
+		puddle.CollisionDamage = 0
 		puddle.SpriteScale = Vector.One * playerData.MiriamAOE
 		puddle.Scale = playerData.MiriamAOE
 		if miriam:HasCollectible(CollectibleType.COLLECTIBLE_CHOCOLATE_MILK) then
@@ -47,7 +51,7 @@ local function makeMiriamPuddle(miriam, tear)
 		if miriam:HasCollectible(CollectibleType.COLLECTIBLE_TECHNOLOGY) or miriam:HasCollectible(CollectibleType.COLLECTIBLE_BRIMSTONE) then
 			puddle.Color = Color(1, 0, 0, 1)
 			if miriam:HasCollectible(CollectibleType.COLLECTIBLE_BRIMSTONE) then
-				puddle.CollisionDamage = miriam.Damage * 0.4
+				puddleDamage = miriam.Damage * 0.4
 			end
 		end
 		if miriam:HasCollectible(CollectibleType.COLLECTIBLE_SOY_MILK) then
@@ -57,6 +61,13 @@ local function makeMiriamPuddle(miriam, tear)
 			puddle.SpriteScale = Vector.One * playerData.MiriamAOE/2
 			puddle.Scale = playerData.MiriamAOE/2
 		end
+		allPuddles[GetPtrHash(puddle)] = {
+			Entity = puddle,
+			Damage = puddleDamage,
+			CollisionRadius = 25 * playerData.MiriamAOE,
+			DamageCooldown = 0,
+			DamageRef = EntityRef(miriam)
+		}
 	end
 
 	if hasItem(miriam) and tear.SubType == 0 then
@@ -73,10 +84,42 @@ function mod:OnTearImpact(tear)
 		makeMiriamPuddle(player, tear)
 	else
 		local puddle = Isaac.Spawn(EntityType.ENTITY_EFFECT, EffectVariant.PLAYER_CREEP_HOLYWATER_TRAIL, 1, tear.Position, Vector.Zero, player):ToEffect()
-		puddle.CollisionDamage = player.Damage * 0.33
+		---@cast puddle EntityEffect
+		puddle.CollisionDamage = 0
+		allPuddles[GetPtrHash(puddle)] = {
+			Entity = puddle,
+			Damage = player.Damage * 0.33,
+			CollisionRadius = 20,
+			DamageCooldown = 0,
+			DamageRef = EntityRef(player)
+		}
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_ENTITY_REMOVE, mod.OnTearImpact, EntityType.ENTITY_TEAR)
+
+function mod:PolydipsiaPuddleUpdate()
+	-- remove puddles that don't exist
+	for k, puddleData in pairs(allPuddles) do
+		if not puddleData.Entity:Exists() then
+			allPuddles[k] = nil
+		end
+	end
+
+	-- update puddles
+	for _, puddleData in pairs(allPuddles) do
+		if puddleData.DamageCooldown == 0 then
+			local puddle = puddleData.Entity
+			for _, enemy in ipairs(Isaac.FindInRadius(puddle.Position, puddleData.CollisionRadius, EntityPartition.ENEMY)) do
+				if not enemy:IsFlying() then
+					enemy:TakeDamage(puddleData.Damage, 0, puddleData.DamageRef, 0)
+					puddleData.DamageCooldown = 4
+				end
+			end
+		end
+		puddleData.DamageCooldown = math.max(puddleData.DamageCooldown - 1, 0)
+	end
+end
+mod:AddCallback(ModCallbacks.MC_POST_UPDATE, mod.PolydipsiaPuddleUpdate)
 
 function mod:MakePolydipsiaTear(tear)
     local player = tear.Parent:ToPlayer()
