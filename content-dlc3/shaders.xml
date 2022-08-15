@@ -31,7 +31,7 @@
         ]]>
         </vertex>
         <fragment>
-            <![CDATA[
+            <![CDATA[#version 150
             varying lowp vec4 Color0;  			
             varying mediump vec2 TexCoord0;  			
             varying lowp vec4 RenderDataOut;
@@ -42,10 +42,10 @@
 
             void main(void)                                             
             {
-                float partone = TexCoord0.y * (1.0-FlipFactorOut);
+                float partone = TexCoord0.y * (1-FlipFactorOut);
                 float parttwo = ((RenderDataOut.y/RenderDataOut.z)-TexCoord0.y) * FlipFactorOut;
                 float FlipValue = partone+parttwo;
-                float MirrorFactor = 1.0 * (1.0 - FlipFactorOut) + 0.7 * FlipFactorOut;
+                float MirrorFactor = 1 * (1 - FlipFactorOut) + 0.7 * FlipFactorOut;
                 vec4 Color = Color0 * texture2D(Texture0, vec2( TexCoord0.x,FlipValue) );
                 Color.r *= 1.0f + FlipFactorOut;
                 Color.g *= 1.0f - (FlipFactorOut * 0.225f);
