@@ -21,8 +21,6 @@ local function IsEnemyNear(player) -- Enemy detection
 end
 
 function mod:OnInit(player)
-	if mod.IsContinued then return end
-
 	local data = mod:GetData(player)
 	data.Init = true
 

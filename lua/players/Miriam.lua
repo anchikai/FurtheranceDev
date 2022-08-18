@@ -10,13 +10,11 @@ COSTUME_MIRIAM_B_HAIR = Isaac.GetCostumeIdByPath("gfx/characters/Character_003b_
 
 function mod:OnInit(player)
 	local data = mod:GetData(player)
+	data.Init = true
 	if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then
 		data.MiriamAOE = 1
 		data.oldNumBirthrights = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_BIRTHRIGHT)
 	end
-
-	if mod.IsContinued then return end
-	data.Init = true
 
 	if player:GetPlayerType() == PlayerType.PLAYER_MIRIAM then -- If the player is Miriam it will apply her hair
 		data.MiriamTearCount = 0
