@@ -1,10 +1,6 @@
 local mod = Furtherance
 local game = Game()
 
-mod:SavePlayerData({
-    SleptInMomsBed = false
-})
-
 function mod.RoomGenerator(index, slot, newroom)
     local level = game:GetLevel()
     local OldStage, OldStageType, OldChallenge = level:GetStage(), level:GetStageType(), game.Challenge
@@ -27,25 +23,13 @@ end
 
 function mod:MakeExit(entity, collider)
     local level = game:GetLevel()
-    if collider.Type == EntityType.ENTITY_PLAYER then
-       local player = collider:ToPlayer()
-       local data = mod:GetData(player)
-        if level:GetStage() == LevelStage.STAGE8 then
-            if entity.SubType == 10 and data.SleptInMomsBed ~= true then
-                data.SleptInMomsBed = true
-                mod.RoomGenerator(109, DoorSlot.DOWN0, 135)
-            end
-        end
+    if collider.Type == EntityType.ENTITY_PLAYER and entity.SubType == 10
+        and level:GetStage() == LevelStage.STAGE8 and level:GetStageType() == 0
+    then
+        mod.RoomGenerator(109, DoorSlot.DOWN0, 135)
     end
 end
 mod:AddCallback(ModCallbacks.MC_PRE_PICKUP_COLLISION, mod.MakeExit, PickupVariant.PICKUP_BED)
-
-function mod:BedData(player)
-    if mod.IsContinued then return end
-    local data = mod:GetData(player)
-    data.SleptInMomsBed = false
-end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.BedData)
 
 --[[function mod:Finale()
     for i = 0, game:GetNumPlayers() - 1 do
@@ -75,7 +59,7 @@ function mod:ExitRoom(player)
     local level = game:GetLevel()
     local room = game:GetRoom()
     local data = mod:GetData(player)
-    if data.SleptInMomsBed == true then
+    if level:GetStageType() == 1 then
         if (level:GetCurrentRoomIndex() == 109 or level:GetCurrentRoomIndex() == 122) then
             if player.Position.Y > 712 then
                 Isaac.ExecuteCommand("goto d.0")
