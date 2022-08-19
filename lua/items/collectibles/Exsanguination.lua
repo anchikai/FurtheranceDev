@@ -44,12 +44,6 @@ local function canPickUpHeart(player, heartSubType)
         or false -- make it false in case it's nil
 end
 
-function mod:SetExsanguinationData(player)
-    player:AddCacheFlags(CacheFlag.CACHE_DAMAGE)
-    player:EvaluateItems()
-end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.SetExsanguinationData)
-
 ---@param heart EntityPickup
 ---@param collider Entity
 function mod:PickupHeart(heart, collider)

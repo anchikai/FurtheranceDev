@@ -184,14 +184,39 @@ function Furtherance:OnLoadData(isContinued)
         loadedData = createEmptySaveData()
     end
 
+    local allLoadedPlayerData = loadedData.PlayerData
     if isContinued then
         for key, default in pairs(savedModKeys) do
             mod[key] = loadDecodeOrDefault(loadedData[key], default)
+        end
+
+        for i, player in pairs(allPlayers) do
+            local loadedPlayerData = allLoadedPlayerData[getPlayerKey(i)]
+            local playerData = mod:GetData(player)
+            for key, default in pairs(savedPlayerKeys) do
+                playerData[key] = loadDecodeOrDefault(loadedPlayerData[key], default)
+            end
         end
     else
         for key, default in pairs(savedModKeys) do
             mod[key] = loadDefault(default)
         end
+
+        for _, player in pairs(allPlayers) do
+            local playerData = mod:GetData(player)
+            for key, default in pairs(savedPlayerKeys) do
+                playerData[key] = loadDefault(default)
+            end
+        end
+    end
+
+    for i, player in pairs(allPlayers) do
+        local loadedPlayerData = allLoadedPlayerData[getPlayerKey(i)]
+        local playerData = mod:GetData(player)
+        for key, default in pairs(shelvedPlayerKeys) do
+            playerData[key] = loadDecodeOrDefault(loadedPlayerData[key], default)
+        end
+        playerData.LoadedData = true
     end
 
     for key, default in pairs(shelvedModKeys) do
@@ -271,42 +296,7 @@ function mod:ConnectLazarus(lazarus)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.ConnectLazarus)
 
-local function loadSavedPlayerData(player, index)
-    local data = mod:GetData(player)
-    local playerData = mod.LoadedData.PlayerData[getPlayerKey(index)]
-    if mod.IsContinued and index ~= nil and playerData ~= nil then
-        for key, default in pairs(savedPlayerKeys) do
-            data[key] = loadDecodeOrDefault(playerData[key], default)
-        end
-    else
-        for key, default in pairs(savedPlayerKeys) do
-            data[key] = loadDefault(default)
-        end
-    end
-end
-
-local function loadShelvedPlayerData(player, index)
-    local data = mod:GetData(player)
-    local playerData = mod.LoadedData.PlayerData[getPlayerKey(index)]
-    if index ~= nil and playerData ~= nil then
-        for key, default in pairs(shelvedPlayerKeys) do
-            data[key] = loadDecodeOrDefault(playerData[key], default)
-        end
-    else
-        for key, default in pairs(shelvedPlayerKeys) do
-            data[key] = loadDefault(default)
-        end
-    end
-end
-
-local function loadAllPlayerData(player, index)
-    loadSavedPlayerData(player, index)
-    loadShelvedPlayerData(player, index)
-    local data = mod:GetData(player)
-    data.LoadedData = true
-end
-
-function Furtherance:OnLoadPlayerData(player)
+function Furtherance:RegisterPlayer(player)
     if isTaintedDeadLazarus(player) then return end
 
     local indexedPlayer = player
@@ -322,13 +312,11 @@ function Furtherance:OnLoadPlayerData(player)
         -- load tainted dead lazarus too now that tainted living lazarus is here
         local deadLazarus = mod:GetLazarusOtherTwin(player)
         allPlayers[index + 0.5] = deadLazarus
-        loadAllPlayerData(deadLazarus, index + 0.5)
     end
 
     allPlayers[index] = player
-    loadAllPlayerData(player, index)
 end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.OnLoadPlayerData)
+mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.RegisterPlayer)
 
 function mod:SaveCommand(cmd)
     if string.lower(cmd) == "savefurtherance" then

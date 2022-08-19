@@ -5,8 +5,6 @@ COSTUME_PETER_A_DRIP = Isaac.GetCostumeIdByPath("gfx/characters/Character_002_Pe
 COSTUME_PETER_B_DRIP = Isaac.GetCostumeIdByPath("gfx/characters/Character_002b_Peter_Drip.anm2")
 
 function mod:OnInit(player)
-	if mod.IsContinued then return end
-
 	local data = mod:GetData(player)
 	data.Init = true
 

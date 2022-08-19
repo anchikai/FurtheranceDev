@@ -527,11 +527,11 @@ end
 
 -- if a player exists at this time, the mod was just hot-reloaded with luamod
 if Isaac.GetPlayer() ~= nil then
-    Furtherance:OnLoadData(true)
     for i = 0, game:GetNumPlayers() - 1 do
         local player = Isaac.GetPlayer(i)
-        Furtherance:OnLoadPlayerData(player)
-    end
+        Furtherance:RegisterPlayer(player)
+	end
+	Furtherance:OnLoadData(true)
 end
 
 print("Type \"furtherancehelp\" for Furtherance commands.")

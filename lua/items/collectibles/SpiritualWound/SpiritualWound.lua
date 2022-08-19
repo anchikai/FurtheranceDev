@@ -89,6 +89,13 @@ function mod:SpiritualWoundUpdate(player)
         data.SpiritualWound = itemData
     end
 
+    if player:IsDead() then
+        RenderLasers.RemoveLasers(itemData)
+        RenderLasers.StopLaserSounds()
+        UpdateFocus.RemoveFocus(itemData)
+        return
+    end
+
     local triggeredSynergies = itemData.TriggeredSynergies
     local synergies = itemData.Synergies
     for collectible, oldCount in pairs(itemData.Synergies) do
@@ -108,15 +115,3 @@ function mod:SpiritualWoundUpdate(player)
     DamageEnemies(itemData, targetQuery)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.SpiritualWoundUpdate)
-
----@param player EntityPlayer
-function mod:SpiritualWoundPlayerDied(player)
-    local data = mod:GetData(player)
-    local itemData = data.SpiritualWound
-    if itemData == nil then return end
-
-    RenderLasers.RemoveLasers(itemData)
-    RenderLasers.StopLaserSounds()
-    UpdateFocus.RemoveFocus(itemData)
-end
-mod:AddCallback(mod.CustomCallbacks.MC_POST_PLAYER_DIED, mod.SpiritualWoundPlayerDied)
