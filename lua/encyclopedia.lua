@@ -1178,7 +1178,7 @@ local Wiki = {
 	Sunscreen = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Isaac has a 25% chance to block/ignore fire damage."},
+			{str = "Isaac has a 100% chance to block/ignore fire damage."},
 		},
 	},
 	SecretDiary = {

@@ -364,7 +364,7 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_CARDIOMYOPATHY, "↑ Temporarily 
 EID:addTrinket(TrinketType.TRINKET_ALTRUISM, "↑ Donating to any beggar has a chance to heal {{HalfHeart}} half a red heart or receive the resource you donated back", "Altruism", "en_us")
 
 -- Sunscreen
-EID:addCollectible(CollectibleType.COLLECTIBLE_SUNSCREEN, "↑ 25% chance to block/ignore fire damage", "Sunscreen", "en_us")
+EID:addCollectible(CollectibleType.COLLECTIBLE_SUNSCREEN, "↑ 100% chance to block/ignore fire damage", "Sunscreen", "en_us")
 
 -- Secret Diary
 EID:addCollectible(CollectibleType.COLLECTIBLE_SECRET_DIARY, "Gain {{Collectible619}} Birthright for the room", "Secret Diary", "en_us")
