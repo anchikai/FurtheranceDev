@@ -13,11 +13,12 @@ local function hasItem(player)
 end
 
 local function setCanShoot(player, canShoot) -- Funciton Credit: im_tem
-    local oldchallenge = game.Challenge
-
-    game.Challenge = canShoot and Challenge.CHALLENGE_NULL or Challenge.CHALLENGE_SOLAR_SYSTEM
-    player:UpdateCanShoot()
-    game.Challenge = oldchallenge
+	local oldchallenge = game.Challenge
+	if Isaac.GetChallenge() == 0 then -- Fix by anchikai
+		game.Challenge = canShoot and Challenge.CHALLENGE_NULL or Challenge.CHALLENGE_SOLAR_SYSTEM
+		player:UpdateCanShoot()
+		game.Challenge = oldchallenge
+	end
 end
 
 ---@class SpiritualWoundItemData

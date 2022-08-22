@@ -401,10 +401,11 @@ end
 
 local function setCanShoot(player, canShoot) -- Funciton Credit: im_tem
 	local oldchallenge = game.Challenge
-
-	game.Challenge = canShoot and Challenge.CHALLENGE_NULL or Challenge.CHALLENGE_SOLAR_SYSTEM
-	player:UpdateCanShoot()
-	game.Challenge = oldchallenge
+	if Isaac.GetChallenge() == 0 then -- Fix by anchikai
+		game.Challenge = canShoot and Challenge.CHALLENGE_NULL or Challenge.CHALLENGE_SOLAR_SYSTEM
+		player:UpdateCanShoot()
+		game.Challenge = oldchallenge
+	end
 end
 
 function mod:NoMovement(entity, hook, button)
