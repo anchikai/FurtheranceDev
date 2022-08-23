@@ -766,7 +766,7 @@ local Wiki = {
 	FirstbornSon = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
-			{str = "Attacks the enemy with the highest enemy in the room with a powerful shot."},
+			{str = "Attacks the enemy with the highest health in the room with a powerful shot."},
 		},
 		{ -- Notes
 			{str = "Notes", fsize = 2, clr = 3, halign = 0},
