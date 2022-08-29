@@ -7,6 +7,9 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.SetRottenLoveData)
 
 function mod:GiveHeartsOnPickUp(player)
+    if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
+        return
+    end
     local data = mod:GetData(player)
     local newRottenLoveCount = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_ROTTEN_LOVE)
     if data.OldRottenLoveCount == nil then

@@ -79,6 +79,9 @@ end
 
 ---@param player EntityPlayer
 function mod:SpiritualWoundUpdate(player)
+    if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
+        return
+    end
     local hasItemVar = hasItem(player)
     setCanShoot(player, not hasItemVar)
     if not hasItemVar then return end

@@ -37,6 +37,9 @@ local function pickTombstoneRoom(player, roomsList)
 end
 
 function mod:PickupItem(player)
+    if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
+        return
+    end
     local data = mod:GetData(player)
     if data.OldCollectibles == nil then
         data.OldCollectibles = {}
