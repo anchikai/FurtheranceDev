@@ -181,10 +181,20 @@ function mod:shouldDeHook()
 	}
 	return reqs[1] or reqs[2]
 end
+
+local function IsMapButtonPressed()
+	for i = 0, game:GetNumPlayers() - 1 do
+		if Input.IsActionPressed(ButtonAction.ACTION_MAP, Isaac.GetPlayer(i).ControllerIndex) then
+			return true
+		end
+	end
+	return false
+end
+
 mod:AddCallback(ModCallbacks.MC_POST_RENDER, function() -- The actual heart counter for Leah
 	if mod:shouldDeHook() then return end
 	local transparency = 1
-	if EID and EID.lastDescriptionEntity then
+	if EID and (EID.lastDescriptionEntity or IsMapButtonPressed()) then
 		transparency = 0.25
 	end
 
