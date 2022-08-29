@@ -128,11 +128,6 @@ function mod:ServitudeTarget(pickup)
 end
 mod:AddCallback(ModCallbacks.MC_POST_PICKUP_RENDER, mod.ServitudeTarget)
 
-function mod:RemoveCharge()
-
-end
-mod:AddCallback(ModCallbacks.MC_POST_PLAYER_UPDATE, mod.RemoveCharge)
-
 local activeSlots = {
 	ActiveSlot.SLOT_PRIMARY,
 	ActiveSlot.SLOT_SECONDARY,
