@@ -72,6 +72,11 @@
 	<passive id="97" cache="damage firedelay range shotspeed" name="Severed Ear" description="Battle trophy" gfx="severed_ear.png" quality="2" />
 	<passive id="98" name="Golden Port" description="Money charge" gfx="golden_port.png" quality="3" />
 	<passive id="99" name="Itching Powder" description="Double damage?" gfx="itching_powder.png" quality="1" />
+	<passive id="100" cache="damage firedelay" name="Coconut Milk" description="Tears way down + Damage way up + something's looming!" gfx="coconut_milk.png" quality="4" />
+	<passive id="101" name="The Scales of Truth" description="Blind justice" gfx="the_scales_of_truth.png" quality="4" />
+	<passive id="102" name="Ravenous Wolf" description="Devour the prey" gfx="ravenous_wolf.png" devilprice="2" quality="4" />
+	<passive id="103" name="Pumpkin Bombs" description="Heavy fire + 5 bombs" gfx="pumpkin_bombs.png" quality="2" />
+	<passive id="105" name="Yard Stick" description="1 yard = 3 feet" gfx="yard_stick.png" quality="" />
 
 	<!-- Active Items -->
 	<active id="21" cache="speed" name="Book of Swiftness" description="Temporary speed up" gfx="book_of_swiftness.png" maxcharges="3" quality="3" tags="book offensive lazarussharedglobal" />
@@ -100,6 +105,8 @@
 	<active id="91" name="Prayer Journal" description="Scripture" gfx="prayer_journal.png" maxcharges="4" quality="2" tags="book" />
 	<active id="92" name="Book of Leviticus" description="Set in stone" gfx="book_of_leviticus.png" maxcharges="6" quality="3" tags="book" />
 	<active id="95" name="Astragali" description="Reroll your biddings" gfx="astragali.png" maxcharges="4" quality="2" />
+	<active id="106" name="Mezuzah" description="" gfx="mezuzah.png" chargetype="timed" maxcharges="360" quality="2" />
+	<active id="107" name="Game Die" description="" gfx="game_die.png" maxcharges="6" quality="4" />
 
 	<!-- Trinkets -->
 	<trinket id="0" name="Holy Heart" description="Protective hearts" gfx="holy_heart.png" /> <!-- Concept by HoneyVee! -->
@@ -122,6 +129,10 @@
 	<trinket id="17" name="Glitched Penny" description="Wealth of Corruption" gfx="glitched_penny.png" />
 	<trinket id="18" cache="range shotspeed damage" name="Hammerhead Worm" description="Thwack" gfx="hammerhead_worm.png" />
 	<trinket id="19" name="Parasol" description="Little protectors" gfx="parasol.png" />
+	<trinket id="20" name="Roots of Sukkot" description="The four species" gfx="roots_of_sukkot.png" />
+	<trinket id="21" name="Brazen Sea" description="Abulation of the soul" gfx="brazen_sea.png" />
+	<trinket id="22" cache="damage" name="Hollow Horn" description="Damage multiplier up" gfx="hollow_horn.png" />
+	<!-- <trinket id="23" name="Knotted Tassel" description="Marking shots" gfx="knotted_tassel.png" /> -->
 
 	<!-- Familiars -->
 	<familiar id="35" name="Binds of Devotion" description="Bound by love" gfx="binds_of_devotion.png" quality="2" persistent="true" />
@@ -131,4 +142,5 @@
 	<familiar id="63" name="Blood Cyst" description="It's about to pop" gfx="blood_cyst.png" quality="2" persistent="true" />
 	<familiar id="64" name="Polaris" description="May the star shine bright" gfx="polaris.png" quality="4" />
 	<familiar id="80" name="Iron" description="Hot to the touch" gfx="iron.png" quality="3" />
+	<familiar id="104" name="Uncle Bob" description="Friends till the end!" gfx="uncle_bob.png" devilprice="1" quality="1" tags="bob baby" />
 </items>

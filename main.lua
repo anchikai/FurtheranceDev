@@ -105,6 +105,14 @@ CollectibleType.COLLECTIBLE_LIBERATION = Isaac.GetItemIdByName("Liberation")
 CollectibleType.COLLECTIBLE_SEVERED_EAR = Isaac.GetItemIdByName("Severed Ear")
 CollectibleType.COLLECTIBLE_GOLDEN_PORT = Isaac.GetItemIdByName("Golden Port")
 CollectibleType.COLLECTIBLE_ITCHING_POWDER = Isaac.GetItemIdByName("Itching Powder")
+CollectibleType.COLLECTIBLE_COCONUT_MILK = Isaac.GetItemIdByName("Coconut Milk")
+CollectibleType.COLLECTIBLE_THE_SCALES_OF_TRUTH = Isaac.GetItemIdByName("The Scales of Truth")
+CollectibleType.COLLECTIBLE_RAVENOUS_WOLF = Isaac.GetItemIdByName("Ravenous Wolf")
+CollectibleType.COLLECTIBLE_PUMPKIN_BOMBS = Isaac.GetItemIdByName("Pumpkin Bombs")
+CollectibleType.COLLECTIBLE_UNCLE_BOB = Isaac.GetItemIdByName("Uncle Bob")
+CollectibleType.COLLECTIBLE_YARD_STICK = Isaac.GetItemIdByName("Yard Stick")
+CollectibleType.COLLECTIBLE_MEZUZAH = Isaac.GetItemIdByName("Mezuzah")
+CollectibleType.COLLECTIBLE_GAME_DIE = Isaac.GetItemIdByName("Game Die")
 
 -- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
@@ -148,6 +156,9 @@ TrinketType.TRINKET_BI_84 = Isaac.GetTrinketIdByName("BI-84")
 TrinketType.TRINKET_GLITCHED_PENNY = Isaac.GetTrinketIdByName("Glitched Penny")
 TrinketType.TRINKET_HAMMERHEAD_WORM = Isaac.GetTrinketIdByName("Hammerhead Worm")
 TrinketType.TRINKET_PARASOL = Isaac.GetTrinketIdByName("Parasol")
+TrinketType.TRINKET_ROOTS_OF_SUKKOT = Isaac.GetTrinketIdByName("Roots of Sukkot")
+TrinketType.TRINKET_BRAZEN_SEA = Isaac.GetTrinketIdByName("Brazen Sea")
+TrinketType.TRINKET_HOLLOW_HORN = Isaac.GetTrinketIdByName("Hollow Horn")
 
 -- Cards/Runes/Pills/etc
 RUNE_SOUL_OF_LEAH = Isaac.GetCardIdByName("Soul of Leah")
@@ -175,6 +186,8 @@ CARD_REVERSE_CHARITY = Isaac.GetCardIdByName("ReverseCharity")
 RUNE_SOUL_OF_ESTHER = Isaac.GetCardIdByName("Soul of Esther")
 RUNE_ESSENCE_OF_BRAVERY = Isaac.GetCardIdByName("Essence of Bravery")
 RUNE_ESSENCE_OF_COWARDICE = Isaac.GetCardIdByName("Essence of Cowardice")
+CARD_FORTITUDE = Isaac.GetCardIdByName("Fortitude")
+CARD_REVERSE_FORTITUDE = Isaac.GetCardIdByName("ReverseFortitude")
 
 -- Pickups
 HeartSubType.HEART_MOON = 225
@@ -295,6 +308,14 @@ include("lua/items/collectibles/Liberation.lua")
 include("lua/items/collectibles/SeveredEar.lua")
 include("lua/items/collectibles/GoldenPort.lua")
 include("lua/items/collectibles/ItchingPowder.lua")
+include("lua/items/collectibles/CoconutMilk.lua")
+include("lua/items/collectibles/TheScalesOfTruth.lua")
+include("lua/items/collectibles/RavenousWolf.lua")
+include("lua/items/collectibles/PumpkinBombs.lua")
+include("lua/items/collectibles/UncleBob.lua")
+include("lua/items/collectibles/YardStick.lua")
+include("lua/items/collectibles/Mezuzah.lua")
+include("lua/items/collectibles/GameDie.lua")
 
 -- Trinkets
 include("lua/items/trinkets/HolyHeart.lua")
@@ -316,6 +337,8 @@ include("lua/items/trinkets/BI-84.lua")
 include("lua/items/trinkets/GlitchedPenny.lua")
 include("lua/items/trinkets/HammerheadWorm.lua")
 include("lua/items/trinkets/Parasol.lua")
+include("lua/items/trinkets/BrazenSea.lua")
+include("lua/items/trinkets/HollowHorn.lua")
 
 -- Enemies
 include("lua/enemies/Hostikai.lua")
@@ -350,6 +373,8 @@ include("lua/pocket/ReverseCharity.lua")
 include("lua/pocket/SoulOfEsther.lua")
 include("lua/pocket/EssenceOfBravery.lua")
 include("lua/pocket/EssenceOfCowardice.lua")
+include("lua/pocket/Fortitude.lua")
+include("lua/pocket/ReverseFortitude.lua")
 
 -- Pickups
 --include("lua/pickups/Hearts.lua")
