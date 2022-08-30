@@ -18,6 +18,9 @@ end
 mod:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, mod.SetDadsWalletData)
 
 function mod:GiveCardsOnPickUp(player)
+    if player:GetPlayerType() == PlayerType.PLAYER_THESOUL_B then
+        return
+    end
     local data = mod:GetData(player)
     local newDadsWalletCount = player:GetCollectibleNum(CollectibleType.COLLECTIBLE_DADS_WALLET)
     if data.OldDadsWalletCount == nil then
