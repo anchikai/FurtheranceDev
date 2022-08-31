@@ -159,6 +159,7 @@ TrinketType.TRINKET_PARASOL = Isaac.GetTrinketIdByName("Parasol")
 TrinketType.TRINKET_ROOTS_OF_SUKKOT = Isaac.GetTrinketIdByName("Roots of Sukkot")
 TrinketType.TRINKET_BRAZEN_SEA = Isaac.GetTrinketIdByName("Brazen Sea")
 TrinketType.TRINKET_HOLLOW_HORN = Isaac.GetTrinketIdByName("Hollow Horn")
+TrinketType.TRINKET_KNOTTED_TASSEL = Isaac.GetTrinketIdByName("Knotted Tassel")
 
 -- Cards/Runes/Pills/etc
 RUNE_SOUL_OF_LEAH = Isaac.GetCardIdByName("Soul of Leah")

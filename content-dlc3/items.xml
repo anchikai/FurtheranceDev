@@ -105,7 +105,7 @@
 	<active id="91" name="Prayer Journal" description="Scripture" gfx="prayer_journal.png" maxcharges="4" quality="2" tags="book" />
 	<active id="92" name="Book of Leviticus" description="Set in stone" gfx="book_of_leviticus.png" maxcharges="6" quality="3" tags="book" />
 	<active id="95" name="Astragali" description="Reroll your biddings" gfx="astragali.png" maxcharges="4" quality="2" />
-	<active id="106" name="Mezuzah" description="" gfx="mezuzah.png" chargetype="timed" maxcharges="360" quality="2" />
+	<active id="106" name="Mezuzah" description="" gfx="mezuzah.png" chargetype="timed" maxcharges="180" quality="2" />
 	<active id="107" name="Game Die" description="" gfx="game_die.png" maxcharges="6" quality="4" />
 
 	<!-- Trinkets -->
@@ -132,7 +132,7 @@
 	<trinket id="20" name="Roots of Sukkot" description="The four species" gfx="roots_of_sukkot.png" />
 	<trinket id="21" name="Brazen Sea" description="Abulation of the soul" gfx="brazen_sea.png" />
 	<trinket id="22" cache="damage" name="Hollow Horn" description="Damage multiplier up" gfx="hollow_horn.png" />
-	<!-- <trinket id="23" name="Knotted Tassel" description="Marking shots" gfx="knotted_tassel.png" /> -->
+	<trinket id="23" name="Knotted Tassel" description="Marking shots" gfx="knotted_tassel.png" />
 
 	<!-- Familiars -->
 	<familiar id="35" name="Binds of Devotion" description="Bound by love" gfx="binds_of_devotion.png" quality="2" persistent="true" />

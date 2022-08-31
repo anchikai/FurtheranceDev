@@ -84,30 +84,30 @@ local AchievementGraphics = {
 		FullCompletion = "achievement.full_completion_b",
 	},
 	Esther = {
-		MomsHeart = "achievement_",
+		MomsHeart = "achievement_coconutmilk",
 		Isaac = "achievement_",
-		Satan = "achievement_",
-		BlueBaby = "achievement_",
-		Lamb = "achievement_",
-		BossRush = "achievement_",
-		Hush = "achievement_",
-		MegaSatan = "achievement_",
-		Delirium = "achievement_",
+		Satan = "achievement_pumpkinbombs",
+		BlueBaby = "achievement_thescalesoftruth",
+		Lamb = "achievement_ravenouswolf",
+		BossRush = "achievement_rootsofsukkot",
+		Hush = "achievement_yardstick",
+		MegaSatan = "achievement_unclebob",
+		Delirium = "achievement_mezuzah",
 		Mother = "achievement_",
 		Beast = "achievement_essenceofbravery",
-		GreedMode = "achievement_",
-		Greedier = "achievement_",
+		GreedMode = "achievement_knottedtassel",
+		Greedier = "achievement_gamedie",
 		Tainted = "achievement_taintedesther",
 		FullCompletion = "achievement_",
 	},
 	EstherB = {
-		PolNegPath = "achievement_",
+		PolNegPath = "achievement_brazensea",
 		SoulPath = "achievement_soulofesther",
 		MegaSatan = "achievement_",
 		Delirium = "achievement_",
-		Mother = "achievement_",
+		Mother = "achievement_hollowhorn",
 		Beast = "achievement_essenceofcowardice",
-		Greedier = "achievement_",
+		Greedier = "achievement_reversefortitude",
 		FullCompletion = "achievement.full_completion_b",
 	},
 }
@@ -195,30 +195,30 @@ local AchievementText = {
 		FullCompletion = "All Tainted Miriam marks",
 	},
 	Esther = {
-		MomsHeart = "",
+		MomsHeart = "Coconut Milk",
 		Isaac = "",
-		Satan = "",
-		BlueBaby = "",
-		Lamb = "",
-		BossRush = "",
-		Hush = "",
-		MegaSatan = "",
-		Delirium = "",
+		Satan = "Pumpkin Bombs",
+		BlueBaby = "The Scales of Truth",
+		Lamb = "Ravenous Wolf",
+		BossRush = "Roots of Sukkot",
+		Hush = "Yard Stick",
+		MegaSatan = "Uncle Bob",
+		Delirium = "Mezuzah",
 		Mother = "",
 		Beast = "Essence of Bravery",
-		GreedMode = "",
-		Greedier = "",
+		GreedMode = "Knotted Tassel",
+		Greedier = "Game Die",
 		Tainted = "Tainted Esther",
 		FullCompletion = "",
 	},
 	EstherB = {
-		PolNegPath = "",
+		PolNegPath = "Brazen Sea",
 		SoulPath = "Soul of Esther",
 		MegaSatan = "",
 		Delirium = "",
-		Mother = "",
+		Mother = "Hollow Horn",
 		Beast = "Essence of Cowardice",
-		Greedier = "",
+		Greedier = "Reverse Fortitude",
 		FullCompletion = "All Tainted Esther marks",
 	},
 }
@@ -627,6 +627,58 @@ function mod:StartUnlocks()
 		if mod.Unlocks.MiriamB.Beast.Hard == false then
 			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_JAR_OF_MANNA)
 		end
+
+		-- Esther
+		if mod.Unlocks.Esther.MomsHeart.Hard == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_COCONUT_MILK)
+		end
+		if mod.Unlocks.Esther.Isaac.Unlock == false then
+			-- game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_)
+		end
+		if mod.Unlocks.Esther.Satan.Unlock == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_PUMPKIN_BOMBS)
+		end
+		if mod.Unlocks.Esther.BlueBaby.Unlock == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_THE_SCALES_OF_TRUTH)
+		end
+		if mod.Unlocks.Esther.Lamb.Unlock == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_RAVENOUS_WOLF)
+		end
+		if mod.Unlocks.Esther.BossRush.Unlock == false then
+			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_ROOTS_OF_SUKKOT)
+		end
+		if mod.Unlocks.Esther.Hush.Unlock == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_YARD_STICK)
+		end
+		if mod.Unlocks.Esther.MegaSatan.Unlock == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_UNCLE_BOB)
+		end
+		if mod.Unlocks.Esther.Delirium.Unlock == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_MEZUZAH)
+		end
+		if mod.Unlocks.Esther.Mother.Unlock == false then
+			-- game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_)
+		end
+		if mod.Unlocks.Esther.GreedMode.Unlock == false then
+			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_KNOTTED_TASSEL)
+		end
+		if mod.Unlocks.Esther.GreedMode.Hard == false then
+			game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_GAME_DIE)
+		end
+		if mod.Unlocks.Esther.FullCompletion.Hard == false then
+			-- game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_)
+		end
+
+		-- Tainted Esther
+		if mod.Unlocks.EstherB.PolNegPath == false then
+			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_BRAZEN_SEA)
+		end
+		if mod.Unlocks.EstherB.Delirium.Hard == false then
+			-- game:GetItemPool():RemoveCollectible(CollectibleType.COLLECTIBLE_)
+		end
+		if mod.Unlocks.EstherB.Mother.Hard == false then
+			game:GetItemPool():RemoveTrinket(TrinketType.TRINKET_HOLLOW_HORN)
+		end
 	end
 end
 mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, mod.StartUnlocks)
@@ -712,6 +764,8 @@ local allCards = {
 	CARD_REVERSE_FAITH,
 	CARD_CHARITY,
 	CARD_REVERSE_CHARITY,
+	CARD_FORTITUDE,
+	CARD_REVERSE_FORTITUDE,
 }
 local allRunes = {
 	Card.RUNE_HAGALAZ,
@@ -836,6 +890,11 @@ function mod:StartUnlocksPickups(entity)
 	if mod.Unlocks.EstherB.SoulPath == false then
 		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == RUNE_SOUL_OF_ESTHER then
 			entity:Morph(entity.Type, entity.Variant, allRunes[rng:RandomInt(#allRunes) + 1], true)
+		end
+	end
+	if mod.Unlocks.EstherB.GreedMode.Hard == false then
+		if entity.Variant == PickupVariant.PICKUP_TAROTCARD and entity.SubType == CARD_REVERSE_FORTITUDE then
+			entity:Morph(entity.Type, entity.Variant, allRunes[rng:RandomInt(#allCards) + 1], true)
 		end
 	end
 	if mod.Unlocks.EstherB.Beast.Hard == false then
