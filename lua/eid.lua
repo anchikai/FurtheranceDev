@@ -464,6 +464,9 @@ EID:addTrinket(TrinketType.TRINKET_PARASOL, "↑ All familiars now block enemy s
 -- Hammerhead Worm
 EID:addTrinket(TrinketType.TRINKET_HAMMERHEAD_WORM, "Each tear's {{Damage}} Damage, Range {{Range}}, and {{Shotspeed}} Shot Speed is slightly randomized", "Hammerhead Worm", "en_us")
 
+-- Coconut Milk
+EID:addCollectible(CollectibleType.COLLECTIBLE_COCONUT_MILK, "↓ {{Tears}} 0.33x Fire Rate multiplier#↑ {{Damage}} 2x Damage multiplier#↑ {{Tearsize}} 2x Tear Size up#↑ Coconuts have a chance to fall on an enemies head when hit", "Coconut Milk", "en_us")
+
 
 
 -- Soul of Leah

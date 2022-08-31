@@ -46,4 +46,7 @@
 	<sound name="CaduceusActivate">
 		<sample weight="1" path="CaduceusActivate.wav" />
 	</sound>
+	<sound name="Bonk">
+		<sample weight="1" path="bonk.wav" />
+	</sound>
 </sounds>

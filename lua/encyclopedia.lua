@@ -1500,6 +1500,16 @@ local Wiki = {
 			{str = "All of Isaac's familiars will block enemy shots."},
 		},
 	},
+	CoconutMilk = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "0.33x fire rate multiplier."},
+			{str = "2x damage multiplier."},
+			{str = "2x tear size multiplier."},
+			{str = "Enemies hit have a (10*luck)% chance to have a coconut tear fall on top of their head from the top of the screen."},
+			{str = "- Minimum chance is 1%."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -3263,6 +3273,18 @@ Encyclopedia.AddTrinket({
 	Class = "Furtherance",
 	ID = TrinketType.TRINKET_PARASOL,
 	WikiDesc = Wiki.Parasol,
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_COCONUT_MILK,
+	WikiDesc = Wiki.CoconutMilk,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+	},
 })
 
 -- Pocket Items
