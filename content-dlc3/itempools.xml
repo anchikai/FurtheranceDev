@@ -34,6 +34,7 @@
 		<Item Name="Liberation" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Itching Powder" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Coconut Milk" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Game Die" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="shop">
 		<Item Name="Tambourine" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -107,6 +108,7 @@
 		<Item Name="Molten Gold" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Astragali" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Golden Port" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Game Die" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
     </Pool>
 	<Pool Name="library">
 		<Item Name="Book of Swiftness" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -197,6 +199,7 @@
 		<Item Name="Molten Gold" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Liberation" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Coconut Milk" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Game Die" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
 		<Item Name="Brunch" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -240,6 +243,7 @@
 		<Item Name="Itching Powder" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Binds of Devotion" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Coconut Milk" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Game Die" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedDevil">
 		<Item Name="Esc Key" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -293,6 +297,7 @@
 		<Item Name="Molten Gold" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Astragali" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Golden Port" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Game Die" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="craneGame">
 		<Item Name="Polydipsia" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>

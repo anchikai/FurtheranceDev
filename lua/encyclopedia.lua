@@ -1510,6 +1510,15 @@ local Wiki = {
 			{str = "- Minimum chance is 1%."},
 		},
 	},
+	GameDie = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, rerolls all items into two lower quality items."},
+			{str = "- Only one of the two new items can be picked up."},
+			{str = "- If used more than once, only one item can still be taken from all of the new items."},
+			{str = "Rerolling quality 0 items will make them vanish."},
+		},
+	},
 	BrazenSea = {
 		{ -- Effect
 			{str = "Effect", fsize = 2, clr = 3, halign = 0},
@@ -3290,6 +3299,20 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_TREASURE,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_GAME_DIE,
+	WikiDesc = Wiki.GameDie,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_SECRET,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_SHOP,
+		Encyclopedia.ItemPools.POOL_GREED_SECRET,
 	},
 })
 
