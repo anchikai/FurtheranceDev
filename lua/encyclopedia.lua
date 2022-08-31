@@ -1510,7 +1510,13 @@ local Wiki = {
 			{str = "- Minimum chance is 1%."},
 		},
 	},
-
+	BrazenSea = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "2% chance to gain a shield when entering an uncleared room."},
+		},
+	},
+	
 	-- Pocket Items
 	SoulOfLeah = {
 		{ -- Effect
@@ -3285,6 +3291,13 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 		Encyclopedia.ItemPools.POOL_GREED_SHOP,
 	},
+})
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_BRAZEN_SEA,
+	WikiDesc = Wiki.BrazenSea,
 })
 
 -- Pocket Items
