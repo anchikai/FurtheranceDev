@@ -470,6 +470,9 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_COCONUT_MILK, "↓ {{Tears}} 0.33
 -- Brazen Sea
 EID:addTrinket(TrinketType.TRINKET_BRAZEN_SEA, "{{HolyMantle}} 2% chance to gain a sheild when entering a uncleared room", "Brazen Sea", "en_us")
 
+-- Hollow Horn
+EID:addTrinket(TrinketType.TRINKET_HOLLOW_HORN, "↑ {{Damage}} +1.2x damage up", "Hollow Horn", "en_us")
+
 
 
 -- Soul of Leah

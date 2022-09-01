@@ -1525,6 +1525,12 @@ local Wiki = {
 			{str = "2% chance to gain a shield when entering an uncleared room."},
 		},
 	},
+	HollowHorn = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "x1.2 damage multiplier"},
+		},
+	},
 	
 	-- Pocket Items
 	SoulOfLeah = {
@@ -3321,6 +3327,13 @@ Encyclopedia.AddTrinket({
 	Class = "Furtherance",
 	ID = TrinketType.TRINKET_BRAZEN_SEA,
 	WikiDesc = Wiki.BrazenSea,
+})
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_HOLLOW_HORN,
+	WikiDesc = Wiki.HollowHorn,
 })
 
 -- Pocket Items
