@@ -476,6 +476,9 @@ EID:addTrinket(TrinketType.TRINKET_HOLLOW_HORN, "↑ {{Damage}} +1.2x damage up"
 -- Knotted Tassel
 EID:addTrinket(TrinketType.TRINKET_KNOTTED_TASSEL, "{{Bait}} 5% chance to shoot tears that mark enemies#Marked enemies are attacked by other enemies", "Knotted Tassel", "en_us")
 
+-- Roots of Sukkot
+EID:addTrinket(TrinketType.TRINKET_ROOTS_OF_SUKKOT, "↑ Randomly grants either {{Speed}} +0.2 Speed, {{Range}} 0.5 Range, {{Shotspeed}} 0.2 Shot Speed, or {{Luck}} 0.5 Luck when entering a room", "Roots of Sukkot", "en_us")
+
 
 
 -- Soul of Leah

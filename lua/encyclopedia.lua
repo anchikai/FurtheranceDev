@@ -1539,6 +1539,12 @@ local Wiki = {
 			{str = "Marked enemies will also have their movement speed reduced."},
 		},
 	},
+	RootsOfSukkot = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "When entering a room, you will either randomly gain a temporary 0.2 Speed, 0.5 Range, 0.2 Shot Speed, or 0.5 Luck up."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -3349,6 +3355,13 @@ Encyclopedia.AddTrinket({
 	Class = "Furtherance",
 	ID = TrinketType.TRINKET_KNOTTED_TASSEL,
 	WikiDesc = Wiki.KnottedTassel,
+})
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_ROOTS_OF_SUKKOT,
+	WikiDesc = Wiki.RootsOfSukkot,
 })
 
 -- Pocket Items

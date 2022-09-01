@@ -129,7 +129,7 @@
 	<trinket id="17" name="Glitched Penny" description="Wealth of Corruption" gfx="glitched_penny.png" />
 	<trinket id="18" cache="range shotspeed damage" name="Hammerhead Worm" description="Thwack" gfx="hammerhead_worm.png" />
 	<trinket id="19" name="Parasol" description="Little protectors" gfx="parasol.png" />
-	<trinket id="20" name="Roots of Sukkot" description="The four species" gfx="roots_of_sukkot.png" />
+	<trinket id="20" cache="speed range shotspeed luck" name="Roots of Sukkot" description="The four species" gfx="roots_of_sukkot.png" />
 	<trinket id="21" name="Brazen Sea" description="Abulation of the soul" gfx="brazen_sea.png" />
 	<trinket id="22" cache="damage" name="Hollow Horn" description="Damage multiplier up" gfx="hollow_horn.png" />
 	<trinket id="23" name="Knotted Tassel" description="Marking shots" gfx="knotted_tassel.png" />
