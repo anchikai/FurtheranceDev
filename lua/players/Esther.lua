@@ -145,7 +145,7 @@ function mod:TaintedEstherHome()
 					player:ChangePlayerType(PlayerType.PLAYER_ESTHER_B)
 					Isaac.Spawn(EntityType.ENTITY_SLOT, 14, 0, entity.Position, Vector.Zero, nil)
 					player:ChangePlayerType(PlayerType.PLAYER_ESTHER)
-					-- player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_, ActiveSlot.SLOT_POCKET, false)
+					player:SetPocketActiveItem(CollectibleType.COLLECTIBLE_MEZUZAH, ActiveSlot.SLOT_POCKET, false)
 					player:SetActiveCharge(RememberPocket, ActiveSlot.SLOT_POCKET)
 				end
 			end
