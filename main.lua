@@ -340,6 +340,7 @@ include("lua/items/trinkets/HammerheadWorm.lua")
 include("lua/items/trinkets/Parasol.lua")
 include("lua/items/trinkets/BrazenSea.lua")
 include("lua/items/trinkets/HollowHorn.lua")
+include("lua/items/trinkets/KnottedTassel.lua")
 
 -- Enemies
 include("lua/enemies/Hostikai.lua")

@@ -473,6 +473,9 @@ EID:addTrinket(TrinketType.TRINKET_BRAZEN_SEA, "{{HolyMantle}} 2% chance to gain
 -- Hollow Horn
 EID:addTrinket(TrinketType.TRINKET_HOLLOW_HORN, "↑ {{Damage}} +1.2x damage up", "Hollow Horn", "en_us")
 
+-- Knotted Tassel
+EID:addTrinket(TrinketType.TRINKET_KNOTTED_TASSEL, "{{Bait}} 5% chance to shoot tears that mark enemies#Marked enemies are attacked by other enemies", "Knotted Tassel", "en_us")
+
 
 
 -- Soul of Leah

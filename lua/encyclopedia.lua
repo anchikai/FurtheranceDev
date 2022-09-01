@@ -1531,7 +1531,15 @@ local Wiki = {
 			{str = "x1.2 damage multiplier"},
 		},
 	},
-	
+	KnottedTassel = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Tears have a 5% chance to mark enemies. Marked enemies will be attacked by other enemies either until it is killed or it kills all the enemies attacking it (similar to the charmed effect)."},
+			{str = "The tears, and hence the marked enemies, will change color to red."},
+			{str = "Marked enemies will also have their movement speed reduced."},
+		},
+	},
+
 	-- Pocket Items
 	SoulOfLeah = {
 		{ -- Effect
@@ -3334,6 +3342,13 @@ Encyclopedia.AddTrinket({
 	Class = "Furtherance",
 	ID = TrinketType.TRINKET_HOLLOW_HORN,
 	WikiDesc = Wiki.HollowHorn,
+})
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_KNOTTED_TASSEL,
+	WikiDesc = Wiki.KnottedTassel,
 })
 
 -- Pocket Items
