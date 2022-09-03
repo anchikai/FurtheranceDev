@@ -35,6 +35,7 @@ local allAllowedRooms = {
 }
 
 function mod:UseF4(_, _, player)
+	local rng = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_F4_KEY)
 	player:AnimateCollectible(CollectibleType.COLLECTIBLE_F4_KEY, "UseItem", "PlayerPickup")
 	if not player:HasCollectible(CollectibleType.COLLECTIBLE_ALT_KEY) then
 		-- Thanks for solving this problem Connor!
