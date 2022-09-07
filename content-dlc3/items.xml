@@ -105,8 +105,9 @@
 	<active id="91" name="Prayer Journal" description="Scripture" gfx="prayer_journal.png" maxcharges="4" quality="2" tags="book" />
 	<active id="92" name="Book of Leviticus" description="Set in stone" gfx="book_of_leviticus.png" maxcharges="6" quality="3" tags="book" />
 	<active id="95" name="Astragali" description="Reroll your biddings" gfx="astragali.png" maxcharges="4" quality="2" />
-	<active id="106" name="Mezuzah" description="" gfx="mezuzah.png" chargetype="timed" maxcharges="180" quality="2" />
-	<active id="107" name="Game Die" description="" gfx="game_die.png" maxcharges="6" quality="4" />
+	<active id="106" name="Mezuzah" description="Enscribed Protection" gfx="mezuzah.png" quality="2" />
+	<active id="107" name="Game Die" description="Mulligan your items" gfx="game_die.png" maxcharges="6" quality="4" />
+	<active id="108" cache="damage firedelay shotspeed" name="Bloody Contract" description="" gfx="bloody_contract.png" maxcharges="4" quality="2" />
 
 	<!-- Trinkets -->
 	<trinket id="0" name="Holy Heart" description="Protective hearts" gfx="holy_heart.png" /> <!-- Concept by HoneyVee! -->
