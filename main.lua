@@ -114,6 +114,7 @@ CollectibleType.COLLECTIBLE_YARD_STICK = Isaac.GetItemIdByName("Yard Stick")
 CollectibleType.COLLECTIBLE_MEZUZAH = Isaac.GetItemIdByName("Mezuzah")
 CollectibleType.COLLECTIBLE_GAME_DIE = Isaac.GetItemIdByName("Game Die")
 CollectibleType.COLLECTIBLE_BLOODY_CONTRACT = Isaac.GetItemIdByName("Bloody Contract")
+CollectibleType.COLLECTIBLE_BOOK_OF_PURIM = Isaac.GetItemIdByName("Book of Purim")
 
 -- Isaac's Keyboard
 CollectibleType.COLLECTIBLE_ESC_KEY = Isaac.GetItemIdByName("Esc Key")
@@ -319,6 +320,7 @@ include("lua/items/collectibles/YardStick.lua")
 include("lua/items/collectibles/Mezuzah.lua")
 include("lua/items/collectibles/GameDie.lua")
 include("lua/items/collectibles/BloodyContract.lua")
+include("lua/items/collectibles/BookOfPurim.lua")
 
 -- Trinkets
 include("lua/items/trinkets/HolyHeart.lua")

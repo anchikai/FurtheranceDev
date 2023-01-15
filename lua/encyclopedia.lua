@@ -1545,6 +1545,14 @@ local Wiki = {
 			{str = "When entering a room, you will either randomly gain a temporary 0.2 Speed, 0.5 Range, 0.2 Shot Speed, or 0.5 Luck up."},
 		},
 	},
+	BookOfPurim = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "Upon use, Isaac will be teleported to a Challenge Room."},
+			{str = "- (2*luck)% chance to be a Boss Challenge Room instead."},
+			{str = "-- Chance caps at 20%."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -3362,6 +3370,18 @@ Encyclopedia.AddTrinket({
 	Class = "Furtherance",
 	ID = TrinketType.TRINKET_ROOTS_OF_SUKKOT,
 	WikiDesc = Wiki.RootsOfSukkot,
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_BOOK_OF_PURIM,
+	WikiDesc = Wiki.GameDie,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_LIBRARY,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+	},
 })
 
 -- Pocket Items

@@ -479,6 +479,9 @@ EID:addTrinket(TrinketType.TRINKET_KNOTTED_TASSEL, "{{Bait}} 5% chance to shoot 
 -- Roots of Sukkot
 EID:addTrinket(TrinketType.TRINKET_ROOTS_OF_SUKKOT, "↑ Randomly grants either {{Speed}} +0.2 Speed, {{Range}} 0.5 Range, {{Shotspeed}} 0.2 Shot Speed, or {{Luck}} 0.5 Luck when entering a room", "Roots of Sukkot", "en_us")
 
+-- Book of Purim
+EID:addCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_PURIM, "On use, teleports Isaac to a Challenge Room", "Book of Purim", "en_us")
+
 
 
 -- Soul of Leah

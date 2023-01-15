@@ -108,6 +108,7 @@
 	<active id="106" name="Mezuzah" description="Enscribed Protection" gfx="mezuzah.png" quality="2" />
 	<active id="107" name="Game Die" description="Mulligan your items" gfx="game_die.png" maxcharges="6" quality="4" />
 	<active id="108" cache="damage firedelay shotspeed" name="Bloody Contract" description="" gfx="bloody_contract.png" maxcharges="4" quality="2" />
+	<active id="109" name="Book of Purim" description="They come in droves" gfx="book_of_purim.png" maxcharges="6" quality="3" tags="book" />
 
 	<!-- Trinkets -->
 	<trinket id="0" name="Holy Heart" description="Protective hearts" gfx="holy_heart.png" /> <!-- Concept by HoneyVee! -->
