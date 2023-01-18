@@ -1553,6 +1553,13 @@ local Wiki = {
 			{str = "-- Chance caps at 20%."},
 		},
 	},
+	PseudobulbarAffect = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "+1 tears up."},
+			{str = "Tears have a 50% chance to either charm or mark enemies."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {

@@ -76,7 +76,8 @@
 	<passive id="101" name="The Scales of Truth" description="Blind justice" gfx="the_scales_of_truth.png" quality="4" />
 	<passive id="102" name="Ravenous Wolf" description="Devour the prey" gfx="ravenous_wolf.png" devilprice="2" quality="4" />
 	<passive id="103" name="Pumpkin Bombs" description="Heavy fire + 5 bombs" gfx="pumpkin_bombs.png" quality="2" />
-	<passive id="105" name="Yard Stick" description="1 yard = 3 feet" gfx="yard_stick.png" quality="" />
+	<passive id="105" name="Yard Stick" description="1 yard = 3 feet" gfx="yard_stick.png" quality="3" />
+	<passive id="110" name="Pseudobulbar Affect" description="Tragedy is a comedy" gfx="pseudobulbar_affect.png" quality="4" />
 
 	<!-- Active Items -->
 	<active id="21" cache="speed" name="Book of Swiftness" description="Temporary speed up" gfx="book_of_swiftness.png" maxcharges="3" quality="3" tags="book offensive lazarussharedglobal" />

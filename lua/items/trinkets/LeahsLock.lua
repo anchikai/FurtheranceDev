@@ -1,5 +1,4 @@
 local mod = Furtherance
-local game = Game()
 
 ---@param tear EntityTear
 function mod:FireLLTears(tear)

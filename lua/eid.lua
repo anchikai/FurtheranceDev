@@ -482,6 +482,9 @@ EID:addTrinket(TrinketType.TRINKET_ROOTS_OF_SUKKOT, "↑ Randomly grants either 
 -- Book of Purim
 EID:addCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_PURIM, "On use, teleports Isaac to a Challenge Room", "Book of Purim", "en_us")
 
+-- Pseudobulbar Affect
+EID:addCollectible(CollectibleType.COLLECTIBLE_PSEUDOBULBAR_AFFECT, "↑ {{Tears}} +1 Tears up#50% chance for tears to be Charmed or Marked.", "Pseudobulbar Affect", "en_us")
+
 
 
 -- Soul of Leah
