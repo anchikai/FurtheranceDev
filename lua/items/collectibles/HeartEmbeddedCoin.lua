@@ -9,7 +9,7 @@ function mod:HeartsToCoins(entity, collider)
 		[HeartSubType.HEART_BLENDED] = 2,
 	}
 	if RepentancePlusMod then
-		heartCounter[CustomPickups.TaintedHearts.HEART_HOARDED] = 8
+		heartCounter[RepentancePlusMod.CustomPickups.TaintedHearts.HEART_HOARDED] = 8
 	end
 	if collider.Type == EntityType.ENTITY_PLAYER then
 		local collider = collider:ToPlayer()
@@ -35,7 +35,7 @@ function mod:HeartsToCoins(entity, collider)
 								entity:Die()
 								SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
 							elseif collider:CanPickRedHearts() and RepentancePlusMod then
-								if entity.SubType == CustomPickups.TaintedHearts.HEART_HOARDED then
+								if entity.SubType == RepentancePlusMod.CustomPickups.TaintedHearts.HEART_HOARDED then
 									entity:GetSprite():Play("Collect",true)
 									entity:Die()
 									SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
@@ -65,7 +65,7 @@ function mod:HeartsToCoins(entity, collider)
 								entity:Die()
 								SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
 							elseif collider:CanPickRedHearts() and RepentancePlusMod then
-								if entity.SubType == CustomPickups.TaintedHearts.HEART_HOARDED then
+								if entity.SubType == RepentancePlusMod.CustomPickups.TaintedHearts.HEART_HOARDED then
 									entity:GetSprite():Play("Collect",true)
 									entity:Die()
 									SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)

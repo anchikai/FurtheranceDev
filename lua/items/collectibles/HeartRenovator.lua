@@ -46,7 +46,7 @@ function mod:Hearts(heart, collider)
 		[HeartSubType.HEART_BLENDED] = 2,
 	}
 	if RepentancePlusMod then
-		heartCounter[CustomPickups.TaintedHearts.HEART_HOARDED] = 8
+		heartCounter[RepentancePlusMod.CustomPickups.TaintedHearts.HEART_HOARDED] = 8
 	end
 
 	local player = collider:ToPlayer()
@@ -90,7 +90,7 @@ function mod:Hearts(heart, collider)
 		SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
 
 	elseif player:CanPickRedHearts() and RepentancePlusMod then
-		if heart.SubType == CustomPickups.TaintedHearts.HEART_HOARDED then
+		if heart.SubType == RepentancePlusMod.CustomPickups.TaintedHearts.HEART_HOARDED then
 			heart:GetSprite():Play("Collect",true)
 			heart:Die()
 			SFXManager():Play(SoundEffect.SOUND_BOSS2_BUBBLES, 1, 0, false)
