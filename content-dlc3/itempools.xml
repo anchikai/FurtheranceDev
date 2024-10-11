@@ -36,6 +36,7 @@
 		<Item Name="Coconut Milk" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Game Die" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Purim" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Pseudobulbar Affect" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="shop">
 		<Item Name="Tambourine" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
@@ -203,6 +204,7 @@
 		<Item Name="Coconut Milk" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Game Die" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 		<Item Name="Book of Purim" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
+		<Item Name="Pseudobulbar Affect" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>
 	</Pool>
 	<Pool Name="greedBoss">
 		<Item Name="Brunch" Weight="1" DecreaseBy="1" RemoveOn="0.1"/>

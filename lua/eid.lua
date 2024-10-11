@@ -485,6 +485,8 @@ EID:addCollectible(CollectibleType.COLLECTIBLE_BOOK_OF_PURIM, "On use, teleports
 -- Pseudobulbar Affect
 EID:addCollectible(CollectibleType.COLLECTIBLE_PSEUDOBULBAR_AFFECT, "↑ {{Tears}} +1 Tears up#50% chance for tears to be Charmed or Marked.", "Pseudobulbar Affect", "en_us")
 
+-- Scrimshaw
+EID:addTrinket(TrinketType.TRINKET_SCRIMSHAW, "Grants a temporary {{Damage}} +5 damage up that lasts for 17 seconds when entering a special room", "Scrimshaw", "en_us")
 
 
 -- Soul of Leah

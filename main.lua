@@ -163,6 +163,7 @@ TrinketType.TRINKET_ROOTS_OF_SUKKOT = Isaac.GetTrinketIdByName("Roots of Sukkot"
 TrinketType.TRINKET_BRAZEN_SEA = Isaac.GetTrinketIdByName("Brazen Sea")
 TrinketType.TRINKET_HOLLOW_HORN = Isaac.GetTrinketIdByName("Hollow Horn")
 TrinketType.TRINKET_KNOTTED_TASSEL = Isaac.GetTrinketIdByName("Knotted Tassel")
+TrinketType.TRINKET_SCRIMSHAW = Isaac.GetTrinketIdByName("Scrimshaw")
 
 -- Cards/Runes/Pills/etc
 RUNE_SOUL_OF_LEAH = Isaac.GetCardIdByName("Soul of Leah")
@@ -348,6 +349,7 @@ include("lua/items/trinkets/RootsOfSukkot.lua")
 include("lua/items/trinkets/BrazenSea.lua")
 include("lua/items/trinkets/HollowHorn.lua")
 include("lua/items/trinkets/KnottedTassel.lua")
+include("lua/items/trinkets/Scrimshaw.lua")
 
 -- Enemies
 include("lua/enemies/Hostikai.lua")

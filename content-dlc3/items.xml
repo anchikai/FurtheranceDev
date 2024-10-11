@@ -136,6 +136,7 @@
 	<trinket id="21" name="Brazen Sea" description="Abulation of the soul" gfx="brazen_sea.png" />
 	<trinket id="22" cache="damage" name="Hollow Horn" description="Damage multiplier up" gfx="hollow_horn.png" />
 	<trinket id="23" name="Knotted Tassel" description="Marking shots" gfx="knotted_tassel.png" />
+	<trinket id="24" name="Scrimshaw" description="Exploration = Power" gfx="scrimshaw.png" />
 
 	<!-- Familiars -->
 	<familiar id="35" name="Binds of Devotion" description="Bound by love" gfx="binds_of_devotion.png" quality="2" persistent="true" />

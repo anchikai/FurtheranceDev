@@ -1560,6 +1560,13 @@ local Wiki = {
 			{str = "Tears have a 50% chance to either charm or mark enemies."},
 		},
 	},
+	Scrimshaw = {
+		{ -- Effect
+			{str = "Effect", fsize = 2, clr = 3, halign = 0},
+			{str = "When enetering a special room, grants a temporary 5 damage up."},
+			{str = "You lose 0.01 damage every frame, or 0.3 damage per second."},
+		},
+	},
 
 	-- Pocket Items
 	SoulOfLeah = {
@@ -3389,6 +3396,24 @@ Encyclopedia.AddItem({
 		Encyclopedia.ItemPools.POOL_LIBRARY,
 		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
 	},
+})
+
+Encyclopedia.AddItem({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = CollectibleType.COLLECTIBLE_PSEUDOBULBAR_AFFECT,
+	WikiDesc = Wiki.PseudobulbarAffect,
+	Pools = {
+		Encyclopedia.ItemPools.POOL_TREASURE,
+		Encyclopedia.ItemPools.POOL_GREED_TREASURE,
+	},
+})
+
+Encyclopedia.AddTrinket({
+	ModName = "Furtherance",
+	Class = "Furtherance",
+	ID = TrinketType.TRINKET_SCRIMSHAW,
+	WikiDesc = Wiki.Scrimshaw,
 })
 
 -- Pocket Items

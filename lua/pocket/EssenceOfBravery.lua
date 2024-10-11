@@ -15,7 +15,7 @@ function mod:BraverySpeed(player)
 
     player:AddCacheFlags(CacheFlag.CACHE_SPEED)
     player:EvaluateItems()
-    
+
     data.BraveryBuff = math.max(data.BraveryBuff - 0.001, -0.25)
     if data.BraveryBuff > -0.25 then
         player.MoveSpeed = player.MoveSpeed + data.BraveryBuff
