@@ -81,7 +81,10 @@ mod:AddCallback(ModCallbacks.MC_POST_PEFFECT_UPDATE, mod.EstherSpeed)
 function mod:EstherDamage(entity, _, _, source)
     local player = entity:ToPlayer()
 	local pdata = mod:GetData(player)
-	local edata = mod:GetData(source.Entity)
+	local edata = nil
+	if source.Entity then
+		edata = mod:GetData(source.Entity)
+	end
     if player then
 		if player:GetPlayerType() == PlayerType.PLAYER_ESTHER then
 			if player.MoveSpeed >= 2 then
@@ -97,7 +100,9 @@ function mod:EstherDamage(entity, _, _, source)
 			if pdata.TaintedEstherTempSoulHearts >= 0 and not pdata.UsedBloodyContract then
 				pdata.TaintedEstherTempSoulHearts = pdata.TaintedEstherTempSoulHearts - 1
 			end
-			edata.TaintedEstherExplosion = true
+			if edata ~= nil then
+				edata.TaintedEstherExplosion = true
+			end
 			if pdata.UsedBloodyContract then
 				game:BombExplosionEffects(source.Entity.Position, player.Damage*3, TearFlags.TEAR_NORMAL, Color.Default, player, 1, true, false, DamageFlag.DAMAGE_EXPLOSION)
 			end
